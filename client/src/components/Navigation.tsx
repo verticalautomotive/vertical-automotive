@@ -5,7 +5,7 @@
  */
 
 import { Button } from "@/components/ui/button";
-import { Menu, Phone, X, ImagePlus } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
 
@@ -18,14 +18,12 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-20">
           {/* Logo - Upload your logo here */}
           <Link href="/">
-            <a className="flex items-center space-x-3">
-              <div className="w-12 h-12 border-2 border-primary flex items-center justify-center bg-secondary/80">
-                <ImagePlus className="w-6 h-6 text-primary" />
-              </div>
-              <div className="font-display text-2xl font-black tracking-tight">
-                VERTICAL
-                <span className="text-primary ml-2">AUTO</span>
-              </div>
+            <a className="flex items-center">
+              <img
+                src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/lVPmvaQYkURznMWm.svg"
+                alt="Vertical Automotive"
+                className="h-14 w-auto"
+              />
             </a>
           </Link>
 
