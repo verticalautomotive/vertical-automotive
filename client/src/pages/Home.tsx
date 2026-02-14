@@ -3,7 +3,7 @@
  * Design Philosophy: Industrial Brutalism
  * - Raw workshop aesthetics with bold geometric shapes
  * - Diagonal grid system with asymmetric layouts
- * - Charcoal blacks, concrete grays, safety orange accents
+ * - Black, white, and blue color scheme
  * - Mechanical precision in interactions
  */
 
