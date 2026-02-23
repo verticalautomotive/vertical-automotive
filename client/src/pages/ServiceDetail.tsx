@@ -1,9 +1,10 @@
 /**
- * ServiceDetail — Dynamic page for individual service pages
- * Matches the service-type pages on verticalautomotive.com
- * Hero, intro content, when needed, benefits, contact section
+ * ServiceDetail — Industrial Brutalism Design
+ * Blue accents, diagonal elements, bold typography
+ * Dynamic page for individual service pages
  */
 import { SERVICES, COMPANY } from "@/lib/data";
+import { Button } from "@/components/ui/button";
 import { useParams } from "wouter";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -33,7 +34,7 @@ export default function ServiceDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navigation />
 
       <PageHero
@@ -46,44 +47,47 @@ export default function ServiceDetail() {
       />
 
       {/* Content */}
-      <section className="bg-white text-black py-16">
+      <section className="bg-background py-16">
         <div className="container max-w-4xl">
           {/* Intro */}
-          <p className="text-lg leading-relaxed text-gray-700 mb-12">
+          <p className="text-lg leading-relaxed text-muted-foreground mb-12">
             {service.content.intro}
           </p>
 
           {/* When Needed */}
           <h2 className="font-display text-2xl md:text-3xl font-black tracking-wider mb-4">
-            WHEN DO I NEED THIS SERVICE?
+            WHEN DO I NEED <span className="text-primary">THIS SERVICE?</span>
           </h2>
-          <p className="text-gray-700 leading-relaxed mb-12">
+          <div className="h-1 w-16 bg-primary mb-6" />
+          <p className="text-muted-foreground leading-relaxed mb-12">
             {service.content.whenNeeded}
           </p>
 
           {/* Benefits */}
           <h2 className="font-display text-2xl md:text-3xl font-black tracking-wider mb-4">
-            BENEFITS
+            <span className="text-primary">BENEFITS</span>
           </h2>
-          <p className="text-gray-700 leading-relaxed mb-12">
+          <div className="h-1 w-16 bg-primary mb-6" />
+          <p className="text-muted-foreground leading-relaxed mb-12">
             {service.content.benefits}
           </p>
 
           {/* CTA */}
-          <div className="bg-gray-50 border border-gray-200 p-8 text-center">
+          <div className="bg-muted border border-border p-8 text-center grid-pattern">
             <p className="font-display text-xl font-bold tracking-wider mb-4">
-              VERTICAL AUTOMOTIVE IS HERE TO HELP!
+              VERTICAL AUTOMOTIVE IS <span className="text-primary">HERE TO HELP!</span>
             </p>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
               Our auto repair shop offers superior car service with straightforward pricing and honest recommendations for all our valued customers. Contact us today for all your auto repair and car service needs!
             </p>
             <a
               href={COMPANY.appointmentUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-primary text-white font-display font-bold uppercase tracking-wider px-8 py-3 text-sm hover:bg-red-700 transition-colors"
             >
-              SCHEDULE YOUR APPOINTMENT
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-wider px-8">
+                SCHEDULE YOUR APPOINTMENT
+              </Button>
             </a>
           </div>
         </div>

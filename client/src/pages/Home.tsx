@@ -1,20 +1,20 @@
 /**
- * Home Page — Matches verticalautomotive.com homepage
- * Hero with vehicle types, stats, services grid, offers carousel, contact
+ * Home Page — Industrial Brutalism Design
+ * Black/white/blue palette, diagonal dividers, bold typography
+ * Hero with vehicle types, stats, services grid, offers carousel, coupons
  */
-import { COMPANY, SERVICES, VEHICLE_TYPES, OFFERS, COUPONS, LOCATIONS } from "@/lib/data";
+import { COMPANY, SERVICES, VEHICLE_TYPES, OFFERS, COUPONS } from "@/lib/data";
+import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ChevronRight, ChevronLeft, Printer } from "lucide-react";
 import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
-// Generated images
-const heroImg = "https://files.manuscdn.com/user_upload_by_module/image_gen/e9c0e6b5-0b3c-4f7f-b2a3-f5a3e8c7d1a2/b1.png";
-
 export default function Home() {
   const [offerIndex, setOfferIndex] = useState(0);
   const [couponIndex, setCouponIndex] = useState(0);
+  const [statsVisible, setStatsVisible] = useState(false);
 
   // Auto-advance offers
   useEffect(() => {
@@ -24,22 +24,37 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
+  // Stats animation trigger
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setStatsVisible(true);
+        });
+      },
+      { threshold: 0.3 }
+    );
+    const el = document.getElementById("stats");
+    if (el) observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navigation />
 
       {/* ===== HERO ===== */}
-      <section className="relative bg-black overflow-hidden">
+      <section className="relative bg-secondary text-secondary-foreground overflow-hidden">
         <div className="container py-12 md:py-20">
-          {/* Title area */}
           <div className="text-center mb-8">
             <h1 className="font-display text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black tracking-wider leading-none">
-              <span className="text-white/60">Fort Lauderdale</span>
+              <span className="text-muted-foreground">Fort Lauderdale</span>
             </h1>
             <h2 className="font-display text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black tracking-wider leading-none mt-2">
               Total Auto Care - 3 Years Warranty!
             </h2>
-            <p className="text-green-400 italic mt-4 text-sm md:text-base">
+            <div className="h-1 w-32 bg-primary mx-auto mt-4" />
+            <p className="text-primary italic mt-4 text-sm md:text-base">
               {COMPANY.testimonial}
             </p>
           </div>
@@ -50,7 +65,7 @@ export default function Home() {
               <Link
                 key={vt.slug}
                 href={`/services/${vt.slug}`}
-                className="group relative overflow-hidden aspect-[16/10] bg-black/50 border border-white/10 hover:border-green-400/50 transition-all duration-500"
+                className="group relative overflow-hidden aspect-[16/10] border border-border hover:border-primary/50 transition-all duration-500"
               >
                 <img
                   src={vt.image}
@@ -59,11 +74,11 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 flex items-center space-x-2">
-                  <span className="text-blue-400 font-bold text-lg">&#xab;</span>
+                  <span className="text-primary font-bold text-lg">&laquo;</span>
                   <h3 className="font-display text-xl md:text-3xl lg:text-4xl font-black tracking-wider text-white">
                     {vt.title}
                   </h3>
-                  <span className="text-blue-400 font-bold text-lg">&#xbb;</span>
+                  <span className="text-primary font-bold text-lg">&raquo;</span>
                 </div>
               </Link>
             ))}
@@ -72,7 +87,7 @@ export default function Home() {
       </section>
 
       {/* ===== STATS ===== */}
-      <section className="relative">
+      <section id="stats" className="relative">
         <div
           className="relative py-20 md:py-28"
           style={{
@@ -81,7 +96,7 @@ export default function Home() {
             backgroundPosition: "center",
           }}
         >
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/50" />
           <div className="container relative z-10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {[
@@ -90,8 +105,8 @@ export default function Home() {
                 { value: COMPANY.staff, label: "Staff" },
                 { value: COMPANY.satisfaction, label: "Satisfied\nCustomers" },
               ].map((stat) => (
-                <div key={stat.label}>
-                  <div className="font-display text-5xl md:text-7xl font-black text-white">
+                <div key={stat.label} className={`transition-all duration-700 ${statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                  <div className="font-display text-5xl md:text-7xl font-black text-white mono-number">
                     {stat.value}
                   </div>
                   <p className="text-white/80 text-sm md:text-base mt-2 whitespace-pre-line font-medium">
@@ -102,29 +117,29 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* Diagonal transition to white */}
-        <div className="bg-white h-20" style={{ clipPath: "polygon(0 0, 100% 60%, 100% 100%, 0 100%)" }} />
       </section>
 
       {/* ===== SERVICES ===== */}
-      <section className="bg-white text-black py-16 -mt-1">
+      <section className="bg-background text-foreground py-16">
         <div className="container">
-          <h2 className="font-display text-4xl md:text-5xl font-black text-center tracking-wider mb-12">
-            OUR<br />SERVICES
-          </h2>
+          <div className="text-center mb-12">
+            <h2 className="font-display text-4xl md:text-5xl font-black tracking-wider">
+              OUR <span className="text-primary">SERVICES</span>
+            </h2>
+            <div className="h-1 w-24 bg-primary mx-auto mt-4" />
+          </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
             {SERVICES.map((service) => (
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group border border-gray-200 p-6 text-center hover:border-red-500 hover:shadow-lg transition-all duration-300"
+                className="group border border-border p-6 text-center hover:border-primary hover:shadow-lg transition-all duration-300"
               >
                 <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                   <ServiceIcon name={service.icon} />
                 </div>
-                <h3 className="font-display text-sm md:text-base font-bold tracking-wider uppercase leading-tight">
+                <h3 className="font-display text-sm md:text-base font-bold tracking-wider uppercase leading-tight group-hover:text-primary transition-colors">
                   {service.shortTitle}
                 </h3>
               </Link>
@@ -133,30 +148,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Diagonal transition back to black */}
-      <div className="bg-white">
-        <div className="bg-black h-20" style={{ clipPath: "polygon(0 40%, 100% 0, 100% 100%, 0 100%)" }} />
-      </div>
-
       {/* ===== CURRENT OFFERS ===== */}
-      <section className="bg-black py-16 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: "url(https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1400&q=80)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-        <div className="absolute inset-0 bg-black/60" />
-
+      <section className="bg-secondary text-secondary-foreground py-16 relative overflow-hidden diagonal-top">
         <div className="container relative z-10">
-          <h2 className="font-display text-4xl md:text-5xl font-black text-center tracking-wider mb-2">
-            CURRENT OFFERS
-          </h2>
-          <p className="text-center text-white/60 font-display tracking-wider mb-10">
-            SCHEDULE YOUR APPOINTMENT
-          </p>
+          <div className="text-center mb-10">
+            <h2 className="font-display text-4xl md:text-5xl font-black tracking-wider">
+              CURRENT <span className="text-primary">OFFERS</span>
+            </h2>
+            <div className="h-1 w-24 bg-primary mx-auto mt-4 mb-2" />
+            <p className="text-muted-foreground font-display tracking-wider">
+              SCHEDULE YOUR APPOINTMENT
+            </p>
+          </div>
 
           {/* Offers Carousel */}
           <div className="relative max-w-4xl mx-auto">
@@ -167,24 +170,21 @@ export default function Home() {
               >
                 {OFFERS.map((offer, i) => (
                   <div key={i} className="w-full flex-shrink-0 px-4">
-                    <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 md:p-12 text-center">
-                      <span className="inline-block bg-primary text-white text-xs font-display font-bold tracking-widest px-4 py-1 mb-4">
+                    <div className="border border-border p-8 md:p-12 text-center grid-pattern">
+                      <span className="inline-block bg-primary text-primary-foreground text-xs font-display font-bold tracking-widest px-4 py-1 mb-4">
                         {offer.badge}
                       </span>
                       <h3 className="font-display text-xl md:text-2xl font-bold mb-4 tracking-wider">
                         {offer.title}
                       </h3>
-                      <div className="font-display text-4xl md:text-6xl font-black text-green-400 mb-4">
+                      <div className="font-display text-4xl md:text-6xl font-black text-primary mb-4 mono-number">
                         {offer.value}
                       </div>
-                      <p className="text-white/60 mb-8">{offer.description}</p>
-                      <a
-                        href={COMPANY.appointmentUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block bg-primary text-white font-display font-bold uppercase tracking-wider px-8 py-3 text-sm hover:bg-red-700 transition-colors"
-                      >
-                        Schedule now
+                      <p className="text-muted-foreground mb-8">{offer.description}</p>
+                      <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer">
+                        <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-wider">
+                          Schedule now
+                        </Button>
                       </a>
                     </div>
                   </div>
@@ -192,27 +192,25 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Carousel controls */}
             <button
               onClick={() => setOfferIndex((prev) => (prev - 1 + OFFERS.length) % OFFERS.length)}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-white/10 hover:bg-white/20 p-2 transition-colors"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-secondary-foreground/10 hover:bg-secondary-foreground/20 p-2 transition-colors"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={() => setOfferIndex((prev) => (prev + 1) % OFFERS.length)}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-white/10 hover:bg-white/20 p-2 transition-colors"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-secondary-foreground/10 hover:bg-secondary-foreground/20 p-2 transition-colors"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
 
-            {/* Dots */}
             <div className="flex justify-center space-x-2 mt-6">
               {OFFERS.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setOfferIndex(i)}
-                  className={`w-2.5 h-2.5 rounded-full transition-colors ${i === offerIndex ? 'bg-green-400' : 'bg-white/30'}`}
+                  className={`w-2.5 h-2.5 transition-colors ${i === offerIndex ? 'bg-primary' : 'bg-secondary-foreground/30'}`}
                 />
               ))}
             </div>
@@ -221,8 +219,15 @@ export default function Home() {
       </section>
 
       {/* ===== COUPONS ===== */}
-      <section className="bg-white text-black py-16">
+      <section className="bg-background text-foreground py-16 diagonal-top">
         <div className="container">
+          <div className="text-center mb-10">
+            <h2 className="font-display text-4xl md:text-5xl font-black tracking-wider">
+              PRINTABLE <span className="text-primary">COUPONS</span>
+            </h2>
+            <div className="h-1 w-24 bg-primary mx-auto mt-4" />
+          </div>
+
           <div className="relative max-w-4xl mx-auto">
             <div className="overflow-hidden">
               <div
@@ -231,13 +236,13 @@ export default function Home() {
               >
                 {COUPONS.map((coupon, i) => (
                   <div key={i} className="w-full flex-shrink-0 px-4">
-                    <div className="border-2 border-dashed border-gray-300 p-8 md:p-12 text-center bg-gray-50">
+                    <div className="border-2 border-dashed border-border p-8 md:p-12 text-center bg-muted">
                       <h3 className="font-display text-xl font-bold mb-2 tracking-wider">{coupon.title}</h3>
-                      <p className="text-gray-500 text-sm mb-4 whitespace-pre-line">{coupon.description}</p>
-                      <p className="text-xs text-gray-400 mb-6">{coupon.expiry}</p>
+                      <p className="text-muted-foreground text-sm mb-4 whitespace-pre-line">{coupon.description}</p>
+                      <p className="text-xs text-muted-foreground mb-6">{coupon.expiry}</p>
                       <button
                         onClick={() => window.print()}
-                        className="inline-flex items-center space-x-2 bg-black text-white font-display font-bold uppercase tracking-wider px-6 py-3 text-sm hover:bg-gray-800 transition-colors"
+                        className="inline-flex items-center space-x-2 bg-secondary text-secondary-foreground font-display font-bold uppercase tracking-wider px-6 py-3 text-sm hover:bg-secondary/80 transition-colors"
                       >
                         <Printer className="w-4 h-4" />
                         <span>Print this Coupon</span>
@@ -250,15 +255,15 @@ export default function Home() {
 
             <button
               onClick={() => setCouponIndex((prev) => (prev - 1 + COUPONS.length) % COUPONS.length)}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-black/10 hover:bg-black/20 p-2 transition-colors"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-foreground/10 hover:bg-foreground/20 p-2 transition-colors"
             >
-              <ChevronLeft className="w-6 h-6 text-black" />
+              <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={() => setCouponIndex((prev) => (prev + 1) % COUPONS.length)}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-black/10 hover:bg-black/20 p-2 transition-colors"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-foreground/10 hover:bg-foreground/20 p-2 transition-colors"
             >
-              <ChevronRight className="w-6 h-6 text-black" />
+              <ChevronRight className="w-6 h-6" />
             </button>
 
             <div className="flex justify-center space-x-2 mt-6">
@@ -266,7 +271,7 @@ export default function Home() {
                 <button
                   key={i}
                   onClick={() => setCouponIndex(i)}
-                  className={`w-2.5 h-2.5 rounded-full transition-colors ${i === couponIndex ? 'bg-black' : 'bg-gray-300'}`}
+                  className={`w-2.5 h-2.5 transition-colors ${i === couponIndex ? 'bg-primary' : 'bg-foreground/20'}`}
                 />
               ))}
             </div>
@@ -280,7 +285,7 @@ export default function Home() {
 }
 
 function ServiceIcon({ name }: { name: string }) {
-  const iconColor = "text-red-600";
+  const iconColor = "text-primary";
   const size = "w-12 h-12";
 
   const icons: Record<string, React.ReactNode> = {

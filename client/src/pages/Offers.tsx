@@ -1,9 +1,10 @@
 /**
- * Offers / Coupons Page — Matches verticalautomotive.com/offers-coupons-vertical-automotive/
- * Hero banner, printable coupons grid
+ * Offers / Coupons Page — Industrial Brutalism Design
+ * Blue accents, bold typography, printable coupons
  */
-import { COUPONS, COMPANY } from "@/lib/data";
+import { COUPONS } from "@/lib/data";
 import { Printer } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -37,7 +38,7 @@ export default function OffersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navigation />
 
       <PageHero
@@ -50,24 +51,24 @@ export default function OffersPage() {
       />
 
       {/* Coupons Grid */}
-      <section className="bg-white text-black py-16">
+      <section className="bg-background py-16">
         <div className="container">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {COUPONS.map((coupon, i) => (
               <div
                 key={i}
-                className="border-2 border-dashed border-gray-300 p-8 text-center bg-gray-50 hover:border-red-400 transition-colors"
+                className="border-2 border-dashed border-border p-8 text-center bg-muted hover:border-primary transition-colors"
               >
                 <h3 className="font-display text-xl font-bold tracking-wider mb-3">
                   {coupon.title}
                 </h3>
-                <p className="text-gray-500 text-sm mb-4 whitespace-pre-line leading-relaxed">
+                <p className="text-muted-foreground text-sm mb-4 whitespace-pre-line leading-relaxed">
                   {coupon.description}
                 </p>
-                <p className="text-xs text-gray-400 mb-6">{coupon.expiry}</p>
+                <p className="text-xs text-muted-foreground mb-6">{coupon.expiry}</p>
                 <button
                   onClick={() => handlePrint(coupon.title)}
-                  className="inline-flex items-center space-x-2 bg-black text-white font-display font-bold uppercase tracking-wider px-6 py-3 text-xs hover:bg-gray-800 transition-colors"
+                  className="inline-flex items-center space-x-2 bg-secondary text-secondary-foreground font-display font-bold uppercase tracking-wider px-6 py-3 text-xs hover:bg-secondary/80 transition-colors"
                 >
                   <Printer className="w-4 h-4" />
                   <span>Print this Coupon</span>

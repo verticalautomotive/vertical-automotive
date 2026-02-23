@@ -1,6 +1,6 @@
 /**
- * About Us Page — Matches verticalautomotive.com/about-us-vertical-automotive/
- * Hero, intro text, why choose us grid, community involvement
+ * About Us Page — Industrial Brutalism Design
+ * Blue accents, diagonal elements, bold typography
  */
 import { ABOUT_CONTENT, COMPANY } from "@/lib/data";
 import Navigation from "@/components/Navigation";
@@ -9,7 +9,7 @@ import PageHero from "@/components/PageHero";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navigation />
 
       <PageHero
@@ -22,45 +22,48 @@ export default function AboutPage() {
       />
 
       {/* About Content */}
-      <section className="bg-white text-black py-16">
+      <section className="bg-background py-16">
         <div className="container max-w-4xl">
-          <p className="text-lg leading-relaxed text-gray-700 mb-8">
+          <p className="text-lg leading-relaxed text-muted-foreground mb-8">
             {ABOUT_CONTENT.intro}
           </p>
 
           <h2 className="font-display text-3xl font-black tracking-wider mb-4">
-            OUTSTANDING REPUTATION
+            OUTSTANDING <span className="text-primary">REPUTATION</span>
           </h2>
-          <p className="text-gray-700 leading-relaxed mb-8">
+          <div className="h-1 w-16 bg-primary mb-6" />
+          <p className="text-muted-foreground leading-relaxed mb-12">
             {ABOUT_CONTENT.reputation}
           </p>
 
           <h2 className="font-display text-3xl font-black tracking-wider mb-4">
-            COMMUNITY INVOLVEMENT
+            COMMUNITY <span className="text-primary">INVOLVEMENT</span>
           </h2>
-          <p className="text-gray-700 leading-relaxed mb-12">
+          <div className="h-1 w-16 bg-primary mb-6" />
+          <p className="text-muted-foreground leading-relaxed mb-12">
             {ABOUT_CONTENT.community}
           </p>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="bg-black py-16">
+      <section className="bg-secondary text-secondary-foreground py-16 diagonal-top">
         <div className="container">
-          <h2 className="font-display text-4xl md:text-5xl font-black text-center tracking-wider mb-12">
-            WHY CHOOSE US
+          <h2 className="font-display text-4xl md:text-5xl font-black text-center tracking-wider mb-4">
+            WHY <span className="text-primary">CHOOSE US</span>
           </h2>
+          <div className="h-1 w-24 bg-primary mx-auto mb-12" />
 
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {ABOUT_CONTENT.whyChooseUs.map((item, i) => (
               <div
                 key={i}
-                className="bg-white/5 border border-white/10 p-8 hover:border-green-400/30 transition-colors"
+                className="border border-border p-8 hover:border-primary/50 transition-colors grid-pattern"
               >
-                <h3 className="font-display text-xl font-bold tracking-wider mb-4 text-green-400">
+                <h3 className="font-display text-xl font-bold tracking-wider mb-4 text-primary">
                   {item.title}
                 </h3>
-                <p className="text-white/70 leading-relaxed text-sm">
+                <p className="text-secondary-foreground/70 leading-relaxed text-sm">
                   {item.description}
                 </p>
               </div>
@@ -88,7 +91,7 @@ export default function AboutPage() {
               { value: COMPANY.satisfaction, label: "Satisfied Customers" },
             ].map((stat) => (
               <div key={stat.label}>
-                <div className="font-display text-5xl md:text-7xl font-black text-white">
+                <div className="font-display text-5xl md:text-7xl font-black text-white mono-number">
                   {stat.value}
                 </div>
                 <p className="text-white/80 text-sm mt-2 font-medium">

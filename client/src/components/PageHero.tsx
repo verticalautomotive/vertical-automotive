@@ -1,9 +1,10 @@
 /**
- * PageHero — Reusable hero banner for inner pages
- * Black background with car image, page title, breadcrumb
- * Diagonal white transition at bottom (matching original site)
+ * PageHero — Industrial Brutalism Design
+ * Blue accents, diagonal accent, bold typography
+ * Reusable hero banner for inner pages
  */
 import { COMPANY } from "@/lib/data";
+import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
 interface PageHeroProps {
@@ -20,7 +21,7 @@ export default function PageHero({ title, breadcrumb, backgroundImage, icon }: P
     <div className="relative">
       {/* Hero */}
       <div
-        className="relative h-[50vh] min-h-[400px] flex items-center justify-center bg-black"
+        className="relative h-[50vh] min-h-[400px] flex items-center justify-center"
         style={{
           backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(${backgroundImage || defaultBg})`,
           backgroundSize: "cover",
@@ -38,16 +39,17 @@ export default function PageHero({ title, breadcrumb, backgroundImage, icon }: P
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-wider leading-tight">
             {title}
           </h1>
+          <div className="h-1 w-24 bg-primary mx-auto mt-4" />
           <div className="flex items-center justify-center space-x-2 mt-4 text-sm">
             {breadcrumb.map((item, i) => (
               <span key={i} className="flex items-center space-x-2">
                 {i > 0 && <span className="text-white/40">·</span>}
                 {item.href ? (
-                  <Link href={item.href} className="text-white/60 hover:text-green-400 transition-colors font-display tracking-wider">
+                  <Link href={item.href} className="text-white/60 hover:text-primary transition-colors font-display tracking-wider">
                     {item.label}
                   </Link>
                 ) : (
-                  <span className="text-green-400 font-display tracking-wider underline underline-offset-4">
+                  <span className="text-primary font-display tracking-wider">
                     {item.label}
                   </span>
                 )}
@@ -58,18 +60,19 @@ export default function PageHero({ title, breadcrumb, backgroundImage, icon }: P
       </div>
 
       {/* Appointment ribbon */}
-      <div className="relative bg-white" style={{ clipPath: "polygon(0 0, 100% 30%, 100% 100%, 0 100%)" }}>
-        <div className="pt-12 pb-8 flex justify-center">
-          <a
-            href={COMPANY.appointmentUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-primary text-white font-display font-bold uppercase tracking-widest px-10 py-3 text-sm hover:bg-red-700 transition-colors relative"
-            style={{ clipPath: "polygon(5% 0, 95% 0, 100% 100%, 0 100%)" }}
+      <div className="bg-background py-8 flex justify-center">
+        <a
+          href={COMPANY.appointmentUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button
+            size="lg"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-widest px-10 shadow-lg"
           >
             APPOINTMENT
-          </a>
-        </div>
+          </Button>
+        </a>
       </div>
     </div>
   );

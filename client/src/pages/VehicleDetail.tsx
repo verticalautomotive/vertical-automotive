@@ -1,11 +1,11 @@
 /**
- * VehicleDetail — Dynamic page for vehicle-type service pages
- * Matches Tesla, Asian, European, Domestic pages on verticalautomotive.com
- * Hero, description, service cards grid
+ * VehicleDetail — Industrial Brutalism Design
+ * Blue accents, diagonal elements, bold typography
+ * Dynamic page for vehicle-type service pages
  */
 import { VEHICLE_TYPES, SERVICES, COMPANY } from "@/lib/data";
-import { useParams } from "wouter";
-import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
+import { useParams, Link } from "wouter";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -19,13 +19,12 @@ export default function VehicleDetail() {
     return <NotFound />;
   }
 
-  // Get the services associated with this vehicle type
   const vehicleServices = vehicle.services
     .map((sSlug) => SERVICES.find((s) => s.slug === sSlug))
     .filter(Boolean);
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navigation />
 
       <PageHero
@@ -38,19 +37,20 @@ export default function VehicleDetail() {
       />
 
       {/* Description */}
-      <section className="bg-white text-black py-16">
+      <section className="bg-background py-16">
         <div className="container max-w-4xl">
-          <h2 className="font-display text-2xl md:text-3xl font-black tracking-wider mb-6">
-            WE SERVICE {vehicle.title} VEHICLES
+          <h2 className="font-display text-2xl md:text-3xl font-black tracking-wider mb-4">
+            WE SERVICE <span className="text-primary">{vehicle.title}</span> VEHICLES
           </h2>
-          <p className="text-gray-700 leading-relaxed text-lg mb-12">
+          <div className="h-1 w-16 bg-primary mb-6" />
+          <p className="text-muted-foreground leading-relaxed text-lg mb-12">
             {vehicle.description}
           </p>
         </div>
       </section>
 
       {/* Service Cards */}
-      <section className="bg-black py-16">
+      <section className="bg-secondary text-secondary-foreground py-16 diagonal-top">
         <div className="container">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {vehicleServices.map((service) =>
@@ -58,12 +58,12 @@ export default function VehicleDetail() {
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}
-                  className="group bg-white/5 border border-white/10 p-6 hover:border-green-400/50 transition-all duration-300"
+                  className="group border border-border p-6 hover:border-primary/50 transition-all duration-300 grid-pattern"
                 >
-                  <h3 className="font-display text-lg font-bold tracking-wider mb-3 text-green-400 group-hover:text-white transition-colors">
+                  <h3 className="font-display text-lg font-bold tracking-wider mb-3 text-primary group-hover:text-secondary-foreground transition-colors">
                     {service.shortTitle}
                   </h3>
-                  <p className="text-white/60 text-sm leading-relaxed line-clamp-3">
+                  <p className="text-secondary-foreground/60 text-sm leading-relaxed line-clamp-3">
                     {service.description}
                   </p>
                 </Link>
@@ -74,21 +74,23 @@ export default function VehicleDetail() {
       </section>
 
       {/* CTA */}
-      <section className="bg-white text-black py-16">
+      <section className="bg-background py-16 diagonal-top">
         <div className="container text-center max-w-3xl">
           <h2 className="font-display text-3xl font-black tracking-wider mb-4">
-            SCHEDULE YOUR APPOINTMENT
+            SCHEDULE YOUR <span className="text-primary">APPOINTMENT</span>
           </h2>
-          <p className="text-gray-600 mb-8 leading-relaxed">
+          <div className="h-1 w-24 bg-primary mx-auto mb-6" />
+          <p className="text-muted-foreground mb-8 leading-relaxed">
             Trust Vertical Automotive for all your {vehicle.title.toLowerCase()} vehicle repair and maintenance needs. Our ASE-certified technicians are ready to help.
           </p>
           <a
             href={COMPANY.appointmentUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-primary text-white font-display font-bold uppercase tracking-wider px-10 py-4 text-sm hover:bg-red-700 transition-colors"
           >
-            BOOK NOW
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-wider px-10">
+              BOOK NOW
+            </Button>
           </a>
         </div>
       </section>
