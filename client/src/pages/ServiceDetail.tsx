@@ -1,15 +1,17 @@
 /**
  * ServiceDetail — Industrial Brutalism Design
- * Blue accents, diagonal elements, bold typography
+ * Blue/white/black palette, bold typography
  * Dynamic page for individual service pages
  */
 import { SERVICES, COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { useParams } from "wouter";
+import { Link } from "wouter";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import NotFound from "./NotFound";
+import { CheckCircle, ArrowRight } from "lucide-react";
 
 const SERVICE_IMAGES: Record<string, string> = {
   "battery-cranking-charging-systems": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1400&q=80",
@@ -33,29 +35,28 @@ export default function ServiceDetail() {
     return <NotFound />;
   }
 
+  // Get related services (exclude current)
+  const relatedServices = SERVICES.filter((s) => s.slug !== slug).slice(0, 4);
+
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Navigation />
 
       <PageHero
         title={service.title.toUpperCase()}
-        breadcrumb={[
-          { label: "HOME", href: "/" },
-          { label: service.title.toUpperCase() },
-        ]}
+        subtitle="Comprehensive Computer Diagnostic, Preventive Maintenance and Repair"
         backgroundImage={SERVICE_IMAGES[service.slug]}
       />
 
       {/* Content */}
-      <section className="bg-background py-16">
-        <div className="container max-w-4xl">
-          {/* Intro */}
+      <section className="py-20 bg-background">
+        <div className="container max-w-5xl">
           <p className="text-lg leading-relaxed text-muted-foreground mb-12">
             {service.content.intro}
           </p>
 
           {/* When Needed */}
-          <h2 className="font-display text-2xl md:text-3xl font-black tracking-wider mb-4">
+          <h2 className="text-2xl md:text-3xl font-black mb-4">
             WHEN DO I NEED <span className="text-primary">THIS SERVICE?</span>
           </h2>
           <div className="h-1 w-16 bg-primary mb-6" />
@@ -64,31 +65,66 @@ export default function ServiceDetail() {
           </p>
 
           {/* Benefits */}
-          <h2 className="font-display text-2xl md:text-3xl font-black tracking-wider mb-4">
+          <h2 className="text-2xl md:text-3xl font-black mb-4">
             <span className="text-primary">BENEFITS</span>
           </h2>
           <div className="h-1 w-16 bg-primary mb-6" />
           <p className="text-muted-foreground leading-relaxed mb-12">
             {service.content.benefits}
           </p>
+        </div>
+      </section>
 
-          {/* CTA */}
-          <div className="bg-muted border border-border p-8 text-center grid-pattern">
-            <p className="font-display text-xl font-bold tracking-wider mb-4">
-              VERTICAL AUTOMOTIVE IS <span className="text-primary">HERE TO HELP!</span>
-            </p>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
-              Our auto repair shop offers superior car service with straightforward pricing and honest recommendations for all our valued customers. Contact us today for all your auto repair and car service needs!
-            </p>
-            <a
-              href={COMPANY.appointmentUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+      {/* CTA */}
+      <section className="py-16 bg-primary text-primary-foreground text-center">
+        <div className="container">
+          <h2 className="text-3xl md:text-4xl font-black mb-4">
+            VERTICAL AUTOMOTIVE IS HERE TO HELP!
+          </h2>
+          <p className="text-lg opacity-90 max-w-2xl mx-auto mb-8">
+            Our auto repair shop offers superior car service with straightforward pricing and honest recommendations for all our valued customers.
+          </p>
+          <a
+            href={COMPANY.appointmentUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button
+              size="lg"
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-lg px-8 py-6"
             >
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-wider px-8">
-                SCHEDULE YOUR APPOINTMENT
-              </Button>
-            </a>
+              SCHEDULE YOUR APPOINTMENT
+            </Button>
+          </a>
+        </div>
+      </section>
+
+      {/* Related Services */}
+      <section className="py-20 bg-muted">
+        <div className="container">
+          <h2 className="text-3xl font-black mb-4 text-center">
+            OTHER <span className="text-primary">SERVICES</span>
+          </h2>
+          <div className="h-1 w-24 bg-primary mx-auto mb-12" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {relatedServices.map((s) => (
+              <Link
+                key={s.slug}
+                href={`/services/${s.slug}`}
+                className="group p-6 bg-card border-2 border-border hover:border-primary transition-all duration-300"
+              >
+                <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
+                  {s.shortTitle}
+                </h3>
+                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+                  {s.description}
+                </p>
+                <span className="inline-flex items-center text-primary text-sm font-bold">
+                  Learn More <ArrowRight className="w-4 h-4 ml-1" />
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

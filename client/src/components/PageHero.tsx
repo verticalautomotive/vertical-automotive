@@ -7,14 +7,15 @@ import { COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
-interface PageHeroProps {
+export interface PageHeroProps {
   title: string;
-  breadcrumb: { label: string; href?: string }[];
+  subtitle?: string;
+  breadcrumb?: { label: string; href?: string }[];
   backgroundImage?: string;
   icon?: React.ReactNode;
 }
 
-export default function PageHero({ title, breadcrumb, backgroundImage, icon }: PageHeroProps) {
+export default function PageHero({ title, subtitle, breadcrumb, backgroundImage, icon }: PageHeroProps) {
   const defaultBg = "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1400&q=80";
 
   return (
@@ -40,22 +41,31 @@ export default function PageHero({ title, breadcrumb, backgroundImage, icon }: P
             {title}
           </h1>
           <div className="h-1 w-24 bg-primary mx-auto mt-4" />
-          <div className="flex items-center justify-center space-x-2 mt-4 text-sm">
-            {breadcrumb.map((item, i) => (
-              <span key={i} className="flex items-center space-x-2">
-                {i > 0 && <span className="text-white/40">·</span>}
-                {item.href ? (
-                  <Link href={item.href} className="text-white/60 hover:text-primary transition-colors font-display tracking-wider">
-                    {item.label}
-                  </Link>
-                ) : (
-                  <span className="text-primary font-display tracking-wider">
-                    {item.label}
-                  </span>
-                )}
-              </span>
-            ))}
-          </div>
+          
+          {subtitle && (
+            <p className="text-white/70 text-lg mt-4 font-medium tracking-wide">
+              {subtitle}
+            </p>
+          )}
+
+          {breadcrumb && breadcrumb.length > 0 && (
+            <div className="flex items-center justify-center space-x-2 mt-4 text-sm">
+              {breadcrumb.map((item, i) => (
+                <span key={i} className="flex items-center space-x-2">
+                  {i > 0 && <span className="text-white/40">·</span>}
+                  {item.href ? (
+                    <Link href={item.href} className="text-white/60 hover:text-primary transition-colors font-display tracking-wider">
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <span className="text-primary font-display tracking-wider">
+                      {item.label}
+                    </span>
+                  )}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
