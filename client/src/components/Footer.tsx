@@ -1,98 +1,127 @@
 /**
- * Footer Component
- * Design: Industrial Brutalism - Geometric layout with grid pattern
+ * Footer — Matches original verticalautomotive.com
+ * Contact section + certified professionals info + hours + copyright
  */
-
-import { MapPin, Phone, Clock } from "lucide-react";
+import { COMPANY, LOCATIONS } from "@/lib/data";
+import { MapPin, Phone, Clock, Shield } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary text-secondary-foreground">
-      {/* Diagonal top accent */}
-      <div className="h-1 bg-primary" 
-        style={{
-          clipPath: 'polygon(2% 0, 100% 0, 100% 100%, 0 100%)'
-        }}
-      />
-      
-      <div className="container py-16 grid-pattern">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
-          <div>
-            <div className="font-display text-2xl font-black mb-4">
-              VERTICAL
-              <span className="text-primary ml-2">AUTO</span>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              ASE-certified mechanics providing complete auto care with 36 years of experience. Specializing in Tesla, Asian, European, and Domestic vehicles.
-            </p>
-          </div>
+    <footer className="bg-black text-white">
+      {/* Contact Section */}
+      <section id="contact" className="py-16 border-t border-white/10">
+        <div className="container">
+          <h2 className="font-display text-4xl md:text-5xl font-black text-center mb-12 tracking-wider">
+            CONTACT US
+          </h2>
 
-          {/* Wilton Manors Location */}
-          <div>
-            <h3 className="font-display text-lg font-bold mb-4 text-primary">
-              WILTON MANORS
-            </h3>
-            <div className="space-y-3 text-sm">
-              <div className="flex items-start space-x-2">
-                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>1100 W Oakland Park Blvd Bay 5<br />Wilton Manors, FL 33311</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 flex-shrink-0" />
-                <a href="tel:9545651518" className="mono-number hover:text-primary transition-colors">
-                  (954) 565-1518
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {LOCATIONS.map((loc) => (
+              <div key={loc.name} className="bg-white/5 border border-white/10 p-8">
+                <h3 className="font-display text-2xl font-bold mb-6 text-green-400 tracking-wider">
+                  {loc.name}
+                </h3>
+
+                <div className="space-y-4 mb-6">
+                  <div className="flex items-start space-x-3">
+                    <MapPin className="w-5 h-5 mt-0.5 text-primary flex-shrink-0" />
+                    <div>
+                      <p className="font-medium">ADDRESS:</p>
+                      <a
+                        href={`https://maps.google.com/?q=${encodeURIComponent(loc.address + ', ' + loc.city)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white/70 hover:text-white transition-colors"
+                      >
+                        {loc.address}, {loc.city}
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-3">
+                    <Phone className="w-5 h-5 text-primary flex-shrink-0" />
+                    <a
+                      href={`tel:${loc.phoneRaw}`}
+                      className="font-medium hover:text-green-400 transition-colors text-lg"
+                    >
+                      {loc.phone}
+                    </a>
+                  </div>
+                </div>
+
+                <a
+                  href={COMPANY.appointmentUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-primary text-white font-display font-bold uppercase tracking-wider px-6 py-3 text-sm hover:bg-red-700 transition-colors"
+                >
+                  SCHEDULE YOUR APPOINTMENT
                 </a>
-              </div>
-            </div>
-          </div>
 
-          {/* Fort Lauderdale Location */}
-          <div>
-            <h3 className="font-display text-lg font-bold mb-4 text-primary">
-              FORT LAUDERDALE
-            </h3>
-            <div className="space-y-3 text-sm">
-              <div className="flex items-start space-x-2">
-                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>707 NE 11th Str<br />Fort Lauderdale, FL 33304</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 flex-shrink-0" />
-                <a href="tel:6452162266" className="mono-number hover:text-primary transition-colors">
-                  (645) 216-2266
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Hours */}
-          <div>
-            <h3 className="font-display text-lg font-bold mb-4 text-primary">
-              HOURS
-            </h3>
-            <div className="space-y-3 text-sm">
-              <div className="flex items-start space-x-2">
-                <Clock className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <div>
-                  <div className="mono-number">MON-FRI: 8:00 AM - 5:00 PM</div>
-                  <div className="mono-number text-muted-foreground mt-1">SAT-SUN: CLOSED</div>
+                {/* Google Maps Embed */}
+                <div className="mt-6">
+                  <iframe
+                    src={loc.mapUrl}
+                    width="100%"
+                    height="200"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={`Map - ${loc.name}`}
+                    className="grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                  />
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
+      </section>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-border">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-muted-foreground">
-              © 2026 Vertical Automotive. All Rights Reserved.
-            </p>
-            <div className="flex items-center space-x-6 text-sm">
-              <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+      {/* Bottom Footer */}
+      <div className="border-t border-white/10 py-10">
+        <div className="container">
+          <div className="grid md:grid-cols-3 gap-8 items-start">
+            {/* Certified */}
+            <div className="flex items-start space-x-4">
+              <Shield className="w-10 h-10 text-primary flex-shrink-0 mt-1" />
+              <div>
+                <p className="font-display text-lg font-bold tracking-wider">
+                  Certified Automotive<br />Professionals
+                </p>
+                <p className="text-sm text-white/60 mt-2 leading-relaxed">
+                  Our ASE-certified MASTER technicians feature complete repairs on all car models.
+                </p>
+              </div>
             </div>
+
+            {/* Hours */}
+            <div className="flex items-start space-x-4">
+              <Clock className="w-10 h-10 text-primary flex-shrink-0 mt-1" />
+              <div>
+                <p className="font-display text-lg font-bold tracking-wider">Hours</p>
+                <p className="text-white/80 mt-2">{COMPANY.hours}</p>
+                <p className="text-white/60 text-sm mt-1">{COMPANY.closedDays}</p>
+              </div>
+            </div>
+
+            {/* Payment */}
+            <div>
+              <p className="font-display text-lg font-bold tracking-wider mb-3">PAY SYSTEM</p>
+              <div className="flex items-center space-x-3 text-white/50 text-sm">
+                <span>Visa</span>
+                <span>•</span>
+                <span>Mastercard</span>
+                <span>•</span>
+                <span>Amex</span>
+                <span>•</span>
+                <span>Discover</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-white/10 mt-8 pt-6 text-center text-sm text-white/40">
+            © {new Date().getFullYear()} — Vertical Automotive, All Rights Reserved.
           </div>
         </div>
       </div>
