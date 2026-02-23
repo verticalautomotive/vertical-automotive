@@ -4,6 +4,7 @@
  */
 import { ABOUT_CONTENT, COMPANY } from "@/lib/data";
 import { Award, CheckCircle, TrendingUp, Users } from "lucide-react";
+import SEO from "@/components/SEO";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -11,6 +12,10 @@ import PageHero from "@/components/PageHero";
 export default function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <SEO
+        title="About Us - Vertical Automotive | Family-Owned Auto Repair Since 1989"
+        description="Family-owned and operated since 1989, Vertical Automotive is an ASE-certified auto repair shop in Fort Lauderdale. 36 years of experience, 54,000+ vehicles repaired. Learn about our team and commitment to quality."
+      />
       <Navigation />
 
       <PageHero

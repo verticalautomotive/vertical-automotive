@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import NotFound from "./NotFound";
 import { ArrowRight } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function VehicleDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -26,6 +27,10 @@ export default function VehicleDetail() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <SEO
+        title={`${vehicle.title} Vehicle Service - Vertical Automotive | Fort Lauderdale, FL`}
+        description={`Expert ${vehicle.title.toLowerCase()} vehicle repair and maintenance in Fort Lauderdale, FL. ${vehicle.description.slice(0, 150)}... ASE-certified. Call (954) 565-1518.`}
+      />
       <Navigation />
 
       <PageHero

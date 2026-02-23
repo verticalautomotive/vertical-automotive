@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import NotFound from "./NotFound";
 import { CheckCircle, ArrowRight } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const SERVICE_IMAGES: Record<string, string> = {
   "battery-cranking-charging-systems": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1400&q=80",
@@ -40,6 +41,10 @@ export default function ServiceDetail() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <SEO
+        title={`${service.title} - Vertical Automotive | Fort Lauderdale Auto Repair`}
+        description={`Professional ${service.title.toLowerCase()} service in Fort Lauderdale, FL. ${service.description} ASE-certified technicians. 3-year warranty. Call (954) 565-1518.`}
+      />
       <Navigation />
 
       <PageHero

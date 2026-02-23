@@ -10,10 +10,15 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { Link } from "wouter";
 import { CheckCircle } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function ServicesPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <SEO
+        title="Auto Repair Services - Vertical Automotive | Fort Lauderdale, FL"
+        description="Complete auto repair services in Fort Lauderdale: brakes, transmission, A/C, oil change, diagnostics, steering, EV & hybrid service. ASE-certified technicians. 3-year warranty."
+      />
       <Navigation />
 
       <PageHero

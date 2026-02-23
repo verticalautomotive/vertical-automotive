@@ -29,7 +29,7 @@ export const LOCATIONS = [
   },
   {
     name: "Fort Lauderdale",
-    address: "707 NE 11th Str",
+    address: "707 NE 11th St",
     city: "Fort Lauderdale, FL 33304",
     phone: "(645) 216-2266",
     phoneRaw: "6452162266",
@@ -72,7 +72,7 @@ export const SERVICES: ServiceItem[] = [
     content: {
       intro: "Welcome to Vertical Automotive Auto Repair Shop, your premier destination for comprehensive brake repair and service in Fort Lauderdale, FL. At Vertical Automotive, we specialize in delivering top-notch brake repair, brake service, brake replacement, and brake inspection services tailored to meet the needs of your vehicle. Whether you're dealing with worn brake pads, damaged rotors, or simply need a routine brake inspection, our team of certified mechanics is here to provide the expert care your car deserves. Our brake service extends beyond simple repairs. We also specialize in brake replacement for all types of vehicles. Whether you drive a car, truck, or SUV, our experts use only high-quality brake pads and rotors to ensure your vehicle's braking system is in optimal condition and provide 3 years parts and labor warranty.",
       whenNeeded: "It's important to regularly check your vehicle's brake system to ensure your safety and the safety of others on the road. As a rule of thumb, it's a good idea to have your brakes inspected as part of your vehicle's routine maintenance schedule. This is usually recommended every 6 months or around every 10,000 to 15,000 miles. If you hear squeaking, grinding, or any unusual noises when you apply the brakes, it's a clear sign that you should have your brake system checked.",
-      benefits: "Preventative maintenance is key to the longevity and safety of your vehicle's braking system. Our brake inspection process includes examining the brake pads, rotors, calipers, and fluid levels to ensure everything is functioning correctly. If we find any concerns, we'll provide you with a detailed report and recommended solutions to keep your brakes performing effectively, along with transparent cost estimates.",
+      benefits: "Preventive maintenance is key to the longevity and safety of your vehicle's braking system. Our brake inspection process includes examining the brake pads, rotors, calipers, and fluid levels to ensure everything is functioning correctly. If we find any concerns, we'll provide you with a detailed report and recommended solutions to keep your brakes performing effectively, along with transparent cost estimates.",
     },
   },
   {
@@ -298,52 +298,52 @@ export const COUPONS = [
   {
     title: "Wiper Blades",
     description: "with any $399+ service\n\ncoupons do not combine, first visit only",
-    expiry: "Don't expire",
+    expiry: "No expiration",
   },
   {
     title: "10% OFF First Visit",
-    description: "First visit 10% of labor only\n\ncoupons do not combine",
-    expiry: "Don't expire",
+    description: "First visit 10% off labor only\n\ncoupons do not combine",
+    expiry: "No expiration",
   },
   {
     title: "$25 OFF",
     description: "Full Synthetic Oil + Filter + Digital Vehicle Inspection (first visit only)",
-    expiry: "Don't expire",
+    expiry: "No expiration",
   },
   {
     title: "$385 Brake Pads and Rotors!",
     description: "Brake Pads and Rotors! *per axle, some makes and models may not qualify, first visit",
-    expiry: "Don't expire",
+    expiry: "No expiration",
   },
   {
     title: "AC Vent & Duct Disinfecting",
     description: "Available per request with any $100+ service\n\ncoupons do not combine",
-    expiry: "Don't expire",
+    expiry: "No expiration",
   },
   {
     title: "Uber / Lyft Rides",
     description: "available with $500+ service",
-    expiry: "Don't expire",
+    expiry: "No expiration",
   },
   {
     title: "FREE Brake Inspection",
-    description: "Inspect your brakes and have peace in mind navigating busy roads!",
-    expiry: "Don't expire",
+    description: "Inspect your brakes and have peace of mind navigating busy roads!",
+    expiry: "No expiration",
   },
   {
     title: "FREE 2nd Opinion",
     description: "Received too high estimate, we will inspect and provide a second opinion for FREE!",
-    expiry: "Don't expire",
+    expiry: "No expiration",
   },
   {
     title: "Up To $100 OFF",
     description: "On Set of 4 selected tires at the time of purchase and availability",
-    expiry: "Don't expire",
+    expiry: "No expiration",
   },
   {
     title: "FREE Alignment Check",
     description: "Check your Alignment for FREE",
-    expiry: "Don't expire",
+    expiry: "No expiration",
   },
 ];
 
@@ -388,7 +388,7 @@ export const SERVICES_PAGE_EXTRA = {
       "Exhaust System",
       "Tire Repair and Replacement",
       "Cooling System",
-      "Vehicle Preventative Maintenance",
+      "Vehicle Preventive Maintenance",
       "Electrical Diagnostics",
       "Tune Up",
       "CV Axles",

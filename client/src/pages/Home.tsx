@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
+import SEO from "@/components/SEO";
 
 export default function Home() {
   const [statsVisible, setStatsVisible] = useState(false);
@@ -48,6 +49,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <SEO
+        title="Vertical Automotive - Full-Service Auto Repair Shop in Fort Lauderdale, FL"
+        description="ASE-certified auto repair shop in Fort Lauderdale & Wilton Manors. Tesla, Asian, European & Domestic vehicle specialists. 36 years of experience. 3-year warranty on all repairs. Call (954) 565-1518."
+      />
       <Navigation />
 
       {/* Hero Section */}

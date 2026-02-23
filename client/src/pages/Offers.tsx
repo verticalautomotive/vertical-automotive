@@ -6,6 +6,7 @@ import { OFFERS, COUPONS, COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Printer } from "lucide-react";
+import SEO from "@/components/SEO";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -40,6 +41,10 @@ export default function OffersPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <SEO
+        title="Auto Repair Coupons & Offers - Vertical Automotive | Fort Lauderdale, FL"
+        description="Save on auto repairs with exclusive coupons and offers from Vertical Automotive. Free brake inspection, free oil change, tire discounts, and more. Print coupons and schedule today."
+      />
       <Navigation />
 
       <PageHero
