@@ -12,6 +12,7 @@ import { Card } from "@/components/ui/card";
 import { COMPANY, SERVICES, VEHICLE_TYPES, OFFERS, LOCATIONS } from "@/lib/data";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { MapView } from "@/components/Map";
 import {
   CheckCircle,
   Award,
@@ -23,7 +24,7 @@ import {
   Quote,
   ExternalLink,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import SEO from "@/components/SEO";
 
@@ -447,42 +448,69 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {LOCATIONS.map((loc) => (
-              <Card key={loc.name} className="p-8 bg-secondary/50 border-2 border-primary/20">
-                <h3 className="text-2xl font-black mb-6 text-primary">
-                  {loc.name.toUpperCase()}
-                </h3>
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start space-x-3">
-                    <MapPin className="w-5 h-5 mt-1 text-primary flex-shrink-0" />
-                    <div>
-                      <p className="font-medium">{loc.address}</p>
-                      <p className="text-muted-foreground">{loc.city}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-                    <a href={`tel:${loc.phoneRaw}`} className="mono-number font-medium hover:text-primary transition-colors">
-                      {loc.phone}
-                    </a>
-                  </div>
-                </div>
-                <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer">
-                  <Button 
-                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold"
-                    size="lg"
-                  >
-                    SCHEDULE APPOINTMENT
-                  </Button>
-                </a>
-              </Card>
-            ))}
+            <LocationCard location={LOCATIONS[0]} coords={{ lat: 26.1617, lng: -80.1544 }} />
+            <LocationCard location={LOCATIONS[1]} coords={{ lat: 26.1317, lng: -80.1344 }} />
           </div>
         </div>
       </section>
 
       <Footer />
     </div>
+  );
+}
+
+function LocationCard({ location, coords }: { location: typeof LOCATIONS[0]; coords: google.maps.LatLngLiteral }) {
+  const handleMapReady = (map: google.maps.Map) => {
+    // Add a marker for the location
+    new google.maps.marker.AdvancedMarkerElement({
+      map,
+      position: coords,
+      title: `Vertical Automotive - ${location.name}`,
+    });
+  };
+
+  return (
+    <Card className="bg-secondary/50 border-2 border-primary/20 overflow-hidden">
+      {/* Google Map */}
+      <div className="w-full h-[250px]">
+        <MapView
+          className="w-full h-full"
+          initialCenter={coords}
+          initialZoom={15}
+          onMapReady={handleMapReady}
+        />
+      </div>
+      
+      {/* Location Info */}
+      <div className="p-8">
+        <h3 className="text-2xl font-black mb-6 text-primary">
+          {location.name.toUpperCase()}
+        </h3>
+        <div className="space-y-4 mb-8">
+          <div className="flex items-start space-x-3">
+            <MapPin className="w-5 h-5 mt-1 text-primary flex-shrink-0" />
+            <div>
+              <p className="font-medium">{location.address}</p>
+              <p className="text-muted-foreground">{location.city}</p>
+            </div>
+          </div>
+          <div className="flex items-center space-x-3">
+            <Phone className="w-5 h-5 text-primary flex-shrink-0" />
+            <a href={`tel:${location.phoneRaw}`} className="mono-number font-medium hover:text-primary transition-colors">
+              {location.phone}
+            </a>
+          </div>
+        </div>
+        <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer">
+          <Button
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold"
+            size="lg"
+          >
+            SCHEDULE APPOINTMENT
+          </Button>
+        </a>
+      </div>
+    </Card>
   );
 }
 
