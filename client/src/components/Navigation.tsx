@@ -35,6 +35,7 @@ export default function Navigation() {
     { label: "AUTO REPAIR SHOP", href: "/" },
     { label: "OFFERS", href: "/offers" },
     { label: "ABOUT US", href: "/about" },
+    { label: "REVIEWS", href: "/#reviews" },
     { label: "CONTACTS", href: "/#contact" },
   ];
 

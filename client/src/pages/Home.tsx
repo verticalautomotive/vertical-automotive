@@ -19,6 +19,9 @@ import {
   TrendingUp,
   MapPin,
   Phone,
+  Star,
+  Quote,
+  ExternalLink,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
@@ -296,6 +299,136 @@ export default function Home() {
               <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-primary opacity-20 -z-10" />
               <div className="absolute -top-6 -left-6 w-48 h-48 border-4 border-primary -z-10" />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Google Reviews Section */}
+      <section id="reviews" className="py-20 bg-muted">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black mb-4">
+              CUSTOMER <span className="text-primary">REVIEWS</span>
+            </h2>
+            <div className="h-1 w-24 bg-primary mx-auto mb-4" />
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-7 h-7 text-yellow-500 fill-yellow-500" />
+                ))}
+              </div>
+              <span className="text-3xl font-black mono-number">4.9</span>
+            </div>
+            <p className="text-lg text-muted-foreground">
+              Based on <span className="font-bold text-foreground">503 Google Reviews</span>
+            </p>
+          </div>
+
+          {/* Review Highlights */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {[
+              {
+                quote: "I was treated with respect and received excellent service at an affordable rate.",
+                source: "Google Review Highlight",
+              },
+              {
+                quote: "The quality of work is top-notch, and his attention to detail is unmatched.",
+                source: "Google Review Highlight",
+              },
+              {
+                quote: "They have a good selection of coffee and drinks and a comfortable waiting room.",
+                source: "Google Review Highlight",
+              },
+            ].map((highlight, i) => (
+              <div key={i} className="bg-card border-2 border-border p-6 relative">
+                <Quote className="w-8 h-8 text-primary/30 absolute top-4 right-4" />
+                <p className="text-lg font-medium italic leading-relaxed">
+                  "{highlight.quote}"
+                </p>
+                <p className="text-sm text-muted-foreground mt-4">{highlight.source}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Individual Reviews */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {[
+              {
+                name: "Sinii_balur",
+                date: "January 2026",
+                text: "Tired of seeing your mechanic more than anyone else you know? I've been coming to these guys since 2018, yes, management has changed, but not the quality. Dependable work across all my vehicles — they help reduce the stress of car troubles.",
+                rating: 5,
+              },
+              {
+                name: "Marlon Butler",
+                badge: "Local Guide",
+                date: "December 2025",
+                text: "I brought in my '02 Celica for a front suspension noise. They provided a comprehensive, lay-person summary of all the issues needing attention. Excellent communication and quality work on a 23-year-old car.",
+                rating: 5,
+              },
+              {
+                name: "JKB",
+                badge: "Local Guide",
+                date: "November 2025",
+                text: "A DIAMOND IN A MINEFIELD. Being a senior citizen and a divorced female, I am more worried than ever about dealing with automotive problems. The team provided a stress-free experience with my 2018 Prius. The cozy lounge was a bonus!",
+                rating: 5,
+              },
+              {
+                name: "Rick Swanston",
+                date: "July 2024",
+                text: "The service was more than worth the price. Everyone was super polite and professional. I almost feel like I ripped you guys off. I can't thank you enough for the outstanding work.",
+                rating: 5,
+              },
+              {
+                name: "Verified Customer",
+                date: "2025",
+                text: "Very professional and honest service. They quickly identified the cause of the problem and clearly explained everything to me. I appreciate their transparency and fair pricing.",
+                rating: 5,
+              },
+              {
+                name: "Verified Customer",
+                date: "2025",
+                text: "I had an outstanding experience with Vertical Auto! From the moment I walked in, the team was professional, knowledgeable, and attentive to my needs. Highly recommend for any auto repair.",
+                rating: 5,
+              },
+            ].map((review, i) => (
+              <Card key={i} className="p-6 bg-card border-2 border-border hover:border-primary/50 transition-all duration-300">
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(review.rating)].map((_, j) => (
+                    <Star key={j} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <p className="text-sm leading-relaxed mb-4">
+                  "{review.text}"
+                </p>
+                <div className="border-t border-border pt-4 flex items-center justify-between">
+                  <div>
+                    <p className="font-bold text-sm">{review.name}</p>
+                    {review.badge && (
+                      <span className="text-xs text-primary font-medium">{review.badge}</span>
+                    )}
+                  </div>
+                  <span className="text-xs text-muted-foreground">{review.date}</span>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          {/* CTA to Google Reviews */}
+          <div className="text-center">
+            <a
+              href="https://www.google.com/maps/place/Vertical+Automotive/@26.1657448,-80.1597137,17z/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg px-8 py-6"
+              >
+                <ExternalLink className="w-5 h-5 mr-2" />
+                SEE ALL 503 REVIEWS ON GOOGLE
+              </Button>
+            </a>
           </div>
         </div>
       </section>
