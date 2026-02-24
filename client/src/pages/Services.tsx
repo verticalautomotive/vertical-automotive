@@ -12,6 +12,7 @@ import PageHero from "@/components/PageHero";
 import { Link } from "wouter";
 import { CheckCircle } from "lucide-react";
 import SEO from "@/components/SEO";
+import ServiceIcon from "@/components/ServiceIcon";
 
 export default function ServicesPage() {
   return (
@@ -60,7 +61,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Services Grid — mobile: compact icon+title tiles, Desktop: 3-col cards */}
       <section className="py-10 sm:py-20 bg-muted">
         <div className="container">
           <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4 text-center">
@@ -68,14 +69,29 @@ export default function ServicesPage() {
           </h2>
           <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-12" />
 
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+          {/* Mobile: compact 3-col icon tiles */}
+          <div className="grid grid-cols-3 gap-2 sm:hidden">
             {SERVICES.map((service) => (
               <Link key={service.slug} href={`/services/${service.slug}`}>
-                <Card className="p-3 sm:p-8 bg-card border-2 border-border hover:border-primary hover:shadow-xl transition-all duration-300 cursor-pointer h-full group">
-                  <h3 className="text-xs sm:text-xl font-bold mb-1 sm:mb-3 group-hover:text-primary transition-colors leading-tight">
+                <div className="flex flex-col items-center text-center p-2.5 bg-card border border-border hover:border-primary group transition-all duration-200 cursor-pointer">
+                  <div className="w-7 h-7 mb-1.5">
+                    <ServiceIcon name={service.icon} />
+                  </div>
+                  <span className="text-[10px] font-bold leading-tight group-hover:text-primary transition-colors">{service.shortTitle}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Desktop: 3-col full cards */}
+          <div className="hidden sm:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {SERVICES.map((service) => (
+              <Link key={service.slug} href={`/services/${service.slug}`}>
+                <Card className="p-8 bg-card border-2 border-border hover:border-primary hover:shadow-xl transition-all duration-300 cursor-pointer h-full group">
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-tight">
                     {service.shortTitle}
                   </h3>
-                  <p className="text-[10px] sm:text-sm text-muted-foreground leading-relaxed hidden sm:block">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {service.description}
                   </p>
                 </Card>

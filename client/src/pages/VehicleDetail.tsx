@@ -13,6 +13,7 @@ import PageHero from "@/components/PageHero";
 import NotFound from "./NotFound";
 import { ArrowRight } from "lucide-react";
 import SEO from "@/components/SEO";
+import ServiceIcon from "@/components/ServiceIcon";
 
 export default function VehicleDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -53,7 +54,7 @@ export default function VehicleDetail() {
         </div>
       </section>
 
-      {/* Service Cards */}
+      {/* Service Cards — mobile: compact icon tiles, Desktop: 3-col cards */}
       <section className="py-10 sm:py-20 bg-secondary text-secondary-foreground">
         <div className="container">
           <h2 className="text-xl sm:text-3xl font-black mb-3 sm:mb-4 text-center">
@@ -61,22 +62,41 @@ export default function VehicleDetail() {
           </h2>
           <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-12" />
 
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 max-w-6xl mx-auto">
+          {/* Mobile: compact icon tiles */}
+          <div className="grid grid-cols-3 gap-2 sm:hidden">
             {vehicleServices.map((service) =>
               service ? (
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}
-                  className="group border-2 border-primary/20 p-3 sm:p-6 hover:border-primary transition-all duration-300"
+                  className="group flex flex-col items-center text-center p-2.5 border border-primary/30 hover:border-primary transition-all duration-200"
                 >
-                  <h3 className="text-xs sm:text-lg font-bold mb-1 sm:mb-3 text-primary group-hover:text-secondary-foreground transition-colors leading-tight">
+                  <div className="w-7 h-7 mb-1.5">
+                    <ServiceIcon name={service.icon} />
+                  </div>
+                  <span className="text-[10px] font-bold leading-tight text-primary group-hover:text-secondary-foreground transition-colors">{service.shortTitle}</span>
+                </Link>
+              ) : null
+            )}
+          </div>
+
+          {/* Desktop: 3-col full cards */}
+          <div className="hidden sm:grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {vehicleServices.map((service) =>
+              service ? (
+                <Link
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
+                  className="group border-2 border-primary/20 p-6 hover:border-primary transition-all duration-300"
+                >
+                  <h3 className="text-lg font-bold mb-3 text-primary group-hover:text-secondary-foreground transition-colors leading-tight">
                     {service.shortTitle}
                   </h3>
-                  <p className="text-secondary-foreground/60 text-[10px] sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-3 mb-1 sm:mb-4 hidden sm:block">
+                  <p className="text-secondary-foreground/60 text-sm leading-relaxed line-clamp-3 mb-4">
                     {service.description}
                   </p>
-                  <span className="inline-flex items-center text-primary text-[10px] sm:text-sm font-bold">
-                    Learn More <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
+                  <span className="inline-flex items-center text-primary text-sm font-bold">
+                    Learn More <ArrowRight className="w-4 h-4 ml-1" />
                   </span>
                 </Link>
               ) : null

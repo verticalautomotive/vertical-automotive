@@ -28,6 +28,7 @@ import {
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import SEO from "@/components/SEO";
+import ServiceIcon from "@/components/ServiceIcon";
 
 export default function Home() {
   const [statsVisible, setStatsVisible] = useState(false);
@@ -184,28 +185,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section — mobile: compact 2-col grid with small cards */}
+      {/* Services Section — mobile: compact icon+title tiles, Desktop: 5-col cards */}
       <section id="services" className="py-10 sm:py-20 bg-background">
         <div className="container">
-          <div className="text-center mb-8 sm:mb-16">
+          <div className="text-center mb-6 sm:mb-16">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
               OUR <span className="text-primary">SERVICES</span>
             </h2>
             <div className="h-1 w-16 sm:w-24 bg-primary mx-auto" />
           </div>
 
-          {/* Mobile: 2-col compact, Desktop: 5-col */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-6">
+          {/* Mobile: compact 3-col icon tiles */}
+          <div className="grid grid-cols-3 gap-2 sm:hidden">
+            {SERVICES.map((service) => (
+              <Link key={service.slug} href={`/services/${service.slug}`}>
+                <div className="flex flex-col items-center text-center p-2.5 bg-card border border-border hover:border-primary group transition-all duration-200 cursor-pointer">
+                  <div className="w-7 h-7 mb-1.5">
+                    <ServiceIcon name={service.icon} />
+                  </div>
+                  <span className="text-[10px] font-bold leading-tight group-hover:text-primary transition-colors">{service.shortTitle}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Desktop: 5-col full cards */}
+          <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {SERVICES.map((service) => (
               <Link key={service.slug} href={`/services/${service.slug}`}>
                 <Card
-                  className="p-3 sm:p-6 bg-card border-2 border-border hover:border-primary hover:bg-primary group transition-all duration-300 cursor-pointer h-full"
+                  className="p-6 bg-card border-2 border-border hover:border-primary hover:bg-primary group transition-all duration-300 cursor-pointer h-full"
                 >
-                  <div className="w-8 h-8 sm:w-12 sm:h-12 mb-2 sm:mb-4">
+                  <div className="w-12 h-12 mb-4">
                     <ServiceIcon name={service.icon} />
                   </div>
-                  <h3 className="text-xs sm:text-lg font-bold mb-0 sm:mb-2 group-hover:text-primary-foreground transition-colors leading-tight">{service.shortTitle}</h3>
-                  <p className="text-[10px] sm:text-sm text-muted-foreground group-hover:text-primary-foreground/80 hidden sm:block">
+                  <h3 className="text-lg font-bold mb-2 group-hover:text-primary-foreground transition-colors leading-tight">{service.shortTitle}</h3>
+                  <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/80">
                     {service.description}
                   </p>
                 </Card>
@@ -520,94 +535,3 @@ function LocationCard({ location }: { location: typeof LOCATIONS[0] }) {
   );
 }
 
-function ServiceIcon({ name }: { name: string }) {
-  const iconColor = "text-primary group-hover:text-primary-foreground transition-colors";
-  const size = "w-full h-full";
-
-  const icons: Record<string, React.ReactNode> = {
-    battery: (
-      <svg className={`${size} ${iconColor}`} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="8" y="14" width="32" height="22" rx="2" />
-        <line x1="16" y1="10" x2="16" y2="14" />
-        <line x1="32" y1="10" x2="32" y2="14" />
-        <line x1="18" y1="22" x2="18" y2="30" />
-        <line x1="14" y1="26" x2="22" y2="26" />
-        <line x1="26" y1="26" x2="34" y2="26" />
-      </svg>
-    ),
-    disc: (
-      <svg className={`${size} ${iconColor}`} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="24" cy="24" r="18" />
-        <circle cx="24" cy="24" r="8" />
-        <circle cx="24" cy="24" r="3" fill="currentColor" />
-      </svg>
-    ),
-    cog: (
-      <svg className={`${size} ${iconColor}`} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="24" cy="24" r="8" />
-        <path d="M24 4v6M24 38v6M4 24h6M38 24h6M10 10l4 4M34 34l4 4M10 38l4-4M34 14l4-4" />
-      </svg>
-    ),
-    snowflake: (
-      <svg className={`${size} ${iconColor}`} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-        <line x1="24" y1="4" x2="24" y2="44" />
-        <line x1="4" y1="24" x2="44" y2="24" />
-        <line x1="10" y1="10" x2="38" y2="38" />
-        <line x1="38" y1="10" x2="10" y2="38" />
-        <circle cx="24" cy="24" r="4" fill="currentColor" />
-      </svg>
-    ),
-    droplet: (
-      <svg className={`${size} ${iconColor}`} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M24 4C24 4 10 20 10 30a14 14 0 0028 0C38 20 24 4 24 4z" />
-      </svg>
-    ),
-    search: (
-      <svg className={`${size} ${iconColor}`} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5">
-        <circle cx="20" cy="20" r="14" />
-        <line x1="30" y1="30" x2="42" y2="42" />
-        <path d="M14 20h12M20 14v12" />
-      </svg>
-    ),
-    wrench: (
-      <svg className={`${size} ${iconColor}`} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M36 8a12 12 0 00-16 16L8 36l4 4 12-12a12 12 0 0016-16l-6 6-4-4 6-6z" />
-      </svg>
-    ),
-    gauge: (
-      <svg className={`${size} ${iconColor}`} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="24" cy="28" r="16" />
-        <path d="M24 28l-8-12" strokeWidth="3" />
-        <line x1="24" y1="14" x2="24" y2="18" />
-        <line x1="12" y1="28" x2="16" y2="28" />
-        <line x1="36" y1="28" x2="32" y2="28" />
-      </svg>
-    ),
-    fuel: (
-      <svg className={`${size} ${iconColor}`} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="8" y="10" width="22" height="30" rx="2" />
-        <rect x="12" y="14" width="14" height="10" />
-        <path d="M30 20h6a4 4 0 014 4v12a2 2 0 01-4 0v-8" />
-        <circle cx="37" cy="14" r="3" />
-      </svg>
-    ),
-    zap: (
-      <svg className={`${size} ${iconColor}`} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M26 4L10 28h12L20 44l16-24H24L26 4z" fill="currentColor" opacity="0.2" />
-        <path d="M26 4L10 28h12L20 44l16-24H24L26 4z" />
-      </svg>
-    ),
-    circle: (
-      <svg className={`${size} ${iconColor}`} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="24" cy="24" r="18" />
-        <circle cx="24" cy="24" r="6" />
-        <line x1="24" y1="6" x2="24" y2="12" />
-        <line x1="24" y1="36" x2="24" y2="42" />
-        <line x1="6" y1="24" x2="12" y2="24" />
-        <line x1="36" y1="24" x2="42" y2="24" />
-      </svg>
-    ),
-  };
-
-  return <>{icons[name] || icons.wrench}</>;
-}

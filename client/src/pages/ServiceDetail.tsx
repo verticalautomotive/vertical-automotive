@@ -14,6 +14,7 @@ import PageHero from "@/components/PageHero";
 import NotFound from "./NotFound";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import SEO from "@/components/SEO";
+import ServiceIcon from "@/components/ServiceIcon";
 
 const SERVICE_IMAGES: Record<string, string> = {
   "battery-cranking-charging-systems": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1400&q=80",
@@ -105,7 +106,7 @@ export default function ServiceDetail() {
         </div>
       </section>
 
-      {/* Related Services */}
+      {/* Related Services — mobile: compact icon tiles, Desktop: 4-col cards */}
       <section className="py-10 sm:py-20 bg-muted">
         <div className="container">
           <h2 className="text-xl sm:text-3xl font-black mb-3 sm:mb-4 text-center">
@@ -113,21 +114,38 @@ export default function ServiceDetail() {
           </h2>
           <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-12" />
 
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+          {/* Mobile: compact icon tiles */}
+          <div className="grid grid-cols-4 gap-2 sm:hidden">
             {relatedServices.map((s) => (
               <Link
                 key={s.slug}
                 href={`/services/${s.slug}`}
-                className="group p-3 sm:p-6 bg-card border-2 border-border hover:border-primary transition-all duration-300"
+                className="group flex flex-col items-center text-center p-2 bg-card border border-border hover:border-primary transition-all duration-200"
               >
-                <h3 className="text-xs sm:text-lg font-bold mb-1 sm:mb-2 group-hover:text-primary transition-colors leading-tight">
+                <div className="w-6 h-6 mb-1">
+                  <ServiceIcon name={s.icon} />
+                </div>
+                <span className="text-[9px] font-bold leading-tight group-hover:text-primary transition-colors">{s.shortTitle}</span>
+              </Link>
+            ))}
+          </div>
+
+          {/* Desktop: 4-col full cards */}
+          <div className="hidden sm:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {relatedServices.map((s) => (
+              <Link
+                key={s.slug}
+                href={`/services/${s.slug}`}
+                className="group p-6 bg-card border-2 border-border hover:border-primary transition-all duration-300"
+              >
+                <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-tight">
                   {s.shortTitle}
                 </h3>
-                <p className="text-[10px] sm:text-sm text-muted-foreground line-clamp-2 mb-2 sm:mb-4 hidden sm:block">
+                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
                   {s.description}
                 </p>
-                <span className="inline-flex items-center text-primary text-[10px] sm:text-sm font-bold">
-                  Learn More <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
+                <span className="inline-flex items-center text-primary text-sm font-bold">
+                  Learn More <ArrowRight className="w-4 h-4 ml-1" />
                 </span>
               </Link>
             ))}
