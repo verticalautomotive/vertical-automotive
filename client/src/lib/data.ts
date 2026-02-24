@@ -21,9 +21,9 @@ export const COMPANY = {
 export const LOCATIONS = [
   {
     name: "Wilton Manors",
-    address: "1100 W Oakland Park Blvd Bay 5",
+    address: "1100 W Oakland Park Blvd",
     city: "Wilton Manors, FL 33311",
-    fullAddress: "1100 W Oakland Park Blvd Bay 5, Wilton Manors, FL 33311",
+    fullAddress: "1100 W Oakland Park Blvd, Wilton Manors, FL 33311",
     phone: "(954) 565-1518",
     phoneRaw: "9545651518",
     lat: 26.16574,
@@ -256,7 +256,7 @@ export const VEHICLE_TYPES: VehicleType[] = [
   {
     slug: "asian-vehicles-service",
     title: "ASIAN",
-    image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&q=80",
     description: "Welcome to Vertical Automotive, Fort Lauderdale's Premier Japanese and Korean Car Repair & Maintenance Shop! Specializing in Asian-made vehicles, we're your trusted source for exceptional automotive care. Our expert team is dedicated to providing unparalleled service for Asian cars, with a deep understanding of their unique engineering. Whether you're driving a revered Japanese brand like Toyota, Honda, Nissan, Subaru, Lexus, Mitsubishi, Acura, Suzuki, or Infiniti, or a Korean favorite such as Hyundai, Genesis, or Kia, we're equipped to cater to your specific needs. At Vertical Automotive, we pride ourselves on our specialized Japanese and Korean car repairs. Our skilled technicians, armed with extensive knowledge of these vehicles, use the latest diagnostic tools and authentic OEM or high-quality aftermarket parts, backed by a 36,000-miles/36-month warranty, ensuring top-tier care for your vehicle.",
     services: ["battery-cranking-charging-systems", "brake-system", "oil-change-engine-service", "complete-diagnostics", "hybrids-ev", "routine-preventive-maintenance", "steering-suspension", "fuel-system", "transmission", "a-c-maintenance-repair"],
   },

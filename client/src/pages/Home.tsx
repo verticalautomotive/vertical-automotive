@@ -492,7 +492,7 @@ function LocationCard({ location }: { location: typeof LOCATIONS[0] }) {
           <div className="flex items-start space-x-3">
             <MapPin className="w-5 h-5 mt-1 text-primary flex-shrink-0" />
             <div>
-              <p className="font-medium">{location.address}</p>
+              <p className="font-medium text-gray-400">{location.address}</p>
               <p className="text-gray-400">{location.city}</p>
             </div>
           </div>
