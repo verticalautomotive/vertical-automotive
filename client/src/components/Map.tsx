@@ -69,9 +69,9 @@
  *
  * -------------------------------
  * ✅ SUMMARY
- * - “map-attached” → AdvancedMarkerElement, DirectionsRenderer, Layers.
- * - “standalone” → Geocoder, DirectionsService, DistanceMatrixService, ElevationService.
- * - “data-only” → Place, Geometry utilities.
+ * - "map-attached" → AdvancedMarkerElement, DirectionsRenderer, Layers.
+ * - "standalone" → Geocoder, DirectionsService, DistanceMatrixService, ElevationService.
+ * - "data-only" → Place, Geometry utilities.
  */
 
 /// <reference types="@types/google.maps" />
@@ -83,6 +83,7 @@ import { cn } from "@/lib/utils";
 declare global {
   interface Window {
     google?: typeof google;
+    _googleMapsLoading?: Promise<unknown>;
   }
 }
 
@@ -92,21 +93,40 @@ const FORGE_BASE_URL =
   "https://forge.butterfly-effect.dev";
 const MAPS_PROXY_URL = `${FORGE_BASE_URL}/v1/maps/proxy`;
 
-function loadMapScript() {
-  return new Promise(resolve => {
+/**
+ * Singleton loader — ensures the Google Maps script is only loaded once,
+ * even when multiple MapView components mount simultaneously.
+ */
+function loadMapScript(): Promise<unknown> {
+  // Already fully loaded
+  if (window.google?.maps) {
+    return Promise.resolve(null);
+  }
+
+  // Already loading — return the same promise
+  if (window._googleMapsLoading) {
+    return window._googleMapsLoading;
+  }
+
+  // First call — create the script and store the promise
+  window._googleMapsLoading = new Promise((resolve) => {
     const script = document.createElement("script");
     script.src = `${MAPS_PROXY_URL}/maps/api/js?key=${API_KEY}&v=weekly&libraries=marker,places,geocoding,geometry`;
     script.async = true;
     script.crossOrigin = "anonymous";
     script.onload = () => {
       resolve(null);
-      script.remove(); // Clean up immediately
     };
     script.onerror = () => {
       console.error("Failed to load Google Maps script");
+      // Reset so a retry is possible
+      window._googleMapsLoading = undefined;
+      resolve(null);
     };
     document.head.appendChild(script);
   });
+
+  return window._googleMapsLoading;
 }
 
 interface MapViewProps {
@@ -131,7 +151,7 @@ export function MapView({
       console.error("Map container not found");
       return;
     }
-    map.current = new window.google.maps.Map(mapContainer.current, {
+    map.current = new window.google!.maps.Map(mapContainer.current, {
       zoom: initialZoom,
       center: initialCenter,
       mapTypeControl: true,
