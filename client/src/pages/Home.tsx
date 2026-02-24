@@ -87,7 +87,7 @@ export default function Home() {
             <p className="text-xl md:text-2xl mb-8 leading-relaxed font-medium">
               3-Year Warranty on All Repairs
               <br />
-              <span className="text-muted-foreground">
+              <span className="text-gray-400">
                 ASE-Certified Mechanics • Tesla, Asian, European & Domestic Specialists
               </span>
             </p>
@@ -162,7 +162,7 @@ export default function Home() {
             {[
               { value: String(COMPANY.yearsExperience), label: "YEARS OF EXPERIENCE", icon: Award },
               { value: COMPANY.vehiclesRepaired, label: "VEHICLES REPAIRED", icon: TrendingUp },
-              { value: String(COMPANY.staff), label: "EXPERT STAFF", icon: Users },
+              { value: String(COMPANY.staff), label: "LOCATIONS", icon: MapPin },
               { value: COMPANY.satisfaction, label: "SATISFIED CUSTOMERS", icon: CheckCircle },
             ].map((stat, index) => (
               <div
@@ -491,12 +491,12 @@ function LocationCard({ location, coords }: { location: typeof LOCATIONS[0]; coo
             <MapPin className="w-5 h-5 mt-1 text-primary flex-shrink-0" />
             <div>
               <p className="font-medium">{location.address}</p>
-              <p className="text-muted-foreground">{location.city}</p>
+              <p className="text-gray-400">{location.city}</p>
             </div>
           </div>
           <div className="flex items-center space-x-3">
             <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-            <a href={`tel:${location.phoneRaw}`} className="mono-number font-medium hover:text-primary transition-colors">
+            <a href={`tel:${location.phoneRaw}`} className="mono-number font-medium hover:text-primary transition-colors text-white">
               {location.phone}
             </a>
           </div>

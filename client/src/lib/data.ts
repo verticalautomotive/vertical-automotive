@@ -10,7 +10,7 @@ export const COMPANY = {
   founded: 1989,
   yearsExperience: 36,
   vehiclesRepaired: "54k",
-  staff: 8,
+  staff: 2,
   satisfaction: "99%",
   hours: "8:00 AM — 5:00 PM",
   closedDays: "SAT-SUN Closed",
@@ -174,13 +174,61 @@ export const SERVICES: ServiceItem[] = [
   {
     slug: "alignment-tire-rotation-balancing",
     title: "Wheel Alignment, Tire Rotation & Balancing",
-    shortTitle: "Alignment & Tires",
+    shortTitle: "Wheel Alignment",
     description: "Comprehensive wheel alignment, tire rotation, and balancing services to ensure optimal vehicle performance and tire longevity.",
     icon: "circle",
     content: {
       intro: "At Vertical Automotive in Fort Lauderdale, we provide comprehensive wheel alignment, tire rotation, and balancing services. Proper alignment and balanced tires are essential for safe driving, even tire wear, and optimal fuel efficiency. Our state-of-the-art equipment and experienced technicians ensure precise adjustments for all makes and models.",
       whenNeeded: "You should have your alignment checked if you notice your vehicle pulling to one side, uneven tire wear, or a crooked steering wheel when driving straight. Tire rotation is typically recommended every 5,000 to 7,500 miles. Balancing should be done whenever you get new tires or notice vibrations at highway speeds.",
       benefits: "Proper wheel alignment and regular tire rotation extend the life of your tires, improve fuel efficiency, ensure safe handling, and provide a smoother ride. Early detection of any issues can prevent them from developing into major problems, ensuring you avoid unexpected breakdowns.",
+    },
+  },
+  {
+    slug: "tires",
+    title: "Tires",
+    shortTitle: "Tires",
+    description: "Full tire services including new tire sales, tire repair, rotation, balancing, and TPMS sensor replacement for all makes and models.",
+    icon: "circle",
+    content: {
+      intro: "At Vertical Automotive in Fort Lauderdale, we offer comprehensive tire services for all makes and models. From new tire sales and installation to tire repair, rotation, and balancing, our experienced technicians ensure your tires are in optimal condition for safe driving. We carry a wide selection of quality tire brands at competitive prices.",
+      whenNeeded: "You should consider tire service if you notice uneven tread wear, vibrations while driving, low tire pressure warnings, visible damage to the sidewall, or if your tires have reached the minimum tread depth. Regular tire rotation every 5,000 to 7,500 miles helps ensure even wear and extends tire life.",
+      benefits: "Proper tire maintenance ensures safe driving, improved fuel efficiency, better handling, and extended tire life. Regular inspections can catch issues before they become safety hazards, saving you money and keeping you safe on the road.",
+    },
+  },
+  {
+    slug: "powertrain-restoration",
+    title: "Powertrain Restoration",
+    shortTitle: "Powertrain Restoration",
+    description: "Complete powertrain restoration services including engine rebuilds, transmission overhauls, and drivetrain repairs to restore your vehicle's performance.",
+    icon: "cog",
+    content: {
+      intro: "Vertical Automotive offers comprehensive powertrain restoration services in Fort Lauderdale. Our ASE-certified technicians specialize in engine rebuilds, transmission overhauls, and complete drivetrain repairs. We use high-quality parts and precision machining to restore your vehicle's powertrain to like-new condition, backed by our warranty.",
+      whenNeeded: "Consider powertrain restoration if your vehicle has high mileage, is experiencing significant power loss, has persistent engine or transmission issues, or if you want to extend the life of a vehicle you love. This is often a cost-effective alternative to purchasing a new vehicle.",
+      benefits: "Powertrain restoration can significantly extend the life of your vehicle, restore original performance levels, improve fuel efficiency, and increase resale value. It's often more economical than purchasing a new vehicle while giving you the reliability of a freshly rebuilt drivetrain.",
+    },
+  },
+  {
+    slug: "manufacturer-recommended-services",
+    title: "Manufacturer Recommended Services",
+    shortTitle: "Manufacturer Recommended Services",
+    description: "Follow your vehicle manufacturer's recommended maintenance schedule to keep your warranty valid and your vehicle running at peak performance.",
+    icon: "wrench",
+    content: {
+      intro: "At Vertical Automotive, we perform all manufacturer recommended services to keep your vehicle running at its best. Our technicians follow the exact maintenance schedules specified by your vehicle's manufacturer, using OEM or equivalent quality parts. This ensures your warranty remains valid while keeping your vehicle in optimal condition.",
+      whenNeeded: "Manufacturer recommended services should be performed at the intervals specified in your vehicle's owner's manual, typically at milestones like 15,000, 30,000, 45,000, 60,000, and 90,000 miles. These services may include fluid changes, filter replacements, belt inspections, and more.",
+      benefits: "Following manufacturer recommended service schedules maintains your vehicle's warranty, ensures optimal performance and fuel efficiency, prevents costly breakdowns, and helps maintain your vehicle's resale value. Our technicians know exactly what each manufacturer requires at every service interval.",
+    },
+  },
+  {
+    slug: "car-wash",
+    title: "Car Wash",
+    shortTitle: "Car Wash",
+    description: "Professional car wash and detailing services to keep your vehicle looking its best inside and out.",
+    icon: "droplet",
+    content: {
+      intro: "Vertical Automotive offers professional car wash and detailing services in Fort Lauderdale. Whether you need a quick exterior wash or a full interior and exterior detail, our team will have your vehicle looking showroom-ready. We use premium products that are safe for all paint finishes and interior materials.",
+      whenNeeded: "Regular car washing is recommended every two weeks to protect your vehicle's paint and finish from environmental contaminants like bird droppings, tree sap, road salt, and UV damage. Full detailing is recommended every 3-6 months to maintain your vehicle's appearance and protect its value.",
+      benefits: "Regular car washing and detailing protects your vehicle's paint, prevents rust and corrosion, maintains interior condition, improves visibility through clean windows, and helps preserve your vehicle's resale value. A clean vehicle also provides a more pleasant driving experience.",
     },
   },
 ];
@@ -196,7 +244,7 @@ export interface VehicleType {
 export const VEHICLE_TYPES: VehicleType[] = [
   {
     slug: "tesla-vehicles-service",
-    title: "TESLA",
+    title: "TESLA & EV",
     image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80",
     description: "Vertical Automotive is your leading choice for Tesla Service and Repair in Fort Lauderdale, where we're dedicated to delivering a top-tier 5-star experience every time you visit. Our commitment is to provide outstanding Tesla auto care, making your journey to us more than worthwhile. Our expert team of Certified Tesla Mechanics specializes in every aspect of Tesla Repair and Maintenance. Whether it's in-depth Tesla Car Diagnostics to identify any issues or dependable Tesla Vehicle Maintenance, our skilled technicians are ready to meet all your needs with unmatched precision and care, using genuine Tesla or matching quality parts engineered and designed for your specific model. We understand the importance of your Tesla's performance and longevity, offering specialized Electric Vehicle Repair and Electric Car Maintenance services. Our expertise ensures your Tesla stays in prime condition, ready to deliver the remarkable performance you expect. At Vertical Automotive, we're not just a repair shop; we're a center for specialized Tesla care. This includes essential services like Tesla Battery Replacement, Tesla Steering Repair, Tesla Tire Replacement, Tesla Alignment and Tesla Air Conditioning Services, ensuring your vehicle operates seamlessly.",
     services: ["battery-cranking-charging-systems", "brake-system", "routine-preventive-maintenance", "complete-diagnostics", "a-c-maintenance-repair", "steering-suspension"],
@@ -204,7 +252,7 @@ export const VEHICLE_TYPES: VehicleType[] = [
   {
     slug: "asian-vehicles-service",
     title: "ASIAN",
-    image: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&q=80",
     description: "Welcome to Vertical Automotive, Fort Lauderdale's Premier Japanese and Korean Car Repair & Maintenance Shop! Specializing in Asian-made vehicles, we're your trusted source for exceptional automotive care. Our expert team is dedicated to providing unparalleled service for Asian cars, with a deep understanding of their unique engineering. Whether you're driving a revered Japanese brand like Toyota, Honda, Nissan, Subaru, Lexus, Mitsubishi, Acura, Suzuki, or Infiniti, or a Korean favorite such as Hyundai, Genesis, or Kia, we're equipped to cater to your specific needs. At Vertical Automotive, we pride ourselves on our specialized Japanese and Korean car repairs. Our skilled technicians, armed with extensive knowledge of these vehicles, use the latest diagnostic tools and authentic OEM or high-quality aftermarket parts, backed by a 36,000-miles/36-month warranty, ensuring top-tier care for your vehicle.",
     services: ["battery-cranking-charging-systems", "brake-system", "oil-change-engine-service", "complete-diagnostics", "hybrids-ev", "routine-preventive-maintenance", "steering-suspension", "fuel-system", "transmission", "a-c-maintenance-repair"],
   },
@@ -241,7 +289,7 @@ export const OFFERS: Offer[] = [
   {
     title: "A/C Vent & Duct Disinfecting",
     value: "FREE",
-    description: "available per request with any $100+ service",
+    description: "available per request with any $399+ service",
     badge: "SERVICE",
   },
   {
