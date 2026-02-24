@@ -24,6 +24,8 @@ import {
   Star,
   Quote,
   ExternalLink,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
@@ -32,6 +34,7 @@ import ServiceIcon from "@/components/ServiceIcon";
 
 export default function Home() {
   const [statsVisible, setStatsVisible] = useState(false);
+  const [reviewsExpanded, setReviewsExpanded] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -370,9 +373,9 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Individual Reviews — mobile: 1-col, compact */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 mb-6 sm:mb-12">
-            {[
+          {/* Individual Reviews — mobile: collapsible (3 shown), Desktop: all visible */}
+          {(() => {
+            const allReviews = [
               {
                 name: "Sinii_balur",
                 date: "January 2026",
@@ -411,7 +414,9 @@ export default function Home() {
                 text: "I had an outstanding experience with Vertical Auto! From the moment I walked in, the team was professional, knowledgeable, and attentive to my needs. Highly recommend for any auto repair.",
                 rating: 5,
               },
-            ].map((review, i) => (
+            ];
+
+            const ReviewCard = ({ review, i }: { review: typeof allReviews[0]; i: number }) => (
               <Card key={i} className="p-4 sm:p-6 bg-card border-2 border-border hover:border-primary/50 transition-all duration-300">
                 <div className="flex items-center gap-1 mb-2 sm:mb-3">
                   {[...Array(review.rating)].map((_, j) => (
@@ -424,15 +429,55 @@ export default function Home() {
                 <div className="border-t border-border pt-2 sm:pt-4 flex items-center justify-between">
                   <div>
                     <p className="font-bold text-xs sm:text-sm">{review.name}</p>
-                    {review.badge && (
-                      <span className="text-[10px] sm:text-xs text-primary font-medium">{review.badge}</span>
+                    {(review as any).badge && (
+                      <span className="text-[10px] sm:text-xs text-primary font-medium">{(review as any).badge}</span>
                     )}
                   </div>
                   <span className="text-[10px] sm:text-xs text-muted-foreground">{review.date}</span>
                 </div>
               </Card>
-            ))}
-          </div>
+            );
+
+            return (
+              <>
+                {/* Mobile: collapsible — show first 3, toggle rest */}
+                <div className="sm:hidden space-y-3 mb-6">
+                  {allReviews.slice(0, 3).map((review, i) => (
+                    <ReviewCard key={i} review={review} i={i} />
+                  ))}
+                  {!reviewsExpanded ? (
+                    <button
+                      onClick={() => setReviewsExpanded(true)}
+                      className="w-full py-3 border-2 border-dashed border-primary/40 text-primary font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors"
+                    >
+                      <ChevronDown className="w-4 h-4" />
+                      Show {allReviews.length - 3} More Reviews
+                    </button>
+                  ) : (
+                    <>
+                      {allReviews.slice(3).map((review, i) => (
+                        <ReviewCard key={i + 3} review={review} i={i + 3} />
+                      ))}
+                      <button
+                        onClick={() => setReviewsExpanded(false)}
+                        className="w-full py-3 border-2 border-dashed border-primary/40 text-primary font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors"
+                      >
+                        <ChevronUp className="w-4 h-4" />
+                        Show Less
+                      </button>
+                    </>
+                  )}
+                </div>
+
+                {/* Desktop: all reviews visible */}
+                <div className="hidden sm:grid sm:grid-cols-3 gap-6 mb-12">
+                  {allReviews.map((review, i) => (
+                    <ReviewCard key={i} review={review} i={i} />
+                  ))}
+                </div>
+              </>
+            );
+          })()}
 
           {/* CTA to Google Reviews */}
           <div className="text-center">
