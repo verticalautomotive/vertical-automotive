@@ -210,4 +210,54 @@
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
   }
+
+  /* ============================================
+     MOBILE COMPACT OVERRIDES (max-width: 639px)
+     Desktop/tablet layout stays completely unchanged.
+     ============================================ */
+  @media (max-width: 639px) {
+    /* --- Global mobile typography reduction --- */
+    h1 { font-size: 2rem !important; }
+    h2 { font-size: 1.5rem !important; }
+    h3 { font-size: 1.1rem !important; }
+    
+    body {
+      font-size: 0.875rem;
+    }
+
+    /* --- Reduce section vertical padding by ~40% --- */
+    .mobile-compact-section {
+      padding-top: 2.5rem !important;
+      padding-bottom: 2.5rem !important;
+    }
+
+    .mobile-compact-section-sm {
+      padding-top: 1.5rem !important;
+      padding-bottom: 1.5rem !important;
+    }
+
+    /* --- Compact buttons --- */
+    .mobile-compact-btn {
+      padding: 0.5rem 1rem !important;
+      font-size: 0.8125rem !important;
+      min-height: 2.25rem !important;
+    }
+
+    /* --- Compact section headings spacing --- */
+    .mobile-compact-heading {
+      margin-bottom: 0.75rem !important;
+    }
+
+    /* --- Diagonal overrides for mobile --- */
+    .diagonal-top {
+      clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%);
+      margin-top: -2rem;
+      padding-top: 4rem;
+    }
+    .diagonal-bottom {
+      clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
+      margin-bottom: -2rem;
+      padding-bottom: 4rem;
+    }
+  }
 }

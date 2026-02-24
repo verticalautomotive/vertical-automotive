@@ -1,7 +1,7 @@
 /**
  * Footer — Industrial Brutalism Design
  * Blue accents, grid pattern, diagonal accent line
- * Simple layout with brand, locations, hours, payment
+ * MOBILE: Condensed 2-column layout, reduced spacing
  */
 import { COMPANY, LOCATIONS } from "@/lib/data";
 import { MapPin, Phone, Clock, Shield } from "lucide-react";
@@ -18,23 +18,23 @@ export default function Footer() {
       />
 
       {/* Main Footer Content */}
-      <div className="container py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="container py-8 sm:py-16">
+        {/* Mobile: 2-col grid, Desktop: 4-col */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-12">
           {/* Brand */}
-          <div>
+          <div className="col-span-2 sm:col-span-1">
             <img
               src={COMPANY.logoUrl}
               alt="Vertical Automotive"
-              className="h-12 w-auto mb-6"
+              className="h-10 sm:h-12 w-auto mb-3 sm:mb-6"
             />
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
               ASE-certified mechanics providing complete auto care with{" "}
-              {COMPANY.yearsExperience} years of experience. Specializing in
-              Tesla, Asian, European, and Domestic vehicles.
+              {COMPANY.yearsExperience} years of experience.
             </p>
-            <div className="flex items-center space-x-3 mt-6">
-              <Shield className="w-8 h-8 text-primary flex-shrink-0" />
-              <span className="text-sm font-bold tracking-wider">
+            <div className="flex items-center space-x-2 mt-3 sm:mt-6">
+              <Shield className="w-5 h-5 sm:w-8 sm:h-8 text-primary flex-shrink-0" />
+              <span className="text-xs sm:text-sm font-bold tracking-wider">
                 ASE CERTIFIED
               </span>
             </div>
@@ -42,24 +42,24 @@ export default function Footer() {
 
           {/* Wilton Manors */}
           <div>
-            <h3 className="font-display text-lg font-bold tracking-wider mb-6 text-primary">
+            <h3 className="font-display text-sm sm:text-lg font-bold tracking-wider mb-3 sm:mb-6 text-primary">
               WILTON MANORS
             </h3>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <MapPin className="w-4 h-4 mt-1 text-primary flex-shrink-0" />
+            <div className="space-y-2 sm:space-y-4">
+              <div className="flex items-start space-x-2">
+                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
-                  <p className="text-sm">{LOCATIONS[0].address}</p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs sm:text-sm">{LOCATIONS[0].address}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     {LOCATIONS[0].city}
                   </p>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+              <div className="flex items-center space-x-2">
+                <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
                 <a
                   href={`tel:${LOCATIONS[0].phoneRaw}`}
-                  className="mono-number text-sm font-medium hover:text-primary transition-colors"
+                  className="mono-number text-xs sm:text-sm font-medium hover:text-primary transition-colors"
                 >
                   {LOCATIONS[0].phone}
                 </a>
@@ -69,24 +69,24 @@ export default function Footer() {
 
           {/* Fort Lauderdale */}
           <div>
-            <h3 className="font-display text-lg font-bold tracking-wider mb-6 text-primary">
-              FORT LAUDERDALE
+            <h3 className="font-display text-sm sm:text-lg font-bold tracking-wider mb-3 sm:mb-6 text-primary">
+              FT. LAUDERDALE
             </h3>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <MapPin className="w-4 h-4 mt-1 text-primary flex-shrink-0" />
+            <div className="space-y-2 sm:space-y-4">
+              <div className="flex items-start space-x-2">
+                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
-                  <p className="text-sm">{LOCATIONS[1].address}</p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs sm:text-sm">{LOCATIONS[1].address}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     {LOCATIONS[1].city}
                   </p>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+              <div className="flex items-center space-x-2">
+                <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
                 <a
                   href={`tel:${LOCATIONS[1].phoneRaw}`}
-                  className="mono-number text-sm font-medium hover:text-primary transition-colors"
+                  className="mono-number text-xs sm:text-sm font-medium hover:text-primary transition-colors"
                 >
                   {LOCATIONS[1].phone}
                 </a>
@@ -95,28 +95,26 @@ export default function Footer() {
           </div>
 
           {/* Hours & Payment */}
-          <div>
-            <h3 className="font-display text-lg font-bold tracking-wider mb-6 text-primary">
+          <div className="col-span-2 sm:col-span-1">
+            <h3 className="font-display text-sm sm:text-lg font-bold tracking-wider mb-3 sm:mb-6 text-primary">
               HOURS
             </h3>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <Clock className="w-4 h-4 mt-1 text-primary flex-shrink-0" />
-                <div>
-                  <p className="text-sm font-medium mono-number">
-                    {COMPANY.hours}
-                  </p>
-                  <p className="text-sm text-muted-foreground mono-number">
-                    {COMPANY.closedDays}
-                  </p>
-                </div>
+            <div className="flex items-start space-x-2 sm:space-x-3">
+              <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 mt-0.5 text-primary flex-shrink-0" />
+              <div>
+                <p className="text-xs sm:text-sm font-medium mono-number">
+                  {COMPANY.hours}
+                </p>
+                <p className="text-xs sm:text-sm text-muted-foreground mono-number">
+                  {COMPANY.closedDays}
+                </p>
               </div>
             </div>
 
-            <h3 className="font-display text-lg font-bold tracking-wider mt-8 mb-4 text-primary">
+            <h3 className="font-display text-sm sm:text-lg font-bold tracking-wider mt-4 sm:mt-8 mb-2 sm:mb-4 text-primary">
               PAY SYSTEM
             </h3>
-            <div className="flex items-center space-x-3 text-muted-foreground text-sm">
+            <div className="flex items-center flex-wrap gap-x-2 gap-y-1 text-muted-foreground text-xs sm:text-sm">
               <span>Visa</span>
               <span>•</span>
               <span>Mastercard</span>
@@ -129,12 +127,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-sm text-muted-foreground">
+        <div className="border-t border-border mt-6 sm:mt-12 pt-4 sm:pt-8 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             © {new Date().getFullYear()} Vertical Automotive. All Rights
             Reserved.
           </p>
-          <div className="flex items-center space-x-6 text-sm">
+          <div className="flex items-center space-x-4 sm:space-x-6 text-xs sm:text-sm">
             <a href="#" className="hover:text-primary transition-colors">
               Privacy Policy
             </a>

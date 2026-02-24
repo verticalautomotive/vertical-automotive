@@ -1,6 +1,7 @@
 /**
  * Services Index Page — Industrial Brutalism Design
  * Blue/white/black palette, bold typography, grid layout
+ * MOBILE: Compact spacing, 2-col grids, smaller text
  */
 import { SERVICES, VEHICLE_TYPES, COMPANY, SERVICES_PAGE_EXTRA } from "@/lib/data";
 import { Button } from "@/components/ui/button";
@@ -27,14 +28,14 @@ export default function ServicesPage() {
       />
 
       {/* Vehicle Types */}
-      <section className="py-20 bg-background">
+      <section className="py-10 sm:py-20 bg-background">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-black mb-4 text-center">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4 text-center">
             {SERVICES_PAGE_EXTRA.heading}
           </h2>
-          <div className="h-1 w-24 bg-primary mx-auto mb-12" />
+          <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-12" />
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {VEHICLE_TYPES.map((vt) => (
               <Link
                 key={vt.slug}
@@ -47,8 +48,8 @@ export default function ServicesPage() {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-                <div className="absolute inset-0 flex items-end p-6">
-                  <h3 className="text-2xl font-black text-secondary-foreground">
+                <div className="absolute inset-0 flex items-end p-3 sm:p-6">
+                  <h3 className="text-sm sm:text-2xl font-black text-secondary-foreground leading-tight">
                     {vt.title}
                   </h3>
                 </div>
@@ -60,21 +61,21 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 bg-muted">
+      <section className="py-10 sm:py-20 bg-muted">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-black mb-4 text-center">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4 text-center">
             COMPLETE <span className="text-primary">AUTO CARE</span>
           </h2>
-          <div className="h-1 w-24 bg-primary mx-auto mb-12" />
+          <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-12" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {SERVICES.map((service) => (
               <Link key={service.slug} href={`/services/${service.slug}`}>
-                <Card className="p-8 bg-card border-2 border-border hover:border-primary hover:shadow-xl transition-all duration-300 cursor-pointer h-full group">
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                    {service.title}
+                <Card className="p-3 sm:p-8 bg-card border-2 border-border hover:border-primary hover:shadow-xl transition-all duration-300 cursor-pointer h-full group">
+                  <h3 className="text-xs sm:text-xl font-bold mb-1 sm:mb-3 group-hover:text-primary transition-colors leading-tight">
+                    {service.shortTitle}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-[10px] sm:text-sm text-muted-foreground leading-relaxed hidden sm:block">
                     {service.description}
                   </p>
                 </Card>
@@ -85,23 +86,23 @@ export default function ServicesPage() {
       </section>
 
       {/* Services List */}
-      <section className="py-20 bg-secondary text-secondary-foreground">
+      <section className="py-10 sm:py-20 bg-secondary text-secondary-foreground">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-start">
             <div>
-              <h2 className="text-3xl md:text-4xl font-black mb-4">
+              <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4">
                 {SERVICES_PAGE_EXTRA.bottomSection.title.toUpperCase()}
               </h2>
-              <div className="h-1 w-24 bg-primary mb-8" />
-              <p className="text-muted-foreground leading-relaxed">
+              <div className="h-1 w-16 sm:w-24 bg-primary mb-4 sm:mb-8" />
+              <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
                 {SERVICES_PAGE_EXTRA.bottomSection.description}
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
               {SERVICES_PAGE_EXTRA.bottomSection.list.map((item) => (
-                <div key={item} className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-sm">{item}</span>
+                <div key={item} className="flex items-center space-x-2 sm:space-x-3">
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
+                  <span className="text-xs sm:text-sm">{item}</span>
                 </div>
               ))}
             </div>
@@ -110,18 +111,18 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-primary text-primary-foreground text-center">
+      <section className="py-8 sm:py-16 bg-primary text-primary-foreground text-center">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-black mb-4">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4">
             READY TO SCHEDULE?
           </h2>
-          <p className="text-lg mb-8 opacity-90">
+          <p className="text-sm sm:text-lg mb-4 sm:mb-8 opacity-90">
             Book your appointment online or call us today
           </p>
           <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer">
             <Button
               size="lg"
-              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-lg px-8 py-6"
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-sm sm:text-lg px-6 sm:px-8 py-4 sm:py-6"
             >
               SCHEDULE APPOINTMENT
             </Button>

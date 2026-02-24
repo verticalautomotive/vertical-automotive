@@ -2,6 +2,7 @@
  * ServiceDetail — Industrial Brutalism Design
  * Blue/white/black palette, bold typography
  * Dynamic page for individual service pages
+ * MOBILE: Compact spacing, smaller text, tighter grids
  */
 import { SERVICES, COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
@@ -54,39 +55,39 @@ export default function ServiceDetail() {
       />
 
       {/* Content */}
-      <section className="py-20 bg-background">
+      <section className="py-10 sm:py-20 bg-background">
         <div className="container max-w-5xl">
-          <p className="text-lg leading-relaxed text-muted-foreground mb-12">
+          <p className="text-sm sm:text-lg leading-relaxed text-muted-foreground mb-8 sm:mb-12">
             {service.content.intro}
           </p>
 
           {/* When Needed */}
-          <h2 className="text-2xl md:text-3xl font-black mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black mb-3 sm:mb-4">
             WHEN DO I NEED <span className="text-primary">THIS SERVICE?</span>
           </h2>
-          <div className="h-1 w-16 bg-primary mb-6" />
-          <p className="text-muted-foreground leading-relaxed mb-12">
+          <div className="h-1 w-12 sm:w-16 bg-primary mb-4 sm:mb-6" />
+          <p className="text-xs sm:text-base text-muted-foreground leading-relaxed mb-8 sm:mb-12">
             {service.content.whenNeeded}
           </p>
 
           {/* Benefits */}
-          <h2 className="text-2xl md:text-3xl font-black mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black mb-3 sm:mb-4">
             <span className="text-primary">BENEFITS</span>
           </h2>
-          <div className="h-1 w-16 bg-primary mb-6" />
-          <p className="text-muted-foreground leading-relaxed mb-12">
+          <div className="h-1 w-12 sm:w-16 bg-primary mb-4 sm:mb-6" />
+          <p className="text-xs sm:text-base text-muted-foreground leading-relaxed mb-8 sm:mb-12">
             {service.content.benefits}
           </p>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-primary text-primary-foreground text-center">
+      <section className="py-8 sm:py-16 bg-primary text-primary-foreground text-center">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-black mb-4">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4">
             VERTICAL AUTOMOTIVE IS HERE TO HELP!
           </h2>
-          <p className="text-lg opacity-90 max-w-2xl mx-auto mb-8">
+          <p className="text-xs sm:text-lg opacity-90 max-w-2xl mx-auto mb-4 sm:mb-8">
             Our auto repair shop offers superior car service with straightforward pricing and honest recommendations for all our valued customers.
           </p>
           <a
@@ -96,7 +97,7 @@ export default function ServiceDetail() {
           >
             <Button
               size="lg"
-              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-lg px-8 py-6"
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-sm sm:text-lg px-6 sm:px-8 py-4 sm:py-6"
             >
               SCHEDULE YOUR APPOINTMENT
             </Button>
@@ -105,28 +106,28 @@ export default function ServiceDetail() {
       </section>
 
       {/* Related Services */}
-      <section className="py-20 bg-muted">
+      <section className="py-10 sm:py-20 bg-muted">
         <div className="container">
-          <h2 className="text-3xl font-black mb-4 text-center">
+          <h2 className="text-xl sm:text-3xl font-black mb-3 sm:mb-4 text-center">
             OTHER <span className="text-primary">SERVICES</span>
           </h2>
-          <div className="h-1 w-24 bg-primary mx-auto mb-12" />
+          <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-12" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {relatedServices.map((s) => (
               <Link
                 key={s.slug}
                 href={`/services/${s.slug}`}
-                className="group p-6 bg-card border-2 border-border hover:border-primary transition-all duration-300"
+                className="group p-3 sm:p-6 bg-card border-2 border-border hover:border-primary transition-all duration-300"
               >
-                <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
+                <h3 className="text-xs sm:text-lg font-bold mb-1 sm:mb-2 group-hover:text-primary transition-colors leading-tight">
                   {s.shortTitle}
                 </h3>
-                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+                <p className="text-[10px] sm:text-sm text-muted-foreground line-clamp-2 mb-2 sm:mb-4 hidden sm:block">
                   {s.description}
                 </p>
-                <span className="inline-flex items-center text-primary text-sm font-bold">
-                  Learn More <ArrowRight className="w-4 h-4 ml-1" />
+                <span className="inline-flex items-center text-primary text-[10px] sm:text-sm font-bold">
+                  Learn More <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
                 </span>
               </Link>
             ))}

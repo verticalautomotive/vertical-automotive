@@ -1,6 +1,7 @@
 /**
  * Offers / Coupons Page — Industrial Brutalism Design
  * Blue/white/black palette, bold typography, card grid + printable coupons
+ * MOBILE: Compact 2-col grids, smaller text, reduced spacing
  */
 import { OFFERS, COUPONS, COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
@@ -53,30 +54,30 @@ export default function OffersPage() {
       />
 
       {/* Current Offers */}
-      <section className="py-20 bg-background">
+      <section className="py-10 sm:py-20 bg-background">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-black mb-4 text-center">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4 text-center">
             CURRENT <span className="text-primary">OFFERS</span>
           </h2>
-          <div className="h-1 w-24 bg-primary mx-auto mb-4" />
-          <p className="text-center text-muted-foreground mb-12">
+          <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-2 sm:mb-4" />
+          <p className="text-center text-xs sm:text-base text-muted-foreground mb-6 sm:mb-12">
             Schedule your appointment to claim these exclusive offers
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {OFFERS.map((offer, index) => (
               <Card
                 key={index}
-                className="p-8 bg-card border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-xl"
+                className="p-3 sm:p-8 bg-card border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-xl"
               >
-                <div className="inline-block bg-primary text-primary-foreground px-4 py-1 text-xs font-bold mb-4">
+                <div className="inline-block bg-primary text-primary-foreground px-2 sm:px-4 py-0.5 sm:py-1 text-[9px] sm:text-xs font-bold mb-2 sm:mb-4">
                   {offer.badge}
                 </div>
-                <h3 className="text-xl font-bold mb-3">{offer.title}</h3>
-                <div className="text-4xl font-black text-primary mb-4 mono-number">
+                <h3 className="text-xs sm:text-xl font-bold mb-1 sm:mb-3 leading-tight">{offer.title}</h3>
+                <div className="text-xl sm:text-4xl font-black text-primary mb-1 sm:mb-4 mono-number">
                   {offer.value}
                 </div>
-                <p className="text-sm text-muted-foreground mb-6">
+                <p className="text-[10px] sm:text-sm text-muted-foreground mb-2 sm:mb-6 hidden sm:block">
                   {offer.description}
                 </p>
                 <a
@@ -86,7 +87,7 @@ export default function OffersPage() {
                 >
                   <Button
                     variant="outline"
-                    className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold"
+                    className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-[10px] sm:text-sm py-1.5 sm:py-2"
                   >
                     CLAIM OFFER
                   </Button>
@@ -98,31 +99,31 @@ export default function OffersPage() {
       </section>
 
       {/* Printable Coupons */}
-      <section className="py-20 bg-muted">
+      <section className="py-10 sm:py-20 bg-muted">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-black mb-4 text-center">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4 text-center">
             PRINTABLE <span className="text-primary">COUPONS</span>
           </h2>
-          <div className="h-1 w-24 bg-primary mx-auto mb-12" />
+          <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-12" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 max-w-6xl mx-auto">
             {COUPONS.map((coupon, index) => (
               <div
                 key={index}
-                className="border-2 border-dashed border-border p-8 bg-card text-center hover:border-primary transition-colors"
+                className="border-2 border-dashed border-border p-4 sm:p-8 bg-card text-center hover:border-primary transition-colors"
               >
-                <h3 className="text-xl font-bold mb-2">{coupon.title}</h3>
-                <p className="text-sm text-muted-foreground mb-4 whitespace-pre-line">
+                <h3 className="text-sm sm:text-xl font-bold mb-1 sm:mb-2">{coupon.title}</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-4 whitespace-pre-line">
                   {coupon.description}
                 </p>
-                <p className="text-xs text-muted-foreground mb-6">
+                <p className="text-[10px] sm:text-xs text-muted-foreground mb-3 sm:mb-6">
                   {coupon.expiry}
                 </p>
                 <button
                   onClick={() => handlePrint(coupon.title)}
-                  className="inline-flex items-center space-x-2 bg-secondary text-secondary-foreground font-bold uppercase tracking-wider px-6 py-3 text-sm hover:bg-secondary/80 transition-colors"
+                  className="inline-flex items-center space-x-1 sm:space-x-2 bg-secondary text-secondary-foreground font-bold uppercase tracking-wider px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm hover:bg-secondary/80 transition-colors"
                 >
-                  <Printer className="w-4 h-4" />
+                  <Printer className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   <span>Print Coupon</span>
                 </button>
               </div>

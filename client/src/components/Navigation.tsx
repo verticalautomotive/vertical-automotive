@@ -2,6 +2,7 @@
  * Navigation — Industrial Brutalism Design
  * Black/white/blue palette, diagonal accent, bold typography
  * SERVICE dropdown with all services + vehicle types
+ * MOBILE: Compact header (h-14), streamlined menu
  */
 import { COMPANY, SERVICES, VEHICLE_TYPES } from "@/lib/data";
 import { Button } from "@/components/ui/button";
@@ -31,6 +32,16 @@ export default function Navigation() {
     setMobileServiceOpen(false);
   }, [location]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
   const navLinks = [
     { label: "AUTO REPAIR SHOP", href: "/" },
     { label: "OFFERS", href: "/offers" },
@@ -42,13 +53,14 @@ export default function Navigation() {
   return (
     <nav className="sticky top-0 z-50 bg-secondary text-secondary-foreground shadow-lg">
       <div className="container">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+        {/* Desktop: h-20, Mobile: h-14 */}
+        <div className="flex items-center justify-between h-14 sm:h-20">
+          {/* Logo — smaller on mobile */}
           <Link href="/" className="flex-shrink-0">
             <img
               src={COMPANY.logoUrl}
               alt="Vertical Automotive"
-              className="h-14 w-auto"
+              className="h-9 sm:h-14 w-auto"
             />
           </Link>
 
@@ -114,7 +126,7 @@ export default function Navigation() {
             </div>
           </div>
 
-          {/* CTA with phone numbers */}
+          {/* CTA with phone numbers — desktop */}
           <div className="hidden lg:flex items-center space-x-4">
             <div className="flex flex-col items-end text-sm space-y-0.5">
               <a href="tel:9545651518" className="flex items-center space-x-2 hover:text-primary transition-colors">
@@ -136,26 +148,31 @@ export default function Navigation() {
             </a>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            className="lg:hidden p-2"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile: phone icon + hamburger */}
+          <div className="flex lg:hidden items-center gap-2">
+            <a href="tel:9545651518" className="p-2 text-primary" aria-label="Call us">
+              <Phone className="w-5 h-5" />
+            </a>
+            <button
+              className="p-2"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu — compact */}
       {mobileOpen && (
-        <div className="lg:hidden bg-secondary border-t-4 border-primary max-h-[80vh] overflow-y-auto">
-          <div className="container py-6 space-y-1">
+        <div className="lg:hidden bg-secondary border-t-2 border-primary fixed inset-x-0 top-[3.5rem] bottom-0 overflow-y-auto z-50">
+          <div className="container py-3">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="block py-3 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors"
+                className="block py-2.5 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors border-b border-border/30"
               >
                 {link.label}
               </Link>
@@ -164,44 +181,46 @@ export default function Navigation() {
             {/* Mobile Service Accordion */}
             <button
               onClick={() => setMobileServiceOpen(!mobileServiceOpen)}
-              className="flex items-center justify-between w-full py-3 font-display text-sm font-bold tracking-wider"
+              className="flex items-center justify-between w-full py-2.5 font-display text-sm font-bold tracking-wider border-b border-border/30"
             >
               SERVICE
               <ChevronDown className={`w-4 h-4 transition-transform ${mobileServiceOpen ? 'rotate-180' : ''}`} />
             </button>
             {mobileServiceOpen && (
-              <div className="pl-4 space-y-1 pb-2">
-                <Link href="/services" className="block py-2 text-sm text-primary font-display font-bold tracking-wider">
+              <div className="pl-4 pb-2 border-b border-border/30">
+                <Link href="/services" className="block py-1.5 text-sm text-primary font-display font-bold tracking-wider">
                   ALL SERVICES
                 </Link>
-                <div className="text-xs text-muted-foreground font-display tracking-widest pt-2">VEHICLE TYPES</div>
+                <div className="text-[10px] text-muted-foreground font-display tracking-widest pt-1.5 pb-0.5 uppercase">Vehicle Types</div>
                 {VEHICLE_TYPES.map((v) => (
-                  <Link key={v.slug} href={`/services/${v.slug}`} className="block py-2 text-sm text-secondary-foreground/70 hover:text-primary">
+                  <Link key={v.slug} href={`/services/${v.slug}`} className="block py-1.5 text-sm text-secondary-foreground/70 hover:text-primary">
                     {v.title}
                   </Link>
                 ))}
-                <div className="text-xs text-muted-foreground font-display tracking-widest pt-2">SERVICES</div>
+                <div className="text-[10px] text-muted-foreground font-display tracking-widest pt-1.5 pb-0.5 uppercase">Services</div>
                 {SERVICES.map((s) => (
-                  <Link key={s.slug} href={`/services/${s.slug}`} className="block py-2 text-sm text-secondary-foreground/70 hover:text-primary">
+                  <Link key={s.slug} href={`/services/${s.slug}`} className="block py-1.5 text-sm text-secondary-foreground/70 hover:text-primary">
                     {s.shortTitle}
                   </Link>
                 ))}
               </div>
             )}
 
-            <div className="pt-4 space-y-3 border-t border-border">
-              <a href="tel:9545651518" className="flex items-center space-x-2 text-sm">
-                <Phone className="w-4 h-4" />
-                <span className="mono-number">(954) 565-1518</span>
-              </a>
-              <a href="tel:6452162266" className="flex items-center space-x-2 text-sm">
-                <Phone className="w-4 h-4" />
-                <span className="mono-number">(645) 216-2266</span>
-              </a>
+            {/* Phone numbers + CTA */}
+            <div className="pt-3 space-y-2">
+              <div className="flex items-center gap-4">
+                <a href="tel:9545651518" className="flex items-center space-x-2 text-sm">
+                  <Phone className="w-3.5 h-3.5 text-primary" />
+                  <span className="mono-number">(954) 565-1518</span>
+                </a>
+                <a href="tel:6452162266" className="flex items-center space-x-2 text-sm">
+                  <Phone className="w-3.5 h-3.5 text-primary" />
+                  <span className="mono-number">(645) 216-2266</span>
+                </a>
+              </div>
               <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="block">
                 <Button
-                  size="lg"
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-wider"
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-wider text-sm py-2.5"
                 >
                   SCHEDULE NOW
                 </Button>
