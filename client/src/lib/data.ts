@@ -26,8 +26,8 @@ export const LOCATIONS = [
     fullAddress: "1100 W Oakland Park Blvd, Wilton Manors, FL 33311",
     phone: "(954) 565-1518",
     phoneRaw: "9545651518",
-    lat: 26.16574,
-    lng: -80.15714,
+    lat: 26.165788050203393,
+    lng: -80.15759747891684,
   },
   {
     name: "Fort Lauderdale",
@@ -36,8 +36,8 @@ export const LOCATIONS = [
     fullAddress: "707 NE 11th Street, Fort Lauderdale, FL 33304",
     phone: "(645) 216-2266",
     phoneRaw: "6452162266",
-    lat: 26.1339,
-    lng: -80.1373,
+    lat: 26.139035077116752,
+    lng: -80.13559753014344,
   },
 ];
 
