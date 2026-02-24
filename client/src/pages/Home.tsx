@@ -35,6 +35,7 @@ import ServiceIcon from "@/components/ServiceIcon";
 export default function Home() {
   const [statsVisible, setStatsVisible] = useState(false);
   const [reviewsExpanded, setReviewsExpanded] = useState(false);
+  const [offersExpanded, setOffersExpanded] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -233,7 +234,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Offers Section — mobile: compact cards */}
+      {/* Offers Section — mobile: collapsible compact cards, Desktop: full grid */}
       <section id="offers" className="py-10 sm:py-20 bg-muted">
         <div className="container">
           <div className="text-center mb-6 sm:mb-16">
@@ -246,13 +247,12 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Mobile: 2-col compact, Desktop: 3-col */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-            {OFFERS.slice(0, 6).map((offer, index) => (
-              <Card
-                key={index}
-                className="p-3 sm:p-8 bg-card border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-xl"
-              >
+          {(() => {
+            const allOffers = OFFERS.slice(0, 6);
+            const MOBILE_INITIAL = 4;
+
+            const OfferCard = ({ offer }: { offer: typeof allOffers[0] }) => (
+              <Card className="p-3 sm:p-8 bg-card border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-xl">
                 <div className="inline-block bg-primary text-primary-foreground px-2 sm:px-4 py-0.5 sm:py-1 text-[9px] sm:text-xs font-bold mb-2 sm:mb-4">
                   {offer.badge}
                 </div>
@@ -264,16 +264,59 @@ export default function Home() {
                   {offer.description}
                 </p>
                 <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer">
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-[10px] sm:text-sm py-1.5 sm:py-2"
                   >
                     CLAIM OFFER
                   </Button>
                 </a>
               </Card>
-            ))}
-          </div>
+            );
+
+            return (
+              <>
+                {/* Mobile: collapsible 2-col grid */}
+                <div className="sm:hidden">
+                  <div className="grid grid-cols-2 gap-3">
+                    {allOffers.slice(0, MOBILE_INITIAL).map((offer, i) => (
+                      <OfferCard key={i} offer={offer} />
+                    ))}
+                  </div>
+                  <div
+                    className="grid grid-cols-2 gap-3 mt-3 overflow-hidden transition-all duration-500 ease-in-out"
+                    style={{
+                      maxHeight: offersExpanded ? "600px" : "0px",
+                      opacity: offersExpanded ? 1 : 0,
+                    }}
+                  >
+                    {allOffers.slice(MOBILE_INITIAL).map((offer, i) => (
+                      <OfferCard key={i + MOBILE_INITIAL} offer={offer} />
+                    ))}
+                  </div>
+                  {allOffers.length > MOBILE_INITIAL && (
+                    <button
+                      onClick={() => setOffersExpanded(!offersExpanded)}
+                      className="w-full mt-3 py-3 border-2 border-dashed border-primary/40 text-primary font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors"
+                    >
+                      {offersExpanded ? (
+                        <><ChevronUp className="w-4 h-4" /> Show Less</>
+                      ) : (
+                        <><ChevronDown className="w-4 h-4" /> See All {allOffers.length} Offers</>
+                      )}
+                    </button>
+                  )}
+                </div>
+
+                {/* Desktop: full 3-col grid */}
+                <div className="hidden sm:grid lg:grid-cols-3 gap-6">
+                  {allOffers.map((offer, i) => (
+                    <OfferCard key={i} offer={offer} />
+                  ))}
+                </div>
+              </>
+            );
+          })()}
         </div>
       </section>
 
@@ -440,33 +483,34 @@ export default function Home() {
 
             return (
               <>
-                {/* Mobile: collapsible — show first 3, toggle rest */}
-                <div className="sm:hidden space-y-3 mb-6">
-                  {allReviews.slice(0, 3).map((review, i) => (
-                    <ReviewCard key={i} review={review} i={i} />
-                  ))}
-                  {!reviewsExpanded ? (
-                    <button
-                      onClick={() => setReviewsExpanded(true)}
-                      className="w-full py-3 border-2 border-dashed border-primary/40 text-primary font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors"
-                    >
-                      <ChevronDown className="w-4 h-4" />
-                      Show {allReviews.length - 3} More Reviews
-                    </button>
-                  ) : (
-                    <>
-                      {allReviews.slice(3).map((review, i) => (
-                        <ReviewCard key={i + 3} review={review} i={i + 3} />
-                      ))}
-                      <button
-                        onClick={() => setReviewsExpanded(false)}
-                        className="w-full py-3 border-2 border-dashed border-primary/40 text-primary font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors"
-                      >
-                        <ChevronUp className="w-4 h-4" />
-                        Show Less
-                      </button>
-                    </>
-                  )}
+                {/* Mobile: collapsible — show first 3, toggle rest with smooth animation */}
+                <div className="sm:hidden mb-6">
+                  <div className="space-y-3">
+                    {allReviews.slice(0, 3).map((review, i) => (
+                      <ReviewCard key={i} review={review} i={i} />
+                    ))}
+                  </div>
+                  <div
+                    className="space-y-3 mt-3 overflow-hidden transition-all duration-500 ease-in-out"
+                    style={{
+                      maxHeight: reviewsExpanded ? "2000px" : "0px",
+                      opacity: reviewsExpanded ? 1 : 0,
+                    }}
+                  >
+                    {allReviews.slice(3).map((review, i) => (
+                      <ReviewCard key={i + 3} review={review} i={i + 3} />
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => setReviewsExpanded(!reviewsExpanded)}
+                    className="w-full mt-3 py-3 border-2 border-dashed border-primary/40 text-primary font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors"
+                  >
+                    {reviewsExpanded ? (
+                      <><ChevronUp className="w-4 h-4" /> Show Less</>
+                    ) : (
+                      <><ChevronDown className="w-4 h-4" /> Show {allReviews.length - 3} More Reviews</>
+                    )}
+                  </button>
                 </div>
 
                 {/* Desktop: all reviews visible */}
@@ -519,6 +563,29 @@ export default function Home() {
       </section>
 
       <Footer />
+
+      {/* Sticky Mobile Bottom CTA Bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden bg-secondary/95 backdrop-blur-sm border-t-2 border-primary/30 px-4 py-2.5 flex gap-3">
+        <a href={`tel:${LOCATIONS[0].phoneRaw}`} className="flex-1">
+          <Button
+            variant="outline"
+            className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-xs py-2.5 gap-1.5"
+          >
+            <Phone className="w-3.5 h-3.5" />
+            CALL NOW
+          </Button>
+        </a>
+        <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
+          <Button
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-xs py-2.5"
+          >
+            SCHEDULE
+          </Button>
+        </a>
+      </div>
+
+      {/* Bottom spacer for sticky bar on mobile */}
+      <div className="h-14 sm:hidden" />
     </div>
   );
 }
