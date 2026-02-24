@@ -141,6 +141,7 @@ export default function Home() {
                   src={type.image}
                   alt={type.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  style={type.slug === 'asian-vehicles-service' ? { transform: 'scaleX(-1)' } : undefined}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
                 <div className="absolute inset-0 flex items-end p-6">
