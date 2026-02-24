@@ -448,8 +448,8 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <LocationCard location={LOCATIONS[0]} coords={{ lat: 26.1617, lng: -80.1544 }} />
-            <LocationCard location={LOCATIONS[1]} coords={{ lat: 26.1317, lng: -80.1344 }} />
+            <LocationCard location={LOCATIONS[0]} />
+            <LocationCard location={LOCATIONS[1]} />
           </div>
         </div>
       </section>
@@ -459,7 +459,9 @@ export default function Home() {
   );
 }
 
-function LocationCard({ location, coords }: { location: typeof LOCATIONS[0]; coords: google.maps.LatLngLiteral }) {
+function LocationCard({ location }: { location: typeof LOCATIONS[0] }) {
+  const coords = { lat: location.lat, lng: location.lng };
+
   const handleMapReady = (map: google.maps.Map) => {
     // Add a marker for the location
     new google.maps.marker.AdvancedMarkerElement({
@@ -476,7 +478,7 @@ function LocationCard({ location, coords }: { location: typeof LOCATIONS[0]; coo
         <MapView
           className="w-full h-full"
           initialCenter={coords}
-          initialZoom={15}
+          initialZoom={16}
           onMapReady={handleMapReady}
         />
       </div>
