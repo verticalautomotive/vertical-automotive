@@ -9,7 +9,8 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { COMPANY } from "@/lib/data";
 import { useState, useEffect } from "react";
-import { ChevronDown, Brain, Wrench, Search, Shield, Star, MessageCircle } from "lucide-react";
+import { ChevronDown, Brain, Wrench, Search, Shield, Star, MessageCircle, Calendar, Thermometer, Droplets, Gauge, Clock, ArrowRight, Zap, Car } from "lucide-react";
+import { Link } from "wouter";
 
 interface FAQItem {
   question: string;
@@ -139,6 +140,277 @@ export default function Blog() {
         ]}
         backgroundImage="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1400&q=80"
       />
+
+      {/* Blog Articles Section */}
+      <section className="py-10 sm:py-20 bg-muted/30">
+        <div className="container">
+          {/* Section Header */}
+          <div className="text-center mb-8 sm:mb-14">
+            <div className="inline-flex items-center gap-2 sm:gap-3 bg-primary/10 px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6">
+              <Car className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+              <span className="font-display text-xs sm:text-sm font-bold tracking-widest text-primary uppercase">
+                Expert Tips & Insights
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
+              MAINTENANCE{" "}
+              <span className="text-primary">TIPS</span>
+            </h2>
+            <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-4 sm:mb-6" />
+            <p className="text-sm sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+              Stay ahead of costly repairs with these expert maintenance tips from the Vertical Automotive team.
+            </p>
+          </div>
+
+          {/* Featured Article */}
+          <div className="mb-6 sm:mb-10">
+            <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 overflow-hidden group">
+              <div className="grid md:grid-cols-2">
+                <div className="relative h-48 sm:h-64 md:h-auto overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=800&q=80"
+                    alt="Seasonal car maintenance"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                    <span className="bg-primary text-primary-foreground font-display text-[10px] sm:text-xs font-bold tracking-widest px-3 py-1.5 uppercase">
+                      Featured
+                    </span>
+                  </div>
+                </div>
+                <div className="p-5 sm:p-8 md:p-10 flex flex-col justify-center">
+                  <div className="flex items-center gap-2 text-muted-foreground mb-2 sm:mb-3">
+                    <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="text-[10px] sm:text-xs font-display tracking-wider uppercase">Seasonal Guide</span>
+                    <span className="text-muted-foreground/40">·</span>
+                    <span className="text-[10px] sm:text-xs font-display tracking-wider">5 min read</span>
+                  </div>
+                  <h3 className="font-display text-lg sm:text-2xl font-black tracking-wide mb-2 sm:mb-4 leading-tight">
+                    THE COMPLETE SOUTH FLORIDA{" "}
+                    <span className="text-primary">SEASONAL CAR CARE</span> GUIDE
+                  </h3>
+                  <p className="text-xs sm:text-base text-muted-foreground leading-relaxed mb-4 sm:mb-6">
+                    South Florida's heat, humidity, and sudden storms put unique stress on your vehicle. From protecting your paint against UV damage to ensuring your A/C system handles 95°F days, here's everything Fort Lauderdale and Wilton Manors drivers need to know about keeping their cars in peak condition year-round.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
+                    <span className="text-[10px] sm:text-xs bg-primary/10 text-primary font-display tracking-wider px-2.5 py-1">A/C System</span>
+                    <span className="text-[10px] sm:text-xs bg-primary/10 text-primary font-display tracking-wider px-2.5 py-1">Paint Protection</span>
+                    <span className="text-[10px] sm:text-xs bg-primary/10 text-primary font-display tracking-wider px-2.5 py-1">Hurricane Prep</span>
+                  </div>
+                  <Link href="/services/ac-heating" className="inline-flex items-center gap-2 text-primary font-display font-bold text-xs sm:text-sm tracking-wider group/link">
+                    READ MORE
+                    <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Article Grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {/* Article 1 */}
+            <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden">
+              <div className="relative h-36 sm:h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=600&q=80"
+                  alt="Engine oil change"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3">
+                  <span className="bg-secondary/90 text-secondary-foreground font-display text-[10px] sm:text-xs font-bold tracking-widest px-2.5 py-1 uppercase">
+                    Maintenance
+                  </span>
+                </div>
+              </div>
+              <div className="p-4 sm:p-6">
+                <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                  <Droplets className="w-3.5 h-3.5" />
+                  <span className="text-[10px] sm:text-xs font-display tracking-wider">3 min read</span>
+                </div>
+                <h3 className="font-display text-sm sm:text-lg font-bold tracking-wide mb-2 leading-snug">
+                  WHY REGULAR OIL CHANGES ARE YOUR ENGINE'S{" "}
+                  <span className="text-primary">BEST FRIEND</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3 sm:mb-4 line-clamp-3">
+                  Skipping oil changes is one of the fastest ways to shorten your engine's life. Clean oil reduces friction, prevents overheating, and removes harmful deposits. We recommend synthetic oil changes every 5,000–7,500 miles for most vehicles in South Florida's demanding climate.
+                </p>
+                <Link href="/services/engine-oil-filters" className="inline-flex items-center gap-1.5 text-primary font-display font-bold text-xs tracking-wider group/link">
+                  LEARN MORE
+                  <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Article 2 */}
+            <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden">
+              <div className="relative h-36 sm:h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=80"
+                  alt="Brake inspection"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3">
+                  <span className="bg-secondary/90 text-secondary-foreground font-display text-[10px] sm:text-xs font-bold tracking-widest px-2.5 py-1 uppercase">
+                    Safety
+                  </span>
+                </div>
+              </div>
+              <div className="p-4 sm:p-6">
+                <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                  <Gauge className="w-3.5 h-3.5" />
+                  <span className="text-[10px] sm:text-xs font-display tracking-wider">4 min read</span>
+                </div>
+                <h3 className="font-display text-sm sm:text-lg font-bold tracking-wide mb-2 leading-snug">
+                  5 WARNING SIGNS YOUR{" "}
+                  <span className="text-primary">BRAKES NEED ATTENTION</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3 sm:mb-4 line-clamp-3">
+                  Squealing, grinding, vibration, pulling to one side, or a soft brake pedal — these are all signs your braking system needs professional inspection. Don't wait until it's an emergency. Early brake service saves money and keeps you safe on Fort Lauderdale roads.
+                </p>
+                <Link href="/services/brakes-rotors" className="inline-flex items-center gap-1.5 text-primary font-display font-bold text-xs tracking-wider group/link">
+                  LEARN MORE
+                  <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Article 3 */}
+            <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden">
+              <div className="relative h-36 sm:h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&q=80"
+                  alt="Car air conditioning"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3">
+                  <span className="bg-secondary/90 text-secondary-foreground font-display text-[10px] sm:text-xs font-bold tracking-widest px-2.5 py-1 uppercase">
+                    Seasonal
+                  </span>
+                </div>
+              </div>
+              <div className="p-4 sm:p-6">
+                <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                  <Thermometer className="w-3.5 h-3.5" />
+                  <span className="text-[10px] sm:text-xs font-display tracking-wider">3 min read</span>
+                </div>
+                <h3 className="font-display text-sm sm:text-lg font-bold tracking-wide mb-2 leading-snug">
+                  PREPARING YOUR A/C FOR{" "}
+                  <span className="text-primary">FLORIDA SUMMER</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3 sm:mb-4 line-clamp-3">
+                  Florida summers are brutal on your vehicle's A/C system. Weak airflow, warm air, or strange odors mean it's time for a professional inspection. We check refrigerant levels, compressor health, and cabin air filters to keep you cool all summer long.
+                </p>
+                <Link href="/services/ac-heating" className="inline-flex items-center gap-1.5 text-primary font-display font-bold text-xs tracking-wider group/link">
+                  LEARN MORE
+                  <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Article 4 */}
+            <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden">
+              <div className="relative h-36 sm:h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=80"
+                  alt="Tire maintenance"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3">
+                  <span className="bg-secondary/90 text-secondary-foreground font-display text-[10px] sm:text-xs font-bold tracking-widest px-2.5 py-1 uppercase">
+                    Tips
+                  </span>
+                </div>
+              </div>
+              <div className="p-4 sm:p-6">
+                <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                  <Clock className="w-3.5 h-3.5" />
+                  <span className="text-[10px] sm:text-xs font-display tracking-wider">3 min read</span>
+                </div>
+                <h3 className="font-display text-sm sm:text-lg font-bold tracking-wide mb-2 leading-snug">
+                  TIRE CARE 101:{" "}
+                  <span className="text-primary">PRESSURE, ROTATION & ALIGNMENT</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3 sm:mb-4 line-clamp-3">
+                  Proper tire maintenance improves fuel economy, handling, and safety. South Florida's hot pavement accelerates tire wear, making regular rotation and alignment checks essential. We recommend checking tire pressure monthly and rotating every 5,000–8,000 miles.
+                </p>
+                <Link href="/services/tires" className="inline-flex items-center gap-1.5 text-primary font-display font-bold text-xs tracking-wider group/link">
+                  LEARN MORE
+                  <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Article 5 */}
+            <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden">
+              <div className="relative h-36 sm:h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&q=80"
+                  alt="Electric vehicle charging"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3">
+                  <span className="bg-secondary/90 text-secondary-foreground font-display text-[10px] sm:text-xs font-bold tracking-widest px-2.5 py-1 uppercase">
+                    EV Care
+                  </span>
+                </div>
+              </div>
+              <div className="p-4 sm:p-6">
+                <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                  <Zap className="w-3.5 h-3.5" />
+                  <span className="text-[10px] sm:text-xs font-display tracking-wider">4 min read</span>
+                </div>
+                <h3 className="font-display text-sm sm:text-lg font-bold tracking-wide mb-2 leading-snug">
+                  HYBRID & EV MAINTENANCE:{" "}
+                  <span className="text-primary">WHAT'S DIFFERENT?</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3 sm:mb-4 line-clamp-3">
+                  Electric and hybrid vehicles need specialized care. While they skip oil changes, they still require brake service, tire rotation, coolant checks, and battery health monitoring. Vertical Automotive's certified technicians are trained for Tesla, hybrid, and EV service.
+                </p>
+                <Link href="/services/hybrid-ev" className="inline-flex items-center gap-1.5 text-primary font-display font-bold text-xs tracking-wider group/link">
+                  LEARN MORE
+                  <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Article 6 */}
+            <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden">
+              <div className="relative h-36 sm:h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=600&q=80"
+                  alt="Car diagnostic scan"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3">
+                  <span className="bg-secondary/90 text-secondary-foreground font-display text-[10px] sm:text-xs font-bold tracking-widest px-2.5 py-1 uppercase">
+                    Diagnostics
+                  </span>
+                </div>
+              </div>
+              <div className="p-4 sm:p-6">
+                <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                  <Search className="w-3.5 h-3.5" />
+                  <span className="text-[10px] sm:text-xs font-display tracking-wider">3 min read</span>
+                </div>
+                <h3 className="font-display text-sm sm:text-lg font-bold tracking-wide mb-2 leading-snug">
+                  CHECK ENGINE LIGHT?{" "}
+                  <span className="text-primary">DON'T IGNORE IT</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3 sm:mb-4 line-clamp-3">
+                  A check engine light can indicate anything from a loose gas cap to a serious engine issue. Our advanced diagnostic equipment reads manufacturer-specific codes to pinpoint the exact problem, saving you time and money on unnecessary guesswork repairs.
+                </p>
+                <Link href="/services/complete-diagnostic" className="inline-flex items-center gap-1.5 text-primary font-display font-bold text-xs tracking-wider group/link">
+                  LEARN MORE
+                  <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Divider */}
+      <div className="h-1 bg-primary" style={{ clipPath: 'polygon(0 0, 100% 0, 97% 100%, 0 100%)' }} />
 
       {/* FAQ Section */}
       <section className="py-10 sm:py-20 bg-background">
