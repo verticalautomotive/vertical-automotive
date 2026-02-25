@@ -283,7 +283,7 @@ export default function Home() {
                     className="w-full py-3.5 bg-card border-2 border-primary/30 text-foreground font-bold text-sm flex items-center justify-between px-4 hover:bg-primary/5 transition-colors"
                   >
                     <span className="flex items-center gap-2">
-                      <span className="text-primary font-black">{allOffers.length}</span> Current Offers Available
+                      Current Offers Available
                     </span>
                     <ChevronDown className={`w-4 h-4 text-primary transition-transform duration-300 ${offersExpanded ? "rotate-180" : ""}`} />
                   </button>
@@ -485,7 +485,7 @@ export default function Home() {
                   >
                     <span className="flex items-center gap-2">
                       <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                      Read {allReviews.length} Customer Reviews
+                      Read Customer Reviews
                     </span>
                     <ChevronDown className={`w-4 h-4 text-primary transition-transform duration-300 ${reviewsExpanded ? "rotate-180" : ""}`} />
                   </button>

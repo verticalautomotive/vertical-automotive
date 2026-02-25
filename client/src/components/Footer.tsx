@@ -22,11 +22,11 @@ export default function Footer() {
         {/* Mobile: 2-col grid, Desktop: 4-col */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-12">
           {/* Brand */}
-          <div className="col-span-2 sm:col-span-1">
+          <div className="col-span-2 sm:col-span-1 text-center sm:text-left">
             <img
               src={COMPANY.logoUrl}
               alt="Vertical Automotive"
-              className="h-10 sm:h-12 w-auto mb-3 sm:mb-6"
+              className="h-10 sm:h-12 w-auto mb-3 sm:mb-6 mx-auto sm:mx-0"
             />
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
               ASE-certified mechanics providing complete auto care with{" "}
