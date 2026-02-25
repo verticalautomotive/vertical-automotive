@@ -4,7 +4,15 @@
  * MOBILE: Condensed 2-column layout, reduced spacing
  */
 import { COMPANY, LOCATIONS } from "@/lib/data";
-import { MapPin, Phone, Clock, Shield } from "lucide-react";
+import { MapPin, Phone, Clock, Shield, Instagram, Facebook } from "lucide-react";
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.73a8.19 8.19 0 004.76 1.52V6.8a4.84 4.84 0 01-1-.11z" />
+    </svg>
+  );
+}
 
 export default function Footer() {
   return (
@@ -37,6 +45,37 @@ export default function Footer() {
               <span className="text-xs sm:text-sm font-bold tracking-wider">
                 ASE CERTIFIED
               </span>
+            </div>
+
+            {/* Social Media Icons */}
+            <div className="flex items-center justify-center sm:justify-start space-x-4 mt-4 sm:mt-6">
+              <a
+                href="https://www.instagram.com/verticalautomotive/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/verticalautomotive"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@verticalautomotive"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="TikTok"
+              >
+                <TikTokIcon className="w-5 h-5" />
+              </a>
             </div>
           </div>
 
