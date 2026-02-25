@@ -46,11 +46,11 @@ export default function Footer() {
               WILTON MANORS
             </h3>
             <div className="space-y-2 sm:space-y-4">
-              <div className="flex items-start space-x-2">
-                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 mt-0.5 text-primary flex-shrink-0" />
+              <div className="hidden sm:flex items-start space-x-2">
+                <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
-                  <p className="text-xs sm:text-sm">{LOCATIONS[0].address}</p>
-                  <p className="text-xs sm:text-sm text-muted-foreground">
+                  <p className="text-sm">{LOCATIONS[0].address}</p>
+                  <p className="text-sm text-muted-foreground">
                     {LOCATIONS[0].city}
                   </p>
                 </div>
@@ -73,11 +73,11 @@ export default function Footer() {
               FT. LAUDERDALE
             </h3>
             <div className="space-y-2 sm:space-y-4">
-              <div className="flex items-start space-x-2">
-                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 mt-0.5 text-primary flex-shrink-0" />
+              <div className="hidden sm:flex items-start space-x-2">
+                <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
-                  <p className="text-xs sm:text-sm">{LOCATIONS[1].address}</p>
-                  <p className="text-xs sm:text-sm text-muted-foreground">
+                  <p className="text-sm">{LOCATIONS[1].address}</p>
+                  <p className="text-sm text-muted-foreground">
                     {LOCATIONS[1].city}
                   </p>
                 </div>
@@ -111,17 +111,19 @@ export default function Footer() {
               </div>
             </div>
 
-            <h3 className="font-display text-sm sm:text-lg font-bold tracking-wider mt-4 sm:mt-8 mb-2 sm:mb-4 text-primary">
-              PAY SYSTEM
-            </h3>
-            <div className="flex items-center flex-wrap gap-x-2 gap-y-1 text-muted-foreground text-xs sm:text-sm">
-              <span>Visa</span>
-              <span>•</span>
-              <span>Mastercard</span>
-              <span>•</span>
-              <span>Amex</span>
-              <span>•</span>
-              <span>Discover</span>
+            <div className="hidden sm:block">
+              <h3 className="font-display text-lg font-bold tracking-wider mt-8 mb-4 text-primary">
+                PAY SYSTEM
+              </h3>
+              <div className="flex items-center flex-wrap gap-x-2 gap-y-1 text-muted-foreground text-sm">
+                <span>Visa</span>
+                <span>•</span>
+                <span>Mastercard</span>
+                <span>•</span>
+                <span>Amex</span>
+                <span>•</span>
+                <span>Discover</span>
+              </div>
             </div>
           </div>
         </div>
