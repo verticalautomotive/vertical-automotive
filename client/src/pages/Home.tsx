@@ -276,36 +276,30 @@ export default function Home() {
 
             return (
               <>
-                {/* Mobile: collapsible 2-col grid */}
+                {/* Mobile: fully collapsed dropdown — all offers hidden by default */}
                 <div className="sm:hidden">
-                  <div className="grid grid-cols-2 gap-3">
-                    {allOffers.slice(0, MOBILE_INITIAL).map((offer, i) => (
-                      <OfferCard key={i} offer={offer} />
-                    ))}
-                  </div>
+                  <button
+                    onClick={() => setOffersExpanded(!offersExpanded)}
+                    className="w-full py-3.5 bg-card border-2 border-primary/30 text-foreground font-bold text-sm flex items-center justify-between px-4 hover:bg-primary/5 transition-colors"
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="text-primary font-black">{allOffers.length}</span> Current Offers Available
+                    </span>
+                    <ChevronDown className={`w-4 h-4 text-primary transition-transform duration-300 ${offersExpanded ? "rotate-180" : ""}`} />
+                  </button>
                   <div
-                    className="grid grid-cols-2 gap-3 mt-3 overflow-hidden transition-all duration-500 ease-in-out"
+                    className="overflow-hidden transition-all duration-500 ease-in-out"
                     style={{
-                      maxHeight: offersExpanded ? "600px" : "0px",
+                      maxHeight: offersExpanded ? "1200px" : "0px",
                       opacity: offersExpanded ? 1 : 0,
                     }}
                   >
-                    {allOffers.slice(MOBILE_INITIAL).map((offer, i) => (
-                      <OfferCard key={i + MOBILE_INITIAL} offer={offer} />
-                    ))}
+                    <div className="grid grid-cols-2 gap-3 pt-3">
+                      {allOffers.map((offer, i) => (
+                        <OfferCard key={i} offer={offer} />
+                      ))}
+                    </div>
                   </div>
-                  {allOffers.length > MOBILE_INITIAL && (
-                    <button
-                      onClick={() => setOffersExpanded(!offersExpanded)}
-                      className="w-full mt-3 py-3 border-2 border-dashed border-primary/40 text-primary font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors"
-                    >
-                      {offersExpanded ? (
-                        <><ChevronUp className="w-4 h-4" /> Show Less</>
-                      ) : (
-                        <><ChevronDown className="w-4 h-4" /> See All {allOffers.length} Offers</>
-                      )}
-                    </button>
-                  )}
                 </div>
 
                 {/* Desktop: full 3-col grid */}
@@ -390,8 +384,8 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Review Highlights — mobile: single column, compact */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 mb-6 sm:mb-12">
+          {/* Review Highlights — Desktop only */}
+          <div className="hidden sm:grid sm:grid-cols-3 gap-6 mb-12">
             {[
               {
                 quote: "I was treated with respect and received excellent service at an affordable rate.",
@@ -406,17 +400,17 @@ export default function Home() {
                 source: "Google Review Highlight",
               },
             ].map((highlight, i) => (
-              <div key={i} className="bg-card border-2 border-border p-4 sm:p-6 relative">
-                <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-primary/30 absolute top-3 right-3 sm:top-4 sm:right-4" />
-                <p className="text-sm sm:text-lg font-medium italic leading-relaxed pr-6">
+              <div key={i} className="bg-card border-2 border-border p-6 relative">
+                <Quote className="w-8 h-8 text-primary/30 absolute top-4 right-4" />
+                <p className="text-lg font-medium italic leading-relaxed pr-6">
                   "{highlight.quote}"
                 </p>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-2 sm:mt-4">{highlight.source}</p>
+                <p className="text-sm text-muted-foreground mt-4">{highlight.source}</p>
               </div>
             ))}
           </div>
 
-          {/* Individual Reviews — mobile: collapsible (3 shown), Desktop: all visible */}
+          {/* Individual Reviews */}
           {(() => {
             const allReviews = [
               {
@@ -483,34 +477,31 @@ export default function Home() {
 
             return (
               <>
-                {/* Mobile: collapsible — show first 3, toggle rest with smooth animation */}
+                {/* Mobile: fully collapsed dropdown — all reviews hidden by default */}
                 <div className="sm:hidden mb-6">
-                  <div className="space-y-3">
-                    {allReviews.slice(0, 3).map((review, i) => (
-                      <ReviewCard key={i} review={review} i={i} />
-                    ))}
-                  </div>
+                  <button
+                    onClick={() => setReviewsExpanded(!reviewsExpanded)}
+                    className="w-full py-3.5 bg-card border-2 border-primary/30 text-foreground font-bold text-sm flex items-center justify-between px-4 hover:bg-primary/5 transition-colors"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                      Read {allReviews.length} Customer Reviews
+                    </span>
+                    <ChevronDown className={`w-4 h-4 text-primary transition-transform duration-300 ${reviewsExpanded ? "rotate-180" : ""}`} />
+                  </button>
                   <div
-                    className="space-y-3 mt-3 overflow-hidden transition-all duration-500 ease-in-out"
+                    className="overflow-hidden transition-all duration-500 ease-in-out"
                     style={{
-                      maxHeight: reviewsExpanded ? "2000px" : "0px",
+                      maxHeight: reviewsExpanded ? "3000px" : "0px",
                       opacity: reviewsExpanded ? 1 : 0,
                     }}
                   >
-                    {allReviews.slice(3).map((review, i) => (
-                      <ReviewCard key={i + 3} review={review} i={i + 3} />
-                    ))}
+                    <div className="space-y-3 pt-3">
+                      {allReviews.map((review, i) => (
+                        <ReviewCard key={i} review={review} i={i} />
+                      ))}
+                    </div>
                   </div>
-                  <button
-                    onClick={() => setReviewsExpanded(!reviewsExpanded)}
-                    className="w-full mt-3 py-3 border-2 border-dashed border-primary/40 text-primary font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors"
-                  >
-                    {reviewsExpanded ? (
-                      <><ChevronUp className="w-4 h-4" /> Show Less</>
-                    ) : (
-                      <><ChevronDown className="w-4 h-4" /> Show {allReviews.length - 3} More Reviews</>
-                    )}
-                  </button>
                 </div>
 
                 {/* Desktop: all reviews visible */}
