@@ -14,7 +14,7 @@ export const COMPANY = {
   satisfaction: "99%",
   hours: "8:00 AM — 5:00 PM",
   closedDays: "SAT-SUN Closed",
-  appointmentUrl: "https://schedule.kukui.com/",
+  appointmentUrl: "https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049&hl=en-US&gei=cI2TafOKM-PJwt0PyNG6QQ&rwg_token=AFd1xnEuArG_s518nC9zqHme02PTrt1Bh4eLxCPdzptPNdAHspxQPFRzmUn0StOuvZamtHD05WU3V_u7JwtkKRM4EhUsB67PDA%3D%3D",
   logoUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/lVPmvaQYkURznMWm.svg",
 };
 
