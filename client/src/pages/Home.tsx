@@ -690,19 +690,34 @@ export default function Home() {
       <Footer />
 
       {/* Sticky Mobile Bottom CTA Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden bg-secondary/95 backdrop-blur-sm border-t-2 border-primary/30 px-4 py-2.5 flex gap-3">
+      <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden bg-secondary/95 backdrop-blur-sm border-t-2 border-primary/30 px-3 py-2 flex gap-2">
         <a href={`tel:${LOCATIONS[0].phoneRaw}`} className="flex-1">
           <Button
             variant="outline"
-            className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-xs py-2.5 gap-1.5"
+            className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-2 gap-1 flex flex-col items-center leading-tight h-auto"
           >
-            <Phone className="w-3.5 h-3.5" />
-            CALL NOW
+            <span className="flex items-center gap-1 text-[10px]">
+              <Phone className="w-3 h-3" />
+              {LOCATIONS[0].name}
+            </span>
+            <span className="text-[11px]">{LOCATIONS[0].phone}</span>
+          </Button>
+        </a>
+        <a href={`tel:${LOCATIONS[1].phoneRaw}`} className="flex-1">
+          <Button
+            variant="outline"
+            className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-2 gap-1 flex flex-col items-center leading-tight h-auto"
+          >
+            <span className="flex items-center gap-1 text-[10px]">
+              <Phone className="w-3 h-3" />
+              {LOCATIONS[1].name}
+            </span>
+            <span className="text-[11px]">{LOCATIONS[1].phone}</span>
           </Button>
         </a>
         <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
           <Button
-            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-xs py-2.5"
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-xs py-2 h-full"
           >
             SCHEDULE
           </Button>
@@ -710,7 +725,7 @@ export default function Home() {
       </div>
 
       {/* Bottom spacer for sticky bar on mobile */}
-      <div className="h-14 sm:hidden" />
+      <div className="h-16 sm:hidden" />
     </div>
   );
 }
