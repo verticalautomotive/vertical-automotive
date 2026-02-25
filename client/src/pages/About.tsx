@@ -54,80 +54,43 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
+      {/* What Makes Vertical Automotive Different */}
       <section className="py-10 sm:py-20 bg-secondary text-secondary-foreground">
         <div className="container">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-center mb-3 sm:mb-4">
-            WHY <span className="text-primary">CHOOSE US</span>
+            WHAT MAKES VERTICAL AUTOMOTIVE <span className="text-primary">DIFFERENT</span>
           </h2>
-          <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-12" />
+          <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-8" />
+
+          <p className="text-sm sm:text-lg leading-relaxed text-secondary-foreground/80 mb-8 sm:mb-12 max-w-3xl mx-auto text-center">
+            Vertical Automotive combines modern automotive technology with real-world experience to deliver accurate diagnostics, transparent communication, and dependable results. Instead of focusing only on repairs, the team helps drivers prevent future issues and maintain long-term vehicle performance.
+          </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 max-w-5xl mx-auto">
-            {ABOUT_CONTENT.whyChooseUs.map((item, i) => (
+            {[
+              { icon: HeartHandshake, title: "Honest & Clear Recommendations", description: "We provide transparent advice about what your vehicle truly needs — nothing more, nothing less. Our customers trust us because we communicate clearly and never upsell unnecessary services." },
+              { icon: SearchIcon, title: "Diagnostic-First Approach", description: "We use modern diagnostic technology to quickly and accurately identify issues before recommending any repairs. This saves you time, money, and prevents unnecessary work." },
+              { icon: Wrench, title: "Professional Mechanical Expertise", description: "Our ASE-certified technicians bring decades of combined experience to every repair. From routine maintenance to complex diagnostics, we deliver dealership-level quality." },
+              { icon: ShieldCheck, title: "Reliable Maintenance Strategies", description: "We help drivers prevent future issues through proactive maintenance plans tailored to your vehicle's needs, keeping it running safely and efficiently for years to come." },
+              { icon: MapPin, title: "Trusted Local Reputation", description: "Serving Wilton Manors and Fort Lauderdale since 1989, we've built a loyal customer base through consistent quality, honest service, and genuine care for every vehicle we touch." },
+            ].map((item, i) => (
               <div
                 key={i}
-                className="border-2 border-primary/20 p-4 sm:p-8 hover:border-primary transition-colors"
+                className={`border-2 border-primary/20 p-4 sm:p-8 hover:border-primary transition-colors ${i === 4 ? "sm:col-span-2" : ""}`}
               >
-                <h3 className="text-sm sm:text-xl font-bold mb-2 sm:mb-4 text-primary">
-                  {item.title}
-                </h3>
+                <div className="flex items-center gap-3 mb-2 sm:mb-4">
+                  <div className="flex-shrink-0 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center bg-primary/10 text-primary">
+                    <item.icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <h3 className="text-sm sm:text-xl font-bold text-primary">
+                    {item.title}
+                  </h3>
+                </div>
                 <p className="text-secondary-foreground/70 leading-relaxed text-xs sm:text-sm">
                   {item.description}
                 </p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* What Makes Vertical Automotive Different */}
-      <section className="py-10 sm:py-20 bg-background">
-        <div className="container max-w-5xl">
-          <div className="text-center mb-8 sm:mb-14">
-            <div className="inline-flex items-center gap-2 sm:gap-3 bg-primary/10 px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6">
-              <Star className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-              <span className="font-display text-xs sm:text-sm font-bold tracking-widest text-primary uppercase">
-                What Sets Us Apart
-              </span>
-            </div>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
-              WHAT MAKES VERTICAL AUTOMOTIVE{" "}
-              <span className="text-primary">DIFFERENT</span>
-            </h2>
-            <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-4 sm:mb-6" />
-          </div>
-
-          <p className="text-sm sm:text-lg leading-relaxed text-muted-foreground mb-8 sm:mb-12 max-w-3xl mx-auto text-center">
-            Vertical Automotive combines modern automotive technology with real-world experience to deliver accurate diagnostics, transparent communication, and dependable results. Instead of focusing only on repairs, the team helps drivers prevent future issues and maintain long-term vehicle performance.
-          </p>
-
-          <div className="mb-6 sm:mb-10">
-            <h3 className="font-display text-base sm:text-xl font-bold tracking-wider mb-4 sm:mb-6 text-center">
-              KEY STRENGTHS RECOGNIZED BY <span className="text-primary">CUSTOMERS</span>
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-              {[
-                { icon: HeartHandshake, text: "Honest and clear recommendations" },
-                { icon: SearchIcon, text: "Diagnostic-first approach" },
-                { icon: Wrench, text: "Professional mechanical expertise" },
-                { icon: ShieldCheck, text: "Reliable maintenance strategies" },
-                { icon: MapPin, text: "Local trusted reputation in Wilton Manors & Fort Lauderdale" },
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  className={`flex items-center gap-3 sm:gap-4 p-3 sm:p-5 border-2 border-border hover:border-primary/50 bg-card transition-colors ${
-                    i === 4 ? "sm:col-span-2 lg:col-span-1" : ""
-                  }`}
-                >
-                  <div className="flex-shrink-0 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center bg-primary/10 text-primary">
-                    <item.icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                  </div>
-                  <span className="font-display text-xs sm:text-sm font-bold tracking-wide">
-                    {item.text}
-                  </span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
