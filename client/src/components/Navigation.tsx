@@ -43,12 +43,11 @@ export default function Navigation() {
   }, [mobileOpen]);
 
   const navLinks = [
-    { label: "AUTO REPAIR SHOP", href: "/" },
     { label: "OFFERS", href: "/offers" },
     { label: "ABOUT US", href: "/about" },
     { label: "REVIEWS", href: "/#reviews" },
     { label: "CONTACTS", href: "/#contact" },
-    { label: "BLOG", href: "/blog" },
+    { label: "INFO", href: "/blog" },
   ];
 
   return (
@@ -67,17 +66,7 @@ export default function Navigation() {
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center space-x-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="px-3 py-2 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-
-            {/* SERVICE Dropdown */}
+            {/* SERVICE Dropdown — first item */}
             <div ref={dropdownRef} className="relative">
               <button
                 onClick={() => setServiceDropdownOpen(!serviceDropdownOpen)}
@@ -125,6 +114,16 @@ export default function Navigation() {
                 </div>
               )}
             </div>
+
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="px-3 py-2 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
 
           {/* CTA with phone numbers — desktop */}
@@ -169,17 +168,7 @@ export default function Navigation() {
       {mobileOpen && (
         <div className="lg:hidden bg-secondary border-t-2 border-primary fixed inset-x-0 top-[3.5rem] bottom-0 overflow-y-auto z-50">
           <div className="container py-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="block py-2.5 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors border-b border-border/30"
-              >
-                {link.label}
-              </Link>
-            ))}
-
-            {/* Mobile Service Accordion */}
+            {/* Mobile Service Accordion — first item */}
             <button
               onClick={() => setMobileServiceOpen(!mobileServiceOpen)}
               className="flex items-center justify-between w-full py-2.5 font-display text-sm font-bold tracking-wider border-b border-border/30"
@@ -206,6 +195,16 @@ export default function Navigation() {
                 ))}
               </div>
             )}
+
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="block py-2.5 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors border-b border-border/30"
+              >
+                {link.label}
+              </Link>
+            ))}
 
             {/* Phone numbers + CTA */}
             <div className="pt-3 space-y-2">
