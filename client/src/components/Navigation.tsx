@@ -162,7 +162,7 @@ export default function Navigation() {
 
           {/* CTA with phone numbers — desktop */}
           <div className="hidden lg:flex items-center space-x-4">
-            <div className="flex flex-col items-end text-sm space-y-0.5">
+            <div className="flex flex-col items-end text-xs space-y-0.5">
               <a href="tel:9545651518" className="flex items-center space-x-2 hover:text-primary transition-colors">
                 <Phone className="w-3.5 h-3.5" />
                 <span className="mono-number">Wilton Manors (954) 565-1518</span>
