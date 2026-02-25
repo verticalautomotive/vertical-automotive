@@ -8,7 +8,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { COMPANY } from "@/lib/data";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown, Brain, Wrench, Search, Shield, Star, MessageCircle } from "lucide-react";
 
 interface FAQItem {
@@ -99,7 +99,33 @@ function FAQAccordion({ item, index }: { item: FAQItem; index: number }) {
   );
 }
 
+// FAQ structured data for Google rich results
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ_ITEMS.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+
 export default function Blog() {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(FAQ_SCHEMA);
+    script.id = "faq-structured-data";
+    document.head.appendChild(script);
+    return () => {
+      const el = document.getElementById("faq-structured-data");
+      if (el) el.remove();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navigation />
