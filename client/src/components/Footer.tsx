@@ -40,13 +40,13 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Wilton Manors */}
-          <div>
-            <h3 className="font-display text-sm sm:text-lg font-bold tracking-wider mb-3 sm:mb-6 text-primary">
+          {/* Wilton Manors — desktop only */}
+          <div className="hidden sm:block">
+            <h3 className="font-display text-lg font-bold tracking-wider mb-6 text-primary">
               WILTON MANORS
             </h3>
-            <div className="space-y-2 sm:space-y-4">
-              <div className="hidden sm:flex items-start space-x-2">
+            <div className="space-y-4">
+              <div className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
                   <p className="text-sm">{LOCATIONS[0].address}</p>
@@ -56,10 +56,10 @@ export default function Footer() {
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
+                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                 <a
                   href={`tel:${LOCATIONS[0].phoneRaw}`}
-                  className="mono-number text-xs sm:text-sm font-medium hover:text-primary transition-colors"
+                  className="mono-number text-sm font-medium hover:text-primary transition-colors"
                 >
                   {LOCATIONS[0].phone}
                 </a>
@@ -67,13 +67,13 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Fort Lauderdale */}
-          <div>
-            <h3 className="font-display text-sm sm:text-lg font-bold tracking-wider mb-3 sm:mb-6 text-primary">
+          {/* Fort Lauderdale — desktop only */}
+          <div className="hidden sm:block">
+            <h3 className="font-display text-lg font-bold tracking-wider mb-6 text-primary">
               FT. LAUDERDALE
             </h3>
-            <div className="space-y-2 sm:space-y-4">
-              <div className="hidden sm:flex items-start space-x-2">
+            <div className="space-y-4">
+              <div className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
                   <p className="text-sm">{LOCATIONS[1].address}</p>
@@ -83,10 +83,10 @@ export default function Footer() {
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
+                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                 <a
                   href={`tel:${LOCATIONS[1].phoneRaw}`}
-                  className="mono-number text-xs sm:text-sm font-medium hover:text-primary transition-colors"
+                  className="mono-number text-sm font-medium hover:text-primary transition-colors"
                 >
                   {LOCATIONS[1].phone}
                 </a>
