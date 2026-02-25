@@ -10,6 +10,7 @@ import Services from "./pages/Services";
 import Offers from "./pages/Offers";
 import About from "./pages/About";
 import ServiceOrVehiclePage from "./pages/ServiceOrVehiclePage";
+import Blog from "./pages/Blog";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 
@@ -32,6 +33,7 @@ function Router() {
         <Route path="/offers" component={Offers} />
         <Route path="/about" component={About} />
         <Route path="/services/:slug" component={ServiceOrVehiclePage} />
+        <Route path="/blog" component={Blog} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>

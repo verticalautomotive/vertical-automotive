@@ -48,6 +48,7 @@ export default function Navigation() {
     { label: "ABOUT US", href: "/about" },
     { label: "REVIEWS", href: "/#reviews" },
     { label: "CONTACTS", href: "/#contact" },
+    { label: "BLOG", href: "/blog" },
   ];
 
   return (
