@@ -7,7 +7,7 @@
 import { COMPANY, SERVICES, VEHICLE_TYPES } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Menu, Phone, X } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Link, useLocation } from "wouter";
 
 export default function Navigation() {
@@ -49,6 +49,29 @@ export default function Navigation() {
     { label: "CONTACTS", href: "/#contact" },
     { label: "INFO", href: "/blog" },
   ];
+
+  const [, navigate] = useLocation();
+
+  const handleNavClick = useCallback((e: React.MouseEvent, href: string) => {
+    if (href.startsWith('/#')) {
+      e.preventDefault();
+      const hash = href.slice(1); // e.g. "#reviews"
+      const id = hash.slice(1);   // e.g. "reviews"
+      if (location === '/') {
+        // Already on home — just scroll
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // Navigate to home, then scroll after render
+        navigate('/');
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      }
+      setMobileOpen(false);
+    }
+  }, [location, navigate]);
 
   return (
     <nav className="sticky top-0 z-50 bg-secondary text-secondary-foreground shadow-lg">
@@ -116,13 +139,24 @@ export default function Navigation() {
             </div>
 
             {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="px-3 py-2 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors"
-              >
-                {link.label}
-              </Link>
+              link.href.startsWith('/#') ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="px-3 py-2 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors cursor-pointer"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="px-3 py-2 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </div>
 
@@ -197,13 +231,24 @@ export default function Navigation() {
             )}
 
             {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="block py-2.5 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors border-b border-border/30"
-              >
-                {link.label}
-              </Link>
+              link.href.startsWith('/#') ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="block py-2.5 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors border-b border-border/30 cursor-pointer"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="block py-2.5 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors border-b border-border/30"
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
 
             {/* Phone numbers + CTA */}
