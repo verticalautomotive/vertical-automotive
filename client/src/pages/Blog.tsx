@@ -520,12 +520,12 @@ export default function Blog() {
                 </a>
                 <a href="tel:9545651518">
                   <button className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-display font-bold tracking-widest px-6 sm:px-10 py-3 sm:py-4 text-sm sm:text-base transition-colors w-full sm:w-auto">
-                    CALL (954) 565-1518
+                    CALL Wilton Manors (954) 565-1518
                   </button>
                 </a>
                 <a href="tel:6452162266">
                   <button className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-display font-bold tracking-widest px-6 sm:px-10 py-3 sm:py-4 text-sm sm:text-base transition-colors w-full sm:w-auto">
-                    CALL (645) 216-2266
+                    CALL Ft. Lauderdale (645) 216-2266
                   </button>
                 </a>
               </div>

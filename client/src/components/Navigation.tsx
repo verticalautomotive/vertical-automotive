@@ -165,11 +165,11 @@ export default function Navigation() {
             <div className="flex flex-col items-end text-sm space-y-0.5">
               <a href="tel:9545651518" className="flex items-center space-x-2 hover:text-primary transition-colors">
                 <Phone className="w-3.5 h-3.5" />
-                <span className="mono-number">(954) 565-1518</span>
+                <span className="mono-number">Wilton Manors (954) 565-1518</span>
               </a>
               <a href="tel:6452162266" className="flex items-center space-x-2 hover:text-primary transition-colors">
                 <Phone className="w-3.5 h-3.5" />
-                <span className="mono-number">(645) 216-2266</span>
+                <span className="mono-number">Ft. Lauderdale (645) 216-2266</span>
               </a>
             </div>
             <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer">
@@ -256,11 +256,11 @@ export default function Navigation() {
               <div className="flex items-center gap-4">
                 <a href="tel:9545651518" className="flex items-center space-x-2 text-sm">
                   <Phone className="w-3.5 h-3.5 text-primary" />
-                  <span className="mono-number">(954) 565-1518</span>
+                  <span className="mono-number">Wilton Manors (954) 565-1518</span>
                 </a>
                 <a href="tel:6452162266" className="flex items-center space-x-2 text-sm">
                   <Phone className="w-3.5 h-3.5 text-primary" />
-                  <span className="mono-number">(645) 216-2266</span>
+                  <span className="mono-number">Ft. Lauderdale (645) 216-2266</span>
                 </a>
               </div>
               <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="block">
