@@ -2,8 +2,9 @@
  * Services Index Page — Industrial Brutalism Design
  * Blue/white/black palette, bold typography, grid layout
  * MOBILE: Compact spacing, 2-col grids, smaller text
+ * BILINGUAL: Uses useTranslation for EN/ES content
  */
-import { SERVICES, VEHICLE_TYPES, COMPANY, SERVICES_PAGE_EXTRA } from "@/lib/data";
+import { COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
@@ -13,34 +14,49 @@ import { Link } from "wouter";
 import { CheckCircle } from "lucide-react";
 import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function ServicesPage() {
+  const { isSpanish, servicesPath, services, vehicleTypes, servicesPageExtra, ui } = useTranslation();
+
+  const t = ui?.servicesPage ?? {
+    ourServices: "OUR SERVICES",
+    completeAutoCare: "COMPLETE",
+    complete: "AUTO CARE",
+    readyToSchedule: "READY TO SCHEDULE?",
+    bookOnline: "Book your appointment online or call us today",
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
-        title="Auto Repair Services - Vertical Automotive | Fort Lauderdale, FL"
-        description="Complete auto repair services in Fort Lauderdale: brakes, transmission, A/C, oil change, diagnostics, steering, EV & hybrid service. ASE-certified technicians. 3-year warranty."
+        title={isSpanish
+          ? "Servicios de Reparación Automotriz - Vertical Automotive | Fort Lauderdale, FL"
+          : "Auto Repair Services - Vertical Automotive | Fort Lauderdale, FL"}
+        description={isSpanish
+          ? "Servicios completos de reparación automotriz en Fort Lauderdale: frenos, transmisión, A/C, cambio de aceite, diagnósticos, dirección, servicio EV e híbridos. Técnicos certificados ASE. Garantía de 3 años."
+          : "Complete auto repair services in Fort Lauderdale: brakes, transmission, A/C, oil change, diagnostics, steering, EV & hybrid service. ASE-certified technicians. 3-year warranty."}
       />
       <Navigation />
 
       <PageHero
-        title="OUR SERVICES"
-        subtitle={SERVICES_PAGE_EXTRA.subtitle}
+        title={isSpanish ? t.ourServices : "OUR SERVICES"}
+        subtitle={servicesPageExtra.subtitle}
       />
 
       {/* Vehicle Types */}
       <section className="py-10 sm:py-20 bg-background">
         <div className="container">
           <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4 text-center">
-            {SERVICES_PAGE_EXTRA.heading}
+            {servicesPageExtra.heading}
           </h2>
           <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-12" />
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-            {VEHICLE_TYPES.map((vt) => (
+            {vehicleTypes.map((vt) => (
               <Link
                 key={vt.slug}
-                href={`/services/${vt.slug}`}
+                href={`${servicesPath}/${vt.slug}`}
                 className="group relative aspect-[4/3] overflow-hidden bg-card hover:shadow-2xl transition-all duration-300"
               >
                 <img
@@ -65,14 +81,14 @@ export default function ServicesPage() {
       <section className="py-10 sm:py-20 bg-muted">
         <div className="container">
           <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4 text-center">
-            COMPLETE <span className="text-primary">AUTO CARE</span>
+            {t.completeAutoCare} <span className="text-primary">{t.complete}</span>
           </h2>
           <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-12" />
 
           {/* Mobile: compact 3-col icon tiles */}
           <div className="grid grid-cols-3 gap-2 sm:hidden">
-            {SERVICES.map((service) => (
-              <Link key={service.slug} href={`/services/${service.slug}`}>
+            {services.map((service) => (
+              <Link key={service.slug} href={`${servicesPath}/${service.slug}`}>
                 <div className="flex flex-col items-center text-center p-2.5 bg-card border border-border hover:border-primary group transition-all duration-200 cursor-pointer">
                   <div className="w-7 h-7 mb-1.5">
                     <ServiceIcon name={service.icon} />
@@ -85,8 +101,8 @@ export default function ServicesPage() {
 
           {/* Desktop: 3-col full cards */}
           <div className="hidden sm:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map((service) => (
-              <Link key={service.slug} href={`/services/${service.slug}`}>
+            {services.map((service) => (
+              <Link key={service.slug} href={`${servicesPath}/${service.slug}`}>
                 <Card className="p-8 bg-card border-2 border-border hover:border-primary hover:shadow-xl transition-all duration-300 cursor-pointer h-full group">
                   <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-tight">
                     {service.shortTitle}
@@ -107,15 +123,15 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-start">
             <div>
               <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4">
-                {SERVICES_PAGE_EXTRA.bottomSection.title.toUpperCase()}
+                {servicesPageExtra.bottomSection.title.toUpperCase()}
               </h2>
               <div className="h-1 w-16 sm:w-24 bg-primary mb-4 sm:mb-8" />
               <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
-                {SERVICES_PAGE_EXTRA.bottomSection.description}
+                {servicesPageExtra.bottomSection.description}
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-              {SERVICES_PAGE_EXTRA.bottomSection.list.map((item) => (
+              {servicesPageExtra.bottomSection.list.map((item) => (
                 <div key={item} className="flex items-center space-x-2 sm:space-x-3">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
                   <span className="text-xs sm:text-sm">{item}</span>
@@ -130,17 +146,17 @@ export default function ServicesPage() {
       <section className="py-8 sm:py-16 bg-primary text-primary-foreground text-center">
         <div className="container">
           <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4">
-            READY TO SCHEDULE?
+            {t.readyToSchedule}
           </h2>
           <p className="text-sm sm:text-lg mb-4 sm:mb-8 opacity-90">
-            Book your appointment online or call us today
+            {t.bookOnline}
           </p>
           <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer">
             <Button
               size="lg"
               className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-sm sm:text-lg px-6 sm:px-8 py-4 sm:py-6"
             >
-              SCHEDULE APPOINTMENT
+              {isSpanish ? "AGENDAR CITA" : "SCHEDULE APPOINTMENT"}
             </Button>
           </a>
         </div>

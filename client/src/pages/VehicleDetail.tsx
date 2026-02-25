@@ -3,8 +3,9 @@
  * Blue/white/black palette, bold typography
  * Dynamic page for vehicle-type service pages
  * MOBILE: Compact spacing, smaller text, tighter grids
+ * BILINGUAL: Uses useTranslation for EN/ES content
  */
-import { VEHICLE_TYPES, SERVICES, COMPANY } from "@/lib/data";
+import { COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
 import Navigation from "@/components/Navigation";
@@ -14,30 +15,48 @@ import NotFound from "./NotFound";
 import { ArrowRight } from "lucide-react";
 import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function VehicleDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const vehicle = VEHICLE_TYPES.find((v) => v.slug === slug);
+  const { isSpanish, servicesPath, services, vehicleTypes, ui } = useTranslation();
+
+  const vehicle = vehicleTypes.find((v) => v.slug === slug);
 
   if (!vehicle) {
     return <NotFound />;
   }
 
+  const t = ui?.vehicleDetail ?? {
+    weService: "WE SERVICE",
+    availableServices: "AVAILABLE",
+    available: "SERVICES",
+    scheduleYour: "SCHEDULE YOUR APPOINTMENT",
+    trustVertical: "Trust Vertical Automotive for all your vehicle repair and maintenance needs",
+    bookNow: "BOOK NOW",
+    learnMore: "Learn More",
+    subtitle: "Comprehensive Computer Diagnostic, Preventive Maintenance and Repair",
+  };
+
   const vehicleServices = vehicle.services
-    .map((sSlug) => SERVICES.find((s) => s.slug === sSlug))
+    .map((sSlug) => services.find((s) => s.slug === sSlug))
     .filter(Boolean);
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
-        title={`${vehicle.title} Vehicle Service - Vertical Automotive | Fort Lauderdale, FL`}
-        description={`Expert ${vehicle.title.toLowerCase()} vehicle repair and maintenance in Fort Lauderdale, FL. ${vehicle.description.slice(0, 150)}... ASE-certified. Call (954) 565-1518.`}
+        title={isSpanish
+          ? `Servicio de Vehículos ${vehicle.title} - Vertical Automotive | Fort Lauderdale, FL`
+          : `${vehicle.title} Vehicle Service - Vertical Automotive | Fort Lauderdale, FL`}
+        description={isSpanish
+          ? `Reparación y mantenimiento experto de vehículos ${vehicle.title.toLowerCase()} en Fort Lauderdale, FL. ${vehicle.description.slice(0, 150)}... Certificado ASE. Llame al (954) 565-1518.`
+          : `Expert ${vehicle.title.toLowerCase()} vehicle repair and maintenance in Fort Lauderdale, FL. ${vehicle.description.slice(0, 150)}... ASE-certified. Call (954) 565-1518.`}
       />
       <Navigation />
 
       <PageHero
         title={vehicle.title.toUpperCase()}
-        subtitle="Comprehensive Computer Diagnostic, Preventive Maintenance and Repair"
+        subtitle={t.subtitle}
         backgroundImage={vehicle.image}
       />
 
@@ -45,7 +64,7 @@ export default function VehicleDetail() {
       <section className="py-10 sm:py-20 bg-background">
         <div className="container max-w-5xl">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black mb-3 sm:mb-4">
-            WE SERVICE <span className="text-primary">{vehicle.title.toUpperCase()}</span> VEHICLES
+            {isSpanish ? t.weService : "WE SERVICE"} <span className="text-primary">{vehicle.title.toUpperCase()}</span> {isSpanish ? "" : "VEHICLES"}
           </h2>
           <div className="h-1 w-12 sm:w-16 bg-primary mb-4 sm:mb-6" />
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-lg mb-8 sm:mb-12">
@@ -58,7 +77,7 @@ export default function VehicleDetail() {
       <section className="py-10 sm:py-20 bg-secondary text-secondary-foreground">
         <div className="container">
           <h2 className="text-xl sm:text-3xl font-black mb-3 sm:mb-4 text-center">
-            AVAILABLE <span className="text-primary">SERVICES</span>
+            {t.availableServices} <span className="text-primary">{t.available}</span>
           </h2>
           <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-12" />
 
@@ -68,7 +87,7 @@ export default function VehicleDetail() {
               service ? (
                 <Link
                   key={service.slug}
-                  href={`/services/${service.slug}`}
+                  href={`${servicesPath}/${service.slug}`}
                   className="group flex flex-col items-center text-center p-2.5 border border-primary/30 hover:border-primary transition-all duration-200"
                 >
                   <div className="w-7 h-7 mb-1.5">
@@ -86,7 +105,7 @@ export default function VehicleDetail() {
               service ? (
                 <Link
                   key={service.slug}
-                  href={`/services/${service.slug}`}
+                  href={`${servicesPath}/${service.slug}`}
                   className="group border-2 border-primary/20 p-6 hover:border-primary transition-all duration-300"
                 >
                   <h3 className="text-lg font-bold mb-3 text-primary group-hover:text-secondary-foreground transition-colors leading-tight">
@@ -96,7 +115,7 @@ export default function VehicleDetail() {
                     {service.description}
                   </p>
                   <span className="inline-flex items-center text-primary text-sm font-bold">
-                    Learn More <ArrowRight className="w-4 h-4 ml-1" />
+                    {t.learnMore} <ArrowRight className="w-4 h-4 ml-1" />
                   </span>
                 </Link>
               ) : null
@@ -109,10 +128,12 @@ export default function VehicleDetail() {
       <section className="py-8 sm:py-16 bg-primary text-primary-foreground text-center">
         <div className="container">
           <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4">
-            SCHEDULE YOUR APPOINTMENT
+            {t.scheduleYour}
           </h2>
           <p className="text-xs sm:text-lg opacity-90 max-w-2xl mx-auto mb-4 sm:mb-8">
-            Trust Vertical Automotive for all your {vehicle.title.toLowerCase()} vehicle repair and maintenance needs. Our ASE-certified technicians are ready to help.
+            {isSpanish
+              ? `${t.trustVertical} ${vehicle.title.toLowerCase()}.`
+              : `Trust Vertical Automotive for all your ${vehicle.title.toLowerCase()} vehicle repair and maintenance needs. Our ASE-certified technicians are ready to help.`}
           </p>
           <a
             href={COMPANY.appointmentUrl}
@@ -123,7 +144,7 @@ export default function VehicleDetail() {
               size="lg"
               className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-sm sm:text-lg px-6 sm:px-8 py-4 sm:py-6"
             >
-              BOOK NOW
+              {t.bookNow}
             </Button>
           </a>
         </div>

@@ -3,10 +3,12 @@
  * Blue accents, diagonal accent, bold typography
  * Reusable hero banner for inner pages
  * MOBILE: Reduced height (35vh), smaller text, compact appointment ribbon
+ * BILINGUAL: Uses useTranslation for appointment button text
  */
 import { COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export interface PageHeroProps {
   title: string;
@@ -18,6 +20,8 @@ export interface PageHeroProps {
 
 export default function PageHero({ title, subtitle, breadcrumb, backgroundImage, icon }: PageHeroProps) {
   const defaultBg = "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1400&q=80";
+  const { isSpanish, ui } = useTranslation();
+  const appointmentLabel = isSpanish ? (ui?.pageHero?.appointment ?? "CITA") : "APPOINTMENT";
 
   return (
     <div className="relative">
@@ -81,7 +85,7 @@ export default function PageHero({ title, subtitle, breadcrumb, backgroundImage,
             size="lg"
             className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-widest px-6 sm:px-10 text-sm sm:text-base shadow-lg"
           >
-            APPOINTMENT
+            {appointmentLabel}
           </Button>
         </a>
       </div>

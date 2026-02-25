@@ -2,8 +2,9 @@
  * Offers / Coupons Page — Industrial Brutalism Design
  * Blue/white/black palette, bold typography, card grid + printable coupons
  * MOBILE: Compact 2-col grids, smaller text, reduced spacing
+ * BILINGUAL: Uses useTranslation for EN/ES content
  */
-import { OFFERS, COUPONS, COMPANY } from "@/lib/data";
+import { COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Printer } from "lucide-react";
@@ -11,14 +12,29 @@ import SEO from "@/components/SEO";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function OffersPage() {
+  const { isSpanish, offers, coupons, ui } = useTranslation();
+
+  const t = ui?.offersPage ?? {
+    title: "OFFERS & COUPONS",
+    subtitle: "Save on quality auto care with our exclusive promotions",
+    currentOffers: "CURRENT",
+    current: "OFFERS",
+    scheduleToday: "Schedule your appointment to claim these exclusive offers",
+    printableCoupons: "PRINTABLE",
+    printable: "COUPONS",
+    printCoupon: "Print Coupon",
+    claimOffer: "CLAIM OFFER",
+  };
+
   const handlePrint = (title: string) => {
     const printWindow = window.open("", "_blank");
     if (printWindow) {
       printWindow.document.write(`
         <html>
-          <head><title>Coupon - ${title}</title>
+          <head><title>${isSpanish ? "Cupón" : "Coupon"} - ${title}</title>
           <style>
             body { font-family: Arial, sans-serif; padding: 40px; text-align: center; }
             h1 { font-size: 28px; margin-bottom: 10px; }
@@ -43,29 +59,33 @@ export default function OffersPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
-        title="Auto Repair Coupons & Offers - Vertical Automotive | Fort Lauderdale, FL"
-        description="Save on auto repairs with exclusive coupons and offers from Vertical Automotive. Free brake inspection, free oil change, tire discounts, and more. Print coupons and schedule today."
+        title={isSpanish
+          ? "Cupones y Ofertas de Reparación Automotriz - Vertical Automotive | Fort Lauderdale, FL"
+          : "Auto Repair Coupons & Offers - Vertical Automotive | Fort Lauderdale, FL"}
+        description={isSpanish
+          ? "Ahorre en reparaciones automotrices con cupones y ofertas exclusivas de Vertical Automotive. Inspección de frenos gratis, cambio de aceite gratis, descuentos en neumáticos y más."
+          : "Save on auto repairs with exclusive coupons and offers from Vertical Automotive. Free brake inspection, free oil change, tire discounts, and more. Print coupons and schedule today."}
       />
       <Navigation />
 
       <PageHero
-        title="OFFERS & COUPONS"
-        subtitle="Save on quality auto care with our exclusive promotions"
+        title={t.title}
+        subtitle={t.subtitle}
       />
 
       {/* Current Offers */}
       <section className="py-10 sm:py-20 bg-background">
         <div className="container">
           <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4 text-center">
-            CURRENT <span className="text-primary">OFFERS</span>
+            {t.currentOffers} <span className="text-primary">{t.current}</span>
           </h2>
           <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-2 sm:mb-4" />
           <p className="text-center text-xs sm:text-base text-muted-foreground mb-6 sm:mb-12">
-            Schedule your appointment to claim these exclusive offers
+            {t.scheduleToday}
           </p>
 
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-            {OFFERS.map((offer, index) => (
+            {offers.map((offer, index) => (
               <Card
                 key={index}
                 className="p-3 sm:p-8 bg-card border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-xl"
@@ -89,7 +109,7 @@ export default function OffersPage() {
                     variant="outline"
                     className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-[10px] sm:text-sm py-1.5 sm:py-2"
                   >
-                    CLAIM OFFER
+                    {t.claimOffer}
                   </Button>
                 </a>
               </Card>
@@ -102,12 +122,12 @@ export default function OffersPage() {
       <section className="py-10 sm:py-20 bg-muted">
         <div className="container">
           <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4 text-center">
-            PRINTABLE <span className="text-primary">COUPONS</span>
+            {t.printableCoupons} <span className="text-primary">{t.printable}</span>
           </h2>
           <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-12" />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 max-w-6xl mx-auto">
-            {COUPONS.map((coupon, index) => (
+            {coupons.map((coupon, index) => (
               <div
                 key={index}
                 className="border-2 border-dashed border-border p-4 sm:p-8 bg-card text-center hover:border-primary transition-colors"
@@ -124,7 +144,7 @@ export default function OffersPage() {
                   className="inline-flex items-center space-x-1 sm:space-x-2 bg-secondary text-secondary-foreground font-bold uppercase tracking-wider px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm hover:bg-secondary/80 transition-colors"
                 >
                   <Printer className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  <span>Print Coupon</span>
+                  <span>{t.printCoupon}</span>
                 </button>
               </div>
             ))}

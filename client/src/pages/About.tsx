@@ -2,52 +2,113 @@
  * About Us Page — Industrial Brutalism Design
  * Blue/white/black palette, bold typography
  * MOBILE: Compact spacing, smaller text, tighter grids
+ * BILINGUAL: Uses useTranslation for EN/ES content
  */
-import { ABOUT_CONTENT, COMPANY } from "@/lib/data";
-import { Award, CheckCircle, TrendingUp, Users, Star, Puzzle, MapPin, CircleCheck, Search as SearchIcon, ShieldCheck, Wrench, HeartHandshake } from "lucide-react";
+import { COMPANY } from "@/lib/data";
+import { Award, CheckCircle, TrendingUp, MapPin, Puzzle, ShieldCheck, Wrench, HeartHandshake, Search as SearchIcon } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function AboutPage() {
+  const { isSpanish, aboutContent, ui } = useTranslation();
+
+  const t = ui?.about ?? {
+    title: "ABOUT US",
+    subtitle: "Family-owned and operated since 1989",
+    outstandingReputation: "OUTSTANDING",
+    outstanding: "REPUTATION",
+    communityInvolvement: "COMMUNITY",
+    community: "INVOLVEMENT",
+    whatMakesDifferent: "WHAT MAKES VERTICAL AUTOMOTIVE",
+    different: "DIFFERENT",
+    differentText: "Vertical Automotive combines modern automotive technology with real-world experience to deliver accurate diagnostics, transparent communication, and dependable results. Instead of focusing only on repairs, the team helps drivers prevent future issues and maintain long-term vehicle performance.",
+    honestRec: "Honest & Clear Recommendations",
+    honestRecDesc: "We provide transparent advice about what your vehicle truly needs — nothing more, nothing less. Our customers trust us because we communicate clearly and never upsell unnecessary services.",
+    diagnosticFirst: "Diagnostic-First Approach",
+    diagnosticFirstDesc: "We use modern diagnostic technology to quickly and accurately identify issues before recommending any repairs. This saves you time, money, and prevents unnecessary work.",
+    mechExpertise: "Professional Mechanical Expertise",
+    mechExpertiseDesc: "Our ASE-certified technicians bring decades of combined experience to every repair. From routine maintenance to complex diagnostics, we deliver dealership-level quality.",
+    reliableMaint: "Reliable Maintenance Strategies",
+    reliableMaintDesc: "We help drivers prevent future issues through proactive maintenance plans tailored to your vehicle's needs, keeping it running safely and efficiently for years to come.",
+    trustedLocal: "Trusted Local Reputation",
+    trustedLocalDesc: "Serving Wilton Manors and Fort Lauderdale since 1989, we've built a loyal customer base through consistent quality, honest service, and genuine care for every vehicle we touch.",
+    realSolutions: "Real Solutions",
+    howWeSolve: "HOW WE SOLVE REAL",
+    driverProblems: "DRIVER PROBLEMS",
+    driversSearch: "Drivers often search for solutions, not services. Vertical Automotive helps with:",
+    problems: [
+      "Cars that don't feel right but have no clear warning lights",
+      "Vehicles needing reliable maintenance to avoid breakdowns",
+      "Drivers wanting expert advice instead of guesswork",
+      "Customers looking for quality work without dealership pricing",
+      "Vehicle owners who want long-term reliability and safety",
+    ],
+    localAuthority: "Local Authority",
+    yourTrusted: "YOUR TRUSTED",
+    neighborhood: "NEIGHBORHOOD",
+    shop: "SHOP",
+    localAuthorityText: "Serving both Wilton Manors and Fort Lauderdale, Vertical Automotive is recognized as a local automotive expert that combines dealership-level diagnostics with personalized service from a trusted neighborhood shop.",
+    aseCertifiedProfessionals: "ASE CERTIFIED PROFESSIONALS",
+  };
+
+  const statsLabels = isSpanish
+    ? { years: "AÑOS DE EXPERIENCIA", vehicles: "VEHÍCULOS REPARADOS", locations: "UBICACIONES", satisfied: "CLIENTES SATISFECHOS" }
+    : { years: "YEARS OF EXPERIENCE", vehicles: "VEHICLES REPAIRED", locations: "LOCATIONS", satisfied: "SATISFIED CUSTOMERS" };
+
+  const differentiators = [
+    { icon: HeartHandshake, title: t.honestRec, description: t.honestRecDesc },
+    { icon: SearchIcon, title: t.diagnosticFirst, description: t.diagnosticFirstDesc },
+    { icon: Wrench, title: t.mechExpertise, description: t.mechExpertiseDesc },
+    { icon: ShieldCheck, title: t.reliableMaint, description: t.reliableMaintDesc },
+    { icon: MapPin, title: t.trustedLocal, description: t.trustedLocalDesc },
+  ];
+
+  const problems = t.problems;
+
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
-        title="About Us - Vertical Automotive | Family-Owned Auto Repair Since 1989"
-        description="Family-owned and operated since 1989, Vertical Automotive is an ASE-certified auto repair shop in Fort Lauderdale. 36 years of experience, 54,000+ vehicles repaired. Learn about our team and commitment to quality."
+        title={isSpanish
+          ? "Sobre Nosotros - Vertical Automotive | Taller Familiar Desde 1989"
+          : "About Us - Vertical Automotive | Family-Owned Auto Repair Since 1989"}
+        description={isSpanish
+          ? "Negocio familiar desde 1989, Vertical Automotive es un taller certificado ASE en Fort Lauderdale. 36 años de experiencia, más de 54,000 vehículos reparados."
+          : "Family-owned and operated since 1989, Vertical Automotive is an ASE-certified auto repair shop in Fort Lauderdale. 36 years of experience, 54,000+ vehicles repaired. Learn about our team and commitment to quality."}
       />
       <Navigation />
 
       <PageHero
-        title="ABOUT US"
-        subtitle="Family-owned and operated since 1989"
+        title={t.title}
+        subtitle={t.subtitle}
       />
 
       {/* About Content */}
       <section className="py-10 sm:py-20 bg-background">
         <div className="container max-w-5xl">
           <p className="text-sm sm:text-lg leading-relaxed text-muted-foreground mb-8 sm:mb-12">
-            {ABOUT_CONTENT.intro}
+            {aboutContent.intro}
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12">
             <div>
               <h2 className="text-xl sm:text-3xl font-black mb-3 sm:mb-4">
-                OUTSTANDING <span className="text-primary">REPUTATION</span>
+                {t.outstandingReputation} <span className="text-primary">{t.outstanding}</span>
               </h2>
               <div className="h-1 w-12 sm:w-16 bg-primary mb-4 sm:mb-6" />
               <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
-                {ABOUT_CONTENT.reputation}
+                {aboutContent.reputation}
               </p>
             </div>
             <div>
               <h2 className="text-xl sm:text-3xl font-black mb-3 sm:mb-4">
-                COMMUNITY <span className="text-primary">INVOLVEMENT</span>
+                {t.communityInvolvement} <span className="text-primary">{t.community}</span>
               </h2>
               <div className="h-1 w-12 sm:w-16 bg-primary mb-4 sm:mb-6" />
               <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
-                {ABOUT_CONTENT.community}
+                {aboutContent.community}
               </p>
             </div>
           </div>
@@ -58,22 +119,16 @@ export default function AboutPage() {
       <section className="py-10 sm:py-20 bg-secondary text-secondary-foreground">
         <div className="container">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-center mb-3 sm:mb-4">
-            WHAT MAKES VERTICAL AUTOMOTIVE <span className="text-primary">DIFFERENT</span>
+            {t.whatMakesDifferent} <span className="text-primary">{t.different}</span>
           </h2>
           <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-8" />
 
           <p className="text-sm sm:text-lg leading-relaxed text-secondary-foreground/80 mb-8 sm:mb-12 max-w-3xl mx-auto text-center">
-            Vertical Automotive combines modern automotive technology with real-world experience to deliver accurate diagnostics, transparent communication, and dependable results. Instead of focusing only on repairs, the team helps drivers prevent future issues and maintain long-term vehicle performance.
+            {t.differentText}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 max-w-5xl mx-auto">
-            {[
-              { icon: HeartHandshake, title: "Honest & Clear Recommendations", description: "We provide transparent advice about what your vehicle truly needs — nothing more, nothing less. Our customers trust us because we communicate clearly and never upsell unnecessary services." },
-              { icon: SearchIcon, title: "Diagnostic-First Approach", description: "We use modern diagnostic technology to quickly and accurately identify issues before recommending any repairs. This saves you time, money, and prevents unnecessary work." },
-              { icon: Wrench, title: "Professional Mechanical Expertise", description: "Our ASE-certified technicians bring decades of combined experience to every repair. From routine maintenance to complex diagnostics, we deliver dealership-level quality." },
-              { icon: ShieldCheck, title: "Reliable Maintenance Strategies", description: "We help drivers prevent future issues through proactive maintenance plans tailored to your vehicle's needs, keeping it running safely and efficiently for years to come." },
-              { icon: MapPin, title: "Trusted Local Reputation", description: "Serving Wilton Manors and Fort Lauderdale since 1989, we've built a loyal customer base through consistent quality, honest service, and genuine care for every vehicle we touch." },
-            ].map((item, i) => (
+            {differentiators.map((item, i) => (
               <div
                 key={i}
                 className={`border-2 border-primary/20 p-4 sm:p-8 hover:border-primary transition-colors ${i === 4 ? "sm:col-span-2" : ""}`}
@@ -102,27 +157,21 @@ export default function AboutPage() {
             <div className="inline-flex items-center gap-2 sm:gap-3 bg-primary/10 px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6">
               <Puzzle className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               <span className="font-display text-xs sm:text-sm font-bold tracking-widest text-primary uppercase">
-                Real Solutions
+                {t.realSolutions}
               </span>
             </div>
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
-              HOW WE SOLVE REAL{" "}
-              <span className="text-primary">DRIVER PROBLEMS</span>
+              {t.howWeSolve}{" "}
+              <span className="text-primary">{t.driverProblems}</span>
             </h2>
             <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-4 sm:mb-6" />
             <p className="text-sm sm:text-lg text-muted-foreground max-w-2xl mx-auto">
-              Drivers often search for solutions, not services. Vertical Automotive helps with:
+              {t.driversSearch}
             </p>
           </div>
 
           <div className="space-y-3 sm:space-y-4 max-w-3xl mx-auto">
-            {[
-              "Cars that don't feel right but have no clear warning lights",
-              "Vehicles needing reliable maintenance to avoid breakdowns",
-              "Drivers wanting expert advice instead of guesswork",
-              "Customers looking for quality work without dealership pricing",
-              "Vehicle owners who want long-term reliability and safety",
-            ].map((problem, i) => (
+            {problems.map((problem, i) => (
               <div
                 key={i}
                 className="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 border-2 border-border bg-card hover:border-primary/50 transition-colors"
@@ -145,15 +194,15 @@ export default function AboutPage() {
           <div className="inline-flex items-center gap-2 sm:gap-3 bg-primary/10 px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6">
             <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
             <span className="font-display text-xs sm:text-sm font-bold tracking-widest text-primary uppercase">
-              Local Authority
+              {t.localAuthority}
             </span>
           </div>
           <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6">
-            YOUR TRUSTED <span className="text-primary">NEIGHBORHOOD</span> SHOP
+            {t.yourTrusted} <span className="text-primary">{t.neighborhood}</span> {t.shop}
           </h2>
           <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-4 sm:mb-8" />
           <p className="text-sm sm:text-lg leading-relaxed text-secondary-foreground/80 max-w-3xl mx-auto">
-            Serving both Wilton Manors and Fort Lauderdale, Vertical Automotive is recognized as a local automotive expert that combines dealership-level diagnostics with personalized service from a trusted neighborhood shop.
+            {t.localAuthorityText}
           </p>
         </div>
       </section>
@@ -163,10 +212,10 @@ export default function AboutPage() {
         <div className="container">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8">
             {[
-              { value: String(COMPANY.yearsExperience), label: "YEARS OF EXPERIENCE", icon: Award },
-              { value: COMPANY.vehiclesRepaired, label: "VEHICLES REPAIRED", icon: TrendingUp },
-              { value: String(COMPANY.staff), label: "LOCATIONS", icon: MapPin },
-              { value: COMPANY.satisfaction, label: "SATISFIED CUSTOMERS", icon: CheckCircle },
+              { value: String(COMPANY.yearsExperience), label: statsLabels.years, icon: Award },
+              { value: COMPANY.vehiclesRepaired, label: statsLabels.vehicles, icon: TrendingUp },
+              { value: String(COMPANY.staff), label: statsLabels.locations, icon: MapPin },
+              { value: COMPANY.satisfaction, label: statsLabels.satisfied, icon: CheckCircle },
             ].map((stat, index) => (
               <div
                 key={index}
@@ -189,10 +238,10 @@ export default function AboutPage() {
       <section className="py-8 sm:py-16 bg-primary text-primary-foreground text-center">
         <div className="container">
           <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4">
-            ASE CERTIFIED PROFESSIONALS
+            {t.aseCertifiedProfessionals}
           </h2>
           <p className="text-xs sm:text-lg opacity-90 max-w-2xl mx-auto">
-            {ABOUT_CONTENT.certificationText}
+            {aboutContent.certificationText}
           </p>
         </div>
       </section>

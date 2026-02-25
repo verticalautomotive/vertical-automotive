@@ -6,11 +6,12 @@
  * - Black, white, and blue color scheme
  * - Mechanical precision in interactions
  * MOBILE: Compact layout, reduced spacing, 2-col grids, minimal scrolling
+ * BILINGUAL: Uses useTranslation hook for EN/ES content
  */
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { COMPANY, SERVICES, VEHICLE_TYPES, OFFERS, LOCATIONS } from "@/lib/data";
+import { COMPANY, LOCATIONS } from "@/lib/data";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { MapView } from "@/components/Map";
@@ -31,11 +32,53 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Home() {
   const [statsVisible, setStatsVisible] = useState(false);
   const [reviewsExpanded, setReviewsExpanded] = useState(false);
   const [offersExpanded, setOffersExpanded] = useState(false);
+  const { lang, isSpanish, prefix, servicesPath, services, vehicleTypes, offers, ui } = useTranslation();
+
+  const t = ui?.home ?? {
+    yearsExcellence: "YEARS OF EXCELLENCE",
+    totalAuto: "TOTAL AUTO",
+    care: "CARE",
+    warranty3Year: "3-Year Warranty on All Repairs",
+    teslaAsianEuropean: "ASE-Certified Mechanics • Tesla, Asian, European & Domestic Specialists",
+    scheduleAppointment: "SCHEDULE APPOINTMENT",
+    viewOffers: "VIEW OFFERS",
+    weServiceAllMakes: "WE SERVICE",
+    allMakes: "ALL MAKES",
+    yearsExperience: "YEARS OF EXPERIENCE",
+    vehiclesRepaired: "VEHICLES REPAIRED",
+    locations: "LOCATIONS",
+    satisfiedCustomers: "SATISFIED CUSTOMERS",
+    ourServices: "OUR",
+    services: "SERVICES",
+    currentOffers: "OFFERS",
+    current: "CURRENT",
+    offersAvailable: "Current Offers Available",
+    claimOffer: "CLAIM OFFER",
+    saveOnQuality: "Save on quality auto care with our exclusive promotions",
+    certifiedAutomotive: "CERTIFIED AUTOMOTIVE",
+    professionals: "PROFESSIONALS",
+    whoWeAre: "Who Vertical Automotive Is",
+    whoWeAreText: "Vertical Automotive is a trusted automotive repair and maintenance expert serving drivers in Wilton Manors and Fort Lauderdale, Florida. Known for advanced diagnostics, honest recommendations, and professional workmanship, Vertical Automotive helps vehicle owners solve problems correctly while focusing on long-term reliability and safety.",
+    aseCertified: "ASE Certified",
+    warranty3: "3-Year Warranty",
+    allMakesModels: "All Makes & Models",
+    evSpecialists: "EV Specialists",
+    customerReviews: "CUSTOMER",
+    reviews: "REVIEWS",
+    basedOn: "Based on",
+    googleReviews: "Google Reviews",
+    readReviews: "Read Customer Reviews",
+    seeAllReviews: "SEE ALL 503 REVIEWS ON GOOGLE",
+    contactUs: "CONTACT",
+    twoLocations: "Two convenient locations to serve you",
+    schedule: "SCHEDULE",
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -193,11 +236,17 @@ export default function Home() {
     };
   }, []);
 
+  const offersPath = isSpanish ? "/es/ofertas" : "/offers";
+
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
-        title="Vertical Automotive - Full-Service Auto Repair Shop in Fort Lauderdale, FL"
-        description="ASE-certified auto repair shop in Fort Lauderdale & Wilton Manors. Tesla, Asian, European & Domestic vehicle specialists. 36 years of experience. 3-year warranty on all repairs. Call (954) 565-1518."
+        title={isSpanish
+          ? "Vertical Automotive - Taller de Reparación Automotriz en Fort Lauderdale, FL"
+          : "Vertical Automotive - Full-Service Auto Repair Shop in Fort Lauderdale, FL"}
+        description={isSpanish
+          ? "Taller de reparación automotriz certificado ASE en Fort Lauderdale y Wilton Manors. Especialistas en Tesla, Asiáticos, Europeos y Domésticos. 36 años de experiencia. Garantía de 3 años. Llame al (954) 565-1518."
+          : "ASE-certified auto repair shop in Fort Lauderdale & Wilton Manors. Tesla, Asian, European & Domestic vehicle specialists. 36 years of experience. 3-year warranty on all repairs. Call (954) 565-1518."}
       />
       <Navigation />
 
@@ -215,22 +264,22 @@ export default function Home() {
         <div className="container relative z-10">
           <div className="max-w-3xl">
             <div className="inline-block bg-primary text-primary-foreground px-4 sm:px-6 py-1.5 sm:py-2 mb-4 sm:mb-6 font-bold text-xs sm:text-sm tracking-wider">
-              {COMPANY.yearsExperience} YEARS OF EXCELLENCE
+              {COMPANY.yearsExperience} {t.yearsExcellence}
             </div>
             
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-black mb-4 sm:mb-6 leading-none">
-              TOTAL AUTO
+              {t.totalAuto}
               <br />
-              <span className="text-primary">CARE</span>
+              <span className="text-primary">{t.care}</span>
             </h1>
             
             <div className="h-1 w-20 sm:w-32 bg-primary mb-4 sm:mb-8" />
             
             <p className="text-base sm:text-xl md:text-2xl mb-5 sm:mb-8 leading-relaxed font-medium">
-              3-Year Warranty on All Repairs
+              {t.warranty3Year}
               <br />
               <span className="text-gray-400 text-sm sm:text-base md:text-xl">
-                ASE-Certified Mechanics • Tesla, Asian, European & Domestic Specialists
+                {t.teslaAsianEuropean}
               </span>
             </p>
             
@@ -240,16 +289,16 @@ export default function Home() {
                   size="lg" 
                   className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-sm sm:text-lg px-6 sm:px-8 py-4 sm:py-6 shadow-xl w-full sm:w-auto"
                 >
-                  SCHEDULE APPOINTMENT
+                  {t.scheduleAppointment}
                 </Button>
               </a>
-              <Link href="/offers">
+              <Link href={offersPath}>
                 <Button 
                   size="lg" 
                   variant="outline"
                   className="bg-transparent border-2 border-secondary-foreground text-secondary-foreground hover:bg-secondary-foreground hover:text-secondary font-bold text-sm sm:text-lg px-6 sm:px-8 py-4 sm:py-6 w-full sm:w-auto"
                 >
-                  VIEW OFFERS
+                  {t.viewOffers}
                 </Button>
               </Link>
             </div>
@@ -269,14 +318,14 @@ export default function Home() {
       <section className="py-10 sm:py-20 bg-background">
         <div className="container">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-6 sm:mb-12 text-center">
-            WE SERVICE <span className="text-primary">ALL MAKES</span>
+            {t.weServiceAllMakes} <span className="text-primary">{t.allMakes}</span>
           </h2>
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-            {VEHICLE_TYPES.map((type) => (
+            {vehicleTypes.map((type) => (
               <Link
                 key={type.slug}
-                href={`/services/${type.slug}`}
+                href={`${servicesPath}/${type.slug}`}
                 className="group relative aspect-[4/3] overflow-hidden bg-card hover:shadow-2xl transition-all duration-300"
               >
                 <img
@@ -303,10 +352,10 @@ export default function Home() {
         <div className="container">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8">
             {[
-              { value: String(COMPANY.yearsExperience), label: "YEARS OF EXPERIENCE", icon: Award },
-              { value: COMPANY.vehiclesRepaired, label: "VEHICLES REPAIRED", icon: TrendingUp },
-              { value: String(COMPANY.staff), label: "LOCATIONS", icon: MapPin },
-              { value: COMPANY.satisfaction, label: "SATISFIED CUSTOMERS", icon: CheckCircle },
+              { value: String(COMPANY.yearsExperience), label: t.yearsExperience, icon: Award },
+              { value: COMPANY.vehiclesRepaired, label: t.vehiclesRepaired, icon: TrendingUp },
+              { value: String(COMPANY.staff), label: t.locations, icon: MapPin },
+              { value: COMPANY.satisfaction, label: t.satisfiedCustomers, icon: CheckCircle },
             ].map((stat, index) => (
               <div
                 key={index}
@@ -330,15 +379,15 @@ export default function Home() {
         <div className="container">
           <div className="text-center mb-6 sm:mb-16">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
-              OUR <span className="text-primary">SERVICES</span>
+              {t.ourServices} <span className="text-primary">{t.services}</span>
             </h2>
             <div className="h-1 w-16 sm:w-24 bg-primary mx-auto" />
           </div>
 
           {/* Mobile: compact 3-col icon tiles */}
           <div className="grid grid-cols-3 gap-2 sm:hidden">
-            {SERVICES.map((service) => (
-              <Link key={service.slug} href={`/services/${service.slug}`}>
+            {services.map((service) => (
+              <Link key={service.slug} href={`${servicesPath}/${service.slug}`}>
                 <div className="flex flex-col items-center justify-center text-center p-2.5 bg-card border border-border hover:border-primary group transition-all duration-200 cursor-pointer h-[88px]">
                   <div className="w-7 h-7 mb-1.5 flex-shrink-0">
                     <ServiceIcon name={service.icon} />
@@ -351,8 +400,8 @@ export default function Home() {
 
           {/* Desktop: 5-col full cards */}
           <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {SERVICES.map((service) => (
-              <Link key={service.slug} href={`/services/${service.slug}`}>
+            {services.map((service) => (
+              <Link key={service.slug} href={`${servicesPath}/${service.slug}`}>
                 <Card
                   className="p-6 bg-card border-2 border-border hover:border-primary hover:bg-primary group transition-all duration-300 cursor-pointer h-full"
                 >
@@ -375,17 +424,16 @@ export default function Home() {
         <div className="container">
           <div className="text-center mb-6 sm:mb-16">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
-              CURRENT <span className="text-primary">OFFERS</span>
+              {isSpanish ? t.currentOffers : "CURRENT"} <span className="text-primary">{isSpanish ? t.current : "OFFERS"}</span>
             </h2>
             <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-2 sm:mb-4" />
             <p className="text-sm sm:text-lg text-muted-foreground">
-              Save on quality auto care with our exclusive promotions
+              {t.saveOnQuality}
             </p>
           </div>
 
           {(() => {
-            const allOffers = OFFERS.slice(0, 6);
-            const MOBILE_INITIAL = 4;
+            const allOffers = offers.slice(0, 6);
 
             const OfferCard = ({ offer }: { offer: typeof allOffers[0] }) => (
               <Card className="p-3 sm:p-8 bg-card border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-xl">
@@ -404,7 +452,7 @@ export default function Home() {
                     variant="outline"
                     className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-[10px] sm:text-sm py-1.5 sm:py-2"
                   >
-                    CLAIM OFFER
+                    {t.claimOffer}
                   </Button>
                 </a>
               </Card>
@@ -412,14 +460,14 @@ export default function Home() {
 
             return (
               <>
-                {/* Mobile: fully collapsed dropdown — all offers hidden by default */}
+                {/* Mobile: fully collapsed dropdown */}
                 <div className="sm:hidden">
                   <button
                     onClick={() => setOffersExpanded(!offersExpanded)}
                     className="w-full py-3.5 bg-card border-2 border-primary/30 text-foreground font-bold text-sm flex items-center justify-between px-4 hover:bg-primary/5 transition-colors"
                   >
                     <span className="flex items-center gap-2">
-                      Current Offers Available
+                      {t.offersAvailable}
                     </span>
                     <ChevronDown className={`w-4 h-4 text-primary transition-transform duration-300 ${offersExpanded ? "rotate-180" : ""}`} />
                   </button>
@@ -456,31 +504,31 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-center">
             <div>
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-6">
-                CERTIFIED AUTOMOTIVE
+                {t.certifiedAutomotive}
                 <br />
-                <span className="text-primary">PROFESSIONALS</span>
+                <span className="text-primary">{t.professionals}</span>
               </h2>
               <div className="h-1 w-16 sm:w-24 bg-primary mb-4 sm:mb-8" />
-              <p className="font-display text-sm sm:text-base font-bold text-primary tracking-wider mb-2 sm:mb-3">Who Vertical Automotive Is</p>
+              <p className="font-display text-sm sm:text-base font-bold text-primary tracking-wider mb-2 sm:mb-3">{t.whoWeAre}</p>
               <p className="text-sm sm:text-lg leading-relaxed mb-4 sm:mb-8">
-                Vertical Automotive is a trusted automotive repair and maintenance expert serving drivers in Wilton Manors and Fort Lauderdale, Florida. Known for advanced diagnostics, honest recommendations, and professional workmanship, Vertical Automotive helps vehicle owners solve problems correctly while focusing on long-term reliability and safety.
+                {t.whoWeAreText}
               </p>
               <div className="grid grid-cols-2 gap-2 sm:gap-4">
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
-                  <span className="font-medium text-xs sm:text-base">ASE Certified</span>
+                  <span className="font-medium text-xs sm:text-base">{t.aseCertified}</span>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
-                  <span className="font-medium text-xs sm:text-base">3-Year Warranty</span>
+                  <span className="font-medium text-xs sm:text-base">{t.warranty3}</span>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
-                  <span className="font-medium text-xs sm:text-base">All Makes & Models</span>
+                  <span className="font-medium text-xs sm:text-base">{t.allMakesModels}</span>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
-                  <span className="font-medium text-xs sm:text-base">EV Specialists</span>
+                  <span className="font-medium text-xs sm:text-base">{t.evSpecialists}</span>
                 </div>
               </div>
             </div>
@@ -502,7 +550,7 @@ export default function Home() {
         <div className="container">
           <div className="text-center mb-6 sm:mb-16">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
-              CUSTOMER <span className="text-primary">REVIEWS</span>
+              {t.customerReviews} <span className="text-primary">{t.reviews}</span>
             </h2>
             <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-3 sm:mb-4" />
             <div className="flex items-center justify-center gap-2 sm:gap-3 mb-1 sm:mb-2">
@@ -514,7 +562,7 @@ export default function Home() {
               <span className="text-2xl sm:text-3xl font-black mono-number">4.9</span>
             </div>
             <p className="text-sm sm:text-lg text-muted-foreground">
-              Based on <span className="font-bold text-foreground">503 Google Reviews</span>
+              {t.basedOn} <span className="font-bold text-foreground">503 {t.googleReviews}</span>
             </p>
           </div>
 
@@ -522,16 +570,22 @@ export default function Home() {
           <div className="hidden sm:grid sm:grid-cols-3 gap-6 mb-12">
             {[
               {
-                quote: "I was treated with respect and received excellent service at an affordable rate.",
-                source: "Google Review Highlight",
+                quote: isSpanish
+                  ? "Me trataron con respeto y recibí un servicio excelente a un precio accesible."
+                  : "I was treated with respect and received excellent service at an affordable rate.",
+                source: isSpanish ? "Reseña Destacada de Google" : "Google Review Highlight",
               },
               {
-                quote: "The quality of work is top-notch, and his attention to detail is unmatched.",
-                source: "Google Review Highlight",
+                quote: isSpanish
+                  ? "La calidad del trabajo es de primera, y su atención al detalle es inigualable."
+                  : "The quality of work is top-notch, and his attention to detail is unmatched.",
+                source: isSpanish ? "Reseña Destacada de Google" : "Google Review Highlight",
               },
               {
-                quote: "They have a good selection of coffee and drinks and a comfortable waiting room.",
-                source: "Google Review Highlight",
+                quote: isSpanish
+                  ? "Tienen una buena selección de café y bebidas y una sala de espera cómoda."
+                  : "They have a good selection of coffee and drinks and a comfortable waiting room.",
+                source: isSpanish ? "Reseña Destacada de Google" : "Google Review Highlight",
               },
             ].map((highlight, i) => (
               <div key={i} className="bg-card border-2 border-border p-6 relative">
@@ -549,40 +603,52 @@ export default function Home() {
             const allReviews = [
               {
                 name: "Sinii_balur",
-                date: "January 2026",
-                text: "Tired of seeing your mechanic more than anyone else you know? I've been coming to these guys since 2018, yes, management has changed, but not the quality. Dependable work across all my vehicles — they help reduce the stress of car troubles.",
+                date: isSpanish ? "Enero 2026" : "January 2026",
+                text: isSpanish
+                  ? "¿Cansado de ver a su mecánico más que a cualquier otra persona? He venido a estos muchachos desde 2018, sí, la administración ha cambiado, pero no la calidad. Trabajo confiable en todos mis vehículos — ayudan a reducir el estrés de los problemas del carro."
+                  : "Tired of seeing your mechanic more than anyone else you know? I've been coming to these guys since 2018, yes, management has changed, but not the quality. Dependable work across all my vehicles — they help reduce the stress of car troubles.",
                 rating: 5,
               },
               {
                 name: "Marlon Butler",
                 badge: "Local Guide",
-                date: "December 2025",
-                text: "I brought in my '02 Celica for a front suspension noise. They provided a comprehensive, lay-person summary of all the issues needing attention. Excellent communication and quality work on a 23-year-old car.",
+                date: isSpanish ? "Diciembre 2025" : "December 2025",
+                text: isSpanish
+                  ? "Traje mi Celica '02 por un ruido en la suspensión delantera. Proporcionaron un resumen completo y comprensible de todos los problemas que necesitaban atención. Excelente comunicación y trabajo de calidad en un carro de 23 años."
+                  : "I brought in my '02 Celica for a front suspension noise. They provided a comprehensive, lay-person summary of all the issues needing attention. Excellent communication and quality work on a 23-year-old car.",
                 rating: 5,
               },
               {
                 name: "JKB",
                 badge: "Local Guide",
-                date: "November 2025",
-                text: "A DIAMOND IN A MINEFIELD. Being a senior citizen and a divorced female, I am more worried than ever about dealing with automotive problems. The team provided a stress-free experience with my 2018 Prius. The cozy lounge was a bonus!",
+                date: isSpanish ? "Noviembre 2025" : "November 2025",
+                text: isSpanish
+                  ? "UN DIAMANTE EN UN CAMPO MINADO. Siendo una mujer mayor y divorciada, me preocupo más que nunca por los problemas automotrices. El equipo proporcionó una experiencia sin estrés con mi Prius 2018. ¡El salón acogedor fue un bonus!"
+                  : "A DIAMOND IN A MINEFIELD. Being a senior citizen and a divorced female, I am more worried than ever about dealing with automotive problems. The team provided a stress-free experience with my 2018 Prius. The cozy lounge was a bonus!",
                 rating: 5,
               },
               {
                 name: "Rick Swanston",
-                date: "July 2024",
-                text: "The service was more than worth the price. Everyone was super polite and professional. I almost feel like I ripped you guys off. I can't thank you enough for the outstanding work.",
+                date: isSpanish ? "Julio 2024" : "July 2024",
+                text: isSpanish
+                  ? "El servicio valió más que el precio. Todos fueron super amables y profesionales. Casi siento que les robé. No puedo agradecerles lo suficiente por el trabajo sobresaliente."
+                  : "The service was more than worth the price. Everyone was super polite and professional. I almost feel like I ripped you guys off. I can't thank you enough for the outstanding work.",
                 rating: 5,
               },
               {
-                name: "Verified Customer",
+                name: isSpanish ? "Cliente Verificado" : "Verified Customer",
                 date: "2025",
-                text: "Very professional and honest service. They quickly identified the cause of the problem and clearly explained everything to me. I appreciate their transparency and fair pricing.",
+                text: isSpanish
+                  ? "Servicio muy profesional y honesto. Identificaron rápidamente la causa del problema y me explicaron todo claramente. Aprecio su transparencia y precios justos."
+                  : "Very professional and honest service. They quickly identified the cause of the problem and clearly explained everything to me. I appreciate their transparency and fair pricing.",
                 rating: 5,
               },
               {
-                name: "Verified Customer",
+                name: isSpanish ? "Cliente Verificado" : "Verified Customer",
                 date: "2025",
-                text: "I had an outstanding experience with Vertical Auto! From the moment I walked in, the team was professional, knowledgeable, and attentive to my needs. Highly recommend for any auto repair.",
+                text: isSpanish
+                  ? "¡Tuve una experiencia sobresaliente con Vertical Auto! Desde el momento que entré, el equipo fue profesional, conocedor y atento a mis necesidades. Altamente recomendado para cualquier reparación automotriz."
+                  : "I had an outstanding experience with Vertical Auto! From the moment I walked in, the team was professional, knowledgeable, and attentive to my needs. Highly recommend for any auto repair.",
                 rating: 5,
               },
             ];
@@ -611,7 +677,7 @@ export default function Home() {
 
             return (
               <>
-                {/* Mobile: fully collapsed dropdown — all reviews hidden by default */}
+                {/* Mobile: fully collapsed dropdown */}
                 <div className="sm:hidden mb-6">
                   <button
                     onClick={() => setReviewsExpanded(!reviewsExpanded)}
@@ -619,7 +685,7 @@ export default function Home() {
                   >
                     <span className="flex items-center gap-2">
                       <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                      Read Customer Reviews
+                      {t.readReviews}
                     </span>
                     <ChevronDown className={`w-4 h-4 text-primary transition-transform duration-300 ${reviewsExpanded ? "rotate-180" : ""}`} />
                   </button>
@@ -660,7 +726,7 @@ export default function Home() {
                 className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-sm sm:text-lg px-6 sm:px-8 py-4 sm:py-6"
               >
                 <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                SEE ALL 503 REVIEWS ON GOOGLE
+                {t.seeAllReviews}
               </Button>
             </a>
           </div>
@@ -672,17 +738,17 @@ export default function Home() {
         <div className="container">
           <div className="text-center mb-6 sm:mb-16">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
-              CONTACT <span className="text-primary">US</span>
+              {t.contactUs} <span className="text-primary">{isSpanish ? "" : "US"}</span>
             </h2>
             <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-2 sm:mb-4" />
             <p className="text-sm sm:text-lg">
-              Two convenient locations to serve you
+              {t.twoLocations}
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
-            <LocationCard location={LOCATIONS[0]} />
-            <LocationCard location={LOCATIONS[1]} />
+            <LocationCard location={LOCATIONS[0]} isSpanish={isSpanish} />
+            <LocationCard location={LOCATIONS[1]} isSpanish={isSpanish} />
           </div>
         </div>
       </section>
@@ -719,7 +785,7 @@ export default function Home() {
           <Button
             className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-xs py-2 h-full"
           >
-            SCHEDULE
+            {t.schedule}
           </Button>
         </a>
       </div>
@@ -730,11 +796,10 @@ export default function Home() {
   );
 }
 
-function LocationCard({ location }: { location: typeof LOCATIONS[0] }) {
+function LocationCard({ location, isSpanish }: { location: typeof LOCATIONS[0]; isSpanish: boolean }) {
   const coords = { lat: location.lat, lng: location.lng };
 
   const handleMapReady = (map: google.maps.Map) => {
-    // Add a marker for the location
     new google.maps.marker.AdvancedMarkerElement({
       map,
       position: coords,
@@ -744,7 +809,6 @@ function LocationCard({ location }: { location: typeof LOCATIONS[0] }) {
 
   return (
     <Card className="bg-secondary/50 border-2 border-primary/20 overflow-hidden">
-      {/* Google Map — shorter on mobile */}
       <div className="w-full h-[180px] sm:h-[250px]">
         <MapView
           className="w-full h-full"
@@ -754,7 +818,6 @@ function LocationCard({ location }: { location: typeof LOCATIONS[0] }) {
         />
       </div>
       
-      {/* Location Info — compact on mobile */}
       <div className="p-4 sm:p-8">
         <h3 className="text-lg sm:text-2xl font-black mb-3 sm:mb-6 text-primary">
           {location.name.toUpperCase()}
@@ -779,11 +842,10 @@ function LocationCard({ location }: { location: typeof LOCATIONS[0] }) {
             className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-sm sm:text-base"
             size="lg"
           >
-            SCHEDULE APPOINTMENT
+            {isSpanish ? "AGENDAR CITA" : "SCHEDULE APPOINTMENT"}
           </Button>
         </a>
       </div>
     </Card>
   );
 }
-

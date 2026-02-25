@@ -3,8 +3,9 @@
  * Blue/white/black palette, bold typography
  * Dynamic page for individual service pages
  * MOBILE: Compact spacing, smaller text, tighter grids
+ * BILINGUAL: Uses useTranslation for EN/ES content
  */
-import { SERVICES, COMPANY } from "@/lib/data";
+import { COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { useParams } from "wouter";
 import { Link } from "wouter";
@@ -12,9 +13,10 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import NotFound from "./NotFound";
-import { CheckCircle, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const SERVICE_IMAGES: Record<string, string> = {
   "battery-cranking-charging-systems": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1400&q=80",
@@ -32,26 +34,45 @@ const SERVICE_IMAGES: Record<string, string> = {
 
 export default function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const service = SERVICES.find((s) => s.slug === slug);
+  const { isSpanish, servicesPath, services, ui } = useTranslation();
+
+  const service = services.find((s) => s.slug === slug);
 
   if (!service) {
     return <NotFound />;
   }
 
+  const t = ui?.serviceDetail ?? {
+    whenNeeded: "WHEN DO I NEED",
+    thisService: "THIS SERVICE?",
+    benefits: "BENEFITS",
+    hereToHelp: "VERTICAL AUTOMOTIVE IS HERE TO HELP!",
+    helpText: "Our auto repair shop offers superior car service with straightforward pricing and honest recommendations for all our valued customers.",
+    scheduleYour: "SCHEDULE YOUR APPOINTMENT",
+    otherServices: "OTHER",
+    services: "SERVICES",
+    learnMore: "Learn More",
+    subtitle: "Comprehensive Computer Diagnostic, Preventive Maintenance and Repair",
+  };
+
   // Get related services (exclude current)
-  const relatedServices = SERVICES.filter((s) => s.slug !== slug).slice(0, 4);
+  const relatedServices = services.filter((s) => s.slug !== slug).slice(0, 4);
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
-        title={`${service.title} - Vertical Automotive | Fort Lauderdale Auto Repair`}
-        description={`Professional ${service.title.toLowerCase()} service in Fort Lauderdale, FL. ${service.description} ASE-certified technicians. 3-year warranty. Call (954) 565-1518.`}
+        title={isSpanish
+          ? `${service.title} - Vertical Automotive | Reparación Automotriz Fort Lauderdale`
+          : `${service.title} - Vertical Automotive | Fort Lauderdale Auto Repair`}
+        description={isSpanish
+          ? `Servicio profesional de ${service.title.toLowerCase()} en Fort Lauderdale, FL. ${service.description} Técnicos certificados ASE. Garantía de 3 años. Llame al (954) 565-1518.`
+          : `Professional ${service.title.toLowerCase()} service in Fort Lauderdale, FL. ${service.description} ASE-certified technicians. 3-year warranty. Call (954) 565-1518.`}
       />
       <Navigation />
 
       <PageHero
         title={service.title.toUpperCase()}
-        subtitle="Comprehensive Computer Diagnostic, Preventive Maintenance and Repair"
+        subtitle={t.subtitle}
         backgroundImage={SERVICE_IMAGES[service.slug]}
       />
 
@@ -64,7 +85,7 @@ export default function ServiceDetail() {
 
           {/* When Needed */}
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black mb-3 sm:mb-4">
-            WHEN DO I NEED <span className="text-primary">THIS SERVICE?</span>
+            {t.whenNeeded} <span className="text-primary">{t.thisService}</span>
           </h2>
           <div className="h-1 w-12 sm:w-16 bg-primary mb-4 sm:mb-6" />
           <p className="text-xs sm:text-base text-muted-foreground leading-relaxed mb-8 sm:mb-12">
@@ -73,7 +94,7 @@ export default function ServiceDetail() {
 
           {/* Benefits */}
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black mb-3 sm:mb-4">
-            <span className="text-primary">BENEFITS</span>
+            <span className="text-primary">{t.benefits}</span>
           </h2>
           <div className="h-1 w-12 sm:w-16 bg-primary mb-4 sm:mb-6" />
           <p className="text-xs sm:text-base text-muted-foreground leading-relaxed mb-8 sm:mb-12">
@@ -86,10 +107,10 @@ export default function ServiceDetail() {
       <section className="py-8 sm:py-16 bg-primary text-primary-foreground text-center">
         <div className="container">
           <h2 className="text-xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4">
-            VERTICAL AUTOMOTIVE IS HERE TO HELP!
+            {t.hereToHelp}
           </h2>
           <p className="text-xs sm:text-lg opacity-90 max-w-2xl mx-auto mb-4 sm:mb-8">
-            Our auto repair shop offers superior car service with straightforward pricing and honest recommendations for all our valued customers.
+            {t.helpText}
           </p>
           <a
             href={COMPANY.appointmentUrl}
@@ -100,7 +121,7 @@ export default function ServiceDetail() {
               size="lg"
               className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-sm sm:text-lg px-6 sm:px-8 py-4 sm:py-6"
             >
-              SCHEDULE YOUR APPOINTMENT
+              {t.scheduleYour}
             </Button>
           </a>
         </div>
@@ -110,7 +131,7 @@ export default function ServiceDetail() {
       <section className="py-10 sm:py-20 bg-muted">
         <div className="container">
           <h2 className="text-xl sm:text-3xl font-black mb-3 sm:mb-4 text-center">
-            OTHER <span className="text-primary">SERVICES</span>
+            {t.otherServices} <span className="text-primary">{t.services}</span>
           </h2>
           <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-12" />
 
@@ -119,7 +140,7 @@ export default function ServiceDetail() {
             {relatedServices.map((s) => (
               <Link
                 key={s.slug}
-                href={`/services/${s.slug}`}
+                href={`${servicesPath}/${s.slug}`}
                 className="group flex flex-col items-center text-center p-2 bg-card border border-border hover:border-primary transition-all duration-200"
               >
                 <div className="w-6 h-6 mb-1">
@@ -135,7 +156,7 @@ export default function ServiceDetail() {
             {relatedServices.map((s) => (
               <Link
                 key={s.slug}
-                href={`/services/${s.slug}`}
+                href={`${servicesPath}/${s.slug}`}
                 className="group p-6 bg-card border-2 border-border hover:border-primary transition-all duration-300"
               >
                 <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-tight">
@@ -145,7 +166,7 @@ export default function ServiceDetail() {
                   {s.description}
                 </p>
                 <span className="inline-flex items-center text-primary text-sm font-bold">
-                  Learn More <ArrowRight className="w-4 h-4 ml-1" />
+                  {t.learnMore} <ArrowRight className="w-4 h-4 ml-1" />
                 </span>
               </Link>
             ))}

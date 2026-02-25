@@ -2,9 +2,11 @@
  * Footer — Industrial Brutalism Design
  * Blue accents, grid pattern, diagonal accent line
  * MOBILE: Condensed 2-column layout, reduced spacing
+ * BILINGUAL: Uses useTranslation for Spanish labels
  */
 import { COMPANY, LOCATIONS } from "@/lib/data";
 import { MapPin, Phone, Clock, Shield, Instagram, Facebook } from "lucide-react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -15,6 +17,21 @@ function TikTokIcon({ className }: { className?: string }) {
 }
 
 export default function Footer() {
+  const { isSpanish, ui, companyOverrides } = useTranslation();
+  const t = ui?.footer ?? {
+    description: "ASE-certified mechanics providing complete auto care with",
+    yearsExp: "years of experience.",
+    aseCertified: "ASE CERTIFIED",
+    hours: "HOURS",
+    paySystem: "PAY SYSTEM",
+    allRights: "All Rights Reserved.",
+    privacyPolicy: "Privacy Policy",
+    termsOfService: "Terms of Service",
+  };
+
+  const hours = companyOverrides?.hours ?? COMPANY.hours;
+  const closedDays = companyOverrides?.closedDays ?? COMPANY.closedDays;
+
   return (
     <footer className="bg-secondary text-secondary-foreground">
       {/* Diagonal accent line */}
@@ -27,7 +44,6 @@ export default function Footer() {
 
       {/* Main Footer Content */}
       <div className="container py-8 sm:py-16">
-        {/* Mobile: 2-col grid, Desktop: 4-col */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-12">
           {/* Brand */}
           <div className="col-span-2 sm:col-span-1 text-center sm:text-left">
@@ -37,13 +53,13 @@ export default function Footer() {
               className="h-10 sm:h-12 w-auto mb-3 sm:mb-6 mx-auto sm:mx-0"
             />
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              ASE-certified mechanics providing complete auto care with{" "}
-              {COMPANY.yearsExperience} years of experience.
+              {t.description}{" "}
+              {COMPANY.yearsExperience} {t.yearsExp}
             </p>
             <div className="flex items-center space-x-2 mt-3 sm:mt-6">
               <Shield className="w-5 h-5 sm:w-8 sm:h-8 text-primary flex-shrink-0" />
               <span className="text-xs sm:text-sm font-bold tracking-wider">
-                ASE CERTIFIED
+                {t.aseCertified}
               </span>
             </div>
 
@@ -136,23 +152,23 @@ export default function Footer() {
           {/* Hours & Payment */}
           <div className="col-span-2 sm:col-span-1">
             <h3 className="font-display text-sm sm:text-lg font-bold tracking-wider mb-3 sm:mb-6 text-primary">
-              HOURS
+              {t.hours}
             </h3>
             <div className="flex items-start space-x-2 sm:space-x-3">
               <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 mt-0.5 text-primary flex-shrink-0" />
               <div>
                 <p className="text-xs sm:text-sm font-medium mono-number">
-                  {COMPANY.hours}
+                  {hours}
                 </p>
                 <p className="text-xs sm:text-sm text-muted-foreground mono-number">
-                  {COMPANY.closedDays}
+                  {closedDays}
                 </p>
               </div>
             </div>
 
             <div className="hidden sm:block">
               <h3 className="font-display text-lg font-bold tracking-wider mt-8 mb-4 text-primary">
-                PAY SYSTEM
+                {t.paySystem}
               </h3>
               <div className="flex items-center flex-wrap gap-x-2 gap-y-1 text-muted-foreground text-sm">
                 <span>Visa</span>
@@ -170,15 +186,14 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-border mt-6 sm:mt-12 pt-4 sm:pt-8 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
           <p className="text-xs sm:text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Vertical Automotive. All Rights
-            Reserved.
+            © {new Date().getFullYear()} Vertical Automotive. {t.allRights}
           </p>
           <div className="flex items-center space-x-4 sm:space-x-6 text-xs sm:text-sm">
             <a href="#" className="hover:text-primary transition-colors">
-              Privacy Policy
+              {t.privacyPolicy}
             </a>
             <a href="#" className="hover:text-primary transition-colors">
-              Terms of Service
+              {t.termsOfService}
             </a>
           </div>
         </div>
