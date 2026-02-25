@@ -203,11 +203,11 @@ export default function Home() {
           <div className="grid grid-cols-3 gap-2 sm:hidden">
             {SERVICES.map((service) => (
               <Link key={service.slug} href={`/services/${service.slug}`}>
-                <div className="flex flex-col items-center text-center p-2.5 bg-card border border-border hover:border-primary group transition-all duration-200 cursor-pointer">
-                  <div className="w-7 h-7 mb-1.5">
+                <div className="flex flex-col items-center justify-center text-center p-2.5 bg-card border border-border hover:border-primary group transition-all duration-200 cursor-pointer h-[88px]">
+                  <div className="w-7 h-7 mb-1.5 flex-shrink-0">
                     <ServiceIcon name={service.icon} />
                   </div>
-                  <span className="text-[10px] font-bold leading-tight group-hover:text-primary transition-colors">{service.shortTitle}</span>
+                  <span className="text-[10px] font-bold leading-tight group-hover:text-primary transition-colors line-clamp-2">{service.shortTitle}</span>
                 </div>
               </Link>
             ))}
