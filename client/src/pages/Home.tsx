@@ -57,6 +57,142 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+  // LocalBusiness JSON-LD structured data for both locations
+  useEffect(() => {
+    const localBusinessSchema = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "AutoRepair",
+          "@id": "https://verticalautomotive.com/#wilton-manors",
+          "name": "Vertical Automotive - Wilton Manors",
+          "description": "ASE-certified auto repair shop specializing in Tesla, Asian, European & Domestic vehicles. Advanced diagnostics, honest service, and a 3-year warranty on all repairs.",
+          "url": "https://verticalautomotive.com",
+          "telephone": "+19545651518",
+          "priceRange": "$$",
+          "image": "https://verticalautomotive.com/logo.png",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1100 W Oakland Park Blvd",
+            "addressLocality": "Wilton Manors",
+            "addressRegion": "FL",
+            "postalCode": "33311",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 26.165788,
+            "longitude": -80.157597
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "08:00",
+              "closes": "17:00"
+            }
+          ],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "500",
+            "bestRating": "5"
+          },
+          "areaServed": [
+            { "@type": "City", "name": "Wilton Manors" },
+            { "@type": "City", "name": "Fort Lauderdale" },
+            { "@type": "City", "name": "Oakland Park" }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Auto Repair Services",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Complete Engine Diagnostics" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brake System Repair" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transmission Repair" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "A/C Service & Repair" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hybrid & EV Service" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Oil Change & Maintenance" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wheel Alignment" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tire Sales & Service" } }
+            ]
+          },
+          "sameAs": [
+            "https://www.google.com/maps/place/Vertical+Automotive"
+          ]
+        },
+        {
+          "@type": "AutoRepair",
+          "@id": "https://verticalautomotive.com/#fort-lauderdale",
+          "name": "Vertical Automotive - Fort Lauderdale",
+          "description": "ASE-certified auto repair shop specializing in Tesla, Asian, European & Domestic vehicles. Advanced diagnostics, honest service, and a 3-year warranty on all repairs.",
+          "url": "https://verticalautomotive.com",
+          "telephone": "+16452162266",
+          "priceRange": "$$",
+          "image": "https://verticalautomotive.com/logo.png",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "707 NE 11th Street",
+            "addressLocality": "Fort Lauderdale",
+            "addressRegion": "FL",
+            "postalCode": "33304",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 26.139035,
+            "longitude": -80.135597
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "08:00",
+              "closes": "17:00"
+            }
+          ],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "500",
+            "bestRating": "5"
+          },
+          "areaServed": [
+            { "@type": "City", "name": "Fort Lauderdale" },
+            { "@type": "City", "name": "Wilton Manors" },
+            { "@type": "City", "name": "Victoria Park" }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Auto Repair Services",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Complete Engine Diagnostics" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brake System Repair" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transmission Repair" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "A/C Service & Repair" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hybrid & EV Service" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Oil Change & Maintenance" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wheel Alignment" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tire Sales & Service" } }
+            ]
+          },
+          "sameAs": [
+            "https://www.google.com/maps/place/Vertical+Automotive"
+          ]
+        }
+      ]
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(localBusinessSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
