@@ -202,7 +202,7 @@ export default function AboutPage() {
             {[
               { value: String(COMPANY.yearsExperience), label: "YEARS OF EXPERIENCE", icon: Award },
               { value: COMPANY.vehiclesRepaired, label: "VEHICLES REPAIRED", icon: TrendingUp },
-              { value: String(COMPANY.staff), label: "EXPERT STAFF", icon: Users },
+              { value: String(COMPANY.staff), label: "LOCATIONS", icon: MapPin },
               { value: COMPANY.satisfaction, label: "SATISFIED CUSTOMERS", icon: CheckCircle },
             ].map((stat, index) => (
               <div
