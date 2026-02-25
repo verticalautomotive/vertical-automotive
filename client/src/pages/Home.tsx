@@ -325,11 +325,9 @@ export default function Home() {
                 <span className="text-primary">PROFESSIONALS</span>
               </h2>
               <div className="h-1 w-16 sm:w-24 bg-primary mb-4 sm:mb-8" />
-              <p className="text-sm sm:text-lg leading-relaxed mb-3 sm:mb-6">
-                Our ASE-certified mechanics bring decades of combined experience to every repair. We feature complete diagnostic and repair services for all makes and models, from classic American muscle to cutting-edge electric vehicles.
-              </p>
-              <p className="text-sm sm:text-lg leading-relaxed mb-4 sm:mb-8 hidden sm:block">
-                With state-of-the-art equipment and a commitment to honest, transparent service, we treat every vehicle like our own. Our 3-year warranty on repairs demonstrates our confidence in quality workmanship.
+              <p className="font-display text-sm sm:text-base font-bold text-primary tracking-wider mb-2 sm:mb-3">Who Vertical Automotive Is</p>
+              <p className="text-sm sm:text-lg leading-relaxed mb-4 sm:mb-8">
+                Vertical Automotive is a trusted automotive repair and maintenance expert serving drivers in Wilton Manors and Fort Lauderdale, Florida. Known for advanced diagnostics, honest recommendations, and professional workmanship, Vertical Automotive helps vehicle owners solve problems correctly while focusing on long-term reliability and safety.
               </p>
               <div className="grid grid-cols-2 gap-2 sm:gap-4">
                 <div className="flex items-center space-x-2 sm:space-x-3">
