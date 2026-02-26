@@ -540,16 +540,7 @@ export default function Blog() {
                     {isSpanish ? "AGENDAR CITA" : "SCHEDULE APPOINTMENT"}
                   </button>
                 </a>
-                <a href="tel:9545651518">
-                  <button className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-display font-bold tracking-widest px-6 sm:px-10 py-3 sm:py-4 text-sm sm:text-base transition-colors w-full sm:w-auto">
-                    {t.callWilton}
-                  </button>
-                </a>
-                <a href="tel:6452162266">
-                  <button className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-display font-bold tracking-widest px-6 sm:px-10 py-3 sm:py-4 text-sm sm:text-base transition-colors w-full sm:w-auto">
-                    {t.callFtLaud}
-                  </button>
-                </a>
+
               </div>
             </div>
           </div>
