@@ -14,6 +14,7 @@ import ServiceOrVehiclePage from "./pages/ServiceOrVehiclePage";
 import Blog from "./pages/Blog";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
+import MobileFooterBar from "./components/MobileFooterBar";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -61,6 +62,7 @@ function App() {
           <StructuredData />
           <Toaster />
           <Router />
+          <MobileFooterBar />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
