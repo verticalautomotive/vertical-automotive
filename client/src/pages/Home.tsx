@@ -27,6 +27,7 @@ import {
   ExternalLink,
   ChevronDown,
   ChevronUp,
+  Navigation2,
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
@@ -842,14 +843,31 @@ function LocationCard({ location, isSpanish }: { location: typeof LOCATIONS[0]; 
             </a>
           </div>
         </div>
-        <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer">
-          <Button
-            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-sm sm:text-base"
-            size="lg"
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+          <a
+            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location.fullAddress)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1"
           >
-            {isSpanish ? "AGENDAR CITA" : "SCHEDULE APPOINTMENT"}
-          </Button>
-        </a>
+            <Button
+              variant="outline"
+              className="w-full border-primary/40 text-primary hover:bg-primary/10 font-bold text-sm sm:text-base"
+              size="lg"
+            >
+              <Navigation2 className="w-4 h-4 mr-2" />
+              {isSpanish ? "DIRECCIONES" : "GET DIRECTIONS"}
+            </Button>
+          </a>
+          <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
+            <Button
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-sm sm:text-base"
+              size="lg"
+            >
+              {isSpanish ? "AGENDAR CITA" : "SCHEDULE"}
+            </Button>
+          </a>
+        </div>
       </div>
     </Card>
   );

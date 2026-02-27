@@ -6,7 +6,7 @@
  * Street addresses are clickable → Google Maps
  */
 import { COMPANY, LOCATIONS } from "@/lib/data";
-import { MapPin, Phone, Clock, Shield, Instagram, Facebook, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Clock, Shield, Instagram, Facebook, ExternalLink, Navigation2 } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 
 function TikTokIcon({ className }: { className?: string }) {
@@ -19,6 +19,10 @@ function TikTokIcon({ className }: { className?: string }) {
 
 function getMapsUrl(location: typeof LOCATIONS[0]) {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.fullAddress)}`;
+}
+
+function getDirectionsUrl(location: typeof LOCATIONS[0]) {
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location.fullAddress)}`;
 }
 
 export default function Footer() {
@@ -129,6 +133,15 @@ export default function Footer() {
                   {LOCATIONS[0].phone}
                 </a>
               </div>
+              <a
+                href={getDirectionsUrl(LOCATIONS[0])}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs text-primary/70 hover:text-primary transition-colors mt-1"
+              >
+                <Navigation2 className="w-3 h-3" />
+                {isSpanish ? "Direcciones" : "Get Directions"}
+              </a>
             </div>
           </div>
 
@@ -161,6 +174,15 @@ export default function Footer() {
                   {LOCATIONS[1].phone}
                 </a>
               </div>
+              <a
+                href={getDirectionsUrl(LOCATIONS[1])}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs text-primary/70 hover:text-primary transition-colors mt-1"
+              >
+                <Navigation2 className="w-3 h-3" />
+                {isSpanish ? "Direcciones" : "Get Directions"}
+              </a>
             </div>
           </div>
 
