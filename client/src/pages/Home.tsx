@@ -116,7 +116,7 @@ export default function Home() {
           "image": "https://verticalautomotive.com/logo.png",
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "1100 W Oakland Park Blvd",
+            "streetAddress": "1100 W Oakland Park Blvd Unit 5",
             "addressLocality": "Wilton Manors",
             "addressRegion": "FL",
             "postalCode": "33311",

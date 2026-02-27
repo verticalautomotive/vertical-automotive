@@ -21,9 +21,9 @@ export const COMPANY = {
 export const LOCATIONS = [
   {
     name: "Wilton Manors",
-    address: "1100 W Oakland Park Blvd",
+    address: "1100 W Oakland Park Blvd Unit 5",
     city: "Wilton Manors, FL 33311",
-    fullAddress: "1100 W Oakland Park Blvd, Wilton Manors, FL 33311",
+    fullAddress: "1100 W Oakland Park Blvd Unit 5, Wilton Manors, FL 33311",
     phone: "(954) 565-1518",
     phoneRaw: "9545651518",
     lat: 26.165788050203393,

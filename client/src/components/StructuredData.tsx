@@ -22,7 +22,7 @@ const STRUCTURED_DATA = {
   "address": [
     {
       "@type": "PostalAddress",
-      "streetAddress": "1100 W Oakland Park Blvd Bay 5",
+      "streetAddress": "1100 W Oakland Park Blvd Unit 5",
       "addressLocality": "Wilton Manors",
       "addressRegion": "FL",
       "postalCode": "33311",
