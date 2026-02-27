@@ -62,6 +62,10 @@ export default function ServicesPage() {
                 <img
                   src={vt.image}
                   alt={vt.title}
+                  width={400}
+                  height={300}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
