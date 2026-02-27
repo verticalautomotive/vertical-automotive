@@ -150,7 +150,49 @@ function vitePluginManusDebugCollector(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
+/**
+ * Vite plugin to inline critical CSS using Critters.
+ * Runs post-build to extract above-the-fold CSS and inline it in the HTML,
+ * converting the full CSS bundle to async loading.
+ */
+function vitePluginCriticalCSS(): Plugin {
+  return {
+    name: "vite-plugin-critical-css",
+    apply: "build",
+    enforce: "post",
+    async closeBundle() {
+      try {
+        const Critters = (await import("critters")).default;
+        const outDir = path.resolve(import.meta.dirname, "dist/public");
+        const htmlPath = path.join(outDir, "index.html");
+
+        if (!fs.existsSync(htmlPath)) {
+          console.warn("[critical-css] index.html not found, skipping.");
+          return;
+        }
+
+        const critters = new Critters({
+          path: outDir,
+          preload: "media",       // Use media="print" onload pattern
+          inlineFonts: false,      // Don't inline font files
+          compress: true,          // Minify inlined CSS
+          pruneSource: false,      // Keep the full CSS file for non-critical styles
+          reduceInlineStyles: true, // Remove unused inline styles
+          mergeStylesheets: true,  // Merge multiple stylesheets
+        });
+
+        const html = fs.readFileSync(htmlPath, "utf-8");
+        const inlined = await critters.process(html);
+        fs.writeFileSync(htmlPath, inlined, "utf-8");
+        console.log("[critical-css] Critical CSS inlined successfully.");
+      } catch (e) {
+        console.warn("[critical-css] Failed to inline critical CSS:", e);
+      }
+    },
+  };
+}
+
+const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginCriticalCSS()];
 
 export default defineConfig({
   plugins,
@@ -166,6 +208,7 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    cssCodeSplit: false, // Keep CSS in a single file for critters to process
   },
   server: {
     port: 3000,
