@@ -3,7 +3,6 @@
  * - Converts Unsplash URLs to WebP format with proper sizing
  * - Adds loading="lazy" for below-fold images
  * - Supports fetchpriority="high" for LCP images
- * - Always renders with explicit width/height to prevent CLS
  */
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -44,16 +43,12 @@ export default function OptimizedImage({
   src,
   alt,
   width,
-  height,
   priority = false,
   sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
   ...props
 }: OptimizedImageProps) {
   const optimizedSrc = optimizeUnsplashUrl(src, width);
   const srcSet = generateSrcSet(src);
-  // Default dimensions based on 4:3 aspect ratio if not provided
-  const imgWidth = width || 600;
-  const imgHeight = height || Math.round(imgWidth * 0.75);
 
   return (
     <img
@@ -61,8 +56,6 @@ export default function OptimizedImage({
       srcSet={srcSet}
       sizes={srcSet ? sizes : undefined}
       alt={alt}
-      width={imgWidth}
-      height={imgHeight}
       loading={priority ? "eager" : "lazy"}
       decoding={priority ? "sync" : "async"}
       {...(priority ? { fetchPriority: "high" } as any : {})}
