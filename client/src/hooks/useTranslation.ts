@@ -18,6 +18,7 @@ const EN_TO_ES: Record<string, string> = {
   offers: "ofertas",
   about: "sobre-nosotros",
   blog: "informacion",
+  contacts: "contactos",
 };
 
 const ES_TO_EN: Record<string, string> = Object.fromEntries(

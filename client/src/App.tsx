@@ -12,6 +12,7 @@ import Offers from "./pages/Offers";
 import About from "./pages/About";
 import ServiceOrVehiclePage from "./pages/ServiceOrVehiclePage";
 import Blog from "./pages/Blog";
+import Contacts from "./pages/Contacts";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 import MobileFooterBar from "./components/MobileFooterBar";
@@ -38,6 +39,7 @@ function Router() {
         <Route path="/about" component={About} />
         <Route path="/services/:slug" component={ServiceOrVehiclePage} />
         <Route path="/blog" component={Blog} />
+        <Route path="/contacts" component={Contacts} />
 
         {/* Spanish routes */}
         <Route path="/es" component={Home} />
@@ -46,6 +48,7 @@ function Router() {
         <Route path="/es/sobre-nosotros" component={About} />
         <Route path="/es/servicios/:slug" component={ServiceOrVehiclePage} />
         <Route path="/es/informacion" component={Blog} />
+        <Route path="/es/contactos" component={Contacts} />
 
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />

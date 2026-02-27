@@ -65,7 +65,7 @@ export default function Navigation() {
     { label: isSpanish ? t.offers : "OFFERS", href: isSpanish ? "/es/ofertas" : "/offers" },
     { label: isSpanish ? t.aboutUs : "ABOUT US", href: isSpanish ? "/es/sobre-nosotros" : "/about" },
     { label: isSpanish ? t.reviews : "REVIEWS", href: `${homeHash}#reviews` },
-    { label: isSpanish ? t.contacts : "CONTACTS", href: `${homeHash}#contact` },
+    { label: isSpanish ? t.contacts : "CONTACTS", href: isSpanish ? "/es/contactos" : "/contacts" },
     { label: isSpanish ? t.info : "INFO", href: isSpanish ? "/es/informacion" : "/blog" },
   ];
 

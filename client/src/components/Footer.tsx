@@ -3,9 +3,10 @@
  * Blue accents, grid pattern, diagonal accent line
  * MOBILE: Condensed 2-column layout, reduced spacing
  * BILINGUAL: Uses useTranslation for Spanish labels
+ * Street addresses are clickable → Google Maps
  */
 import { COMPANY, LOCATIONS } from "@/lib/data";
-import { MapPin, Phone, Clock, Shield, Instagram, Facebook } from "lucide-react";
+import { MapPin, Phone, Clock, Shield, Instagram, Facebook, ExternalLink } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 
 function TikTokIcon({ className }: { className?: string }) {
@@ -14,6 +15,10 @@ function TikTokIcon({ className }: { className?: string }) {
       <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.73a8.19 8.19 0 004.76 1.52V6.8a4.84 4.84 0 01-1-.11z" />
     </svg>
   );
+}
+
+function getMapsUrl(location: typeof LOCATIONS[0]) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.fullAddress)}`;
 }
 
 export default function Footer() {
@@ -101,15 +106,20 @@ export default function Footer() {
               WILTON MANORS
             </h3>
             <div className="space-y-4">
-              <div className="flex items-start space-x-2">
+              <a
+                href={getMapsUrl(LOCATIONS[0])}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start space-x-2 group"
+              >
                 <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
-                  <p className="text-sm">{LOCATIONS[0].address}</p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm group-hover:text-primary transition-colors">{LOCATIONS[0].address}</p>
+                  <p className="text-sm text-muted-foreground group-hover:text-primary transition-colors">
                     {LOCATIONS[0].city}
                   </p>
                 </div>
-              </div>
+              </a>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                 <a
@@ -128,15 +138,20 @@ export default function Footer() {
               FT. LAUDERDALE
             </h3>
             <div className="space-y-4">
-              <div className="flex items-start space-x-2">
+              <a
+                href={getMapsUrl(LOCATIONS[1])}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start space-x-2 group"
+              >
                 <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
-                  <p className="text-sm">{LOCATIONS[1].address}</p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm group-hover:text-primary transition-colors">{LOCATIONS[1].address}</p>
+                  <p className="text-sm text-muted-foreground group-hover:text-primary transition-colors">
                     {LOCATIONS[1].city}
                   </p>
                 </div>
-              </div>
+              </a>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                 <a

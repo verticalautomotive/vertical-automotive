@@ -78,6 +78,21 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://verticalautomotive.com/contacts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/contacts" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/contactos" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/contactos</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/contacts" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/contactos" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Vehicle Type Pages -->
   <url><loc>https://verticalautomotive.com/services/tesla-vehicles-service</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://verticalautomotive.com/services/asian-vehicles-service</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>

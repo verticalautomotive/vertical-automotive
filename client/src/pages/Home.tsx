@@ -823,13 +823,18 @@ function LocationCard({ location, isSpanish }: { location: typeof LOCATIONS[0]; 
           {location.name.toUpperCase()}
         </h3>
         <div className="space-y-2 sm:space-y-4 mb-4 sm:mb-8">
-          <div className="flex items-start space-x-2 sm:space-x-3">
+          <a
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.fullAddress)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-start space-x-2 sm:space-x-3 group"
+          >
             <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 text-primary flex-shrink-0" />
             <div>
-              <p className="font-medium text-gray-400 text-xs sm:text-base">{location.address}</p>
-              <p className="text-gray-400 text-xs sm:text-base">{location.city}</p>
+              <p className="font-medium text-gray-400 text-xs sm:text-base group-hover:text-primary transition-colors">{location.address}</p>
+              <p className="text-gray-400 text-xs sm:text-base group-hover:text-primary transition-colors">{location.city}</p>
             </div>
-          </div>
+          </a>
           <div className="flex items-center space-x-2 sm:space-x-3">
             <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
             <a href={`tel:${location.phoneRaw}`} className="mono-number font-medium hover:text-primary transition-colors text-white text-sm sm:text-base">
