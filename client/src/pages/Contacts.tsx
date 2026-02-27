@@ -10,7 +10,7 @@ import { COMPANY, LOCATIONS } from "@/lib/data";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
-import { MapView } from "@/components/Map";
+import { LazyMap } from "@/components/LazyMap";
 import { MapPin, Phone, Clock, Mail, ExternalLink, Navigation2 } from "lucide-react";
 import SEO from "@/components/SEO";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -34,11 +34,13 @@ function ContactLocationCard({ location, isSpanish }: { location: typeof LOCATIO
   return (
     <Card className="bg-secondary/50 border-2 border-primary/20 overflow-hidden">
       <div className="w-full h-[200px] sm:h-[280px]">
-        <MapView
+        <LazyMap
           className="w-full h-full"
           initialCenter={coords}
           initialZoom={16}
           onMapReady={handleMapReady}
+          locationName={location.name}
+          address={location.fullAddress}
         />
       </div>
 
@@ -165,7 +167,7 @@ export default function Contacts() {
           { label: t.breadcrumbHome, href: prefix || "/" },
           { label: t.breadcrumbContacts },
         ]}
-        backgroundImage="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1400&q=80"
+        backgroundImage="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=75&fm=webp&fit=crop&auto=format"
       />
 
       {/* Locations Grid */}

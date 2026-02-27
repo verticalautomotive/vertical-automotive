@@ -14,7 +14,8 @@ import { Card } from "@/components/ui/card";
 import { COMPANY, LOCATIONS } from "@/lib/data";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { MapView } from "@/components/Map";
+import { LazyMap } from "@/components/LazyMap";
+import OptimizedImage from "@/components/OptimizedImage";
 import {
   CheckCircle,
   Award,
@@ -329,11 +330,13 @@ export default function Home() {
                 href={`${servicesPath}/${type.slug}`}
                 className="group relative aspect-[4/3] overflow-hidden bg-card hover:shadow-2xl transition-all duration-300"
               >
-                <img
+                <OptimizedImage
                   src={type.image}
                   alt={type.title}
+                  width={400}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   style={type.slug === 'asian-vehicles-service' ? { transform: 'scaleX(-1)' } : undefined}
+                  sizes="(max-width: 640px) 50vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
                 <div className="absolute inset-0 flex items-end p-3 sm:p-6">
@@ -537,6 +540,8 @@ export default function Home() {
               <img
                 src="https://private-us-east-1.manuscdn.com/sessionFile/zG7TkjTFYQTi6RlHwEX5Va/sandbox/4uoMfJPiYSKA2driFpoMoI-img-2_1771025932000_na1fn_c2VydmljZXMtZGlhZ25vc3RpYw.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvekc3VGtqVEZZUVRpNlJsSHdFWDVWYS9zYW5kYm94LzR1b01mSlBpWVNLQTJkcmlGcG9Nb0ktaW1nLTJfMTc3MTAyNTkzMjAwMF9uYTFmbl9jMlZ5ZG1salpYTXRaR2xoWjI1dmMzUnBZdy5wbmc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=apHNfs4OvHz~Zl8LwjV~1L8cr966xQn-Aehe5YbA6AvCK9xQ0tYXUcoge3OBi4phHgoqt1xnqVURrLimUfkx3D9ypL0hSg0xi~jNia3VLzVe9rxGLIkm9QLLuhZZdM4fb1SmrT73mq~8I~WexGMAcV5Bi7KGd1x3C-ouFMLE-Px4KW-chT9Z5TR9uy3SEr01Dp06IVzyqf4q5U7g4~JFkhdPWG0DULUGLk1zCSxc~QXz4Tv1f99IwOEWd4oZW1~8ENNTvYTRU6vwplDeLOX4UZW6XnD-7tqFoGuQ2hfD~q5LKrqEjZmWefiyRL7mWmTSPm3kytEBQSc3qqZ-jmPXhA__"
                 alt="Diagnostic Equipment"
+                loading="lazy"
+                decoding="async"
                 className="w-full shadow-2xl"
               />
               <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-primary opacity-20 -z-10" />
@@ -811,11 +816,13 @@ function LocationCard({ location, isSpanish }: { location: typeof LOCATIONS[0]; 
   return (
     <Card className="bg-secondary/50 border-2 border-primary/20 overflow-hidden">
       <div className="w-full h-[180px] sm:h-[250px]">
-        <MapView
+        <LazyMap
           className="w-full h-full"
           initialCenter={coords}
           initialZoom={16}
           onMapReady={handleMapReady}
+          locationName={location.name}
+          address={location.fullAddress}
         />
       </div>
       

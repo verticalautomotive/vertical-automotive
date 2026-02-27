@@ -228,7 +228,7 @@ export default function Blog() {
         title={t.title}
         subtitle={t.subtitle}
         breadcrumb={blogBreadcrumb}
-        backgroundImage="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1400&q=80"
+        backgroundImage="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=75&fm=webp&fit=crop&auto=format"
       />
 
       {/* Blog Articles Section */}
@@ -258,7 +258,7 @@ export default function Blog() {
               <div className="grid md:grid-cols-2">
                 <div className="relative h-48 sm:h-64 md:h-auto overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=800&q=80"
+                    src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=800&q=75&fm=webp&fit=crop&auto=format" loading="lazy" decoding="async"
                     alt={isSpanish ? "Mantenimiento estacional del carro" : "Seasonal car maintenance"}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -301,7 +301,7 @@ export default function Blog() {
             {/* Article 1 - Oil */}
             <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden">
               <div className="relative h-36 sm:h-48 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=600&q=80" alt={isSpanish ? "Cambio de aceite" : "Engine oil change"} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=600&q=75&fm=webp&fit=crop&auto=format" loading="lazy" decoding="async" alt={isSpanish ? "Cambio de aceite" : "Engine oil change"} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-3 left-3">
                   <span className="bg-secondary/90 text-secondary-foreground font-display text-[10px] sm:text-xs font-bold tracking-widest px-2.5 py-1 uppercase">{t.maintenance}</span>
                 </div>
@@ -324,7 +324,7 @@ export default function Blog() {
             {/* Article 2 - Brakes */}
             <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden">
               <div className="relative h-36 sm:h-48 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=80" alt={isSpanish ? "Inspección de frenos" : "Brake inspection"} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=75&fm=webp&fit=crop&auto=format" loading="lazy" decoding="async" alt={isSpanish ? "Inspección de frenos" : "Brake inspection"} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-3 left-3">
                   <span className="bg-secondary/90 text-secondary-foreground font-display text-[10px] sm:text-xs font-bold tracking-widest px-2.5 py-1 uppercase">{t.safety}</span>
                 </div>
@@ -347,7 +347,7 @@ export default function Blog() {
             {/* Article 3 - A/C */}
             <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden">
               <div className="relative h-36 sm:h-48 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&q=80" alt={isSpanish ? "Aire acondicionado" : "Car air conditioning"} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&q=75&fm=webp&fit=crop&auto=format" loading="lazy" decoding="async" alt={isSpanish ? "Aire acondicionado" : "Car air conditioning"} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-3 left-3">
                   <span className="bg-secondary/90 text-secondary-foreground font-display text-[10px] sm:text-xs font-bold tracking-widest px-2.5 py-1 uppercase">{t.seasonal}</span>
                 </div>
@@ -370,7 +370,7 @@ export default function Blog() {
             {/* Article 4 - Tires */}
             <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden">
               <div className="relative h-36 sm:h-48 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=80" alt={isSpanish ? "Mantenimiento de neumáticos" : "Tire maintenance"} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=75&fm=webp&fit=crop&auto=format" loading="lazy" decoding="async" alt={isSpanish ? "Mantenimiento de neumáticos" : "Tire maintenance"} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-3 left-3">
                   <span className="bg-secondary/90 text-secondary-foreground font-display text-[10px] sm:text-xs font-bold tracking-widest px-2.5 py-1 uppercase">{t.tipsLabel}</span>
                 </div>
@@ -393,7 +393,7 @@ export default function Blog() {
             {/* Article 5 - EV */}
             <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden">
               <div className="relative h-36 sm:h-48 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&q=80" alt={isSpanish ? "Carga de vehículo eléctrico" : "Electric vehicle charging"} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&q=75&fm=webp&fit=crop&auto=format" loading="lazy" decoding="async" alt={isSpanish ? "Carga de vehículo eléctrico" : "Electric vehicle charging"} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-3 left-3">
                   <span className="bg-secondary/90 text-secondary-foreground font-display text-[10px] sm:text-xs font-bold tracking-widest px-2.5 py-1 uppercase">{t.evCare}</span>
                 </div>
@@ -416,7 +416,7 @@ export default function Blog() {
             {/* Article 6 - Diagnostics */}
             <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden">
               <div className="relative h-36 sm:h-48 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=600&q=80" alt={isSpanish ? "Escaneo diagnóstico" : "Car diagnostic scan"} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=600&q=75&fm=webp&fit=crop&auto=format" loading="lazy" decoding="async" alt={isSpanish ? "Escaneo diagnóstico" : "Car diagnostic scan"} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-3 left-3">
                   <span className="bg-secondary/90 text-secondary-foreground font-display text-[10px] sm:text-xs font-bold tracking-widest px-2.5 py-1 uppercase">{t.diagnostics}</span>
                 </div>

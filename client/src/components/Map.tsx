@@ -113,6 +113,7 @@ function loadMapScript(): Promise<unknown> {
     const script = document.createElement("script");
     script.src = `${MAPS_PROXY_URL}/maps/api/js?key=${API_KEY}&v=weekly&libraries=marker,places,geocoding,geometry`;
     script.async = true;
+    script.defer = true;
     script.crossOrigin = "anonymous";
     script.onload = () => {
       resolve(null);
@@ -154,10 +155,10 @@ export function MapView({
     map.current = new window.google!.maps.Map(mapContainer.current, {
       zoom: initialZoom,
       center: initialCenter,
-      mapTypeControl: true,
-      fullscreenControl: true,
+      mapTypeControl: false,
+      fullscreenControl: false,
       zoomControl: true,
-      streetViewControl: true,
+      streetViewControl: false,
       mapId: "DEMO_MAP_ID",
     });
     if (onMapReady) {
