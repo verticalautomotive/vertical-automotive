@@ -19,17 +19,17 @@ import ServiceIcon from "@/components/ServiceIcon";
 import { useTranslation } from "@/hooks/useTranslation";
 
 const SERVICE_IMAGES: Record<string, string> = {
-  "battery-cranking-charging-systems": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1200&q=75&fm=webp&fit=crop&auto=format",
-  "brake-system": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=75&fm=webp&fit=crop&auto=format",
-  "transmission": "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=1200&q=75&fm=webp&fit=crop&auto=format",
-  "a-c-maintenance-repair": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=75&fm=webp&fit=crop&auto=format",
-  "oil-change-engine-service": "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=1200&q=75&fm=webp&fit=crop&auto=format",
-  "complete-diagnostics": "https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=1200&q=75&fm=webp&fit=crop&auto=format",
-  "routine-preventive-maintenance": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&q=75&fm=webp&fit=crop&auto=format",
-  "steering-suspension": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=75&fm=webp&fit=crop&auto=format",
-  "fuel-system": "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&q=75&fm=webp&fit=crop&auto=format",
-  "hybrids-ev": "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=1200&q=75&fm=webp&fit=crop&auto=format",
-  "alignment-tire-rotation-balancing": "https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1200&q=75&fm=webp&fit=crop&auto=format",
+  "battery-cranking-charging-systems": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1200&q=60&fm=webp&fit=crop&auto=format",
+  "brake-system": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=60&fm=webp&fit=crop&auto=format",
+  "transmission": "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=1200&q=60&fm=webp&fit=crop&auto=format",
+  "a-c-maintenance-repair": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=60&fm=webp&fit=crop&auto=format",
+  "oil-change-engine-service": "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=1200&q=60&fm=webp&fit=crop&auto=format",
+  "complete-diagnostics": "https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=1200&q=60&fm=webp&fit=crop&auto=format",
+  "routine-preventive-maintenance": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&q=60&fm=webp&fit=crop&auto=format",
+  "steering-suspension": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=60&fm=webp&fit=crop&auto=format",
+  "fuel-system": "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&q=60&fm=webp&fit=crop&auto=format",
+  "hybrids-ev": "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=1200&q=60&fm=webp&fit=crop&auto=format",
+  "alignment-tire-rotation-balancing": "https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1200&q=60&fm=webp&fit=crop&auto=format",
 };
 
 export default function ServiceDetail() {

@@ -23,7 +23,7 @@ function optimizeUnsplashUrl(url: string, targetWidth?: number): string {
   // Parse existing URL and rebuild with optimized params
   const baseUrl = url.split("?")[0];
   const w = targetWidth || 600;
-  return `${baseUrl}?w=${w}&q=75&fm=webp&fit=crop&auto=format`;
+  return `${baseUrl}?w=${w}&q=60&fm=webp&fit=crop&auto=format`;
 }
 
 /**
@@ -35,7 +35,7 @@ function generateSrcSet(url: string): string | undefined {
   const baseUrl = url.split("?")[0];
   const widths = [400, 600, 800, 1200];
   return widths
-    .map((w) => `${baseUrl}?w=${w}&q=75&fm=webp&fit=crop&auto=format ${w}w`)
+    .map((w) => `${baseUrl}?w=${w}&q=60&fm=webp&fit=crop&auto=format ${w}w`)
     .join(", ");
 }
 
