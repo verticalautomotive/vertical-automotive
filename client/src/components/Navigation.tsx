@@ -106,6 +106,8 @@ export default function Navigation() {
             <img
               src={COMPANY.logoUrl}
               alt="Vertical Automotive"
+              width={200}
+              height={56}
               className="h-9 sm:h-14 w-auto"
             />
           </Link>
