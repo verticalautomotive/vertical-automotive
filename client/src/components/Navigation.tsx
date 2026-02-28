@@ -213,12 +213,9 @@ export default function Navigation() {
             </a>
           </div>
 
-          {/* Mobile: lang + phone + hamburger */}
+          {/* Mobile: lang + hamburger */}
           <div className="flex lg:hidden items-center gap-1.5">
             <LanguageSwitcher className="text-[10px] px-1.5 py-1" />
-            <a href="tel:9545651518" className="p-2 text-primary" aria-label="Call us">
-              <Phone className="w-5 h-5" />
-            </a>
             <button
               className="p-2"
               onClick={() => setMobileOpen(!mobileOpen)}

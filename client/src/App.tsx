@@ -8,6 +8,7 @@ import HrefLang from "./components/HrefLang";
 import { lazy, Suspense, useEffect } from "react";
 import { useLocation } from "wouter";
 import MobileFooterBar from "./components/MobileFooterBar";
+import FloatingActions from "./components/FloatingActions";
 
 // Code-split all page components — only Home is eagerly loaded for fast FCP
 import Home from "./pages/Home";
@@ -78,6 +79,7 @@ function App() {
           <StructuredData />
           <Toaster />
           <Router />
+          <FloatingActions />
           <MobileFooterBar />
         </TooltipProvider>
       </ThemeProvider>
