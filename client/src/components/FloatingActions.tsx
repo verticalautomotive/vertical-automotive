@@ -16,7 +16,7 @@ const SMS_NUMBERS = {
 
 const DIRECTIONS_URLS = {
   wiltonManors: "https://www.google.com/maps/dir/?api=1&destination=1100+W+Oakland+Park+Blvd+Unit+5+Wilton+Manors+FL+33311",
-  fortLauderdale: "https://www.google.com/maps/dir/?api=1&destination=1800+SE+4th+Ave+Fort+Lauderdale+FL+33316",
+  fortLauderdale: "https://www.google.com/maps/dir/?api=1&destination=707+NE+11th+St+Fort+Lauderdale+FL+33304",
 };
 
 type PopupType = "sms" | "directions" | null;
@@ -135,7 +135,7 @@ export default function FloatingActions() {
             <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
             <div>
               <div className="text-sm font-semibold text-white">{labels.fortLauderdale}</div>
-              <div className="text-[11px] text-white/50">1800 SE 4th Ave</div>
+              <div className="text-[11px] text-white/50">707 NE 11th St</div>
             </div>
           </a>
         </div>
