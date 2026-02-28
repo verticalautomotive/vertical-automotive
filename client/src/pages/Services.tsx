@@ -13,6 +13,7 @@ import PageHero from "@/components/PageHero";
 import { Link } from "wouter";
 import { CheckCircle } from "lucide-react";
 import SEO from "@/components/SEO";
+import { trackSchedule } from "@/lib/gtm";
 import ServiceIcon from "@/components/ServiceIcon";
 import { useTranslation } from "@/hooks/useTranslation";
 
@@ -155,7 +156,7 @@ export default function ServicesPage() {
           <p className="text-sm sm:text-lg mb-4 sm:mb-8 opacity-90">
             {t.bookOnline}
           </p>
-          <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer">
+          <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackSchedule("services_cta")}>
             <Button
               size="lg"
               className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-sm sm:text-lg px-6 sm:px-8 py-4 sm:py-6"

@@ -8,6 +8,7 @@
 import { MessageCircle, Navigation2, X, MapPin } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
+import { trackTextUs, trackDirections } from "@/lib/gtm";
 
 const SMS_NUMBERS = {
   wiltonManors: "9548336584",
@@ -79,7 +80,7 @@ export default function FloatingActions() {
           <a
             href={`sms:${SMS_NUMBERS.wiltonManors}`}
             className="flex items-center gap-3 px-4 py-3 hover:bg-blue-500/10 active:bg-blue-500/20 transition-colors border-b border-white/5"
-            onClick={() => setOpenPopup(null)}
+            onClick={() => { trackTextUs("Wilton Manors", "(954) 833-6584", "floating_button"); setOpenPopup(null); }}
           >
             <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
             <div>
@@ -90,7 +91,7 @@ export default function FloatingActions() {
           <a
             href={`sms:${SMS_NUMBERS.fortLauderdale}`}
             className="flex items-center gap-3 px-4 py-3 hover:bg-blue-500/10 active:bg-blue-500/20 transition-colors"
-            onClick={() => setOpenPopup(null)}
+            onClick={() => { trackTextUs("Fort Lauderdale", "(844) 841-1185", "floating_button"); setOpenPopup(null); }}
           >
             <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
             <div>
@@ -117,7 +118,7 @@ export default function FloatingActions() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 px-4 py-3 hover:bg-blue-500/10 active:bg-blue-500/20 transition-colors border-b border-white/5"
-            onClick={() => setOpenPopup(null)}
+            onClick={() => { trackDirections("Wilton Manors", "floating_button"); setOpenPopup(null); }}
           >
             <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
             <div>
@@ -130,7 +131,7 @@ export default function FloatingActions() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 px-4 py-3 hover:bg-blue-500/10 active:bg-blue-500/20 transition-colors"
-            onClick={() => setOpenPopup(null)}
+            onClick={() => { trackDirections("Fort Lauderdale", "floating_button"); setOpenPopup(null); }}
           >
             <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
             <div>

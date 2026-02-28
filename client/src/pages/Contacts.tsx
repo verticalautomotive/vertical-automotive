@@ -13,6 +13,7 @@ import PageHero from "@/components/PageHero";
 import { LazyMap } from "@/components/LazyMap";
 import { MapPin, Phone, Clock, Mail, ExternalLink, Navigation2 } from "lucide-react";
 import SEO from "@/components/SEO";
+import { trackCall, trackSchedule, trackDirections } from "@/lib/gtm";
 import { useTranslation } from "@/hooks/useTranslation";
 
 function getMapsUrl(location: typeof LOCATIONS[0]) {
@@ -76,6 +77,7 @@ function ContactLocationCard({ location, isSpanish }: { location: typeof LOCATIO
             <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
             <a
               href={`tel:${location.phoneRaw}`}
+              onClick={() => trackCall(location.name, location.phone, "contacts_location_card")}
               className="mono-number font-medium hover:text-primary transition-colors text-white text-sm sm:text-base"
             >
               {location.phone}
@@ -98,6 +100,7 @@ function ContactLocationCard({ location, isSpanish }: { location: typeof LOCATIO
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1"
+            onClick={() => trackDirections(location.name, "contacts_location_card")}
           >
             <Button
               variant="outline"
@@ -108,7 +111,7 @@ function ContactLocationCard({ location, isSpanish }: { location: typeof LOCATIO
               {isSpanish ? "DIRECCIONES" : "GET DIRECTIONS"}
             </Button>
           </a>
-          <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
+          <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="flex-1" onClick={() => trackSchedule("contacts_location_card")}>
             <Button
               className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-sm sm:text-base"
               size="lg"
@@ -196,12 +199,14 @@ export default function Contacts() {
               <div className="space-y-2">
                 <a
                   href={`tel:${LOCATIONS[0].phoneRaw}`}
+                  onClick={() => trackCall("Wilton Manors", LOCATIONS[0].phone, "contacts_quick_card")}
                   className="block mono-number text-primary font-bold hover:underline text-sm sm:text-base"
                 >
                   Wilton Manors: {LOCATIONS[0].phone}
                 </a>
                 <a
                   href={`tel:${LOCATIONS[1].phoneRaw}`}
+                  onClick={() => trackCall("Fort Lauderdale", LOCATIONS[1].phone, "contacts_quick_card")}
                   className="block mono-number text-primary font-bold hover:underline text-sm sm:text-base"
                 >
                   Fort Lauderdale: {LOCATIONS[1].phone}
@@ -218,7 +223,7 @@ export default function Contacts() {
               <p className="text-sm text-muted-foreground mb-5">
                 {t.scheduleDesc}
               </p>
-              <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer">
+              <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackSchedule("contacts_schedule_card")}>
                 <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-widest px-8">
                   {t.scheduleNow}
                 </Button>

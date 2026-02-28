@@ -35,6 +35,7 @@ import { Link } from "wouter";
 import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
 import { useTranslation } from "@/hooks/useTranslation";
+import { trackCall, trackSchedule, trackDirections, trackClaimOffer } from "@/lib/gtm";
 
 export default function Home() {
   const [statsVisible, setStatsVisible] = useState(false);
@@ -292,13 +293,9 @@ export default function Home() {
               </span>
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer">
-                <Button 
-                  size="lg" 
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-sm sm:text-lg px-6 sm:px-8 py-4 sm:py-6 shadow-xl w-full sm:w-auto"
-                >
-                  {t.scheduleAppointment}
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">              <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackSchedule("hero")}>
+                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-wider text-sm sm:text-base px-6 sm:px-8 py-4 sm:py-6 shadow-lg w-full sm:w-auto">
+                  {t.scheduleAppointment}   {t.scheduleAppointment}
                 </Button>
               </a>
               <Link href={offersPath}>
@@ -459,7 +456,7 @@ export default function Home() {
                 <p className="text-[10px] sm:text-sm text-muted-foreground mb-2 sm:mb-6 hidden sm:block">
                   {offer.description}
                 </p>
-                <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer">
+                <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackClaimOffer(offer.title, "home_offers")}>
                   <Button
                     variant="outline"
                     className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-[10px] sm:text-sm py-1.5 sm:py-2"
@@ -773,7 +770,7 @@ export default function Home() {
 
       {/* Sticky Mobile Bottom CTA Bar */}
       <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden bg-secondary/95 backdrop-blur-sm border-t-2 border-primary/30 px-3 py-2 flex gap-2">
-        <a href={`tel:${LOCATIONS[0].phoneRaw}`} className="flex-1">
+        <a href={`tel:${LOCATIONS[0].phoneRaw}`} className="flex-1" onClick={() => trackCall("Wilton Manors", LOCATIONS[0].phone, "home_sticky_bar")}>
           <Button
             variant="outline"
             className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-2 gap-1 flex flex-col items-center leading-tight h-auto"
@@ -785,7 +782,7 @@ export default function Home() {
             <span className="text-[11px]">{LOCATIONS[0].phone}</span>
           </Button>
         </a>
-        <a href={`tel:${LOCATIONS[1].phoneRaw}`} className="flex-1">
+        <a href={`tel:${LOCATIONS[1].phoneRaw}`} className="flex-1" onClick={() => trackCall("Fort Lauderdale", LOCATIONS[1].phone, "home_sticky_bar")}>
           <Button
             variant="outline"
             className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-2 gap-1 flex flex-col items-center leading-tight h-auto"
@@ -797,7 +794,7 @@ export default function Home() {
             <span className="text-[11px]">{LOCATIONS[1].phone}</span>
           </Button>
         </a>
-        <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
+        <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="flex-1" onClick={() => trackSchedule("home_sticky_bar")}>
           <Button
             className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-xs py-2 h-full"
           >
@@ -855,7 +852,7 @@ function LocationCard({ location, isSpanish }: { location: typeof LOCATIONS[0]; 
           </a>
           <div className="flex items-center space-x-2 sm:space-x-3">
             <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
-            <a href={`tel:${location.phoneRaw}`} className="mono-number font-medium hover:text-primary transition-colors text-white text-sm sm:text-base">
+            <a href={`tel:${location.phoneRaw}`} className="mono-number font-medium hover:text-primary transition-colors text-white text-sm sm:text-base" onClick={() => trackCall(location.name, location.phone, "home_location_card")}>
               {location.phone}
             </a>
           </div>
@@ -866,6 +863,7 @@ function LocationCard({ location, isSpanish }: { location: typeof LOCATIONS[0]; 
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1"
+            onClick={() => trackDirections(location.name, "home_location_card")}
           >
             <Button
               variant="outline"
@@ -876,7 +874,7 @@ function LocationCard({ location, isSpanish }: { location: typeof LOCATIONS[0]; 
               {isSpanish ? "DIRECCIONES" : "GET DIRECTIONS"}
             </Button>
           </a>
-          <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
+          <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="flex-1" onClick={() => trackSchedule("home_location_card")}>
             <Button
               className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-sm sm:text-base"
               size="lg"

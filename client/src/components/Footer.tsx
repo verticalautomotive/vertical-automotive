@@ -8,6 +8,7 @@
 import { COMPANY, LOCATIONS } from "@/lib/data";
 import { MapPin, Phone, Clock, Shield, Instagram, Facebook, ExternalLink, Navigation2 } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
+import { trackCall, trackDirections } from "@/lib/gtm";
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -131,6 +132,7 @@ export default function Footer() {
                 <a
                   href={`tel:${LOCATIONS[0].phoneRaw}`}
                   className="mono-number text-sm font-medium hover:text-primary transition-colors"
+                  onClick={() => trackCall("Wilton Manors", LOCATIONS[0].phone, "footer")}
                 >
                   {LOCATIONS[0].phone}
                 </a>
@@ -140,6 +142,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs text-primary/70 hover:text-primary transition-colors mt-1"
+                onClick={() => trackDirections("Wilton Manors", "footer")}
               >
                 <Navigation2 className="w-3 h-3" />
                 {isSpanish ? "Direcciones" : "Get Directions"}
@@ -172,6 +175,7 @@ export default function Footer() {
                 <a
                   href={`tel:${LOCATIONS[1].phoneRaw}`}
                   className="mono-number text-sm font-medium hover:text-primary transition-colors"
+                  onClick={() => trackCall("Fort Lauderdale", LOCATIONS[1].phone, "footer")}
                 >
                   {LOCATIONS[1].phone}
                 </a>
@@ -181,6 +185,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs text-primary/70 hover:text-primary transition-colors mt-1"
+                onClick={() => trackDirections("Fort Lauderdale", "footer")}
               >
                 <Navigation2 className="w-3 h-3" />
                 {isSpanish ? "Direcciones" : "Get Directions"}

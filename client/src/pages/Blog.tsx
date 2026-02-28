@@ -13,6 +13,7 @@ import { useState, useEffect, useMemo } from "react";
 import { ChevronDown, Brain, Wrench, Search, Shield, Star, MessageCircle, Calendar, Thermometer, Droplets, Gauge, Clock, ArrowRight, Zap, Car, Sparkles, HelpCircle, MapPin } from "lucide-react";
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
+import { trackSchedule } from "@/lib/gtm";
 
 interface FAQItem {
   question: string;
@@ -537,6 +538,7 @@ export default function Blog() {
                   href={COMPANY.appointmentUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackSchedule("blog_cta")}
                 >
                   <button className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-widest px-6 sm:px-10 py-3 sm:py-4 text-sm sm:text-base shadow-lg transition-colors w-full sm:w-auto">
                     {isSpanish ? "AGENDAR CITA" : "SCHEDULE APPOINTMENT"}

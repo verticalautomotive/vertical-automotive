@@ -13,6 +13,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { useTranslation } from "@/hooks/useTranslation";
+import { trackClaimOffer } from "@/lib/gtm";
 
 export default function OffersPage() {
   const { isSpanish, offers, coupons, ui } = useTranslation();
@@ -104,6 +105,7 @@ export default function OffersPage() {
                   href={COMPANY.appointmentUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackClaimOffer(offer.title, "offers_page")}
                 >
                   <Button
                     variant="outline"

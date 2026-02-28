@@ -7,6 +7,7 @@
 import { Phone, CalendarCheck } from "lucide-react";
 import { LOCATIONS, COMPANY } from "@/lib/data";
 import { useTranslation } from "@/hooks/useTranslation";
+import { trackCall, trackSchedule } from "@/lib/gtm";
 
 export default function MobileFooterBar() {
   const { isSpanish } = useTranslation();
@@ -23,6 +24,7 @@ export default function MobileFooterBar() {
         <a
           href={`tel:${LOCATIONS[0].phoneRaw}`}
           className="neon-call-btn flex-1 flex flex-col items-center justify-center gap-0.5 py-2.5 border-r border-white/10 active:bg-blue-500/20 transition-colors"
+          onClick={() => trackCall("Wilton Manors", LOCATIONS[0].phone, "mobile_footer")}
         >
           <Phone className="w-4 h-4 neon-icon" />
           <span className="text-[10px] font-medium text-blue-300/80 tracking-wide">
@@ -37,6 +39,7 @@ export default function MobileFooterBar() {
         <a
           href={`tel:${LOCATIONS[1].phoneRaw}`}
           className="neon-call-btn flex-1 flex flex-col items-center justify-center gap-0.5 py-2.5 border-r border-white/10 active:bg-blue-500/20 transition-colors"
+          onClick={() => trackCall("Fort Lauderdale", LOCATIONS[1].phone, "mobile_footer")}
         >
           <Phone className="w-4 h-4 neon-icon" />
           <span className="text-[10px] font-medium text-blue-300/80 tracking-wide">
@@ -53,6 +56,7 @@ export default function MobileFooterBar() {
           target="_blank"
           rel="noopener noreferrer"
           className="neon-schedule-btn flex-1 flex flex-col items-center justify-center gap-0.5 py-2.5 active:brightness-125 transition-all"
+          onClick={() => trackSchedule("mobile_footer")}
         >
           <CalendarCheck className="w-4 h-4 text-white" />
           <span className="text-xs font-extrabold text-white tracking-widest">

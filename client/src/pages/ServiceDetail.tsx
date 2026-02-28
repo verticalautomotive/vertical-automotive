@@ -17,6 +17,7 @@ import { ArrowRight } from "lucide-react";
 import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
 import { useTranslation } from "@/hooks/useTranslation";
+import { trackSchedule } from "@/lib/gtm";
 
 const SERVICE_IMAGES: Record<string, string> = {
   "battery-cranking-charging-systems": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1200&q=60&fm=webp&fit=crop&auto=format",
@@ -116,6 +117,7 @@ export default function ServiceDetail() {
             href={COMPANY.appointmentUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackSchedule("service_detail_cta")}
           >
             <Button
               size="lg"

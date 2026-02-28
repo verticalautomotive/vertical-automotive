@@ -12,6 +12,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { Link, useLocation } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { trackCall, trackSchedule } from "@/lib/gtm";
 
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -194,16 +195,16 @@ export default function Navigation() {
           <div className="hidden lg:flex items-center space-x-3">
             <LanguageSwitcher />
             <div className="flex flex-col items-end text-xs space-y-0.5">
-              <a href="tel:9545651518" className="flex items-center space-x-2 hover:text-primary transition-colors">
+              <a href="tel:9545651518" className="flex items-center space-x-2 hover:text-primary transition-colors" onClick={() => trackCall("Wilton Manors", "(954) 565-1518", "desktop_nav")}>
                 <Phone className="w-3.5 h-3.5" />
                 <span className="mono-number">Wilton Manors (954) 565-1518</span>
               </a>
-              <a href="tel:6452162266" className="flex items-center space-x-2 hover:text-primary transition-colors">
+              <a href="tel:6452162266" className="flex items-center space-x-2 hover:text-primary transition-colors" onClick={() => trackCall("Fort Lauderdale", "(645) 216-2266", "desktop_nav")}>
                 <Phone className="w-3.5 h-3.5" />
                 <span className="mono-number">Ft. Lauderdale (645) 216-2266</span>
               </a>
             </div>
-            <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer">
+            <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackSchedule("desktop_nav")}>
               <Button
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-wider shadow-lg"
@@ -288,16 +289,16 @@ export default function Navigation() {
             {/* Phone numbers + CTA */}
             <div className="pt-3 space-y-2">
               <div className="flex items-center gap-4">
-                <a href="tel:9545651518" className="flex items-center space-x-2 text-sm">
+                <a href="tel:9545651518" className="flex items-center space-x-2 text-sm" onClick={() => trackCall("Wilton Manors", "(954) 565-1518", "mobile_menu")}>
                   <Phone className="w-3.5 h-3.5 text-primary" />
                   <span className="mono-number">Wilton Manors (954) 565-1518</span>
                 </a>
-                <a href="tel:6452162266" className="flex items-center space-x-2 text-sm">
+                <a href="tel:6452162266" className="flex items-center space-x-2 text-sm" onClick={() => trackCall("Fort Lauderdale", "(645) 216-2266", "mobile_menu")}>
                   <Phone className="w-3.5 h-3.5 text-primary" />
                   <span className="mono-number">Ft. Lauderdale (645) 216-2266</span>
                 </a>
               </div>
-              <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="block">
+              <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="block" onClick={() => trackSchedule("mobile_menu")}>
                 <Button
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-wider text-sm py-2.5"
                 >

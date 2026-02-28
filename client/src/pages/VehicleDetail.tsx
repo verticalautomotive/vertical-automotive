@@ -16,6 +16,7 @@ import { ArrowRight } from "lucide-react";
 import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
 import { useTranslation } from "@/hooks/useTranslation";
+import { trackSchedule } from "@/lib/gtm";
 
 export default function VehicleDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -139,6 +140,7 @@ export default function VehicleDetail() {
             href={COMPANY.appointmentUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackSchedule("vehicle_detail_cta")}
           >
             <Button
               size="lg"
