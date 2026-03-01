@@ -295,7 +295,7 @@ export default function Home() {
             
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">              <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackSchedule("hero")}>
                 <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-wider text-sm sm:text-base px-6 sm:px-8 py-4 sm:py-6 shadow-lg w-full sm:w-auto">
-                  {t.scheduleAppointment}   {t.scheduleAppointment}
+                  {t.scheduleAppointment}
                 </Button>
               </a>
               <Link href={offersPath}>
