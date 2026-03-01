@@ -408,7 +408,7 @@ export const UI_ES = {
     reviews: "RESEÑAS",
     contacts: "CONTACTOS",
     info: "INFO",
-    scheduleNow: "AGENDAR AHORA",
+    scheduleNow: "AGENDAR CITA",
   },
   // Footer
   footer: {

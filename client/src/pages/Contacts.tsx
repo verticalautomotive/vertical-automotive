@@ -149,7 +149,7 @@ export default function Contacts() {
     scheduleDesc: isSpanish
       ? "Reserve su cita en línea las 24 horas del día, los 7 días de la semana"
       : "Book your appointment online 24/7",
-    scheduleNow: isSpanish ? "AGENDAR AHORA" : "SCHEDULE NOW",
+    scheduleNow: isSpanish ? "AGENDAR CITA" : "SCHEDULE NOW",
     breadcrumbHome: isSpanish ? "Inicio" : "Home",
     breadcrumbContacts: isSpanish ? "Contacto" : "Contact",
   };
