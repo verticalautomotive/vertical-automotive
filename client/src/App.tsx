@@ -17,6 +17,7 @@ const Offers = lazy(() => import("./pages/Offers"));
 const About = lazy(() => import("./pages/About"));
 const ServiceOrVehiclePage = lazy(() => import("./pages/ServiceOrVehiclePage"));
 const Blog = lazy(() => import("./pages/Blog"));
+const BlogArticle = lazy(() => import("./pages/BlogArticle"));
 const Contacts = lazy(() => import("./pages/Contacts"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -52,6 +53,7 @@ function Router() {
           <Route path="/about" component={About} />
           <Route path="/services/:slug" component={ServiceOrVehiclePage} />
           <Route path="/blog" component={Blog} />
+          <Route path="/blog/:slug" component={BlogArticle} />
           <Route path="/contacts" component={Contacts} />
 
           {/* Spanish routes */}
@@ -61,6 +63,7 @@ function Router() {
           <Route path="/es/sobre-nosotros" component={About} />
           <Route path="/es/servicios/:slug" component={ServiceOrVehiclePage} />
           <Route path="/es/informacion" component={Blog} />
+          <Route path="/es/informacion/:slug" component={BlogArticle} />
           <Route path="/es/contactos" component={Contacts} />
 
           <Route path="/404" component={NotFound} />

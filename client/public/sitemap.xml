@@ -93,6 +93,112 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog Article Pages (EN + ES with hreflang) -->
+  <url>
+    <loc>https://verticalautomotive.com/blog/seasonal-car-care-south-florida</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/seasonal-car-care-south-florida" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/cuidado-estacional-del-auto-sur-de-florida" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/informacion/cuidado-estacional-del-auto-sur-de-florida</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/seasonal-car-care-south-florida" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/cuidado-estacional-del-auto-sur-de-florida" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://verticalautomotive.com/blog/oil-change-engine-best-friend</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/oil-change-engine-best-friend" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/cambio-de-aceite-mejor-amigo-del-motor" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/informacion/cambio-de-aceite-mejor-amigo-del-motor</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/oil-change-engine-best-friend" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/cambio-de-aceite-mejor-amigo-del-motor" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://verticalautomotive.com/blog/brake-warning-signs</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/brake-warning-signs" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/senales-de-advertencia-de-frenos" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/informacion/senales-de-advertencia-de-frenos</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/brake-warning-signs" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/senales-de-advertencia-de-frenos" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://verticalautomotive.com/blog/ac-florida-summer-prep</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/ac-florida-summer-prep" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/preparar-ac-para-verano-florida" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/informacion/preparar-ac-para-verano-florida</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/ac-florida-summer-prep" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/preparar-ac-para-verano-florida" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://verticalautomotive.com/blog/tire-care-pressure-rotation-alignment</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/tire-care-pressure-rotation-alignment" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/cuidado-de-neumaticos-presion-rotacion-alineacion" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/informacion/cuidado-de-neumaticos-presion-rotacion-alineacion</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/tire-care-pressure-rotation-alignment" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/cuidado-de-neumaticos-presion-rotacion-alineacion" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://verticalautomotive.com/blog/hybrid-ev-maintenance-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/hybrid-ev-maintenance-guide" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/guia-mantenimiento-hibridos-ev" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/informacion/guia-mantenimiento-hibridos-ev</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/hybrid-ev-maintenance-guide" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/guia-mantenimiento-hibridos-ev" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://verticalautomotive.com/blog/check-engine-light-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/check-engine-light-guide" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/guia-luz-check-engine" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/informacion/guia-luz-check-engine</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/check-engine-light-guide" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/guia-luz-check-engine" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Vehicle Type Pages -->
   <url><loc>https://verticalautomotive.com/services/tesla-vehicles-service</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://verticalautomotive.com/services/asian-vehicles-service</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>

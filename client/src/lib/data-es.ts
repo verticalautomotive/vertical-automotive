@@ -588,6 +588,7 @@ export const UI_ES = {
     checkEngineHighlight: "NO LA IGNORE",
     checkEngineDesc: "Una luz de check engine puede indicar desde una tapa de gasolina suelta hasta un problema serio del motor. Nuestro equipo de diagnóstico avanzado lee códigos específicos del fabricante para identificar el problema exacto, ahorrándole tiempo y dinero en reparaciones innecesarias.",
     learnMore: "MÁS INFO",
+    readArticle: "LEER ARTÍCULO COMPLETO",
     whenDriversAsk: "Cuando los Conductores Preguntan a la IA",
     faq: "PREGUNTAS",
     frequently: "FRECUENTES",

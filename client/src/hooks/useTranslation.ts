@@ -21,6 +21,20 @@ const EN_TO_ES: Record<string, string> = {
   contacts: "contactos",
 };
 
+// Blog article slug mapping EN <-> ES
+const BLOG_SLUG_EN_TO_ES: Record<string, string> = {
+  "seasonal-car-care-south-florida": "cuidado-estacional-del-auto-sur-de-florida",
+  "oil-change-engine-best-friend": "cambio-de-aceite-mejor-amigo-del-motor",
+  "brake-warning-signs": "senales-de-advertencia-de-frenos",
+  "ac-florida-summer-prep": "preparar-ac-para-verano-florida",
+  "tire-care-pressure-rotation-alignment": "cuidado-de-neumaticos-presion-rotacion-alineacion",
+  "hybrid-ev-maintenance-guide": "guia-mantenimiento-hibridos-ev",
+  "check-engine-light-guide": "guia-luz-check-engine",
+};
+const BLOG_SLUG_ES_TO_EN: Record<string, string> = Object.fromEntries(
+  Object.entries(BLOG_SLUG_EN_TO_ES).map(([k, v]) => [v, k])
+);
+
 const ES_TO_EN: Record<string, string> = Object.fromEntries(
   Object.entries(EN_TO_ES).map(([k, v]) => [v, k])
 );
@@ -31,6 +45,10 @@ export function toSpanishPath(enPath: string): string {
   if (parts[0] && EN_TO_ES[parts[0]]) {
     parts[0] = EN_TO_ES[parts[0]];
   }
+  // Map blog article slugs
+  if (parts[0] === "informacion" && parts[1] && BLOG_SLUG_EN_TO_ES[parts[1]]) {
+    parts[1] = BLOG_SLUG_EN_TO_ES[parts[1]];
+  }
   return `/es/${parts.join("/")}`;
 }
 
@@ -40,6 +58,10 @@ export function toEnglishPath(esPath: string): string {
   const parts = withoutPrefix.replace(/^\//, "").split("/");
   if (parts[0] && ES_TO_EN[parts[0]]) {
     parts[0] = ES_TO_EN[parts[0]];
+  }
+  // Map blog article slugs back to English
+  if (parts[0] === "blog" && parts[1] && BLOG_SLUG_ES_TO_EN[parts[1]]) {
+    parts[1] = BLOG_SLUG_ES_TO_EN[parts[1]];
   }
   return `/${parts.join("/")}`;
 }
