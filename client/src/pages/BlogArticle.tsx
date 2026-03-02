@@ -494,7 +494,7 @@ export default function BlogArticlePage() {
                   <div className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center bg-primary text-primary-foreground">
                     <Lightbulb className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
-                  <h3 className="font-display text-lg sm:text-xl font-black tracking-wider">
+                  <h3 className="font-display text-lg sm:text-xl font-black tracking-wider text-white">
                     {labels.quickTips}
                   </h3>
                 </div>
@@ -532,7 +532,7 @@ export default function BlogArticlePage() {
 
               {/* CTA */}
               <div className="bg-secondary p-6 sm:p-10 border-2 border-border text-center">
-                <h3 className="font-display text-lg sm:text-2xl font-black tracking-wider mb-2 sm:mb-3">
+                <h3 className="font-display text-lg sm:text-2xl font-black tracking-wider mb-2 sm:mb-3 text-white">
                   {labels.readyTitle}{" "}
                   <span className="text-primary">{labels.readyHighlight}</span>?
                 </h3>
