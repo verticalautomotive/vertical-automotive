@@ -4,6 +4,7 @@
  * - Adds loading="lazy" for below-fold images
  * - Supports fetchpriority="high" for LCP images
  * - Always renders with explicit width/height to prevent CLS
+ * - Uses higher compression (q=50) for faster loads
  */
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -17,18 +18,19 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
 
 /**
  * Transform Unsplash URL to use WebP format and proper dimensions
+ * Uses q=50 for better compression with acceptable quality
  */
 function optimizeUnsplashUrl(url: string, targetWidth?: number): string {
   if (!url.includes("unsplash.com")) return url;
   
-  // Parse existing URL and rebuild with optimized params
   const baseUrl = url.split("?")[0];
   const w = targetWidth || 600;
-  return `${baseUrl}?w=${w}&q=60&fm=webp&fit=crop&auto=format`;
+  return `${baseUrl}?w=${w}&q=50&fm=webp&fit=crop&auto=format`;
 }
 
 /**
  * Generate srcset for responsive images from Unsplash
+ * Uses q=50 for better compression
  */
 function generateSrcSet(url: string): string | undefined {
   if (!url.includes("unsplash.com")) return undefined;
@@ -36,7 +38,7 @@ function generateSrcSet(url: string): string | undefined {
   const baseUrl = url.split("?")[0];
   const widths = [400, 600, 800, 1200];
   return widths
-    .map((w) => `${baseUrl}?w=${w}&q=60&fm=webp&fit=crop&auto=format ${w}w`)
+    .map((w) => `${baseUrl}?w=${w}&q=50&fm=webp&fit=crop&auto=format ${w}w`)
     .join(", ");
 }
 
@@ -47,6 +49,8 @@ export default function OptimizedImage({
   height,
   priority = false,
   sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+  className,
+  style,
   ...props
 }: OptimizedImageProps) {
   const optimizedSrc = optimizeUnsplashUrl(src, width);
@@ -66,6 +70,11 @@ export default function OptimizedImage({
       loading={priority ? "eager" : "lazy"}
       decoding={priority ? "sync" : "async"}
       {...(priority ? { fetchPriority: "high" } as any : {})}
+      className={className}
+      style={{
+        contentVisibility: priority ? "visible" : "auto",
+        ...style,
+      }}
       {...props}
     />
   );

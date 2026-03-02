@@ -19,7 +19,7 @@ export interface PageHeroProps {
 }
 
 export default function PageHero({ title, subtitle, breadcrumb, backgroundImage, icon }: PageHeroProps) {
-  const defaultBg = "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=60&fm=webp&fit=crop&auto=format";
+  const defaultBg = "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=50&fm=webp&fit=crop&auto=format";
   const { isSpanish, ui } = useTranslation();
   const appointmentLabel = isSpanish ? (ui?.pageHero?.appointment ?? "CITA") : "APPOINTMENT";
 

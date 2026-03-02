@@ -209,6 +209,22 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
     cssCodeSplit: false, // Keep CSS in a single file for critters to process
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-ui': ['wouter', 'lucide-react'],
+        },
+      },
+    },
+    target: 'es2020', // Modern browsers only — no legacy polyfills
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
   },
   server: {
     port: 3000,

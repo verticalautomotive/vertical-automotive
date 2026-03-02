@@ -297,7 +297,7 @@ export default function Home() {
       </section>
 
       {/* Vehicle Types Section — mobile: tighter */}
-      <section className="py-10 sm:py-20 bg-background">
+      <section className="py-10 sm:py-20 bg-background" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
         <div className="container">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-6 sm:mb-12 text-center">
             {t.weServiceAllMakes} <span className="text-primary">{t.allMakes}</span>
@@ -333,7 +333,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section — mobile: compact 2x2 grid */}
-      <section id="stats" className="py-10 sm:py-20 bg-secondary text-secondary-foreground diagonal-top diagonal-bottom">
+      <section id="stats" className="py-10 sm:py-20 bg-secondary text-secondary-foreground diagonal-top diagonal-bottom" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 400px' }}>
         <div className="container">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8">
             {[
@@ -405,7 +405,7 @@ export default function Home() {
       </section>
 
       {/* Offers Section — mobile: collapsible compact cards, Desktop: full grid */}
-      <section id="offers" className="py-10 sm:py-20 bg-muted">
+      <section id="offers" className="py-10 sm:py-20 bg-muted" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
         <div className="container">
           <div className="text-center mb-6 sm:mb-16">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
@@ -484,7 +484,7 @@ export default function Home() {
       </section>
 
       {/* About Section — mobile: stacked, compact */}
-      <section id="about" className="py-10 sm:py-20 bg-background">
+      <section id="about" className="py-10 sm:py-20 bg-background" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 500px' }}>
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-center">
             <div>
@@ -535,7 +535,7 @@ export default function Home() {
       </section>
 
       {/* Google Reviews Section — mobile: compact */}
-      <section id="reviews" className="py-10 sm:py-20 bg-muted">
+      <section id="reviews" className="py-10 sm:py-20 bg-muted" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 800px' }}>
         <div className="container">
           <div className="text-center mb-6 sm:mb-16">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
@@ -723,7 +723,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section — mobile: stacked, compact */}
-      <section id="contact" className="py-10 sm:py-20 bg-secondary text-secondary-foreground">
+      <section id="contact" className="py-10 sm:py-20 bg-secondary text-secondary-foreground" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 700px' }}>
         <div className="container">
           <div className="text-center mb-6 sm:mb-16">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">

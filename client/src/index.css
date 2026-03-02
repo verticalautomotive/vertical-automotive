@@ -149,9 +149,10 @@
     @apply cursor-pointer;
   }
 
-  /* Performance optimization: GPU acceleration for transforms */
+  /* Prevent images from causing layout shifts */
   img {
-    will-change: transform;
+    max-width: 100%;
+    height: auto;
   }
 }
 

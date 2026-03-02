@@ -217,7 +217,7 @@ export default function Blog() {
         title={t.title}
         subtitle={t.subtitle}
         breadcrumb={blogBreadcrumb}
-        backgroundImage="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=60&fm=webp&fit=crop&auto=format"
+        backgroundImage="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=50&fm=webp&fit=crop&auto=format"
       />
 
       {/* Blog Articles Section */}

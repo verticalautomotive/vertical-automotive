@@ -170,7 +170,7 @@ export default function Contacts() {
           { label: t.breadcrumbHome, href: prefix || "/" },
           { label: t.breadcrumbContacts },
         ]}
-        backgroundImage="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=60&fm=webp&fit=crop&auto=format"
+        backgroundImage="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=50&fm=webp&fit=crop&auto=format"
       />
 
       {/* Locations Grid */}
