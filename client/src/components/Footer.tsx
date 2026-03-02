@@ -62,6 +62,8 @@ export default function Footer() {
               alt="Vertical Automotive"
               width={200}
               height={48}
+              loading="lazy"
+              decoding="async"
               className="h-10 sm:h-12 w-auto mb-3 sm:mb-6 mx-auto sm:mx-0"
             />
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">

@@ -109,6 +109,9 @@ export default function Navigation() {
               alt="Vertical Automotive"
               width={200}
               height={56}
+              loading="eager"
+              decoding="sync"
+              fetchPriority="high"
               className="h-9 sm:h-14 w-auto"
             />
           </Link>

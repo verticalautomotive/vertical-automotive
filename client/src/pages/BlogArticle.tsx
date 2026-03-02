@@ -402,13 +402,21 @@ export default function BlogArticlePage() {
 
       {/* Hero Banner */}
       <div
-        className="relative h-[40vh] sm:h-[50vh] min-h-[260px] sm:min-h-[400px] flex items-end"
-        style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.75)), url(${article.image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        className="relative h-[40vh] sm:h-[50vh] min-h-[260px] sm:min-h-[400px] flex items-end overflow-hidden"
       >
+        {/* Background image — lazy loaded */}
+        <img
+          src={article.image}
+          alt=""
+          role="presentation"
+          width={1200}
+          height={600}
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/75" />
         <div className="container pb-8 sm:pb-12 z-10 relative">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-1.5 text-xs sm:text-sm mb-4 sm:mb-6">

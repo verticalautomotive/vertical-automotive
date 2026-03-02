@@ -4,6 +4,7 @@
  * Reusable hero banner for inner pages
  * MOBILE: Reduced height (35vh), smaller text, compact appointment ribbon
  * BILINGUAL: Uses useTranslation for appointment button text
+ * PERFORMANCE: Uses <img> with loading="lazy" instead of CSS background-image
  */
 import { COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
@@ -22,18 +23,28 @@ export default function PageHero({ title, subtitle, breadcrumb, backgroundImage,
   const defaultBg = "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=50&fm=webp&fit=crop&auto=format";
   const { isSpanish, ui } = useTranslation();
   const appointmentLabel = isSpanish ? (ui?.pageHero?.appointment ?? "CITA") : "APPOINTMENT";
+  const bgSrc = backgroundImage || defaultBg;
 
   return (
     <div className="relative">
       {/* Hero */}
       <div
-        className="relative h-[35vh] sm:h-[50vh] min-h-[220px] sm:min-h-[400px] flex items-center justify-center"
-        style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(${backgroundImage || defaultBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        className="relative h-[35vh] sm:h-[50vh] min-h-[220px] sm:min-h-[400px] flex items-center justify-center overflow-hidden"
       >
+        {/* Background image — lazy loaded <img> instead of CSS background */}
+        <img
+          src={bgSrc}
+          alt=""
+          role="presentation"
+          width={1200}
+          height={600}
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70" />
+
         <div className="text-center z-10 px-4">
           {icon && (
             <div className="flex justify-center mb-3 sm:mb-6">
