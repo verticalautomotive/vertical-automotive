@@ -7,7 +7,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { COMPANY } from "@/lib/data";
-import { useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackSchedule } from "@/lib/gtm";
@@ -22,6 +22,8 @@ import {
   Lightbulb,
   Wrench,
   Share2,
+  Link2,
+  Check,
 } from "lucide-react";
 
 const BASE_URL = "https://verticalautomotive.com";
@@ -55,15 +57,38 @@ function SocialShareBar({
   articleUrl,
   articleTitle,
   shareLabel,
+  copiedLabel,
   variant = "horizontal",
 }: {
   articleUrl: string;
   articleTitle: string;
   shareLabel: string;
+  copiedLabel: string;
   variant?: "horizontal" | "vertical";
 }) {
+  const [copied, setCopied] = useState(false);
   const encodedUrl = encodeURIComponent(articleUrl);
   const encodedTitle = encodeURIComponent(articleTitle);
+
+  const handleCopyLink = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(articleUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback for older browsers
+      const textarea = document.createElement("textarea");
+      textarea.value = articleUrl;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  }, [articleUrl]);
 
   const links = [
     {
@@ -89,14 +114,14 @@ function SocialShareBar({
   const isVertical = variant === "vertical";
 
   return (
-    <div className={isVertical ? "space-y-3" : "flex items-center gap-3"}>
+    <div className={isVertical ? "space-y-3" : "flex items-center gap-3 flex-wrap"}>
       <div className="flex items-center gap-1.5">
         <Share2 className="w-3.5 h-3.5 text-primary" />
         <span className="font-display text-xs font-bold tracking-widest uppercase text-muted-foreground">
           {shareLabel}
         </span>
       </div>
-      <div className={`flex items-center gap-2 ${isVertical ? "" : ""}`}>
+      <div className="flex items-center gap-2">
         {links.map((link) => (
           <a
             key={link.name}
@@ -109,6 +134,29 @@ function SocialShareBar({
             {link.icon}
           </a>
         ))}
+
+        {/* Copy Link button */}
+        <button
+          onClick={handleCopyLink}
+          aria-label="Copy link"
+          className={`h-9 flex items-center justify-center gap-1.5 border-2 transition-all duration-200 font-display text-xs font-bold tracking-wider ${
+            copied
+              ? "border-primary bg-primary text-primary-foreground px-3"
+              : "border-border text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary px-3"
+          }`}
+        >
+          {copied ? (
+            <>
+              <Check className="w-3.5 h-3.5" />
+              <span>{copiedLabel}</span>
+            </>
+          ) : (
+            <>
+              <Link2 className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">COPY LINK</span>
+            </>
+          )}
+        </button>
       </div>
     </div>
   );
@@ -144,6 +192,7 @@ export default function BlogArticlePage() {
             relatedService: "Servicio Relacionado",
             viewService: "VER SERVICIO",
             shareArticle: "Compartir",
+            copied: "COPIADO",
             articleNotFound: "Artículo no encontrado",
             articleNotFoundDesc:
               "El artículo que busca no existe. Vuelva a nuestra página de información.",
@@ -167,6 +216,7 @@ export default function BlogArticlePage() {
             relatedService: "Related Service",
             viewService: "VIEW SERVICE",
             shareArticle: "Share",
+            copied: "COPIED",
             articleNotFound: "Article Not Found",
             articleNotFoundDesc:
               "The article you're looking for doesn't exist. Return to our blog page.",
@@ -420,6 +470,7 @@ export default function BlogArticlePage() {
                   articleUrl={`${BASE_URL}${articlePath}`}
                   articleTitle={`${article.title} ${article.titleHighlight}${article.titleSuffix ? ` ${article.titleSuffix}` : ""}`}
                   shareLabel={labels.shareArticle}
+                  copiedLabel={labels.copied}
                 />
               </div>
 
@@ -492,6 +543,7 @@ export default function BlogArticlePage() {
                     articleUrl={`${BASE_URL}${articlePath}`}
                     articleTitle={`${article.title} ${article.titleHighlight}${article.titleSuffix ? ` ${article.titleSuffix}` : ""}`}
                     shareLabel={labels.shareArticle}
+                    copiedLabel={labels.copied}
                     variant="vertical"
                   />
                 </div>
