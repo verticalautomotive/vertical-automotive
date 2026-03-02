@@ -706,7 +706,7 @@ export default function Home() {
           {/* CTA to Google Reviews */}
           <div className="text-center">
             <a
-              href="https://www.google.com/maps/place/Vertical+Automotive/@26.1657448,-80.1597137,17z/"
+              href="https://maps.app.goo.gl/FeCVCCDNZMjGieMEA"
               target="_blank"
               rel="noopener noreferrer"
             >
