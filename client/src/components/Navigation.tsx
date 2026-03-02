@@ -32,7 +32,7 @@ export default function Navigation() {
     aboutUs: "ABOUT US",
     reviews: "REVIEWS",
     contacts: "CONTACTS",
-    info: "INFO",
+    info: "TIPS",
     scheduleNow: "SCHEDULE NOW",
   };
 
@@ -67,7 +67,7 @@ export default function Navigation() {
     { label: isSpanish ? t.aboutUs : "ABOUT US", href: isSpanish ? "/es/sobre-nosotros" : "/about" },
     { label: isSpanish ? t.reviews : "REVIEWS", href: `${homeHash}#reviews` },
     { label: isSpanish ? t.contacts : "CONTACTS", href: isSpanish ? "/es/contactos" : "/contacts" },
-    { label: isSpanish ? t.info : "INFO", href: isSpanish ? "/es/informacion" : "/blog" },
+    { label: isSpanish ? t.info : "TIPS", href: isSpanish ? "/es/informacion" : "/blog" },
   ];
 
   const [, navigate] = useLocation();
