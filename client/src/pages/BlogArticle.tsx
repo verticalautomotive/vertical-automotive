@@ -7,7 +7,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { COMPANY } from "@/lib/data";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackSchedule } from "@/lib/gtm";
@@ -345,6 +345,57 @@ export default function BlogArticlePage() {
     ? `/es/informacion/${article.slug}`
     : `/blog/${article.slug}`;
 
+  // Generate stable section IDs from headings
+  const sectionIds = useMemo(() => {
+    if (!article) return [];
+    return article.sections.map((section, i) => {
+      const base = section.heading
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .slice(0, 50);
+      return `section-${i + 1}-${base}`;
+    });
+  }, [article]);
+
+  // Active section tracking for TOC highlight
+  const [activeSection, setActiveSection] = useState<number>(0);
+  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
+
+  useEffect(() => {
+    if (!article) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Find the topmost visible section
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) {
+          const idx = sectionRefs.current.findIndex(
+            (ref) => ref === visible[0].target
+          );
+          if (idx !== -1) setActiveSection(idx);
+        }
+      },
+      { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
+    );
+
+    sectionRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, [article, sectionIds]);
+
+  const scrollToSection = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const navHeight = 80; // approximate sticky nav height
+      const y = el.getBoundingClientRect().top + window.scrollY - navHeight;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navigation />
@@ -417,7 +468,12 @@ export default function BlogArticlePage() {
 
               {/* Article Sections */}
               {article.sections.map((section, i) => (
-                <div key={i} className="mb-8 sm:mb-10">
+                <div
+                  key={i}
+                  id={sectionIds[i]}
+                  ref={(el) => { sectionRefs.current[i] = el; }}
+                  className="mb-8 sm:mb-10 scroll-mt-24"
+                >
                   <h2 className="font-display text-xl sm:text-2xl font-black tracking-wide mb-3 sm:mb-4 flex items-start gap-3">
                     <span className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center bg-primary/10 text-primary font-display text-sm sm:text-base font-bold mt-0.5">
                       {i + 1}
@@ -507,15 +563,34 @@ export default function BlogArticlePage() {
                   </h4>
                   <nav className="space-y-2">
                     {article.sections.map((section, i) => (
-                      <div
+                      <button
                         key={i}
-                        className="flex items-start gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-default"
+                        onClick={() => scrollToSection(sectionIds[i])}
+                        className={`flex items-start gap-2 text-sm text-left w-full transition-all duration-200 group/toc ${
+                          activeSection === i
+                            ? "text-primary"
+                            : "text-muted-foreground hover:text-primary"
+                        }`}
                       >
-                        <span className="text-primary/60 font-display text-xs mt-0.5">
+                        <span
+                          className={`font-display text-xs mt-0.5 transition-colors duration-200 ${
+                            activeSection === i
+                              ? "text-primary"
+                              : "text-primary/60"
+                          }`}
+                        >
                           {String(i + 1).padStart(2, "0")}
                         </span>
-                        <span className="leading-snug">{section.heading}</span>
-                      </div>
+                        <span
+                          className={`leading-snug transition-all duration-200 ${
+                            activeSection === i
+                              ? "font-bold translate-x-0.5"
+                              : ""
+                          }`}
+                        >
+                          {section.heading}
+                        </span>
+                      </button>
                     ))}
                   </nav>
                 </div>
