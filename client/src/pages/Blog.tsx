@@ -377,7 +377,7 @@ export default function Blog() {
               <div className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center bg-primary text-primary-foreground">
                 <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
-              <h3 className="font-display text-lg sm:text-2xl font-black tracking-wider">
+              <h3 className="font-display text-lg sm:text-2xl font-black tracking-wider" style={{ color: "#faf5f5" }}>
                 {t.ai} <span className="text-primary">{t.aiSummary}</span>
               </h3>
             </div>
@@ -389,7 +389,7 @@ export default function Blog() {
             <div className="mb-6 sm:mb-8">
               <div className="flex items-center gap-2 mb-3 sm:mb-4">
                 <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-                <p className="text-xs sm:text-sm font-display font-bold tracking-wider">
+                <p className="text-xs sm:text-sm font-display font-bold tracking-wider" style={{ color: "#fafafa" }}>
                   {t.driversSearch2} <span className="text-primary">{t.solutions}</span>{t.notServices}
                 </p>
               </div>
