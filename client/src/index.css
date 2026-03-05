@@ -212,6 +212,47 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /* Image loading shimmer placeholder */
+  .img-shimmer {
+    position: relative;
+    overflow: hidden;
+    background: oklch(0.25 0.01 250);
+  }
+  .img-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      oklch(0.35 0.02 250 / 0.4) 40%,
+      oklch(0.35 0.02 250 / 0.4) 60%,
+      transparent 100%
+    );
+    animation: shimmer 1.8s ease-in-out infinite;
+    transform: translateX(-100%);
+  }
+  @keyframes shimmer {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* Image fade-in on load */
+  .img-fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+  }
+  .img-fade-in.loaded {
+    opacity: 1;
+  }
+
+  /* Stop shimmer once image has loaded */
+  .img-shimmer.shimmer-done::after {
+    animation: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+  }
+
   /* ============================================
      MOBILE COMPACT OVERRIDES (max-width: 639px)
      Desktop/tablet layout stays completely unchanged.

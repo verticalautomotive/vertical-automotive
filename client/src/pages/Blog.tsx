@@ -16,6 +16,7 @@ import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackSchedule } from "@/lib/gtm";
 import { BLOG_ARTICLES_EN, BLOG_ARTICLES_ES } from "@/lib/blog-articles";
+import LazyImage from "@/components/LazyImage";
 
 interface FAQItem {
   question: string;
@@ -247,7 +248,7 @@ export default function Blog() {
               <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 overflow-hidden group">
                 <div className="grid md:grid-cols-2">
                   <div className="relative h-48 sm:h-64 md:h-auto overflow-hidden">
-                    <img
+                    <LazyImage
                       src={featuredArticle.image.replace("w=1200", "w=800")}
                       loading="lazy"
                       decoding="async"
@@ -300,7 +301,7 @@ export default function Blog() {
                 className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden block"
               >
                 <div className="relative h-36 sm:h-48 overflow-hidden">
-                  <img
+                  <LazyImage
                     src={art.image.replace("w=1200", "w=600")}
                     loading="lazy"
                     decoding="async"

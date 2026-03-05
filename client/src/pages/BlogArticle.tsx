@@ -12,6 +12,7 @@ import { Link, useParams } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackSchedule } from "@/lib/gtm";
 import { BLOG_ARTICLES_EN, BLOG_ARTICLES_ES, type BlogArticle as BlogArticleType } from "@/lib/blog-articles";
+import LazyImage from "@/components/LazyImage";
 import {
   ArrowRight,
   ArrowLeft,
@@ -404,8 +405,8 @@ export default function BlogArticlePage() {
       <div
         className="relative h-[40vh] sm:h-[50vh] min-h-[260px] sm:min-h-[400px] flex items-end overflow-hidden"
       >
-        {/* Background image — lazy loaded */}
-        <img
+        {/* Background image — lazy loaded with fade-in */}
+        <LazyImage
           src={article.image}
           alt=""
           role="presentation"
@@ -414,6 +415,7 @@ export default function BlogArticlePage() {
           loading="lazy"
           decoding="async"
           className="absolute inset-0 w-full h-full object-cover"
+          wrapperClassName="absolute inset-0"
         />
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/75" />
@@ -673,7 +675,7 @@ export default function BlogArticlePage() {
                   className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden block"
                 >
                   <div className="relative h-36 sm:h-44 overflow-hidden">
-                    <img
+                    <LazyImage
                       src={related.image.replace("w=1200", "w=600")}
                       loading="lazy"
                       decoding="async"

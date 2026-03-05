@@ -10,6 +10,7 @@ import { COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
+import LazyImage from "@/components/LazyImage";
 
 export interface PageHeroProps {
   title: string;
@@ -31,8 +32,8 @@ export default function PageHero({ title, subtitle, breadcrumb, backgroundImage,
       <div
         className="relative h-[35vh] sm:h-[50vh] min-h-[220px] sm:min-h-[400px] flex items-center justify-center overflow-hidden"
       >
-        {/* Background image — lazy loaded <img> instead of CSS background */}
-        <img
+        {/* Background image — lazy loaded with shimmer + fade-in */}
+        <LazyImage
           src={bgSrc}
           alt=""
           role="presentation"
@@ -41,6 +42,7 @@ export default function PageHero({ title, subtitle, breadcrumb, backgroundImage,
           loading="lazy"
           decoding="async"
           className="absolute inset-0 w-full h-full object-cover"
+          wrapperClassName="absolute inset-0"
         />
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70" />
