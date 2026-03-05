@@ -16,7 +16,6 @@ import SEO from "@/components/SEO";
 import { trackSchedule } from "@/lib/gtm";
 import ServiceIcon from "@/components/ServiceIcon";
 import { useTranslation } from "@/hooks/useTranslation";
-import LazyImage from "@/components/LazyImage";
 
 export default function ServicesPage() {
   const { isSpanish, servicesPath, services, vehicleTypes, servicesPageExtra, ui } = useTranslation();
@@ -61,7 +60,7 @@ export default function ServicesPage() {
                 href={`${servicesPath}/${vt.slug}`}
                 className="group relative aspect-[4/3] overflow-hidden bg-card hover:shadow-2xl transition-all duration-300"
               >
-                <LazyImage
+                <img
                   src={vt.image}
                   alt={vt.title}
                   width={400}

@@ -5,9 +5,7 @@
  * - Supports fetchpriority="high" for LCP images
  * - Always renders with explicit width/height to prevent CLS
  * - Uses higher compression (q=50) for faster loads
- * - Shimmer placeholder + fade-in animation on load
  */
-import { useState, useCallback, useRef, useEffect } from "react";
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -57,75 +55,27 @@ export default function OptimizedImage({
 }: OptimizedImageProps) {
   const optimizedSrc = optimizeUnsplashUrl(src, width);
   const srcSet = generateSrcSet(src);
+  // Default dimensions based on 4:3 aspect ratio if not provided
   const imgWidth = width || 600;
   const imgHeight = height || Math.round(imgWidth * 0.75);
 
-  const [loaded, setLoaded] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
-
-  // Check if image is already cached (loaded before React hydration)
-  useEffect(() => {
-    if (imgRef.current?.complete && imgRef.current.naturalWidth > 0) {
-      setLoaded(true);
-    }
-  }, []);
-
-  const handleLoad = useCallback(() => {
-    setLoaded(true);
-  }, []);
-
-  // Priority images: no shimmer, render immediately
-  if (priority) {
-    return (
-      <img
-        ref={imgRef}
-        src={optimizedSrc}
-        srcSet={srcSet}
-        sizes={srcSet ? sizes : undefined}
-        alt={alt}
-        width={imgWidth}
-        height={imgHeight}
-        loading="eager"
-        decoding="sync"
-        fetchPriority="high"
-        className={className}
-        style={{
-          contentVisibility: "visible",
-          ...style,
-        }}
-        {...props}
-      />
-    );
-  }
-
   return (
-    <div
-      className={`img-shimmer ${loaded ? "shimmer-done" : ""}`}
+    <img
+      src={optimizedSrc}
+      srcSet={srcSet}
+      sizes={srcSet ? sizes : undefined}
+      alt={alt}
+      width={imgWidth}
+      height={imgHeight}
+      loading={priority ? "eager" : "lazy"}
+      decoding={priority ? "sync" : "async"}
+      {...(priority ? { fetchPriority: "high" } as any : {})}
+      className={className}
       style={{
-        position: "relative",
-        overflow: "hidden",
-        width: "100%",
-        height: "100%",
+        contentVisibility: priority ? "visible" : "auto",
+        ...style,
       }}
-    >
-      <img
-        ref={imgRef}
-        src={optimizedSrc}
-        srcSet={srcSet}
-        sizes={srcSet ? sizes : undefined}
-        alt={alt}
-        width={imgWidth}
-        height={imgHeight}
-        loading="lazy"
-        decoding="async"
-        onLoad={handleLoad}
-        className={`img-fade-in ${loaded ? "loaded" : ""} ${className || ""}`}
-        style={{
-          contentVisibility: "auto",
-          ...style,
-        }}
-        {...props}
-      />
-    </div>
+      {...props}
+    />
   );
 }

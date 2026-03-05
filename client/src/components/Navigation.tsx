@@ -100,7 +100,7 @@ export default function Navigation() {
 
   return (
     <nav className="sticky top-0 z-50 bg-secondary text-secondary-foreground shadow-lg">
-      <div className="container">
+      <div className="w-full px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-20">
           {/* Logo */}
           <Link href={homePath} className="flex-shrink-0">
@@ -117,12 +117,12 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center space-x-0.5 xl:space-x-1">
             {/* SERVICE Dropdown */}
             <div ref={dropdownRef} className="relative">
               <button
                 onClick={() => setServiceDropdownOpen(!serviceDropdownOpen)}
-                className="flex items-center px-3 py-2 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors"
+                className="flex items-center px-2 xl:px-3 py-2 font-display text-[13px] xl:text-sm font-bold tracking-wider hover:text-primary transition-colors"
               >
                 {isSpanish ? t.service : "SERVICE"}
                 <ChevronDown className={`w-4 h-4 ml-1 transition-transform ${serviceDropdownOpen ? 'rotate-180' : ''}`} />
@@ -178,7 +178,7 @@ export default function Navigation() {
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="px-3 py-2 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors cursor-pointer"
+                  className="px-2 xl:px-3 py-2 font-display text-[13px] xl:text-sm font-bold tracking-wider hover:text-primary transition-colors cursor-pointer"
                 >
                   {link.label}
                 </a>
@@ -186,7 +186,7 @@ export default function Navigation() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="px-3 py-2 font-display text-sm font-bold tracking-wider hover:text-primary transition-colors"
+                  className="px-2 xl:px-3 py-2 font-display text-[13px] xl:text-sm font-bold tracking-wider hover:text-primary transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -195,16 +195,18 @@ export default function Navigation() {
           </div>
 
           {/* CTA + Language Switcher — desktop */}
-          <div className="hidden lg:flex items-center space-x-3">
+          <div className="hidden lg:flex items-center space-x-4">
             <LanguageSwitcher />
-            <div className="flex flex-col items-end text-xs space-y-0.5">
+            <div className="flex flex-col items-end text-xs space-y-1">
               <a href="tel:9545651518" className="flex items-center space-x-2 hover:text-primary transition-colors" onClick={() => trackCall("Wilton Manors", "(954) 565-1518", "desktop_nav")}>
                 <Phone className="w-3.5 h-3.5" />
-                <span className="mono-number">Wilton Manors (954) 565-1518</span>
+                <span className="mono-number">Wilton Manors</span>
+                <span className="mono-number font-bold">(954) 565-1518</span>
               </a>
               <a href="tel:6452162266" className="flex items-center space-x-2 hover:text-primary transition-colors" onClick={() => trackCall("Fort Lauderdale", "(645) 216-2266", "desktop_nav")}>
                 <Phone className="w-3.5 h-3.5" />
-                <span className="mono-number">Ft. Lauderdale (645) 216-2266</span>
+                <span className="mono-number">Ft. Lauderdale</span>
+                <span className="mono-number font-bold">(645) 216-2266</span>
               </a>
             </div>
             <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackSchedule("desktop_nav")}>
