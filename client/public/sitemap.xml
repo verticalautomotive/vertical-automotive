@@ -22,9 +22,24 @@
     <loc>https://verticalautomotive.com/services</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/services" />
     <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/servicios" />
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>    <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://verticalautomotive.com/services/faq</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/services/faq" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/servicios/preguntas-frecuentes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://verticalautomotive.com/services/faq" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/servicios/preguntas-frecuentes</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/services/faq" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/servicios/preguntas-frecuentes" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://verticalautomotive.com/es/servicios</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/services" />

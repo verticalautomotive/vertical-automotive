@@ -41,6 +41,8 @@ const ES_TO_EN: Record<string, string> = Object.fromEntries(
 
 export function toSpanishPath(enPath: string): string {
   if (enPath === "/" || enPath === "") return "/es";
+  // Special route: /services/faq -> /es/servicios/preguntas-frecuentes
+  if (enPath === "/services/faq") return "/es/servicios/preguntas-frecuentes";
   const parts = enPath.replace(/^\//, "").split("/");
   if (parts[0] && EN_TO_ES[parts[0]]) {
     parts[0] = EN_TO_ES[parts[0]];
@@ -55,6 +57,8 @@ export function toSpanishPath(enPath: string): string {
 export function toEnglishPath(esPath: string): string {
   const withoutPrefix = esPath.replace(/^\/es\/?/, "/");
   if (withoutPrefix === "/" || withoutPrefix === "") return "/";
+  // Special route: /servicios/preguntas-frecuentes -> /services/faq
+  if (withoutPrefix === "/servicios/preguntas-frecuentes") return "/services/faq";
   const parts = withoutPrefix.replace(/^\//, "").split("/");
   if (parts[0] && ES_TO_EN[parts[0]]) {
     parts[0] = ES_TO_EN[parts[0]];
