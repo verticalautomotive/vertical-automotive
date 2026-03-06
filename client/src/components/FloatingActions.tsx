@@ -16,8 +16,8 @@ const SMS_NUMBERS = {
 };
 
 const DIRECTIONS_URLS = {
-  wiltonManors: "https://www.google.com/maps/dir/?api=1&destination=1100+W+Oakland+Park+Blvd+Unit+5+Wilton+Manors+FL+33311",
-  fortLauderdale: "https://www.google.com/maps/dir/?api=1&destination=707+NE+11th+St+Fort+Lauderdale+FL+33304",
+  wiltonManors: "https://maps.app.goo.gl/dyKs1o1YECYzbJFf6",
+  fortLauderdale: "https://maps.app.goo.gl/52SrqXcH6K65Nqn66",
 };
 
 type PopupType = "sms" | "directions" | null;

@@ -19,11 +19,11 @@ function TikTokIcon({ className }: { className?: string }) {
 }
 
 function getMapsUrl(location: typeof LOCATIONS[0]) {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.fullAddress)}`;
+  return location.directionsUrl;
 }
 
 function getDirectionsUrl(location: typeof LOCATIONS[0]) {
-  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location.fullAddress)}`;
+  return location.directionsUrl;
 }
 
 export default function Footer() {

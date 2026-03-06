@@ -17,7 +17,7 @@ import { trackCall, trackSchedule, trackDirections } from "@/lib/gtm";
 import { useTranslation } from "@/hooks/useTranslation";
 
 function getMapsUrl(location: typeof LOCATIONS[0]) {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.fullAddress)}`;
+  return location.directionsUrl;
 }
 
 function ContactLocationCard({ location, isSpanish }: { location: typeof LOCATIONS[0]; isSpanish: boolean }) {
@@ -96,7 +96,7 @@ function ContactLocationCard({ location, isSpanish }: { location: typeof LOCATIO
 
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
           <a
-            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location.fullAddress)}`}
+            href={location.directionsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1"

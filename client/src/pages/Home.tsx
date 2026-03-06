@@ -819,7 +819,7 @@ function LocationCard({ location, isSpanish }: { location: typeof LOCATIONS[0]; 
         </h3>
         <div className="space-y-2 sm:space-y-4 mb-4 sm:mb-8">
           <a
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.fullAddress)}`}
+            href={location.directionsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-start space-x-2 sm:space-x-3 group"
@@ -839,7 +839,7 @@ function LocationCard({ location, isSpanish }: { location: typeof LOCATIONS[0]; 
         </div>
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
           <a
-            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location.fullAddress)}`}
+            href={location.directionsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1"

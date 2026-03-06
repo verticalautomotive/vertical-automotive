@@ -28,6 +28,7 @@ export const LOCATIONS = [
     phoneRaw: "9545651518",
     lat: 26.165788050203393,
     lng: -80.15759747891684,
+    directionsUrl: "https://maps.app.goo.gl/dyKs1o1YECYzbJFf6",
   },
   {
     name: "Fort Lauderdale",
@@ -38,6 +39,7 @@ export const LOCATIONS = [
     phoneRaw: "6452162266",
     lat: 26.139035077116752,
     lng: -80.13559753014344,
+    directionsUrl: "https://maps.app.goo.gl/52SrqXcH6K65Nqn66",
   },
 ];
 
