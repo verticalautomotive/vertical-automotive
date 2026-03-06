@@ -244,7 +244,7 @@ export default function Blog() {
           {/* Featured Article — links to standalone page */}
           <div className="mb-6 sm:mb-10">
             <Link href={articlePath(featuredArticle.slug)} className="block">
-              <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 overflow-hidden group">
+              <div className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 overflow-hidden group rounded-xl">
                 <div className="grid md:grid-cols-2">
                   <div className="relative h-48 sm:h-64 md:h-auto overflow-hidden">
                     <img
@@ -297,7 +297,7 @@ export default function Blog() {
               <Link
                 key={art.slug}
                 href={articlePath(art.slug)}
-                className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden block"
+                className="bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden block rounded-xl"
               >
                 <div className="relative h-36 sm:h-48 overflow-hidden">
                   <img

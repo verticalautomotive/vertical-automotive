@@ -147,7 +147,7 @@ export default function ServiceDetail() {
               <Link
                 key={s.slug}
                 href={`${servicesPath}/${s.slug}`}
-                className="group flex flex-col items-center text-center p-2 bg-card border border-border hover:border-primary transition-all duration-200"
+                className="group flex flex-col items-center text-center p-2 bg-card border border-border hover:border-primary transition-all duration-200 rounded-xl"
               >
                 <div className="w-6 h-6 mb-1">
                   <ServiceIcon name={s.icon} />
@@ -163,7 +163,7 @@ export default function ServiceDetail() {
               <Link
                 key={s.slug}
                 href={`${servicesPath}/${s.slug}`}
-                className="group p-6 bg-card border-2 border-border hover:border-primary transition-all duration-300"
+                className="group p-6 bg-card border-2 border-border hover:border-primary transition-all duration-300 rounded-xl"
               >
                 <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-tight">
                   {s.shortTitle}
