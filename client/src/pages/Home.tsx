@@ -389,13 +389,13 @@ export default function Home() {
               <Link key={service.slug} href={`${servicesPath}/${service.slug}`}>
                 <div className="tile-3d-wrap h-full">
                   <Card
-                    className="tile-3d p-6 border-2 border-border hover:border-primary hover:bg-primary group transition-all duration-300 cursor-pointer h-full"
+                    className="tile-3d p-6 border-2 border-border hover:border-primary group transition-all duration-300 cursor-pointer h-full"
                   >
                     <div className="w-12 h-12 mb-4 tile-3d-icon">
                       <ServiceIcon name={service.icon} />
                     </div>
-                    <h3 className="text-lg font-bold mb-2 group-hover:text-primary-foreground transition-colors leading-tight relative z-[2]">{service.shortTitle}</h3>
-                    <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/80 relative z-[2]">
+                    <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-tight relative z-[2]">{service.shortTitle}</h3>
+                    <p className="text-sm text-muted-foreground relative z-[2]">
                       {service.description}
                     </p>
                   </Card>
