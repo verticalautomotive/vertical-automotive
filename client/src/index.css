@@ -490,13 +490,14 @@ a[class*="bg-primary"] {
   ) !important;
   box-shadow:
     0 4px 0 oklch(0.38 0.18 250),
-    0 6px 12px oklch(0.2 0.02 270 / 0.25),
+    0 6px 14px oklch(0.2 0.02 270 / 0.3),
+    0 2px 6px oklch(0.55 0.2 250 / 0.2),
     inset 0 1px 0 oklch(0.72 0.15 250 / 0.5) !important;
   transform: translateY(0);
   transition:
-    transform 0.15s cubic-bezier(0.33, 1, 0.68, 1),
-    box-shadow 0.15s cubic-bezier(0.33, 1, 0.68, 1),
-    background-image 0.15s ease !important;
+    transform 0.2s cubic-bezier(0.33, 1, 0.68, 1),
+    box-shadow 0.2s cubic-bezier(0.33, 1, 0.68, 1),
+    background-image 0.2s ease !important;
 }
 
 [data-slot="button"]:hover,
@@ -510,10 +511,11 @@ a[class*="bg-primary"]:hover {
     oklch(0.53 0.2 250) 100%
   ) !important;
   box-shadow:
-    0 5px 0 oklch(0.38 0.18 250),
-    0 8px 16px oklch(0.2 0.02 270 / 0.3),
-    inset 0 1px 0 oklch(0.72 0.15 250 / 0.6) !important;
-  transform: translateY(-1px) !important;
+    0 6px 0 oklch(0.38 0.18 250),
+    0 10px 24px oklch(0.2 0.02 270 / 0.35),
+    0 4px 10px oklch(0.55 0.2 250 / 0.25),
+    inset 0 1px 0 oklch(0.72 0.15 250 / 0.65) !important;
+  transform: translateY(-3px) !important;
 }
 
 [data-slot="button"]:active,
@@ -528,9 +530,9 @@ a[class*="bg-primary"]:active {
   ) !important;
   box-shadow:
     0 1px 0 oklch(0.38 0.18 250),
-    0 2px 4px oklch(0.2 0.02 270 / 0.2),
+    0 2px 4px oklch(0.2 0.02 270 / 0.15),
     inset 0 2px 4px oklch(0.3 0.15 250 / 0.3) !important;
-  transform: translateY(3px) !important;
+  transform: translateY(2px) !important;
 }
 
 /* Outline / bordered buttons — transparent with 3D border depth */
@@ -543,23 +545,25 @@ a[class*="border-primary"] {
   background-color: transparent;
   box-shadow:
     0 3px 0 oklch(0.45 0.18 250 / 0.4),
-    0 4px 10px oklch(0.2 0.02 270 / 0.12),
+    0 4px 12px oklch(0.2 0.02 270 / 0.15),
+    0 2px 6px oklch(0.55 0.2 250 / 0.12),
     inset 0 1px 0 oklch(0.65 0.2 250 / 0.15) !important;
   transform: translateY(0);
   transition:
-    transform 0.15s cubic-bezier(0.33, 1, 0.68, 1),
-    box-shadow 0.15s cubic-bezier(0.33, 1, 0.68, 1),
-    background-color 0.15s ease !important;
+    transform 0.2s cubic-bezier(0.33, 1, 0.68, 1),
+    box-shadow 0.2s cubic-bezier(0.33, 1, 0.68, 1),
+    background-color 0.2s ease !important;
 }
 
 [data-slot="button"][class*="border-primary"]:hover,
 button[class*="border-primary"]:hover,
 a[class*="border-primary"]:hover {
   box-shadow:
-    0 4px 0 oklch(0.45 0.18 250 / 0.5),
-    0 6px 14px oklch(0.2 0.02 270 / 0.18),
+    0 5px 0 oklch(0.45 0.18 250 / 0.5),
+    0 8px 20px oklch(0.2 0.02 270 / 0.22),
+    0 3px 8px oklch(0.55 0.2 250 / 0.18),
     inset 0 1px 0 oklch(0.65 0.2 250 / 0.25) !important;
-  transform: translateY(-1px) !important;
+  transform: translateY(-3px) !important;
 }
 
 [data-slot="button"][class*="border-primary"]:active,
@@ -579,12 +583,13 @@ button[class*="bg-card"],
 a[class*="bg-card"] {
   box-shadow:
     0 3px 0 oklch(0.8 0.01 270),
-    0 4px 10px oklch(0.2 0.02 270 / 0.12),
+    0 5px 12px oklch(0.2 0.02 270 / 0.15),
+    0 2px 6px oklch(0.5 0.01 270 / 0.08),
     inset 0 1px 0 oklch(1 0 0 / 0.7) !important;
   transform: translateY(0);
   transition:
-    transform 0.15s cubic-bezier(0.33, 1, 0.68, 1),
-    box-shadow 0.15s cubic-bezier(0.33, 1, 0.68, 1) !important;
+    transform 0.2s cubic-bezier(0.33, 1, 0.68, 1),
+    box-shadow 0.2s cubic-bezier(0.33, 1, 0.68, 1) !important;
 }
 
 button[class*="bg-white"]:hover,
@@ -592,10 +597,11 @@ a[class*="bg-white"]:hover,
 button[class*="bg-card"]:hover,
 a[class*="bg-card"]:hover {
   box-shadow:
-    0 4px 0 oklch(0.8 0.01 270),
-    0 6px 14px oklch(0.2 0.02 270 / 0.18),
-    inset 0 1px 0 oklch(1 0 0 / 0.8) !important;
-  transform: translateY(-1px) !important;
+    0 5px 0 oklch(0.8 0.01 270),
+    0 8px 20px oklch(0.2 0.02 270 / 0.22),
+    0 3px 8px oklch(0.5 0.01 270 / 0.12),
+    inset 0 1px 0 oklch(1 0 0 / 0.85) !important;
+  transform: translateY(-3px) !important;
 }
 
 button[class*="bg-white"]:active,
@@ -614,11 +620,12 @@ a[class*="bg-card"]:active {
   background: linear-gradient(135deg, oklch(0.58 0.22 250), oklch(0.45 0.2 250)) !important;
   box-shadow:
     0 3px 0 oklch(0.35 0.18 250),
-    0 4px 12px oklch(0.55 0.2 250 / 0.5),
+    0 5px 14px oklch(0.55 0.2 250 / 0.5),
+    0 2px 6px oklch(0.55 0.2 250 / 0.25),
     inset 0 1px 0 oklch(0.7 0.15 250 / 0.4) !important;
   transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease !important;
+    transform 0.2s ease,
+    box-shadow 0.2s ease !important;
 }
 
 .neon-schedule-btn:active {
