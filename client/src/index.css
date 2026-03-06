@@ -470,3 +470,187 @@
     0 3px 10px oklch(0.2 0.02 270 / 0.08),
     0 1px 4px oklch(0.2 0.02 270 / 0.06);
 }
+
+/* ============================================
+   3D VOLUME BUTTONS — Elevated Press Effect
+   ============================================ */
+
+/* Primary filled button — blue with depth */
+[data-slot="button"],
+button.bg-primary,
+a.bg-primary,
+button[class*="bg-primary"],
+a[class*="bg-primary"] {
+  position: relative;
+  background-image: linear-gradient(
+    180deg,
+    oklch(0.62 0.2 250) 0%,
+    oklch(0.50 0.2 250) 100%
+  ) !important;
+  box-shadow:
+    0 4px 0 oklch(0.38 0.18 250),
+    0 6px 12px oklch(0.2 0.02 270 / 0.25),
+    inset 0 1px 0 oklch(0.72 0.15 250 / 0.5) !important;
+  transform: translateY(0);
+  transition:
+    transform 0.15s cubic-bezier(0.33, 1, 0.68, 1),
+    box-shadow 0.15s cubic-bezier(0.33, 1, 0.68, 1),
+    background-image 0.15s ease !important;
+}
+
+[data-slot="button"]:hover,
+button.bg-primary:hover,
+a.bg-primary:hover,
+button[class*="bg-primary"]:hover,
+a[class*="bg-primary"]:hover {
+  background-image: linear-gradient(
+    180deg,
+    oklch(0.65 0.22 250) 0%,
+    oklch(0.53 0.2 250) 100%
+  ) !important;
+  box-shadow:
+    0 5px 0 oklch(0.38 0.18 250),
+    0 8px 16px oklch(0.2 0.02 270 / 0.3),
+    inset 0 1px 0 oklch(0.72 0.15 250 / 0.6) !important;
+  transform: translateY(-1px) !important;
+}
+
+[data-slot="button"]:active,
+button.bg-primary:active,
+a.bg-primary:active,
+button[class*="bg-primary"]:active,
+a[class*="bg-primary"]:active {
+  background-image: linear-gradient(
+    180deg,
+    oklch(0.48 0.2 250) 0%,
+    oklch(0.45 0.18 250) 100%
+  ) !important;
+  box-shadow:
+    0 1px 0 oklch(0.38 0.18 250),
+    0 2px 4px oklch(0.2 0.02 270 / 0.2),
+    inset 0 2px 4px oklch(0.3 0.15 250 / 0.3) !important;
+  transform: translateY(3px) !important;
+}
+
+/* Outline / bordered buttons — transparent with 3D border depth */
+[data-slot="button"][class*="border-primary"],
+button[class*="border-primary"],
+a[class*="border-primary"] {
+  position: relative;
+  background-image: none !important;
+  background-color: transparent;
+  box-shadow:
+    0 3px 0 oklch(0.45 0.18 250 / 0.4),
+    0 4px 10px oklch(0.2 0.02 270 / 0.12),
+    inset 0 1px 0 oklch(0.65 0.2 250 / 0.15) !important;
+  transform: translateY(0);
+  transition:
+    transform 0.15s cubic-bezier(0.33, 1, 0.68, 1),
+    box-shadow 0.15s cubic-bezier(0.33, 1, 0.68, 1),
+    background-color 0.15s ease !important;
+}
+
+[data-slot="button"][class*="border-primary"]:hover,
+button[class*="border-primary"]:hover,
+a[class*="border-primary"]:hover {
+  box-shadow:
+    0 4px 0 oklch(0.45 0.18 250 / 0.5),
+    0 6px 14px oklch(0.2 0.02 270 / 0.18),
+    inset 0 1px 0 oklch(0.65 0.2 250 / 0.25) !important;
+  transform: translateY(-1px) !important;
+}
+
+[data-slot="button"][class*="border-primary"]:active,
+button[class*="border-primary"]:active,
+a[class*="border-primary"]:active {
+  box-shadow:
+    0 1px 0 oklch(0.45 0.18 250 / 0.3),
+    0 1px 3px oklch(0.2 0.02 270 / 0.1),
+    inset 0 2px 3px oklch(0.3 0.15 250 / 0.15) !important;
+  transform: translateY(2px) !important;
+}
+
+/* White / light buttons (e.g., on dark backgrounds) */
+button[class*="bg-white"],
+a[class*="bg-white"],
+button[class*="bg-card"],
+a[class*="bg-card"] {
+  box-shadow:
+    0 3px 0 oklch(0.8 0.01 270),
+    0 4px 10px oklch(0.2 0.02 270 / 0.12),
+    inset 0 1px 0 oklch(1 0 0 / 0.7) !important;
+  transform: translateY(0);
+  transition:
+    transform 0.15s cubic-bezier(0.33, 1, 0.68, 1),
+    box-shadow 0.15s cubic-bezier(0.33, 1, 0.68, 1) !important;
+}
+
+button[class*="bg-white"]:hover,
+a[class*="bg-white"]:hover,
+button[class*="bg-card"]:hover,
+a[class*="bg-card"]:hover {
+  box-shadow:
+    0 4px 0 oklch(0.8 0.01 270),
+    0 6px 14px oklch(0.2 0.02 270 / 0.18),
+    inset 0 1px 0 oklch(1 0 0 / 0.8) !important;
+  transform: translateY(-1px) !important;
+}
+
+button[class*="bg-white"]:active,
+a[class*="bg-white"]:active,
+button[class*="bg-card"]:active,
+a[class*="bg-card"]:active {
+  box-shadow:
+    0 1px 0 oklch(0.8 0.01 270),
+    0 1px 3px oklch(0.2 0.02 270 / 0.1),
+    inset 0 2px 3px oklch(0.5 0.01 270 / 0.15) !important;
+  transform: translateY(2px) !important;
+}
+
+/* Neon schedule button in mobile footer — enhanced 3D */
+.neon-schedule-btn {
+  background: linear-gradient(135deg, oklch(0.58 0.22 250), oklch(0.45 0.2 250)) !important;
+  box-shadow:
+    0 3px 0 oklch(0.35 0.18 250),
+    0 4px 12px oklch(0.55 0.2 250 / 0.5),
+    inset 0 1px 0 oklch(0.7 0.15 250 / 0.4) !important;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease !important;
+}
+
+.neon-schedule-btn:active {
+  box-shadow:
+    0 1px 0 oklch(0.35 0.18 250),
+    0 1px 4px oklch(0.55 0.2 250 / 0.3),
+    inset 0 2px 4px oklch(0.3 0.15 250 / 0.3) !important;
+  transform: translateY(2px) !important;
+}
+
+/* Navigation SCHEDULE NOW button — 3D volume */
+nav [data-slot="button"],
+header [data-slot="button"] {
+  border-radius: 4px;
+}
+
+/* Exclude non-button elements that happen to match (decorative bars, badges, etc.) */
+div.h-1,
+div[class*="bg-primary/10"],
+div[class*="bg-primary/5"],
+div[class*="bg-primary"][class*="px-"],
+span[class*="bg-primary"][class*="text-"],
+div[class*="inline-block"][class*="bg-primary"],
+div[class*="inline-flex"][class*="bg-primary"],
+section[class*="bg-primary"] {
+  background-image: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Reset 3D on disabled buttons */
+[data-slot="button"]:disabled,
+button:disabled {
+  background-image: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
