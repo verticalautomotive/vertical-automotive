@@ -18,6 +18,7 @@ import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackSchedule } from "@/lib/gtm";
+import ServiceFAQ from "@/components/ServiceFAQ";
 
 const SERVICE_IMAGES: Record<string, string> = {
   "battery-cranking-charging-systems": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1200&q=50&fm=webp&fit=crop&auto=format",
@@ -103,6 +104,9 @@ export default function ServiceDetail() {
           </p>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <ServiceFAQ serviceSlug={service.slug} serviceTitle={service.title} />
 
       {/* CTA */}
       <section className="py-8 sm:py-16 bg-primary text-primary-foreground text-center">
