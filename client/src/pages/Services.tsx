@@ -58,7 +58,7 @@ export default function ServicesPage() {
               <Link
                 key={vt.slug}
                 href={`${servicesPath}/${vt.slug}`}
-                className="tile-3d-image group relative aspect-[4/3] bg-card transition-all duration-300"
+                className="glass-image group relative aspect-[4/3] bg-card"
               >
                 <img
                   src={vt.image}
@@ -94,8 +94,8 @@ export default function ServicesPage() {
           <div className="grid grid-cols-3 gap-2 sm:hidden">
             {services.map((service) => (
               <Link key={service.slug} href={`${servicesPath}/${service.slug}`}>
-                <div className="tile-3d-compact flex flex-col items-center text-center p-2.5 border border-border hover:border-primary group transition-all duration-200 cursor-pointer">
-                  <div className="w-7 h-7 mb-1.5 tile-3d-icon">
+                <div className="glass-compact flex flex-col items-center text-center p-2.5 hover:border-primary/30 group cursor-pointer">
+                  <div className="w-7 h-7 mb-1.5 glass-icon">
                     <ServiceIcon name={service.icon} />
                   </div>
                   <span className="text-[10px] font-bold leading-tight group-hover:text-primary transition-colors">{service.shortTitle}</span>
@@ -108,8 +108,8 @@ export default function ServicesPage() {
           <div className="hidden sm:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => (
               <Link key={service.slug} href={`${servicesPath}/${service.slug}`}>
-                <div className="tile-3d-wrap h-full">
-                  <Card className="tile-3d p-8 border-2 border-border hover:border-primary transition-all duration-300 cursor-pointer h-full group">
+                <div className="glass-wrap h-full">
+                  <Card className="glass-card p-8 cursor-pointer h-full group">
                     <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-tight relative z-[2]">
                       {service.shortTitle}
                     </h3>

@@ -87,9 +87,9 @@ export default function OffersPage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {offers.map((offer, index) => (
-              <div key={index} className="tile-3d-wrap">
+              <div key={index} className="glass-wrap">
                 <Card
-                  className="tile-3d tile-3d-offer p-3 sm:p-8 border-2 border-border hover:border-primary transition-all duration-300"
+                  className="glass-card glass-offer p-3 sm:p-8"
                 >
                   <div className="inline-block bg-primary text-primary-foreground px-2 sm:px-4 py-0.5 sm:py-1 text-[9px] sm:text-xs font-bold mb-2 sm:mb-4 relative z-[2]">
                     {offer.badge}
@@ -134,7 +134,7 @@ export default function OffersPage() {
             {coupons.map((coupon, index) => (
               <div
                 key={index}
-                className="tile-3d-coupon border-2 border-dashed border-border p-4 sm:p-8 text-center hover:border-primary transition-colors"
+                className="glass-coupon border-2 border-dashed border-border/50 p-4 sm:p-8 text-center"
               >
                 <h3 className="text-sm sm:text-xl font-bold mb-1 sm:mb-2">{coupon.title}</h3>
                 <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-4 whitespace-pre-line">
