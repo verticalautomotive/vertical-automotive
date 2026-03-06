@@ -87,34 +87,36 @@ export default function OffersPage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {offers.map((offer, index) => (
-              <Card
-                key={index}
-                className="p-3 sm:p-8 bg-card border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-xl"
-              >
-                <div className="inline-block bg-primary text-primary-foreground px-2 sm:px-4 py-0.5 sm:py-1 text-[9px] sm:text-xs font-bold mb-2 sm:mb-4">
-                  {offer.badge}
-                </div>
-                <h3 className="text-xs sm:text-xl font-bold mb-1 sm:mb-3 leading-tight">{offer.title}</h3>
-                <div className="text-xl sm:text-4xl font-black text-primary mb-1 sm:mb-4 mono-number">
-                  {offer.value}
-                </div>
-                <p className="text-[10px] sm:text-sm text-muted-foreground mb-2 sm:mb-6 hidden sm:block">
-                  {offer.description}
-                </p>
-                <a
-                  href={COMPANY.appointmentUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackClaimOffer(offer.title, "offers_page")}
+              <div key={index} className="tile-3d-wrap">
+                <Card
+                  className="tile-3d tile-3d-offer p-3 sm:p-8 border-2 border-border hover:border-primary transition-all duration-300"
                 >
-                  <Button
-                    variant="outline"
-                    className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-[10px] sm:text-sm py-1.5 sm:py-2"
+                  <div className="inline-block bg-primary text-primary-foreground px-2 sm:px-4 py-0.5 sm:py-1 text-[9px] sm:text-xs font-bold mb-2 sm:mb-4 relative z-[2]">
+                    {offer.badge}
+                  </div>
+                  <h3 className="text-xs sm:text-xl font-bold mb-1 sm:mb-3 leading-tight relative z-[2]">{offer.title}</h3>
+                  <div className="text-xl sm:text-4xl font-black text-primary mb-1 sm:mb-4 mono-number relative z-[2]">
+                    {offer.value}
+                  </div>
+                  <p className="text-[10px] sm:text-sm text-muted-foreground mb-2 sm:mb-6 hidden sm:block relative z-[2]">
+                    {offer.description}
+                  </p>
+                  <a
+                    href={COMPANY.appointmentUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackClaimOffer(offer.title, "offers_page")}
+                    className="relative z-[2]"
                   >
-                    {t.claimOffer}
-                  </Button>
-                </a>
-              </Card>
+                    <Button
+                      variant="outline"
+                      className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-[10px] sm:text-sm py-1.5 sm:py-2"
+                    >
+                      {t.claimOffer}
+                    </Button>
+                  </a>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
@@ -132,7 +134,7 @@ export default function OffersPage() {
             {coupons.map((coupon, index) => (
               <div
                 key={index}
-                className="border-2 border-dashed border-border p-4 sm:p-8 bg-card text-center hover:border-primary transition-colors"
+                className="tile-3d-coupon border-2 border-dashed border-border p-4 sm:p-8 text-center hover:border-primary transition-colors"
               >
                 <h3 className="text-sm sm:text-xl font-bold mb-1 sm:mb-2">{coupon.title}</h3>
                 <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-4 whitespace-pre-line">

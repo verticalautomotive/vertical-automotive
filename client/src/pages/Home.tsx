@@ -373,8 +373,8 @@ export default function Home() {
           <div className="grid grid-cols-3 gap-2 sm:hidden">
             {services.map((service) => (
               <Link key={service.slug} href={`${servicesPath}/${service.slug}`}>
-                <div className="flex flex-col items-center justify-center text-center p-2.5 bg-card border border-border hover:border-primary group transition-all duration-200 cursor-pointer h-[88px]">
-                  <div className="w-7 h-7 mb-1.5 flex-shrink-0">
+                <div className="tile-3d-compact flex flex-col items-center justify-center text-center p-2.5 border border-border hover:border-primary group transition-all duration-200 cursor-pointer h-[88px]">
+                  <div className="w-7 h-7 mb-1.5 flex-shrink-0 tile-3d-icon">
                     <ServiceIcon name={service.icon} />
                   </div>
                   <span className="text-[10px] font-bold leading-tight group-hover:text-primary transition-colors line-clamp-2">{service.shortTitle}</span>
@@ -387,17 +387,19 @@ export default function Home() {
           <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {services.map((service) => (
               <Link key={service.slug} href={`${servicesPath}/${service.slug}`}>
-                <Card
-                  className="p-6 bg-card border-2 border-border hover:border-primary hover:bg-primary group transition-all duration-300 cursor-pointer h-full"
-                >
-                  <div className="w-12 h-12 mb-4">
-                    <ServiceIcon name={service.icon} />
-                  </div>
-                  <h3 className="text-lg font-bold mb-2 group-hover:text-primary-foreground transition-colors leading-tight">{service.shortTitle}</h3>
-                  <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/80">
-                    {service.description}
-                  </p>
-                </Card>
+                <div className="tile-3d-wrap h-full">
+                  <Card
+                    className="tile-3d p-6 border-2 border-border hover:border-primary hover:bg-primary group transition-all duration-300 cursor-pointer h-full"
+                  >
+                    <div className="w-12 h-12 mb-4 tile-3d-icon">
+                      <ServiceIcon name={service.icon} />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2 group-hover:text-primary-foreground transition-colors leading-tight relative z-[2]">{service.shortTitle}</h3>
+                    <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/80 relative z-[2]">
+                      {service.description}
+                    </p>
+                  </Card>
+                </div>
               </Link>
             ))}
           </div>
@@ -421,7 +423,8 @@ export default function Home() {
             const allOffers = offers.slice(0, 6);
 
             const OfferCard = ({ offer }: { offer: typeof allOffers[0] }) => (
-              <Card className="p-3 sm:p-8 bg-card border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-xl">
+              <div className="tile-3d-wrap h-full">
+              <Card className="tile-3d tile-3d-offer p-3 sm:p-8 border-2 border-border hover:border-primary transition-all duration-300">
                 <div className="inline-block bg-primary text-primary-foreground px-2 sm:px-4 py-0.5 sm:py-1 text-[9px] sm:text-xs font-bold mb-2 sm:mb-4">
                   {offer.badge}
                 </div>
@@ -432,7 +435,7 @@ export default function Home() {
                 <p className="text-[10px] sm:text-sm text-muted-foreground mb-2 sm:mb-6 hidden sm:block">
                   {offer.description}
                 </p>
-                <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackClaimOffer(offer.title, "home_offers")}>
+                <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackClaimOffer(offer.title, "home_offers")} className="relative z-[2]">
                   <Button
                     variant="outline"
                     className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-[10px] sm:text-sm py-1.5 sm:py-2"
@@ -441,6 +444,7 @@ export default function Home() {
                   </Button>
                 </a>
               </Card>
+              </div>
             );
 
             return (
