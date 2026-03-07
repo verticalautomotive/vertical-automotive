@@ -61,9 +61,9 @@ const TRUST_BADGES: TrustBadge[] = [
     titleEs: "Certificado O'Reilly",
   },
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/IKVoMygvrhSIXoXp.jpg",
-    title: "WorldPac Certified",
-    titleEs: "Certificado WorldPac",
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/XguNmpNebNLkMYsk.png",
+    title: "Tesla Certified",
+    titleEs: "Certificado Tesla",
   },
 ];
 
