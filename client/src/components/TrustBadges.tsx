@@ -1,103 +1,81 @@
 /**
  * TrustBadges - "Trusted By South Florida Drivers" section
  * Premium badge grid showcasing certifications and affiliations
- * - Glassmorphism badge cards with grayscale-to-color hover
+ * - Uses actual official partner logos from CDN
+ * - Grayscale-to-color hover effect for premium feel
  * - Responsive: 5 per row desktop, 3 tablet, 2 mobile
  * - Subtle shadows, rounded corners, premium spacing
  */
 
-import {
-  Shield,
-  Award,
-  FileCheck,
-  Building2,
-  Wrench,
-  Zap,
-  BadgeCheck,
-  CircleCheckBig,
-  ShieldCheck,
-  Car,
-} from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 
 interface TrustBadge {
-  icon: React.ElementType;
+  logo: string;
   title: string;
   titleEs: string;
-  color: string;
-  bgGradient: string;
+  bgColor: string;
 }
 
 const TRUST_BADGES: TrustBadge[] = [
   {
-    icon: Shield,
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/RwtwiJPyaggxkZKB.png",
     title: "BBB Accredited",
     titleEs: "Acreditado por BBB",
-    color: "#0066CC",
-    bgGradient: "from-blue-500/10 to-blue-600/5",
+    bgColor: "#0066CC",
   },
   {
-    icon: Car,
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/PYRMyNCETckJRpjT.png",
     title: "CARFAX Service Center",
     titleEs: "Centro de Servicio CARFAX",
-    color: "#E31937",
-    bgGradient: "from-red-500/10 to-red-600/5",
+    bgColor: "#E31937",
   },
   {
-    icon: Building2,
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/CySFqiXXczuUwvsM.png",
     title: "Broward County Licensed",
     titleEs: "Licencia del Condado Broward",
-    color: "#2E7D32",
-    bgGradient: "from-green-500/10 to-green-600/5",
+    bgColor: "#2E7D32",
   },
   {
-    icon: FileCheck,
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/qrZiyfrQWmVUrtMl.png",
     title: "Florida Consumer Services Registered",
     titleEs: "Registrado en Servicios al Consumidor de Florida",
-    color: "#F57C00",
-    bgGradient: "from-orange-500/10 to-orange-600/5",
+    bgColor: "#F57C00",
   },
   {
-    icon: Wrench,
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/rhAfJJITrrulswVk.png",
     title: "RepairPal Certified",
     titleEs: "Certificado RepairPal",
-    color: "#1565C0",
-    bgGradient: "from-blue-500/10 to-blue-600/5",
+    bgColor: "#1565C0",
   },
   {
-    icon: Award,
-    title: "Automotive Maintenance and Repair Association",
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/LQoktEHmDDZQNMVV.png",
+    title: "Automotive Maintenance & Repair Association",
     titleEs: "Asociación de Mantenimiento y Reparación Automotriz",
-    color: "#6A1B9A",
-    bgGradient: "from-purple-500/10 to-purple-600/5",
+    bgColor: "#0D6E8A",
   },
   {
-    icon: BadgeCheck,
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/ZcnQtbZIpdOCrwCT.png",
     title: "ASE Certified Technicians",
     titleEs: "Técnicos Certificados ASE",
-    color: "#0277BD",
-    bgGradient: "from-sky-500/10 to-sky-600/5",
+    bgColor: "#0277BD",
   },
   {
-    icon: Zap,
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/IKVoMygvrhSIXoXp.jpg",
     title: "WorldPac Tesla Certification",
     titleEs: "Certificación Tesla WorldPac",
-    color: "#E53935",
-    bgGradient: "from-red-500/10 to-red-600/5",
+    bgColor: "#E53935",
   },
   {
-    icon: CircleCheckBig,
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/jrwmzleNlMSZGXES.png",
     title: "O'Reilly Certified",
     titleEs: "Certificado O'Reilly",
-    color: "#2E7D32",
-    bgGradient: "from-green-500/10 to-green-600/5",
+    bgColor: "#2E7D32",
   },
   {
-    icon: ShieldCheck,
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/IKVoMygvrhSIXoXp.jpg",
     title: "WorldPac Certified",
     titleEs: "Certificado WorldPac",
-    color: "#1565C0",
-    bgGradient: "from-blue-500/10 to-blue-600/5",
+    bgColor: "#1565C0",
   },
 ];
 
@@ -119,49 +97,39 @@ export default function TrustBadges() {
 
       {/* Badge Grid — 2 cols mobile, 3 tablet, 5 desktop */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-        {TRUST_BADGES.map((badge, i) => {
-          const Icon = badge.icon;
-          return (
-            <div
-              key={i}
-              className="group relative overflow-hidden rounded-xl border border-border/50 bg-gradient-to-br p-3 sm:p-4 text-center transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:border-primary/30 cursor-default"
-              style={{
-                background: `linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)`,
-                backdropFilter: "blur(8px)",
-              }}
-            >
-              {/* Subtle top-left sheen */}
-              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        {TRUST_BADGES.map((badge, i) => (
+          <div
+            key={i}
+            className="group relative overflow-hidden rounded-xl border border-border/50 bg-white/[0.03] p-3 sm:p-4 text-center transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:border-primary/30 cursor-default"
+            style={{ backdropFilter: "blur(8px)" }}
+          >
+            {/* Subtle top-left sheen */}
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-              {/* Icon container with glow on hover */}
+            {/* Logo container */}
+            <div className="relative mx-auto mb-2 sm:mb-3 w-14 h-14 sm:w-16 sm:h-16 rounded-lg flex items-center justify-center bg-white/80 p-2 transition-all duration-300 group-hover:scale-105 group-hover:shadow-md">
+              <img
+                src={badge.logo}
+                alt={badge.title}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-contain transition-all duration-300 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100"
+              />
+              {/* Glow ring on hover */}
               <div
-                className="relative mx-auto mb-2 sm:mb-3 w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                 style={{
-                  background: `linear-gradient(135deg, ${badge.color}15, ${badge.color}08)`,
-                  boxShadow: `0 2px 8px ${badge.color}10`,
+                  boxShadow: `0 0 16px ${badge.bgColor}20, inset 0 0 8px ${badge.bgColor}10`,
                 }}
-              >
-                <Icon
-                  className="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-300 opacity-50 group-hover:opacity-100"
-                  style={{ color: badge.color }}
-                  strokeWidth={1.5}
-                />
-                {/* Glow ring on hover */}
-                <div
-                  className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    boxShadow: `0 0 16px ${badge.color}20, inset 0 0 8px ${badge.color}10`,
-                  }}
-                />
-              </div>
-
-              {/* Badge title */}
-              <p className="text-[10px] sm:text-xs font-semibold leading-tight text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                {isSpanish ? badge.titleEs : badge.title}
-              </p>
+              />
             </div>
-          );
-        })}
+
+            {/* Badge title */}
+            <p className="text-[10px] sm:text-xs font-semibold leading-tight text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+              {isSpanish ? badge.titleEs : badge.title}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );
