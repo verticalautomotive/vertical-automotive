@@ -96,7 +96,7 @@ export default function TrustBadges() {
                 alt={badge.title}
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full object-contain transition-all duration-300 grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100"
+                className="w-full h-full object-contain transition-all duration-300 opacity-90 group-hover:opacity-100"
               />
             </div>
           </div>
