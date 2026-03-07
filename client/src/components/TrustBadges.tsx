@@ -1,8 +1,8 @@
 /**
  * TrustBadges - "Trusted By South Florida Drivers" section
- * Clean layout: large logos with small text underneath, no card/tile containers
- * - Grayscale-to-color hover effect for premium feel
- * - Responsive: 5 per row desktop, 3 tablet, 2 mobile
+ * Clean layout: uniform-sized logos, full color, no text labels
+ * - Hover scale effect for interactivity
+ * - Responsive: 6 per row desktop, 4 tablet, 3 mobile
  * - No borders, no shadows on items — just logos floating on the background
  */
 
@@ -52,8 +52,8 @@ const TRUST_BADGES: TrustBadge[] = [
   },
   {
     logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/IKVoMygvrhSIXoXp.jpg",
-    title: "WorldPac Tesla Certification",
-    titleEs: "Certificación Tesla WorldPac",
+    title: "WorldPac Certified",
+    titleEs: "Certificado WorldPac",
   },
   {
     logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/jrwmzleNlMSZGXES.png",
@@ -64,6 +64,16 @@ const TRUST_BADGES: TrustBadge[] = [
     logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/XguNmpNebNLkMYsk.png",
     title: "Tesla Certified",
     titleEs: "Certificado Tesla",
+  },
+  {
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/eeNYOroSGtgqCWGT.png",
+    title: "Google Verified Business",
+    titleEs: "Negocio Verificado por Google",
+  },
+  {
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/GfTGhEFpiztLWZKP.png",
+    title: "Yelp",
+    titleEs: "Yelp",
   },
 ];
 
@@ -83,20 +93,20 @@ export default function TrustBadges() {
           : "Professional certifications, trusted industry partnerships, and recognized standards that support our commitment to quality service."}
       </p>
 
-      {/* Logo Grid — icons only, no text labels */}
-      <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-5 gap-x-6 gap-y-6 sm:gap-x-8 sm:gap-y-8">
+      {/* Logo Grid — uniform size, full color, no text labels */}
+      <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-x-6 gap-y-6 sm:gap-x-8 sm:gap-y-8">
         {TRUST_BADGES.map((badge, i) => (
           <div
             key={i}
             className="group flex items-center justify-center cursor-default"
           >
-            <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center transition-transform duration-300 ease-out group-hover:scale-110">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-[72px] lg:h-[72px] flex items-center justify-center transition-transform duration-300 ease-out group-hover:scale-110">
               <img
                 src={badge.logo}
                 alt={badge.title}
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full object-contain transition-all duration-300 opacity-90 group-hover:opacity-100"
+                className="max-w-full max-h-full object-contain transition-all duration-300 opacity-90 group-hover:opacity-100"
               />
             </div>
           </div>
