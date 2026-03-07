@@ -16,6 +16,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { LazyMap } from "@/components/LazyMap";
 import OptimizedImage from "@/components/OptimizedImage";
+import TrustBadges from "@/components/TrustBadges";
 import {
   CheckCircle,
   Award,
@@ -490,50 +491,58 @@ export default function Home() {
       {/* About Section — mobile: stacked, compact */}
       <section id="about" className="py-10 sm:py-20 bg-background" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 500px' }}>
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-center">
-            <div>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-6">
-                {t.certifiedAutomotive}
-                <br />
-                <span className="text-primary">{t.professionals}</span>
-              </h2>
-              <div className="h-1 w-16 sm:w-24 bg-primary mb-4 sm:mb-8" />
-              <p className="font-display text-sm sm:text-base font-bold text-primary tracking-wider mb-2 sm:mb-3">{t.whoWeAre}</p>
-              <p className="text-sm sm:text-lg leading-relaxed mb-4 sm:mb-8">
-                {t.whoWeAreText}
-              </p>
-              <div className="grid grid-cols-2 gap-2 sm:gap-4">
-                <div className="flex items-center space-x-2 sm:space-x-3">
-                  <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
-                  <span className="font-medium text-xs sm:text-base">{t.aseCertified}</span>
+          <div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-start">
+              <div>
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-6">
+                  {t.certifiedAutomotive}
+                  <br />
+                  <span className="text-primary">{t.professionals}</span>
+                </h2>
+                <div className="h-1 w-16 sm:w-24 bg-primary mb-4 sm:mb-8" />
+                <p className="font-display text-sm sm:text-base font-bold text-primary tracking-wider mb-2 sm:mb-3">{t.whoWeAre}</p>
+                <p className="text-sm sm:text-lg leading-relaxed mb-4 sm:mb-8">
+                  {t.whoWeAreText}
+                </p>
+                <div className="grid grid-cols-2 gap-2 sm:gap-4">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
+                    <span className="font-medium text-xs sm:text-base">{t.aseCertified}</span>
+                  </div>
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
+                    <span className="font-medium text-xs sm:text-base">{t.warranty3}</span>
+                  </div>
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
+                    <span className="font-medium text-xs sm:text-base">{t.allMakesModels}</span>
+                  </div>
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
+                    <span className="font-medium text-xs sm:text-base">{t.evSpecialists}</span>
+                  </div>
                 </div>
-                <div className="flex items-center space-x-2 sm:space-x-3">
-                  <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
-                  <span className="font-medium text-xs sm:text-base">{t.warranty3}</span>
-                </div>
-                <div className="flex items-center space-x-2 sm:space-x-3">
-                  <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
-                  <span className="font-medium text-xs sm:text-base">{t.allMakesModels}</span>
-                </div>
-                <div className="flex items-center space-x-2 sm:space-x-3">
-                  <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
-                  <span className="font-medium text-xs sm:text-base">{t.evSpecialists}</span>
+              </div>
+              {/* Right column — visible on desktop, shows first 2 rows of badges */}
+              <div className="hidden lg:block">
+                <div className="rounded-xl border border-border/30 bg-card/50 p-6" style={{ backdropFilter: 'blur(8px)' }}>
+                  <div className="flex items-center gap-2 mb-4">
+                    <Award className="w-5 h-5 text-primary" />
+                    <span className="text-sm font-bold text-primary tracking-wider">
+                      {isSpanish ? 'CERTIFICACIONES Y AFILIACIONES' : 'CERTIFICATIONS & AFFILIATIONS'}
+                    </span>
+                  </div>
+                  <div className="text-xs text-muted-foreground leading-relaxed">
+                    {isSpanish
+                      ? 'Certificaciones profesionales, alianzas de la industria y estándares reconocidos que respaldan nuestro compromiso con un servicio de calidad.'
+                      : 'Professional certifications, trusted industry partnerships, and recognized standards that support our commitment to quality service.'}
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="relative hidden sm:block">
-              <img
-                src="https://private-us-east-1.manuscdn.com/sessionFile/zG7TkjTFYQTi6RlHwEX5Va/sandbox/4uoMfJPiYSKA2driFpoMoI-img-2_1771025932000_na1fn_c2VydmljZXMtZGlhZ25vc3RpYw.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvekc3VGtqVEZZUVRpNlJsSHdFWDVWYS9zYW5kYm94LzR1b01mSlBpWVNLQTJkcmlGcG9Nb0ktaW1nLTJfMTc3MTAyNTkzMjAwMF9uYTFmbl9jMlZ5ZG1salpYTXRaR2xoWjI1dmMzUnBZdy5wbmc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=apHNfs4OvHz~Zl8LwjV~1L8cr966xQn-Aehe5YbA6AvCK9xQ0tYXUcoge3OBi4phHgoqt1xnqVURrLimUfkx3D9ypL0hSg0xi~jNia3VLzVe9rxGLIkm9QLLuhZZdM4fb1SmrT73mq~8I~WexGMAcV5Bi7KGd1x3C-ouFMLE-Px4KW-chT9Z5TR9uy3SEr01Dp06IVzyqf4q5U7g4~JFkhdPWG0DULUGLk1zCSxc~QXz4Tv1f99IwOEWd4oZW1~8ENNTvYTRU6vwplDeLOX4UZW6XnD-7tqFoGuQ2hfD~q5LKrqEjZmWefiyRL7mWmTSPm3kytEBQSc3qqZ-jmPXhA__"
-                alt="Diagnostic Equipment"
-                width={800}
-                height={600}
-                loading="lazy"
-                decoding="async"
-                className="w-full shadow-2xl"
-              />
-              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-primary opacity-20 -z-10" />
-              <div className="absolute -top-6 -left-6 w-48 h-48 border-4 border-primary -z-10" />
-            </div>
+
+            {/* Trust Badges — full width below the two-column layout */}
+            <TrustBadges />
           </div>
         </div>
       </section>
