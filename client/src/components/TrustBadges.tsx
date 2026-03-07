@@ -83,15 +83,14 @@ export default function TrustBadges() {
           : "Professional certifications, trusted industry partnerships, and recognized standards that support our commitment to quality service."}
       </p>
 
-      {/* Logo Grid — no tiles, just large logos with small labels */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-8 sm:gap-x-8 sm:gap-y-10">
+      {/* Logo Grid — icons only, no text labels */}
+      <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-5 gap-x-6 gap-y-6 sm:gap-x-8 sm:gap-y-8">
         {TRUST_BADGES.map((badge, i) => (
           <div
             key={i}
-            className="group flex flex-col items-center text-center cursor-default"
+            className="group flex items-center justify-center cursor-default"
           >
-            {/* Large logo */}
-            <div className="relative w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 flex items-center justify-center mb-2 sm:mb-3 transition-transform duration-300 ease-out group-hover:scale-110">
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center transition-transform duration-300 ease-out group-hover:scale-110">
               <img
                 src={badge.logo}
                 alt={badge.title}
@@ -100,11 +99,6 @@ export default function TrustBadges() {
                 className="w-full h-full object-contain transition-all duration-300 grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100"
               />
             </div>
-
-            {/* Small label */}
-            <p className="text-[10px] sm:text-xs font-medium leading-tight text-muted-foreground/70 group-hover:text-foreground transition-colors duration-300 max-w-[120px]">
-              {isSpanish ? badge.titleEs : badge.title}
-            </p>
           </div>
         ))}
       </div>
