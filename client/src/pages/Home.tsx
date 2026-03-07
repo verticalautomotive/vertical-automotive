@@ -374,11 +374,11 @@ export default function Home() {
           <div className="grid grid-cols-3 gap-2 sm:hidden">
             {services.map((service) => (
               <Link key={service.slug} href={`${servicesPath}/${service.slug}`}>
-                <div className="glass-compact flex flex-col items-center justify-center text-center p-2.5 hover:border-primary/30 group cursor-pointer h-[88px]">
-                  <div className="w-7 h-7 mb-1.5 flex-shrink-0 glass-icon">
+                <div className="glass-compact flex flex-col items-center justify-center text-center p-2.5 border border-transparent hover:border-[#8B0000] group cursor-pointer h-[88px] transition-all duration-300">
+                  <div className="w-7 h-7 mb-1.5 flex-shrink-0 glass-icon group-hover:[&_svg]:text-[#8B0000] transition-colors duration-300">
                     <ServiceIcon name={service.icon} />
                   </div>
-                  <span className="text-[10px] font-bold leading-tight group-hover:text-primary transition-colors line-clamp-2">{service.shortTitle}</span>
+                  <span className="text-[10px] font-bold leading-tight group-hover:text-[#8B0000] transition-colors line-clamp-2">{service.shortTitle}</span>
                 </div>
               </Link>
             ))}
@@ -390,15 +390,12 @@ export default function Home() {
               <Link key={service.slug} href={`${servicesPath}/${service.slug}`}>
                 <div className="glass-wrap h-full">
                   <Card
-                    className="glass-card p-6 group cursor-pointer h-full"
+                    className="glass-card p-6 group cursor-pointer h-full flex flex-col items-center justify-center text-center border border-transparent hover:border-[#8B0000] transition-all duration-300"
                   >
-                    <div className="w-12 h-12 mb-4 glass-icon">
+                    <div className="w-12 h-12 mb-4 glass-icon group-hover:[&_svg]:text-[#8B0000] transition-colors duration-300">
                       <ServiceIcon name={service.icon} />
                     </div>
-                    <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-tight relative z-[2]">{service.shortTitle}</h3>
-                    <p className="text-sm text-muted-foreground relative z-[2]">
-                      {service.description}
-                    </p>
+                    <h3 className="text-lg font-bold group-hover:text-[#8B0000] transition-colors leading-tight relative z-[2]">{service.shortTitle}</h3>
                   </Card>
                 </div>
               </Link>
