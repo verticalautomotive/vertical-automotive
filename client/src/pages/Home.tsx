@@ -361,7 +361,7 @@ export default function Home() {
       </section>
 
       {/* Services Section — mobile: compact icon+title tiles, Desktop: 5-col cards */}
-      <section id="services" className="py-10 sm:py-20 bg-background">
+      <section id="services" className="py-10 sm:py-20" style={{ backgroundColor: '#CF1020' }}>
         <div className="container">
           <div className="text-center mb-6 sm:mb-16">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
