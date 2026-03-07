@@ -1,7 +1,15 @@
 // ============================================================
 // Blog Articles — Full standalone article content (EN + ES)
-// Each article has a slug, full content, SEO metadata, and related service link
+// Each article has a slug, full content, SEO metadata, author, date, and related service link
 // ============================================================
+
+export interface BlogAuthor {
+  name: string;
+  role: string;
+  bio: string;
+  avatar: string;
+  credentials?: string;
+}
 
 export interface BlogArticle {
   slug: string;
@@ -16,6 +24,9 @@ export interface BlogArticle {
   metaTitle: string;
   metaDescription: string;
   relatedServiceSlug: string;
+  author: BlogAuthor;
+  datePublished: string; // ISO 8601 format: YYYY-MM-DD
+  dateModified?: string; // ISO 8601 format: YYYY-MM-DD
   sections: {
     heading: string;
     content: string;
@@ -23,6 +34,43 @@ export interface BlogArticle {
   tips: string[];
   conclusion: string;
 }
+
+// ============================================================
+// AUTHOR PROFILES
+// ============================================================
+export const AUTHORS_EN = {
+  eugene: {
+    name: "Eugene B.",
+    role: "Owner & ASE Master Technician",
+    bio: "Eugene founded Vertical Automotive in 1989 and has over 36 years of hands-on experience diagnosing and repairing vehicles of all makes and models. As an ASE-certified Master Technician, he leads the shop with a diagnostics-first approach and a commitment to honest, professional service for South Florida drivers.",
+    avatar: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/author-eugene-avatar-PCY6biXWUu8khmRMuNWhQw.webp",
+    credentials: "ASE Master Technician",
+  } as BlogAuthor,
+  team: {
+    name: "Vertical Automotive Team",
+    role: "ASE-Certified Technicians",
+    bio: "The Vertical Automotive team brings decades of combined experience in automotive repair and maintenance. Our ASE-certified technicians specialize in Tesla, Asian, European, and Domestic vehicles, serving drivers across Wilton Manors and Fort Lauderdale with expert care.",
+    avatar: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/author-team-avatar-Hwx8SBGFaYFPbqjjmd4VqF.webp",
+    credentials: "ASE Certified",
+  } as BlogAuthor,
+};
+
+export const AUTHORS_ES = {
+  eugene: {
+    name: "Eugene B.",
+    role: "Propietario y Técnico Maestro ASE",
+    bio: "Eugene fundó Vertical Automotive en 1989 y tiene más de 36 años de experiencia práctica diagnosticando y reparando vehículos de todas las marcas y modelos. Como Técnico Maestro certificado ASE, dirige el taller con un enfoque de diagnóstico primero y un compromiso con el servicio honesto y profesional para los conductores del sur de Florida.",
+    avatar: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/author-eugene-avatar-PCY6biXWUu8khmRMuNWhQw.webp",
+    credentials: "Técnico Maestro ASE",
+  } as BlogAuthor,
+  team: {
+    name: "Equipo Vertical Automotive",
+    role: "Técnicos Certificados ASE",
+    bio: "El equipo de Vertical Automotive aporta décadas de experiencia combinada en reparación y mantenimiento automotriz. Nuestros técnicos certificados ASE se especializan en Tesla, vehículos asiáticos, europeos y domésticos, sirviendo a conductores en Wilton Manors y Fort Lauderdale con atención experta.",
+    avatar: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/author-team-avatar-Hwx8SBGFaYFPbqjjmd4VqF.webp",
+    credentials: "Certificado ASE",
+  } as BlogAuthor,
+};
 
 // ============================================================
 // ENGLISH ARTICLES
@@ -41,6 +89,9 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
     metaTitle: "South Florida Seasonal Car Care Guide | Vertical Automotive",
     metaDescription: "Complete seasonal car care guide for Fort Lauderdale and Wilton Manors drivers. Expert tips on A/C maintenance, paint protection, hurricane prep, and year-round vehicle care in South Florida.",
     relatedServiceSlug: "a-c-maintenance-repair",
+    author: AUTHORS_EN.eugene,
+    datePublished: "2025-03-15",
+    dateModified: "2025-11-20",
     sections: [
       {
         heading: "Why South Florida Is Tough on Cars",
@@ -85,6 +136,9 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
     metaTitle: "Why Regular Oil Changes Matter | Vertical Automotive Fort Lauderdale",
     metaDescription: "Learn why regular oil changes are essential for your engine's longevity. Expert advice from Vertical Automotive in Fort Lauderdale on oil types, intervals, and South Florida driving conditions.",
     relatedServiceSlug: "oil-change-engine-service",
+    author: AUTHORS_EN.eugene,
+    datePublished: "2025-04-10",
+    dateModified: "2025-12-05",
     sections: [
       {
         heading: "What Engine Oil Actually Does",
@@ -124,6 +178,9 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
     metaTitle: "5 Brake Warning Signs You Shouldn't Ignore | Vertical Automotive",
     metaDescription: "Learn the 5 critical warning signs that your brakes need professional attention. Expert brake service advice from Vertical Automotive in Fort Lauderdale and Wilton Manors.",
     relatedServiceSlug: "brake-system",
+    author: AUTHORS_EN.eugene,
+    datePublished: "2025-05-22",
+    dateModified: "2026-01-10",
     sections: [
       {
         heading: "Warning Sign #1: Squealing or Squeaking",
@@ -167,6 +224,9 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
     metaTitle: "Prepare Your Car A/C for Florida Summer | Vertical Automotive",
     metaDescription: "Expert tips on preparing your vehicle's A/C system for South Florida summer heat. Professional A/C service in Fort Lauderdale and Wilton Manors from Vertical Automotive.",
     relatedServiceSlug: "a-c-maintenance-repair",
+    author: AUTHORS_EN.team,
+    datePublished: "2025-06-01",
+    dateModified: "2026-02-15",
     sections: [
       {
         heading: "Why Florida A/C Systems Work Harder",
@@ -206,6 +266,9 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
     metaTitle: "Tire Care Guide: Pressure, Rotation & Alignment | Vertical Automotive",
     metaDescription: "Complete tire care guide for South Florida drivers. Learn about proper tire pressure, rotation schedules, and alignment from Vertical Automotive in Fort Lauderdale.",
     relatedServiceSlug: "alignment-tire-rotation-balancing",
+    author: AUTHORS_EN.team,
+    datePublished: "2025-07-18",
+    dateModified: "2026-01-25",
     sections: [
       {
         heading: "Why Tire Care Matters More in South Florida",
@@ -245,6 +308,9 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
     metaTitle: "Hybrid & EV Maintenance Guide | Vertical Automotive Fort Lauderdale",
     metaDescription: "Expert guide to hybrid and electric vehicle maintenance. Learn what's different about EV care from Vertical Automotive's certified technicians in Fort Lauderdale.",
     relatedServiceSlug: "hybrids-ev",
+    author: AUTHORS_EN.eugene,
+    datePublished: "2025-09-05",
+    dateModified: "2026-02-20",
     sections: [
       {
         heading: "The EV Maintenance Myth",
@@ -287,7 +353,10 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
     excerpt: "A check engine light can indicate anything from a loose gas cap to a serious engine issue. Our advanced diagnostic equipment reads manufacturer-specific codes to pinpoint the exact problem, saving you time and money on unnecessary guesswork repairs.",
     metaTitle: "Check Engine Light Guide: What It Means | Vertical Automotive",
     metaDescription: "What does your check engine light mean? Expert diagnostic guide from Vertical Automotive in Fort Lauderdale. Learn common causes and why professional diagnosis matters.",
-    relatedServiceSlug: "complete-diagnostics",
+    relatedServiceSlug: "check-engine-light-diagnostics",
+    author: AUTHORS_EN.eugene,
+    datePublished: "2025-10-12",
+    dateModified: "2026-03-01",
     sections: [
       {
         heading: "What the Check Engine Light Actually Means",
@@ -334,6 +403,9 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
     metaTitle: "Guía de Cuidado Estacional del Auto en el Sur de Florida | Vertical Automotive",
     metaDescription: "Guía completa de cuidado estacional del auto para conductores de Fort Lauderdale y Wilton Manors. Consejos expertos sobre mantenimiento de A/C, protección de pintura y preparación para huracanes.",
     relatedServiceSlug: "a-c-maintenance-repair",
+    author: AUTHORS_ES.eugene,
+    datePublished: "2025-03-15",
+    dateModified: "2025-11-20",
     sections: [
       {
         heading: "Por Qué el Sur de Florida Es Difícil para los Carros",
@@ -378,6 +450,9 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
     metaTitle: "Por Qué los Cambios de Aceite Regulares Importan | Vertical Automotive",
     metaDescription: "Aprenda por qué los cambios de aceite regulares son esenciales para la longevidad de su motor. Consejos expertos de Vertical Automotive en Fort Lauderdale.",
     relatedServiceSlug: "oil-change-engine-service",
+    author: AUTHORS_ES.eugene,
+    datePublished: "2025-04-10",
+    dateModified: "2025-12-05",
     sections: [
       {
         heading: "Qué Hace Realmente el Aceite del Motor",
@@ -417,9 +492,12 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
     metaTitle: "5 Señales de Advertencia de Frenos | Vertical Automotive Fort Lauderdale",
     metaDescription: "Conozca las 5 señales críticas de que sus frenos necesitan atención profesional. Servicio experto de frenos de Vertical Automotive en Fort Lauderdale y Wilton Manors.",
     relatedServiceSlug: "brake-system",
+    author: AUTHORS_ES.eugene,
+    datePublished: "2025-05-22",
+    dateModified: "2026-01-10",
     sections: [
       {
-        heading: "Señal #1: Chirridos o Chillidos",
+        heading: "Señal de Advertencia #1: Chirrido o Chillido",
         content: "Un chirrido agudo cuando aplica los frenos es usualmente la primera señal de advertencia. La mayoría de las pastillas de freno incluyen una pequeña pestaña metálica llamada indicador de desgaste que contacta el rotor cuando el material de la pastilla se adelgaza. Este ruido deliberado es su sistema de frenos diciéndole que es hora de pastillas nuevas. No lo ignore — el chirrido significa que aún tiene algo de material, pero una vez que progresa a rechinido, probablemente ha dañado los rotores también."
       },
       {
@@ -460,9 +538,12 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
     metaTitle: "Prepare el A/C de Su Auto para el Verano de Florida | Vertical Automotive",
     metaDescription: "Consejos expertos para preparar el sistema de A/C de su vehículo para el calor del verano del sur de Florida. Servicio profesional de A/C en Fort Lauderdale y Wilton Manors.",
     relatedServiceSlug: "a-c-maintenance-repair",
+    author: AUTHORS_ES.team,
+    datePublished: "2025-06-01",
+    dateModified: "2026-02-15",
     sections: [
       {
-        heading: "Por Qué los Sistemas de A/C en Florida Trabajan Más Duro",
+        heading: "Por Qué los Sistemas de A/C de Florida Trabajan Más Duro",
         content: "El sistema de aire acondicionado de su vehículo en el sur de Florida trabaja más duro y más tiempo que casi en cualquier otro lugar del país. Mientras los conductores en estados del norte pueden usar su A/C por 4-5 meses al año, los conductores de Fort Lauderdale lo usan 10-12 meses. Esta operación constante pone un estrés enorme en el compresor, condensador y evaporador."
       },
       {
@@ -499,6 +580,9 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
     metaTitle: "Guía de Cuidado de Neumáticos: Presión, Rotación y Alineación | Vertical Automotive",
     metaDescription: "Guía completa de cuidado de neumáticos para conductores del sur de Florida. Aprenda sobre presión adecuada, programas de rotación y alineación de Vertical Automotive.",
     relatedServiceSlug: "alignment-tire-rotation-balancing",
+    author: AUTHORS_ES.team,
+    datePublished: "2025-07-18",
+    dateModified: "2026-01-25",
     sections: [
       {
         heading: "Por Qué el Cuidado de Neumáticos Importa Más en el Sur de Florida",
@@ -537,7 +621,10 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
     excerpt: "Los vehículos eléctricos e híbridos necesitan cuidado especializado. Aunque no necesitan cambios de aceite, aún requieren servicio de frenos, rotación de neumáticos, verificación de refrigerante y monitoreo de salud de batería.",
     metaTitle: "Guía de Mantenimiento de Híbridos y EV | Vertical Automotive Fort Lauderdale",
     metaDescription: "Guía experta de mantenimiento de vehículos híbridos y eléctricos. Aprenda qué es diferente sobre el cuidado de EV con los técnicos certificados de Vertical Automotive.",
-    relatedServiceSlug: "hybrids-ev",
+    relatedServiceSlug: "hybrid-ev-service",
+    author: AUTHORS_ES.eugene,
+    datePublished: "2025-09-05",
+    dateModified: "2026-02-20",
     sections: [
       {
         heading: "El Mito del Mantenimiento de EV",
@@ -581,6 +668,9 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
     metaTitle: "Guía de Luz de Check Engine: Qué Significa | Vertical Automotive",
     metaDescription: "¿Qué significa su luz de check engine? Guía de diagnóstico experta de Vertical Automotive en Fort Lauderdale. Conozca las causas comunes y por qué importa el diagnóstico profesional.",
     relatedServiceSlug: "complete-diagnostics",
+    author: AUTHORS_ES.eugene,
+    datePublished: "2025-10-12",
+    dateModified: "2026-03-01",
     sections: [
       {
         heading: "Qué Significa Realmente la Luz de Check Engine",

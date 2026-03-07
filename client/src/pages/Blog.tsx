@@ -17,6 +17,16 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { trackSchedule } from "@/lib/gtm";
 import { BLOG_ARTICLES_EN, BLOG_ARTICLES_ES } from "@/lib/blog-articles";
 
+// Format ISO date to short readable format
+function formatDateShort(isoDate: string, isSpanish: boolean): string {
+  const date = new Date(isoDate + "T12:00:00");
+  return date.toLocaleDateString(isSpanish ? "es-ES" : "en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
 interface FAQItem {
   question: string;
   answer: string;
@@ -281,6 +291,24 @@ export default function Blog() {
                     <p className="text-xs sm:text-base text-muted-foreground leading-relaxed mb-4 sm:mb-6 line-clamp-4">
                       {featuredArticle.excerpt}
                     </p>
+                    <div className="flex items-center gap-3 mb-4 sm:mb-5">
+                      <img
+                        src={featuredArticle.author.avatar}
+                        alt={featuredArticle.author.name}
+                        width={32}
+                        height={32}
+                        loading="lazy"
+                        className="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover border border-primary/40 flex-shrink-0"
+                      />
+                      <div className="min-w-0">
+                        <span className="text-[10px] sm:text-xs font-display font-bold tracking-wider block">
+                          {featuredArticle.author.name}
+                        </span>
+                        <time dateTime={featuredArticle.datePublished} className="text-[10px] sm:text-xs text-muted-foreground font-display tracking-wider">
+                          {formatDateShort(featuredArticle.datePublished, isSpanish)}
+                        </time>
+                      </div>
+                    </div>
                     <span className="inline-flex items-center gap-2 text-primary font-display font-bold text-xs sm:text-sm tracking-wider group/link">
                       {t.readMore}
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -329,10 +357,30 @@ export default function Blog() {
                   <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3 sm:mb-4 line-clamp-3">
                     {art.excerpt}
                   </p>
-                  <span className="inline-flex items-center gap-1.5 text-primary font-display font-bold text-xs tracking-wider">
-                    {t.readMore}
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </span>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <img
+                        src={art.author.avatar}
+                        alt={art.author.name}
+                        width={24}
+                        height={24}
+                        loading="lazy"
+                        className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover border border-border flex-shrink-0"
+                      />
+                      <div className="min-w-0">
+                        <span className="text-[10px] sm:text-xs font-display font-bold tracking-wider block truncate">
+                          {art.author.name}
+                        </span>
+                        <time dateTime={art.datePublished} className="text-[9px] sm:text-[10px] text-muted-foreground font-display tracking-wider">
+                          {formatDateShort(art.datePublished, isSpanish)}
+                        </time>
+                      </div>
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 text-primary font-display font-bold text-xs tracking-wider flex-shrink-0">
+                      {t.readMore}
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))}

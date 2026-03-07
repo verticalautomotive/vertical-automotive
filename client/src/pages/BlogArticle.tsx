@@ -11,7 +11,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackSchedule } from "@/lib/gtm";
-import { BLOG_ARTICLES_EN, BLOG_ARTICLES_ES, type BlogArticle as BlogArticleType } from "@/lib/blog-articles";
+import { BLOG_ARTICLES_EN, BLOG_ARTICLES_ES, type BlogArticle as BlogArticleType, type BlogAuthor } from "@/lib/blog-articles";
 import {
   ArrowRight,
   ArrowLeft,
@@ -24,9 +24,28 @@ import {
   Share2,
   Link2,
   Check,
+  User,
+  BadgeCheck,
 } from "lucide-react";
 
 const BASE_URL = "https://verticalautomotive.com";
+
+// Format ISO date string to human-readable format
+function formatDate(isoDate: string, isSpanish: boolean): string {
+  const date = new Date(isoDate + "T12:00:00"); // noon to avoid timezone issues
+  if (isSpanish) {
+    return date.toLocaleDateString("es-ES", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 
 // Social sharing SVG icons (inline to avoid extra dependencies)
 function FacebookIcon({ className }: { className?: string }) {
@@ -198,6 +217,10 @@ export default function BlogArticlePage() {
               "El artículo que busca no existe. Vuelva a nuestra página de información.",
             goBack: "Volver a Información",
             tableOfContents: "Contenido",
+            writtenBy: "Escrito por",
+            published: "Publicado",
+            updated: "Actualizado",
+            aboutAuthor: "Sobre el Autor",
           }
         : {
             home: "Home",
@@ -222,6 +245,10 @@ export default function BlogArticlePage() {
               "The article you're looking for doesn't exist. Return to our blog page.",
             goBack: "Back to Blog",
             tableOfContents: "Contents",
+            writtenBy: "Written by",
+            published: "Published",
+            updated: "Updated",
+            aboutAuthor: "About the Author",
           },
     [isSpanish]
   );
@@ -246,10 +273,19 @@ export default function BlogArticlePage() {
       headline: `${article.title} ${article.titleHighlight}${article.titleSuffix ? ` ${article.titleSuffix}` : ""}`,
       description: article.excerpt,
       image: article.image,
+      datePublished: article.datePublished,
+      ...(article.dateModified && { dateModified: article.dateModified }),
       author: {
-        "@type": "Organization",
-        name: "Vertical Automotive",
-        url: BASE_URL,
+        "@type": "Person",
+        name: article.author.name,
+        jobTitle: article.author.role,
+        description: article.author.bio,
+        image: article.author.avatar,
+        worksFor: {
+          "@type": "AutoRepair",
+          name: "Vertical Automotive",
+          url: BASE_URL,
+        },
       },
       publisher: {
         "@type": "Organization",
@@ -297,6 +333,10 @@ export default function BlogArticlePage() {
       "og:url": isSpanish
         ? `${BASE_URL}/es/informacion/${esSlug}`
         : `${BASE_URL}/blog/${enSlug}`,
+      "article:published_time": article.datePublished,
+      ...(article.dateModified && { "article:modified_time": article.dateModified }),
+      "article:author": article.author.name,
+      "article:section": article.category,
     };
     Object.entries(ogTags).forEach(([prop, content]) => {
       let tag = document.querySelector(
@@ -458,6 +498,41 @@ export default function BlogArticlePage() {
             <span className="text-primary">{article.titleHighlight}</span>
             {article.titleSuffix && ` ${article.titleSuffix}`}
           </h1>
+
+          {/* Author Byline & Date */}
+          <div className="flex items-center gap-3 sm:gap-4 mt-4 sm:mt-6">
+            <img
+              src={article.author.avatar}
+              alt={article.author.name}
+              width={44}
+              height={44}
+              loading="eager"
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-primary/60 flex-shrink-0"
+            />
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5">
+                <span className="text-white font-display text-sm sm:text-base font-bold tracking-wide">
+                  {article.author.name}
+                </span>
+                {article.author.credentials && (
+                  <BadgeCheck className="w-4 h-4 text-primary flex-shrink-0" />
+                )}
+              </div>
+              <div className="flex items-center gap-2 text-white/60 text-[10px] sm:text-xs font-display tracking-wider">
+                <span>{article.author.role}</span>
+                <span className="text-white/30">|</span>
+                <time dateTime={article.datePublished}>
+                  {formatDate(article.datePublished, isSpanish)}
+                </time>
+                {article.dateModified && article.dateModified !== article.datePublished && (
+                  <>
+                    <span className="text-white/30">|</span>
+                    <span className="text-primary/80">{labels.updated} {formatDate(article.dateModified, isSpanish)}</span>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -526,6 +601,45 @@ export default function BlogArticlePage() {
                 <p className="text-sm sm:text-base text-foreground leading-relaxed font-medium">
                   {article.conclusion}
                 </p>
+              </div>
+
+              {/* Author Bio Box */}
+              <div className="bg-card border-2 border-border p-5 sm:p-8 mb-8 sm:mb-12">
+                <div className="flex items-center gap-2 mb-4">
+                  <User className="w-4 h-4 text-primary" />
+                  <h4 className="font-display text-sm font-bold tracking-widest uppercase text-muted-foreground">
+                    {labels.aboutAuthor}
+                  </h4>
+                </div>
+                <div className="flex items-start gap-4 sm:gap-5">
+                  <img
+                    src={article.author.avatar}
+                    alt={article.author.name}
+                    width={72}
+                    height={72}
+                    loading="lazy"
+                    className="w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-full object-cover border-2 border-primary/40 flex-shrink-0"
+                  />
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h5 className="font-display text-base sm:text-lg font-black tracking-wide">
+                        {article.author.name}
+                      </h5>
+                      {article.author.credentials && (
+                        <span className="inline-flex items-center gap-1 bg-primary/10 text-primary font-display text-[10px] sm:text-xs font-bold tracking-wider px-2 py-0.5">
+                          <BadgeCheck className="w-3 h-3" />
+                          {article.author.credentials}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs sm:text-sm text-primary font-display font-bold tracking-wider mb-2">
+                      {article.author.role}
+                    </p>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                      {article.author.bio}
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Social Share — inline in article body */}
