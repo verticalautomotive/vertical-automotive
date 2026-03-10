@@ -47,11 +47,14 @@ export default function VehicleDetail() {
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
         title={isSpanish
-          ? `Servicio de Vehículos ${vehicle.title} - Vertical Automotive | Fort Lauderdale, FL`
-          : `${vehicle.title} Vehicle Service - Vertical Automotive | Fort Lauderdale, FL`}
+          ? `${vehicle.title} | Vertical Automotive`
+          : `${vehicle.title} Service | Vertical Automotive`}
         description={isSpanish
-          ? `Reparación y mantenimiento experto de vehículos ${vehicle.title.toLowerCase()} en Fort Lauderdale, FL. ${vehicle.description.slice(0, 150)}... Certificado ASE. Llame al (954) 565-1518.`
-          : `Expert ${vehicle.title.toLowerCase()} vehicle repair and maintenance in Fort Lauderdale, FL. ${vehicle.description.slice(0, 150)}... ASE-certified. Call (954) 565-1518.`}
+          ? `Reparación experta de vehículos ${vehicle.title.toLowerCase()} en Fort Lauderdale. ${vehicle.description.slice(0, 80)}... ASE. (954) 565-1518.`
+          : `Expert ${vehicle.title.toLowerCase()} repair in Fort Lauderdale. ${vehicle.description.slice(0, 80)}... ASE-certified. (954) 565-1518.`}
+        keywords={isSpanish
+          ? `reparación ${vehicle.title.toLowerCase()} Fort Lauderdale, servicio ${vehicle.title.toLowerCase()}, taller certificado ASE`
+          : `${vehicle.title.toLowerCase()} repair Fort Lauderdale, ${vehicle.title.toLowerCase()} service, ASE certified mechanic`}
       />
       <Navigation />
 

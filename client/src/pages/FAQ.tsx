@@ -11,6 +11,7 @@ import { SERVICE_FAQS_ES } from "@/lib/faq-data-es";
 import { SERVICES } from "@/lib/data";
 import { useTranslation } from "@/hooks/useTranslation";
 import Navigation from "@/components/Navigation";
+import SEO from "@/components/SEO";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { Link } from "wouter";
@@ -148,18 +149,7 @@ export default function FAQ() {
     })),
   };
 
-  // Page meta
-  useEffect(() => {
-    const title = isSpanish
-      ? "Preguntas Frecuentes - Vertical Automotive | Reparación de Autos Fort Lauderdale"
-      : "FAQ - Vertical Automotive | Fort Lauderdale Auto Repair";
-    document.title = title;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    const desc = isSpanish
-      ? "Encuentre respuestas a las preguntas más frecuentes sobre nuestros servicios de reparación automotriz en Fort Lauderdale y Wilton Manors."
-      : "Find answers to frequently asked questions about our auto repair services in Fort Lauderdale and Wilton Manors.";
-    if (metaDesc) metaDesc.setAttribute("content", desc);
-  }, [isSpanish]);
+  // Page meta — handled by SEO component below
 
   // Translations
   const t = {
@@ -189,6 +179,18 @@ export default function FAQ() {
 
   return (
     <>
+      <SEO
+        title={isSpanish
+          ? "Preguntas Frecuentes | Vertical Automotive"
+          : "FAQ | Vertical Automotive Fort Lauderdale"}
+        description={isSpanish
+          ? "Respuestas a preguntas frecuentes sobre reparación automotriz en Fort Lauderdale y Wilton Manors. Frenos, aceite, A/C y más."
+          : "Answers to common questions about auto repair in Fort Lauderdale and Wilton Manors. Brakes, oil, A/C and more."}
+        keywords={isSpanish
+          ? "preguntas frecuentes taller, FAQ reparación auto, dudas mecánico Fort Lauderdale"
+          : "auto repair FAQ, mechanic questions Fort Lauderdale, car service answers"}
+      />
+
       {/* JSON-LD */}
       <script
         type="application/ld+json"

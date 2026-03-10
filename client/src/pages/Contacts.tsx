@@ -131,8 +131,8 @@ export default function Contacts() {
   const t = {
     pageTitle: isSpanish ? "Contacto" : "Contact Us",
     metaTitle: isSpanish
-      ? "Contacto — Vertical Automotive | Reparación de Autos en Fort Lauderdale"
-      : "Contact Us — Vertical Automotive | Auto Repair in Fort Lauderdale",
+      ? "Contacto | Vertical Automotive Fort Lauderdale"
+      : "Contact Us | Vertical Automotive Fort Lauderdale",
     metaDescription: isSpanish
       ? "Contáctenos en nuestras dos ubicaciones en Wilton Manors y Fort Lauderdale. Llámenos o agende su cita en línea."
       : "Contact us at our two locations in Wilton Manors and Fort Lauderdale. Call us or schedule your appointment online.",
@@ -160,6 +160,9 @@ export default function Contacts() {
         title={t.metaTitle}
         description={t.metaDescription}
         canonical={`https://verticalautomotive.com${isSpanish ? "/es/contactos" : "/contacts"}`}
+        keywords={isSpanish
+          ? "contacto Vertical Automotive, dirección taller Fort Lauderdale, teléfono mecánico Wilton Manors, agendar cita"
+          : "contact Vertical Automotive, auto shop address Fort Lauderdale, mechanic phone Wilton Manors, schedule appointment"}
       />
       <Navigation />
 

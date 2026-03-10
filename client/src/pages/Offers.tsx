@@ -61,11 +61,14 @@ export default function OffersPage() {
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
         title={isSpanish
-          ? "Cupones y Ofertas de Reparación Automotriz - Vertical Automotive | Fort Lauderdale, FL"
-          : "Auto Repair Coupons & Offers - Vertical Automotive | Fort Lauderdale, FL"}
+          ? "Ofertas y Cupones | Vertical Automotive"
+          : "Coupons & Offers | Vertical Automotive"}
         description={isSpanish
-          ? "Ahorre en reparaciones automotrices con cupones y ofertas exclusivas de Vertical Automotive. Inspección de frenos gratis, cambio de aceite gratis, descuentos en neumáticos y más."
-          : "Save on auto repairs with exclusive coupons and offers from Vertical Automotive. Free brake inspection, free oil change, tire discounts, and more. Print coupons and schedule today."}
+          ? "Cupones exclusivos: inspección de frenos gratis, cambio de aceite gratis, descuentos en neumáticos. Ahorre en Vertical Automotive."
+          : "Exclusive coupons: free brake inspection, free oil change, tire discounts and more. Save at Vertical Automotive."}
+        keywords={isSpanish
+          ? "cupones reparación auto Fort Lauderdale, ofertas cambio aceite, descuento frenos, taller económico"
+          : "auto repair coupons Fort Lauderdale, oil change deals, brake discount, affordable mechanic"}
       />
       <Navigation />
 

@@ -64,11 +64,14 @@ export default function ServiceDetail() {
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
         title={isSpanish
-          ? `${service.title} - Vertical Automotive | Reparación Automotriz Fort Lauderdale`
-          : `${service.title} - Vertical Automotive | Fort Lauderdale Auto Repair`}
+          ? `${service.title} | Vertical Automotive`
+          : `${service.title} | Vertical Automotive`}
         description={isSpanish
-          ? `Servicio profesional de ${service.title.toLowerCase()} en Fort Lauderdale, FL. ${service.description} Técnicos certificados ASE. Garantía de 3 años. Llame al (954) 565-1518.`
-          : `Professional ${service.title.toLowerCase()} service in Fort Lauderdale, FL. ${service.description} ASE-certified technicians. 3-year warranty. Call (954) 565-1518.`}
+          ? `${service.description.slice(0, 120)}... Técnicos ASE. Garantía 3 años. (954) 565-1518.`
+          : `${service.description.slice(0, 120)}... ASE-certified. 3-year warranty. (954) 565-1518.`}
+        keywords={isSpanish
+          ? `${service.title.toLowerCase()} Fort Lauderdale, reparación ${service.title.toLowerCase()}, taller mecánico, certificado ASE`
+          : `${service.title.toLowerCase()} Fort Lauderdale, ${service.title.toLowerCase()} repair, auto mechanic, ASE certified`}
       />
       <Navigation />
 

@@ -72,11 +72,14 @@ export default function AboutPage() {
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
         title={isSpanish
-          ? "Sobre Nosotros - Vertical Automotive | Taller Familiar Desde 1989"
-          : "About Us - Vertical Automotive | Family-Owned Auto Repair Since 1989"}
+          ? "Sobre Nosotros | Vertical Automotive Fort Lauderdale"
+          : "About Us | Vertical Automotive Fort Lauderdale"}
         description={isSpanish
-          ? "Negocio familiar desde 1989, Vertical Automotive es un taller certificado ASE en Fort Lauderdale. 36 años de experiencia, más de 54,000 vehículos reparados."
-          : "Family-owned and operated since 1989, Vertical Automotive is an ASE-certified auto repair shop in Fort Lauderdale. 36 years of experience, 54,000+ vehicles repaired. Learn about our team and commitment to quality."}
+          ? "Taller familiar desde 1989 en Fort Lauderdale. Certificado ASE, más de 54,000 vehículos reparados. Conozca a nuestro equipo."
+          : "Family-owned ASE-certified auto repair since 1989 in Fort Lauderdale. 54,000+ vehicles repaired. Meet our expert team."}
+        keywords={isSpanish
+          ? "sobre Vertical Automotive, taller familiar Fort Lauderdale, mecánicos ASE, historia taller, equipo técnico"
+          : "about Vertical Automotive, family auto repair Fort Lauderdale, ASE mechanics, shop history, expert team"}
       />
       <Navigation />
 

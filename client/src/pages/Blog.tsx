@@ -7,6 +7,7 @@
  * Article cards link to standalone article pages (/blog/:slug, /es/informacion/:slug)
  */
 import Navigation from "@/components/Navigation";
+import SEO from "@/components/SEO";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { COMPANY } from "@/lib/data";
@@ -221,6 +222,17 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title={isSpanish
+          ? "Blog de Consejos Automotrices | Vertical Automotive"
+          : "Auto Care Tips & Blog | Vertical Automotive"}
+        description={isSpanish
+          ? "Consejos de mantenimiento, guías de reparación y noticias automotrices de los técnicos ASE de Vertical Automotive en Fort Lauderdale."
+          : "Maintenance tips, repair guides and auto news from the ASE technicians at Vertical Automotive in Fort Lauderdale."}
+        keywords={isSpanish
+          ? "blog automotriz, consejos mantenimiento auto, guía reparación, tips cuidado carro Fort Lauderdale"
+          : "auto blog, car maintenance tips, repair guide, vehicle care Fort Lauderdale"}
+      />
       <Navigation />
 
       <PageHero

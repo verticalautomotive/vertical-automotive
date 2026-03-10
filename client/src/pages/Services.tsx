@@ -32,11 +32,14 @@ export default function ServicesPage() {
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
         title={isSpanish
-          ? "Servicios de Reparación Automotriz - Vertical Automotive | Fort Lauderdale, FL"
-          : "Auto Repair Services - Vertical Automotive | Fort Lauderdale, FL"}
+          ? "Servicios | Vertical Automotive Fort Lauderdale"
+          : "Services | Vertical Automotive Fort Lauderdale"}
         description={isSpanish
-          ? "Servicios completos de reparación automotriz en Fort Lauderdale: frenos, transmisión, A/C, cambio de aceite, diagnósticos, dirección, servicio EV e híbridos. Técnicos certificados ASE. Garantía de 3 años."
-          : "Complete auto repair services in Fort Lauderdale: brakes, transmission, A/C, oil change, diagnostics, steering, EV & hybrid service. ASE-certified technicians. 3-year warranty."}
+          ? "Frenos, transmisión, A/C, aceite, diagnósticos, dirección y servicio EV en Fort Lauderdale. Técnicos ASE. Garantía de 3 años."
+          : "Brakes, transmission, A/C, oil change, diagnostics, steering & EV service in Fort Lauderdale. ASE-certified. 3-year warranty."}
+        keywords={isSpanish
+          ? "servicios automotrices Fort Lauderdale, frenos, transmisión, aire acondicionado, cambio de aceite, diagnóstico motor, reparación Tesla"
+          : "auto repair services Fort Lauderdale, brakes, transmission, AC repair, oil change, engine diagnostics, Tesla service"}
       />
       <Navigation />
 
