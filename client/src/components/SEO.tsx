@@ -9,6 +9,7 @@ interface SEOProps {
   description: string;
   canonical?: string;
   ogImage?: string;
+  keywords?: string;
 }
 
 function setMetaTag(name: string, content: string, attribute: string = "name") {
@@ -31,13 +32,18 @@ function setLinkTag(rel: string, href: string) {
   el.setAttribute("href", href);
 }
 
-export default function SEO({ title, description, canonical, ogImage }: SEOProps) {
+export default function SEO({ title, description, canonical, ogImage, keywords }: SEOProps) {
   useEffect(() => {
     // Page title
     document.title = title;
 
     // Meta description
     setMetaTag("description", description);
+
+    // Meta keywords
+    if (keywords) {
+      setMetaTag("keywords", keywords);
+    }
 
     // Open Graph
     setMetaTag("og:title", title, "property");
@@ -61,9 +67,9 @@ export default function SEO({ title, description, canonical, ogImage }: SEOProps
 
     // Cleanup: restore default title on unmount
     return () => {
-      document.title = "Vertical Automotive - Full-Service Auto Repair Shop in Fort Lauderdale, FL";
+      document.title = "Vertical Automotive | Auto Repair Fort Lauderdale";
     };
-  }, [title, description, canonical, ogImage]);
+  }, [title, description, canonical, ogImage, keywords]);
 
   return null;
 }

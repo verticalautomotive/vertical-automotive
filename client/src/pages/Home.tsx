@@ -222,11 +222,14 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
         title={isSpanish
-          ? "Vertical Automotive - Taller de Reparación Automotriz en Fort Lauderdale, FL"
-          : "Vertical Automotive - Full-Service Auto Repair Shop in Fort Lauderdale, FL"}
+          ? "Vertical Automotive | Taller Mecánico Fort Lauderdale"
+          : "Vertical Automotive | Auto Repair Fort Lauderdale"}
         description={isSpanish
-          ? "Taller de reparación automotriz certificado ASE en Fort Lauderdale y Wilton Manors. Especialistas en Tesla, Asiáticos, Europeos y Domésticos. 36 años de experiencia. Garantía de 3 años. Llame al (954) 565-1518."
-          : "ASE-certified auto repair shop in Fort Lauderdale & Wilton Manors. Tesla, Asian, European & Domestic vehicle specialists. 36 years of experience. 3-year warranty on all repairs. Call (954) 565-1518."}
+          ? "Taller certificado ASE en Fort Lauderdale y Wilton Manors. Especialistas en Tesla, Europeos, Asiáticos y Domésticos. Garantía de 3 años. Llame al (954) 565-1518."
+          : "ASE-certified auto repair in Fort Lauderdale & Wilton Manors. Tesla, European, Asian & Domestic specialists. 3-year warranty. Call (954) 565-1518."}
+        keywords={isSpanish
+          ? "taller mecánico Fort Lauderdale, reparación de autos Wilton Manors, reparación Tesla, certificado ASE, frenos, cambio de aceite, aire acondicionado, diagnóstico de motor, autos europeos, Sur de Florida"
+          : "auto repair Fort Lauderdale, car mechanic Wilton Manors, Tesla repair, ASE certified, brake service, oil change, AC repair, engine diagnostics, European car repair, South Florida"}
       />
       <Navigation />
 
