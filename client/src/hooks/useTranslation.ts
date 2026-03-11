@@ -18,6 +18,7 @@ const EN_TO_ES: Record<string, string> = {
   offers: "ofertas",
   about: "sobre-nosotros",
   blog: "informacion",
+  "about/gallery": "sobre-nosotros/galeria",
   contacts: "contactos",
 };
 

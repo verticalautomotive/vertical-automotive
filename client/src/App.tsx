@@ -20,6 +20,7 @@ const Blog = lazy(() => import("./pages/Blog"));
 const BlogArticle = lazy(() => import("./pages/BlogArticle"));
 const Contacts = lazy(() => import("./pages/Contacts"));
 const FAQ = lazy(() => import("./pages/FAQ"));
+const Gallery = lazy(() => import("./pages/Gallery"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function ScrollToTop() {
@@ -52,6 +53,7 @@ function Router() {
           <Route path="/services" component={Services} />
           <Route path="/offers" component={Offers} />
           <Route path="/about" component={About} />
+          <Route path="/about/gallery" component={Gallery} />
           <Route path="/services/faq" component={FAQ} />
           <Route path="/services/:slug" component={ServiceOrVehiclePage} />
           <Route path="/blog" component={Blog} />
@@ -63,6 +65,7 @@ function Router() {
           <Route path="/es/servicios" component={Services} />
           <Route path="/es/ofertas" component={Offers} />
           <Route path="/es/sobre-nosotros" component={About} />
+          <Route path="/es/sobre-nosotros/galeria" component={Gallery} />
           <Route path="/es/servicios/preguntas-frecuentes" component={FAQ} />
           <Route path="/es/servicios/:slug" component={ServiceOrVehiclePage} />
           <Route path="/es/informacion" component={Blog} />

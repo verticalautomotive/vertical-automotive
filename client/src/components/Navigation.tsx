@@ -65,6 +65,7 @@ export default function Navigation() {
   const navLinks = [
     { label: isSpanish ? t.offers : "OFFERS", href: isSpanish ? "/es/ofertas" : "/offers" },
     { label: isSpanish ? t.aboutUs : "ABOUT US", href: isSpanish ? "/es/sobre-nosotros" : "/about" },
+    { label: isSpanish ? "GALERÍA" : "GALLERY", href: isSpanish ? "/es/sobre-nosotros/galeria" : "/about/gallery" },
     { label: isSpanish ? t.reviews : "REVIEWS", href: `${homeHash}#reviews` },
     { label: isSpanish ? t.contacts : "CONTACTS", href: isSpanish ? "/es/contactos" : "/contacts" },
     { label: isSpanish ? t.info : "TIPS", href: isSpanish ? "/es/informacion" : "/blog" },
