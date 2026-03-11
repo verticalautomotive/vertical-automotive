@@ -89,7 +89,7 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
     metaTitle: "South Florida Seasonal Car Care Guide | Vertical Automotive",
     metaDescription: "Complete seasonal car care guide for Fort Lauderdale and Wilton Manors drivers. Expert tips on A/C maintenance, paint protection, hurricane prep, and year-round vehicle care in South Florida.",
     relatedServiceSlug: "a-c-maintenance-repair",
-    author: AUTHORS_EN.eugene,
+    author: AUTHORS_EN.team,
     datePublished: "2025-03-15",
     dateModified: "2025-11-20",
     sections: [
@@ -136,7 +136,7 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
     metaTitle: "Why Regular Oil Changes Matter | Vertical Automotive Fort Lauderdale",
     metaDescription: "Learn why regular oil changes are essential for your engine's longevity. Expert advice from Vertical Automotive in Fort Lauderdale on oil types, intervals, and South Florida driving conditions.",
     relatedServiceSlug: "oil-change-engine-service",
-    author: AUTHORS_EN.eugene,
+    author: AUTHORS_EN.team,
     datePublished: "2025-04-10",
     dateModified: "2025-12-05",
     sections: [
@@ -178,7 +178,7 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
     metaTitle: "5 Brake Warning Signs You Shouldn't Ignore | Vertical Automotive",
     metaDescription: "Learn the 5 critical warning signs that your brakes need professional attention. Expert brake service advice from Vertical Automotive in Fort Lauderdale and Wilton Manors.",
     relatedServiceSlug: "brake-system",
-    author: AUTHORS_EN.eugene,
+    author: AUTHORS_EN.team,
     datePublished: "2025-05-22",
     dateModified: "2026-01-10",
     sections: [
@@ -308,7 +308,7 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
     metaTitle: "Hybrid & EV Maintenance Guide | Vertical Automotive Fort Lauderdale",
     metaDescription: "Expert guide to hybrid and electric vehicle maintenance. Learn what's different about EV care from Vertical Automotive's certified technicians in Fort Lauderdale.",
     relatedServiceSlug: "hybrids-ev",
-    author: AUTHORS_EN.eugene,
+    author: AUTHORS_EN.team,
     datePublished: "2025-09-05",
     dateModified: "2026-02-20",
     sections: [
@@ -354,7 +354,7 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
     metaTitle: "Check Engine Light Guide: What It Means | Vertical Automotive",
     metaDescription: "What does your check engine light mean? Expert diagnostic guide from Vertical Automotive in Fort Lauderdale. Learn common causes and why professional diagnosis matters.",
     relatedServiceSlug: "check-engine-light-diagnostics",
-    author: AUTHORS_EN.eugene,
+    author: AUTHORS_EN.team,
     datePublished: "2025-10-12",
     dateModified: "2026-03-01",
     sections: [
@@ -396,7 +396,7 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
     metaTitle: "Transmission Service & Fluid Change Guide | Vertical Automotive Fort Lauderdale",
     metaDescription: "Learn why transmission fluid changes are critical for your vehicle's longevity. Expert transmission service guide from Vertical Automotive in Fort Lauderdale and Wilton Manors.",
     relatedServiceSlug: "transmission",
-    author: AUTHORS_EN.eugene,
+    author: AUTHORS_EN.team,
     datePublished: "2026-03-11",
     sections: [
       {
@@ -449,7 +449,7 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
     metaTitle: "Guía de Cuidado Estacional del Auto en el Sur de Florida | Vertical Automotive",
     metaDescription: "Guía completa de cuidado estacional del auto para conductores de Fort Lauderdale y Wilton Manors. Consejos expertos sobre mantenimiento de A/C, protección de pintura y preparación para huracanes.",
     relatedServiceSlug: "a-c-maintenance-repair",
-    author: AUTHORS_ES.eugene,
+    author: AUTHORS_ES.team,
     datePublished: "2025-03-15",
     dateModified: "2025-11-20",
     sections: [
@@ -496,7 +496,7 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
     metaTitle: "Por Qué los Cambios de Aceite Regulares Importan | Vertical Automotive",
     metaDescription: "Aprenda por qué los cambios de aceite regulares son esenciales para la longevidad de su motor. Consejos expertos de Vertical Automotive en Fort Lauderdale.",
     relatedServiceSlug: "oil-change-engine-service",
-    author: AUTHORS_ES.eugene,
+    author: AUTHORS_ES.team,
     datePublished: "2025-04-10",
     dateModified: "2025-12-05",
     sections: [
@@ -538,7 +538,7 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
     metaTitle: "5 Señales de Advertencia de Frenos | Vertical Automotive Fort Lauderdale",
     metaDescription: "Conozca las 5 señales críticas de que sus frenos necesitan atención profesional. Servicio experto de frenos de Vertical Automotive en Fort Lauderdale y Wilton Manors.",
     relatedServiceSlug: "brake-system",
-    author: AUTHORS_ES.eugene,
+    author: AUTHORS_ES.team,
     datePublished: "2025-05-22",
     dateModified: "2026-01-10",
     sections: [
@@ -668,7 +668,7 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
     metaTitle: "Guía de Mantenimiento de Híbridos y EV | Vertical Automotive Fort Lauderdale",
     metaDescription: "Guía experta de mantenimiento de vehículos híbridos y eléctricos. Aprenda qué es diferente sobre el cuidado de EV con los técnicos certificados de Vertical Automotive.",
     relatedServiceSlug: "hybrid-ev-service",
-    author: AUTHORS_ES.eugene,
+    author: AUTHORS_ES.team,
     datePublished: "2025-09-05",
     dateModified: "2026-02-20",
     sections: [
@@ -714,7 +714,7 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
     metaTitle: "Guía de Luz de Check Engine: Qué Significa | Vertical Automotive",
     metaDescription: "¿Qué significa su luz de check engine? Guía de diagnóstico experta de Vertical Automotive en Fort Lauderdale. Conozca las causas comunes y por qué importa el diagnóstico profesional.",
     relatedServiceSlug: "complete-diagnostics",
-    author: AUTHORS_ES.eugene,
+    author: AUTHORS_ES.team,
     datePublished: "2025-10-12",
     dateModified: "2026-03-01",
     sections: [
@@ -756,7 +756,7 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
     metaTitle: "Guía de Servicio de Transmisión y Cambio de Fluido | Vertical Automotive Fort Lauderdale",
     metaDescription: "Aprenda por qué los cambios de fluido de transmisión son críticos para la longevidad de su vehículo. Guía experta de servicio de transmisión de Vertical Automotive en Fort Lauderdale y Wilton Manors.",
     relatedServiceSlug: "transmission",
-    author: AUTHORS_ES.eugene,
+    author: AUTHORS_ES.team,
     datePublished: "2026-03-11",
     sections: [
       {
