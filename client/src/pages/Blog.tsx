@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { COMPANY } from "@/lib/data";
 import { useState, useEffect, useMemo } from "react";
-import { ChevronDown, Brain, Wrench, Search, Shield, Star, MessageCircle, Calendar, Thermometer, Droplets, Gauge, Clock, ArrowRight, Zap, Car, Sparkles, HelpCircle, MapPin } from "lucide-react";
+import { ChevronDown, Brain, Wrench, Search, Shield, Star, MessageCircle, Calendar, Thermometer, Droplets, Gauge, Clock, ArrowRight, Zap, Car, Sparkles, HelpCircle, MapPin, Cog } from "lucide-react";
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackSchedule } from "@/lib/gtm";
@@ -127,6 +127,7 @@ const ARTICLE_ICONS = [
   <Clock className="w-3.5 h-3.5" />,
   <Zap className="w-3.5 h-3.5" />,
   <Search className="w-3.5 h-3.5" />,
+  <Cog className="w-3.5 h-3.5" />,
 ];
 
 export default function Blog() {
