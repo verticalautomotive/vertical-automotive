@@ -61,7 +61,7 @@ const TRUST_BADGES: TrustBadge[] = [
     titleEs: "Certificado O'Reilly",
   },
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/XguNmpNebNLkMYsk.png",
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/VwcywqJYtGcGdhEZ.png",
     title: "Tesla Certified",
     titleEs: "Certificado Tesla",
   },
@@ -71,7 +71,7 @@ const TRUST_BADGES: TrustBadge[] = [
     titleEs: "Negocio Verificado por Google",
   },
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/GfTGhEFpiztLWZKP.png",
+    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/GZDTIzwLRCkRYAND.png",
     title: "Yelp",
     titleEs: "Yelp",
   },
@@ -100,7 +100,7 @@ export default function TrustBadges() {
             key={i}
             className="group flex items-center justify-center cursor-default"
           >
-            <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-[72px] lg:h-[72px] flex items-center justify-center transition-transform duration-300 ease-out group-hover:scale-110">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 flex items-center justify-center transition-transform duration-300 ease-out group-hover:scale-110">
               <img
                 src={badge.logo}
                 alt={badge.title}
