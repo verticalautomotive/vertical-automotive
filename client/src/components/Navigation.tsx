@@ -4,6 +4,7 @@
  * SERVICE dropdown with all services + vehicle types
  * MOBILE: Compact header (h-14), streamlined menu
  * BILINGUAL: Detects /es/ prefix and shows Spanish labels + correct links
+ * CALL NOW button opens location picker popup instead of showing two phone numbers
  */
 import { COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
@@ -12,12 +13,14 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { Link, useLocation } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { trackCall, trackSchedule } from "@/lib/gtm";
+import { trackSchedule } from "@/lib/gtm";
+import CallNowDialog from "./CallNowDialog";
 
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [serviceDropdownOpen, setServiceDropdownOpen] = useState(false);
   const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
+  const [callDialogOpen, setCallDialogOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [location] = useLocation();
   const { lang, isSpanish, prefix, servicesPath, services, vehicleTypes, ui } = useTranslation();
@@ -100,6 +103,7 @@ export default function Navigation() {
   }, [location, navigate, homePath]);
 
   return (
+    <>
     <nav className="sticky top-0 z-50 bg-secondary text-secondary-foreground shadow-lg">
       <div className="w-full px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-20">
@@ -196,20 +200,15 @@ export default function Navigation() {
           </div>
 
           {/* CTA + Language Switcher — desktop */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-3">
             <LanguageSwitcher />
-            <div className="flex flex-col items-end text-xs space-y-1">
-              <a href="tel:9545651518" className="flex items-center space-x-2 hover:text-primary transition-colors" onClick={() => trackCall("Wilton Manors", "(954) 565-1518", "desktop_nav")}>
-                <Phone className="w-3.5 h-3.5" />
-                <span className="mono-number">Wilton Manors</span>
-                <span className="mono-number font-bold">(954) 565-1518</span>
-              </a>
-              <a href="tel:6452162266" className="flex items-center space-x-2 hover:text-primary transition-colors" onClick={() => trackCall("Fort Lauderdale", "(645) 216-2266", "desktop_nav")}>
-                <Phone className="w-3.5 h-3.5" />
-                <span className="mono-number">Ft. Lauderdale</span>
-                <span className="mono-number font-bold">(645) 216-2266</span>
-              </a>
-            </div>
+            <button
+              onClick={() => setCallDialogOpen(true)}
+              className="flex items-center gap-2 px-4 py-2.5 border-2 border-primary/40 hover:border-primary text-primary hover:bg-primary/10 font-display font-bold tracking-wider text-sm transition-all"
+            >
+              <Phone className="w-4 h-4" />
+              {isSpanish ? "LLAMAR" : "CALL NOW"}
+            </button>
             <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackSchedule("desktop_nav")}>
               <Button
                 size="lg"
@@ -292,18 +291,15 @@ export default function Navigation() {
               );
             })}
 
-            {/* Phone numbers + CTA */}
+            {/* Call Now + Schedule CTA */}
             <div className="pt-3 space-y-2">
-              <div className="flex items-center gap-4">
-                <a href="tel:9545651518" className="flex items-center space-x-2 text-sm" onClick={() => trackCall("Wilton Manors", "(954) 565-1518", "mobile_menu")}>
-                  <Phone className="w-3.5 h-3.5 text-primary" />
-                  <span className="mono-number">Wilton Manors (954) 565-1518</span>
-                </a>
-                <a href="tel:6452162266" className="flex items-center space-x-2 text-sm" onClick={() => trackCall("Fort Lauderdale", "(645) 216-2266", "mobile_menu")}>
-                  <Phone className="w-3.5 h-3.5 text-primary" />
-                  <span className="mono-number">Ft. Lauderdale (645) 216-2266</span>
-                </a>
-              </div>
+              <button
+                onClick={() => { setCallDialogOpen(true); setMobileOpen(false); }}
+                className="w-full flex items-center justify-center gap-2 py-2.5 border-2 border-primary/40 text-primary font-display font-bold tracking-wider text-sm hover:bg-primary/10 transition-colors"
+              >
+                <Phone className="w-4 h-4" />
+                {isSpanish ? "LLAMAR" : "CALL NOW"}
+              </button>
               <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="block" onClick={() => trackSchedule("mobile_menu")}>
                 <Button
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-wider text-sm py-2.5"
@@ -323,5 +319,13 @@ export default function Navigation() {
         }}
       />
     </nav>
+
+    {/* Call Now Dialog */}
+    <CallNowDialog
+      open={callDialogOpen}
+      onClose={() => setCallDialogOpen(false)}
+      source="nav"
+    />
+    </>
   );
 }

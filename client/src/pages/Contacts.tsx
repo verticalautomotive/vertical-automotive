@@ -15,6 +15,8 @@ import { MapPin, Phone, Clock, Mail, ExternalLink, Navigation2 } from "lucide-re
 import SEO from "@/components/SEO";
 import { trackCall, trackSchedule, trackDirections } from "@/lib/gtm";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useState } from "react";
+import CallNowDialog from "@/components/CallNowDialog";
 
 function getMapsUrl(location: typeof LOCATIONS[0]) {
   return location.directionsUrl;
@@ -126,7 +128,8 @@ function ContactLocationCard({ location, isSpanish }: { location: typeof LOCATIO
 }
 
 export default function Contacts() {
-  const { isSpanish, ui, prefix } = useTranslation();
+  const { isSpanish, prefix } = useTranslation();
+  const [callDialogOpen, setCallDialogOpen] = useState(false);
 
   const t = {
     pageTitle: isSpanish ? "Contacto" : "Contact Us",
@@ -199,22 +202,13 @@ export default function Contacts() {
               <p className="text-sm text-muted-foreground mb-5">
                 {t.callAnytime}
               </p>
-              <div className="space-y-2">
-                <a
-                  href={`tel:${LOCATIONS[0].phoneRaw}`}
-                  onClick={() => trackCall("Wilton Manors", LOCATIONS[0].phone, "contacts_quick_card")}
-                  className="block mono-number text-primary font-bold hover:underline text-sm sm:text-base"
-                >
-                  Wilton Manors: {LOCATIONS[0].phone}
-                </a>
-                <a
-                  href={`tel:${LOCATIONS[1].phoneRaw}`}
-                  onClick={() => trackCall("Fort Lauderdale", LOCATIONS[1].phone, "contacts_quick_card")}
-                  className="block mono-number text-primary font-bold hover:underline text-sm sm:text-base"
-                >
-                  Fort Lauderdale: {LOCATIONS[1].phone}
-                </a>
-              </div>
+              <button
+                onClick={() => setCallDialogOpen(true)}
+                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary/40 hover:border-primary text-primary hover:bg-primary/10 font-display font-bold tracking-wider text-sm transition-all cursor-pointer"
+              >
+                <Phone className="w-4 h-4" />
+                {isSpanish ? "LLAMAR AHORA" : "CALL NOW"}
+              </button>
             </div>
 
             {/* Schedule Online Card */}
@@ -237,6 +231,13 @@ export default function Contacts() {
       </section>
 
       <Footer />
+
+      {/* Call Now Dialog */}
+      <CallNowDialog
+        open={callDialogOpen}
+        onClose={() => setCallDialogOpen(false)}
+        source="contacts_quick_card"
+      />
     </div>
   );
 }

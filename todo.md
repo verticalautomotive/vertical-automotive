@@ -1,13 +1,12 @@
-# Tile Rounding Fixes
+# Call Now Button Popup - Task List
 
-## Issues
-The glass-card CSS has border-radius: 18px which makes tiles look oval/pill-shaped instead of rectangular.
-Blog article cards and images also appear too rounded (circular images).
-
-## Fixes needed
-- [ ] ServiceDetail.tsx "Other Services" tiles: add rounded-xl (12px) 
-- [ ] Blog.tsx featured article card: add rounded-xl (12px)
-- [ ] Blog.tsx grid article cards: add rounded-xl (12px) and images rounded-t-xl
-- [ ] glass-card CSS: reduce border-radius from 18px to 12px globally
-- [ ] glass-offer CSS: reduce border-radius similarly
-- [ ] glass-coupon CSS: reduce border-radius similarly
+- [x] Review all components that display phone numbers
+- [x] Create reusable CallNowPopup component with location selection
+- [x] Update Navigation header - replace dual phone numbers with Call Now button
+- [x] Update Footer component - kept phone numbers (context-specific location cards)
+- [x] Update MobileFooterBar - replaced with single Call Now button + dialog
+- [x] Update FloatingActions - already uses location picker popup (no change needed)
+- [x] Update Contact page - replaced Call Us card with Call Now button + dialog
+- [x] Update Home page sticky bar - replaced with Call Now button + dialog
+- [x] Add bilingual support (EN/ES) for popup text
+- [ ] Test and save checkpoint (FAQ page also updated)

@@ -4,7 +4,7 @@
  * Includes FAQPage JSON-LD structured data for SEO
  * Bilingual: EN (/services/faq) and ES (/es/servicios/preguntas-frecuentes)
  */
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { ChevronDown, Search, Wrench, X } from "lucide-react";
 import { SERVICE_FAQS, type FAQItem } from "@/lib/faq-data";
 import { SERVICE_FAQS_ES } from "@/lib/faq-data-es";
@@ -15,6 +15,8 @@ import SEO from "@/components/SEO";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { Link } from "wouter";
+import CallNowDialog from "@/components/CallNowDialog";
+import { Phone } from "lucide-react";
 
 /* ─── Types ─── */
 interface ServiceFAQGroup {
@@ -89,6 +91,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [callDialogOpen, setCallDialogOpen] = useState(false);
 
   // Build grouped FAQ data
   const faqSource = isSpanish ? SERVICE_FAQS_ES : SERVICE_FAQS;
@@ -363,17 +366,25 @@ export default function FAQ() {
             >
               {t.ctaButton}
             </a>
-            <a
-              href="tel:9545651518"
-              className="inline-flex items-center justify-center px-8 py-3.5 rounded-full border-2 border-background/30 text-background font-bold tracking-widest text-sm hover:border-primary hover:text-primary transition-colors"
+            <button
+              onClick={() => setCallDialogOpen(true)}
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border-2 border-background/30 text-background font-bold tracking-widest text-sm hover:border-primary hover:text-primary transition-colors cursor-pointer"
             >
+              <Phone className="w-4 h-4" />
               {t.ctaCall}
-            </a>
+            </button>
           </div>
         </div>
       </section>
 
       <Footer />
+
+      {/* Call Now Dialog */}
+      <CallNowDialog
+        open={callDialogOpen}
+        onClose={() => setCallDialogOpen(false)}
+        source="faq_cta"
+      />
     </>
   );
 }

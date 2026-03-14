@@ -37,11 +37,13 @@ import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackCall, trackSchedule, trackDirections, trackClaimOffer } from "@/lib/gtm";
+import CallNowDialog from "@/components/CallNowDialog";
 
 export default function Home() {
   const [statsVisible, setStatsVisible] = useState(false);
   const [reviewsExpanded, setReviewsExpanded] = useState(false);
   const [offersExpanded, setOffersExpanded] = useState(false);
+  const [callDialogOpen, setCallDialogOpen] = useState(false);
   const { lang, isSpanish, prefix, servicesPath, services, vehicleTypes, offers, ui } = useTranslation();
 
   const t = ui?.home ?? {
@@ -859,30 +861,18 @@ export default function Home() {
 
       {/* Sticky Mobile Bottom CTA Bar */}
       <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden bg-secondary/95 backdrop-blur-sm border-t-2 border-primary/30 px-3 py-2 flex gap-2">
-        <a href={`tel:${LOCATIONS[0].phoneRaw}`} className="flex-1" onClick={() => trackCall("Wilton Manors", LOCATIONS[0].phone, "home_sticky_bar")}>
+        <button
+          onClick={() => setCallDialogOpen(true)}
+          className="flex-1"
+        >
           <Button
             variant="outline"
-            className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-2 gap-1 flex flex-col items-center leading-tight h-auto"
+            className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-2 gap-1 flex items-center justify-center h-auto"
           >
-            <span className="flex items-center gap-1 text-[10px]">
-              <Phone className="w-3 h-3" />
-              {LOCATIONS[0].name}
-            </span>
-            <span className="text-[11px]">{LOCATIONS[0].phone}</span>
+            <Phone className="w-4 h-4" />
+            <span className="text-xs font-bold tracking-wider">{isSpanish ? "LLAMAR" : "CALL NOW"}</span>
           </Button>
-        </a>
-        <a href={`tel:${LOCATIONS[1].phoneRaw}`} className="flex-1" onClick={() => trackCall("Fort Lauderdale", LOCATIONS[1].phone, "home_sticky_bar")}>
-          <Button
-            variant="outline"
-            className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-2 gap-1 flex flex-col items-center leading-tight h-auto"
-          >
-            <span className="flex items-center gap-1 text-[10px]">
-              <Phone className="w-3 h-3" />
-              {LOCATIONS[1].name}
-            </span>
-            <span className="text-[11px]">{LOCATIONS[1].phone}</span>
-          </Button>
-        </a>
+        </button>
         <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="flex-1" onClick={() => trackSchedule("home_sticky_bar")}>
           <Button
             className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-xs py-2 h-full"
@@ -894,6 +884,13 @@ export default function Home() {
 
       {/* Bottom spacer for sticky bar on mobile */}
       <div className="h-16 sm:hidden" />
+
+      {/* Call Now Dialog */}
+      <CallNowDialog
+        open={callDialogOpen}
+        onClose={() => setCallDialogOpen(false)}
+        source="home_sticky_bar"
+      />
     </div>
   );
 }
