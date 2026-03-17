@@ -61,9 +61,19 @@ const TRUST_BADGES: TrustBadge[] = [
     titleEs: "Certificado O'Reilly",
   },
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/VwcywqJYtGcGdhEZ.png",
-    title: "Tesla Certified",
-    titleEs: "Certificado Tesla",
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/silverrock_logo_dark_188b40cd.png",
+    title: "SilverRock Warranty",
+    titleEs: "Garantía SilverRock",
+  },
+  {
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/carmax_logo_0457b3ea.png",
+    title: "CarMax",
+    titleEs: "CarMax",
+  },
+  {
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/carshield_logo_e199d3fc.png",
+    title: "CarShield",
+    titleEs: "CarShield",
   },
   {
     logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/eeNYOroSGtgqCWGT.png",
