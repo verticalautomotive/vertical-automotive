@@ -861,18 +861,16 @@ export default function Home() {
 
       {/* Sticky Mobile Bottom CTA Bar */}
       <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden bg-secondary/95 backdrop-blur-sm border-t-2 border-primary/30 px-3 py-2 flex gap-2">
-        <button
-          onClick={() => setCallDialogOpen(true)}
-          className="flex-1"
-        >
+        <div className="flex-1">
           <Button
             variant="outline"
+            onClick={() => setCallDialogOpen(true)}
             className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-2 gap-1 flex items-center justify-center h-auto"
           >
             <Phone className="w-4 h-4" />
             <span className="text-xs font-bold tracking-wider">{isSpanish ? "LLAMAR" : "CALL NOW"}</span>
           </Button>
-        </button>
+        </div>
         <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="flex-1" onClick={() => trackSchedule("home_sticky_bar")}>
           <Button
             className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-xs py-2 h-full"
