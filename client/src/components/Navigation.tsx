@@ -22,6 +22,8 @@ export default function Navigation() {
   const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
   const [callDialogOpen, setCallDialogOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const serviceButtonRef = useRef<HTMLButtonElement>(null);
+  const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0 });
   const [location] = useLocation();
   const { lang, isSpanish, prefix, servicesPath, services, vehicleTypes, ui } = useTranslation();
 
@@ -126,7 +128,14 @@ export default function Navigation() {
             {/* SERVICE Dropdown */}
             <div ref={dropdownRef} className="relative">
               <button
-                onClick={() => setServiceDropdownOpen(!serviceDropdownOpen)}
+                ref={serviceButtonRef}
+                onClick={() => {
+                  if (!serviceDropdownOpen && serviceButtonRef.current) {
+                    const rect = serviceButtonRef.current.getBoundingClientRect();
+                    setDropdownPos({ top: rect.bottom + 4, left: rect.left });
+                  }
+                  setServiceDropdownOpen(!serviceDropdownOpen);
+                }}
                 className="flex items-center px-2 xl:px-3 py-2 font-display text-[13px] xl:text-sm font-bold tracking-wider hover:text-primary transition-colors"
               >
                 {isSpanish ? t.service : "SERVICE"}
@@ -134,7 +143,7 @@ export default function Navigation() {
               </button>
 
               {serviceDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 w-72 bg-secondary border border-border shadow-2xl z-50 max-h-[calc(100vh-5rem)] overflow-y-auto">
+                <div className="fixed w-72 bg-secondary border border-border shadow-2xl z-[9999] overflow-y-auto overscroll-contain" style={{ top: dropdownPos.top, left: dropdownPos.left, maxHeight: 'calc(100vh - ' + dropdownPos.top + 'px - 1rem)', scrollbarWidth: 'thin', scrollbarColor: 'var(--primary) transparent' }}>
                   <div className="py-2">
                     <Link
                       href={servicesPath}
