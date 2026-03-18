@@ -32,6 +32,7 @@ const SERVICE_IMAGES: Record<string, string> = {
   "fuel-system": "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&q=50&fm=webp&fit=crop&auto=format",
   "hybrids-ev": "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=1200&q=50&fm=webp&fit=crop&auto=format",
   "alignment-tire-rotation-balancing": "https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1200&q=50&fm=webp&fit=crop&auto=format",
+  "fleet-maintenance-repairs": "https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1200&q=50&fm=webp&fit=crop&auto=format",
 };
 
 export default function ServiceDetail() {

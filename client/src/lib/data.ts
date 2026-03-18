@@ -214,6 +214,18 @@ export const SERVICES: ServiceItem[] = [
     },
   },
   {
+    slug: "fleet-maintenance-repairs",
+    title: "Fleet Maintenance & Repairs",
+    shortTitle: "Fleet Services",
+    description: "Managing a fleet of vehicles for your business? Vertical Automotive offers dedicated fleet maintenance and repair programs with priority scheduling, volume pricing, and detailed service records to keep your vehicles on the road.",
+    icon: "truck",
+    content: {
+      intro: "Keeping a fleet of vehicles running reliably is critical to your business operations — every vehicle down means lost revenue and disrupted schedules. At Vertical Automotive in Wilton Manors and Fort Lauderdale, we provide comprehensive fleet maintenance and repair services tailored to businesses of all sizes. Whether you manage delivery vans, service trucks, company cars, or a mixed fleet, our ASE-certified technicians deliver consistent, high-quality service with priority scheduling so your vehicles spend less time in the shop and more time working. We handle everything from routine oil changes and tire rotations to complex engine diagnostics, brake service, transmission repair, and A/C maintenance — all documented with detailed digital service records for your fleet management. Our fleet program includes volume pricing, dedicated account coordination, and flexible scheduling to minimize downtime. We service all makes and models, including Ford Transit, Chevrolet Express, Ram ProMaster, Toyota Tacoma, and more. Every repair is backed by our 36,000-mile / 36-month warranty.",
+      whenNeeded: "Establish a fleet maintenance program before problems arise — proactive scheduling based on mileage intervals and manufacturer recommendations prevents costly breakdowns and extends vehicle life. Contact us if you manage 3 or more vehicles, if your current provider lacks consistency or detailed record-keeping, if fleet vehicles are experiencing recurring issues, or if you need priority turnaround times to keep operations running. We also assist businesses transitioning to hybrid or electric fleet vehicles with specialized EV maintenance support.",
+      benefits: "A dedicated fleet maintenance program reduces unplanned breakdowns by up to 50%, extends vehicle lifespan, lowers total cost of ownership, and provides complete service documentation for tax and compliance purposes. Our priority scheduling and volume pricing help you budget predictably while keeping every vehicle in your fleet safe, reliable, and road-ready. Businesses across Broward County trust Vertical Automotive to keep their fleets performing at their best.",
+    },
+  },
+  {
     slug: "manufacturer-recommended-services",
     title: "Manufacturer Recommended Services",
     shortTitle: "Manufacturer Recommended Services",
@@ -450,6 +462,7 @@ export const SERVICES_PAGE_EXTRA = {
       "Computerized Diagnostic Scanning",
       "Steering & Suspension Repair",
       "Wheel Alignment & Balancing",
+      "Fleet Maintenance & Repairs",
     ],
   },
 };

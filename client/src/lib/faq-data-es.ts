@@ -306,4 +306,26 @@ export const SERVICE_FAQS_ES: Record<string, FAQItem[]> = {
       answer: "Absolutamente. Muchos de nuestros clientes agregan un lavado o detallado a su cita de servicio. Es una forma conveniente de tener su vehículo luciendo genial mientras manejamos el trabajo mecánico.",
     },
   ],
+  "fleet-maintenance-repairs": [
+    {
+      question: "¿Qué tipos de vehículos de flota dan servicio?",
+      answer: "Damos servicio a todas las marcas y modelos usados en flotas comerciales — incluyendo Ford Transit, Chevrolet Express, Ram ProMaster, Toyota Tacoma, camiones de caja, furgonetas de reparto, vehículos de servicio y autos de empresa. Ya sea que tenga una flota pequeña de 3 vehículos o administre más de 50, nuestros técnicos certificados ASE manejan todo, desde mantenimiento rutinario hasta reparaciones complejas.",
+    },
+    {
+      question: "¿Ofrecen programación prioritaria para vehículos de flota?",
+      answer: "Sí. Nuestro programa de flotas incluye programación prioritaria para minimizar el tiempo de inactividad de los vehículos. Entendemos que cada día que un vehículo está en el taller le cuesta dinero a su negocio, por lo que coordinamos las citas de servicio para que sus vehículos vuelvan a la carretera lo más rápido posible.",
+    },
+    {
+      question: "¿Proporcionan registros detallados de servicio para la gestión de flotas?",
+      answer: "Absolutamente. Cada vehículo de flota recibe registros digitales completos de servicio que documentan todo el mantenimiento realizado, piezas utilizadas y servicio futuro recomendado. Estos registros apoyan su gestión de flota, documentación fiscal, seguimiento de garantía y requisitos de cumplimiento.",
+    },
+    {
+      question: "¿Hay precios por volumen para mantenimiento de flotas?",
+      answer: "Sí. Ofrecemos precios competitivos por volumen para empresas con múltiples vehículos. Nuestro programa de flotas está diseñado para reducir sus costos de mantenimiento por vehículo mientras mantiene los mismos altos estándares de calidad de servicio. Contáctenos para discutir un plan personalizado de mantenimiento de flota para su negocio.",
+    },
+    {
+      question: "¿Pueden manejar reparaciones de emergencia de flotas?",
+      answer: "Sí. Entendemos que las averías de flota pueden interrumpir toda su operación. Ofrecemos servicio acelerado para reparaciones de emergencia de flotas y trabajamos para diagnosticar y resolver problemas lo más rápido posible. Nuestros técnicos experimentados y nuestro inventario de piezas bien surtido ayudan a minimizar el tiempo de inactividad inesperado.",
+    },
+  ],
 };

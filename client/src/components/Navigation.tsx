@@ -134,7 +134,7 @@ export default function Navigation() {
               </button>
 
               {serviceDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 w-72 bg-secondary border border-border shadow-2xl z-50">
+                <div className="absolute top-full left-0 mt-1 w-72 bg-secondary border border-border shadow-2xl z-50 max-h-[calc(100vh-5rem)] overflow-y-auto">
                   <div className="py-2">
                     <Link
                       href={servicesPath}

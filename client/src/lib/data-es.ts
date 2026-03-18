@@ -170,6 +170,18 @@ export const SERVICES_ES: ServiceItem[] = [
     },
   },
   {
+    slug: "fleet-maintenance-repairs",
+    title: "Mantenimiento y Reparación de Flotas",
+    shortTitle: "Servicios de Flotas",
+    description: "¿Administra una flota de vehículos para su negocio? Vertical Automotive ofrece programas dedicados de mantenimiento y reparación de flotas con programación prioritaria, precios por volumen y registros detallados de servicio para mantener sus vehículos en la carretera.",
+    icon: "truck",
+    content: {
+      intro: "Mantener una flota de vehículos funcionando de manera confiable es fundamental para las operaciones de su negocio — cada vehículo fuera de servicio significa ingresos perdidos y horarios interrumpidos. En Vertical Automotive en Wilton Manors y Fort Lauderdale, proporcionamos servicios integrales de mantenimiento y reparación de flotas adaptados a empresas de todos los tamaños. Ya sea que administre camionetas de reparto, camiones de servicio, autos de empresa o una flota mixta, nuestros técnicos certificados ASE ofrecen un servicio consistente y de alta calidad con programación prioritaria para que sus vehículos pasen menos tiempo en el taller y más tiempo trabajando. Manejamos todo, desde cambios de aceite rutinarios y rotaciones de llantas hasta diagnósticos complejos de motor, servicio de frenos, reparación de transmisión y mantenimiento de A/C — todo documentado con registros digitales detallados de servicio para la gestión de su flota. Nuestro programa de flotas incluye precios por volumen, coordinación dedicada de cuenta y programación flexible para minimizar el tiempo de inactividad. Damos servicio a todas las marcas y modelos, incluyendo Ford Transit, Chevrolet Express, Ram ProMaster, Toyota Tacoma y más. Cada reparación está respaldada por nuestra garantía de 36,000 millas / 36 meses.",
+      whenNeeded: "Establezca un programa de mantenimiento de flota antes de que surjan problemas — la programación proactiva basada en intervalos de millaje y recomendaciones del fabricante previene averías costosas y extiende la vida del vehículo. Contáctenos si administra 3 o más vehículos, si su proveedor actual carece de consistencia o registros detallados, si los vehículos de la flota experimentan problemas recurrentes, o si necesita tiempos de respuesta prioritarios para mantener las operaciones en marcha. También asistimos a empresas en la transición a vehículos de flota híbridos o eléctricos con soporte especializado de mantenimiento EV.",
+      benefits: "Un programa dedicado de mantenimiento de flota reduce las averías no planificadas hasta en un 50%, extiende la vida útil del vehículo, reduce el costo total de propiedad y proporciona documentación completa de servicio para fines fiscales y de cumplimiento. Nuestra programación prioritaria y precios por volumen le ayudan a presupuestar de manera predecible mientras mantiene cada vehículo de su flota seguro, confiable y listo para la carretera. Las empresas en todo el Condado de Broward confían en Vertical Automotive para mantener sus flotas rindiendo al máximo.",
+    },
+  },
+  {
     slug: "manufacturer-recommended-services",
     title: "Servicios Recomendados por el Fabricante",
     shortTitle: "Servicios del Fabricante",

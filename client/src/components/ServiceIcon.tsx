@@ -80,6 +80,15 @@ export default function ServiceIcon({ name }: { name: string }) {
         <path d="M26 4L10 28h12L20 44l16-24H24L26 4z" />
       </svg>
     ),
+    truck: (
+      <svg className={`${size} ${iconColor}`} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="4" y="14" width="26" height="18" rx="2" />
+        <path d="M30 20h8l6 8v4h-14v-12z" />
+        <circle cx="14" cy="36" r="4" />
+        <circle cx="38" cy="36" r="4" />
+        <line x1="18" y1="32" x2="34" y2="32" />
+      </svg>
+    ),
     circle: (
       <svg className={`${size} ${iconColor}`} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="24" cy="24" r="18" />

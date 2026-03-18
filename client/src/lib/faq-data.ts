@@ -310,4 +310,26 @@ export const SERVICE_FAQS: Record<string, FAQItem[]> = {
       answer: "Absolutely. Many of our customers add a wash or detail to their service appointment. It's a convenient way to get your vehicle looking great while we handle the mechanical work. Ask about our service combo packages.",
     },
   ],
+  "fleet-maintenance-repairs": [
+    {
+      question: "What types of fleet vehicles do you service?",
+      answer: "We service all makes and models used in commercial fleets — including Ford Transit, Chevrolet Express, Ram ProMaster, Toyota Tacoma, box trucks, delivery vans, service vehicles, and company cars. Whether you have a small fleet of 3 vehicles or manage 50+, our ASE-certified technicians handle everything from routine maintenance to complex repairs.",
+    },
+    {
+      question: "Do you offer priority scheduling for fleet vehicles?",
+      answer: "Yes. Our fleet program includes priority scheduling to minimize vehicle downtime. We understand that every day a vehicle is in the shop costs your business money, so we coordinate service appointments to get your vehicles back on the road as quickly as possible — often with same-day or next-day turnaround for routine maintenance.",
+    },
+    {
+      question: "Do you provide detailed service records for fleet management?",
+      answer: "Absolutely. Every fleet vehicle receives comprehensive digital service records documenting all maintenance performed, parts used, and recommended future service. These records support your fleet management, tax documentation, warranty tracking, and compliance requirements.",
+    },
+    {
+      question: "Is there volume pricing for fleet maintenance?",
+      answer: "Yes. We offer competitive volume pricing for businesses with multiple vehicles. Our fleet program is designed to reduce your per-vehicle maintenance costs while maintaining the same high-quality service standards. Contact us to discuss a customized fleet maintenance plan for your business.",
+    },
+    {
+      question: "Can you handle emergency fleet repairs?",
+      answer: "Yes. We understand that fleet breakdowns can disrupt your entire operation. We offer expedited service for emergency fleet repairs and work to diagnose and resolve issues as quickly as possible. Our experienced technicians and well-stocked parts inventory help minimize unexpected downtime.",
+    },
+  ],
 };
