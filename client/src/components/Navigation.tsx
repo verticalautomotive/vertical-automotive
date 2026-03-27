@@ -1,7 +1,7 @@
 /**
  * Navigation — Industrial Brutalism Design
  * Black/white/blue palette, diagonal accent, bold typography
- * SERVICE dropdown with all services + vehicle types
+ * SERVICE dropdown with categorized services + vehicle types
  * MOBILE: Compact header (h-14), streamlined menu
  * BILINGUAL: Detects /es/ prefix and shows Spanish labels + correct links
  * CALL NOW button opens location picker popup instead of showing two phone numbers
@@ -9,12 +9,91 @@
 import { COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Menu, Phone, X } from "lucide-react";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { Link, useLocation } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { trackSchedule } from "@/lib/gtm";
 import CallNowDialog from "./CallNowDialog";
+
+// Category definitions for organizing services
+const SERVICE_CATEGORIES_EN = [
+  {
+    label: "ENGINE & DRIVETRAIN",
+    slugs: [
+      "battery-cranking-charging-systems",
+      "transmission",
+      "oil-change-engine-service",
+      "fuel-system",
+      "powertrain-restoration",
+    ],
+  },
+  {
+    label: "SAFETY & HANDLING",
+    slugs: [
+      "brake-system",
+      "steering-suspension",
+      "alignment-tire-rotation-balancing",
+      "tires",
+    ],
+  },
+  {
+    label: "COMFORT & SPECIALTY",
+    slugs: [
+      "a-c-maintenance-repair",
+      "hybrids-ev",
+      "complete-diagnostics",
+    ],
+  },
+  {
+    label: "MAINTENANCE & MORE",
+    slugs: [
+      "routine-preventive-maintenance",
+      "manufacturer-recommended-services",
+      "fleet-maintenance-repairs",
+      "car-wash",
+    ],
+  },
+];
+
+const SERVICE_CATEGORIES_ES = [
+  {
+    label: "MOTOR Y TREN MOTRIZ",
+    slugs: [
+      "battery-cranking-charging-systems",
+      "transmission",
+      "oil-change-engine-service",
+      "fuel-system",
+      "powertrain-restoration",
+    ],
+  },
+  {
+    label: "SEGURIDAD Y MANEJO",
+    slugs: [
+      "brake-system",
+      "steering-suspension",
+      "alignment-tire-rotation-balancing",
+      "tires",
+    ],
+  },
+  {
+    label: "CONFORT Y ESPECIALIDAD",
+    slugs: [
+      "a-c-maintenance-repair",
+      "hybrids-ev",
+      "complete-diagnostics",
+    ],
+  },
+  {
+    label: "MANTENIMIENTO Y MÁS",
+    slugs: [
+      "routine-preventive-maintenance",
+      "manufacturer-recommended-services",
+      "fleet-maintenance-repairs",
+      "car-wash",
+    ],
+  },
+];
 
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -40,6 +119,18 @@ export default function Navigation() {
     info: "TIPS",
     scheduleNow: "SCHEDULE NOW",
   };
+
+  // Build categorized services from the flat services array
+  const categories = useMemo(() => {
+    const cats = isSpanish ? SERVICE_CATEGORIES_ES : SERVICE_CATEGORIES_EN;
+    const serviceMap = new Map(services.map((s) => [s.slug, s]));
+    return cats.map((cat) => ({
+      label: cat.label,
+      items: cat.slugs
+        .map((slug) => serviceMap.get(slug))
+        .filter(Boolean) as typeof services,
+    }));
+  }, [isSpanish, services]);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -81,14 +172,10 @@ export default function Navigation() {
   const homePath = isSpanish ? "/es" : "/";
 
   const handleNavClick = useCallback((e: React.MouseEvent, href: string) => {
-    // Handle hash links like /es#reviews or /#reviews
     const hashIndex = href.indexOf('#');
     if (hashIndex !== -1) {
       e.preventDefault();
-      const basePath = href.slice(0, hashIndex) || homePath;
       const id = href.slice(hashIndex + 1);
-      
-      // Check if we're already on the correct home page
       const isOnHome = location === homePath || location === homePath + "/";
       if (isOnHome) {
         const el = document.getElementById(id);
@@ -143,8 +230,18 @@ export default function Navigation() {
               </button>
 
               {serviceDropdownOpen && (
-                <div className="fixed w-72 bg-secondary border border-border shadow-2xl z-[9999] overflow-y-auto overscroll-contain" style={{ top: dropdownPos.top, left: dropdownPos.left, maxHeight: 'calc(100vh - ' + dropdownPos.top + 'px - 1rem)', scrollbarWidth: 'thin', scrollbarColor: 'var(--primary) transparent' }}>
+                <div
+                  className="fixed w-[320px] bg-secondary border border-border shadow-2xl z-[9999] overflow-y-auto overscroll-contain"
+                  style={{
+                    top: dropdownPos.top,
+                    left: dropdownPos.left,
+                    maxHeight: `calc(100vh - ${dropdownPos.top}px - 1rem)`,
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: 'var(--primary) transparent',
+                  }}
+                >
                   <div className="py-2">
+                    {/* All Services link */}
                     <Link
                       href={servicesPath}
                       className="block px-4 py-2.5 text-sm font-display font-bold text-primary hover:bg-white/5 tracking-wider"
@@ -152,33 +249,42 @@ export default function Navigation() {
                     >
                       {isSpanish ? t.allServices : "ALL SERVICES"}
                     </Link>
+
                     <div className="border-t border-border my-1" />
-                    <div className="px-4 py-1.5 text-xs font-display text-muted-foreground tracking-widest">
-                      {(isSpanish ? t.vehicleTypes : "VEHICLE TYPES").toUpperCase()}
+
+                    {/* Vehicle Types */}
+                    <div className="px-4 py-1.5 text-[10px] font-display text-muted-foreground tracking-widest uppercase">
+                      {isSpanish ? t.vehicleTypes : "VEHICLE TYPES"}
                     </div>
                     {vehicleTypes.map((v) => (
                       <Link
                         key={v.slug}
                         href={`${servicesPath}/${v.slug}`}
-                        className="block px-4 py-2 text-sm text-secondary-foreground/80 hover:text-primary hover:bg-white/5 transition-colors"
+                        className="block px-4 py-1.5 text-sm text-secondary-foreground/80 hover:text-primary hover:bg-white/5 transition-colors"
                         onClick={() => setServiceDropdownOpen(false)}
                       >
                         {v.title}
                       </Link>
                     ))}
-                    <div className="border-t border-border my-1" />
-                    <div className="px-4 py-1.5 text-xs font-display text-muted-foreground tracking-widest">
-                      {(isSpanish ? t.services : "SERVICES").toUpperCase()}
-                    </div>
-                    {services.map((s) => (
-                      <Link
-                        key={s.slug}
-                        href={`${servicesPath}/${s.slug}`}
-                        className="block px-4 py-2 text-sm text-secondary-foreground/80 hover:text-primary hover:bg-white/5 transition-colors"
-                        onClick={() => setServiceDropdownOpen(false)}
-                      >
-                        {s.shortTitle}
-                      </Link>
+
+                    {/* Categorized Services */}
+                    {categories.map((cat) => (
+                      <div key={cat.label}>
+                        <div className="border-t border-border my-1" />
+                        <div className="px-4 py-1.5 text-[10px] font-display text-muted-foreground tracking-widest uppercase">
+                          {cat.label}
+                        </div>
+                        {cat.items.map((s) => (
+                          <Link
+                            key={s.slug}
+                            href={`${servicesPath}/${s.slug}`}
+                            className="block px-4 py-1.5 text-sm text-secondary-foreground/80 hover:text-primary hover:bg-white/5 transition-colors"
+                            onClick={() => setServiceDropdownOpen(false)}
+                          >
+                            {s.shortTitle}
+                          </Link>
+                        ))}
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -259,7 +365,9 @@ export default function Navigation() {
                 <Link href={servicesPath} className="block py-1.5 text-sm text-primary font-display font-bold tracking-wider">
                   {isSpanish ? t.allServices : "ALL SERVICES"}
                 </Link>
-                <div className="text-[10px] text-muted-foreground font-display tracking-widest pt-1.5 pb-0.5 uppercase">
+
+                {/* Vehicle Types */}
+                <div className="text-[10px] text-muted-foreground font-display tracking-widest pt-2 pb-0.5 uppercase">
                   {isSpanish ? t.vehicleTypes : "Vehicle Types"}
                 </div>
                 {vehicleTypes.map((v) => (
@@ -267,13 +375,19 @@ export default function Navigation() {
                     {v.title}
                   </Link>
                 ))}
-                <div className="text-[10px] text-muted-foreground font-display tracking-widest pt-1.5 pb-0.5 uppercase">
-                  {isSpanish ? t.services : "Services"}
-                </div>
-                {services.map((s) => (
-                  <Link key={s.slug} href={`${servicesPath}/${s.slug}`} className="block py-1.5 text-sm text-secondary-foreground/70 hover:text-primary">
-                    {s.shortTitle}
-                  </Link>
+
+                {/* Categorized Services */}
+                {categories.map((cat) => (
+                  <div key={cat.label}>
+                    <div className="text-[10px] text-muted-foreground font-display tracking-widest pt-2 pb-0.5 uppercase">
+                      {cat.label}
+                    </div>
+                    {cat.items.map((s) => (
+                      <Link key={s.slug} href={`${servicesPath}/${s.slug}`} className="block py-1.5 text-sm text-secondary-foreground/70 hover:text-primary">
+                        {s.shortTitle}
+                      </Link>
+                    ))}
+                  </div>
                 ))}
               </div>
             )}
