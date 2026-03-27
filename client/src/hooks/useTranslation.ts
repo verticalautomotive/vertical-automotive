@@ -31,6 +31,8 @@ const BLOG_SLUG_EN_TO_ES: Record<string, string> = {
   "tire-care-pressure-rotation-alignment": "cuidado-de-neumaticos-presion-rotacion-alineacion",
   "hybrid-ev-maintenance-guide": "guia-mantenimiento-hibridos-ev",
   "check-engine-light-guide": "guia-luz-check-engine",
+  "transmission-service-fluid-change": "servicio-de-transmision-cambio-de-fluido",
+  "fleet-vehicle-maintenance-schedules": "programas-mantenimiento-vehiculos-de-flota",
 };
 const BLOG_SLUG_ES_TO_EN: Record<string, string> = Object.fromEntries(
   Object.entries(BLOG_SLUG_EN_TO_ES).map(([k, v]) => [v, k])

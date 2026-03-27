@@ -429,6 +429,56 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
       "If buying a used vehicle, request transmission fluid service records — missing history is a red flag"
     ],
     conclusion: "Your transmission is a precision-engineered system with thousands of moving parts, and it depends on clean, properly functioning fluid to operate correctly. At Vertical Automotive, our ASE-certified technicians perform thorough transmission evaluations that go beyond a simple fluid swap. We inspect the pan for debris that indicates internal wear, replace the filter, and use the correct manufacturer-specified fluid for your vehicle. Whether you drive an automatic, manual, CVT, or dual-clutch transmission, our Fort Lauderdale and Wilton Manors locations are equipped to keep it shifting smoothly. Don't wait for a $4,000 rebuild — schedule a transmission fluid service today."
+  },
+  {
+    slug: "fleet-vehicle-maintenance-schedules",
+    category: "Fleet Management",
+    readTime: "6 min read",
+    image: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1200&q=50&fm=webp&fit=crop&auto=format",
+    imageAlt: "Fleet of commercial vehicles parked in a row",
+    title: "FLEET VEHICLE MAINTENANCE SCHEDULES:",
+    titleHighlight: "KEEPING YOUR BUSINESS VEHICLES RUNNING",
+    excerpt: "Unplanned breakdowns cost fleet operators an average of $448–$760 per vehicle per day in lost productivity. A structured preventive maintenance schedule is the most effective way to minimize downtime, control repair costs, and extend the working life of every vehicle in your fleet. Here's how to build one that works in South Florida.",
+    metaTitle: "Fleet Vehicle Maintenance Schedules Guide | Vertical Automotive Fort Lauderdale",
+    metaDescription: "Complete guide to fleet vehicle maintenance schedules for South Florida businesses. Expert tips on preventive maintenance, cost control, and minimizing fleet downtime from Vertical Automotive.",
+    relatedServiceSlug: "fleet-maintenance-repairs",
+    author: AUTHORS_EN.eugene,
+    datePublished: "2026-03-27",
+    sections: [
+      {
+        heading: "Why Preventive Maintenance Is Non-Negotiable for Fleets",
+        content: "When a personal vehicle breaks down, it's an inconvenience. When a fleet vehicle breaks down, it's a direct hit to your bottom line. Every hour a work truck, delivery van, or service vehicle sits idle represents lost revenue, missed appointments, and dissatisfied customers. Reactive maintenance — waiting for something to break before fixing it — is consistently the most expensive approach to fleet management. Studies from the American Trucking Association show that every $1 spent on preventive maintenance saves $4–$6 in emergency repair costs. Beyond the repair bill itself, unplanned breakdowns create cascading problems: rescheduled jobs, overtime for other drivers, rental vehicle costs, and potential safety liability. A structured preventive maintenance program transforms vehicle care from a crisis response into a predictable, budgetable business operation."
+      },
+      {
+        heading: "Building a Maintenance Schedule by Mileage Intervals",
+        content: "Every fleet vehicle should follow a tiered maintenance schedule based on mileage, with adjustments for South Florida's demanding conditions. At every 5,000 miles, perform an oil and filter change, check all fluid levels, inspect tire pressure and tread depth, test all lights and signals, and visually inspect belts and hoses. At every 15,000 miles, add a brake inspection, cabin and engine air filter replacement, tire rotation, battery test, and coolant system check. At every 30,000 miles, include transmission fluid service, spark plug replacement (gasoline engines), fuel system cleaning, comprehensive suspension inspection, and alignment check. At every 60,000 miles, schedule a timing belt or chain inspection, full brake system overhaul if needed, A/C system service, complete electrical system diagnostic, and power steering fluid flush. These intervals assume mixed city and highway driving — vehicles operating primarily in stop-and-go urban traffic should shorten intervals by 20–25 percent."
+      },
+      {
+        heading: "South Florida-Specific Fleet Challenges",
+        content: "Fleet vehicles operating in Fort Lauderdale, Wilton Manors, and the broader South Florida region face environmental stressors that accelerate wear beyond what national maintenance guides account for. Year-round heat degrades engine oil, transmission fluid, and coolant faster than in temperate climates. High humidity accelerates corrosion on brake components, electrical connectors, and undercarriage parts. Salt air from coastal proximity compounds oxidation on exposed metal surfaces. Frequent afternoon thunderstorms create standing water hazards that stress tires, brakes, and electrical systems. Construction zones throughout Broward County increase alignment issues and tire damage. For these reasons, we recommend South Florida fleet operators follow the severe-duty maintenance schedule rather than the standard intervals listed in owner's manuals. The incremental cost of more frequent service is a fraction of what premature component failure costs in downtime and emergency repairs."
+      },
+      {
+        heading: "Tracking and Documentation Best Practices",
+        content: "A maintenance schedule is only as good as the system tracking it. Every fleet vehicle should have a dedicated maintenance log — whether digital or physical — that records every service performed, parts replaced, mileage at service, and the next scheduled service date. This documentation serves multiple purposes: it ensures no vehicle falls through the cracks, provides evidence of proper care for warranty claims, supports resale value when vehicles are rotated out of the fleet, and creates data patterns that help predict future maintenance needs. Many fleet operators use simple spreadsheet systems, while larger operations benefit from dedicated fleet management software. At minimum, assign one person responsibility for monitoring service intervals and scheduling appointments. We provide detailed service records for every fleet vehicle we maintain, making it easy to keep your documentation current."
+      },
+      {
+        heading: "Cost Control: Budgeting for Fleet Maintenance",
+        content: "Predictable maintenance costs are essential for fleet budgeting. As a general benchmark, plan for $0.15–$0.25 per mile in maintenance costs for light-duty fleet vehicles (cars, SUVs, and light trucks) and $0.20–$0.35 per mile for medium-duty vehicles (larger vans and box trucks). These figures include routine maintenance, wear items like brakes and tires, and a reserve for unexpected repairs. Tracking actual costs per vehicle over time allows you to identify outliers — vehicles that consistently cost more than the fleet average may be candidates for early replacement. The total cost of ownership calculation should factor in maintenance costs, fuel efficiency, insurance, depreciation, and downtime. Often, replacing a high-maintenance older vehicle with a newer model is more cost-effective than continuing to repair it, even if the vehicle still runs."
+      },
+      {
+        heading: "Why a Dedicated Fleet Service Partner Matters",
+        content: "Managing fleet maintenance across multiple general repair shops creates inconsistency, communication gaps, and scheduling headaches. A dedicated fleet service partner like Vertical Automotive provides several advantages: priority scheduling that minimizes vehicle downtime, consistent service quality across all your vehicles, consolidated billing and reporting for simplified accounting, technicians who become familiar with your specific vehicles and their histories, and proactive communication about upcoming service needs. Our two locations in Wilton Manors and Fort Lauderdale offer convenient access for fleets operating throughout Broward County. We work with fleet managers to establish customized maintenance schedules, provide detailed service documentation, and offer flexible scheduling including early drop-off and after-hours pickup to keep your vehicles on the road during business hours."
+      }
+    ],
+    tips: [
+      "Create a master calendar with every fleet vehicle's next service date — don't rely on drivers to track mileage",
+      "Inspect fleet vehicles weekly for obvious issues: tire condition, fluid leaks, light function, and unusual noises",
+      "Keep a 10% maintenance reserve in your annual fleet budget for unexpected repairs",
+      "Rotate vehicles through service during slow periods to minimize business impact",
+      "Document every repair and service — consistent records protect warranty claims and support resale value",
+      "Replace fleet vehicles when maintenance costs exceed 50% of the vehicle's annual depreciation"
+    ],
+    conclusion: "A well-maintained fleet is a competitive advantage. Vehicles that start reliably, run efficiently, and look professional reflect directly on your business reputation. At Vertical Automotive, we've been helping South Florida businesses maintain their fleets for over 36 years. Our ASE-certified technicians understand the unique demands that local driving conditions place on commercial vehicles, and we build maintenance programs that keep your fleet productive while controlling costs. Whether you operate 3 vehicles or 30, contact our Wilton Manors or Fort Lauderdale location to discuss a fleet maintenance partnership tailored to your business needs."
   }
 ];
 
@@ -789,5 +839,55 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
       "Si compra un vehículo usado, solicite registros de servicio de fluido de transmisión — historial faltante es una señal de alerta"
     ],
     conclusion: "Su transmisión es un sistema de ingeniería de precisión con miles de piezas móviles, y depende de fluido limpio y funcionando correctamente para operar bien. En Vertical Automotive, nuestros técnicos certificados ASE realizan evaluaciones exhaustivas de transmisión que van más allá de un simple cambio de fluido. Inspeccionamos la bandeja buscando residuos que indiquen desgaste interno, reemplazamos el filtro y usamos el fluido correcto especificado por el fabricante para su vehículo. Ya sea que conduzca una transmisión automática, manual, CVT o de doble embrague, nuestras ubicaciones en Fort Lauderdale y Wilton Manors están equipadas para mantenerla cambiando suavemente. No espere a una reconstrucción de $4,000 — programe un servicio de fluido de transmisión hoy."
+  },
+  {
+    slug: "programas-mantenimiento-vehiculos-de-flota",
+    category: "Gestión de Flotas",
+    readTime: "6 min de lectura",
+    image: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1200&q=50&fm=webp&fit=crop&auto=format",
+    imageAlt: "Flota de vehículos comerciales estacionados en fila",
+    title: "PROGRAMAS DE MANTENIMIENTO DE VEHÍCULOS DE FLOTA:",
+    titleHighlight: "MANTENIENDO SUS VEHÍCULOS COMERCIALES EN MARCHA",
+    excerpt: "Las averías no planificadas cuestan a los operadores de flotas un promedio de $448–$760 por vehículo por día en productividad perdida. Un programa de mantenimiento preventivo estructurado es la forma más efectiva de minimizar el tiempo de inactividad, controlar los costos de reparación y extender la vida útil de cada vehículo en su flota.",
+    metaTitle: "Guía de Programas de Mantenimiento de Flotas | Vertical Automotive Fort Lauderdale",
+    metaDescription: "Guía completa de programas de mantenimiento de vehículos de flota para empresas del sur de Florida. Consejos expertos sobre mantenimiento preventivo, control de costos y minimización del tiempo de inactividad.",
+    relatedServiceSlug: "fleet-maintenance-repairs",
+    author: AUTHORS_ES.eugene,
+    datePublished: "2026-03-27",
+    sections: [
+      {
+        heading: "Por Qué el Mantenimiento Preventivo Es Innegociable para Flotas",
+        content: "Cuando un vehículo personal se avería, es un inconveniente. Cuando un vehículo de flota se avería, es un golpe directo a su resultado final. Cada hora que un camión de trabajo, furgoneta de entrega o vehículo de servicio permanece inactivo representa ingresos perdidos, citas incumplidas y clientes insatisfechos. El mantenimiento reactivo — esperar a que algo se rompa antes de arreglarlo — es consistentemente el enfoque más costoso para la gestión de flotas. Estudios de la Asociación Americana de Camioneros muestran que cada $1 gastado en mantenimiento preventivo ahorra $4–$6 en costos de reparación de emergencia. Más allá de la factura de reparación, las averías no planificadas crean problemas en cascada: trabajos reprogramados, horas extra para otros conductores, costos de vehículos de alquiler y posible responsabilidad de seguridad."
+      },
+      {
+        heading: "Construyendo un Programa de Mantenimiento por Intervalos de Millaje",
+        content: "Cada vehículo de flota debe seguir un programa de mantenimiento escalonado basado en el millaje, con ajustes para las condiciones exigentes del sur de Florida. Cada 5,000 millas, realice un cambio de aceite y filtro, verifique todos los niveles de fluidos, inspeccione la presión y profundidad de los neumáticos, pruebe todas las luces y señales, e inspeccione visualmente correas y mangueras. Cada 15,000 millas, agregue una inspección de frenos, reemplazo de filtros de aire de cabina y motor, rotación de neumáticos, prueba de batería y verificación del sistema de enfriamiento. Cada 30,000 millas, incluya servicio de fluido de transmisión, reemplazo de bujías, limpieza del sistema de combustible, inspección completa de suspensión y verificación de alineación. Cada 60,000 millas, programe una inspección de correa de distribución, revisión completa del sistema de frenos si es necesario, servicio del sistema de A/C y diagnóstico eléctrico completo."
+      },
+      {
+        heading: "Desafíos Específicos de Flotas en el Sur de Florida",
+        content: "Los vehículos de flota que operan en Fort Lauderdale, Wilton Manors y la región más amplia del sur de Florida enfrentan factores ambientales que aceleran el desgaste más allá de lo que las guías nacionales de mantenimiento contemplan. El calor durante todo el año degrada el aceite del motor, el fluido de transmisión y el refrigerante más rápido que en climas templados. La alta humedad acelera la corrosión en componentes de frenos, conectores eléctricos y partes del chasis. El aire salado de la proximidad costera agrava la oxidación en superficies metálicas expuestas. Las tormentas frecuentes por la tarde crean peligros de agua estancada que estresan neumáticos, frenos y sistemas eléctricos. Las zonas de construcción en todo el condado de Broward aumentan los problemas de alineación y daños a los neumáticos. Por estas razones, recomendamos que los operadores de flotas del sur de Florida sigan el programa de mantenimiento de servicio severo."
+      },
+      {
+        heading: "Mejores Prácticas de Seguimiento y Documentación",
+        content: "Un programa de mantenimiento es tan bueno como el sistema que lo rastrea. Cada vehículo de flota debe tener un registro de mantenimiento dedicado — ya sea digital o físico — que registre cada servicio realizado, piezas reemplazadas, millaje al momento del servicio y la próxima fecha de servicio programada. Esta documentación sirve múltiples propósitos: asegura que ningún vehículo se pierda, proporciona evidencia de cuidado adecuado para reclamaciones de garantía, apoya el valor de reventa cuando los vehículos se rotan fuera de la flota, y crea patrones de datos que ayudan a predecir futuras necesidades de mantenimiento. Muchos operadores de flotas usan sistemas simples de hojas de cálculo, mientras que operaciones más grandes se benefician de software dedicado de gestión de flotas."
+      },
+      {
+        heading: "Control de Costos: Presupuestando el Mantenimiento de Flotas",
+        content: "Los costos de mantenimiento predecibles son esenciales para el presupuesto de flotas. Como referencia general, planifique $0.15–$0.25 por milla en costos de mantenimiento para vehículos de flota de servicio ligero (autos, SUVs y camionetas ligeras) y $0.20–$0.35 por milla para vehículos de servicio mediano (furgonetas más grandes y camiones de caja). Estas cifras incluyen mantenimiento rutinario, artículos de desgaste como frenos y neumáticos, y una reserva para reparaciones inesperadas. Rastrear los costos reales por vehículo a lo largo del tiempo le permite identificar valores atípicos — vehículos que consistentemente cuestan más que el promedio de la flota pueden ser candidatos para reemplazo temprano."
+      },
+      {
+        heading: "Por Qué Importa un Socio Dedicado de Servicio de Flotas",
+        content: "Gestionar el mantenimiento de flotas a través de múltiples talleres generales crea inconsistencia, brechas de comunicación y dolores de cabeza de programación. Un socio dedicado de servicio de flotas como Vertical Automotive proporciona varias ventajas: programación prioritaria que minimiza el tiempo de inactividad del vehículo, calidad de servicio consistente en todos sus vehículos, facturación y reportes consolidados para contabilidad simplificada, técnicos que se familiarizan con sus vehículos específicos y sus historiales, y comunicación proactiva sobre próximas necesidades de servicio. Nuestras dos ubicaciones en Wilton Manors y Fort Lauderdale ofrecen acceso conveniente para flotas que operan en todo el condado de Broward."
+      }
+    ],
+    tips: [
+      "Cree un calendario maestro con la próxima fecha de servicio de cada vehículo de flota — no dependa de los conductores para rastrear el millaje",
+      "Inspeccione los vehículos de flota semanalmente buscando problemas obvios: condición de neumáticos, fugas de fluidos, función de luces y ruidos inusuales",
+      "Mantenga una reserva de mantenimiento del 10% en su presupuesto anual de flota para reparaciones inesperadas",
+      "Rote los vehículos a través del servicio durante períodos lentos para minimizar el impacto en el negocio",
+      "Documente cada reparación y servicio — registros consistentes protegen reclamaciones de garantía y apoyan el valor de reventa",
+      "Reemplace los vehículos de flota cuando los costos de mantenimiento excedan el 50% de la depreciación anual del vehículo"
+    ],
+    conclusion: "Una flota bien mantenida es una ventaja competitiva. Los vehículos que arrancan confiablemente, funcionan eficientemente y se ven profesionales reflejan directamente en la reputación de su negocio. En Vertical Automotive, hemos estado ayudando a empresas del sur de Florida a mantener sus flotas por más de 36 años. Nuestros técnicos certificados ASE entienden las demandas únicas que las condiciones locales de manejo imponen a los vehículos comerciales, y construimos programas de mantenimiento que mantienen su flota productiva mientras controlamos los costos. Ya sea que opere 3 vehículos o 30, contacte nuestra ubicación en Wilton Manors o Fort Lauderdale para discutir una asociación de mantenimiento de flota adaptada a las necesidades de su negocio."
   }
 ];
