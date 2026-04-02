@@ -12,7 +12,7 @@ import { trackTextUs, trackDirections } from "@/lib/gtm";
 
 const SMS_NUMBERS = {
   wiltonManors: "9548336584",
-  fortLauderdale: "8448411185",
+  fortLauderdale: "9544667186",
 };
 
 const DIRECTIONS_URLS = {
@@ -91,12 +91,12 @@ export default function FloatingActions() {
           <a
             href={`sms:${SMS_NUMBERS.fortLauderdale}`}
             className="flex items-center gap-3 px-4 py-3 hover:bg-blue-500/10 active:bg-blue-500/20 transition-colors"
-            onClick={() => { trackTextUs("Fort Lauderdale", "(844) 841-1185", "floating_button"); setOpenPopup(null); }}
+            onClick={() => { trackTextUs("Fort Lauderdale", "(954) 466-7186", "floating_button"); setOpenPopup(null); }}
           >
             <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
             <div>
               <div className="text-sm font-semibold text-white">{labels.fortLauderdale}</div>
-              <div className="text-[11px] text-blue-300/70 mono-number">(844) 841-1185</div>
+              <div className="text-[11px] text-blue-300/70 mono-number">(954) 466-7186</div>
             </div>
           </a>
         </div>
