@@ -109,7 +109,7 @@ export default function CallNowDialog({ open, onClose, source }: CallNowDialogPr
               </div>
               <div className="flex items-center gap-2 flex-shrink-0">
                 <Phone className="w-4 h-4 text-primary" />
-                <span className="mono-number text-sm font-bold text-primary">
+                <span className="mono-number text-base font-bold text-white">
                   {loc.phone}
                 </span>
               </div>
