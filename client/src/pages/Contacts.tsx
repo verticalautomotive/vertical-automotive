@@ -106,7 +106,7 @@ function ContactLocationCard({ location, isSpanish }: { location: typeof LOCATIO
           >
             <Button
               variant="outline"
-              className="w-full border-primary/40 text-primary hover:bg-primary hover:text-white font-bold text-sm sm:text-base"
+              className="w-full border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm sm:text-base shadow-[0_0_12px_rgba(0,122,255,0.3)] hover:shadow-[0_0_20px_rgba(0,122,255,0.5)]"
               size="lg"
             >
               <Navigation2 className="w-4 h-4 mr-2" />
@@ -204,7 +204,7 @@ export default function Contacts() {
               </p>
               <button
                 onClick={() => setCallDialogOpen(true)}
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary/40 hover:border-primary text-primary hover:bg-primary hover:text-white font-display font-bold tracking-wider text-sm transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary hover:bg-primary hover:text-white font-display font-bold tracking-wider text-sm transition-all cursor-pointer shadow-[0_0_12px_rgba(0,122,255,0.3)] hover:shadow-[0_0_20px_rgba(0,122,255,0.5)]"
               >
                 <Phone className="w-4 h-4" />
                 {isSpanish ? "LLAMAR AHORA" : "CALL NOW"}

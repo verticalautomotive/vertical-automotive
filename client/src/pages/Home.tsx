@@ -951,7 +951,7 @@ function LocationCard({ location, isSpanish }: { location: typeof LOCATIONS[0]; 
           >
             <Button
               variant="outline"
-              className="w-full border-primary/40 text-primary hover:bg-primary hover:text-white font-bold text-sm sm:text-base"
+              className="w-full border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm sm:text-base shadow-[0_0_12px_rgba(0,122,255,0.3)] hover:shadow-[0_0_20px_rgba(0,122,255,0.5)]"
               size="lg"
             >
               <Navigation2 className="w-4 h-4 mr-2" />
