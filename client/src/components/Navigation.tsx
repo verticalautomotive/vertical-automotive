@@ -319,7 +319,7 @@ export default function Navigation() {
             <LanguageSwitcher />
             <button
               onClick={() => setCallDialogOpen(true)}
-              className="flex items-center gap-2 px-4 py-2.5 border-2 border-primary/40 hover:border-primary text-primary hover:bg-primary/10 font-display font-bold tracking-wider text-sm transition-all"
+              className="flex items-center gap-2 px-4 py-2.5 border-2 border-primary/40 hover:border-primary text-primary hover:bg-primary hover:text-white font-display font-bold tracking-wider text-sm transition-all"
             >
               <Phone className="w-4 h-4" />
               {isSpanish ? "LLAMAR" : "CALL NOW"}
@@ -418,7 +418,7 @@ export default function Navigation() {
             <div className="pt-3 space-y-2">
               <button
                 onClick={() => { setCallDialogOpen(true); setMobileOpen(false); }}
-                className="w-full flex items-center justify-center gap-2 py-2.5 border-2 border-primary/40 text-primary font-display font-bold tracking-wider text-sm hover:bg-primary/10 transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-2.5 border-2 border-primary/40 text-primary font-display font-bold tracking-wider text-sm hover:bg-primary hover:text-white transition-colors"
               >
                 <Phone className="w-4 h-4" />
                 {isSpanish ? "LLAMAR" : "CALL NOW"}
