@@ -479,6 +479,56 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
       "Replace fleet vehicles when maintenance costs exceed 50% of the vehicle's annual depreciation"
     ],
     conclusion: "A well-maintained fleet is a competitive advantage. Vehicles that start reliably, run efficiently, and look professional reflect directly on your business reputation. At Vertical Automotive, we've been helping South Florida businesses maintain their fleets for over 36 years. Our ASE-certified technicians understand the unique demands that local driving conditions place on commercial vehicles, and we build maintenance programs that keep your fleet productive while controlling costs. Whether you operate 3 vehicles or 30, contact our Wilton Manors or Fort Lauderdale location to discuss a fleet maintenance partnership tailored to your business needs."
+  },
+  {
+    slug: "dashboard-warning-lights-guide",
+    category: "Safety",
+    readTime: "6 min read",
+    image: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=1200&q=50&fm=webp&fit=crop&auto=format",
+    imageAlt: "Car dashboard with illuminated warning lights and gauges",
+    title: "UNDERSTANDING YOUR CAR'S",
+    titleHighlight: "DASHBOARD WARNING LIGHTS",
+    excerpt: "Your dashboard warning lights are your vehicle's way of communicating critical information. Learn what each light means, which ones demand immediate attention, and when it's safe to keep driving to the shop.",
+    metaTitle: "Dashboard Warning Lights Guide: What Every Driver Must Know | Vertical Automotive Fort Lauderdale",
+    metaDescription: "Complete guide to car dashboard warning lights. Learn what check engine, ABS, oil pressure, and battery lights mean. ASE-certified diagnostics in Fort Lauderdale.",
+    relatedServiceSlug: "complete-diagnostic",
+    author: AUTHORS_EN.eugene,
+    datePublished: "2026-04-04",
+    sections: [
+      {
+        heading: "Your Dashboard Is Talking — Are You Listening?",
+        content: "Modern vehicles contain dozens of sensors and computer modules that continuously monitor every critical system. When something falls outside normal parameters, your dashboard lights up with warning indicators designed to alert you before a minor issue becomes a major repair. Unfortunately, many drivers either ignore these warnings or panic unnecessarily because they don't understand what each light means. In South Florida, where extreme heat and humidity accelerate wear on electrical systems, batteries, and cooling components, understanding your dashboard warnings is especially important. The difference between a $150 sensor replacement and a $4,000 engine rebuild often comes down to how quickly you respond to that first warning light. At Vertical Automotive, our ASE-certified technicians diagnose hundreds of warning light issues every month across our Wilton Manors and Fort Lauderdale locations, and we've seen firsthand how early response saves our customers thousands of dollars."
+      },
+      {
+        heading: "Red Lights: Stop Driving Immediately",
+        content: "Red warning lights indicate serious, potentially dangerous conditions that require immediate attention. The oil pressure light — shaped like an old-fashioned oil can — means your engine isn't receiving adequate lubrication. Continuing to drive with this light on can destroy your engine within minutes, turning a $50 oil top-off into a $5,000-$8,000 engine replacement. The temperature warning light, usually a thermometer submerged in liquid, signals that your engine is overheating. In Fort Lauderdale's 95-degree summer heat, this is one of the most common warnings we see. Pull over safely, turn off your engine, and call for assistance. The brake system warning light could indicate low brake fluid, worn pads, or a hydraulic system failure — any of which compromise your ability to stop safely. The battery or charging system light means your alternator isn't charging properly; you may have 20-30 minutes of driving before your car dies completely. Never ignore a red dashboard light, regardless of how your car seems to be running."
+      },
+      {
+        heading: "Yellow and Amber Lights: Schedule Service Soon",
+        content: "Yellow or amber warning lights indicate conditions that need attention but aren't immediately dangerous. The most common is the check engine light — a small engine outline that can mean anything from a loose gas cap to a failing catalytic converter. While you can usually continue driving with this light on, delaying diagnosis often leads to more expensive repairs. Our diagnostic equipment can read the specific trouble codes stored in your vehicle's computer and pinpoint the exact issue within minutes. The ABS light indicates a problem with your anti-lock braking system. Your regular brakes still work, but you lose the anti-lock function that prevents wheel lockup during hard stops — particularly dangerous on South Florida's rain-slicked roads during summer storms. The traction control or stability control light means the system that helps prevent skidding is compromised. The tire pressure monitoring system (TPMS) light, shaped like an exclamation point inside a horseshoe, warns of underinflated tires — a safety concern that also reduces fuel economy by up to 3%."
+      },
+      {
+        heading: "Lights Unique to Hybrid and Electric Vehicles",
+        content: "If you drive a Tesla, hybrid, or electric vehicle in South Florida, you'll encounter warning lights that traditional car owners never see. The high-voltage battery warning light indicates an issue with your EV's main power source — this is always a red-level warning that requires professional attention from technicians trained in high-voltage systems. The regenerative braking alert signals that the system converting kinetic energy back to battery charge isn't functioning properly, which affects both range and braking performance. Hybrid vehicles may display a powertrain malfunction indicator when the system managing the transition between electric and gas power encounters an error. The battery temperature warning is especially relevant in South Florida, where ambient temperatures can push EV battery packs beyond their optimal operating range of 60-80°F. At Vertical Automotive, our technicians hold specialized certifications for Tesla, hybrid, and EV diagnostics, with the proper equipment to safely service high-voltage systems that most general repair shops can't handle."
+      },
+      {
+        heading: "When Multiple Lights Come On Simultaneously",
+        content: "Seeing several warning lights illuminate at once can be alarming, but it doesn't always mean multiple systems have failed. Often, a single root cause triggers a cascade of warnings. A failing alternator, for example, can light up the battery warning, check engine light, ABS light, and power steering warning all at once as the dropping voltage affects multiple electronic systems. Similarly, a bad wheel speed sensor can trigger both the ABS and traction control lights simultaneously. After starting your car, it's normal to see all warning lights briefly illuminate during the self-test cycle — they should all turn off within a few seconds. If one or more stay on after this initial check, that's your cue to investigate. Our diagnostic process at Vertical Automotive involves scanning all vehicle modules simultaneously, not just the engine computer, which allows us to trace cascading warnings back to their single root cause rather than chasing individual symptoms."
+      },
+      {
+        heading: "What to Do When a Warning Light Appears",
+        content: "When a warning light appears, your response should match the severity. For red lights, safely pull over as soon as possible, turn off the engine, and call for roadside assistance or a tow to your repair shop. For yellow or amber lights, you can typically continue driving to your destination, but schedule a diagnostic appointment within a few days. Never cover a warning light with tape or disconnect the battery to reset it — you're only masking a problem that will get worse. Take a photo of the light with your phone so you can show your technician exactly what you saw, especially if the light is intermittent. Note the driving conditions when the light appeared: were you accelerating, braking, turning, or idling? This context helps our technicians narrow down the diagnosis faster. At Vertical Automotive, we offer complimentary diagnostic scans for warning light issues at both our Wilton Manors and Fort Lauderdale locations, because we believe understanding the problem shouldn't cost you anything."
+      }
+    ],
+    tips: [
+      "Red warning lights mean stop driving immediately — pull over safely and call for assistance",
+      "Yellow or amber lights mean schedule service soon, but you can usually continue driving short distances",
+      "A loose or damaged gas cap is the most common cause of a check engine light — try tightening it first",
+      "Take a photo of any warning light and note driving conditions to help your technician diagnose faster",
+      "Never disconnect the battery just to reset a warning light — the underlying problem will return and likely worsen",
+      "After starting your car, all lights should turn off within 3-5 seconds — any that stay on need attention"
+    ],
+    conclusion: "Your dashboard warning lights exist to protect you and your vehicle — treating them as urgent communication rather than minor annoyances can save you thousands in repair costs and keep you safe on South Florida's roads. Whether it's a mysterious check engine light, a flashing oil pressure warning, or an EV battery alert, the ASE-certified technicians at Vertical Automotive have the diagnostic expertise and equipment to identify the issue quickly and accurately. With over 36 years of experience serving Fort Lauderdale and Wilton Manors drivers, we've seen every warning light scenario imaginable. Don't wait for a small warning to become a big breakdown — contact Vertical Automotive today for a complimentary diagnostic scan at either of our convenient locations."
   }
 ];
 
@@ -889,5 +939,55 @@ export const BLOG_ARTICLES_ES: BlogArticle[] = [
       "Reemplace los vehículos de flota cuando los costos de mantenimiento excedan el 50% de la depreciación anual del vehículo"
     ],
     conclusion: "Una flota bien mantenida es una ventaja competitiva. Los vehículos que arrancan confiablemente, funcionan eficientemente y se ven profesionales reflejan directamente en la reputación de su negocio. En Vertical Automotive, hemos estado ayudando a empresas del sur de Florida a mantener sus flotas por más de 36 años. Nuestros técnicos certificados ASE entienden las demandas únicas que las condiciones locales de manejo imponen a los vehículos comerciales, y construimos programas de mantenimiento que mantienen su flota productiva mientras controlamos los costos. Ya sea que opere 3 vehículos o 30, contacte nuestra ubicación en Wilton Manors o Fort Lauderdale para discutir una asociación de mantenimiento de flota adaptada a las necesidades de su negocio."
+  },
+  {
+    slug: "guia-luces-de-advertencia-del-tablero",
+    category: "Seguridad",
+    readTime: "6 min de lectura",
+    image: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=1200&q=50&fm=webp&fit=crop&auto=format",
+    imageAlt: "Tablero de auto con luces de advertencia e indicadores iluminados",
+    title: "ENTENDIENDO LAS LUCES DE",
+    titleHighlight: "ADVERTENCIA DEL TABLERO",
+    excerpt: "Las luces de advertencia del tablero son la forma en que su vehículo comunica información crítica. Aprenda qué significa cada luz, cuáles exigen atención inmediata y cuándo es seguro seguir conduciendo hasta el taller.",
+    metaTitle: "Guía de Luces de Advertencia del Tablero | Vertical Automotive Fort Lauderdale",
+    metaDescription: "Guía completa de luces de advertencia del tablero. Aprenda qué significan las luces de check engine, ABS, presión de aceite y batería. Diagnóstico certificado ASE en Fort Lauderdale.",
+    relatedServiceSlug: "complete-diagnostic",
+    author: AUTHORS_ES.eugene,
+    datePublished: "2026-04-04",
+    sections: [
+      {
+        heading: "Su Tablero Le Está Hablando — ¿Lo Está Escuchando?",
+        content: "Los vehículos modernos contienen docenas de sensores y módulos de computadora que monitorean continuamente cada sistema crítico. Cuando algo sale de los parámetros normales, su tablero se ilumina con indicadores de advertencia diseñados para alertarle antes de que un problema menor se convierta en una reparación mayor. Desafortunadamente, muchos conductores ignoran estas advertencias o entran en pánico innecesariamente porque no entienden lo que significa cada luz. En el sur de Florida, donde el calor extremo y la humedad aceleran el desgaste de los sistemas eléctricos, baterías y componentes de enfriamiento, entender las advertencias de su tablero es especialmente importante. La diferencia entre un reemplazo de sensor de $150 y una reconstrucción de motor de $4,000 a menudo depende de qué tan rápido responda a esa primera luz de advertencia. En Vertical Automotive, nuestros técnicos certificados ASE diagnostican cientos de problemas de luces de advertencia cada mes en nuestras ubicaciones de Wilton Manors y Fort Lauderdale."
+      },
+      {
+        heading: "Luces Rojas: Deje de Conducir Inmediatamente",
+        content: "Las luces de advertencia rojas indican condiciones serias y potencialmente peligrosas que requieren atención inmediata. La luz de presión de aceite — con forma de aceitera antigua — significa que su motor no está recibiendo lubricación adecuada. Continuar conduciendo con esta luz encendida puede destruir su motor en minutos, convirtiendo un relleno de aceite de $50 en un reemplazo de motor de $5,000-$8,000. La luz de advertencia de temperatura, generalmente un termómetro sumergido en líquido, señala que su motor se está sobrecalentando. Con el calor de 95 grados del verano en Fort Lauderdale, esta es una de las advertencias más comunes que vemos. Deténgase de manera segura, apague el motor y llame para asistencia. La luz del sistema de frenos podría indicar líquido de frenos bajo, pastillas desgastadas o una falla del sistema hidráulico — cualquiera de las cuales compromete su capacidad para detenerse de forma segura. La luz de batería o sistema de carga significa que su alternador no está cargando correctamente; puede tener 20-30 minutos de conducción antes de que su auto se apague completamente."
+      },
+      {
+        heading: "Luces Amarillas y Ámbar: Programe Servicio Pronto",
+        content: "Las luces de advertencia amarillas o ámbar indican condiciones que necesitan atención pero no son inmediatamente peligrosas. La más común es la luz de check engine — un pequeño contorno de motor que puede significar desde una tapa de gasolina suelta hasta un convertidor catalítico defectuoso. Aunque generalmente puede seguir conduciendo con esta luz encendida, retrasar el diagnóstico a menudo lleva a reparaciones más costosas. Nuestro equipo de diagnóstico puede leer los códigos de problema específicos almacenados en la computadora de su vehículo e identificar el problema exacto en minutos. La luz ABS indica un problema con su sistema de frenos antibloqueo. Sus frenos regulares aún funcionan, pero pierde la función antibloqueo que previene el bloqueo de ruedas durante frenadas fuertes — particularmente peligroso en las carreteras mojadas del sur de Florida durante las tormentas de verano. La luz del sistema de monitoreo de presión de neumáticos (TPMS), con forma de signo de exclamación dentro de una herradura, advierte sobre neumáticos desinflados — una preocupación de seguridad que también reduce la economía de combustible hasta en un 3%."
+      },
+      {
+        heading: "Luces Exclusivas de Vehículos Híbridos y Eléctricos",
+        content: "Si conduce un Tesla, híbrido o vehículo eléctrico en el sur de Florida, encontrará luces de advertencia que los propietarios de autos tradicionales nunca ven. La luz de advertencia de batería de alto voltaje indica un problema con la fuente de energía principal de su EV — esta es siempre una advertencia de nivel rojo que requiere atención profesional de técnicos capacitados en sistemas de alto voltaje. La alerta de frenado regenerativo señala que el sistema que convierte la energía cinética en carga de batería no está funcionando correctamente, lo que afecta tanto la autonomía como el rendimiento de frenado. Los vehículos híbridos pueden mostrar un indicador de mal funcionamiento del tren motriz cuando el sistema que gestiona la transición entre energía eléctrica y gasolina encuentra un error. La advertencia de temperatura de batería es especialmente relevante en el sur de Florida, donde las temperaturas ambientales pueden empujar los paquetes de baterías EV más allá de su rango operativo óptimo de 15-27°C. En Vertical Automotive, nuestros técnicos tienen certificaciones especializadas para diagnósticos de Tesla, híbridos y EV."
+      },
+      {
+        heading: "Cuando Múltiples Luces Se Encienden Simultáneamente",
+        content: "Ver varias luces de advertencia iluminarse a la vez puede ser alarmante, pero no siempre significa que múltiples sistemas han fallado. A menudo, una sola causa raíz desencadena una cascada de advertencias. Un alternador defectuoso, por ejemplo, puede encender la advertencia de batería, la luz de check engine, la luz ABS y la advertencia de dirección asistida al mismo tiempo mientras el voltaje descendente afecta múltiples sistemas electrónicos. De manera similar, un sensor de velocidad de rueda defectuoso puede activar tanto las luces ABS como las de control de tracción simultáneamente. Después de arrancar su auto, es normal ver todas las luces de advertencia iluminarse brevemente durante el ciclo de autodiagnóstico — todas deberían apagarse en unos segundos. Si una o más permanecen encendidas después de esta verificación inicial, esa es su señal para investigar. Nuestro proceso de diagnóstico en Vertical Automotive implica escanear todos los módulos del vehículo simultáneamente, no solo la computadora del motor, lo que nos permite rastrear advertencias en cascada hasta su causa raíz única."
+      },
+      {
+        heading: "Qué Hacer Cuando Aparece una Luz de Advertencia",
+        content: "Cuando aparece una luz de advertencia, su respuesta debe coincidir con la gravedad. Para luces rojas, deténgase de manera segura lo antes posible, apague el motor y llame para asistencia en carretera o una grúa a su taller de reparación. Para luces amarillas o ámbar, generalmente puede continuar conduciendo hasta su destino, pero programe una cita de diagnóstico dentro de unos días. Nunca cubra una luz de advertencia con cinta ni desconecte la batería para reiniciarla — solo está enmascarando un problema que empeorará. Tome una foto de la luz con su teléfono para que pueda mostrar a su técnico exactamente lo que vio, especialmente si la luz es intermitente. Anote las condiciones de conducción cuando apareció la luz: ¿estaba acelerando, frenando, girando o en ralentí? Este contexto ayuda a nuestros técnicos a reducir el diagnóstico más rápido. En Vertical Automotive, ofrecemos escaneos de diagnóstico gratuitos para problemas de luces de advertencia en nuestras ubicaciones de Wilton Manors y Fort Lauderdale, porque creemos que entender el problema no debería costarle nada."
+      }
+    ],
+    tips: [
+      "Las luces de advertencia rojas significan dejar de conducir inmediatamente — deténgase de forma segura y llame para asistencia",
+      "Las luces amarillas o ámbar significan programar servicio pronto, pero generalmente puede seguir conduciendo distancias cortas",
+      "Una tapa de gasolina suelta o dañada es la causa más común de la luz de check engine — intente apretarla primero",
+      "Tome una foto de cualquier luz de advertencia y anote las condiciones de conducción para ayudar a su técnico a diagnosticar más rápido",
+      "Nunca desconecte la batería solo para reiniciar una luz de advertencia — el problema subyacente regresará y probablemente empeorará",
+      "Después de arrancar su auto, todas las luces deberían apagarse en 3-5 segundos — cualquiera que permanezca encendida necesita atención"
+    ],
+    conclusion: "Las luces de advertencia de su tablero existen para protegerlo a usted y a su vehículo — tratarlas como comunicación urgente en lugar de molestias menores puede ahorrarle miles en costos de reparación y mantenerlo seguro en las carreteras del sur de Florida. Ya sea una misteriosa luz de check engine, una advertencia intermitente de presión de aceite o una alerta de batería de EV, los técnicos certificados ASE de Vertical Automotive tienen la experiencia y el equipo de diagnóstico para identificar el problema de manera rápida y precisa. Con más de 36 años de experiencia sirviendo a conductores de Fort Lauderdale y Wilton Manors, hemos visto cada escenario de luz de advertencia imaginable. No espere a que una pequeña advertencia se convierta en una gran avería — contacte a Vertical Automotive hoy para un escaneo de diagnóstico gratuito en cualquiera de nuestras ubicaciones convenientes."
   }
 ];
