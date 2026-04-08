@@ -539,9 +539,9 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Shift AI Assistant"
+        style={{ position: 'fixed', bottom: '24px', right: '24px' }}
         className={cn(
-          "fixed z-[9998] hidden sm:flex items-center gap-2.5 px-4 py-3 rounded-full shadow-xl transition-all duration-300",
-          "bottom-6 right-6",
+          "z-[9998] hidden sm:flex items-center gap-2.5 px-4 py-3 rounded-full shadow-xl transition-all duration-300",
           isOpen
             ? "bg-secondary text-white hover:bg-secondary/90"
             : "bg-primary text-white hover:bg-primary/90 hover:shadow-2xl hover:scale-105"
