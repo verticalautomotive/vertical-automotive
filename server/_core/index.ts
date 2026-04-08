@@ -65,25 +65,21 @@ async function startServer() {
 
 startServer().catch(console.error);
 
-// ─── Daily knowledge sync cron job ────────────────────────────────────────────
-// Runs once at startup (after a short delay) and then every 24 hours
-const SYNC_INTERVAL_MS = 24 * 60 * 60 * 1000; // 24 hours
-const INITIAL_SYNC_DELAY_MS = 30 * 1000; // 30 seconds after startup
+// ─── Weekly knowledge sync cron job ───────────────────────────────────────────
+// Runs once per week automatically. Manual sync is available via the admin UI.
+const SYNC_INTERVAL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 async function scheduledSync() {
-  console.log("[KnowledgeSync] Starting scheduled website sync...");
+  console.log("[KnowledgeSync] Starting weekly scheduled website sync...");
   try {
     const result = await runFullSync();
     const ok = result.results.filter((r) => r.status === "ok").length;
     const fail = result.results.filter((r) => r.status === "error").length;
-    console.log(`[KnowledgeSync] Sync complete: ${ok} ok, ${fail} failed`);
+    console.log(`[KnowledgeSync] Weekly sync complete: ${ok} ok, ${fail} failed`);
   } catch (err) {
-    console.error("[KnowledgeSync] Sync failed:", err);
+    console.error("[KnowledgeSync] Weekly sync failed:", err);
   }
 }
 
-// Initial sync after 30s startup delay, then repeat every 24h
-setTimeout(() => {
-  scheduledSync();
-  setInterval(scheduledSync, SYNC_INTERVAL_MS);
-}, INITIAL_SYNC_DELAY_MS);
+// Repeat every 7 days — no startup sync (use admin panel for on-demand sync)
+setInterval(scheduledSync, SYNC_INTERVAL_MS);

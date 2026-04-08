@@ -46,3 +46,4 @@
 - [x] Add sync trigger tRPC endpoint (admin-only)
 - [x] Schedule daily auto-refresh cron job
 - [x] Test end-to-end crawl and chat with DB knowledge
+- [x] Change sync schedule from daily to weekly, remove startup auto-sync
