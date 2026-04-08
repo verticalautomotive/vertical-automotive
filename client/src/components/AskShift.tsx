@@ -22,7 +22,7 @@ type Message = {
 };
 
 const WELCOME_MESSAGES = {
-  en: `👋 Hi! I'm **Ask Shift**, your Vertical Automotive assistant.
+  en: `👋 Hi! I'm **Shift**, your Vertical Automotive assistant.
 
 I can help you with:
 • **Service pricing** estimates
@@ -31,7 +31,7 @@ I can help you with:
 • **Scheduling** your appointment
 
 What can I help you with today?`,
-  es: `👋 ¡Hola! Soy **Ask Shift**, tu asistente de Vertical Automotive.
+  es: `👋 ¡Hola! Soy **Shift**, tu asistente de Vertical Automotive.
 
 Puedo ayudarte con:
 • Estimados de **precios de servicios**
