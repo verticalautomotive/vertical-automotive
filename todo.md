@@ -28,3 +28,10 @@
 - [x] Render fallback card in Shift chat when AI signals it cannot answer
 - [x] Add "Talk to a human" quick-action button always visible at bottom of chat
 - [x] Test and save checkpoint
+
+# Shift Chatbot Bug Fixes
+- [x] Fix truncated price ranges (spark plugs cut off mid-sentence)
+- [x] Fix oil change question triggering error/NEEDS_HUMAN instead of giving price
+- [x] Increase maxOutputTokens to prevent cut-off responses
+- [x] Strengthen system prompt: never truncate prices, never escalate simple pricing questions
+- [x] Add retry logic for transient Gemini API errors

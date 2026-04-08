@@ -6,11 +6,11 @@ import { z } from "zod";
 import { publicProcedure, router } from "./_core/trpc";
 import { ENV } from "./_core/env";
 
-// Pricing data from the spreadsheet
+// Pricing data — explicit full ranges, no truncation
 const PRICING_DATA = `
-VERTICAL AUTOMOTIVE - SERVICE PRICING GUIDE
+=== VERTICAL AUTOMOTIVE PRICING (always give BOTH the low AND high end) ===
 
-INTERVAL PACKAGES (Major Service):
+INTERVAL / MAJOR SERVICE PACKAGES:
 - 30k Mile Major Service: $450 - $750
 - 60k Mile Major Service: $850 - $1,450
 - 90k Mile Major Service: $1,100 - $1,850
@@ -27,7 +27,7 @@ MAINTENANCE:
 - Transmission Fluid Exchange: $285 - $495
 - Coolant System Flush: $230 - $485
 - Cabin & HEPA Filter Service: $99.99 - $250
-- Spark Plug Replacement (4-Cyl): $275 - $450
+- Spark Plug Replacement (4-Cylinder): $275 - $450
 - Serpentine Belt Replacement: $245 - $395
 
 REPAIR:
@@ -37,9 +37,6 @@ REPAIR:
 
 DIAGNOSTICS:
 - Diagnostic Scan & Health Report: $200 - $275
-
-Note: Final pricing depends on vehicle make, model, year, and specific parts needed. 
-All prices are estimates. We offer a 3-year warranty on all repairs.
 `;
 
 // Company knowledge base
@@ -60,11 +57,12 @@ SERVICES OFFERED:
 - Fleet Maintenance: Commercial vehicle maintenance programs
 - Diagnostics: Complete diagnostic scan & health reports
 
-SCHEDULING:
-- Online scheduling available at: https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049&hl=en-US
-- Phone: Wilton Manors (954) 565-1518 | Fort Lauderdale (645) 216-2266
+CONTACT & SCHEDULING:
+- Online scheduling: https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049&hl=en-US
+- Wilton Manors phone: (954) 565-1518
+- Fort Lauderdale phone: (645) 216-2266
 
-WHEN TO SERVICE (general guidelines):
+SERVICE INTERVALS (general guidelines):
 - Oil Change: Every 5,000-7,500 miles (synthetic) or per manufacturer recommendation
 - Brake Inspection: Every 12,000 miles or if you hear squealing/grinding
 - Tire Rotation: Every 5,000-7,500 miles
@@ -72,18 +70,76 @@ WHEN TO SERVICE (general guidelines):
 - Coolant Flush: Every 30,000-50,000 miles
 - Spark Plugs: Every 30,000-100,000 miles depending on type
 - Serpentine Belt: Every 60,000-100,000 miles
-- 30k/60k/90k/120k Mile Services: At the specified mileage intervals per manufacturer
 - A/C Service: When cooling is weak, or annually for preventive maintenance
 - Battery: When experiencing slow starts or battery warning light
 `;
 
-const SYSTEM_PROMPT_EN = `You are "Shift," the friendly AI assistant for Vertical Automotive — a trusted ASE-certified auto repair shop in South Florida with 36 years of experience.
+// ─── CRITICAL RULES (repeated prominently so the model never forgets them) ────
+const CRITICAL_RULES_EN = `
+=== CRITICAL RULES — FOLLOW THESE WITHOUT EXCEPTION ===
 
-Your role is to:
-1. Help customers understand what services they need and when
-2. Provide price range estimates for services
-3. Explain what's included in each service
-4. Guide customers to schedule an appointment
+RULE 1 — ALWAYS GIVE THE FULL PRICE RANGE:
+When a customer asks about pricing, you MUST state BOTH the low AND high end of the range.
+CORRECT: "A full synthetic oil change is $89.99 - $185."
+WRONG: "A full synthetic oil change starts at $89.99." (incomplete — missing the upper end)
+WRONG: "A full synthetic oil change typically ranges from $89" (truncated — never cut off mid-sentence)
+
+RULE 2 — NEVER ESCALATE SIMPLE PRICING OR SERVICE QUESTIONS:
+Do NOT add [NEEDS_HUMAN] for ANY of these types of questions:
+- "How much is an oil change?" → Give the price range from the pricing data.
+- "How much are spark plugs?" → Give the price range from the pricing data.
+- "What does a brake service cost?" → Give the price range from the pricing data.
+- "When should I change my oil?" → Give the service interval guideline.
+- "What's included in a 60k service?" → Explain what's typically included.
+- "How do I schedule?" → Provide the scheduling link.
+These are ROUTINE questions you CAN and MUST answer directly using the pricing data above.
+
+RULE 3 — COMPLETE YOUR SENTENCES:
+Never end a response mid-sentence. Always finish the complete thought including the full price range before ending your reply.
+
+RULE 4 — WHEN TO USE [NEEDS_HUMAN]:
+ONLY add [NEEDS_HUMAN] at the end of your reply for these specific situations:
+- Customer describes a specific noise, symptom, or warning light that requires physical inspection
+- Billing dispute or complaint about a past visit
+- Warranty claim on a specific previous repair
+- Request for an exact quote on a complex multi-part job
+- Any complaint or negative experience
+
+RULE 5 — FORMAT:
+Keep responses to 2-4 sentences. Use "$X - $Y" format for all prices. Do not use markdown headers or bullet lists unless listing multiple services.
+`;
+
+const CRITICAL_RULES_ES = `
+=== REGLAS CRÍTICAS — SEGUIR SIN EXCEPCIÓN ===
+
+REGLA 1 — SIEMPRE DAR EL RANGO COMPLETO DE PRECIOS:
+Cuando un cliente pregunta por precios, DEBES indicar TANTO el límite inferior COMO el superior del rango.
+CORRECTO: "Un cambio de aceite sintético completo cuesta $89.99 - $185."
+INCORRECTO: "Un cambio de aceite sintético comienza en $89.99." (incompleto — falta el límite superior)
+
+REGLA 2 — NUNCA ESCALAR PREGUNTAS SIMPLES DE PRECIOS O SERVICIOS:
+NO agregues [NEEDS_HUMAN] para NINGUNA de estas preguntas:
+- "¿Cuánto cuesta un cambio de aceite?" → Da el rango de precios.
+- "¿Cuánto cuestan las bujías?" → Da el rango de precios.
+- "¿Cuándo debo cambiar el aceite?" → Da la guía de intervalos de servicio.
+Estas son preguntas RUTINARIAS que PUEDES y DEBES responder directamente.
+
+REGLA 3 — COMPLETA TUS ORACIONES:
+Nunca termines una respuesta a mitad de oración. Siempre incluye el rango completo de precios.
+
+REGLA 4 — CUÁNDO USAR [NEEDS_HUMAN]:
+SOLO agrega [NEEDS_HUMAN] al final de tu respuesta para:
+- El cliente describe un ruido, síntoma o luz de advertencia específica que requiere inspección física
+- Disputa de facturación o queja sobre una visita anterior
+- Reclamo de garantía sobre una reparación anterior específica
+- Solicitud de cotización exacta para un trabajo complejo de múltiples partes
+- Cualquier queja o experiencia negativa
+
+REGLA 5 — FORMATO:
+Respuestas de 2-4 oraciones. Usa el formato "$X - $Y" para todos los precios.
+`;
+
+const SYSTEM_PROMPT_EN = `You are "Shift," the friendly AI assistant for Vertical Automotive — a trusted ASE-certified auto repair shop in South Florida with 36 years of experience.
 
 COMPANY KNOWLEDGE:
 ${COMPANY_KNOWLEDGE}
@@ -91,39 +147,9 @@ ${COMPANY_KNOWLEDGE}
 PRICING DATA:
 ${PRICING_DATA}
 
-GUIDELINES:
-- Be friendly, professional, and helpful
-- Always provide price ranges when asked (use the pricing data above)
-- Explain what's included in services when asked
-- Recommend scheduling for accurate quotes: https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049
-- Keep responses concise (2-4 sentences max unless more detail is needed)
-- Always mention the 3-year warranty when discussing repairs
-- Do NOT make up prices outside the ranges provided
-- When recommending scheduling, use this exact link: https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049
-
-HUMAN ESCALATION — IMPORTANT:
-If the customer asks something you cannot confidently answer (e.g., very specific diagnostic questions, warranty claim disputes, complex repair estimates requiring inspection, billing/payment issues, complaints, or anything outside your knowledge), you MUST:
-1. Briefly acknowledge what they asked
-2. End your reply with the EXACT token: [NEEDS_HUMAN]
-
-Examples that require [NEEDS_HUMAN]:
-- "My car is making a clunking noise when I turn left" (needs physical inspection)
-- "I was charged wrong on my last invoice" (billing dispute)
-- "Is my specific repair covered under warranty?" (needs case review)
-- "Can you give me an exact quote for my 2019 BMW 3 Series?" (needs in-person estimate)
-- Any complaint or negative experience
-
-Do NOT add [NEEDS_HUMAN] for general pricing questions, service explanations, or scheduling guidance.
-
-Format your responses in plain text. When listing prices, use the format: "$X - $Y"`;
+${CRITICAL_RULES_EN}`;
 
 const SYSTEM_PROMPT_ES = `Eres "Shift," el asistente de IA amigable de Vertical Automotive — un taller de reparación de autos certificado ASE de confianza en el sur de Florida con 36 años de experiencia.
-
-Tu rol es:
-1. Ayudar a los clientes a entender qué servicios necesitan y cuándo
-2. Proporcionar estimados de rangos de precios para servicios
-3. Explicar qué incluye cada servicio
-4. Guiar a los clientes para agendar una cita
 
 CONOCIMIENTO DE LA EMPRESA:
 ${COMPANY_KNOWLEDGE}
@@ -131,60 +157,34 @@ ${COMPANY_KNOWLEDGE}
 DATOS DE PRECIOS:
 ${PRICING_DATA}
 
-DIRECTRICES:
-- Sé amigable, profesional y útil
-- Siempre proporciona rangos de precios cuando se te pida (usa los datos de precios anteriores)
-- Explica qué incluyen los servicios cuando se te pida
-- Recomienda agendar para cotizaciones precisas: https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049
-- Mantén las respuestas concisas (máximo 2-4 oraciones a menos que se necesite más detalle)
-- Siempre menciona la garantía de 3 años cuando hables de reparaciones
-- NO inventes precios fuera de los rangos proporcionados
-- Cuando recomiendes agendar, usa este enlace exacto: https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049
-
-ESCALACIÓN A HUMANO — IMPORTANTE:
-Si el cliente pregunta algo que no puedes responder con confianza (diagnósticos específicos que requieren inspección, disputas de garantía, quejas, preguntas de facturación, o cualquier cosa fuera de tu conocimiento), DEBES:
-1. Reconocer brevemente lo que preguntaron
-2. Terminar tu respuesta con el token EXACTO: [NEEDS_HUMAN]
-
-Ejemplos que requieren [NEEDS_HUMAN]:
-- "Mi carro hace un ruido al girar a la izquierda" (necesita inspección física)
-- "Me cobraron mal en mi última factura" (disputa de facturación)
-- "¿Mi reparación específica está cubierta por garantía?" (necesita revisión del caso)
-- "¿Pueden darme un precio exacto para mi BMW 2019?" (necesita estimado en persona)
-- Cualquier queja o experiencia negativa
-
-NO agregues [NEEDS_HUMAN] para preguntas generales de precios, explicaciones de servicios o guía de agendamiento.
-
-Formatea tus respuestas en texto simple. Al listar precios, usa el formato: "$X - $Y"`;
+${CRITICAL_RULES_ES}`;
 
 type ChatMessage = {
   role: "user" | "assistant";
   content: string;
 };
 
-async function callGemini(messages: ChatMessage[], lang: "en" | "es"): Promise<{ reply: string; needsHuman: boolean }> {
+async function callGeminiOnce(
+  messages: ChatMessage[],
+  lang: "en" | "es"
+): Promise<{ reply: string; needsHuman: boolean }> {
   const apiKey = ENV.geminiApiKey;
-  if (!apiKey) {
-    throw new Error("Gemini API key not configured");
-  }
+  if (!apiKey) throw new Error("Gemini API key not configured");
 
   const systemPrompt = lang === "es" ? SYSTEM_PROMPT_ES : SYSTEM_PROMPT_EN;
 
-  // Build Gemini contents array
   const contents = messages.map((msg) => ({
     role: msg.role === "assistant" ? "model" : "user",
     parts: [{ text: msg.content }],
   }));
 
   const requestBody = {
-    system_instruction: {
-      parts: [{ text: systemPrompt }],
-    },
+    system_instruction: { parts: [{ text: systemPrompt }] },
     contents,
     generationConfig: {
-      temperature: 0.7,
-      maxOutputTokens: 512,
-      topP: 0.9,
+      temperature: 0.4,        // lower = more deterministic / less hallucination
+      maxOutputTokens: 1024,   // increased to prevent mid-sentence truncation
+      topP: 0.85,
     },
   };
 
@@ -205,27 +205,40 @@ async function callGemini(messages: ChatMessage[], lang: "en" | "es"): Promise<{
 
   const data = await response.json() as {
     candidates?: Array<{
-      content?: {
-        parts?: Array<{ text?: string }>;
-      };
+      content?: { parts?: Array<{ text?: string }> };
+      finishReason?: string;
     }>;
     error?: { message: string };
   };
 
-  if (data.error) {
-    throw new Error(`Gemini error: ${data.error.message}`);
-  }
+  if (data.error) throw new Error(`Gemini error: ${data.error.message}`);
 
   const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!rawText) {
-    throw new Error("No response from Gemini");
-  }
+  if (!rawText) throw new Error("No response from Gemini");
 
-  // Detect and strip the [NEEDS_HUMAN] token
   const needsHuman = rawText.includes("[NEEDS_HUMAN]");
   const reply = rawText.replace(/\[NEEDS_HUMAN\]/g, "").trim();
 
   return { reply, needsHuman };
+}
+
+// Retry wrapper — retries once on transient 503/429 errors
+async function callGemini(
+  messages: ChatMessage[],
+  lang: "en" | "es"
+): Promise<{ reply: string; needsHuman: boolean }> {
+  try {
+    return await callGeminiOnce(messages, lang);
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    // Retry once on rate-limit or server overload
+    if (msg.includes("503") || msg.includes("429") || msg.includes("500")) {
+      console.warn("[Gemini] Transient error, retrying once...", msg);
+      await new Promise((r) => setTimeout(r, 1500));
+      return await callGeminiOnce(messages, lang);
+    }
+    throw err;
+  }
 }
 
 export const chatbotRouter = router({
@@ -247,10 +260,11 @@ export const chatbotRouter = router({
         return { success: true, reply, needsHuman };
       } catch (error) {
         console.error("[Chatbot Error]", error);
+        // On hard failure, give a helpful message but do NOT pretend we answered
         const errorMsg = input.lang === "es"
-          ? "Lo siento, tuve un problema técnico. Por favor llama al (954) 565-1518 o agenda en línea."
-          : "Sorry, I had a technical issue. Please call (954) 565-1518 or schedule online.";
-        return { success: false, reply: errorMsg, needsHuman: true };
+          ? "Lo siento, tuve un problema técnico momentáneo. Por favor intenta de nuevo, o llama al (954) 565-1518."
+          : "Sorry, I had a momentary technical issue. Please try again, or call us at (954) 565-1518.";
+        return { success: false, reply: errorMsg, needsHuman: false };
       }
     }),
 });
