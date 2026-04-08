@@ -1,11 +1,12 @@
 /**
  * FloatingActions — Floating action buttons on mobile only
- * 1. SMS/Text icon with location picker popup (Wilton Manors / Fort Lauderdale)
- * 2. Directions icon with location picker popup
+ * 1. Ask Shift AI chatbot button
+ * 2. SMS/Text icon with location picker popup (Wilton Manors / Fort Lauderdale)
+ * 3. Directions icon with location picker popup
  * Positioned above the MobileFooterBar, right side
  * Bilingual: adapts labels based on /es/ URL prefix
  */
-import { MessageCircle, Navigation2, X, MapPin } from "lucide-react";
+import { MessageCircle, Navigation2, X, MapPin, Sparkles } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackTextUs, trackDirections } from "@/lib/gtm";
@@ -22,7 +23,12 @@ const DIRECTIONS_URLS = {
 
 type PopupType = "sms" | "directions" | null;
 
-export default function FloatingActions() {
+interface FloatingActionsProps {
+  onAskShiftClick?: () => void;
+  askShiftOpen?: boolean;
+}
+
+export default function FloatingActions({ onAskShiftClick, askShiftOpen }: FloatingActionsProps) {
   const [openPopup, setOpenPopup] = useState<PopupType>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { isSpanish } = useTranslation();
@@ -31,6 +37,7 @@ export default function FloatingActions() {
     ? {
         textUs: "Enviar Texto",
         getDirections: "Direcciones",
+        askShift: "Ask Shift",
         wiltonManors: "Wilton Manors",
         fortLauderdale: "Fort Lauderdale",
         chooseLocation: "Elegir ubicación",
@@ -38,6 +45,7 @@ export default function FloatingActions() {
     : {
         textUs: "Text Us",
         getDirections: "Directions",
+        askShift: "Ask Shift",
         wiltonManors: "Wilton Manors",
         fortLauderdale: "Fort Lauderdale",
         chooseLocation: "Choose location",
@@ -141,6 +149,27 @@ export default function FloatingActions() {
           </a>
         </div>
       )}
+
+      {/* Ask Shift Button — mobile only */}
+      <button
+        onClick={onAskShiftClick}
+        className={`group relative flex items-center justify-center w-14 h-14 rounded-full shadow-lg transition-all duration-200 active:scale-95 ${
+          askShiftOpen
+            ? "bg-primary text-white shadow-primary/40"
+            : "bg-primary text-white shadow-primary/30 hover:shadow-primary/50 hover:scale-105"
+        }`}
+        aria-label={labels.askShift}
+      >
+        <Sparkles className="w-6 h-6" />
+        {/* Pulse indicator */}
+        {!askShiftOpen && (
+          <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-white animate-pulse" />
+        )}
+        {/* Label tooltip */}
+        <span className="absolute right-full mr-2 px-2 py-1 bg-[#0f1724] text-white text-[10px] font-bold tracking-wider rounded whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity border border-blue-500/20">
+          {labels.askShift}
+        </span>
+      </button>
 
       {/* Floating SMS Button */}
       <button

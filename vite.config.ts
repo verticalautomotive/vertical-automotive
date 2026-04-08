@@ -162,7 +162,8 @@ function vitePluginCriticalCSS(): Plugin {
     enforce: "post",
     async closeBundle() {
       try {
-        const Critters = (await import("critters")).default;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const Critters = (await import("critters" as any)).default;
         const outDir = path.resolve(import.meta.dirname, "dist/public");
         const htmlPath = path.join(outDir, "index.html");
 
@@ -205,6 +206,7 @@ export default defineConfig({
   },
   envDir: path.resolve(import.meta.dirname),
   root: path.resolve(import.meta.dirname, "client"),
+  publicDir: path.resolve(import.meta.dirname, "client", "public"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
@@ -227,8 +229,6 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000,
-    strictPort: false, // Will find next available port if 3000 is busy
     host: true,
     allowedHosts: [
       ".manuspre.computer",
