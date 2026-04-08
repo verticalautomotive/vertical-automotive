@@ -9,7 +9,7 @@
 - [x] Update Contact page - replaced Call Us card with Call Now button + dialog
 - [x] Update Home page sticky bar - replaced with Call Now button + dialog
 - [x] Add bilingual support (EN/ES) for popup text
-- [ ] Test and save checkpoint (FAQ page also updated)
+- [x] Test and save checkpoint (FAQ page also updated)
 
 # Ask Shift AI Chatbot
 - [x] Upgrade project to full-stack (web-db-user)
@@ -21,3 +21,10 @@
 - [x] Add bilingual EN/ES support to chatbot
 - [x] Add scheduling link (Kukui) in chatbot responses
 - [x] Test chatbot and save checkpoint
+
+# Talk to a Human Fallback
+- [x] Update chatbot backend to detect unanswerable questions and include fallback signal
+- [x] Build HumanFallbackCard component with call/text options (bilingual)
+- [x] Render fallback card in Shift chat when AI signals it cannot answer
+- [x] Add "Talk to a human" quick-action button always visible at bottom of chat
+- [x] Test and save checkpoint

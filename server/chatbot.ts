@@ -77,7 +77,7 @@ WHEN TO SERVICE (general guidelines):
 - Battery: When experiencing slow starts or battery warning light
 `;
 
-const SYSTEM_PROMPT_EN = `You are "Ask Shift," the friendly AI assistant for Vertical Automotive — a trusted ASE-certified auto repair shop in South Florida with 36 years of experience.
+const SYSTEM_PROMPT_EN = `You are "Shift," the friendly AI assistant for Vertical Automotive — a trusted ASE-certified auto repair shop in South Florida with 36 years of experience.
 
 Your role is to:
 1. Help customers understand what services they need and when
@@ -97,15 +97,27 @@ GUIDELINES:
 - Explain what's included in services when asked
 - Recommend scheduling for accurate quotes: https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049
 - Keep responses concise (2-4 sentences max unless more detail is needed)
-- If you don't know something specific, say so and recommend calling or scheduling
 - Always mention the 3-year warranty when discussing repairs
 - Do NOT make up prices outside the ranges provided
 - When recommending scheduling, use this exact link: https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049
 
-Format your responses in plain text. When listing prices, use the format: "$X - $Y"
-End responses that involve services with a scheduling call-to-action when appropriate.`;
+HUMAN ESCALATION — IMPORTANT:
+If the customer asks something you cannot confidently answer (e.g., very specific diagnostic questions, warranty claim disputes, complex repair estimates requiring inspection, billing/payment issues, complaints, or anything outside your knowledge), you MUST:
+1. Briefly acknowledge what they asked
+2. End your reply with the EXACT token: [NEEDS_HUMAN]
 
-const SYSTEM_PROMPT_ES = `Eres "Ask Shift," el asistente de IA amigable de Vertical Automotive — un taller de reparación de autos certificado ASE de confianza en el sur de Florida con 36 años de experiencia.
+Examples that require [NEEDS_HUMAN]:
+- "My car is making a clunking noise when I turn left" (needs physical inspection)
+- "I was charged wrong on my last invoice" (billing dispute)
+- "Is my specific repair covered under warranty?" (needs case review)
+- "Can you give me an exact quote for my 2019 BMW 3 Series?" (needs in-person estimate)
+- Any complaint or negative experience
+
+Do NOT add [NEEDS_HUMAN] for general pricing questions, service explanations, or scheduling guidance.
+
+Format your responses in plain text. When listing prices, use the format: "$X - $Y"`;
+
+const SYSTEM_PROMPT_ES = `Eres "Shift," el asistente de IA amigable de Vertical Automotive — un taller de reparación de autos certificado ASE de confianza en el sur de Florida con 36 años de experiencia.
 
 Tu rol es:
 1. Ayudar a los clientes a entender qué servicios necesitan y cuándo
@@ -125,20 +137,32 @@ DIRECTRICES:
 - Explica qué incluyen los servicios cuando se te pida
 - Recomienda agendar para cotizaciones precisas: https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049
 - Mantén las respuestas concisas (máximo 2-4 oraciones a menos que se necesite más detalle)
-- Si no sabes algo específico, dilo y recomienda llamar o agendar
 - Siempre menciona la garantía de 3 años cuando hables de reparaciones
 - NO inventes precios fuera de los rangos proporcionados
 - Cuando recomiendes agendar, usa este enlace exacto: https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049
 
-Formatea tus respuestas en texto simple. Al listar precios, usa el formato: "$X - $Y"
-Termina las respuestas que involucren servicios con un llamado a la acción para agendar cuando sea apropiado.`;
+ESCALACIÓN A HUMANO — IMPORTANTE:
+Si el cliente pregunta algo que no puedes responder con confianza (diagnósticos específicos que requieren inspección, disputas de garantía, quejas, preguntas de facturación, o cualquier cosa fuera de tu conocimiento), DEBES:
+1. Reconocer brevemente lo que preguntaron
+2. Terminar tu respuesta con el token EXACTO: [NEEDS_HUMAN]
+
+Ejemplos que requieren [NEEDS_HUMAN]:
+- "Mi carro hace un ruido al girar a la izquierda" (necesita inspección física)
+- "Me cobraron mal en mi última factura" (disputa de facturación)
+- "¿Mi reparación específica está cubierta por garantía?" (necesita revisión del caso)
+- "¿Pueden darme un precio exacto para mi BMW 2019?" (necesita estimado en persona)
+- Cualquier queja o experiencia negativa
+
+NO agregues [NEEDS_HUMAN] para preguntas generales de precios, explicaciones de servicios o guía de agendamiento.
+
+Formatea tus respuestas en texto simple. Al listar precios, usa el formato: "$X - $Y"`;
 
 type ChatMessage = {
   role: "user" | "assistant";
   content: string;
 };
 
-async function callGemini(messages: ChatMessage[], lang: "en" | "es"): Promise<string> {
+async function callGemini(messages: ChatMessage[], lang: "en" | "es"): Promise<{ reply: string; needsHuman: boolean }> {
   const apiKey = ENV.geminiApiKey;
   if (!apiKey) {
     throw new Error("Gemini API key not configured");
@@ -147,7 +171,6 @@ async function callGemini(messages: ChatMessage[], lang: "en" | "es"): Promise<s
   const systemPrompt = lang === "es" ? SYSTEM_PROMPT_ES : SYSTEM_PROMPT_EN;
 
   // Build Gemini contents array
-  // Gemini uses "user" and "model" roles, and system instruction is separate
   const contents = messages.map((msg) => ({
     role: msg.role === "assistant" ? "model" : "user",
     parts: [{ text: msg.content }],
@@ -193,12 +216,16 @@ async function callGemini(messages: ChatMessage[], lang: "en" | "es"): Promise<s
     throw new Error(`Gemini error: ${data.error.message}`);
   }
 
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!text) {
+  const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (!rawText) {
     throw new Error("No response from Gemini");
   }
 
-  return text;
+  // Detect and strip the [NEEDS_HUMAN] token
+  const needsHuman = rawText.includes("[NEEDS_HUMAN]");
+  const reply = rawText.replace(/\[NEEDS_HUMAN\]/g, "").trim();
+
+  return { reply, needsHuman };
 }
 
 export const chatbotRouter = router({
@@ -216,14 +243,14 @@ export const chatbotRouter = router({
     )
     .mutation(async ({ input }) => {
       try {
-        const reply = await callGemini(input.messages, input.lang);
-        return { success: true, reply };
+        const { reply, needsHuman } = await callGemini(input.messages, input.lang);
+        return { success: true, reply, needsHuman };
       } catch (error) {
         console.error("[Chatbot Error]", error);
         const errorMsg = input.lang === "es"
           ? "Lo siento, tuve un problema técnico. Por favor llama al (954) 565-1518 o agenda en línea."
           : "Sorry, I had a technical issue. Please call (954) 565-1518 or schedule online.";
-        return { success: false, reply: errorMsg };
+        return { success: false, reply: errorMsg, needsHuman: true };
       }
     }),
 });

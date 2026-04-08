@@ -2,7 +2,8 @@
  * Ask Shift - AI Chatbot Component for Vertical Automotive
  * Floating chat button + chat window with Gemini AI
  * Bilingual EN/ES support
- * 
+ * Includes "Talk to a Human" fallback when AI cannot answer
+ *
  * Desktop: Shows its own floating button (bottom-right)
  * Mobile: Button is in FloatingActions, this component receives isOpen/onClose props
  */
@@ -10,15 +11,31 @@ import { useState, useRef, useEffect } from "react";
 import { trpc } from "@/lib/trpc";
 import { useTranslation } from "@/hooks/useTranslation";
 import { Button } from "@/components/ui/button";
-import { X, Send, MessageCircle, ChevronDown, ExternalLink, Sparkles } from "lucide-react";
+import { X, Send, ChevronDown, ExternalLink, Sparkles, Phone, MessageSquare, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const SCHEDULE_URL =
   "https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049&hl=en-US";
 
+const LOCATIONS = {
+  wiltonManors: {
+    phone: "(954) 565-1518",
+    phoneRaw: "9545651518",
+    sms: "9548336584",
+    name: "Wilton Manors",
+  },
+  fortLauderdale: {
+    phone: "(645) 216-2266",
+    phoneRaw: "6452162266",
+    sms: "9544667186",
+    name: "Fort Lauderdale",
+  },
+};
+
 type Message = {
   role: "user" | "assistant";
   content: string;
+  needsHuman?: boolean;
 };
 
 const WELCOME_MESSAGES = {
@@ -56,6 +73,139 @@ const QUICK_QUESTIONS = {
     "¿Cómo agendo una cita?",
   ],
 };
+
+const HUMAN_CARD_CONTENT = {
+  en: {
+    title: "Talk to a Human",
+    subtitle: "Our team is ready to help you directly.",
+    callLabel: "Call Us",
+    textLabel: "Text Us",
+    chooseLocation: "Choose a location:",
+    orSchedule: "Or schedule online:",
+    scheduleLabel: "Schedule Appointment",
+    dismiss: "Continue with Shift",
+  },
+  es: {
+    title: "Hablar con una Persona",
+    subtitle: "Nuestro equipo está listo para ayudarte directamente.",
+    callLabel: "Llamar",
+    textLabel: "Enviar Texto",
+    chooseLocation: "Elige una ubicación:",
+    orSchedule: "O agenda en línea:",
+    scheduleLabel: "Agendar Cita",
+    dismiss: "Continuar con Shift",
+  },
+};
+
+function HumanFallbackCard({
+  lang,
+  onDismiss,
+}: {
+  lang: "en" | "es";
+  onDismiss: () => void;
+}) {
+  const t = HUMAN_CARD_CONTENT[lang];
+  const [showLocations, setShowLocations] = useState<"call" | "text" | null>(null);
+
+  return (
+    <div className="mx-1 my-2 rounded-2xl border-2 border-primary/40 bg-secondary text-secondary-foreground overflow-hidden shadow-lg animate-in slide-in-from-bottom-2 fade-in duration-300">
+      {/* Header */}
+      <div className="flex items-center gap-2.5 px-4 pt-4 pb-2">
+        <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+          <User className="w-4 h-4 text-primary" />
+        </div>
+        <div>
+          <div className="font-black text-sm tracking-wide">{t.title}</div>
+          <div className="text-xs text-gray-400">{t.subtitle}</div>
+        </div>
+      </div>
+
+      {/* Location picker for call/text */}
+      {showLocations ? (
+        <div className="px-4 pb-3">
+          <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+            {t.chooseLocation}
+          </div>
+          <div className="space-y-2">
+            {Object.values(LOCATIONS).map((loc) => (
+              <a
+                key={loc.name}
+                href={
+                  showLocations === "call"
+                    ? `tel:${loc.phoneRaw}`
+                    : `sms:${loc.sms}`
+                }
+                className="flex items-center justify-between w-full px-3 py-2.5 rounded-xl bg-white/5 hover:bg-primary/20 border border-white/10 hover:border-primary/40 transition-colors group"
+              >
+                <div>
+                  <div className="text-sm font-semibold">{loc.name}</div>
+                  <div className="text-xs text-gray-400 font-mono">
+                    {showLocations === "call" ? loc.phone : loc.phone}
+                  </div>
+                </div>
+                {showLocations === "call" ? (
+                  <Phone className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
+                ) : (
+                  <MessageSquare className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
+                )}
+              </a>
+            ))}
+          </div>
+          <button
+            onClick={() => setShowLocations(null)}
+            className="mt-2 text-xs text-gray-500 hover:text-gray-300 transition-colors"
+          >
+            ← Back
+          </button>
+        </div>
+      ) : (
+        <div className="px-4 pb-3 space-y-2">
+          {/* Call / Text buttons */}
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              onClick={() => setShowLocations("call")}
+              className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary/90 transition-colors"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              {t.callLabel}
+            </button>
+            <button
+              onClick={() => setShowLocations("text")}
+              className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-white/10 text-white text-xs font-bold hover:bg-white/20 border border-white/20 transition-colors"
+            >
+              <MessageSquare className="w-3.5 h-3.5" />
+              {t.textLabel}
+            </button>
+          </div>
+
+          {/* Schedule online */}
+          <div>
+            <div className="text-xs text-gray-500 text-center mb-1.5">{t.orSchedule}</div>
+            <a
+              href={SCHEDULE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-white/5 border border-white/20 text-white text-xs font-bold hover:bg-white/10 transition-colors"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              {t.scheduleLabel}
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* Dismiss */}
+      <div className="border-t border-white/10 px-4 py-2">
+        <button
+          onClick={onDismiss}
+          className="w-full text-xs text-gray-500 hover:text-gray-300 transition-colors py-1"
+        >
+          {t.dismiss}
+        </button>
+      </div>
+    </div>
+  );
+}
 
 function formatMessage(text: string, scheduleLabel: string) {
   const lines = text.split("\n");
@@ -103,6 +253,7 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [hasOpened, setHasOpened] = useState(false);
+  const [dismissedHumanCard, setDismissedHumanCard] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const { isSpanish } = useTranslation();
@@ -142,9 +293,16 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
     }
   }, [isOpen]);
 
+  // Determine if the last assistant message needs human
+  const lastAssistantMessage = [...messages].reverse().find((m) => m.role === "assistant");
+  const showHumanCard = !!(lastAssistantMessage?.needsHuman) && !dismissedHumanCard;
+
   const handleSend = async (text?: string) => {
     const messageText = text ?? input.trim();
     if (!messageText || chatMutation.isPending) return;
+
+    // Reset dismissed state when user sends a new message
+    setDismissedHumanCard(false);
 
     const userMessage: Message = { role: "user", content: messageText };
     const newMessages = [...messages, userMessage];
@@ -153,10 +311,13 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
 
     try {
       const result = await chatMutation.mutateAsync({
-        messages: newMessages,
+        messages: newMessages.map(({ role, content }) => ({ role, content })),
         lang,
       });
-      setMessages([...newMessages, { role: "assistant", content: result.reply }]);
+      setMessages([
+        ...newMessages,
+        { role: "assistant", content: result.reply, needsHuman: result.needsHuman },
+      ]);
     } catch {
       setMessages([
         ...newMessages,
@@ -166,6 +327,7 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
             lang === "es"
               ? "Lo siento, ocurrió un error. Por favor intenta de nuevo."
               : "Sorry, something went wrong. Please try again.",
+          needsHuman: true,
         },
       ]);
     }
@@ -183,11 +345,12 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
       ? "Pregunta sobre servicios, precios..."
       : "Ask about services, pricing...";
 
-  const titleText = "Ask Shift";
+  const titleText = "Shift";
   const subtitleText =
     lang === "es" ? "Asistente de Vertical Automotive" : "Vertical Automotive Assistant";
   const scheduleLabel = lang === "es" ? "Agendar Cita" : "Schedule Appointment";
   const scheduleCtaLabel = lang === "es" ? "Agendar Cita Online" : "Schedule Appointment Online";
+  const talkHumanLabel = lang === "es" ? "Hablar con una Persona" : "Talk to a Human";
 
   return (
     <>
@@ -207,7 +370,7 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
       >
         <div
           className="bg-background border-2 border-primary/30 shadow-2xl rounded-2xl overflow-hidden flex flex-col"
-          style={{ height: "min(500px, calc(100vh - 200px))" }}
+          style={{ height: "min(560px, calc(100vh - 200px))" }}
         >
           {/* Header */}
           <div className="bg-secondary text-secondary-foreground px-4 py-3 flex items-center justify-between flex-shrink-0">
@@ -256,6 +419,14 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
               </div>
             ))}
 
+            {/* Human fallback card — shown after AI signals it needs human */}
+            {showHumanCard && (
+              <HumanFallbackCard
+                lang={lang}
+                onDismiss={() => setDismissedHumanCard(true)}
+              />
+            )}
+
             {/* Loading indicator */}
             {chatMutation.isPending && (
               <div className="flex justify-start">
@@ -269,7 +440,7 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
               </div>
             )}
 
-            {/* Quick questions (show after welcome message) */}
+            {/* Quick questions (show after welcome message only) */}
             {messages.length === 1 && !chatMutation.isPending && (
               <div className="space-y-1.5 pt-1">
                 {QUICK_QUESTIONS[lang].map((q, i) => (
@@ -300,27 +471,45 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
             </a>
           </div>
 
-          {/* Input */}
-          <div className="px-3 py-3 border-t border-border bg-background flex gap-2 items-end flex-shrink-0">
-            <textarea
-              ref={inputRef}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder={placeholderText}
+          {/* Input + Talk to Human button */}
+          <div className="px-3 py-3 border-t border-border bg-background flex flex-col gap-2 flex-shrink-0">
+            <div className="flex gap-2 items-end">
+              <textarea
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder={placeholderText}
+                disabled={chatMutation.isPending}
+                rows={1}
+                className="flex-1 resize-none rounded-xl border border-border bg-muted px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary disabled:opacity-50 max-h-24 overflow-y-auto"
+                style={{ minHeight: "38px" }}
+              />
+              <Button
+                size="sm"
+                onClick={() => handleSend()}
+                disabled={!input.trim() || chatMutation.isPending}
+                className="bg-primary hover:bg-primary/90 text-white rounded-xl h-9 w-9 p-0 flex-shrink-0"
+              >
+                <Send className="w-4 h-4" />
+              </Button>
+            </div>
+
+            {/* Talk to Human persistent link */}
+            <button
+              onClick={() => {
+                // Inject a user message to trigger the human fallback card
+                const triggerMsg = lang === "es"
+                  ? "Quiero hablar con una persona"
+                  : "I want to talk to a human";
+                handleSend(triggerMsg);
+              }}
               disabled={chatMutation.isPending}
-              rows={1}
-              className="flex-1 resize-none rounded-xl border border-border bg-muted px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary disabled:opacity-50 max-h-24 overflow-y-auto"
-              style={{ minHeight: "38px" }}
-            />
-            <Button
-              size="sm"
-              onClick={() => handleSend()}
-              disabled={!input.trim() || chatMutation.isPending}
-              className="bg-primary hover:bg-primary/90 text-white rounded-xl h-9 w-9 p-0 flex-shrink-0"
+              className="flex items-center justify-center gap-1.5 w-full text-xs text-muted-foreground hover:text-primary transition-colors py-0.5 disabled:opacity-40"
             >
-              <Send className="w-4 h-4" />
-            </Button>
+              <User className="w-3 h-3" />
+              {talkHumanLabel}
+            </button>
           </div>
         </div>
       </div>
@@ -328,7 +517,7 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
       {/* Desktop floating button only (mobile uses FloatingActions) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        aria-label="Ask Shift AI Assistant"
+        aria-label="Shift AI Assistant"
         className={cn(
           "fixed z-[9998] hidden sm:flex items-center gap-2.5 px-4 py-3 rounded-full shadow-xl transition-all duration-300",
           "bottom-6 right-6",
@@ -340,12 +529,12 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
         {isOpen ? (
           <>
             <ChevronDown className="w-5 h-5" />
-            <span className="font-black text-sm tracking-wide">Ask Shift</span>
+            <span className="font-black text-sm tracking-wide">Shift</span>
           </>
         ) : (
           <>
             <Sparkles className="w-5 h-5" />
-            <span className="font-black text-sm tracking-wide">Ask Shift</span>
+            <span className="font-black text-sm tracking-wide">Shift</span>
             <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white animate-pulse" />
           </>
         )}
