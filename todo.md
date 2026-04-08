@@ -47,3 +47,4 @@
 - [x] Schedule daily auto-refresh cron job
 - [x] Test end-to-end crawl and chat with DB knowledge
 - [x] Change sync schedule from daily to weekly, remove startup auto-sync
+- [x] Restrict Shift sync panel to owner-only (hide settings icon from regular visitors)

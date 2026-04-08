@@ -10,6 +10,7 @@
 import { useState, useRef, useEffect } from "react";
 import { trpc } from "@/lib/trpc";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { X, Send, ChevronDown, ExternalLink, Sparkles, Phone, MessageSquare, User, Settings2 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -260,8 +261,9 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const { isSpanish } = useTranslation();
   const lang = isSpanish ? "es" : "en";
-
   const chatMutation = trpc.chatbot.chat.useMutation();
+  const { user } = useAuth();
+  const isOwner = Boolean((user as any)?.isOwner);
 
   // Determine if open (controlled or internal)
   const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen;
@@ -386,14 +388,16 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
               </div>
             </div>
             <div className="flex items-center gap-1">
-              <button
-                onClick={() => setShowSyncPanel(true)}
-                className="text-gray-400 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"
-                aria-label="Knowledge sync settings"
-                title="Sync Shift's knowledge from website"
-              >
-                <Settings2 className="w-4 h-4" />
-              </button>
+              {isOwner && (
+                <button
+                  onClick={() => setShowSyncPanel(true)}
+                  className="text-gray-400 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"
+                  aria-label="Knowledge sync settings"
+                  title="Sync Shift's knowledge from website"
+                >
+                  <Settings2 className="w-4 h-4" />
+                </button>
+              )}
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-gray-400 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"
