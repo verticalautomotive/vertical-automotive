@@ -8,6 +8,13 @@
       "when": 1775678668672,
       "tag": "0000_wonderful_smiling_tiger",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1775690884663,
+      "tag": "0001_optimal_jack_power",
+      "breakpoints": true
     }
   ]
 }

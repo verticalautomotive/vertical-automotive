@@ -25,4 +25,24 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
-// TODO: Add your tables here
+/**
+ * knowledge_base — stores AI-extracted knowledge from verticalautomotive.com
+ * One row per "section" (e.g. services, pricing, offers, about, contact).
+ * Shift reads all rows and injects them into its system prompt at chat time.
+ */
+export const knowledgeBase = mysqlTable("knowledge_base", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Logical section name, e.g. "services", "pricing", "offers", "about", "contact" */
+  section: varchar("section", { length: 64 }).notNull().unique(),
+  /** Source URL that was crawled */
+  sourceUrl: varchar("sourceUrl", { length: 512 }).notNull(),
+  /** AI-extracted knowledge in plain text, ready to inject into system prompt */
+  content: text("content").notNull(),
+  /** When this section was last successfully synced */
+  syncedAt: timestamp("syncedAt").defaultNow().notNull(),
+  /** HTTP status or error message from last crawl attempt */
+  lastStatus: varchar("lastStatus", { length: 64 }).default("pending").notNull(),
+});
+
+export type KnowledgeBase = typeof knowledgeBase.$inferSelect;
+export type InsertKnowledgeBase = typeof knowledgeBase.$inferInsert;

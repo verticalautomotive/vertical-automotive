@@ -11,8 +11,9 @@ import { useState, useRef, useEffect } from "react";
 import { trpc } from "@/lib/trpc";
 import { useTranslation } from "@/hooks/useTranslation";
 import { Button } from "@/components/ui/button";
-import { X, Send, ChevronDown, ExternalLink, Sparkles, Phone, MessageSquare, User } from "lucide-react";
+import { X, Send, ChevronDown, ExternalLink, Sparkles, Phone, MessageSquare, User, Settings2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import ShiftSyncPanel from "./ShiftSyncPanel";
 
 const SCHEDULE_URL =
   "https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049&hl=en-US";
@@ -254,6 +255,7 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
   const [input, setInput] = useState("");
   const [hasOpened, setHasOpened] = useState(false);
   const [dismissedHumanCard, setDismissedHumanCard] = useState(false);
+  const [showSyncPanel, setShowSyncPanel] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const { isSpanish } = useTranslation();
@@ -383,13 +385,23 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
                 <div className="text-xs text-gray-400 font-medium">{subtitleText}</div>
               </div>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-gray-400 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"
-              aria-label="Close chat"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => setShowSyncPanel(true)}
+                className="text-gray-400 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"
+                aria-label="Knowledge sync settings"
+                title="Sync Shift's knowledge from website"
+              >
+                <Settings2 className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="text-gray-400 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"
+                aria-label="Close chat"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
           {/* Messages */}
@@ -513,6 +525,11 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
           </div>
         </div>
       </div>
+
+      {/* Sync Panel */}
+      {showSyncPanel && (
+        <ShiftSyncPanel onClose={() => setShowSyncPanel(false)} />
+      )}
 
       {/* Desktop floating button only (mobile uses FloatingActions) */}
       <button

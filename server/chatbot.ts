@@ -1,13 +1,15 @@
 /**
  * Ask Shift AI Chatbot Router
- * Uses Google Gemini API for AI responses about Vertical Automotive services
+ * Uses Google Gemini API for AI responses about Vertical Automotive services.
+ * Knowledge is loaded from the DB (auto-synced from website) with a hardcoded fallback.
  */
 import { z } from "zod";
 import { publicProcedure, router } from "./_core/trpc";
 import { ENV } from "./_core/env";
+import { loadKnowledgeFromDB } from "./crawler";
 
-// Pricing data — explicit full ranges, no truncation
-const PRICING_DATA = `
+// ─── FALLBACK pricing data (used when DB has no synced knowledge yet) ─────────
+const FALLBACK_PRICING = `
 === VERTICAL AUTOMOTIVE PRICING (always give BOTH the low AND high end) ===
 
 INTERVAL / MAJOR SERVICE PACKAGES:
@@ -39,8 +41,8 @@ DIAGNOSTICS:
 - Diagnostic Scan & Health Report: $200 - $275
 `;
 
-// Company knowledge base
-const COMPANY_KNOWLEDGE = `
+// ─── FALLBACK company knowledge ───────────────────────────────────────────────
+const FALLBACK_COMPANY = `
 ABOUT VERTICAL AUTOMOTIVE:
 - ASE-certified auto repair shop in South Florida with 36 years of experience
 - Two locations: Wilton Manors (1100 W Oakland Park Blvd Unit 5) and Fort Lauderdale (707 NE 11th Street)
@@ -74,7 +76,7 @@ SERVICE INTERVALS (general guidelines):
 - Battery: When experiencing slow starts or battery warning light
 `;
 
-// ─── CRITICAL RULES (repeated prominently so the model never forgets them) ────
+// ─── CRITICAL RULES ───────────────────────────────────────────────────────────
 const CRITICAL_RULES_EN = `
 === CRITICAL RULES — FOLLOW THESE WITHOUT EXCEPTION ===
 
@@ -139,25 +141,60 @@ REGLA 5 — FORMATO:
 Respuestas de 2-4 oraciones. Usa el formato "$X - $Y" para todos los precios.
 `;
 
-const SYSTEM_PROMPT_EN = `You are "Shift," the friendly AI assistant for Vertical Automotive — a trusted ASE-certified auto repair shop in South Florida with 36 years of experience.
+// ─── System prompt builder — uses DB knowledge if available ──────────────────
+async function buildSystemPrompt(lang: "en" | "es"): Promise<string> {
+  // Try to load live knowledge from DB
+  const liveKnowledge = await loadKnowledgeFromDB();
 
-COMPANY KNOWLEDGE:
-${COMPANY_KNOWLEDGE}
+  if (liveKnowledge && liveKnowledge.length > 100) {
+    // DB has synced knowledge — use it as the primary source
+    if (lang === "es") {
+      return `Eres "Shift," el asistente de IA amigable de Vertical Automotive — un taller de reparación de autos certificado ASE de confianza en el sur de Florida con 36 años de experiencia.
 
-PRICING DATA:
-${PRICING_DATA}
+CONOCIMIENTO ACTUALIZADO DEL SITIO WEB:
+${liveKnowledge}
 
-${CRITICAL_RULES_EN}`;
-
-const SYSTEM_PROMPT_ES = `Eres "Shift," el asistente de IA amigable de Vertical Automotive — un taller de reparación de autos certificado ASE de confianza en el sur de Florida con 36 años de experiencia.
-
-CONOCIMIENTO DE LA EMPRESA:
-${COMPANY_KNOWLEDGE}
-
-DATOS DE PRECIOS:
-${PRICING_DATA}
+DATOS DE PRECIOS DE RESPALDO (usar si el conocimiento anterior no incluye precios):
+${FALLBACK_PRICING}
 
 ${CRITICAL_RULES_ES}`;
+    } else {
+      return `You are "Shift," the friendly AI assistant for Vertical Automotive — a trusted ASE-certified auto repair shop in South Florida with 36 years of experience.
+
+LIVE KNOWLEDGE FROM WEBSITE:
+${liveKnowledge}
+
+FALLBACK PRICING DATA (use if live knowledge above does not include prices):
+${FALLBACK_PRICING}
+
+${CRITICAL_RULES_EN}`;
+    }
+  }
+
+  // Fallback to hardcoded knowledge if DB is empty
+  console.log("[Chatbot] DB knowledge empty, using hardcoded fallback");
+  if (lang === "es") {
+    return `Eres "Shift," el asistente de IA amigable de Vertical Automotive — un taller de reparación de autos certificado ASE de confianza en el sur de Florida con 36 años de experiencia.
+
+CONOCIMIENTO DE LA EMPRESA:
+${FALLBACK_COMPANY}
+
+DATOS DE PRECIOS:
+${FALLBACK_PRICING}
+
+${CRITICAL_RULES_ES}`;
+  } else {
+    return `You are "Shift," the friendly AI assistant for Vertical Automotive — a trusted ASE-certified auto repair shop in South Florida with 36 years of experience.
+
+COMPANY KNOWLEDGE:
+${FALLBACK_COMPANY}
+
+PRICING DATA:
+${FALLBACK_PRICING}
+
+${CRITICAL_RULES_EN}`;
+  }
+}
 
 type ChatMessage = {
   role: "user" | "assistant";
@@ -166,12 +203,10 @@ type ChatMessage = {
 
 async function callGeminiOnce(
   messages: ChatMessage[],
-  lang: "en" | "es"
+  systemPrompt: string
 ): Promise<{ reply: string; needsHuman: boolean }> {
   const apiKey = ENV.geminiApiKey;
   if (!apiKey) throw new Error("Gemini API key not configured");
-
-  const systemPrompt = lang === "es" ? SYSTEM_PROMPT_ES : SYSTEM_PROMPT_EN;
 
   const contents = messages.map((msg) => ({
     role: msg.role === "assistant" ? "model" : "user",
@@ -182,8 +217,8 @@ async function callGeminiOnce(
     system_instruction: { parts: [{ text: systemPrompt }] },
     contents,
     generationConfig: {
-      temperature: 0.4,        // lower = more deterministic / less hallucination
-      maxOutputTokens: 1024,   // increased to prevent mid-sentence truncation
+      temperature: 0.4,
+      maxOutputTokens: 1024,
       topP: 0.85,
     },
   };
@@ -227,15 +262,15 @@ async function callGemini(
   messages: ChatMessage[],
   lang: "en" | "es"
 ): Promise<{ reply: string; needsHuman: boolean }> {
+  const systemPrompt = await buildSystemPrompt(lang);
   try {
-    return await callGeminiOnce(messages, lang);
+    return await callGeminiOnce(messages, systemPrompt);
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
-    // Retry once on rate-limit or server overload
     if (msg.includes("503") || msg.includes("429") || msg.includes("500")) {
       console.warn("[Gemini] Transient error, retrying once...", msg);
       await new Promise((r) => setTimeout(r, 1500));
-      return await callGeminiOnce(messages, lang);
+      return await callGeminiOnce(messages, systemPrompt);
     }
     throw err;
   }
@@ -260,7 +295,6 @@ export const chatbotRouter = router({
         return { success: true, reply, needsHuman };
       } catch (error) {
         console.error("[Chatbot Error]", error);
-        // On hard failure, give a helpful message but do NOT pretend we answered
         const errorMsg = input.lang === "es"
           ? "Lo siento, tuve un problema técnico momentáneo. Por favor intenta de nuevo, o llama al (954) 565-1518."
           : "Sorry, I had a momentary technical issue. Please try again, or call us at (954) 565-1518.";

@@ -35,3 +35,14 @@
 - [x] Increase maxOutputTokens to prevent cut-off responses
 - [x] Strengthen system prompt: never truncate prices, never escalate simple pricing questions
 - [x] Add retry logic for transient Gemini API errors
+
+# Shift Auto-Sync from Website
+- [x] Add knowledge_base table to DB schema
+- [x] Run pnpm db:push to migrate
+- [x] Build website crawler that scrapes verticalautomotive.com key pages
+- [x] Use Gemini to extract structured knowledge from crawled HTML
+- [x] Store extracted knowledge in DB with timestamp
+- [x] Update Shift chatbot to read knowledge from DB
+- [x] Add sync trigger tRPC endpoint (admin-only)
+- [x] Schedule daily auto-refresh cron job
+- [x] Test end-to-end crawl and chat with DB knowledge

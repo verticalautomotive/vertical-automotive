@@ -7,6 +7,7 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+import { runFullSync } from "../crawler";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -63,3 +64,26 @@ async function startServer() {
 }
 
 startServer().catch(console.error);
+
+// ─── Daily knowledge sync cron job ────────────────────────────────────────────
+// Runs once at startup (after a short delay) and then every 24 hours
+const SYNC_INTERVAL_MS = 24 * 60 * 60 * 1000; // 24 hours
+const INITIAL_SYNC_DELAY_MS = 30 * 1000; // 30 seconds after startup
+
+async function scheduledSync() {
+  console.log("[KnowledgeSync] Starting scheduled website sync...");
+  try {
+    const result = await runFullSync();
+    const ok = result.results.filter((r) => r.status === "ok").length;
+    const fail = result.results.filter((r) => r.status === "error").length;
+    console.log(`[KnowledgeSync] Sync complete: ${ok} ok, ${fail} failed`);
+  } catch (err) {
+    console.error("[KnowledgeSync] Sync failed:", err);
+  }
+}
+
+// Initial sync after 30s startup delay, then repeat every 24h
+setTimeout(() => {
+  scheduledSync();
+  setInterval(scheduledSync, SYNC_INTERVAL_MS);
+}, INITIAL_SYNC_DELAY_MS);
