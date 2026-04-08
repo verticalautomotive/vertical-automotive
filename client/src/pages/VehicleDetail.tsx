@@ -17,6 +17,7 @@ import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackSchedule } from "@/lib/gtm";
+import PhotoGallery, { GalleryImage } from "@/components/PhotoGallery";
 
 export default function VehicleDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -42,6 +43,41 @@ export default function VehicleDetail() {
   const vehicleServices = vehicle.services
     .map((sSlug) => services.find((s) => s.slug === sSlug))
     .filter(Boolean);
+
+  // Placeholder gallery images for each vehicle type
+  // User will provide actual images later
+  const galleryImages: GalleryImage[] = [
+    {
+      src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+1",
+      alt: `${vehicle.title} service photo 1`,
+      altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 1`,
+    },
+    {
+      src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+2",
+      alt: `${vehicle.title} service photo 2`,
+      altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 2`,
+    },
+    {
+      src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+3",
+      alt: `${vehicle.title} service photo 3`,
+      altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 3`,
+    },
+    {
+      src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+4",
+      alt: `${vehicle.title} service photo 4`,
+      altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 4`,
+    },
+    {
+      src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+5",
+      alt: `${vehicle.title} service photo 5`,
+      altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 5`,
+    },
+    {
+      src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+6",
+      alt: `${vehicle.title} service photo 6`,
+      altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 6`,
+    },
+  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
@@ -127,6 +163,14 @@ export default function VehicleDetail() {
           </div>
         </div>
       </section>
+
+      {/* Photo Gallery */}
+      <PhotoGallery
+        images={galleryImages}
+        isSpanish={isSpanish}
+        title={`${vehicle.title.toUpperCase()} GALLERY`}
+        titleEs={`GALERÍA DE ${vehicle.title.toUpperCase()}`}
+      />
 
       {/* CTA */}
       <section className="py-8 sm:py-16 bg-primary text-primary-foreground text-center">
