@@ -12,7 +12,7 @@ import {
 import { trpc } from "@/lib/trpc";
 import { formatDistanceToNow } from "date-fns";
 import { MessageCircle, Search, Filter, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useLocation } from "wouter";
 
 type Message = {
@@ -31,10 +31,27 @@ type Conversation = {
 export default function AdminConversations() {
   const { user, loading: authLoading } = useAuth();
   const [, setLocation] = useLocation();
+  const [isAuthorized, setIsAuthorized] = useState(true);
 
-  // Redirect if not owner
-  if (!authLoading && (!user || user.openId !== user.openId)) {
-    setLocation("/");
+  // Redirect if not owner (using useEffect to avoid render-time state updates)
+  useEffect(() => {
+    if (!authLoading && (!user || !user.isOwner)) {
+      setIsAuthorized(false);
+      setLocation("/");
+    }
+  }, [authLoading, user, setLocation]);
+
+  // Show loading only while auth is loading
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  // If not authorized, show empty state (redirect happens in useEffect)
+  if (!isAuthorized) {
     return null;
   }
 
