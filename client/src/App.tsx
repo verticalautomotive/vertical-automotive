@@ -9,7 +9,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import MobileFooterBar from "./components/MobileFooterBar";
 import FloatingActions from "./components/FloatingActions";
-import AskShift from "./components/AskShift";
+import { ChatButton } from "./components/ChatButton";
 
 // Code-split all page components — only Home is eagerly loaded for fast FCP
 import Home from "./pages/Home";
@@ -24,6 +24,7 @@ const FAQ = lazy(() => import("./pages/FAQ"));
 const Gallery = lazy(() => import("./pages/Gallery"));
 const ServiceGuide = lazy(() => import("./pages/ServiceGuide"));
 const AdminConversations = lazy(() => import("./pages/AdminConversations"));
+const AdminEscalations = lazy(() => import("./pages/AdminEscalations"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function ScrollToTop() {
@@ -79,6 +80,7 @@ function Router() {
 
           {/* Admin routes */}
           <Route path="/admin/conversations" component={AdminConversations} />
+          <Route path="/admin/escalations" component={AdminEscalations} />
 
           <Route path="/404" component={NotFound} />
           <Route component={NotFound} />
@@ -89,9 +91,6 @@ function Router() {
 }
 
 function App() {
-  // Shared state for Ask Shift chatbot — controlled by both FloatingActions (mobile) and AskShift (desktop)
-  const [askShiftOpen, setAskShiftOpen] = useState(false);
-
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
@@ -99,15 +98,9 @@ function App() {
           <StructuredData />
           <Toaster />
           <Router />
-          <FloatingActions
-            onAskShiftClick={() => setAskShiftOpen((prev) => !prev)}
-            askShiftOpen={askShiftOpen}
-          />
+          <FloatingActions />
           <MobileFooterBar />
-          <AskShift
-            isOpen={askShiftOpen}
-            onOpenChange={setAskShiftOpen}
-          />
+          <ChatButton language="en" />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

@@ -3,6 +3,8 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { chatbotRouter } from "./chatbot";
+import { chatRouter } from "./routers/chat";
+import { escalationRouter } from "./routers/escalation";
 import { runFullSync, getSyncStatus } from "./crawler";
 import { ENV } from "./_core/env";
 import { TRPCError } from "@trpc/server";
@@ -12,6 +14,8 @@ import { conversationLogs } from "../drizzle/schema";
 
 export const appRouter = router({
   system: systemRouter,
+  chat: chatRouter,
+  escalation: escalationRouter,
   auth: router({
     me: publicProcedure.query(opts => {
       const user = opts.ctx.user;

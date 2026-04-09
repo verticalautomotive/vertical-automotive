@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 import { trpc } from "@/lib/trpc";
 import { formatDistanceToNow } from "date-fns";
-import { MessageCircle, Search, Filter, ChevronLeft, ChevronRight } from "lucide-react";
+import { MessageCircle, Search, Filter, ChevronLeft, ChevronRight, Download, AlertTriangle } from "lucide-react";
 import { useState, useMemo } from "react";
 
 type Message = {
@@ -73,6 +73,35 @@ export default function AdminConversations() {
     setCurrentPage(1);
   };
 
+  const handleExportCSV = () => {
+    if (conversations.length === 0) return;
+
+    // Prepare CSV data
+    const csvHeaders = ["ID", "Language", "Messages", "Created At", "Session ID"];
+    const csvRows = conversations.map((c) => [
+      c.id,
+      c.language.toUpperCase(),
+      c.messages.length,
+      new Date(c.createdAt).toISOString(),
+      c.sessionId || "N/A",
+    ]);
+
+    // Create CSV content
+    const csvContent = [
+      csvHeaders.join(","),
+      ...csvRows.map((row) => row.map((cell) => `"${cell}"`).join(",")),
+    ].join("\n");
+
+    // Download CSV
+    const element = document.createElement("a");
+    element.setAttribute("href", `data:text/csv;charset=utf-8,${encodeURIComponent(csvContent)}`);
+    element.setAttribute("download", `conversations-${new Date().toISOString().split("T")[0]}.csv`);
+    element.style.display = "none";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
+
   return (
     <div className="min-h-screen bg-background p-6">
       <div className="max-w-7xl mx-auto">
@@ -132,6 +161,10 @@ export default function AdminConversations() {
               <Filter className="w-4 h-4 mr-2" />
               Clear
             </Button>
+            <Button variant="outline" onClick={handleExportCSV} disabled={conversations.length === 0}>
+              <Download className="w-4 h-4 mr-2" />
+              Export CSV
+            </Button>
           </div>
         </Card>
 
@@ -158,8 +191,8 @@ export default function AdminConversations() {
                     <div className="flex items-center gap-2 mb-2">
                       <span className={`text-xs font-semibold px-2 py-1 rounded ${
                         conversation.language === "en" 
-                          ? "bg-blue-100 text-blue-800" 
-                          : "bg-green-100 text-green-800"
+                          ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200" 
+                          : "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
                       }`}>
                         {conversation.language.toUpperCase()}
                       </span>

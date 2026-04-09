@@ -65,3 +65,76 @@ export const conversationLogs = mysqlTable("conversation_logs", {
 
 export type ConversationLog = typeof conversationLogs.$inferSelect;
 export type InsertConversationLog = typeof conversationLogs.$inferInsert;
+
+/**
+ * aistudio_conversations — stores AI Studio chatbot conversations
+ * One row per conversation session with metadata
+ */
+export const aistudioConversations = mysqlTable("aistudio_conversations", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Unique session identifier for this conversation */
+  sessionId: varchar("sessionId", { length: 64 }).notNull().unique(),
+  /** Language of the conversation ("en" or "es") */
+  language: varchar("language", { length: 2 }).default("en").notNull(),
+  /** Conversation status: "active", "escalated", "closed" */
+  status: mysqlEnum("status", ["active", "escalated", "closed"]).default("active").notNull(),
+  /** Whether this conversation needs human follow-up */
+  needsHuman: int("needsHuman").default(0).notNull(), // 0 or 1 for boolean
+  /** Reason for escalation (if applicable) */
+  escalationReason: text("escalationReason"),
+  /** User's IP address or identifier for analytics */
+  userIdentifier: varchar("userIdentifier", { length: 128 }),
+  /** When conversation was created */
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  /** When conversation was last updated */
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type AistudioConversation = typeof aistudioConversations.$inferSelect;
+export type InsertAistudioConversation = typeof aistudioConversations.$inferInsert;
+
+/**
+ * aistudio_messages — stores individual messages within a conversation
+ * One row per message (user or AI)
+ */
+export const aistudioMessages = mysqlTable("aistudio_messages", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Foreign key to aistudio_conversations */
+  conversationId: int("conversationId").notNull(),
+  /** Role: "user" or "model" (AI) */
+  role: mysqlEnum("role", ["user", "model"]).notNull(),
+  /** Message content */
+  content: text("content").notNull(),
+  /** Confidence score from AI Studio (0-1) if applicable */
+  confidence: varchar("confidence", { length: 10 }),
+  /** When message was created */
+  timestamp: timestamp("timestamp").defaultNow().notNull(),
+});
+
+export type AistudioMessage = typeof aistudioMessages.$inferSelect;
+export type InsertAistudioMessage = typeof aistudioMessages.$inferInsert;
+
+/**
+ * aistudio_escalations — tracks escalated conversations
+ * One row per escalation event
+ */
+export const aistudioEscalations = mysqlTable("aistudio_escalations", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Foreign key to aistudio_conversations */
+  conversationId: int("conversationId").notNull(),
+  /** Reason for escalation from AI Studio */
+  reason: text("reason").notNull(),
+  /** Status: "pending", "assigned", "resolved" */
+  status: mysqlEnum("status", ["pending", "assigned", "resolved"]).default("pending").notNull(),
+  /** Email of team member assigned to handle this */
+  assignedTo: varchar("assignedTo", { length: 320 }),
+  /** Notes from team member handling the escalation */
+  notes: text("notes"),
+  /** When escalation was created */
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  /** When escalation was last updated */
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type AistudioEscalation = typeof aistudioEscalations.$inferSelect;
+export type InsertAistudioEscalation = typeof aistudioEscalations.$inferInsert;

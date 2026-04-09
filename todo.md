@@ -77,4 +77,66 @@
 - [x] Optimize for SEO (meta tags, structured data, headings)
 - [x] Optimize for LLM training (clear structure, comprehensive data)
 - [x] Test page loads and is publicly accessible
-- [ ] Save checkpoint
+- [x] Expanded FAQ with 24 comprehensive Q&A items
+- [x] Save checkpoint
+
+# AI Studio Chatbot Integration (Enhanced)
+## Phase 1: Database Schema
+- [x] Create conversations table (id, sessionId, language, createdAt, updatedAt, status)
+- [x] Create messages table (id, conversationId, role, content, timestamp)
+- [x] Create escalations table (id, conversationId, reason, status, assignedTo, createdAt)
+- [x] Run database migrations (pnpm db:push)
+
+## Phase 2: tRPC Router
+- [x] Create chat.ts router with sendMessage mutation
+- [x] Implement AI Studio API integration with error handling
+- [x] Add conversation persistence (save to DB)
+- [x] Add escalation detection and logging
+- [x] Implement retry logic for failed requests
+- [x] Add request validation and rate limiting
+
+## Phase 3: React Chat Component
+- [x] Create ChatBubble.tsx component
+- [x] Implement message display with user/AI differentiation
+- [x] Add input field with send button
+- [x] Add typing indicator while waiting for response
+- [x] Implement message history loading
+- [x] Add error state handling
+- [x] Style with Tailwind (dark mode support)
+- [x] Create ChatButton.tsx to trigger chat
+- [x] Integrate ChatButton into App.tsx
+
+## Phase 4: Escalation Workflow
+- [x] Detect escalation flags from AI Studio
+- [x] Store escalation in database
+- [x] Send email notification to team
+- [x] Show user escalation confirmation message
+- [x] Create escalation tracking in admin dashboard
+- [x] Build escalation router with list/stats/assign/resolve endpoints
+- [x] Create AdminEscalations page with filtering and status tracking
+- [x] Add escalation route to App.tsx
+
+## Phase 5: Admin Dashboard
+- [x] Create conversations list page (/admin/conversations)
+- [x] Add search and filter by date/language
+- [x] Show conversation details with full message history
+- [x] Display escalation status and reason
+- [x] Add export to CSV functionality
+- [x] Show conversation analytics (total, by language, escalation rate)
+- [x] Enhanced AdminConversations page with CSV export
+- [x] Dark mode support for language badges
+
+## Phase 6: Testing
+- [x] Write vitest tests for chat router (31 tests)
+- [x] Write tests for escalation logic (31 tests)
+- [x] Write tests for error handling
+- [x] Manual testing of chat UI
+- [x] Test streaming responses
+- [x] Test conversation persistence
+- [x] All tests passing (70+ tests total)
+
+## Phase 7: Deployment
+- [x] Verify all features working in dev
+- [x] Create checkpoint
+- [x] Test on staging/production domains
+- [x] Monitor for errors

@@ -1,6 +1,6 @@
 import { eq, desc, like, and, gte, lte } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, conversationLogs } from "../drizzle/schema";
+import { InsertUser, users, conversationLogs, aistudioConversations, aistudioMessages, aistudioEscalations, InsertAistudioConversation, InsertAistudioMessage, InsertAistudioEscalation } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -188,6 +188,241 @@ export async function getConversationCount({
     const result = await db
       .select({ count: conversationLogs.id })
       .from(conversationLogs)
+      .where(whereClause);
+
+    return result.length;
+  } catch (error) {
+    console.error("[Database] Failed to count conversations:", error);
+    return 0;
+  }
+}
+
+// ============================================================================
+// AI Studio Chatbot Helpers
+// ============================================================================
+
+export async function createAistudioConversation(data: InsertAistudioConversation) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  try {
+    const result = await db.insert(aistudioConversations).values(data);
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to create conversation:", error);
+    throw error;
+  }
+}
+
+export async function getAistudioConversation(sessionId: string) {
+  const db = await getDb();
+  if (!db) {
+    return undefined;
+  }
+
+  try {
+    const result = await db
+      .select()
+      .from(aistudioConversations)
+      .where(eq(aistudioConversations.sessionId, sessionId))
+      .limit(1);
+
+    return result.length > 0 ? result[0] : undefined;
+  } catch (error) {
+    console.error("[Database] Failed to get conversation:", error);
+    return undefined;
+  }
+}
+
+export async function addAistudioMessage(data: InsertAistudioMessage) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  try {
+    const result = await db.insert(aistudioMessages).values(data);
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to add message:", error);
+    throw error;
+  }
+}
+
+export async function getAistudioMessages(conversationId: number) {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  try {
+    const result = await db
+      .select()
+      .from(aistudioMessages)
+      .where(eq(aistudioMessages.conversationId, conversationId))
+      .orderBy(aistudioMessages.timestamp);
+
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get messages:", error);
+    return [];
+  }
+}
+
+export async function updateAistudioConversation(
+  sessionId: string,
+  updates: Partial<Omit<InsertAistudioConversation, 'sessionId'>>
+) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  try {
+    const result = await db
+      .update(aistudioConversations)
+      .set(updates)
+      .where(eq(aistudioConversations.sessionId, sessionId));
+
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to update conversation:", error);
+    throw error;
+  }
+}
+
+export async function createAistudioEscalation(data: InsertAistudioEscalation) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  try {
+    const result = await db.insert(aistudioEscalations).values(data);
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to create escalation:", error);
+    throw error;
+  }
+}
+
+export async function getAistudioEscalations(conversationId: number) {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  try {
+    const result = await db
+      .select()
+      .from(aistudioEscalations)
+      .where(eq(aistudioEscalations.conversationId, conversationId));
+
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get escalations:", error);
+    return [];
+  }
+}
+
+export async function getAllAistudioConversations({
+  limit = 50,
+  offset = 0,
+  language,
+  status,
+  startDate,
+  endDate,
+}: {
+  limit?: number;
+  offset?: number;
+  language?: "en" | "es";
+  status?: "active" | "escalated" | "closed";
+  startDate?: Date;
+  endDate?: Date;
+} = {}) {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  try {
+    const conditions = [];
+
+    if (language) {
+      conditions.push(eq(aistudioConversations.language, language));
+    }
+
+    if (status) {
+      conditions.push(eq(aistudioConversations.status, status));
+    }
+
+    if (startDate) {
+      conditions.push(gte(aistudioConversations.createdAt, startDate));
+    }
+
+    if (endDate) {
+      conditions.push(lte(aistudioConversations.createdAt, endDate));
+    }
+
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    const result = await db
+      .select()
+      .from(aistudioConversations)
+      .where(whereClause)
+      .orderBy(desc(aistudioConversations.createdAt))
+      .limit(limit)
+      .offset(offset);
+
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get conversations:", error);
+    return [];
+  }
+}
+
+export async function getAistudioConversationCount({
+  language,
+  status,
+  startDate,
+  endDate,
+}: {
+  language?: "en" | "es";
+  status?: "active" | "escalated" | "closed";
+  startDate?: Date;
+  endDate?: Date;
+} = {}) {
+  const db = await getDb();
+  if (!db) {
+    return 0;
+  }
+
+  try {
+    const conditions = [];
+
+    if (language) {
+      conditions.push(eq(aistudioConversations.language, language));
+    }
+
+    if (status) {
+      conditions.push(eq(aistudioConversations.status, status));
+    }
+
+    if (startDate) {
+      conditions.push(gte(aistudioConversations.createdAt, startDate));
+    }
+
+    if (endDate) {
+      conditions.push(lte(aistudioConversations.createdAt, endDate));
+    }
+
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    const result = await db
+      .select({ count: aistudioConversations.id })
+      .from(aistudioConversations)
       .where(whereClause);
 
     return result.length;

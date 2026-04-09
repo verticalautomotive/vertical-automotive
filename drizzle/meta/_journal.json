@@ -22,6 +22,13 @@
       "when": 1775694057877,
       "tag": "0002_lying_speed",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1775745856827,
+      "tag": "0003_simple_ghost_rider",
+      "breakpoints": true
     }
   ]
 }
