@@ -27,7 +27,7 @@ export function ChatButton({ language = "en" }: ChatButtonProps) {
   };
 
   return (
-    <div className="pointer-events-auto">
+    <>
       {/* Chat Bubble */}
       <ChatBubble
         isOpen={isChatOpen}
@@ -35,27 +35,101 @@ export function ChatButton({ language = "en" }: ChatButtonProps) {
         language={language}
       />
 
-      {/* Floating Button */}
+      {/* Floating Button with inline styles */}
       <button
         onClick={handleButtonClick}
         aria-label={buttonLabel}
         type="button"
-        className={`fixed bottom-6 right-6 z-[9999] w-16 h-16 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group pointer-events-auto cursor-pointer ${
-          isChatOpen ? "scale-95" : "hover:scale-110"
-        }`}
+        style={{
+          position: "fixed",
+          bottom: "24px",
+          right: "24px",
+          zIndex: 9999,
+          width: "64px",
+          height: "64px",
+          borderRadius: "50%",
+          backgroundColor: "#0066ff",
+          color: "white",
+          border: "none",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+          pointerEvents: "auto",
+          transition: "all 0.3s ease",
+          transform: isChatOpen ? "scale(0.95)" : "scale(1)",
+        }}
+        onMouseEnter={(e) => {
+          if (!isChatOpen) {
+            (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.1)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 16px rgba(0, 0, 0, 0.2)";
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (!isChatOpen) {
+            (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.15)";
+          }
+        }}
       >
-        <MessageCircle className="w-8 h-8" />
+        <MessageCircle size={32} style={{ pointerEvents: "none" }} />
         
         {/* Pulse animation when not open */}
         {!isChatOpen && (
-          <span className="absolute inset-0 rounded-full bg-primary animate-pulse opacity-75"></span>
+          <span
+            style={{
+              position: "absolute",
+              inset: 0,
+              borderRadius: "50%",
+              backgroundColor: "#0066ff",
+              opacity: 0.75,
+              animation: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              pointerEvents: "none",
+            }}
+          />
         )}
 
         {/* Tooltip */}
-        <span className="absolute bottom-full mb-2 px-3 py-1 bg-foreground text-background text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+        <span
+          style={{
+            position: "absolute",
+            bottom: "100%",
+            marginBottom: "8px",
+            paddingLeft: "12px",
+            paddingRight: "12px",
+            paddingTop: "4px",
+            paddingBottom: "4px",
+            backgroundColor: "white",
+            color: "black",
+            fontSize: "14px",
+            borderRadius: "4px",
+            opacity: 0,
+            transition: "opacity 0.3s ease",
+            whiteSpace: "nowrap",
+            pointerEvents: "none",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLSpanElement).style.opacity = "1";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLSpanElement).style.opacity = "0";
+          }}
+        >
           {buttonLabel}
         </span>
       </button>
-    </div>
+
+      <style>{`
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 0.75;
+          }
+          50% {
+            opacity: 0.5;
+          }
+        }
+      `}</style>
+    </>
   );
 }

@@ -1,9 +1,3 @@
-/**
- * ChatBubble Component
- * Floating chat interface for AI Studio chatbot integration
- * Features: Message history, typing indicator, error handling, bilingual support
- */
-
 import { useState, useRef, useEffect } from "react";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
@@ -24,7 +18,6 @@ interface ChatBubbleProps {
 }
 
 export function ChatBubble({ isOpen, onClose, language = "en" }: ChatBubbleProps) {
-  // All hooks MUST be called at the top level, before any conditional returns
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [conversationId, setConversationId] = useState<string | null>(null);
@@ -32,9 +25,16 @@ export function ChatBubble({ isOpen, onClose, language = "en" }: ChatBubbleProps
   const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // Single useEffect for all side effects
+  useEffect(() => {
+    if (isOpen) {
+      console.log("[ChatBubble] Opened with language:", language);
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [isOpen, language, messages]);
+
   const sendMessageMutation = trpc.chat.sendMessage.useMutation({
     onSuccess: (data) => {
-      // Add AI response to messages
       setMessages((prev) => [
         ...prev,
         {
@@ -44,12 +44,10 @@ export function ChatBubble({ isOpen, onClose, language = "en" }: ChatBubbleProps
         },
       ]);
 
-      // Update conversation ID if new
       if (!conversationId) {
         setConversationId(data.conversationId);
       }
 
-      // Handle escalation
       if (data.needsHuman) {
         setError(
           language === "es"
@@ -71,22 +69,9 @@ export function ChatBubble({ isOpen, onClose, language = "en" }: ChatBubbleProps
     },
   });
 
-  // Auto-scroll to bottom when new messages arrive
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
-  // Debug: Log when chat bubble opens
-  useEffect(() => {
-    if (isOpen) {
-      console.log("[ChatBubble] Opened with language:", language);
-    }
-  }, [isOpen, language]);
-
   const handleSend = async () => {
     if (!input.trim()) return;
 
-    // Add user message to UI
     const userMessage: Message = {
       role: "user",
       content: input,
@@ -98,7 +83,6 @@ export function ChatBubble({ isOpen, onClose, language = "en" }: ChatBubbleProps
     setError(null);
     setIsLoading(true);
 
-    // Send to backend
     console.log("[ChatBubble] Sending message:", input);
     sendMessageMutation.mutate({
       message: input,
@@ -111,12 +95,10 @@ export function ChatBubble({ isOpen, onClose, language = "en" }: ChatBubbleProps
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      console.log("[ChatBubble] Enter key pressed");
       handleSend();
     }
   };
 
-  // Now we can conditionally render (after all hooks are called)
   if (!isOpen) return null;
 
   const emptyStateText =
