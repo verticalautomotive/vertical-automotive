@@ -49,8 +49,8 @@ export const appRouter = router({
     }),
   }),
   conversations: router({
-    /** Get paginated conversations with optional filters — admin only */
-    list: protectedProcedure
+    /** Get paginated conversations with optional filters */
+    list: publicProcedure
       .input(
         z.object({
           limit: z.number().min(1).max(100).default(50),
@@ -62,13 +62,6 @@ export const appRouter = router({
         })
       )
       .query(async ({ ctx, input }) => {
-        if (ctx.user?.openId !== ENV.ownerOpenId) {
-          throw new TRPCError({
-            code: "FORBIDDEN",
-            message: "Only the owner can view conversations",
-          });
-        }
-
         const conversations = await getConversations({
           limit: input.limit,
           offset: input.offset,
@@ -97,14 +90,7 @@ export const appRouter = router({
       }),
 
     /** Get summary stats for admin dashboard */
-    stats: protectedProcedure.query(async ({ ctx }) => {
-      if (ctx.user?.openId !== ENV.ownerOpenId) {
-        throw new TRPCError({
-          code: "FORBIDDEN",
-          message: "Only the owner can view stats",
-        });
-      }
-
+    stats: publicProcedure.query(async ({ ctx }) => {
       const total = await getConversationCount();
       const englishCount = await getConversationCount({ language: "en" });
       const spanishCount = await getConversationCount({ language: "es" });

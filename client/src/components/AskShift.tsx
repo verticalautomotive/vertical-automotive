@@ -425,16 +425,14 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
               </div>
             </div>
             <div className="flex items-center gap-1">
-              {isOwner && (
-                <button
-                  onClick={() => setShowSyncPanel(true)}
-                  className="text-gray-400 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"
-                  aria-label="Knowledge sync settings"
-                  title="Sync Shift's knowledge from website"
-                >
-                  <Settings2 className="w-4 h-4" />
-                </button>
-              )}
+              <button
+                onClick={() => setShowSyncPanel(true)}
+                className="text-gray-400 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"
+                aria-label="Knowledge sync settings"
+                title="Sync Shift's knowledge from website"
+              >
+                <Settings2 className="w-4 h-4" />
+              </button>
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-gray-400 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"
