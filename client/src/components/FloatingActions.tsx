@@ -67,9 +67,7 @@ export default function FloatingActions({}: FloatingActionsProps) {
   return (
     <>
       {/* Mobile Shift Chat Button - shown only on mobile */}
-      <div className="md:hidden">
-        <ChatButton language={isSpanish ? "es" : "en"} />
-      </div>
+      <ChatButton language={isSpanish ? "es" : "en"} isMobile={true} />
 
       {/* Mobile Floating Actions Container */}
       <div
