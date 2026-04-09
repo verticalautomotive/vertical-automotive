@@ -10,6 +10,7 @@ import { ENV } from "./_core/env";
 
 // Pages to crawl — section name + URL
 const CRAWL_TARGETS = [
+  { section: "services_pricing", url: "https://www.verticalautomotive.com/service-guide" },
   { section: "services", url: "https://www.verticalautomotive.com/services" },
   { section: "pricing", url: "https://www.verticalautomotive.com/services" },
   { section: "offers", url: "https://www.verticalautomotive.com/offers" },
@@ -20,6 +21,8 @@ const CRAWL_TARGETS = [
 
 // Extraction prompts per section — tells Gemini what to pull out
 const EXTRACTION_PROMPTS: Record<string, string> = {
+  services_pricing: `Extract COMPLETE service guide information from this page. Include: (1) All maintenance services with pricing ranges, (2) All major services (30k, 60k, 90k, 120k mile) with pricing, (3) MAINTENANCE INTERVALS - list EVERY interval mentioned starting from 1000 miles, (4) Company info, locations, hours, specialties, (5) Warranty details. Be exhaustive and include all numbers and intervals.`,
+
   services: `Extract all auto repair and maintenance services listed on this page. 
 For each service, include: service name, brief description, and any pricing if shown.
 Format as a clean list. Be thorough — include every service mentioned.`,

@@ -104,10 +104,7 @@ function App() {
             askShiftOpen={askShiftOpen}
           />
           <MobileFooterBar />
-          <AskShift
-            isOpen={askShiftOpen}
-            onOpenChange={setAskShiftOpen}
-          />
+          <AskShift />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

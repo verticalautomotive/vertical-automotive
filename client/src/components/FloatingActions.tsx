@@ -152,7 +152,7 @@ export default function FloatingActions({ onAskShiftClick, askShiftOpen }: Float
 
       {/* Ask Shift Button — mobile only */}
       <button
-        onClick={onAskShiftClick}
+        onClick={() => (window as any).openShiftChat?.()}
         className={`group relative flex items-center justify-center w-14 h-14 rounded-full shadow-lg transition-all duration-200 active:scale-95 ${
           askShiftOpen
             ? "bg-primary text-white shadow-primary/40"
