@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { eq, desc, like, and, gte, lte } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertUser, users, conversationLogs } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -87,6 +87,114 @@ export async function getUserByOpenId(openId: string) {
   const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
 
   return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getConversations({
+  limit = 50,
+  offset = 0,
+  language,
+  search,
+  startDate,
+  endDate,
+}: {
+  limit?: number;
+  offset?: number;
+  language?: "en" | "es";
+  search?: string;
+  startDate?: Date;
+  endDate?: Date;
+} = {}) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get conversations: database not available");
+    return [];
+  }
+
+  try {
+    const conditions = [];
+
+    if (language) {
+      conditions.push(eq(conversationLogs.language, language));
+    }
+
+    if (startDate) {
+      conditions.push(gte(conversationLogs.createdAt, startDate));
+    }
+
+    if (endDate) {
+      conditions.push(lte(conversationLogs.createdAt, endDate));
+    }
+
+    // Search in messages JSON
+    if (search) {
+      conditions.push(like(conversationLogs.messages, `%${search}%`));
+    }
+
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    const result = await db
+      .select()
+      .from(conversationLogs)
+      .where(whereClause)
+      .orderBy(desc(conversationLogs.createdAt))
+      .limit(limit)
+      .offset(offset);
+
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get conversations:", error);
+    return [];
+  }
+}
+
+export async function getConversationCount({
+  language,
+  search,
+  startDate,
+  endDate,
+}: {
+  language?: "en" | "es";
+  search?: string;
+  startDate?: Date;
+  endDate?: Date;
+} = {}) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot count conversations: database not available");
+    return 0;
+  }
+
+  try {
+    const conditions = [];
+
+    if (language) {
+      conditions.push(eq(conversationLogs.language, language));
+    }
+
+    if (startDate) {
+      conditions.push(gte(conversationLogs.createdAt, startDate));
+    }
+
+    if (endDate) {
+      conditions.push(lte(conversationLogs.createdAt, endDate));
+    }
+
+    if (search) {
+      conditions.push(like(conversationLogs.messages, `%${search}%`));
+    }
+
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    const result = await db
+      .select({ count: conversationLogs.id })
+      .from(conversationLogs)
+      .where(whereClause);
+
+    return result.length;
+  } catch (error) {
+    console.error("[Database] Failed to count conversations:", error);
+    return 0;
+  }
 }
 
 // TODO: add feature queries here as your schema grows.

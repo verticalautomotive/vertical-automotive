@@ -56,6 +56,14 @@
 # Conversation Logging
 - [x] Add conversation_logs DB table to store chat history
 - [x] Create tRPC endpoint to save conversations when "Talk to a Human" is clicked
-- [ ] Update HumanFallbackCard to log entire conversation to DB
+- [x] Update HumanFallbackCard to log entire conversation to DB
 - [x] Test end-to-end logging
+
+# Admin Dashboard for Conversations
+- [x] Create tRPC endpoints to fetch and search conversations (list, stats)
+- [x] Build admin dashboard page with conversation list
+- [x] Add search and filter UI (by date, language, keywords)
+- [x] Add conversation detail view modal
+- [x] Restrict dashboard to owner-only access
+- [x] Write and run vitest tests for conversation queries
 - [ ] Save checkpoint

@@ -1,13 +1,13 @@
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, router } from "./_core/trpc";
+import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { chatbotRouter } from "./chatbot";
 import { runFullSync, getSyncStatus } from "./crawler";
 import { ENV } from "./_core/env";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { getDb } from "./db";
+import { getDb, getConversations, getConversationCount } from "./db";
 import { conversationLogs } from "../drizzle/schema";
 
 export const appRouter = router({
@@ -49,6 +49,75 @@ export const appRouter = router({
     }),
   }),
   conversations: router({
+    /** Get paginated conversations with optional filters — admin only */
+    list: protectedProcedure
+      .input(
+        z.object({
+          limit: z.number().min(1).max(100).default(50),
+          offset: z.number().min(0).default(0),
+          language: z.enum(["en", "es"]).optional(),
+          search: z.string().optional(),
+          startDate: z.date().optional(),
+          endDate: z.date().optional(),
+        })
+      )
+      .query(async ({ ctx, input }) => {
+        if (ctx.user?.openId !== ENV.ownerOpenId) {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: "Only the owner can view conversations",
+          });
+        }
+
+        const conversations = await getConversations({
+          limit: input.limit,
+          offset: input.offset,
+          language: input.language,
+          search: input.search,
+          startDate: input.startDate,
+          endDate: input.endDate,
+        });
+
+        const total = await getConversationCount({
+          language: input.language,
+          search: input.search,
+          startDate: input.startDate,
+          endDate: input.endDate,
+        });
+
+        return {
+          conversations: conversations.map(c => ({
+            ...c,
+            messages: typeof c.messages === "string" ? JSON.parse(c.messages) : c.messages,
+          })),
+          total,
+          limit: input.limit,
+          offset: input.offset,
+        };
+      }),
+
+    /** Get summary stats for admin dashboard */
+    stats: protectedProcedure.query(async ({ ctx }) => {
+      if (ctx.user?.openId !== ENV.ownerOpenId) {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: "Only the owner can view stats",
+        });
+      }
+
+      const total = await getConversationCount();
+      const englishCount = await getConversationCount({ language: "en" });
+      const spanishCount = await getConversationCount({ language: "es" });
+
+      return {
+        total,
+        byLanguage: {
+          en: englishCount,
+          es: spanishCount,
+        },
+      };
+    }),
+
     /** Log a conversation when user clicks "Talk to a Human" */
     logEscalation: publicProcedure
       .input(

@@ -22,6 +22,7 @@ const BlogArticle = lazy(() => import("./pages/BlogArticle"));
 const Contacts = lazy(() => import("./pages/Contacts"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Gallery = lazy(() => import("./pages/Gallery"));
+const AdminConversations = lazy(() => import("./pages/AdminConversations"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function ScrollToTop() {
@@ -72,6 +73,9 @@ function Router() {
           <Route path="/es/informacion" component={Blog} />
           <Route path="/es/informacion/:slug" component={BlogArticle} />
           <Route path="/es/contactos" component={Contacts} />
+
+          {/* Admin routes */}
+          <Route path="/admin/conversations" component={AdminConversations} />
 
           <Route path="/404" component={NotFound} />
           <Route component={NotFound} />
