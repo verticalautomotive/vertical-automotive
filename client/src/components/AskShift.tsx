@@ -285,10 +285,22 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
     }
   }, [isOpen, hasOpened, lang]);
 
+  // Scroll to top when chat first opens (show welcome message)
   // Scroll to bottom on new messages
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, chatMutation.isPending]);
+    if (isOpen && messages.length === 1) {
+      // Scroll to top to show welcome message when chat opens
+      const messagesDiv = document.querySelector('[data-chat-messages]');
+      if (messagesDiv) {
+        setTimeout(() => {
+          messagesDiv.scrollTop = 0;
+        }, 100);
+      }
+    } else {
+      // Scroll to bottom for new messages
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, chatMutation.isPending, isOpen]);
 
   // Focus input when opened
   useEffect(() => {
@@ -409,7 +421,7 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-background">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-background" data-chat-messages>
             {messages.map((msg, i) => (
               <div
                 key={i}
@@ -463,7 +475,7 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
                   <button
                     key={i}
                     onClick={() => handleSend(q)}
-                    className="w-full text-left text-xs px-3 py-2 rounded-xl border border-primary/30 text-primary hover:bg-primary hover:text-white transition-colors font-medium"
+                    className="w-full text-left text-xs px-3 py-2 rounded-xl border border-primary/30 text-primary hover:bg-primary hover:text-white active:bg-primary active:text-white transition-colors font-medium"
                   >
                     {q}
                   </button>
