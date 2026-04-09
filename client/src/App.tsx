@@ -5,11 +5,11 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import StructuredData from "./components/StructuredData";
 import HrefLang from "./components/HrefLang";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { useLocation } from "wouter";
 import MobileFooterBar from "./components/MobileFooterBar";
 import FloatingActions from "./components/FloatingActions";
-import AskShift from "@/components/AskShift";
+
 import ShiftButton from "@/components/ShiftButton";
 
 // Code-split all page components — only Home is eagerly loaded for fast FCP
@@ -90,8 +90,7 @@ function Router() {
 }
 
 function App() {
-  // Shared state for Ask Shift chatbot — controlled by both FloatingActions (mobile) and AskShift (desktop)
-  const [askShiftOpen, setAskShiftOpen] = useState(false);
+
 
   return (
     <ErrorBoundary>
@@ -100,13 +99,9 @@ function App() {
           <StructuredData />
           <Toaster />
           <Router />
-          <FloatingActions
-            onAskShiftClick={() => setAskShiftOpen((prev) => !prev)}
-            askShiftOpen={askShiftOpen}
-          />
+          <FloatingActions />
           <MobileFooterBar />
           <ShiftButton />
-          <AskShift />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

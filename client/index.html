@@ -65,6 +65,27 @@
       defer
       src="%VITE_ANALYTICS_ENDPOINT%/umami"
       data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+    
+    <!-- Shift Chatbot - One Script Integration -->
+    <script>
+      (function() {
+        const iframe = document.createElement('iframe');
+        iframe.id = 'shift-chat';
+        iframe.src = "https://ais-pre-q73kw5kk7gnfswdjstsrpe-629206854967.us-east1.run.app?external=true";
+        iframe.style = "border:none; width: 400px; height: 600px; position: fixed; bottom: 20px; right: 20px; z-index: 9999; display:none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border-radius: 10px;";
+        document.body.appendChild(iframe);
+      })();
+
+      window.openShiftChat = function() {
+        const iframe = document.getElementById('shift-chat');
+        if (iframe) {
+          iframe.style.display = iframe.style.display === 'none' ? 'block' : 'none';
+          if (iframe.style.display === 'block') {
+            iframe.contentWindow.postMessage('openChat', '*');
+          }
+        }
+      };
+    </script>
   </body>
 
 </html>
