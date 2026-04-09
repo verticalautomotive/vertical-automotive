@@ -66,15 +66,14 @@ export default function FloatingActions({}: FloatingActionsProps) {
 
   return (
     <>
-      {/* Mobile Shift Chat Button - shown only on mobile */}
-      <ChatButton language={isSpanish ? "es" : "en"} isMobile={true} />
-
       {/* Mobile Floating Actions Container */}
       <div
         ref={containerRef}
         className="fixed right-4 z-50 md:hidden flex flex-col items-end gap-3"
         style={{ bottom: "calc(5rem + env(safe-area-inset-bottom, 0px))" }}
       >
+        {/* Mobile Shift Chat Button */}
+        <ChatButton language={isSpanish ? "es" : "en"} isMobile={true} />
         {/* SMS Popup */}
         {openPopup === "sms" && (
           <div className="bg-[#0f1724] border border-blue-500/30 rounded-xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-2 fade-in duration-200 mb-1 w-56">
