@@ -19,13 +19,15 @@ export function ChatButton({ language = "en" }: ChatButtonProps) {
   const buttonLabel =
     language === "es" ? "Abrir chat" : "Open chat";
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
     console.log("[ChatButton] Clicked, toggling from", isChatOpen, "to", !isChatOpen);
     setIsChatOpen(!isChatOpen);
   };
 
   return (
-    <>
+    <div className="pointer-events-auto">
       {/* Chat Bubble */}
       <ChatBubble
         isOpen={isChatOpen}
@@ -37,7 +39,8 @@ export function ChatButton({ language = "en" }: ChatButtonProps) {
       <button
         onClick={handleButtonClick}
         aria-label={buttonLabel}
-        className={`fixed bottom-6 right-6 z-[9999] w-16 h-16 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group ${
+        type="button"
+        className={`fixed bottom-6 right-6 z-[9999] w-16 h-16 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group pointer-events-auto cursor-pointer ${
           isChatOpen ? "scale-95" : "hover:scale-110"
         }`}
       >
@@ -53,6 +56,6 @@ export function ChatButton({ language = "en" }: ChatButtonProps) {
           {buttonLabel}
         </span>
       </button>
-    </>
+    </div>
   );
 }

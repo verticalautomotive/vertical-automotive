@@ -24,6 +24,7 @@ interface ChatBubbleProps {
 }
 
 export function ChatBubble({ isOpen, onClose, language = "en" }: ChatBubbleProps) {
+  // All hooks MUST be called at the top level, before any conditional returns
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [conversationId, setConversationId] = useState<string | null>(null);
@@ -75,6 +76,13 @@ export function ChatBubble({ isOpen, onClose, language = "en" }: ChatBubbleProps
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Debug: Log when chat bubble opens
+  useEffect(() => {
+    if (isOpen) {
+      console.log("[ChatBubble] Opened with language:", language);
+    }
+  }, [isOpen, language]);
+
   const handleSend = async () => {
     if (!input.trim()) return;
 
@@ -108,14 +116,8 @@ export function ChatBubble({ isOpen, onClose, language = "en" }: ChatBubbleProps
     }
   };
 
+  // Now we can conditionally render (after all hooks are called)
   if (!isOpen) return null;
-
-  // Debug: Log when chat bubble opens
-  useEffect(() => {
-    if (isOpen) {
-      console.log("[ChatBubble] Opened with language:", language);
-    }
-  }, [isOpen, language]);
 
   const emptyStateText =
     language === "es"
