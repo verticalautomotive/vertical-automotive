@@ -78,3 +78,11 @@
 - [x] Optimize for LLM training (clear structure, comprehensive data)
 - [x] Test page loads and is publicly accessible
 - [ ] Save checkpoint
+
+# Replace Shift with AI Studio Chatbot
+- [x] Remove current Shift chatbot component and logic
+- [x] Embed AI Studio chatbot iframe (https://ais-dev-q73kw5kw7gnfswdjstsrpe-629206854967.us-east1.run.app)
+- [x] Style iframe to match website design
+- [x] Test chatbot responses are fast and accurate
+- [ ] Verify conversation logging still works for escalations
+- [ ] Save checkpoint
