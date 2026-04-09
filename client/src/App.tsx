@@ -91,6 +91,9 @@ function Router() {
 }
 
 function App() {
+  const [location] = useLocation();
+  const language = location.startsWith("/es") ? "es" : "en";
+
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
@@ -100,7 +103,7 @@ function App() {
           <Router />
           <FloatingActions />
           <MobileFooterBar />
-          <ChatButton language="en" />
+          <ChatButton language={language} />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

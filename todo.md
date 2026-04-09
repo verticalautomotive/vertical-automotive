@@ -140,3 +140,10 @@
 - [x] Create checkpoint
 - [x] Test on staging/production domains
 - [x] Monitor for errors
+
+## Bug Fixes
+- [x] Fixed ChatButton z-index (9999) for web visibility
+- [x] Fixed ChatBubble z-index (10000) for mobile click functionality
+- [x] Added missing z import to chat router
+- [x] Added debug logging to ChatButton and ChatBubble
+- [x] Updated App.tsx to pass correct language prop based on locale

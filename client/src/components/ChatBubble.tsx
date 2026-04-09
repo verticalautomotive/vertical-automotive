@@ -91,6 +91,7 @@ export function ChatBubble({ isOpen, onClose, language = "en" }: ChatBubbleProps
     setIsLoading(true);
 
     // Send to backend
+    console.log("[ChatBubble] Sending message:", input);
     sendMessageMutation.mutate({
       message: input,
       conversationId: conversationId || undefined,
@@ -102,11 +103,19 @@ export function ChatBubble({ isOpen, onClose, language = "en" }: ChatBubbleProps
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
+      console.log("[ChatBubble] Enter key pressed");
       handleSend();
     }
   };
 
   if (!isOpen) return null;
+
+  // Debug: Log when chat bubble opens
+  useEffect(() => {
+    if (isOpen) {
+      console.log("[ChatBubble] Opened with language:", language);
+    }
+  }, [isOpen, language]);
 
   const emptyStateText =
     language === "es"
@@ -119,7 +128,7 @@ export function ChatBubble({ isOpen, onClose, language = "en" }: ChatBubbleProps
   const sendButtonText = language === "es" ? "Enviar" : "Send";
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 w-96 max-w-[calc(100vw-2rem)]">
+    <div className="fixed bottom-6 right-6 z-[10000] w-96 max-w-[calc(100vw-2rem)]">
       <Card className="flex flex-col h-[500px] bg-background text-foreground shadow-2xl border border-border">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-border bg-primary text-primary-foreground rounded-t-lg">
