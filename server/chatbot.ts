@@ -205,8 +205,8 @@ async function callGeminiOnce(
   messages: ChatMessage[],
   systemPrompt: string
 ): Promise<{ reply: string; needsHuman: boolean }> {
-  const apiKey = ENV.geminiApiKey;
-  if (!apiKey) throw new Error("Gemini API key not configured");
+  const apiKey = ENV.shiftApiKey;
+  if (!apiKey) throw new Error("Shift API key not configured");
 
   const contents = messages.map((msg) => ({
     role: msg.role === "assistant" ? "model" : "user",
