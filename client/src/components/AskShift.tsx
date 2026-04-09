@@ -5,7 +5,7 @@
  */
 import { useEffect, useRef } from "react";
 
-const AISTUDIO_IFRAME_URL = "https://ais-dev-q73kw5kk7gnfswdjstsrpe-629206854967.us-east1.run.app?external=true";
+const AISTUDIO_IFRAME_URL = "https://ais-pre-q73kw5kk7gnfswdjstsrpe-629206854967.us-east1.run.app?external=true";
 
 export default function AskShift() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -42,6 +42,7 @@ export default function AskShift() {
         bottom: "20px",
         right: "20px",
         zIndex: 9999,
+        display: "none",
         borderRadius: "12px",
         boxShadow: "0 5px 40px rgba(0, 0, 0, 0.16)",
       }}
