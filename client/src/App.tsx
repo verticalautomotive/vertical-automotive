@@ -9,7 +9,8 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import MobileFooterBar from "./components/MobileFooterBar";
 import FloatingActions from "./components/FloatingActions";
-import AskShift from "./components/AskShift";
+import AskShift from "@/components/AskShift";
+import ShiftButton from "@/components/ShiftButton";
 
 // Code-split all page components — only Home is eagerly loaded for fast FCP
 import Home from "./pages/Home";
@@ -104,6 +105,7 @@ function App() {
             askShiftOpen={askShiftOpen}
           />
           <MobileFooterBar />
+          <ShiftButton />
           <AskShift />
         </TooltipProvider>
       </ThemeProvider>
