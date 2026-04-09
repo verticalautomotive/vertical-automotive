@@ -15,6 +15,13 @@
       "when": 1775690884663,
       "tag": "0001_optimal_jack_power",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1775694057877,
+      "tag": "0002_lying_speed",
+      "breakpoints": true
     }
   ]
 }

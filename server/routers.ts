@@ -6,6 +6,9 @@ import { chatbotRouter } from "./chatbot";
 import { runFullSync, getSyncStatus } from "./crawler";
 import { ENV } from "./_core/env";
 import { TRPCError } from "@trpc/server";
+import { z } from "zod";
+import { getDb } from "./db";
+import { conversationLogs } from "../drizzle/schema";
 
 export const appRouter = router({
   system: systemRouter,
@@ -44,6 +47,46 @@ export const appRouter = router({
       const rows = await getSyncStatus();
       return rows;
     }),
+  }),
+  conversations: router({
+    /** Log a conversation when user clicks "Talk to a Human" */
+    logEscalation: publicProcedure
+      .input(
+        z.object({
+          messages: z.array(
+            z.object({
+              role: z.enum(["user", "assistant"]),
+              content: z.string(),
+            })
+          ),
+          language: z.enum(["en", "es"]),
+          sessionId: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const db = await getDb();
+        if (!db) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Database not available",
+          });
+        }
+
+        try {
+          await db.insert(conversationLogs).values({
+            messages: JSON.stringify(input.messages),
+            language: input.language,
+            sessionId: input.sessionId || null,
+          });
+          return { success: true };
+        } catch (error) {
+          console.error("[Conversations] Failed to log escalation:", error);
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Failed to save conversation",
+          });
+        }
+      }),
   }),
 });
 

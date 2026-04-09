@@ -102,12 +102,31 @@ const HUMAN_CARD_CONTENT = {
 function HumanFallbackCard({
   lang,
   onDismiss,
+  messages,
 }: {
   lang: "en" | "es";
   onDismiss: () => void;
+  messages: Message[];
 }) {
   const t = HUMAN_CARD_CONTENT[lang];
   const [showLocations, setShowLocations] = useState<"call" | "text" | null>(null);
+  const logConversation = trpc.conversations.logEscalation.useMutation();
+
+  const handleEscalation = async () => {
+    try {
+      await logConversation.mutateAsync({
+        messages: messages.map(m => ({
+          role: m.role,
+          content: m.content,
+        })),
+        language: lang as "en" | "es",
+        sessionId: `shift-${Date.now()}`,
+      });
+      console.log("[Shift] Conversation logged successfully");
+    } catch (error) {
+      console.error("[Shift] Failed to log conversation:", error);
+    }
+  };
 
   return (
     <div className="mx-1 my-2 rounded-2xl border-2 border-primary/40 bg-secondary text-secondary-foreground overflow-hidden shadow-lg animate-in slide-in-from-bottom-2 fade-in duration-300">
@@ -165,14 +184,20 @@ function HumanFallbackCard({
           {/* Call / Text buttons */}
           <div className="grid grid-cols-2 gap-2">
             <button
-              onClick={() => setShowLocations("call")}
+              onClick={() => {
+                handleEscalation();
+                setShowLocations("call");
+              }}
               className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary/90 transition-colors"
             >
               <Phone className="w-3.5 h-3.5" />
               {t.callLabel}
             </button>
             <button
-              onClick={() => setShowLocations("text")}
+              onClick={() => {
+                handleEscalation();
+                setShowLocations("text");
+              }}
               className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-white/10 text-white text-xs font-bold hover:bg-white/20 border border-white/20 transition-colors"
             >
               <MessageSquare className="w-3.5 h-3.5" />
@@ -452,6 +477,7 @@ export default function AskShift({ isOpen: controlledOpen, onOpenChange }: AskSh
               <HumanFallbackCard
                 lang={lang}
                 onDismiss={() => setDismissedHumanCard(true)}
+                messages={messages}
               />
             )}
 

@@ -46,3 +46,22 @@ export const knowledgeBase = mysqlTable("knowledge_base", {
 
 export type KnowledgeBase = typeof knowledgeBase.$inferSelect;
 export type InsertKnowledgeBase = typeof knowledgeBase.$inferInsert;
+
+/**
+ * conversation_logs — stores chat history when user clicks "Talk to a Human"
+ * Allows the shop owner to review conversations and improve Shift's knowledge base
+ */
+export const conversationLogs = mysqlTable("conversation_logs", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Language of the conversation ("en" or "es") */
+  language: varchar("language", { length: 2 }).default("en").notNull(),
+  /** Full conversation history as JSON array of {role, content} messages */
+  messages: text("messages").notNull(), // JSON stringified
+  /** When the user clicked "Talk to a Human" */
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  /** Session identifier (optional, for grouping related conversations) */
+  sessionId: varchar("sessionId", { length: 64 }),
+});
+
+export type ConversationLog = typeof conversationLogs.$inferSelect;
+export type InsertConversationLog = typeof conversationLogs.$inferInsert;

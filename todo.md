@@ -48,3 +48,14 @@
 - [x] Test end-to-end crawl and chat with DB knowledge
 - [x] Change sync schedule from daily to weekly, remove startup auto-sync
 - [x] Restrict Shift sync panel to owner-only (hide settings icon from regular visitors)
+
+# Shift Chat Scroll & Contrast Fix
+- [x] Fix chat scroll to show welcome message at top when opened
+- [x] Improve selected quick question button contrast (bright blue + white text)
+
+# Conversation Logging
+- [x] Add conversation_logs DB table to store chat history
+- [x] Create tRPC endpoint to save conversations when "Talk to a Human" is clicked
+- [ ] Update HumanFallbackCard to log entire conversation to DB
+- [x] Test end-to-end logging
+- [ ] Save checkpoint
