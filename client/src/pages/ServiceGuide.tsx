@@ -296,25 +296,146 @@ export default function ServiceGuide() {
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6">Frequently Asked Questions</h2>
           <div className="space-y-4">
-            <div className="bg-card text-card-foreground p-4 rounded-lg">
-              <p className="font-bold mb-2">Do you service all vehicle makes and models?</p>
-              <p className="text-sm">Yes, we service Tesla, Asian, European, and Domestic vehicles. Our ASE-certified technicians have expertise across all major brands.</p>
+            {/* General Questions */}
+            <div className="mb-6">
+              <h3 className="text-xl font-bold mb-4 text-primary">General Questions</h3>
+              <div className="space-y-4">
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">Do you service all vehicle makes and models?</p>
+                  <p className="text-sm">Yes, we service Tesla, Asian, European, and Domestic vehicles. Our ASE-certified technicians have expertise across all major brands including Honda, Toyota, BMW, Mercedes, Audi, Ford, Chevrolet, and more.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">Are you open on weekends?</p>
+                  <p className="text-sm">No, we are open Monday through Friday, 8:00 AM to 5:00 PM. We are closed on weekends and holidays. For emergencies, please call our main line.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">Do you offer same-day service?</p>
+                  <p className="text-sm">Many services can be completed same-day depending on availability and service complexity. Call us or use our online booking to check availability for your specific needs.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">How long have you been in business?</p>
+                  <p className="text-sm">Vertical Automotive has been serving the South Florida community for 36 years since 1989. We have built our reputation on quality workmanship and customer satisfaction.</p>
+                </div>
+              </div>
             </div>
-            <div className="bg-card text-card-foreground p-4 rounded-lg">
-              <p className="font-bold mb-2">What is your warranty on repairs?</p>
-              <p className="text-sm">All repairs come with a 3-year warranty on both parts and labor, with no mileage restrictions.</p>
+
+            {/* Warranty & Pricing */}
+            <div className="mb-6">
+              <h3 className="text-xl font-bold mb-4 text-primary">Warranty & Pricing</h3>
+              <div className="space-y-4">
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">What is your warranty on repairs?</p>
+                  <p className="text-sm">All repairs come with a comprehensive 3-year warranty on both parts and labor, with no mileage restrictions. This warranty is transferable to subsequent vehicle owners.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">Do you match competitor pricing?</p>
+                  <p className="text-sm">We offer competitive pricing on all services. Our pricing reflects the quality of work, ASE certification, and 3-year warranty we provide. Contact us for a quote on your specific service.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">Do you offer financing or payment plans?</p>
+                  <p className="text-sm">Yes, we offer flexible payment options. Contact us to discuss financing options for larger repairs or services.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">Are there any hidden fees?</p>
+                  <p className="text-sm">No hidden fees. We provide transparent pricing upfront. You'll receive a detailed estimate before any work begins, and we'll contact you if additional repairs are needed.</p>
+                </div>
+              </div>
             </div>
-            <div className="bg-card text-card-foreground p-4 rounded-lg">
-              <p className="font-bold mb-2">How often should I get an oil change?</p>
-              <p className="text-sm">For conventional oil, every 3,000-5,000 miles or 3 months. For synthetic oil, every 5,000-7,500 miles or 6 months.</p>
+
+            {/* Maintenance & Service */}
+            <div className="mb-6">
+              <h3 className="text-xl font-bold mb-4 text-primary">Maintenance & Service</h3>
+              <div className="space-y-4">
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">How often should I get an oil change?</p>
+                  <p className="text-sm">For conventional oil, every 3,000-5,000 miles or 3 months. For synthetic oil, every 5,000-7,500 miles or 6 months. Check your vehicle's manual for specific recommendations.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">What is a major service?</p>
+                  <p className="text-sm">Major services are comprehensive maintenance packages at specific mileage intervals (30K, 60K, 90K, 120K miles). They include fluid exchanges, filter replacements, inspections, and other preventative maintenance to keep your vehicle running smoothly.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">Can I use aftermarket parts instead of OEM?</p>
+                  <p className="text-sm">Yes, we can use quality aftermarket parts if you prefer. However, we recommend OEM parts for best performance and reliability. We'll discuss options and pricing with you before proceeding.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">What should I do if my check engine light comes on?</p>
+                  <p className="text-sm">Don't ignore it. Bring your vehicle in for a diagnostic scan. We'll identify the issue and recommend the best course of action. Many check engine light issues are simple fixes, but some require immediate attention.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">How do I know if my brakes need service?</p>
+                  <p className="text-sm">Signs include squealing or grinding noises, soft or spongy brake pedal, longer stopping distances, or a brake warning light. We recommend brake inspections at least annually or every 25,000-70,000 miles depending on driving habits.</p>
+                </div>
+              </div>
             </div>
-            <div className="bg-card text-card-foreground p-4 rounded-lg">
-              <p className="font-bold mb-2">Do you offer same-day service?</p>
-              <p className="text-sm">Many services can be completed same-day. Call us or use our online booking to check availability.</p>
+
+            {/* Tesla & EV Specific */}
+            <div className="mb-6">
+              <h3 className="text-xl font-bold mb-4 text-primary">Tesla & Electric Vehicles</h3>
+              <div className="space-y-4">
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">Do you service Tesla vehicles?</p>
+                  <p className="text-sm">Yes! We are Tesla specialists with advanced diagnostic equipment and training. We handle everything from routine maintenance to complex electrical repairs.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">What maintenance does a Tesla need?</p>
+                  <p className="text-sm">Teslas require less maintenance than gas vehicles. Key services include tire rotation, brake fluid flush, cabin air filter replacement, and battery health checks. We'll help you maintain your Tesla's performance and longevity.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">Can you replace Tesla batteries?</p>
+                  <p className="text-sm">We can diagnose battery issues and coordinate replacement through authorized Tesla service centers when needed. We also handle battery-related diagnostics and repairs.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">Do you service hybrid vehicles?</p>
+                  <p className="text-sm">Yes, we have expertise with hybrid vehicles including Toyota Prius, Honda Hybrid, and others. We handle hybrid-specific diagnostics, battery service, and maintenance.</p>
+                </div>
+              </div>
             </div>
-            <div className="bg-card text-card-foreground p-4 rounded-lg">
-              <p className="font-bold mb-2">Are you open on weekends?</p>
-              <p className="text-sm">No, we are open Monday through Friday, 8:00 AM to 5:00 PM. We are closed on weekends.</p>
+
+            {/* Scheduling & Booking */}
+            <div className="mb-6">
+              <h3 className="text-xl font-bold mb-4 text-primary">Scheduling & Booking</h3>
+              <div className="space-y-4">
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">How do I schedule an appointment?</p>
+                  <p className="text-sm">You can call us directly at (954) 565-1518 (Wilton Manors) or (645) 216-2266 (Fort Lauderdale), use our online booking system, or chat with Shift, our AI assistant.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">What information do I need to schedule?</p>
+                  <p className="text-sm">Have your vehicle's year, make, model, and current mileage ready. Also let us know the service you need and your preferred appointment time.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">Can I drop off my car for service?</p>
+                  <p className="text-sm">Yes, we offer drop-off service. Depending on service complexity, you may be able to wait or arrange a ride. Call us to discuss options.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">Do you provide loaner vehicles?</p>
+                  <p className="text-sm">Contact us to inquire about loaner vehicle availability. We work to accommodate customers during longer service appointments.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Diagnostics & Repairs */}
+            <div className="mb-6">
+              <h3 className="text-xl font-bold mb-4 text-primary">Diagnostics & Repairs</h3>
+              <div className="space-y-4">
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">What is a diagnostic scan?</p>
+                  <p className="text-sm">A diagnostic scan uses specialized equipment to read your vehicle's computer systems and identify any issues. This helps us pinpoint problems and provide accurate repair recommendations.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">How much does a diagnostic cost?</p>
+                  <p className="text-sm">A basic diagnostic scan costs $200-$275. If you proceed with repairs, we typically credit the diagnostic fee toward the repair cost.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">Will you call me before doing repairs?</p>
+                  <p className="text-sm">Yes, absolutely. We always contact you with a detailed estimate and explain the recommended repairs before proceeding. You have full control over what work gets done.</p>
+                </div>
+                <div className="bg-card text-card-foreground p-4 rounded-lg">
+                  <p className="font-bold mb-2">What if I bring my own parts?</p>
+                  <p className="text-sm">We can install parts you provide. However, we recommend using quality OEM or trusted aftermarket parts. We warranty our labor but not parts provided by customers.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
