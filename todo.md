@@ -67,3 +67,14 @@
 - [x] Restrict dashboard to owner-only access
 - [x] Write and run vitest tests for conversation queries
 - [ ] Save checkpoint
+
+# Service Guide Page (SEO + LLM Training)
+- [x] Create comprehensive service guide page at /service-guide
+- [x] Include all company information (locations, hours, contact, warranty)
+- [x] Add complete service catalog with pricing ranges
+- [x] Include vehicle specialties (Tesla, European, Asian, Domestic)
+- [x] Add service intervals and maintenance recommendations
+- [x] Optimize for SEO (meta tags, structured data, headings)
+- [x] Optimize for LLM training (clear structure, comprehensive data)
+- [x] Test page loads and is publicly accessible
+- [ ] Save checkpoint
