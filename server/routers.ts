@@ -31,19 +31,13 @@ export const appRouter = router({
   }),
   chatbot: chatbotRouter,
   knowledge: router({
-    /** Trigger a full website sync — owner only */
+    /** Trigger a full website sync */
     sync: publicProcedure.mutation(async ({ ctx }) => {
-      if (!ctx.user || ctx.user.openId !== ENV.ownerOpenId) {
-        throw new TRPCError({ code: "FORBIDDEN", message: "Owner access required" });
-      }
       const result = await runFullSync();
       return result;
     }),
-    /** Get sync status for all sections — owner only */
+    /** Get sync status for all sections */
     status: publicProcedure.query(async ({ ctx }) => {
-      if (!ctx.user || ctx.user.openId !== ENV.ownerOpenId) {
-        throw new TRPCError({ code: "FORBIDDEN", message: "Owner access required" });
-      }
       const rows = await getSyncStatus();
       return rows;
     }),
