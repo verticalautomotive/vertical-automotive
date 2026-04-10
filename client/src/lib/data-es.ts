@@ -211,7 +211,15 @@ export const VEHICLE_TYPES_ES: VehicleType[] = [
   {
     slug: "tesla-vehicles-service",
     title: "TESLA Y EV",
-    image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&q=50&fm=webp&fit=crop&auto=format",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-diagnostics_7906cd95.webp",
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-diagnostics_7906cd95.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-frunk-open_3696ade7.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-gears_c5769e70.png",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-battery-fuse_8c80d49f.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-hv-battery_19dac181.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-service-mode_ca070e93.webp",
+    ],
     description: "¿Busca un especialista calificado en Tesla o vehículos eléctricos en Fort Lauderdale o Wilton Manors? La mayoría de los talleres generales carecen de la capacitación, herramientas y protocolos de seguridad de alto voltaje necesarios para dar servicio adecuado a los EV — lo que lleva a diagnósticos erróneos, reemplazos innecesarios de piezas y riesgos de seguridad. Vertical Automotive proporciona reparación certificada de Tesla y EV con equipo de diagnóstico de grado de fábrica, componentes genuinos o equivalentes OEM, y técnicos capacitados específicamente en trenes motrices eléctricos, sistemas de gestión de batería y frenado regenerativo. Ya sea que su Tesla necesite una evaluación de salud de batería, calibración de suspensión, servicio de A/C o un escaneo diagnóstico completo, nuestro equipo ofrece precisión de nivel de concesionario a valor de taller independiente. Damos servicio a todos los modelos Tesla — Model S, Model 3, Model X y Model Y — así como otros vehículos eléctricos e híbridos enchufables. Cada reparación está respaldada por nuestra garantía de 36,000 millas/36 meses. Si necesita cuidado experto de EV sin los tiempos de espera o precios del concesionario, Vertical Automotive es la opción de confianza para conductores en todo el sur de Florida.",
     services: ["battery-cranking-charging-systems", "brake-system", "routine-preventive-maintenance", "complete-diagnostics", "a-c-maintenance-repair", "steering-suspension"],
   },

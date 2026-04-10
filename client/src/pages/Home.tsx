@@ -12,6 +12,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { COMPANY, LOCATIONS } from "@/lib/data";
+import type { VehicleType } from "@/lib/data";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { LazyMap } from "@/components/LazyMap";
@@ -31,7 +32,7 @@ import {
   ChevronUp,
   Navigation2,
 } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "wouter";
 import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
@@ -411,28 +412,7 @@ export default function Home() {
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {vehicleTypes.map((type) => (
-              <Link
-                key={type.slug}
-                href={`${servicesPath}/${type.slug}`}
-                className="group relative aspect-[4/3] overflow-hidden bg-card hover:shadow-2xl transition-all duration-300"
-              >
-                <OptimizedImage
-                  src={type.image}
-                  alt={type.title}
-                  width={400}
-                  height={300}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  style={type.slug === 'asian-vehicles-service' ? { transform: 'scaleX(-1)' } : undefined}
-                  sizes="(max-width: 640px) 50vw, 25vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-                <div className="absolute inset-0 flex items-end p-3 sm:p-6">
-                  <h3 className="text-sm sm:text-2xl font-black text-secondary-foreground leading-tight">
-                    {type.title}
-                  </h3>
-                </div>
-                <div className="absolute top-0 left-0 w-full h-1 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-              </Link>
+              <VehicleTypeCard key={type.slug} type={type} servicesPath={servicesPath} />
             ))}
           </div>
         </div>
@@ -890,6 +870,98 @@ export default function Home() {
         source="home_sticky_bar"
       />
     </div>
+  );
+}
+
+/**
+ * VehicleTypeCard — Shows a vehicle category card with optional rotating photo gallery.
+ * For types with a gallery array (e.g., Tesla), images rotate every 4 seconds.
+ * All images get a subtle dark/blue filter to match the site's industrial theme.
+ */
+function VehicleTypeCard({ type, servicesPath }: { type: VehicleType; servicesPath: string }) {
+  const gallery = type.gallery;
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (!gallery || gallery.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % gallery.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [gallery]);
+
+  const currentImage = gallery && gallery.length > 0 ? gallery[currentIndex] : type.image;
+  const hasGallery = gallery && gallery.length > 1;
+
+  return (
+    <Link
+      href={`${servicesPath}/${type.slug}`}
+      className="group relative aspect-[4/3] overflow-hidden bg-card hover:shadow-2xl transition-all duration-300"
+    >
+      {/* Image with crossfade for gallery types */}
+      {hasGallery ? (
+        <div className="w-full h-full relative">
+          {gallery.map((img, i) => (
+            <img
+              key={i}
+              src={img}
+              alt={`${type.title} service ${i + 1}`}
+              loading="lazy"
+              decoding="async"
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                i === currentIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ filter: 'brightness(0.75) saturate(0.9)' }}
+            />
+          ))}
+        </div>
+      ) : (
+        <OptimizedImage
+          src={currentImage}
+          alt={type.title}
+          width={400}
+          height={300}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          style={{
+            ...(type.slug === 'asian-vehicles-service' ? { transform: 'scaleX(-1)' } : {}),
+          }}
+          sizes="(max-width: 640px) 50vw, 25vw"
+        />
+      )}
+
+      {/* Dark gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+
+      {/* Blue tint overlay for real photos */}
+      {hasGallery && (
+        <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
+      )}
+
+      {/* Title */}
+      <div className="absolute inset-0 flex items-end p-3 sm:p-6">
+        <div>
+          <h3 className="text-sm sm:text-2xl font-black text-secondary-foreground leading-tight">
+            {type.title}
+          </h3>
+          {/* Gallery dots indicator */}
+          {hasGallery && (
+            <div className="flex gap-1 mt-1.5">
+              {gallery.map((_, i) => (
+                <div
+                  key={i}
+                  className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                    i === currentIndex ? 'bg-primary w-3' : 'bg-white/40'
+                  }`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Top accent bar on hover */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+    </Link>
   );
 }
 

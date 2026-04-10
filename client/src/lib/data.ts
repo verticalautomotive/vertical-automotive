@@ -255,6 +255,7 @@ export interface VehicleType {
   slug: string;
   title: string;
   image: string;
+  gallery?: string[];
   description: string;
   services: string[];
 }
@@ -263,7 +264,15 @@ export const VEHICLE_TYPES: VehicleType[] = [
   {
     slug: "tesla-vehicles-service",
     title: "TESLA & EV",
-    image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&q=50&fm=webp&fit=crop&auto=format",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-diagnostics_7906cd95.webp",
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-diagnostics_7906cd95.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-frunk-open_3696ade7.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-gears_c5769e70.png",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-battery-fuse_8c80d49f.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-hv-battery_19dac181.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-service-mode_ca070e93.webp",
+    ],
     description: "Looking for a qualified Tesla or electric vehicle specialist in Fort Lauderdale or Wilton Manors? Most general repair shops lack the training, tooling, and high-voltage safety protocols required to properly service EVs — leading to misdiagnoses, unnecessary part replacements, and safety risks. Vertical Automotive provides certified Tesla and EV repair with factory-grade diagnostic equipment, genuine or OEM-equivalent components, and technicians trained specifically in electric drivetrains, battery management systems, and regenerative braking. Whether your Tesla needs a battery health evaluation, suspension calibration, A/C service, or a full diagnostic scan, our team delivers dealership-level precision at independent shop value. We service all Tesla models — Model S, Model 3, Model X, and Model Y — as well as other electric and plug-in hybrid vehicles. Every repair is backed by our 36,000-mile/36-month warranty. If you need expert EV care without the dealership wait times or pricing, Vertical Automotive is the trusted choice for drivers across South Florida.",
     services: ["battery-cranking-charging-systems", "brake-system", "routine-preventive-maintenance", "complete-diagnostics", "a-c-maintenance-repair", "steering-suspension"],
   },

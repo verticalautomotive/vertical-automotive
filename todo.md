@@ -147,3 +147,15 @@
 - [x] Added missing z import to chat router
 - [x] Added debug logging to ChatButton and ChatBubble
 - [x] Updated App.tsx to pass correct language prop based on locale
+
+## Tesla Category Images
+- [x] Upload 6 Tesla images to CDN
+- [x] Find vehicle types section in homepage
+- [x] Add Tesla images with matching site theme filter (industrial brutalism)
+- [x] Add rotating gallery with crossfade animation (4s interval, 6 images)
+- [x] Add gallery dots indicator
+- [x] Apply dark filter (brightness 0.75, saturate 0.9) + blue tint overlay
+- [x] Updated VehicleType interface with optional gallery field
+- [x] Updated both EN and ES data files with CDN URLs
+- [x] Test image display on desktop and mobile
+- [ ] Save checkpoint
