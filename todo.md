@@ -219,3 +219,13 @@
 - [x] Upload new images to CDN
 - [x] Update blog-articles.ts for both EN and ES versions
 - [x] Save checkpoint
+
+## Tesla LDU Blog Post
+- [x] Research Tesla LDU rebuild vs replacement topic
+- [x] Write EN article object (tesla-ldu-rebuild-vs-replacement)
+- [x] Write ES article object (reconstruccion-vs-reemplazo-ldu-tesla)
+- [x] Find and upload hero image to CDN
+- [x] Insert both articles into blog-articles.ts
+- [x] Register slug mapping in useTranslation.ts
+- [x] Verify TypeScript compiles cleanly (0 errors)
+- [x] Save checkpoint
