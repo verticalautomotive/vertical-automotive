@@ -35,6 +35,7 @@ const BLOG_SLUG_EN_TO_ES: Record<string, string> = {
   "fleet-vehicle-maintenance-schedules": "programas-mantenimiento-vehiculos-de-flota",
   "dashboard-warning-lights-guide": "guia-luces-de-advertencia-del-tablero",
   "tesla-ldu-rebuild-vs-replacement": "reconstruccion-vs-reemplazo-ldu-tesla",
+  "tesla-battery-degradation-range-loss": "degradacion-bateria-tesla-perdida-autonomia",
 };
 const BLOG_SLUG_ES_TO_EN: Record<string, string> = Object.fromEntries(
   Object.entries(BLOG_SLUG_EN_TO_ES).map(([k, v]) => [v, k])

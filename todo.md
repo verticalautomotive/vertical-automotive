@@ -234,3 +234,12 @@
 - [x] Upload 2 real LDU shop photos to CDN
 - [x] Update blog-articles.ts hero image (EN + ES) with real LDU photo
 - [x] Save checkpoint
+
+## Tesla Battery Degradation Blog Post
+- [x] Write EN article object (tesla-battery-degradation-range-loss)
+- [x] Write ES article object (degradacion-bateria-tesla-perdida-autonomia)
+- [x] Find and upload hero image to CDN
+- [x] Insert both articles into blog-articles.ts
+- [x] Register slug mapping in useTranslation.ts
+- [x] Verify TypeScript compiles cleanly (0 errors)
+- [x] Save checkpoint
