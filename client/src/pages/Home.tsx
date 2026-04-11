@@ -349,7 +349,7 @@ export default function Home() {
           className="absolute inset-0 w-full h-full object-cover"
           poster="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-tesla-service-1440_879f7b42.webp"
         >
-          <source src="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video_af10ae45.mp4" type="video/mp4" />
+          <source src="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-short_e16dad2a.mp4" type="video/mp4" />
         </video>
         {/* Gradient overlay */}
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(20, 20, 30, 0.95) 0%, rgba(20, 20, 30, 0.7) 50%, rgba(20, 20, 30, 0.4) 100%)' }} />
