@@ -401,7 +401,7 @@ export default function Home() {
       </section>
 
       {/* Vehicle Types Section — mobile: tighter */}
-      <section className="py-10 sm:py-20 bg-background" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
+      <section className="pt-10 pb-20 sm:pt-20 sm:pb-36 bg-background" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
         <div className="container">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-6 sm:mb-12 text-center">
             {isSpanish ? "Servicio para Todas las Marcas" : "EV, European, Asian"} <span className="text-primary">{isSpanish ? "y Modelos" : "& Domestic Vehicle Specialists"}</span>
