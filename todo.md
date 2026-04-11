@@ -170,4 +170,9 @@
 
 ## Google Ads Tag Integration
 - [x] Add Google Ads gtag (AW-17913524206) to client/index.html head
+- [x] Save checkpoint
+
+## Google Ads Get Directions Conversion Tracking
+- [x] Find all Get Directions links in the codebase
+- [x] Add gtag conversion event (AW-17913524206/PjP3CMKCp4ocEO7f6t1C) to each Get Directions click (via centralized trackDirections in gtm.ts)
 - [ ] Save checkpoint

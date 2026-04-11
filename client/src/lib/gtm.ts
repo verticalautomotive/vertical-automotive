@@ -46,6 +46,14 @@ export function trackDirections(location: string, source: string) {
     cta_location: location,
     cta_source: source,
   });
+  // Google Ads conversion — Get directions
+  if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+    (window as any).gtag("event", "conversion", {
+      send_to: "AW-17913524206/PjP3CMKCp4ocEO7f6t1C",
+      value: 1.0,
+      currency: "USD",
+    });
+  }
 }
 
 /** Track Schedule Appointment button clicks */
