@@ -212,3 +212,10 @@
 - [x] Update data-es.ts Spanish version
 - [x] Verify gallery on /services/domestic-vehicles-service page and homepage card
 - [x] Save checkpoint
+
+## Blog Post Image Updates
+- [x] Replace fleet-vehicle-maintenance-schedules image with white pickups/minivans fleet photo
+- [x] Replace dashboard-warning-lights-guide image with dashboard warning lights photo
+- [x] Upload new images to CDN
+- [x] Update blog-articles.ts for both EN and ES versions
+- [x] Save checkpoint
