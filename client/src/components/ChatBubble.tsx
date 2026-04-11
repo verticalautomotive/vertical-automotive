@@ -55,7 +55,7 @@ export function ChatBubble({ isOpen, onClose }: ChatBubbleProps) {
       </button>
 
       <iframe
-        src="https://shift-vertical-automotive-ai-992037985080.us-west1.run.app"
+        src="https://shift-vertical-automotive-ai-992037985080.us-west1.run.app?external=true"
         style={{ border: "none", width: "100%", height: "100%" }}
         title="Shift AI Chat"
         allow="microphone"
