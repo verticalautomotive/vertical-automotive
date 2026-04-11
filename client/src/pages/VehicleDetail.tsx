@@ -119,19 +119,103 @@ export default function VehicleDetail() {
         },
       ];
 
+  // Per-slug SEO data
+  type VehicleSEO = { title: string; titleEs: string; description: string; descriptionEs: string; keywords: string; keywordsEs: string; ogImage: string; canonical: string; canonicalEs: string; };
+  const vehicleSEOMap: Record<string, VehicleSEO> = {
+    "tesla-vehicles-service": {
+      title: "Tesla & EV Repair Fort Lauderdale & Wilton Manors | Vertical Automotive",
+      titleEs: "Reparación Tesla y EV Fort Lauderdale y Wilton Manors | Vertical Automotive",
+      description: "Certified Tesla and EV repair in Fort Lauderdale & Wilton Manors. Model S, 3, X, Y specialists. Battery diagnostics, LDU rebuild, A/C, suspension. 3-year warranty. ASE-certified.",
+      descriptionEs: "Reparación certificada de Tesla y vehículos eléctricos en Fort Lauderdale y Wilton Manors. Especialistas en Model S, 3, X, Y. Diagnóstico de batería, reconstrucción LDU, A/C, suspensión. Garantía de 3 años.",
+      keywords: "Tesla repair Fort Lauderdale, Tesla service Wilton Manors, EV repair Broward County, Tesla Model 3 mechanic, Tesla battery diagnostic, ASE certified EV specialist",
+      keywordsEs: "reparación Tesla Fort Lauderdale, servicio Tesla Wilton Manors, mecánico EV certificado ASE",
+      ogImage: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-diagnostics_7906cd95.webp",
+      canonical: "https://verticalautomotive.com/services/tesla-vehicles-service",
+      canonicalEs: "https://verticalautomotive.com/es/servicios/tesla-vehicles-service",
+    },
+    "european-vehicles-service": {
+      title: "European Car Repair Fort Lauderdale & Wilton Manors | BMW, Mercedes, Porsche, Audi",
+      titleEs: "Reparación Autos Europeos Fort Lauderdale y Wilton Manors | BMW, Mercedes, Porsche",
+      description: "Expert European car repair in Fort Lauderdale & Wilton Manors. BMW, Mercedes-Benz, Audi, Porsche, Volkswagen, Land Rover specialists. Factory diagnostics, 3-year warranty. ASE-certified.",
+      descriptionEs: "Reparación experta de autos europeos en Fort Lauderdale y Wilton Manors. Especialistas en BMW, Mercedes-Benz, Audi, Porsche, Volkswagen. Diagnóstico de fábrica, garantía de 3 años.",
+      keywords: "European car repair Fort Lauderdale, BMW repair Wilton Manors, Mercedes repair Fort Lauderdale, Audi mechanic Broward County, Porsche service South Florida, ASE certified European specialist",
+      keywordsEs: "reparación autos europeos Fort Lauderdale, mecánico BMW Wilton Manors, servicio Mercedes Fort Lauderdale",
+      ogImage: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4",
+      canonical: "https://verticalautomotive.com/services/european-vehicles-service",
+      canonicalEs: "https://verticalautomotive.com/es/servicios/european-vehicles-service",
+    },
+    "asian-vehicles-service": {
+      title: "Asian Vehicle Repair Fort Lauderdale & Wilton Manors | Toyota, Honda, Lexus, Acura",
+      titleEs: "Reparación Autos Asiáticos Fort Lauderdale y Wilton Manors | Toyota, Honda, Lexus",
+      description: "Specialized Asian vehicle repair in Fort Lauderdale & Wilton Manors. Toyota, Honda, Lexus, Acura, Nissan, Subaru, Hyundai, Kia specialists. OEM parts, 3-year warranty. ASE-certified.",
+      descriptionEs: "Reparación especializada de vehículos asiáticos en Fort Lauderdale y Wilton Manors. Especialistas en Toyota, Honda, Lexus, Acura, Nissan, Hyundai. Piezas OEM, garantía de 3 años.",
+      keywords: "Asian car repair Fort Lauderdale, Toyota mechanic Wilton Manors, Honda repair Fort Lauderdale, Lexus service Broward County, Acura specialist South Florida, ASE certified Asian vehicle mechanic",
+      keywordsEs: "reparación autos asiáticos Fort Lauderdale, mecánico Toyota Wilton Manors, servicio Honda Fort Lauderdale",
+      ogImage: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4",
+      canonical: "https://verticalautomotive.com/services/asian-vehicles-service",
+      canonicalEs: "https://verticalautomotive.com/es/servicios/asian-vehicles-service",
+    },
+    "domestic-vehicles-service": {
+      title: "Domestic Car Repair Fort Lauderdale & Wilton Manors | Ford, Chevrolet, Dodge",
+      titleEs: "Reparación Autos Domésticos Fort Lauderdale y Wilton Manors | Ford, Chevrolet, Dodge",
+      description: "Expert domestic vehicle repair in Fort Lauderdale & Wilton Manors. Ford, Chevrolet, Dodge, GMC, Jeep, RAM specialists. Advanced diagnostics, 3-year warranty. ASE-certified mechanics.",
+      descriptionEs: "Reparación experta de vehículos domésticos en Fort Lauderdale y Wilton Manors. Especialistas en Ford, Chevrolet, Dodge, GMC, Jeep. Diagnóstico avanzado, garantía de 3 años.",
+      keywords: "domestic car repair Fort Lauderdale, Ford mechanic Wilton Manors, Chevrolet repair Fort Lauderdale, Dodge service Broward County, Jeep specialist South Florida, ASE certified domestic vehicle mechanic",
+      keywordsEs: "reparación autos domésticos Fort Lauderdale, mecánico Ford Wilton Manors, servicio Chevrolet Fort Lauderdale",
+      ogImage: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4",
+      canonical: "https://verticalautomotive.com/services/domestic-vehicles-service",
+      canonicalEs: "https://verticalautomotive.com/es/servicios/domestic-vehicles-service",
+    },
+  };
+
+  const seo = vehicleSEOMap[vehicle.slug];
+
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
-        title={isSpanish
-          ? `${vehicle.title} | Vertical Automotive`
-          : `${vehicle.title} Service | Vertical Automotive`}
-        description={isSpanish
-          ? `Reparación experta de vehículos ${vehicle.title.toLowerCase()} en Fort Lauderdale. ${vehicle.description.slice(0, 80)}... ASE. (954) 565-1518.`
-          : `Expert ${vehicle.title.toLowerCase()} repair in Fort Lauderdale. ${vehicle.description.slice(0, 80)}... ASE-certified. (954) 565-1518.`}
-        keywords={isSpanish
-          ? `reparación ${vehicle.title.toLowerCase()} Fort Lauderdale, servicio ${vehicle.title.toLowerCase()}, taller certificado ASE`
-          : `${vehicle.title.toLowerCase()} repair Fort Lauderdale, ${vehicle.title.toLowerCase()} service, ASE certified mechanic`}
+        title={seo ? (isSpanish ? seo.titleEs : seo.title) : (isSpanish ? `${vehicle.title} | Vertical Automotive` : `${vehicle.title} Service | Vertical Automotive`)}
+        description={seo ? (isSpanish ? seo.descriptionEs : seo.description) : (isSpanish ? `Reparación experta de vehículos ${vehicle.title.toLowerCase()} en Fort Lauderdale. ASE. (954) 565-1518.` : `Expert ${vehicle.title.toLowerCase()} repair in Fort Lauderdale. ASE-certified. (954) 565-1518.`)}
+        keywords={seo ? (isSpanish ? seo.keywordsEs : seo.keywords) : `${vehicle.title.toLowerCase()} repair Fort Lauderdale, ASE certified mechanic`}
+        canonical={seo ? (isSpanish ? seo.canonicalEs : seo.canonical) : undefined}
+        ogImage={seo ? seo.ogImage : undefined}
       />
+      {/* LocalBusiness JSON-LD for this vehicle type */}
+      {seo && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AutoRepair",
+            "name": "Vertical Automotive",
+            "url": seo.canonical,
+            "telephone": "(954) 565-1518",
+            "priceRange": "$$",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "1100 W Oakland Park Blvd Unit 5",
+              "addressLocality": "Wilton Manors",
+              "addressRegion": "FL",
+              "postalCode": "33311",
+              "addressCountry": "US"
+            },
+            "openingHours": "Mo-Fr 08:00-17:00",
+            "areaServed": ["Fort Lauderdale", "Wilton Manors", "Broward County"],
+            "serviceType": [
+              vehicle.slug === "tesla-vehicles-service" ? "Tesla & EV Repair" : "",
+              vehicle.slug === "european-vehicles-service" ? "European Vehicle Repair" : "",
+              vehicle.slug === "asian-vehicles-service" ? "Asian Vehicle Repair" : "",
+              vehicle.slug === "domestic-vehicles-service" ? "Domestic Vehicle Repair" : "",
+              "Auto Repair", "Brake Repair", "A/C Repair", "Oil Change", "Wheel Alignment"
+            ].filter(Boolean),
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "503",
+              "bestRating": "5"
+            }
+          }) }}
+        />
+      )}
       <Navigation />
 
       <PageHero

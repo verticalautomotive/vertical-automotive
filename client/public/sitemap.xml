@@ -324,4 +324,70 @@
     <changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://verticalautomotive.com/es/servicios/car-wash</loc><lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- Tesla blog posts (added Apr 2026) -->
+  <url>
+    <loc>https://verticalautomotive.com/blog/tesla-ldu-rebuild-vs-replacement</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/tesla-ldu-rebuild-vs-replacement" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/reconstruccion-vs-reemplazo-ldu-tesla" />
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/informacion/reconstruccion-vs-reemplazo-ldu-tesla</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/tesla-ldu-rebuild-vs-replacement" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/reconstruccion-vs-reemplazo-ldu-tesla" />
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/blog/tesla-battery-degradation-range-loss</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/tesla-battery-degradation-range-loss" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/degradacion-bateria-tesla-perdida-autonomia" />
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/informacion/degradacion-bateria-tesla-perdida-autonomia</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/tesla-battery-degradation-range-loss" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/degradacion-bateria-tesla-perdida-autonomia" />
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/blog/tesla-ac-thermal-management-south-florida</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/tesla-ac-thermal-management-south-florida" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/tesla-ac-gestion-termica-sur-de-florida" />
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/informacion/tesla-ac-gestion-termica-sur-de-florida</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/tesla-ac-thermal-management-south-florida" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/tesla-ac-gestion-termica-sur-de-florida" />
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/blog/tesla-suspension-alignment-south-florida</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/tesla-suspension-alignment-south-florida" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/tesla-suspension-alineacion-sur-de-florida" />
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/informacion/tesla-suspension-alineacion-sur-de-florida</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/tesla-suspension-alignment-south-florida" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/tesla-suspension-alineacion-sur-de-florida" />
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
