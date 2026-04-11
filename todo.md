@@ -243,3 +243,8 @@
 - [x] Register slug mapping in useTranslation.ts
 - [x] Verify TypeScript compiles cleanly (0 errors)
 - [x] Save checkpoint
+
+## Homepage Hero Video
+- [x] Upload hero video to CDN
+- [x] Replace homepage hero background image with autoplay background video
+- [x] Save checkpoint

@@ -340,18 +340,17 @@ export default function Home() {
       <section 
         className="relative min-h-[65vh] sm:min-h-[90vh] flex items-center bg-secondary text-secondary-foreground overflow-hidden"
       >
-        {/* Hero background image — responsive srcset, permanent CDN URLs, fetchpriority high for LCP */}
-        <img
-          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-tesla-service-1440_879f7b42.webp"
-          srcSet="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-tesla-service-800_fc73b986.webp 800w, https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-tesla-service-1440_879f7b42.webp 1440w"
-          sizes="100vw"
-          alt="Vertical Automotive - Professional auto repair shop"
-          width={1440}
-          height={804}
-          fetchPriority="high"
-          decoding="async"
+        {/* Hero background video — autoplay, muted, loop, with image fallback */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="absolute inset-0 w-full h-full object-cover"
-        />
+          poster="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-tesla-service-1440_879f7b42.webp"
+        >
+          <source src="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video_af10ae45.mp4" type="video/mp4" />
+        </video>
         {/* Gradient overlay */}
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(20, 20, 30, 0.95) 0%, rgba(20, 20, 30, 0.7) 50%, rgba(20, 20, 30, 0.4) 100%)' }} />
         <div className="absolute inset-0 grid-pattern opacity-30" />
