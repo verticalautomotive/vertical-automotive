@@ -574,6 +574,9 @@ export default function BlogArticlePage() {
                           alt={section.imageAlt ?? section.heading}
                           className="w-full rounded-sm object-cover border border-border"
                           loading="lazy"
+                          decoding="async"
+                          width={800}
+                          height={533}
                         />
                         {section.imageCaption && (
                           <figcaption className="mt-2 text-xs text-muted-foreground/70 italic text-center">

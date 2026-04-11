@@ -57,7 +57,7 @@ export default function VehicleDetail() {
       altEs: "Tesla Model X blanco con frunk abierto en taller",
     },
     {
-      src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-gears_c5769e70.png",
+      src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-gears_c5769e70.png?format=webp",
       alt: "Tesla drive unit gears and bearings close-up",
       altEs: "Primer plano de engranajes y rodamientos del motor Tesla",
     },
