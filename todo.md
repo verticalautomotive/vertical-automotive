@@ -167,3 +167,7 @@
 - [x] Hero background already uses vehicle.image (now the real Tesla frunk photo)
 - [x] Test on desktop and mobile
 - [x] Save checkpoint
+
+## Google Ads Tag Integration
+- [x] Add Google Ads gtag (AW-17913524206) to client/index.html head
+- [ ] Save checkpoint
