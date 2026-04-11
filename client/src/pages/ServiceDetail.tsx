@@ -20,6 +20,64 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { trackSchedule } from "@/lib/gtm";
 import ServiceFAQ from "@/components/ServiceFAQ";
 
+// Per-slug SEO overrides for high-value service pages
+const SERVICE_SEO: Record<string, { title: string; titleEs: string; description: string; descriptionEs: string }> = {
+  "brake-system": {
+    title: "Brake Repair Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    titleEs: "Reparación de Frenos Fort Lauderdale y Wilton Manors | Vertical Automotive",
+    description: "Expert brake repair in Fort Lauderdale & Wilton Manors. Pads, rotors, calipers & brake fluid service for all makes. ASE-certified, 3-year warranty. Call (954) 565-1518.",
+    descriptionEs: "Reparación de frenos en Fort Lauderdale y Wilton Manors. Pastillas, rotores, calibradores para todas las marcas. Certificados ASE, garantía 3 años. Llame al (954) 565-1518.",
+  },
+  "a-c-maintenance-repair": {
+    title: "A/C Repair Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    titleEs: "Reparación de Aire Acondicionado Fort Lauderdale | Vertical Automotive",
+    description: "Auto A/C repair in Fort Lauderdale & Wilton Manors. Recharge, compressor, condenser & leak repair for all makes. ASE-certified, 3-year warranty. Call (954) 565-1518.",
+    descriptionEs: "Reparación de aire acondicionado en Fort Lauderdale y Wilton Manors. Recarga, compresor, condensador para todas las marcas. Certificados ASE. Llame al (954) 565-1518.",
+  },
+  "oil-change-engine-service": {
+    title: "Oil Change Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    titleEs: "Cambio de Aceite Fort Lauderdale y Wilton Manors | Vertical Automotive",
+    description: "Fast oil change & engine service in Fort Lauderdale & Wilton Manors. Conventional, synthetic & high-mileage oil for all makes. ASE-certified. Call (954) 565-1518.",
+    descriptionEs: "Cambio de aceite rápido en Fort Lauderdale y Wilton Manors. Aceite convencional, sintético y alto kilometraje para todas las marcas. Certificados ASE. (954) 565-1518.",
+  },
+  "transmission": {
+    title: "Transmission Repair Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    titleEs: "Reparación de Transmisión Fort Lauderdale | Vertical Automotive",
+    description: "Transmission repair & service in Fort Lauderdale & Wilton Manors. Automatic, manual & CVT for all makes. ASE-certified mechanics, 3-year warranty. Call (954) 565-1518.",
+    descriptionEs: "Reparación de transmisión en Fort Lauderdale y Wilton Manors. Automática, manual y CVT para todas las marcas. Certificados ASE, garantía 3 años. (954) 565-1518.",
+  },
+  "alignment-tire-rotation-balancing": {
+    title: "Wheel Alignment Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    titleEs: "Alineación de Ruedas Fort Lauderdale | Vertical Automotive",
+    description: "Wheel alignment, tire rotation & balancing in Fort Lauderdale & Wilton Manors. All makes & models. ASE-certified, 3-year warranty. Call (954) 565-1518.",
+    descriptionEs: "Alineación de ruedas, rotación y balanceo en Fort Lauderdale y Wilton Manors. Todas las marcas. Certificados ASE, garantía 3 años. Llame al (954) 565-1518.",
+  },
+  "steering-suspension": {
+    title: "Suspension Repair Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    titleEs: "Reparación de Suspensión Fort Lauderdale | Vertical Automotive",
+    description: "Steering & suspension repair in Fort Lauderdale & Wilton Manors. Shocks, struts, control arms & alignment for all makes. ASE-certified. Call (954) 565-1518.",
+    descriptionEs: "Reparación de dirección y suspensión en Fort Lauderdale y Wilton Manors. Amortiguadores, brazos de control para todas las marcas. Certificados ASE. (954) 565-1518.",
+  },
+  "hybrids-ev": {
+    title: "Hybrid & EV Repair Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    titleEs: "Reparación de Híbridos y Eléctricos Fort Lauderdale | Vertical Automotive",
+    description: "Hybrid & EV repair in Fort Lauderdale & Wilton Manors. Tesla, Toyota, Honda, BMW & more. ASE-certified EV specialists, 3-year warranty. Call (954) 565-1518.",
+    descriptionEs: "Reparación de híbridos y eléctricos en Fort Lauderdale y Wilton Manors. Tesla, Toyota, Honda, BMW. Especialistas ASE en EV, garantía 3 años. (954) 565-1518.",
+  },
+  "fleet-maintenance-repairs": {
+    title: "Fleet Maintenance Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    titleEs: "Mantenimiento de Flota Fort Lauderdale | Vertical Automotive",
+    description: "Fleet maintenance & repair in Fort Lauderdale & Wilton Manors. Scheduled service, diagnostics & repairs for commercial fleets. ASE-certified. Call (954) 565-1518.",
+    descriptionEs: "Mantenimiento y reparación de flotas en Fort Lauderdale y Wilton Manors. Servicio programado y diagnóstico para flotas comerciales. Certificados ASE. (954) 565-1518.",
+  },
+  "complete-diagnostics": {
+    title: "Auto Diagnostics Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    titleEs: "Diagnóstico Automotriz Fort Lauderdale | Vertical Automotive",
+    description: "Complete auto diagnostics in Fort Lauderdale & Wilton Manors. Advanced computer diagnostics for all makes & models. ASE-certified, 3-year warranty. Call (954) 565-1518.",
+    descriptionEs: "Diagnóstico automotriz completo en Fort Lauderdale y Wilton Manors. Diagnóstico computarizado avanzado para todas las marcas. Certificados ASE. (954) 565-1518.",
+  },
+};
+
 const SERVICE_IMAGES: Record<string, string> = {
   "battery-cranking-charging-systems": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1200&q=50&fm=webp&fit=crop&auto=format",
   "brake-system": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=50&fm=webp&fit=crop&auto=format",
@@ -61,18 +119,31 @@ export default function ServiceDetail() {
   // Get related services (exclude current)
   const relatedServices = services.filter((s) => s.slug !== slug).slice(0, 4);
 
+  const seoOverride = SERVICE_SEO[service.slug];
+  const seoTitle = seoOverride
+    ? (isSpanish ? seoOverride.titleEs : seoOverride.title)
+    : (isSpanish
+        ? `${service.title} en Fort Lauderdale y Wilton Manors | Vertical Automotive`
+        : `${service.title} Fort Lauderdale & Wilton Manors | Vertical Automotive`);
+  const seoDescription = seoOverride
+    ? (isSpanish ? seoOverride.descriptionEs : seoOverride.description)
+    : (isSpanish
+        ? `${service.description.slice(0, 110)}... Técnicos ASE certificados. Garantía 3 años. Fort Lauderdale y Wilton Manors. (954) 565-1518.`
+        : `${service.description.slice(0, 110)}... ASE-certified mechanics. 3-year warranty. Fort Lauderdale & Wilton Manors. Call (954) 565-1518.`);
+  const canonicalSlug = isSpanish ? `/es/servicios/${service.slug}` : `/services/${service.slug}`;
+  const canonicalUrl = `https://verticalautomotive.com${canonicalSlug}`;
+  const ogImage = SERVICE_IMAGES[service.slug] ?? "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-tesla-service-1440_879f7b42.webp";
+
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
-        title={isSpanish
-          ? `${service.title} | Vertical Automotive`
-          : `${service.title} | Vertical Automotive`}
-        description={isSpanish
-          ? `${service.description.slice(0, 120)}... Técnicos ASE. Garantía 3 años. (954) 565-1518.`
-          : `${service.description.slice(0, 120)}... ASE-certified. 3-year warranty. (954) 565-1518.`}
+        title={seoTitle}
+        description={seoDescription}
+        canonical={canonicalUrl}
+        ogImage={ogImage}
         keywords={isSpanish
-          ? `${service.title.toLowerCase()} Fort Lauderdale, reparación ${service.title.toLowerCase()}, taller mecánico, certificado ASE`
-          : `${service.title.toLowerCase()} Fort Lauderdale, ${service.title.toLowerCase()} repair, auto mechanic, ASE certified`}
+          ? `${service.title.toLowerCase()} Fort Lauderdale, reparación ${service.title.toLowerCase()}, taller mecánico Fort Lauderdale, Wilton Manors, certificado ASE`
+          : `${service.title.toLowerCase()} Fort Lauderdale, ${service.title.toLowerCase()} Wilton Manors, auto repair Fort Lauderdale, ASE certified mechanic`}
       />
       <Navigation />
 
