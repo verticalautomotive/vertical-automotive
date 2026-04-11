@@ -80,6 +80,12 @@ export default function VehicleDetail() {
 
   const galleryImages: GalleryImage[] = vehicle.slug === "tesla-vehicles-service"
     ? TESLA_GALLERY_IMAGES
+    : vehicle.gallery && vehicle.gallery.length > 0
+    ? vehicle.gallery.map((src, i) => ({
+        src,
+        alt: `${vehicle.title} service photo ${i + 1}`,
+        altEs: `Foto de servicio ${vehicle.title.toLowerCase()} ${i + 1}`,
+      }))
     : [
         {
           src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+1",

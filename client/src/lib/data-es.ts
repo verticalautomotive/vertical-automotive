@@ -233,7 +233,15 @@ export const VEHICLE_TYPES_ES: VehicleType[] = [
   {
     slug: "european-vehicles-service",
     title: "EUROPEOS",
-    image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&q=50&fm=webp&fit=crop&auto=format",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-porsche-911_1b816237.webp",
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-porsche-911_1b816237.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-range-rover_05d0f6a6.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-bmw-m2_ad657da1.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-porsche-cayenne_3689fe50.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-maserati_1e019840.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-porsche-panamera_1282f008.webp",
+    ],
     description: "¿Necesita un especialista en autos europeos en Fort Lauderdale o Wilton Manors que no cobre precios de concesionario? Los vehículos europeos de BMW, Mercedes-Benz, Audi, Porsche, Volkswagen, Volvo, Land Rover, Jaguar y Mini Cooper están diseñados con sistemas avanzados que requieren conocimiento especializado, software de diagnóstico de nivel de fábrica y calibración precisa. Los talleres generales a menudo carecen de las herramientas y capacitación para dar servicio adecuado a estos vehículos, lo que lleva a problemas recurrentes y visitas repetidas costosas. Vertical Automotive proporciona reparación y mantenimiento experto de vehículos europeos usando equipo de diagnóstico específico del fabricante, piezas genuinas o equivalentes OEM, y técnicos con amplia experiencia en ingeniería automotriz alemana, británica y escandinava. Ya sea que su BMW necesite un reemplazo de junta de tapa de válvulas, su Audi requiera servicio de transmisión DSG, o su Land Rover tenga una falla de suspensión neumática, nuestro equipo diagnostica con precisión y repara correctamente la primera vez. Todo el trabajo está respaldado por nuestra garantía de 36,000 millas/36 meses. Para propietarios de vehículos europeos que quieren resultados de calidad de concesionario con servicio personalizado y precios transparentes, Vertical Automotive es el experto local de confianza.",
     services: ["battery-cranking-charging-systems", "brake-system", "oil-change-engine-service", "complete-diagnostics", "hybrids-ev", "routine-preventive-maintenance", "steering-suspension", "fuel-system", "transmission", "a-c-maintenance-repair"],
   },

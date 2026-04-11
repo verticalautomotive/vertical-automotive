@@ -190,3 +190,11 @@
 - [x] Diagnose broken logo CDN URL (CDN served SVG as application/octet-stream)
 - [x] Fix logo: moved SVG to client/public, served via app with correct MIME type
 - [ ] Save checkpoint
+
+## European Cars Gallery
+- [x] Copy 6 Euro car photos to webdev-static-assets and upload to CDN
+- [x] Update data.ts European vehicle type with gallery images
+- [x] Update data-es.ts Spanish version
+- [x] Updated VehicleDetail.tsx to use vehicle.gallery when available (not just Tesla)
+- [x] Verify gallery on /services/european-vehicles-service page
+- [x] Save checkpoint

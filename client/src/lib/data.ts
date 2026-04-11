@@ -286,7 +286,15 @@ export const VEHICLE_TYPES: VehicleType[] = [
   {
     slug: "european-vehicles-service",
     title: "EUROPEAN",
-    image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&q=50&fm=webp&fit=crop&auto=format",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-porsche-911_1b816237.webp",
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-porsche-911_1b816237.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-range-rover_05d0f6a6.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-bmw-m2_ad657da1.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-porsche-cayenne_3689fe50.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-maserati_1e019840.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-porsche-panamera_1282f008.webp",
+    ],
     description: "Need a European car specialist in Fort Lauderdale or Wilton Manors who won't charge dealership prices? European vehicles from BMW, Mercedes-Benz, Audi, Porsche, Volkswagen, Volvo, Land Rover, Jaguar, and Mini Cooper are engineered with advanced systems that require specialized knowledge, factory-level diagnostic software, and precise calibration. General repair shops often lack the tools and training to properly service these vehicles, leading to recurring issues and costly repeat visits. Vertical Automotive provides expert European vehicle repair and maintenance using manufacturer-specific diagnostic equipment, genuine or OEM-equivalent parts, and technicians with deep experience in German, British, and Scandinavian automotive engineering. Whether your BMW needs a valve cover gasket replacement, your Audi requires DSG transmission service, or your Land Rover has an air suspension fault, our team diagnoses accurately and repairs correctly the first time. All work is backed by our 36,000-mile/36-month warranty. For European vehicle owners who want dealership-quality results with personalized service and transparent pricing, Vertical Automotive is the trusted local expert.",
     services: ["battery-cranking-charging-systems", "brake-system", "oil-change-engine-service", "complete-diagnostics", "hybrids-ev", "routine-preventive-maintenance", "steering-suspension", "fuel-system", "transmission", "a-c-maintenance-repair"],
   },
