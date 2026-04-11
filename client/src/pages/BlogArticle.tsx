@@ -567,6 +567,21 @@ export default function BlogArticlePage() {
                     <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                       {section.content}
                     </p>
+                    {section.image && (
+                      <figure className="mt-5 sm:mt-6">
+                        <img
+                          src={section.image}
+                          alt={section.imageAlt ?? section.heading}
+                          className="w-full rounded-sm object-cover border border-border"
+                          loading="lazy"
+                        />
+                        {section.imageCaption && (
+                          <figcaption className="mt-2 text-xs text-muted-foreground/70 italic text-center">
+                            {section.imageCaption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    )}
                   </div>
                 </div>
               ))}
