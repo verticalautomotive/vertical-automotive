@@ -256,7 +256,15 @@ export const VEHICLE_TYPES_ES: VehicleType[] = [
   {
     slug: "domestic-vehicles-service",
     title: "DOMÉSTICOS",
-    image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=400&q=50&fm=webp&fit=crop&auto=format",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-dodge-charger-black_f3986d96.webp",
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-dodge-charger-black_f3986d96.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-plymouth-fury_6eea5fa5.jpeg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-ford-raptor_f0115281.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-dodge-challenger-green_02019df5.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-plymouth-barracuda-purple_302f3af9.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-challengers-lifts_b0804351.webp",
+    ],
     description: "¿Busca reparación y mantenimiento confiable para su vehículo americano en Fort Lauderdale o Wilton Manors? Ya sea que conduzca un Ford F-150, Chevrolet Silverado, Jeep Wrangler, Dodge Ram, GMC Sierra, Cadillac Escalade, Chrysler Pacifica o Lincoln Navigator, Vertical Automotive proporciona el cuidado experto que su vehículo doméstico necesita para mantenerse confiable por años. Las camionetas, SUVs y sedanes americanos están construidos resistentes — pero aún requieren intervalos de mantenimiento adecuados, piezas de calidad y diagnósticos precisos para evitar desgaste prematuro y averías costosas. Nuestros técnicos certificados ASE usan herramientas de diagnóstico avanzadas junto con componentes OEM o del mercado de repuestos de alta calidad para manejar todo, desde cambios de aceite rutinarios y servicio de frenos hasta diagnósticos complejos de motor, reparación de transmisión y solución de problemas del sistema eléctrico. Entendemos las necesidades específicas de las plataformas domésticas, incluyendo motores EcoBoost, trenes motrices Hemi y sistemas de inyección directa GM. Cada reparación está respaldada por nuestra garantía de 36,000 millas/36 meses. Para propietarios de vehículos americanos que quieren servicio honesto, resultados profesionales y confiabilidad a largo plazo, Vertical Automotive es el taller local en el que confían los conductores en todo el sur de Florida.",
     services: ["battery-cranking-charging-systems", "brake-system", "oil-change-engine-service", "complete-diagnostics", "hybrids-ev", "routine-preventive-maintenance", "steering-suspension", "fuel-system", "transmission", "a-c-maintenance-repair"],
   },

@@ -309,7 +309,15 @@ export const VEHICLE_TYPES: VehicleType[] = [
   {
     slug: "domestic-vehicles-service",
     title: "DOMESTIC",
-    image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=400&q=50&fm=webp&fit=crop&auto=format",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-dodge-charger-black_f3986d96.webp",
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-dodge-charger-black_f3986d96.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-plymouth-fury_6eea5fa5.jpeg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-ford-raptor_f0115281.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-dodge-challenger-green_02019df5.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-plymouth-barracuda-purple_302f3af9.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-challengers-lifts_b0804351.webp",
+    ],
     description: "Looking for reliable repair and maintenance for your American-made vehicle in Fort Lauderdale or Wilton Manors? Whether you drive a Ford F-150, Chevrolet Silverado, Jeep Wrangler, Dodge Ram, GMC Sierra, Cadillac Escalade, Chrysler Pacifica, or Lincoln Navigator, Vertical Automotive provides the expert care your domestic vehicle needs to stay dependable for years. American trucks, SUVs, and sedans are built tough — but they still require proper maintenance intervals, quality parts, and accurate diagnostics to avoid premature wear and expensive breakdowns. Our ASE-certified technicians use advanced diagnostic tools alongside high-quality OEM or aftermarket components to handle everything from routine oil changes and brake service to complex engine diagnostics, transmission repair, and electrical system troubleshooting. We understand the specific needs of domestic platforms, including EcoBoost engines, Hemi powertrains, and GM direct injection systems. Every repair is backed by our 36,000-mile/36-month warranty. For American vehicle owners who want honest service, professional results, and long-term reliability, Vertical Automotive is the local shop drivers across South Florida trust.",
     services: ["battery-cranking-charging-systems", "brake-system", "oil-change-engine-service", "complete-diagnostics", "hybrids-ev", "routine-preventive-maintenance", "steering-suspension", "fuel-system", "transmission", "a-c-maintenance-repair"],
   },

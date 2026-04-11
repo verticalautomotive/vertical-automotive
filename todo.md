@@ -205,3 +205,10 @@
 - [x] Update data-es.ts Spanish version
 - [x] Verify gallery on /services/asian-vehicles-service page and homepage card
 - [x] Save checkpoint
+
+## Domestic Cars Gallery
+- [x] Upload 6 domestic car photos to CDN (7 uploaded, best 6 used)
+- [x] Update data.ts Domestic vehicle type with gallery images
+- [x] Update data-es.ts Spanish version
+- [x] Verify gallery on /services/domestic-vehicles-service page and homepage card
+- [x] Save checkpoint
