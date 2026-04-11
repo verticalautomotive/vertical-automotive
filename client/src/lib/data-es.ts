@@ -468,8 +468,8 @@ export const UI_ES = {
   // Home page
   home: {
     yearsExcellence: "AÑOS DE EXCELENCIA",
-    totalAuto: "SERVICIO",
-    care: "AUTOMOTRIZ",
+    totalAuto: "Cuidado Total para",
+    care: "Todas las Marcas y Modelos",
     warranty3Year: "Garantía de 3 Años en Todas las Reparaciones",
     teslaAsianEuropean: "Especialistas en Tesla, Asiáticos, Europeos y Domésticos",
     scheduleAppointment: "AGENDAR CITA",

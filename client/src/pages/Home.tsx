@@ -49,8 +49,8 @@ export default function Home() {
 
   const t = ui?.home ?? {
     yearsExcellence: "YEARS OF EXCELLENCE",
-    totalAuto: "TOTAL AUTO",
-    care: "CARE",
+    totalAuto: "Total Car Care for",
+    care: "All Makes & Models",
     warranty3Year: "3-Year Warranty on All Repairs",
     teslaAsianEuropean: "ASE-Certified Mechanics • Tesla, Asian, European & Domestic Specialists",
     scheduleAppointment: "SCHEDULE APPOINTMENT",
@@ -355,16 +355,12 @@ export default function Home() {
             
             <h1 className="text-2xl sm:text-4xl md:text-5xl font-black mb-2 sm:mb-3 leading-tight tracking-tight">
               {isSpanish
-                ? "Reparación de Autos en Fort Lauderdale y Wilton Manors"
-                : "Auto Repair in Fort Lauderdale & Wilton Manors"}
-              <br />
-              <span className="text-primary">
-                {isSpanish ? "En la que Puede Confiar" : "You Can Trust"}
-              </span>
+                ? "Reparación de Autos en Fort Lauderdale y Wilton Manors en la que Puede Confiar"
+                : "Auto Repair in Fort Lauderdale & Wilton Manors You Can Trust"}
             </h1>
 
-            <p className="text-lg sm:text-3xl md:text-5xl font-black mb-4 sm:mb-6 leading-none text-secondary-foreground/60">
-              {t.totalAuto} <span className="text-primary/60">{t.care}</span>
+            <p className="text-base sm:text-xl md:text-2xl font-bold mb-4 sm:mb-6 leading-snug text-secondary-foreground/70">
+              {t.totalAuto} <span className="text-primary">{t.care}</span>
             </p>
             
             <div className="h-1 w-20 sm:w-32 bg-primary mb-4 sm:mb-8" />
@@ -408,7 +404,7 @@ export default function Home() {
       <section className="py-10 sm:py-20 bg-background" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
         <div className="container">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-6 sm:mb-12 text-center">
-            {t.weServiceAllMakes} <span className="text-primary">{t.allMakes}</span>
+            {isSpanish ? "Servicio para Todas las Marcas" : "EV, European, Asian"} <span className="text-primary">{isSpanish ? "y Modelos" : "& Domestic Vehicle Specialists"}</span>
           </h2>
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
@@ -451,7 +447,7 @@ export default function Home() {
         <div className="container">
           <div className="text-center mb-6 sm:mb-16">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
-              {t.ourServices} <span className="text-primary">{t.services}</span>
+              {isSpanish ? "Nuestros" : "Brake, A/C, Engine"} <span className="text-primary">{isSpanish ? "Servicios" : "& Diagnostic Services"}</span>
             </h2>
             <div className="h-1 w-16 sm:w-24 bg-primary mx-auto" />
           </div>
@@ -578,14 +574,19 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-start">
               <div>
                 <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-6">
-                  {t.certifiedAutomotive}
+                  {isSpanish ? "Taller de Confianza en" : "Full-Service Auto Repair in"}
                   <br />
-                  <span className="text-primary">{t.professionals}</span>
+                  <span className="text-primary">{isSpanish ? "Fort Lauderdale y Wilton Manors" : "Fort Lauderdale & Wilton Manors"}</span>
                 </h2>
                 <div className="h-1 w-16 sm:w-24 bg-primary mb-4 sm:mb-8" />
                 <p className="font-display text-sm sm:text-base font-bold text-primary tracking-wider mb-2 sm:mb-3">{t.whoWeAre}</p>
                 <p className="text-sm sm:text-lg leading-relaxed mb-4 sm:mb-8">
                   {t.whoWeAreText}
+                </p>
+                <p className="text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 text-muted-foreground">
+                  {isSpanish
+                    ? "¿Buscas un mecánico de confianza cerca de ti en Fort Lauderdale o Wilton Manors? Nuestro equipo certificado ASE está listo para ayudarte."
+                    : "Looking for a trusted mechanic near you in Fort Lauderdale or Wilton Manors? Our ASE-certified team is ready to help."}
                 </p>
                 <div className="grid grid-cols-2 gap-2 sm:gap-4">
                   <div className="flex items-center space-x-2 sm:space-x-3">
