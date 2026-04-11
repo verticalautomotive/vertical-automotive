@@ -4,9 +4,12 @@
  * - Hover scale effect for interactivity
  * - Responsive: 6 per row desktop, 4 tablet, 3 mobile
  * - No borders, no shadows on items — just logos floating on the background
+ * - All logos served from permanent CloudFront CDN (no session-file URLs)
  */
 
 import { useTranslation } from "@/hooks/useTranslation";
+
+const CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB";
 
 interface TrustBadge {
   logo: string;
@@ -16,72 +19,72 @@ interface TrustBadge {
 
 const TRUST_BADGES: TrustBadge[] = [
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/RwtwiJPyaggxkZKB.png",
+    logo: `${CDN}/badge-bbb_7f1aa0e5.png`,
     title: "BBB Accredited",
     titleEs: "Acreditado por BBB",
   },
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/PYRMyNCETckJRpjT.png",
+    logo: `${CDN}/badge-carfax_cbce4da6.png`,
     title: "CARFAX Service Center",
     titleEs: "Centro de Servicio CARFAX",
   },
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/CySFqiXXczuUwvsM.png",
+    logo: `${CDN}/badge-broward_4d14f234.png`,
     title: "Broward County Licensed",
     titleEs: "Licencia del Condado Broward",
   },
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/qrZiyfrQWmVUrtMl.png",
+    logo: `${CDN}/badge-florida-consumer_52ccd024.png`,
     title: "Florida Consumer Services Registered",
     titleEs: "Registrado en Servicios al Consumidor de Florida",
   },
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/rhAfJJITrrulswVk.png",
+    logo: `${CDN}/badge-repairpal_5e3fb627.png`,
     title: "RepairPal Certified",
     titleEs: "Certificado RepairPal",
   },
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/LQoktEHmDDZQNMVV.png",
+    logo: `${CDN}/badge-amra_b47dad12.png`,
     title: "Automotive Maintenance & Repair Association",
     titleEs: "Asociación de Mantenimiento y Reparación Automotriz",
   },
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/xuLZhqyDAMgWcsNF.png",
+    logo: `${CDN}/badge-ase_33175494.png`,
     title: "ASE Certified Technicians",
     titleEs: "Técnicos Certificados ASE",
   },
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/IKVoMygvrhSIXoXp.jpg",
+    logo: `${CDN}/badge-worldpac_68664b35.jpg`,
     title: "WorldPac Certified",
     titleEs: "Certificado WorldPac",
   },
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/jrwmzleNlMSZGXES.png",
+    logo: `${CDN}/badge-oreilly_6eb7e794.png`,
     title: "O'Reilly Certified",
     titleEs: "Certificado O'Reilly",
   },
   {
-    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/silverrock_logo_dark_188b40cd.png",
+    logo: `${CDN}/silverrock_logo_dark_188b40cd.png`,
     title: "SilverRock Warranty",
     titleEs: "Garantía SilverRock",
   },
   {
-    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/carmax_logo_0457b3ea.png",
+    logo: `${CDN}/carmax_logo_0457b3ea.png`,
     title: "CarMax",
     titleEs: "CarMax",
   },
   {
-    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/carshield_logo_e199d3fc.png",
+    logo: `${CDN}/carshield_logo_e199d3fc.png`,
     title: "CarShield",
     titleEs: "CarShield",
   },
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/eeNYOroSGtgqCWGT.png",
+    logo: `${CDN}/badge-google_8a3d07b6.png`,
     title: "Google Verified Business",
     titleEs: "Negocio Verificado por Google",
   },
   {
-    logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/GZDTIzwLRCkRYAND.png",
+    logo: `${CDN}/badge-yelp_b933bac8.png`,
     title: "Yelp",
     titleEs: "Yelp",
   },
@@ -116,6 +119,8 @@ export default function TrustBadges() {
                 alt={badge.title}
                 loading="lazy"
                 decoding="async"
+                width={112}
+                height={112}
                 className="max-w-full max-h-full object-contain transition-all duration-300 opacity-90 group-hover:opacity-100"
               />
             </div>

@@ -20,93 +20,95 @@ interface GalleryImage {
   category: "classics" | "european" | "japanese" | "american" | "shop" | "brakes";
 }
 
+const CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB";
+
 const GALLERY_IMAGES: GalleryImage[] = [
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/TUADJzvESUAODOSz.jpg",
+    src: `${CDN}/gallery-TUADJzvESUAODOSz_5acd13d1.jpg`,
     alt: "Classic Plymouth Fury in the shop",
     altEs: "Plymouth Fury clásico en el taller",
     category: "classics",
   },
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/BbQEKgqRxpnCNVgB.jpg",
+    src: `${CDN}/gallery-BbQEKgqRxpnCNVgB_c7cf6bd2.jpg`,
     alt: "Team member with Acura NSX and Range Rover",
     altEs: "Miembro del equipo con Acura NSX y Range Rover",
     category: "japanese",
   },
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/qjgLkqRLLuXZLhTt.jpg",
+    src: `${CDN}/gallery-qjgLkqRLLuXZLhTt_9d71666c.jpg`,
     alt: "Performance brake rotor and red caliper installation",
     altEs: "Instalación de rotor de freno y caliper rojo de alto rendimiento",
     category: "brakes",
   },
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/dKGmwKPRjVoFghKt.jpg",
+    src: `${CDN}/gallery-dKGmwKPRjVoFghKt_a5f512d9.jpg`,
     alt: "Two red Acura NSX on lift and floor",
     altEs: "Dos Acura NSX rojos en elevador y piso",
     category: "japanese",
   },
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/DyEXrexCKnZJcfWe.jpg",
+    src: `${CDN}/gallery-DyEXrexCKnZJcfWe_fd43483d.jpg`,
     alt: "Blue Lexus GS F engine bay service",
     altEs: "Servicio del compartimento del motor del Lexus GS F azul",
     category: "japanese",
   },
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/fBKbEQlMKlMWvTJn.jpg",
+    src: `${CDN}/gallery-fBKbEQlMKlMWvTJn_05b9b12e.jpg`,
     alt: "Black RAM truck on lift for service",
     altEs: "Camioneta RAM negra en elevador para servicio",
     category: "american",
   },
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/LvRvQWZpiVPYKGaT.jpg",
+    src: `${CDN}/gallery-LvRvQWZpiVPYKGaT_483be56b.jpg`,
     alt: "Classic Oldsmobile 442 on alignment rack",
     altEs: "Oldsmobile 442 clásico en rack de alineación",
     category: "classics",
   },
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/tuGlZuceDGQGnQMx.jpg",
+    src: `${CDN}/gallery-tuGlZuceDGQGnQMx_4b20df64.jpg`,
     alt: "Audi and BMW X5 in busy shop bay",
     altEs: "Audi y BMW X5 en bahía de taller ocupada",
     category: "european",
   },
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/nmWHfJqJQiUDdUlJ.jpg",
+    src: `${CDN}/gallery-nmWHfJqJQiUDdUlJ_b850830c.jpg`,
     alt: "Classic Dodge Charger R/T rear view",
     altEs: "Vista trasera del Dodge Charger R/T clásico",
     category: "classics",
   },
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/ThpmSuUWSAbFJnPy.jpg",
+    src: `${CDN}/gallery-ThpmSuUWSAbFJnPy_f277215d.jpg`,
     alt: "Porsche and BMW service bay",
     altEs: "Bahía de servicio de Porsche y BMW",
     category: "european",
   },
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/ChoeLQrpvFpvbtQS.jpg",
+    src: `${CDN}/gallery-ChoeLQrpvFpvbtQS_3911cc80.jpg`,
     alt: "Mercedes-Benz Maybach on alignment machine",
     altEs: "Mercedes-Benz Maybach en máquina de alineación",
     category: "european",
   },
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/fOJuCwhCkzrbRNeq.jpg",
+    src: `${CDN}/gallery-fOJuCwhCkzrbRNeq_ab359e50.jpg`,
     alt: "White Toyota Tacoma on alignment rack",
     altEs: "Toyota Tacoma blanca en rack de alineación",
     category: "japanese",
   },
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/PTWDPJpqcdITQUvI.jpg",
+    src: `${CDN}/gallery-PTWDPJpqcdITQUvI_4603ec22.jpg`,
     alt: "Classic Dodge Charger R/T front view in shop",
     altEs: "Vista frontal del Dodge Charger R/T clásico en el taller",
     category: "classics",
   },
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/fjpshhWUcXkJeyPO.jpg",
+    src: `${CDN}/gallery-fjpshhWUcXkJeyPO_f7092b89.jpg`,
     alt: "Busy shop floor with multiple vehicles",
     altEs: "Piso del taller ocupado con múltiples vehículos",
     category: "shop",
   },
   {
-    src: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/KhsRzJjApcIGSPfa.jpg",
+    src: `${CDN}/gallery-KhsRzJjApcIGSPfa_dc25fa8c.jpg`,
     alt: "Technician servicing Audi Q3 engine",
     altEs: "Técnico dando servicio al motor del Audi Q3",
     category: "european",

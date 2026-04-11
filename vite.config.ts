@@ -213,9 +213,23 @@ export default defineConfig({
     cssCodeSplit: false, // Keep CSS in a single file for critters to process
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-ui': ['wouter', 'lucide-react'],
+        manualChunks(id) {
+          // Core React runtime — smallest possible first-load chunk
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'vendor-react';
+          }
+          // tRPC + tanstack-query — only needed after hydration
+          if (id.includes('@trpc') || id.includes('@tanstack')) {
+            return 'vendor-trpc';
+          }
+          // Lucide icons — large, tree-shake per page via lazy imports
+          if (id.includes('lucide-react')) {
+            return 'vendor-icons';
+          }
+          // Routing
+          if (id.includes('wouter')) {
+            return 'vendor-router';
+          }
         },
       },
     },
@@ -225,6 +239,7 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info'],
       },
     },
   },

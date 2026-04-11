@@ -175,4 +175,13 @@
 ## Google Ads Get Directions Conversion Tracking
 - [x] Find all Get Directions links in the codebase
 - [x] Add gtag conversion event (AW-17913524206/PjP3CMKCp4ocEO7f6t1C) to each Get Directions click (via centralized trackDirections in gtm.ts)
+- [x] Save checkpoint
+
+## Performance Optimization (PageSpeed Mobile 45 → target 70+)
+- [ ] Audit live site via PageSpeed API to identify top bottlenecks
+- [ ] Defer/async render-blocking third-party scripts (GTM, Google Ads gtag)
+- [ ] Optimize LCP hero image (proper preload, correct size hints)
+- [ ] Lazy-load below-fold images
+- [ ] Reduce unused JavaScript (code splitting / dynamic imports)
+- [ ] Fix font loading (font-display: swap, preconnect)
 - [ ] Save checkpoint
