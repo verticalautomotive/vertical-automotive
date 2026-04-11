@@ -51,6 +51,10 @@ export default function SEO({ title, description, canonical, ogImage, keywords }
     setMetaTag("og:type", "website", "property");
     setMetaTag("og:site_name", "Vertical Automotive", "property");
 
+    if (canonical) {
+      setMetaTag("og:url", canonical, "property");
+    }
+
     if (ogImage) {
       setMetaTag("og:image", ogImage, "property");
     }

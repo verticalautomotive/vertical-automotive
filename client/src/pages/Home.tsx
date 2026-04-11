@@ -71,7 +71,7 @@ export default function Home() {
     certifiedAutomotive: "CERTIFIED AUTOMOTIVE",
     professionals: "PROFESSIONALS",
     whoWeAre: "Who Vertical Automotive Is",
-    whoWeAreText: "Vertical Automotive is a trusted automotive repair and maintenance expert serving drivers in Wilton Manors and Fort Lauderdale, Florida. Known for advanced diagnostics, honest recommendations, and professional workmanship, Vertical Automotive helps vehicle owners solve problems correctly while focusing on long-term reliability and safety.",
+    whoWeAreText: "Vertical Automotive is a trusted auto repair shop in Fort Lauderdale and Wilton Manors, Florida. Whether you need car repair in Fort Lauderdale or a reliable mechanic near me in Broward County, our ASE-certified team delivers honest diagnostics, professional workmanship, and long-term reliability for every make and model.",
     aseCertified: "ASE Certified",
     warranty3: "3-Year Warranty",
     allMakesModels: "All Makes & Models",
@@ -225,113 +225,106 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
         title={isSpanish
-          ? "Vertical Automotive | Taller Mecánico Fort Lauderdale"
-          : "Vertical Automotive | Auto Repair Fort Lauderdale"}
+          ? "Reparación de Autos Fort Lauderdale y Wilton Manors | Todas las Marcas"
+          : "Auto Repair Fort Lauderdale & Wilton Manors | All Makes"}
         description={isSpanish
-          ? "Taller certificado ASE en Fort Lauderdale y Wilton Manors. Especialistas en Tesla, Europeos, Asiáticos y Domésticos. Garantía de 3 años. Llame al (954) 565-1518."
-          : "ASE-certified auto repair in Fort Lauderdale & Wilton Manors. Tesla, European, Asian & Domestic specialists. 3-year warranty. Call (954) 565-1518."}
+          ? "Taller de confianza en Fort Lauderdale y Wilton Manors para todas las marcas y modelos. Mecánicos certificados ASE, especialistas en EV, garantía de 3 años, 2 ubicaciones. Reserve su servicio hoy."
+          : "Trusted auto repair in Fort Lauderdale & Wilton Manors for all makes & models. ASE-certified mechanics, EV specialists, 3-year warranty, 2 locations. Book your service today."}
+        canonical={isSpanish ? "https://verticalautomotive.com/es" : "https://verticalautomotive.com/"}
+        ogImage="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4"
         keywords={isSpanish
           ? "taller mecánico Fort Lauderdale, reparación de autos Wilton Manors, reparación Tesla, certificado ASE, frenos, cambio de aceite, aire acondicionado, diagnóstico de motor, autos europeos, Sur de Florida"
-          : "auto repair Fort Lauderdale, car mechanic Wilton Manors, Tesla repair, ASE certified, brake service, oil change, AC repair, engine diagnostics, European car repair, South Florida"}
+          : "auto repair Fort Lauderdale, car repair Fort Lauderdale, auto repair Wilton Manors, mechanic near me, Tesla repair, ASE certified, brake service, oil change, AC repair, engine diagnostics, European car repair, South Florida"}
       />
-      {/* LocalBusiness JSON-LD Structured Data */}
+      {/* LocalBusiness JSON-LD — Location 1: Wilton Manors */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([
-          {
-            "@context": "https://schema.org",
-            "@type": "AutoRepair",
-            "name": "Vertical Automotive - Wilton Manors",
-            "image": COMPANY.logoUrl,
-            "url": "https://verticalautomotive.com",
-            "telephone": "(954) 565-1518",
-            "priceRange": "$$",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "1100 W Oakland Park Blvd Unit 5",
-              "addressLocality": "Wilton Manors",
-              "addressRegion": "FL",
-              "postalCode": "33311",
-              "addressCountry": "US"
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": 26.165788,
-              "longitude": -80.157597
-            },
-            "openingHoursSpecification": {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-              "opens": "08:00",
-              "closes": "17:00"
-            },
-            "sameAs": [
-              "https://www.yelp.com/biz/vertical-automotive-wilton-manors",
-              "https://www.google.com/maps/place/Vertical+Automotive"
-            ],
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "reviewCount": "500",
-              "bestRating": "5"
-            },
-            "foundingDate": "1989",
-            "description": "ASE-certified auto repair shop in Fort Lauderdale and Wilton Manors. Specialists in Tesla, European, Asian and Domestic vehicles. 36 years of experience. 3-year warranty on all repairs.",
-            "areaServed": [
-              { "@type": "City", "name": "Fort Lauderdale" },
-              { "@type": "City", "name": "Wilton Manors" },
-              { "@type": "City", "name": "Oakland Park" },
-              { "@type": "City", "name": "Pompano Beach" }
-            ],
-            "hasOfferCatalog": {
-              "@type": "OfferCatalog",
-              "name": "Auto Repair Services",
-              "itemListElement": [
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brake Service" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Oil Change" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "A/C Repair" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Engine Diagnostics" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transmission Service" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tesla & EV Service" } }
-              ]
-            }
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AutoRepair",
+          "name": "Vertical Automotive",
+          "image": COMPANY.logoUrl,
+          "url": "https://verticalautomotive.com/",
+          "telephone": "(954) 565-1518",
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1100 W Oakland Park Blvd Unit 5",
+            "addressLocality": "Wilton Manors",
+            "addressRegion": "FL",
+            "postalCode": "33311",
+            "addressCountry": "US"
           },
-          {
-            "@context": "https://schema.org",
-            "@type": "AutoRepair",
-            "name": "Vertical Automotive - Fort Lauderdale",
-            "image": COMPANY.logoUrl,
-            "url": "https://verticalautomotive.com",
-            "telephone": "(645) 216-2266",
-            "priceRange": "$$",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "707 NE 11th Street",
-              "addressLocality": "Fort Lauderdale",
-              "addressRegion": "FL",
-              "postalCode": "33304",
-              "addressCountry": "US"
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": 26.139035,
-              "longitude": -80.135598
-            },
-            "openingHoursSpecification": {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-              "opens": "08:00",
-              "closes": "17:00"
-            },
-            "foundingDate": "1989",
-            "description": "ASE-certified auto repair shop in Fort Lauderdale. Specialists in Tesla, European, Asian and Domestic vehicles. 3-year warranty on all repairs.",
-            "areaServed": [
-              { "@type": "City", "name": "Fort Lauderdale" },
-              { "@type": "City", "name": "Wilton Manors" },
-              { "@type": "City", "name": "Oakland Park" }
-            ]
-          }
-        ]) }}
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 26.165788,
+            "longitude": -80.157597
+          },
+          "openingHours": "Mo-Fr 08:00-17:00",
+          "hasMap": "https://maps.google.com/?q=1100+W+Oakland+Park+Blvd+Unit+5+Wilton+Manors+FL+33311",
+          "areaServed": ["Fort Lauderdale", "Wilton Manors", "Broward County"],
+          "serviceType": [
+            "Auto Repair", "EV & Hybrid Service", "European Vehicle Service",
+            "Asian Vehicle Service", "Domestic Vehicle Service", "Tesla Service",
+            "Brake Repair", "Transmission Service", "A/C Repair",
+            "Oil Change", "Wheel Alignment", "Tire Service", "Fleet Services"
+          ],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "503",
+            "bestRating": "5"
+          },
+          "foundingDate": "1989",
+          "description": "Trusted auto repair in Fort Lauderdale and Wilton Manors for all makes and models. ASE-certified mechanics, EV specialists, 3-year warranty, 2 locations.",
+          "sameAs": [
+            "https://www.yelp.com/biz/vertical-automotive-wilton-manors",
+            "https://www.google.com/maps/place/Vertical+Automotive"
+          ]
+        }) }}
+      />
+      {/* LocalBusiness JSON-LD — Location 2: Fort Lauderdale */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AutoRepair",
+          "name": "Vertical Automotive",
+          "image": COMPANY.logoUrl,
+          "url": "https://verticalautomotive.com/",
+          "telephone": "(645) 216-2266",
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "707 NE 11th Street",
+            "addressLocality": "Fort Lauderdale",
+            "addressRegion": "FL",
+            "postalCode": "33304",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 26.139035,
+            "longitude": -80.135598
+          },
+          "openingHours": "Mo-Fr 08:00-17:00",
+          "hasMap": "https://maps.google.com/?q=707+NE+11th+Street+Fort+Lauderdale+FL+33304",
+          "areaServed": ["Fort Lauderdale", "Wilton Manors", "Broward County"],
+          "serviceType": [
+            "Auto Repair", "EV & Hybrid Service", "European Vehicle Service",
+            "Asian Vehicle Service", "Domestic Vehicle Service", "Tesla Service",
+            "Brake Repair", "Transmission Service", "A/C Repair",
+            "Oil Change", "Wheel Alignment", "Tire Service", "Fleet Services"
+          ],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "503",
+            "bestRating": "5"
+          },
+          "foundingDate": "1989",
+          "description": "Trusted auto repair in Fort Lauderdale for all makes and models. ASE-certified mechanics, EV specialists, 3-year warranty."
+        }) }}
       />
 
       <Navigation />
@@ -360,11 +353,19 @@ export default function Home() {
               {COMPANY.yearsExperience} {t.yearsExcellence}
             </div>
             
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-black mb-4 sm:mb-6 leading-none">
-              {t.totalAuto}
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black mb-2 sm:mb-3 leading-tight tracking-tight">
+              {isSpanish
+                ? "Reparación de Autos en Fort Lauderdale y Wilton Manors"
+                : "Auto Repair in Fort Lauderdale & Wilton Manors"}
               <br />
-              <span className="text-primary">{t.care}</span>
+              <span className="text-primary">
+                {isSpanish ? "En la que Puede Confiar" : "You Can Trust"}
+              </span>
             </h1>
+
+            <p className="text-lg sm:text-3xl md:text-5xl font-black mb-4 sm:mb-6 leading-none text-secondary-foreground/60">
+              {t.totalAuto} <span className="text-primary/60">{t.care}</span>
+            </p>
             
             <div className="h-1 w-20 sm:w-32 bg-primary mb-4 sm:mb-8" />
             
@@ -873,6 +874,47 @@ export default function Home() {
   );
 }
 
+/** Returns SEO-optimized alt text for vehicle category images */
+function vehicleAltText(slug: string, index: number): string {
+  const alts: Record<string, string[]> = {
+    "tesla-vehicles-service": [
+      "Tesla and EV repair Fort Lauderdale and Wilton Manors",
+      "Tesla Model X frunk open at Vertical Automotive service bay",
+      "Tesla drive unit gearbox internals — EV specialist Fort Lauderdale",
+      "Tesla battery fuse replacement with laptop diagnostics",
+      "Tesla high-voltage battery service Wilton Manors",
+      "Tesla service mode diagnostic scan Fort Lauderdale",
+    ],
+    "asian-vehicles-service": [
+      "Asian vehicle repair Wilton Manors — Toyota, Honda, Lexus, Acura",
+      "Acura NSX on lift at Vertical Automotive Fort Lauderdale",
+      "Lexus hood open engine inspection Wilton Manors",
+      "Lexus SC convertible auto repair Fort Lauderdale",
+      "Toyota Tacoma wheel alignment service South Florida",
+      "Lexus IS on dyno — Asian car specialist Fort Lauderdale",
+    ],
+    "european-vehicles-service": [
+      "European car repair Fort Lauderdale — BMW, Mercedes, Porsche, Audi",
+      "Porsche 911 service at Vertical Automotive Wilton Manors",
+      "Range Rover repair Fort Lauderdale",
+      "BMW M2 auto repair South Florida",
+      "Porsche Cayenne service Fort Lauderdale",
+      "Maserati repair Wilton Manors",
+    ],
+    "domestic-vehicles-service": [
+      "Domestic car repair Fort Lauderdale — Ford, Chevrolet, Dodge",
+      "Dodge Charger auto repair Wilton Manors",
+      "Classic Plymouth Fury restoration Fort Lauderdale",
+      "Ford Raptor truck service South Florida",
+      "Dodge Challenger repair Fort Lauderdale",
+      "Plymouth Barracuda classic car service Wilton Manors",
+    ],
+  };
+  const list = alts[slug];
+  if (!list) return `${slug.replace(/-/g, " ")} auto repair Fort Lauderdale`;
+  return list[index] ?? list[0];
+}
+
 /**
  * VehicleTypeCard — Shows a vehicle category card with optional rotating photo gallery.
  * For types with a gallery array (e.g., Tesla), images rotate every 4 seconds.
@@ -905,7 +947,7 @@ function VehicleTypeCard({ type, servicesPath }: { type: VehicleType; servicesPa
             <img
               key={i}
               src={img}
-              alt={`${type.title} service ${i + 1}`}
+              alt={vehicleAltText(type.slug, i)}
               loading={i === 0 ? "eager" : "lazy"}
               decoding="async"
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
@@ -918,7 +960,7 @@ function VehicleTypeCard({ type, servicesPath }: { type: VehicleType; servicesPa
       ) : (
         <OptimizedImage
           src={currentImage}
-          alt={type.title}
+          alt={vehicleAltText(type.slug, 0)}
           width={400}
           height={300}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
