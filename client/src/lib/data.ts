@@ -279,7 +279,15 @@ export const VEHICLE_TYPES: VehicleType[] = [
   {
     slug: "asian-vehicles-service",
     title: "ASIAN",
-    image: "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=400&q=50&fm=webp&fit=crop&auto=format",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-acura-nsx-shop_bcf4008e.webp",
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-acura-nsx-shop_bcf4008e.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-acura-nsx-lift_4f2edb68.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-lexus-hood-open_9ea6e232.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-lexus-sc-convertible_4e06b62a.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-toyota-tacoma-alignment_8b858d66.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-lexus-is-dyno_33f4b770.webp",
+    ],
     description: "Searching for a mechanic who truly understands Japanese and Korean vehicles in Fort Lauderdale or Wilton Manors? Asian-engineered cars like Toyota, Honda, Nissan, Subaru, Hyundai, Kia, Lexus, Acura, Infiniti, and Genesis are built with precision — and they deserve service that matches. Many shops apply generic repair approaches that miss the specific engineering tolerances and maintenance intervals these vehicles require. Vertical Automotive specializes in Asian vehicle diagnostics, repair, and preventive maintenance using advanced scan tools calibrated for Japanese and Korean systems, along with OEM or high-quality aftermarket parts designed for your exact model. From hybrid powertrain service on a Toyota Prius to timing chain replacement on a Hyundai Tucson, our ASE-certified technicians handle everything from routine oil changes to complex engine and transmission work. Every repair is backed by our 36,000-mile/36-month warranty. If your Asian vehicle needs expert attention from a team that understands its engineering, Vertical Automotive delivers the specialized care drivers across South Florida depend on.",
     services: ["battery-cranking-charging-systems", "brake-system", "oil-change-engine-service", "complete-diagnostics", "hybrids-ev", "routine-preventive-maintenance", "steering-suspension", "fuel-system", "transmission", "a-c-maintenance-repair"],
   },

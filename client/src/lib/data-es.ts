@@ -226,7 +226,15 @@ export const VEHICLE_TYPES_ES: VehicleType[] = [
   {
     slug: "asian-vehicles-service",
     title: "ASIÁTICOS",
-    image: "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=400&q=50&fm=webp&fit=crop&auto=format",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-acura-nsx-shop_bcf4008e.webp",
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-acura-nsx-shop_bcf4008e.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-acura-nsx-lift_4f2edb68.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-lexus-hood-open_9ea6e232.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-lexus-sc-convertible_4e06b62a.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-toyota-tacoma-alignment_8b858d66.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-lexus-is-dyno_33f4b770.webp",
+    ],
     description: "¿Busca un mecánico que realmente entienda los vehículos japoneses y coreanos en Fort Lauderdale o Wilton Manors? Los autos de ingeniería asiática como Toyota, Honda, Nissan, Subaru, Hyundai, Kia, Lexus, Acura, Infiniti y Genesis están construidos con precisión — y merecen un servicio que esté a la altura. Muchos talleres aplican enfoques de reparación genéricos que no cumplen con las tolerancias de ingeniería específicas e intervalos de mantenimiento que estos vehículos requieren. Vertical Automotive se especializa en diagnósticos, reparación y mantenimiento preventivo de vehículos asiáticos usando herramientas de escaneo avanzadas calibradas para sistemas japoneses y coreanos, junto con piezas OEM o de alta calidad del mercado de repuestos diseñadas para su modelo exacto. Desde servicio de tren motriz híbrido en un Toyota Prius hasta reemplazo de cadena de distribución en un Hyundai Tucson, nuestros técnicos certificados ASE manejan todo, desde cambios de aceite rutinarios hasta trabajo complejo de motor y transmisión. Cada reparación está respaldada por nuestra garantía de 36,000 millas/36 meses. Si su vehículo asiático necesita atención experta de un equipo que entiende su ingeniería, Vertical Automotive ofrece el cuidado especializado del que dependen los conductores en todo el sur de Florida.",
     services: ["battery-cranking-charging-systems", "brake-system", "oil-change-engine-service", "complete-diagnostics", "hybrids-ev", "routine-preventive-maintenance", "steering-suspension", "fuel-system", "transmission", "a-c-maintenance-repair"],
   },

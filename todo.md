@@ -198,3 +198,10 @@
 - [x] Updated VehicleDetail.tsx to use vehicle.gallery when available (not just Tesla)
 - [x] Verify gallery on /services/european-vehicles-service page
 - [x] Save checkpoint
+
+## Asian Cars Gallery
+- [x] Upload 6 Asian car photos to CDN
+- [x] Update data.ts Asian vehicle type with gallery images
+- [x] Update data-es.ts Spanish version
+- [x] Verify gallery on /services/asian-vehicles-service page and homepage card
+- [x] Save checkpoint
