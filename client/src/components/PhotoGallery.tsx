@@ -73,7 +73,9 @@ export default function PhotoGallery({
             <button
               key={index}
               onClick={() => setSelectedIndex(index)}
-              className="group relative overflow-hidden aspect-square border border-primary/20 hover:border-primary transition-all duration-300 cursor-pointer"
+              data-gallery-tile
+              className="group relative overflow-hidden aspect-square rounded-xl border border-primary/20 hover:border-primary transition-all duration-300 cursor-pointer"
+              style={{ borderRadius: '0.75rem' }}
             >
               <img
                 src={image.src}

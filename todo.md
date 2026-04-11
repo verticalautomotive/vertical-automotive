@@ -166,4 +166,4 @@
 - [x] Apply matching dark/industrial filter (brightness 0.85, saturate 0.85) to PhotoGallery component
 - [x] Hero background already uses vehicle.image (now the real Tesla frunk photo)
 - [x] Test on desktop and mobile
-- [ ] Save checkpoint
+- [x] Save checkpoint

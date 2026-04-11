@@ -609,7 +609,7 @@ a[class*="bg-primary"]:active {
 
 /* Outline / bordered buttons — transparent with 3D border depth */
 [data-slot="button"][class*="border-primary"],
-button[class*="border-primary"],
+button[class*="border-primary"]:not([data-gallery-tile]),
 a[class*="border-primary"]:not([class*="bg-card"]):not([class*="overflow-hidden"]):not(.group) {
   position: relative;
   border-radius: 9999px !important;
@@ -628,7 +628,7 @@ a[class*="border-primary"]:not([class*="bg-card"]):not([class*="overflow-hidden"
 }
 
 [data-slot="button"][class*="border-primary"]:hover,
-button[class*="border-primary"]:hover,
+button[class*="border-primary"]:not([data-gallery-tile]):hover,
 a[class*="border-primary"]:not([class*="bg-card"]):not([class*="overflow-hidden"]):not(.group):hover {
   box-shadow:
     0 5px 0 oklch(0.45 0.18 250 / 0.5),
@@ -639,7 +639,7 @@ a[class*="border-primary"]:not([class*="bg-card"]):not([class*="overflow-hidden"
 }
 
 [data-slot="button"][class*="border-primary"]:active,
-button[class*="border-primary"]:active,
+button[class*="border-primary"]:not([data-gallery-tile]):active,
 a[class*="border-primary"]:not([class*="bg-card"]):not([class*="overflow-hidden"]):not(.group):active {
   box-shadow:
     0 0 0 oklch(0.45 0.18 250 / 0.2),
