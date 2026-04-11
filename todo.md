@@ -229,3 +229,8 @@
 - [x] Register slug mapping in useTranslation.ts
 - [x] Verify TypeScript compiles cleanly (0 errors)
 - [x] Save checkpoint
+
+## Tesla LDU Blog Post - Real Hero Image
+- [x] Upload 2 real LDU shop photos to CDN
+- [x] Update blog-articles.ts hero image (EN + ES) with real LDU photo
+- [x] Save checkpoint
