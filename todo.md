@@ -185,3 +185,8 @@
 - [ ] Reduce unused JavaScript (code splitting / dynamic imports)
 - [ ] Fix font loading (font-display: swap, preconnect)
 - [ ] Save checkpoint
+
+## Logo Fix (Broken after CDN migration)
+- [x] Diagnose broken logo CDN URL (CDN served SVG as application/octet-stream)
+- [x] Fix logo: moved SVG to client/public, served via app with correct MIME type
+- [ ] Save checkpoint

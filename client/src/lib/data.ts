@@ -15,7 +15,7 @@ export const COMPANY = {
   hours: "8:00 AM — 5:00 PM",
   closedDays: "SAT-SUN Closed",
   appointmentUrl: "https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049&hl=en-US&gei=cI2TafOKM-PJwt0PyNG6QQ&rwg_token=AFd1xnEuArG_s518nC9zqHme02PTrt1Bh4eLxCPdzptPNdAHspxQPFRzmUn0StOuvZamtHD05WU3V_u7JwtkKRM4EhUsB67PDA%3D%3D",
-  logoUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/logo-vertical-automotive_763ca370.svg",
+  logoUrl: "/logo-vertical-automotive.svg",
 };
 
 export const LOCATIONS = [
