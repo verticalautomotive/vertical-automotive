@@ -71,7 +71,7 @@ export default function SEO({ title, description, canonical, ogImage, keywords }
 
     // Cleanup: restore default title on unmount
     return () => {
-      document.title = "Vertical Automotive | Auto Repair Fort Lauderdale";
+      document.title = "Auto Repair Fort Lauderdale & Wilton Manors | All Makes";
     };
   }, [title, description, canonical, ogImage, keywords]);
 
