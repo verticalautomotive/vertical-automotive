@@ -44,40 +44,74 @@ export default function VehicleDetail() {
     .map((sSlug) => services.find((s) => s.slug === sSlug))
     .filter(Boolean);
 
-  // Placeholder gallery images for each vehicle type
-  // User will provide actual images later
-  const galleryImages: GalleryImage[] = [
+  // Gallery images — use real photos for Tesla, placeholders for others
+  const TESLA_GALLERY_IMAGES: GalleryImage[] = [
     {
-      src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+1",
-      alt: `${vehicle.title} service photo 1`,
-      altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 1`,
+      src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-diagnostics_7906cd95.webp",
+      alt: "Tesla Model X on lift with Snap-on diagnostic tool",
+      altEs: "Tesla Model X en elevador con herramienta de diagnóstico",
     },
     {
-      src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+2",
-      alt: `${vehicle.title} service photo 2`,
-      altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 2`,
+      src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-frunk-open_3696ade7.webp",
+      alt: "White Tesla Model X frunk open in service bay",
+      altEs: "Tesla Model X blanco con frunk abierto en taller",
     },
     {
-      src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+3",
-      alt: `${vehicle.title} service photo 3`,
-      altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 3`,
+      src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-gears_c5769e70.png",
+      alt: "Tesla drive unit gears and bearings close-up",
+      altEs: "Primer plano de engranajes y rodamientos del motor Tesla",
     },
     {
-      src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+4",
-      alt: `${vehicle.title} service photo 4`,
-      altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 4`,
+      src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-battery-fuse_8c80d49f.webp",
+      alt: "Tesla battery fuse replacement with laptop diagnostics",
+      altEs: "Reemplazo de fusible de batería Tesla con diagnóstico en laptop",
     },
     {
-      src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+5",
-      alt: `${vehicle.title} service photo 5`,
-      altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 5`,
+      src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-hv-battery_19dac181.webp",
+      alt: "Tesla high-voltage battery compartment open",
+      altEs: "Compartimento de batería de alto voltaje Tesla abierto",
     },
     {
-      src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+6",
-      alt: `${vehicle.title} service photo 6`,
-      altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 6`,
+      src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-service-mode_ca070e93.webp",
+      alt: "Tesla service mode display on touchscreen",
+      altEs: "Modo de servicio Tesla en pantalla táctil",
     },
   ];
+
+  const galleryImages: GalleryImage[] = vehicle.slug === "tesla-vehicles-service"
+    ? TESLA_GALLERY_IMAGES
+    : [
+        {
+          src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+1",
+          alt: `${vehicle.title} service photo 1`,
+          altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 1`,
+        },
+        {
+          src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+2",
+          alt: `${vehicle.title} service photo 2`,
+          altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 2`,
+        },
+        {
+          src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+3",
+          alt: `${vehicle.title} service photo 3`,
+          altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 3`,
+        },
+        {
+          src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+4",
+          alt: `${vehicle.title} service photo 4`,
+          altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 4`,
+        },
+        {
+          src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+5",
+          alt: `${vehicle.title} service photo 5`,
+          altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 5`,
+        },
+        {
+          src: "https://via.placeholder.com/600x600?text=Vehicle+Photo+6",
+          alt: `${vehicle.title} service photo 6`,
+          altEs: `Foto de servicio ${vehicle.title.toLowerCase()} 6`,
+        },
+      ];
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">

@@ -66,7 +66,7 @@
 - [x] Add conversation detail view modal
 - [x] Restrict dashboard to owner-only access
 - [x] Write and run vitest tests for conversation queries
-- [ ] Save checkpoint
+- [x] Save checkpoint
 
 # Service Guide Page (SEO + LLM Training)
 - [x] Create comprehensive service guide page at /service-guide
@@ -158,4 +158,12 @@
 - [x] Updated VehicleType interface with optional gallery field
 - [x] Updated both EN and ES data files with CDN URLs
 - [x] Test image display on desktop and mobile
+- [x] Save checkpoint
+
+## Tesla Service Page Gallery
+- [x] Find the service detail page component that renders /services/tesla-vehicles-service
+- [x] Replace placeholder gallery images with 6 real Tesla CDN photos
+- [x] Apply matching dark/industrial filter (brightness 0.85, saturate 0.85) to PhotoGallery component
+- [x] Hero background already uses vehicle.image (now the real Tesla frunk photo)
+- [x] Test on desktop and mobile
 - [ ] Save checkpoint
