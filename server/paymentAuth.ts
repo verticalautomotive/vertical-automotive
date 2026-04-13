@@ -167,7 +167,7 @@ async function sendAuthEmails(record: typeof paymentAuthorizations.$inferSelect,
     try {
       await sgMail.send({
         to,
-        from: { email: "noreply@verticalautomotive.com", name: "Vertical Automotive" },
+        from: { email: "service@verticalautomotive.com", name: "Vertical Automotive" },
         subject,
         html: htmlBody,
         text: `Payment Authorization ${record.referenceNumber} for ${record.fullLegalName} — $${record.authorizedAmount}. PDF: ${pdfUrl}`,

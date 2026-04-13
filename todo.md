@@ -295,3 +295,13 @@
 - [x] Remove auto-fill from customer-facing PaymentAuthorization form (customers fill in themselves)
 - [x] Install @sendgrid/mail package (was missing, causing server ERR_MODULE_NOT_FOUND)
 - [x] Clean up unused imports (Sparkles, AlertCircle, Link2) from PaymentAuthorization.tsx
+
+## Email Delivery Fix
+- [x] Diagnose SendGrid email failure — noreply@ was not a verified sender
+- [x] Fix root cause — switched from address to service@verticalautomotive.com
+- [ ] Save checkpoint
+
+## Email From Address Fix
+- [x] Change SendGrid from address from noreply@ to service@verticalautomotive.com (verified sender)
+- [x] Test email delivery end-to-end — HTTP 202 confirmed
+- [ ] Save checkpoint
