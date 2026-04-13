@@ -290,3 +290,8 @@
 ## Slack Notification + Email Fix
 - [x] Add Slack notification on payment authorization form submission (SLACK_CCAUTH_WEBHOOK_URL)
 - [x] Fix email delivery — replaced SMTP with SendGrid (@sendgrid/mail)
+
+## Payment Form Customer UX
+- [x] Remove auto-fill from customer-facing PaymentAuthorization form (customers fill in themselves)
+- [x] Install @sendgrid/mail package (was missing, causing server ERR_MODULE_NOT_FOUND)
+- [x] Clean up unused imports (Sparkles, AlertCircle, Link2) from PaymentAuthorization.tsx

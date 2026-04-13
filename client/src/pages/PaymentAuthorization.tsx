@@ -1,9 +1,8 @@
 /**
  * Payment Authorization Form — /payment-authorization
  * 3-step form: Customer Info → Authorization → Signature
- * Supports:
- *   - Shop-Ware RO URL paste + AI extraction to pre-fill all fields
- *   - URL pre-fill: ?invoice=VA-1042&amount=850&service=Brake+Repair&location=Fort+Lauderdale
+ * Customers fill all fields themselves — no auto-fill from URL params.
+ * Staff use /send-payment-form to extract RO data and send the SMS link.
  */
 import { useEffect, useRef, useState } from "react";
 import { trpc } from "@/lib/trpc";
@@ -21,10 +20,7 @@ import {
   ChevronRight,
   ChevronLeft,
   RotateCcw,
-  Link2,
   Loader2,
-  Sparkles,
-  AlertCircle,
 } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -185,32 +181,24 @@ export default function PaymentAuthorization() {
     pdfUrl: string | null;
   } | null>(null);
 
-  // RO URL extraction state
-  const [roUrl, setRoUrl] = useState("");
-  const [roExtracted, setRoExtracted] = useState<Record<string, string> | null>(null);
-  const [extractError, setExtractError] = useState("");
-
-  // Parse URL params for pre-fill
-  const params = new URLSearchParams(window.location.search);
-
   const [form, setForm] = useState<FormData>({
-    fullLegalName: params.get("name") || "",
-    email: params.get("email") || "",
-    phone: params.get("phone") || "",
-    billingStreet: params.get("street") || "",
-    billingCity: params.get("city") || "",
-    billingState: params.get("state") || "",
-    billingZip: params.get("zip") || "",
-    vehicleYear: params.get("year") || "",
-    vehicleMake: params.get("make") || "",
-    vehicleModel: params.get("model") || "",
-    vin: params.get("vin") || "",
-    licensePlate: params.get("plate") || "",
-    mileage: params.get("mileage") || "",
-    serviceLocation: (params.get("location") as "Fort Lauderdale" | "Wilton Manors") || "",
-    invoiceNumber: params.get("invoice") || "",
-    serviceDescription: params.get("service") || "",
-    authorizedAmount: params.get("amount") || "",
+    fullLegalName: "",
+    email: "",
+    phone: "",
+    billingStreet: "",
+    billingCity: "",
+    billingState: "",
+    billingZip: "",
+    vehicleYear: "",
+    vehicleMake: "",
+    vehicleModel: "",
+    vin: "",
+    licensePlate: "",
+    mileage: "",
+    serviceLocation: "",
+    invoiceNumber: "",
+    serviceDescription: "",
+    authorizedAmount: "",
     paymentMethod: "",
     authorizationDate: new Date().toLocaleDateString("en-US"),
     signatureName: "",
@@ -222,45 +210,6 @@ export default function PaymentAuthorization() {
   const set = (field: keyof FormData, value: string | boolean) => {
     setForm(prev => ({ ...prev, [field]: value }));
     setErrors(prev => ({ ...prev, [field]: "" }));
-  };
-
-  // ─── RO Extraction ──────────────────────────────────────────────────────────
-  const extractMutation = trpc.paymentAuth.extractRo.useMutation({
-    onSuccess: ({ data }) => {
-      setRoExtracted(data as Record<string, string>);
-      setExtractError("");
-      // Auto-fill form fields from extracted data (including customer contact & billing)
-      setForm(prev => ({
-        ...prev,
-        fullLegalName: data.customerName || prev.fullLegalName,
-        email: (data as Record<string, string>).email || prev.email,
-        phone: (data as Record<string, string>).phone || prev.phone,
-        billingStreet: (data as Record<string, string>).billingStreet || prev.billingStreet,
-        billingCity: (data as Record<string, string>).billingCity || prev.billingCity,
-        billingState: (data as Record<string, string>).billingState || prev.billingState,
-        billingZip: (data as Record<string, string>).billingZip || prev.billingZip,
-        vehicleYear: data.vehicleYear || prev.vehicleYear,
-        vehicleMake: data.vehicleMake || prev.vehicleMake,
-        vehicleModel: data.vehicleModel || prev.vehicleModel,
-        licensePlate: data.licensePlate || prev.licensePlate,
-        vin: data.vin || prev.vin,
-        mileage: data.mileage || prev.mileage,
-        invoiceNumber: data.invoiceNumber || prev.invoiceNumber,
-        serviceDescription: data.serviceDescription || prev.serviceDescription,
-        authorizedAmount: data.authorizedAmount || prev.authorizedAmount,
-        serviceLocation: (data.serviceLocation as "Fort Lauderdale" | "Wilton Manors") || prev.serviceLocation,
-      }));
-    },
-    onError: (err) => {
-      setExtractError(err.message || "Failed to extract data from RO. Please fill in manually.");
-    },
-  });
-
-  const handleExtract = () => {
-    if (!roUrl.trim()) return;
-    setExtractError("");
-    setRoExtracted(null);
-    extractMutation.mutate({ url: roUrl.trim() });
   };
 
   const submitMutation = trpc.paymentAuth.submit.useMutation({
@@ -344,8 +293,8 @@ export default function PaymentAuthorization() {
       agreedToEmailCopy: form.agreedToEmailCopy,
       signedAt: String(Date.now()),
       userAgent: navigator.userAgent,
-      roSourceUrl: roUrl || undefined,
-      roExtractedData: roExtracted ? JSON.stringify(roExtracted) : undefined,
+      roSourceUrl: undefined,
+      roExtractedData: undefined,
     });
   };
 
@@ -481,68 +430,7 @@ export default function PaymentAuthorization() {
       {/* Form Body */}
       <div className="max-w-2xl mx-auto px-4 py-6 space-y-6">
 
-        {/* ── RO URL Import (shown on step 1 only) ── */}
-        {step === 1 && (
-          <Card className="border-blue-200 bg-blue-50">
-            <CardContent className="p-5">
-              <div className="flex items-center gap-2 mb-3">
-                <Sparkles className="w-4 h-4 text-blue-600" />
-                <h2 className="font-bold text-blue-800 text-sm">Auto-Fill from Shop-Ware RO</h2>
-                <span className="text-xs text-blue-500 font-normal">(optional)</span>
-              </div>
-              <p className="text-xs text-blue-700 mb-3">
-                Paste the customer-facing Shop-Ware work order link to automatically extract vehicle, invoice, and service details.
-              </p>
-              <div className="flex gap-2">
-                <div className="relative flex-1">
-                  <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <Input
-                    placeholder="https://verticalautomotive.shop-ware.com/work_orders/..."
-                    value={roUrl}
-                    onChange={e => { setRoUrl(e.target.value); setExtractError(""); }}
-                    className="pl-9 bg-white text-sm"
-                  />
-                </div>
-                <Button
-                  type="button"
-                  onClick={handleExtract}
-                  disabled={!roUrl.trim() || extractMutation.isPending}
-                  className="bg-blue-600 hover:bg-blue-700 gap-1.5 shrink-0"
-                >
-                  {extractMutation.isPending ? (
-                    <><Loader2 className="w-4 h-4 animate-spin" /> Extracting...</>
-                  ) : (
-                    <><Sparkles className="w-4 h-4" /> Extract</>
-                  )}
-                </Button>
-              </div>
 
-              {extractError && (
-                <div className="mt-2 flex items-start gap-2 text-red-600 text-xs">
-                  <AlertCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                  <span>{extractError}</span>
-                </div>
-              )}
-
-              {roExtracted && !extractMutation.isPending && (
-                <div className="mt-3 bg-white border border-green-200 rounded-lg p-3">
-                  <div className="flex items-center gap-1.5 text-green-700 text-xs font-semibold mb-2">
-                    <CheckCircle className="w-3.5 h-3.5" /> Fields extracted and filled in below
-                  </div>
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-gray-600">
-                    {roExtracted.customerName && <span><span className="font-medium">Customer:</span> {roExtracted.customerName}</span>}
-                    {roExtracted.invoiceNumber && <span><span className="font-medium">RO#:</span> {roExtracted.invoiceNumber}</span>}
-                    {roExtracted.vehicleYear && <span><span className="font-medium">Vehicle:</span> {roExtracted.vehicleYear} {roExtracted.vehicleMake} {roExtracted.vehicleModel}</span>}
-                    {roExtracted.authorizedAmount && <span><span className="font-medium">Total:</span> ${roExtracted.authorizedAmount}</span>}
-                    {roExtracted.serviceLocation && <span><span className="font-medium">Location:</span> {roExtracted.serviceLocation}</span>}
-                    {roExtracted.licensePlate && <span><span className="font-medium">Plate:</span> {roExtracted.licensePlate}</span>}
-                  </div>
-                  <p className="text-xs text-gray-400 mt-2">Review and correct any fields below before proceeding.</p>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        )}
 
         {/* ── Step 1: Customer + Vehicle Info ── */}
         {step === 1 && (
@@ -732,12 +620,7 @@ export default function PaymentAuthorization() {
                   <div className="flex justify-between"><span className="text-gray-500">Location</span><span className="font-medium">{form.serviceLocation}</span></div>
                   <div className="flex justify-between border-t pt-2 mt-2"><span className="text-gray-700 font-bold">Total Authorized</span><span className="font-bold text-blue-700 text-base">${form.authorizedAmount}</span></div>
                 </div>
-                {roUrl && (
-                  <div className="mt-2 pt-2 border-t flex items-center gap-1.5 text-xs text-gray-400">
-                    <Link2 className="w-3 h-3" />
-                    <span>RO source saved: {roUrl.substring(0, 60)}...</span>
-                  </div>
-                )}
+
               </CardContent>
             </Card>
 
