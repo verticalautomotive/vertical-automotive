@@ -32,6 +32,8 @@ import {
   Link2,
   RefreshCw,
   Loader2,
+  Send,
+  CheckCircle2,
 } from "lucide-react";
 import { getLoginUrl } from "@/const";
 
@@ -68,6 +70,9 @@ export default function AdminAuthorizations() {
   const [selectedRef, setSelectedRef] = useState<string | null>(null);
   const [disputeRef, setDisputeRef] = useState<string | null>(null);
   const [disputeNotes, setDisputeNotes] = useState("");
+  const [sendLinkRecord, setSendLinkRecord] = useState<Authorization | null>(null);
+  const [sendLinkPhone, setSendLinkPhone] = useState("");
+  const [sendLinkSuccess, setSendLinkSuccess] = useState<string | null>(null);
 
   const { data, isLoading, refetch } = trpc.paymentAuth.list.useQuery({
     search: search || undefined,
@@ -93,6 +98,12 @@ export default function AdminAuthorizations() {
     onSuccess: () => {
       // Refresh detail
       utils.paymentAuth.get.invalidate({ referenceNumber: selectedRef! });
+    },
+  });
+
+  const sendFormLink = trpc.paymentAuth.sendFormLink.useMutation({
+    onSuccess: (data) => {
+      setSendLinkSuccess(data.sentTo);
     },
   });
 
@@ -324,6 +335,19 @@ export default function AdminAuthorizations() {
                               </Button>
                             </a>
                           )}
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-7 px-2 text-xs text-green-700 border-green-300 hover:bg-green-50 gap-1"
+                            title="Send form link via SMS"
+                            onClick={() => {
+                              setSendLinkRecord(r);
+                              setSendLinkPhone(r.phone || "");
+                              setSendLinkSuccess(null);
+                            }}
+                          >
+                            <Send className="w-3 h-3" /> Send
+                          </Button>
                           {!r.usedInDispute && (
                             <Button
                               size="sm"
@@ -456,6 +480,74 @@ export default function AdminAuthorizations() {
                   <AlertTriangle className="w-3.5 h-3.5" /> Flag for Dispute
                 </Button>
               )}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Send Link Dialog */}
+      <Dialog open={!!sendLinkRecord} onOpenChange={open => { if (!open) { setSendLinkRecord(null); setSendLinkSuccess(null); } }}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Send className="w-4 h-4 text-green-600" /> Send Payment Form Link
+            </DialogTitle>
+            <DialogDescription>
+              {sendLinkRecord && (
+                <>Send a pre-filled authorization form to <strong>{sendLinkRecord.fullLegalName}</strong> for <strong>${sendLinkRecord.authorizedAmount}</strong> (RO #{sendLinkRecord.invoiceNumber}).</>
+              )}
+            </DialogDescription>
+          </DialogHeader>
+          {sendLinkSuccess ? (
+            <div className="py-6 flex flex-col items-center gap-3 text-center">
+              <CheckCircle2 className="w-10 h-10 text-green-500" />
+              <p className="font-semibold text-gray-900">SMS Sent!</p>
+              <p className="text-sm text-gray-500">Form link delivered to <span className="font-mono">{sendLinkSuccess}</span></p>
+              <Button className="mt-2" onClick={() => { setSendLinkRecord(null); setSendLinkSuccess(null); }}>Done</Button>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <div>
+                <label className="text-sm font-medium text-gray-700 block mb-1">Customer Phone Number</label>
+                <Input
+                  value={sendLinkPhone}
+                  onChange={e => setSendLinkPhone(e.target.value)}
+                  placeholder="+1 (954) 555-0000"
+                  className="font-mono"
+                />
+                <p className="text-xs text-gray-400 mt-1">Pre-filled from record. Edit if needed.</p>
+              </div>
+              {sendFormLink.error && (
+                <p className="text-xs text-red-600">{sendFormLink.error.message}</p>
+              )}
+              <div className="flex gap-2 justify-end">
+                <Button variant="outline" onClick={() => setSendLinkRecord(null)}>Cancel</Button>
+                <Button
+                  className="bg-green-600 hover:bg-green-700 text-white gap-1.5"
+                  disabled={sendFormLink.isPending || !sendLinkPhone.trim()}
+                  onClick={() => {
+                    if (!sendLinkRecord) return;
+                    sendFormLink.mutate({
+                      phone: sendLinkPhone,
+                      referenceNumber: sendLinkRecord.referenceNumber,
+                      customerName: sendLinkRecord.fullLegalName,
+                      invoiceNumber: sendLinkRecord.invoiceNumber,
+                      authorizedAmount: sendLinkRecord.authorizedAmount,
+                      serviceLocation: sendLinkRecord.serviceLocation,
+                      vehicleYear: sendLinkRecord.vehicleYear,
+                      vehicleMake: sendLinkRecord.vehicleMake,
+                      vehicleModel: sendLinkRecord.vehicleModel,
+                      origin: window.location.origin,
+                    });
+                  }}
+                >
+                  {sendFormLink.isPending ? (
+                    <><Loader2 className="w-3.5 h-3.5 animate-spin" /> Sending...</>
+                  ) : (
+                    <><Send className="w-3.5 h-3.5" /> Send SMS</>
+                  )}
+                </Button>
+              </div>
             </div>
           )}
         </DialogContent>

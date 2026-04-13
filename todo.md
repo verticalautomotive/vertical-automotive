@@ -271,3 +271,9 @@
 - [ ] Frontend: RO URL paste field at top of payment authorization form
 - [ ] Frontend: auto-fill form fields from extracted data with preview
 - [ ] Admin dashboard: show RO URL link and re-extract button per record
+
+## Send Payment Form Link via SMS
+- [x] Add Twilio credentials (TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_FROM_NUMBER)
+- [x] Install Twilio SDK
+- [x] Add sendFormLink tRPC procedure: generate pre-filled URL, send SMS via Twilio
+- [x] Add Send Link button to admin dashboard with phone number display and confirmation

@@ -10,6 +10,7 @@ import { paymentAuthorizations } from "../drizzle/schema";
 import { eq, desc, like, and, gte, lte, or } from "drizzle-orm";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import nodemailer from "nodemailer";
+import twilio from "twilio";
 import { storagePut } from "./storage";
 import { invokeLLM } from "./_core/llm";
 import type { Request } from "express";
@@ -673,5 +674,82 @@ export const paymentAuthRouter = router({
         .join("\n");
 
       return { csv };
+    }),
+
+  /**
+   * Protected — generate a pre-filled payment form link and send via SMS
+   */
+  sendFormLink: protectedProcedure
+    .input(z.object({
+      referenceNumber: z.string().optional(),
+      // Customer phone to send the SMS to
+      phone: z.string(),
+      // Pre-fill params for the form URL
+      customerName: z.string().optional(),
+      invoiceNumber: z.string().optional(),
+      authorizedAmount: z.string().optional(),
+      serviceDescription: z.string().optional(),
+      serviceLocation: z.string().optional(),
+      vehicleYear: z.string().optional(),
+      vehicleMake: z.string().optional(),
+      vehicleModel: z.string().optional(),
+      licensePlate: z.string().optional(),
+      vin: z.string().optional(),
+      mileage: z.string().optional(),
+      // Origin URL so we can build the absolute link
+      origin: z.string(),
+    }))
+    .mutation(async ({ input }) => {
+      const sid = process.env.TWILIO_ACCOUNT_SID;
+      const token = process.env.TWILIO_AUTH_TOKEN;
+      const from = process.env.TWILIO_FROM_NUMBER;
+
+      if (!sid || !token || !from) {
+        throw new Error("Twilio credentials not configured");
+      }
+
+      // Build pre-filled form URL
+      const params = new URLSearchParams();
+      if (input.invoiceNumber) params.set("invoice", input.invoiceNumber);
+      if (input.authorizedAmount) params.set("amount", input.authorizedAmount);
+      if (input.serviceDescription) params.set("service", input.serviceDescription);
+      if (input.serviceLocation) params.set("location", input.serviceLocation);
+      if (input.vehicleYear) params.set("year", input.vehicleYear);
+      if (input.vehicleMake) params.set("make", input.vehicleMake);
+      if (input.vehicleModel) params.set("model", input.vehicleModel);
+      if (input.licensePlate) params.set("plate", input.licensePlate);
+      if (input.vin) params.set("vin", input.vin);
+      if (input.mileage) params.set("mileage", input.mileage);
+      if (input.customerName) params.set("name", input.customerName);
+
+      const formUrl = `${input.origin}/payment-authorization?${params.toString()}`;
+
+      // Format phone — ensure E.164
+      let toPhone = input.phone.replace(/[\s().\-]/g, "");
+      if (!toPhone.startsWith("+")) {
+        toPhone = toPhone.startsWith("1") ? `+${toPhone}` : `+1${toPhone}`;
+      }
+
+      const customerName = input.customerName ? ` for ${input.customerName.split(" ")[0]}` : "";
+      const invoiceRef = input.invoiceNumber ? ` (RO #${input.invoiceNumber})` : "";
+      const amount = input.authorizedAmount ? ` — Amount: $${input.authorizedAmount}` : "";
+
+      const message = `Hi${customerName}! Vertical Automotive has sent you a payment authorization form${invoiceRef}${amount}.\n\nPlease review and sign here:\n${formUrl}\n\nQuestions? Call us at (954) 565-1518.`;
+
+      const client = twilio(sid, token);
+      const result = await client.messages.create({
+        body: message,
+        from,
+        to: toPhone,
+      });
+
+      console.log(`[PaymentAuth] SMS sent to ${toPhone} — SID: ${result.sid}`);
+
+      return {
+        success: true,
+        messageSid: result.sid,
+        formUrl,
+        sentTo: toPhone,
+      };
     }),
 });
