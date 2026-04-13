@@ -6,7 +6,6 @@
  */
 import { useState, useRef, useEffect, useCallback } from "react";
 import { X, Send, Wrench, Phone, Calendar, MapPin, Tag, User } from "lucide-react";
-import { trpc } from "@/lib/trpc";
 
 interface ChatBubbleProps {
   isOpen: boolean;
@@ -68,8 +67,6 @@ export function ChatBubble({ isOpen, onClose, language = "en" }: ChatBubbleProps
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const chatMutation = trpc.chatbot.chat.useMutation();
-
   // Show greeting when panel opens
   useEffect(() => {
     if (isOpen && !hasGreeted) {
@@ -125,46 +122,111 @@ export function ChatBubble({ isOpen, onClose, language = "en" }: ChatBubbleProps
     const detectedLang: "en" | "es" =
       /[áéíóúüñ¿¡]/i.test(text) || isEs ? "es" : "en";
 
+    // Add a placeholder assistant message that we'll stream tokens into
+    const assistantPlaceholder: Message = {
+      role: "assistant",
+      content: "",
+      timestamp: new Date(),
+    };
+    setMessages((prev) => [...prev, assistantPlaceholder]);
+
     try {
-      const result = await chatMutation.mutateAsync({
-        messages: updatedMessages.map((m) => ({
-          role: m.role,
-          content: m.content,
-        })),
-        lang: detectedLang,
+      const response = await fetch("/api/chat/stream", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          messages: updatedMessages.map((m) => ({ role: m.role, content: m.content })),
+          lang: detectedLang,
+        }),
       });
 
-      const assistantMsg: Message = {
-        role: "assistant",
-        content: result.reply,
-        timestamp: new Date(),
-        isEscalation: result.needsHuman,
-      };
+      if (!response.ok || !response.body) throw new Error("Stream failed");
 
-      // Add escalation CTA if needed
-      if (result.needsHuman) {
-        assistantMsg.content =
-          result.reply +
-          "\n\n" +
-          (detectedLang === "es" ? ESCALATION_MSG_ES : ESCALATION_MSG_EN);
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+      let fullText = "";
+      let needsHuman = false;
+
+      setIsTyping(false); // hide typing dots — tokens are arriving
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n");
+        buffer = lines.pop() ?? "";
+
+        for (const line of lines) {
+          if (!line.startsWith("data: ")) continue;
+          const jsonStr = line.slice(6).trim();
+          if (!jsonStr) continue;
+
+          try {
+            const evt = JSON.parse(jsonStr) as {
+              token?: string;
+              done?: boolean;
+              needsHuman?: boolean;
+              error?: string;
+            };
+
+            if (evt.error) throw new Error(evt.error);
+
+            if (evt.token) {
+              fullText += evt.token;
+              // Update the last message in place with the accumulated text
+              setMessages((prev) => {
+                const next = [...prev];
+                next[next.length - 1] = {
+                  ...next[next.length - 1],
+                  content: fullText,
+                };
+                return next;
+              });
+            }
+
+            if (evt.done) {
+              needsHuman = evt.needsHuman ?? false;
+            }
+          } catch {
+            // Malformed event — skip
+          }
+        }
       }
 
-      setMessages((prev) => [...prev, assistantMsg]);
+      // Finalize: add escalation CTA if needed
+      if (needsHuman) {
+        const escalation = detectedLang === "es" ? ESCALATION_MSG_ES : ESCALATION_MSG_EN;
+        setMessages((prev) => {
+          const next = [...prev];
+          next[next.length - 1] = {
+            ...next[next.length - 1],
+            content: fullText + "\n\n" + escalation,
+            isEscalation: true,
+          };
+          return next;
+        });
+      }
     } catch {
-      setMessages((prev) => [
-        ...prev,
-        {
+      setIsTyping(false);
+      setMessages((prev) => {
+        const next = [...prev];
+        // Replace the empty placeholder with the error message
+        next[next.length - 1] = {
           role: "assistant",
           content: isEs
             ? "Lo siento, tuve un problema técnico. Por favor llama al (954) 565-1518."
             : "Sorry, I had a technical issue. Please call us at (954) 565-1518.",
           timestamp: new Date(),
-        },
-      ]);
+        };
+        return next;
+      });
     } finally {
       setIsTyping(false);
     }
-  }, [messages, isTyping, chatMutation, isEs]);
+  }, [messages, isTyping, isEs]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
