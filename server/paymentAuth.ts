@@ -30,69 +30,100 @@ export type RoExtractedData = {
   serviceAdvisor: string;
 };
 
-async function extractRoFromUrl(url: string): Promise<RoExtractedData> {
-  // Fetch the Shop-Ware page HTML
-  const resp = await fetch(url, {
-    headers: {
-      "User-Agent": "Mozilla/5.0 (compatible; VerticalAutomotive/1.0)",
-      "Accept": "text/html,application/xhtml+xml",
-    },
-  });
-  if (!resp.ok) throw new Error(`Failed to fetch RO page: ${resp.status}`);
-  const html = await resp.text();
+async function extractRoFromUrl(url: string): Promise<RoExtractedData & { email?: string; phone?: string; billingStreet?: string; billingCity?: string; billingState?: string; billingZip?: string }> {
+  // Parse the Shop-Ware URL to extract work order ID and auth_token
+  // Supports: https://verticalautomotive.shop-ware.com/work_orders/{id}?auth_token={token}
+  const urlObj = new URL(url);
+  const authToken = urlObj.searchParams.get("auth_token");
+  const pathMatch = urlObj.pathname.match(/\/work_orders\/(\d+)/);
+  if (!authToken || !pathMatch) {
+    throw new Error("Invalid Shop-Ware URL — expected format: https://verticalautomotive.shop-ware.com/work_orders/{id}?auth_token={token}");
+  }
+  const workOrderId = pathMatch[1];
+  const baseUrl = `${urlObj.protocol}//${urlObj.host}`;
+  const headers = { "Accept": "application/json", "User-Agent": "VerticalAutomotive/1.0" };
 
-  // Strip scripts/styles for a cleaner text payload
-  const cleaned = html
-    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "")
-    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/\s{2,}/g, " ")
-    .trim()
-    .substring(0, 8000); // keep within token budget
+  // 1. Fetch the work order
+  const woResp = await fetch(`${baseUrl}/api/internal/work_orders/${workOrderId}?auth_token=${authToken}`, { headers });
+  if (!woResp.ok) throw new Error(`Shop-Ware API error: ${woResp.status}`);
+  const wo = await woResp.json() as {
+    number: number;
+    odometer_in: number | null;
+    customer: { id: number; full_name: string };
+    vehicle: { id: number; model: string };
+    shop: { name: string };
+    advisor: { name: string } | null;
+    invoiced_work_order_financial?: { total_cents?: number; grand_total_cents?: number };
+  };
 
-  const result = await invokeLLM({
-    messages: [
-      {
-        role: "system",
-        content: `You are a data extraction assistant for an auto repair shop. Extract structured data from a Shop-Ware repair order page. Return ONLY valid JSON with no markdown or explanation.`,
-      },
-      {
-        role: "user",
-        content: `Extract the following fields from this repair order page text. Return JSON only:\n\n${cleaned}\n\nReturn this exact JSON shape (use empty string if not found):\n{\n  "customerName": "",\n  "vehicleYear": "",\n  "vehicleMake": "",\n  "vehicleModel": "",\n  "licensePlate": "",\n  "vin": "",\n  "mileage": "",\n  "invoiceNumber": "",\n  "serviceLocation": "",\n  "serviceDescription": "",\n  "authorizedAmount": "",\n  "serviceAdvisor": ""\n}\n\nFor serviceLocation: use exactly "Wilton Manors" or "Fort Lauderdale" based on the shop name. For authorizedAmount: extract the grand total number only (no $ sign). For serviceDescription: summarize all services/line items in one concise sentence.`,
-      },
-    ],
-    response_format: {
-      type: "json_schema",
-      json_schema: {
-        name: "ro_extraction",
-        strict: true,
-        schema: {
-          type: "object",
-          properties: {
-            customerName: { type: "string" },
-            vehicleYear: { type: "string" },
-            vehicleMake: { type: "string" },
-            vehicleModel: { type: "string" },
-            licensePlate: { type: "string" },
-            vin: { type: "string" },
-            mileage: { type: "string" },
-            invoiceNumber: { type: "string" },
-            serviceLocation: { type: "string" },
-            serviceDescription: { type: "string" },
-            authorizedAmount: { type: "string" },
-            serviceAdvisor: { type: "string" },
-          },
-          required: ["customerName", "vehicleYear", "vehicleMake", "vehicleModel", "licensePlate", "vin", "mileage", "invoiceNumber", "serviceLocation", "serviceDescription", "authorizedAmount", "serviceAdvisor"],
-          additionalProperties: false,
-        },
-      },
-    },
-  } as Parameters<typeof invokeLLM>[0]);
+  // 2. Fetch customer details
+  const custResp = await fetch(`${baseUrl}/api/internal/customers/${wo.customer.id}?auth_token=${authToken}`, { headers });
+  const customer = custResp.ok ? await custResp.json() as {
+    full_name: string;
+    contact_email: string;
+    phone: string;
+    address: string;
+    city: string;
+    state: string;
+    zip: string;
+    primary_phone?: { international: string };
+  } : null;
 
-  const rawContent = result.choices?.[0]?.message?.content;
-  if (!rawContent) throw new Error("LLM returned empty response");
-  const content = typeof rawContent === "string" ? rawContent : JSON.stringify(rawContent);
-  return JSON.parse(content) as RoExtractedData;
+  // 3. Fetch vehicle details
+  const vehResp = await fetch(`${baseUrl}/api/internal/vehicles/${wo.vehicle.id}?auth_token=${authToken}`, { headers });
+  const vehicle = vehResp.ok ? await vehResp.json() as {
+    year: string;
+    make: string;
+    model: string;
+    plate: string;
+    vin: string;
+  } : null;
+
+  // 4. Fetch cart for line items and total
+  const cartResp = await fetch(`${baseUrl}/api/internal/work_orders/${workOrderId}/cart?auth_token=${authToken}`, { headers });
+  const cart = cartResp.ok ? await cartResp.json() as {
+    recommendations?: Array<{ name: string; total_cents?: number }>;
+    total_cents?: number;
+    grand_total_cents?: number;
+  } : null;
+
+  // Determine service location from shop name
+  const shopName = wo.shop?.name ?? "";
+  let serviceLocation: "Fort Lauderdale" | "Wilton Manors" | "" = "";
+  if (shopName.toLowerCase().includes("wilton")) serviceLocation = "Wilton Manors";
+  else if (shopName.toLowerCase().includes("fort lauderdale") || shopName.toLowerCase().includes("ftl")) serviceLocation = "Fort Lauderdale";
+
+  // Build service description from cart line items
+  const lineItems = cart?.recommendations?.map((r: { name: string }) => r.name).filter(Boolean) ?? [];
+  const serviceDescription = lineItems.length > 0 ? lineItems.join("; ") : `RO #${wo.number}`;
+
+  // Determine total — prefer cart grand_total, then invoiced financial
+  const totalCents = cart?.grand_total_cents ?? cart?.total_cents ?? wo.invoiced_work_order_financial?.grand_total_cents ?? wo.invoiced_work_order_financial?.total_cents ?? 0;
+  const authorizedAmount = totalCents > 0 ? (totalCents / 100).toFixed(2) : "";
+
+  // Format phone
+  const phone = customer?.primary_phone?.international ?? customer?.phone ?? "";
+
+  return {
+    customerName: customer?.full_name ?? wo.customer.full_name ?? "",
+    email: customer?.contact_email ?? "",
+    phone,
+    billingStreet: customer?.address ?? "",
+    billingCity: customer?.city ?? "",
+    billingState: customer?.state ?? "",
+    billingZip: customer?.zip ?? "",
+    vehicleYear: vehicle?.year ?? "",
+    vehicleMake: vehicle?.make ?? "",
+    vehicleModel: vehicle?.model ?? wo.vehicle.model ?? "",
+    licensePlate: vehicle?.plate ?? "",
+    vin: vehicle?.vin ?? "",
+    mileage: wo.odometer_in ? String(wo.odometer_in) : "",
+    invoiceNumber: String(wo.number),
+    serviceLocation,
+    serviceDescription,
+    authorizedAmount,
+    serviceAdvisor: wo.advisor?.name ?? "",
+  };
 }
 
 // ─── Email helpers ────────────────────────────────────────────────────────────

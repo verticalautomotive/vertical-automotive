@@ -231,10 +231,16 @@ export default function PaymentAuthorization() {
     onSuccess: ({ data }) => {
       setRoExtracted(data as Record<string, string>);
       setExtractError("");
-      // Auto-fill form fields from extracted data
+      // Auto-fill form fields from extracted data (including customer contact & billing)
       setForm(prev => ({
         ...prev,
         fullLegalName: data.customerName || prev.fullLegalName,
+        email: (data as Record<string, string>).email || prev.email,
+        phone: (data as Record<string, string>).phone || prev.phone,
+        billingStreet: (data as Record<string, string>).billingStreet || prev.billingStreet,
+        billingCity: (data as Record<string, string>).billingCity || prev.billingCity,
+        billingState: (data as Record<string, string>).billingState || prev.billingState,
+        billingZip: (data as Record<string, string>).billingZip || prev.billingZip,
         vehicleYear: data.vehicleYear || prev.vehicleYear,
         vehicleMake: data.vehicleMake || prev.vehicleMake,
         vehicleModel: data.vehicleModel || prev.vehicleModel,
