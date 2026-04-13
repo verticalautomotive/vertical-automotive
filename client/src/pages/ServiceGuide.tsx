@@ -35,13 +35,21 @@ export default function ServiceGuide() {
                 <h3 className="font-bold text-xl mb-3">Wilton Manors Location</h3>
                 <p>1100 W Oakland Park Blvd Unit 5</p>
                 <p>Wilton Manors, FL 33311</p>
-                <p className="mt-2"><strong>Phone:</strong> (954) 565-1518</p>
+                <p className="text-sm text-muted-foreground mt-1">Near Oakland Park Blvd &amp; I-95</p>
+                <p className="mt-2"><strong>Phone:</strong> <a href="tel:9545651518" className="text-primary hover:underline">(954) 565-1518</a></p>
+                <p className="mt-1"><strong>Email:</strong> <a href="mailto:contact@verticalautomotive.com" className="text-primary hover:underline">contact@verticalautomotive.com</a></p>
+                <p className="mt-1"><strong>Hours:</strong> Mon–Fri 8:00 AM – 5:00 PM</p>
+                <a href="https://maps.google.com/?q=1100+W+Oakland+Park+Blvd+Unit+5+Wilton+Manors+FL" target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-sm text-primary hover:underline">→ Get Directions</a>
               </div>
               <div className="bg-card text-card-foreground p-6 rounded-lg">
                 <h3 className="font-bold text-xl mb-3">Fort Lauderdale Location</h3>
                 <p>707 NE 11th Street</p>
                 <p>Fort Lauderdale, FL 33304</p>
-                <p className="mt-2"><strong>Phone:</strong> (645) 216-2266</p>
+                <p className="text-sm text-muted-foreground mt-1">Near Sunrise Blvd &amp; US-1</p>
+                <p className="mt-2"><strong>Phone:</strong> <a href="tel:6452162266" className="text-primary hover:underline">(645) 216-2266</a></p>
+                <p className="mt-1"><strong>Email:</strong> <a href="mailto:ftlauderdale@verticalautomotive.com" className="text-primary hover:underline">ftlauderdale@verticalautomotive.com</a></p>
+                <p className="mt-1"><strong>Hours:</strong> Mon–Fri 8:00 AM – 5:00 PM</p>
+                <a href="https://maps.google.com/?q=707+NE+11th+Street+Fort+Lauderdale+FL" target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-sm text-primary hover:underline">→ Get Directions</a>
               </div>
             </div>
 
@@ -278,8 +286,8 @@ export default function ServiceGuide() {
           <div className="grid md:grid-cols-3 gap-4">
             <div className="bg-card text-card-foreground p-4 rounded-lg">
               <h3 className="font-bold mb-2">Call Us</h3>
-              <p className="text-sm">Wilton Manors: (954) 565-1518</p>
-              <p className="text-sm">Fort Lauderdale: (645) 216-2266</p>
+              <p className="text-sm">Wilton Manors (Oakland Park &amp; I-95): <a href="tel:9545651518" className="text-primary hover:underline">(954) 565-1518</a></p>
+              <p className="text-sm">Fort Lauderdale (Sunrise &amp; US-1): <a href="tel:6452162266" className="text-primary hover:underline">(645) 216-2266</a></p>
             </div>
             <div className="bg-card text-card-foreground p-4 rounded-lg">
               <h3 className="font-bold mb-2">Online Booking</h3>
@@ -398,7 +406,7 @@ export default function ServiceGuide() {
               <div className="space-y-4">
                 <div className="bg-card text-card-foreground p-4 rounded-lg">
                   <p className="font-bold mb-2">How do I schedule an appointment?</p>
-                  <p className="text-sm">You can call us directly at (954) 565-1518 (Wilton Manors) or (645) 216-2266 (Fort Lauderdale), use our online booking system, or chat with Shift, our AI assistant.</p>
+                  <p className="text-sm">You can call us directly at (954) 565-1518 (Wilton Manors — Oakland Park &amp; I-95) or (645) 216-2266 (Fort Lauderdale — Sunrise &amp; US-1), use our online booking system, or chat with Shift, our AI assistant.</p>
                 </div>
                 <div className="bg-card text-card-foreground p-4 rounded-lg">
                   <p className="font-bold mb-2">What information do I need to schedule?</p>
