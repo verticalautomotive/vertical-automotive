@@ -724,7 +724,7 @@ export const paymentAuthRouter = router({
   /**
    * Protected — generate a pre-filled payment form link and send via SMS
    */
-  sendFormLink: protectedProcedure
+  sendFormLink: publicProcedure
     .input(z.object({
       referenceNumber: z.string().optional(),
       // Customer phone to send the SMS to
