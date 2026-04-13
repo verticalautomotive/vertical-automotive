@@ -31,9 +31,6 @@ const AdminAuthorizations = lazy(() => import("./pages/AdminAuthorizations"));
 const PaymentAuthorization = lazy(() => import("./pages/PaymentAuthorization"));
 const SendPaymentForm = lazy(() => import("./pages/SendPaymentForm"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const EstimateBuilder = lazy(() => import("./pages/EstimateBuilder"));
-const EstimateView = lazy(() => import("./pages/EstimateView"));
-const AdminEstimates = lazy(() => import("./pages/AdminEstimates"));
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -90,15 +87,10 @@ function Router() {
           <Route path="/payment-authorization" component={PaymentAuthorization} />
           <Route path="/send-payment-form" component={SendPaymentForm} />
 
-          {/* Estimate Comparison Tool */}
-          <Route path="/estimate-comparison/new" component={EstimateBuilder} />
-          <Route path="/estimate-comparison/:id" component={EstimateView} />
-
           {/* Admin routes */}
           <Route path="/admin/conversations" component={AdminConversations} />
           <Route path="/admin/escalations" component={AdminEscalations} />
           <Route path="/admin/authorizations" component={AdminAuthorizations} />
-          <Route path="/admin/estimates" component={AdminEstimates} />
 
           <Route path="/404" component={NotFound} />
           <Route component={NotFound} />
