@@ -71,7 +71,7 @@ CURRENT OFFERS:
 ABOUT:
 - ASE-certified auto repair shop in South Florida with 36 years of experience (since 1989)
 - Specialists in Tesla, Asian, European, and Domestic vehicles
-- 3-year / $5,000 warranty on all repairs
+- 36,000-mile / 36-month warranty on all repairs
 - 4.9 stars on Google with 500+ reviews
 `;
 

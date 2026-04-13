@@ -86,8 +86,8 @@ export default function ServiceGuide() {
               <p>Complete service for Ford, Chevrolet, Dodge, GMC, and other domestic brands.</p>
             </div>
             <div className="bg-card text-card-foreground p-4 rounded-lg">
-              <h3 className="font-bold mb-2">✓ 3-Year Warranty</h3>
-              <p>All repairs come with a comprehensive 3-year warranty on parts and labor.</p>
+              <h3 className="font-bold mb-2">✓ 36,000-Mile / 36-Month Warranty</h3>
+              <p>All repairs come with a 36,000-mile / 36-month warranty on parts and labor.</p>
             </div>
           </div>
         </section>
@@ -268,11 +268,11 @@ export default function ServiceGuide() {
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6">Warranty & Guarantees</h2>
           <div className="bg-accent text-accent-foreground p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-4">3-Year Warranty on All Repairs</h3>
-            <p className="mb-4">Every repair performed at Vertical Automotive is backed by our comprehensive 3-year warranty covering both parts and labor.</p>
+            <h3 className="text-xl font-bold mb-4">36,000-Mile / 36-Month Warranty on All Repairs</h3>
+            <p className="mb-4">Every repair performed at Vertical Automotive is backed by our 36,000-mile / 36-month warranty covering both parts and labor.</p>
             <ul className="space-y-2">
-              <li>✓ Parts warranty: 3 years from date of repair</li>
-              <li>✓ Labor warranty: 3 years from date of repair</li>
+              <li>✓ Parts warranty: 36 months / 36,000 miles from date of repair</li>
+              <li>✓ Labor warranty: 36 months / 36,000 miles from date of repair</li>
               <li>✓ Covers all repair work performed at our facilities</li>
               <li>✓ No mileage restrictions</li>
               <li>✓ Transferable to subsequent vehicle owners</li>
@@ -333,11 +333,11 @@ export default function ServiceGuide() {
               <div className="space-y-4">
                 <div className="bg-card text-card-foreground p-4 rounded-lg">
                   <p className="font-bold mb-2">What is your warranty on repairs?</p>
-                  <p className="text-sm">All repairs come with a comprehensive 3-year warranty on both parts and labor, with no mileage restrictions. This warranty is transferable to subsequent vehicle owners.</p>
+                  <p className="text-sm">All repairs come with a 36,000-mile / 36-month warranty on both parts and labor. This warranty is transferable to subsequent vehicle owners.</p>
                 </div>
                 <div className="bg-card text-card-foreground p-4 rounded-lg">
                   <p className="font-bold mb-2">Do you match competitor pricing?</p>
-                  <p className="text-sm">We offer competitive pricing on all services. Our pricing reflects the quality of work, ASE certification, and 3-year warranty we provide. Contact us for a quote on your specific service.</p>
+                  <p className="text-sm">We offer competitive pricing on all services. Our pricing reflects the quality of work, ASE certification, and 36,000-mile / 36-month warranty we provide. Contact us for a quote on your specific service.</p>
                 </div>
                 <div className="bg-card text-card-foreground p-4 rounded-lg">
                   <p className="font-bold mb-2">Do you offer financing or payment plans?</p>

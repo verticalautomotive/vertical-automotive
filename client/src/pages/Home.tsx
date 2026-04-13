@@ -51,7 +51,7 @@ export default function Home() {
     yearsExcellence: "YEARS OF EXCELLENCE",
     totalAuto: "Total Car Care for",
     care: "All Makes & Models",
-    warranty3Year: "3-Year Warranty on All Repairs",
+    warranty3Year: "36,000-Mile / 36-Month Warranty on All Repairs",
     teslaAsianEuropean: "ASE-Certified Mechanics • Tesla, Asian, European & Domestic Specialists",
     scheduleAppointment: "SCHEDULE APPOINTMENT",
     viewOffers: "VIEW OFFERS",
@@ -73,7 +73,7 @@ export default function Home() {
     whoWeAre: "Who Vertical Automotive Is",
     whoWeAreText: "Vertical Automotive is a trusted auto repair shop in Fort Lauderdale and Wilton Manors, Florida. Whether you need car repair in Fort Lauderdale or a reliable mechanic near me in Broward County, our ASE-certified team delivers honest diagnostics, professional workmanship, and long-term reliability for every make and model.",
     aseCertified: "ASE Certified",
-    warranty3: "3-Year Warranty",
+    warranty3: "36,000-Mile / 36-Month Warranty",
     allMakesModels: "All Makes & Models",
     evSpecialists: "EV Specialists",
     customerReviews: "CUSTOMER",
@@ -114,7 +114,7 @@ export default function Home() {
       "@type": "AutoRepair",
       "@id": "https://verticalautomotive.com/#business",
       "name": "Vertical Automotive",
-      "description": "ASE-certified auto repair shop specializing in Tesla, Asian, European & Domestic vehicles. Advanced diagnostics, honest service, and a 3-year warranty on all repairs.",
+      "description": "ASE-certified auto repair shop specializing in Tesla, Asian, European & Domestic vehicles. Advanced diagnostics, honest service, and a 36,000-mile / 36-month warranty on all repairs.",
       "url": "https://verticalautomotive.com",
       "telephone": "+19545651518",
       "priceRange": "$$",
@@ -229,7 +229,7 @@ export default function Home() {
           : "Auto Repair Fort Lauderdale & Wilton Manors | All Makes"}
         description={isSpanish
           ? "Taller de confianza en Fort Lauderdale y Wilton Manors para todas las marcas y modelos. Mecánicos certificados ASE, especialistas en EV, garantía de 3 años, 2 ubicaciones. Reserve su servicio hoy."
-          : "Trusted auto repair in Fort Lauderdale & Wilton Manors for all makes & models. ASE-certified mechanics, EV specialists, 3-year warranty, 2 locations. Book your service today."}
+          : "Trusted auto repair in Fort Lauderdale & Wilton Manors for all makes & models. ASE-certified mechanics, EV specialists, 36,000-mile / 36-month warranty, 2 locations. Book your service today."}
         canonical={isSpanish ? "https://verticalautomotive.com/es" : "https://verticalautomotive.com/"}
         ogImage="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4"
         keywords={isSpanish
@@ -276,7 +276,7 @@ export default function Home() {
             "bestRating": "5"
           },
           "foundingDate": "1989",
-          "description": "Trusted auto repair in Fort Lauderdale and Wilton Manors for all makes and models. ASE-certified mechanics, EV specialists, 3-year warranty, 2 locations.",
+          "description": "Trusted auto repair in Fort Lauderdale and Wilton Manors for all makes and models. ASE-certified mechanics, EV specialists, 36,000-mile / 36-month warranty, 2 locations.",
           "sameAs": [
             "https://www.yelp.com/biz/vertical-automotive-wilton-manors",
             "https://www.google.com/maps/place/Vertical+Automotive"
@@ -323,7 +323,7 @@ export default function Home() {
             "bestRating": "5"
           },
           "foundingDate": "1989",
-          "description": "Trusted auto repair in Fort Lauderdale for all makes and models. ASE-certified mechanics, EV specialists, 3-year warranty."
+          "description": "Trusted auto repair in Fort Lauderdale for all makes and models. ASE-certified mechanics, EV specialists, 36,000-mile / 36-month warranty."
         }) }}
       />
 

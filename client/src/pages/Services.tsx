@@ -36,7 +36,7 @@ export default function ServicesPage() {
           : "Services | Vertical Automotive Fort Lauderdale"}
         description={isSpanish
           ? "Frenos, transmisión, A/C, aceite, diagnósticos, dirección y servicio EV en Fort Lauderdale. Técnicos ASE. Garantía de 3 años."
-          : "Brakes, transmission, A/C, oil change, diagnostics, steering & EV service in Fort Lauderdale. ASE-certified. 3-year warranty."}
+          : "Brakes, transmission, A/C, oil change, diagnostics, steering & EV service in Fort Lauderdale. ASE-certified. 36,000-mile / 36-month warranty."}
         keywords={isSpanish
           ? "servicios automotrices Fort Lauderdale, frenos, transmisión, aire acondicionado, cambio de aceite, diagnóstico motor, reparación Tesla"
           : "auto repair services Fort Lauderdale, brakes, transmission, AC repair, oil change, engine diagnostics, Tesla service"}

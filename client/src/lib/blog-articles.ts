@@ -213,7 +213,7 @@ export const BLOG_ARTICLES_EN: BlogArticle[] = [
       "If your brake warning light is on, get it inspected immediately — don't wait",
       "After driving through standing water, tap your brakes lightly to dry the rotors"
     ],
-    conclusion: "Your brakes are the most critical safety system on your vehicle. At Vertical Automotive, we offer complimentary brake inspections at both our Wilton Manors and Fort Lauderdale locations. Our technicians will give you an honest assessment of your brake condition, show you exactly what needs attention, and explain your options. Every brake repair is backed by our 3-year warranty on parts and labor."
+    conclusion: "Your brakes are the most critical safety system on your vehicle. At Vertical Automotive, we offer complimentary brake inspections at both our Wilton Manors and Fort Lauderdale locations. Our technicians will give you an honest assessment of your brake condition, show you exactly what needs attention, and explain your options. Every brake repair is backed by our 36,000-mile / 36-month warranty on parts and labor."
   },
   {
     slug: "ac-florida-summer-prep",

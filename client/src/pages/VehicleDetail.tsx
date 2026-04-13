@@ -125,7 +125,7 @@ export default function VehicleDetail() {
     "tesla-vehicles-service": {
       title: "Tesla & EV Repair Fort Lauderdale & Wilton Manors | Vertical Automotive",
       titleEs: "Reparación Tesla y EV Fort Lauderdale y Wilton Manors | Vertical Automotive",
-      description: "Certified Tesla and EV repair in Fort Lauderdale & Wilton Manors. Model S, 3, X, Y specialists. Battery diagnostics, LDU rebuild, A/C, suspension. 3-year warranty. ASE-certified.",
+      description: "Certified Tesla and EV repair in Fort Lauderdale & Wilton Manors. Model S, 3, X, Y specialists. Battery diagnostics, LDU rebuild, A/C, suspension. 36,000-mile / 36-month warranty. ASE-certified.",
       descriptionEs: "Reparación certificada de Tesla y vehículos eléctricos en Fort Lauderdale y Wilton Manors. Especialistas en Model S, 3, X, Y. Diagnóstico de batería, reconstrucción LDU, A/C, suspensión. Garantía de 3 años.",
       keywords: "Tesla repair Fort Lauderdale, Tesla service Wilton Manors, EV repair Broward County, Tesla Model 3 mechanic, Tesla battery diagnostic, ASE certified EV specialist",
       keywordsEs: "reparación Tesla Fort Lauderdale, servicio Tesla Wilton Manors, mecánico EV certificado ASE",
@@ -136,7 +136,7 @@ export default function VehicleDetail() {
     "european-vehicles-service": {
       title: "European Car Repair Fort Lauderdale & Wilton Manors | BMW, Mercedes, Porsche, Audi",
       titleEs: "Reparación Autos Europeos Fort Lauderdale y Wilton Manors | BMW, Mercedes, Porsche",
-      description: "Expert European car repair in Fort Lauderdale & Wilton Manors. BMW, Mercedes-Benz, Audi, Porsche, Volkswagen, Land Rover specialists. Factory diagnostics, 3-year warranty. ASE-certified.",
+      description: "Expert European car repair in Fort Lauderdale & Wilton Manors. BMW, Mercedes-Benz, Audi, Porsche, Volkswagen, Land Rover specialists. Factory diagnostics, 36,000-mile / 36-month warranty. ASE-certified.",
       descriptionEs: "Reparación experta de autos europeos en Fort Lauderdale y Wilton Manors. Especialistas en BMW, Mercedes-Benz, Audi, Porsche, Volkswagen. Diagnóstico de fábrica, garantía de 3 años.",
       keywords: "European car repair Fort Lauderdale, BMW repair Wilton Manors, Mercedes repair Fort Lauderdale, Audi mechanic Broward County, Porsche service South Florida, ASE certified European specialist",
       keywordsEs: "reparación autos europeos Fort Lauderdale, mecánico BMW Wilton Manors, servicio Mercedes Fort Lauderdale",
@@ -147,7 +147,7 @@ export default function VehicleDetail() {
     "asian-vehicles-service": {
       title: "Asian Vehicle Repair Fort Lauderdale & Wilton Manors | Toyota, Honda, Lexus, Acura",
       titleEs: "Reparación Autos Asiáticos Fort Lauderdale y Wilton Manors | Toyota, Honda, Lexus",
-      description: "Specialized Asian vehicle repair in Fort Lauderdale & Wilton Manors. Toyota, Honda, Lexus, Acura, Nissan, Subaru, Hyundai, Kia specialists. OEM parts, 3-year warranty. ASE-certified.",
+      description: "Specialized Asian vehicle repair in Fort Lauderdale & Wilton Manors. Toyota, Honda, Lexus, Acura, Nissan, Subaru, Hyundai, Kia specialists. OEM parts, 36,000-mile / 36-month warranty. ASE-certified.",
       descriptionEs: "Reparación especializada de vehículos asiáticos en Fort Lauderdale y Wilton Manors. Especialistas en Toyota, Honda, Lexus, Acura, Nissan, Hyundai. Piezas OEM, garantía de 3 años.",
       keywords: "Asian car repair Fort Lauderdale, Toyota mechanic Wilton Manors, Honda repair Fort Lauderdale, Lexus service Broward County, Acura specialist South Florida, ASE certified Asian vehicle mechanic",
       keywordsEs: "reparación autos asiáticos Fort Lauderdale, mecánico Toyota Wilton Manors, servicio Honda Fort Lauderdale",
@@ -158,7 +158,7 @@ export default function VehicleDetail() {
     "domestic-vehicles-service": {
       title: "Domestic Car Repair Fort Lauderdale & Wilton Manors | Ford, Chevrolet, Dodge",
       titleEs: "Reparación Autos Domésticos Fort Lauderdale y Wilton Manors | Ford, Chevrolet, Dodge",
-      description: "Expert domestic vehicle repair in Fort Lauderdale & Wilton Manors. Ford, Chevrolet, Dodge, GMC, Jeep, RAM specialists. Advanced diagnostics, 3-year warranty. ASE-certified mechanics.",
+      description: "Expert domestic vehicle repair in Fort Lauderdale & Wilton Manors. Ford, Chevrolet, Dodge, GMC, Jeep, RAM specialists. Advanced diagnostics, 36,000-mile / 36-month warranty. ASE-certified mechanics.",
       descriptionEs: "Reparación experta de vehículos domésticos en Fort Lauderdale y Wilton Manors. Especialistas en Ford, Chevrolet, Dodge, GMC, Jeep. Diagnóstico avanzado, garantía de 3 años.",
       keywords: "domestic car repair Fort Lauderdale, Ford mechanic Wilton Manors, Chevrolet repair Fort Lauderdale, Dodge service Broward County, Jeep specialist South Florida, ASE certified domestic vehicle mechanic",
       keywordsEs: "reparación autos domésticos Fort Lauderdale, mecánico Ford Wilton Manors, servicio Chevrolet Fort Lauderdale",

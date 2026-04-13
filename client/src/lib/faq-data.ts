@@ -21,7 +21,7 @@ export const SERVICE_FAQS: Record<string, FAQItem[]> = {
     },
     {
       question: "How much does a car battery replacement cost in Fort Lauderdale?",
-      answer: "Battery replacement costs vary depending on your vehicle make and model, typically ranging from $150–$350 including parts and labor. At Vertical Automotive, we test your entire charging system before recommending a replacement — so you only pay for what you actually need. All work is backed by our 3-year warranty.",
+      answer: "Battery replacement costs vary depending on your vehicle make and model, typically ranging from $150–$350 including parts and labor. At Vertical Automotive, we test your entire charging system before recommending a replacement — so you only pay for what you actually need. All work is backed by our 36,000-mile / 36-month warranty.",
     },
     {
       question: "Can you test my car battery for free?",

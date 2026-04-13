@@ -73,7 +73,7 @@ export const SERVICES: ServiceItem[] = [
     slug: "brake-system",
     title: "Brake Service",
     shortTitle: "Brakes & Rotors",
-    description: "Hearing squealing, grinding, or feeling a soft pedal? Our certified technicians inspect, repair, and replace brake components with precision — backed by a 3-year warranty.",
+    description: "Hearing squealing, grinding, or feeling a soft pedal? Our certified technicians inspect, repair, and replace brake components with precision — backed by a 36,000-mile / 36-month warranty.",
     icon: "disc",
     content: {
       intro: "When your brakes feel off, every mile matters. Drivers in Wilton Manors and Fort Lauderdale trust Vertical Automotive for brake service because we combine thorough inspection with honest recommendations. Our technicians evaluate pads, rotors, calipers, brake lines, and fluid condition before recommending any work. We use professional-grade components and perform precision rotor resurfacing or replacement to restore confident stopping power. Whether it's a routine pad replacement or a complete brake system overhaul, every repair is backed by our 3-year parts and labor warranty. We also offer complimentary brake inspections — stop in anytime.",
