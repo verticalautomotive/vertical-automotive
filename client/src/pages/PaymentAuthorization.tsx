@@ -1,10 +1,11 @@
 /**
  * Payment Authorization Form — /payment-authorization
  * 3-step form: Customer Info → Authorization → Signature
- * Supports URL pre-fill: ?invoice=VA-1042&amount=850&service=Brake+Repair&location=Fort+Lauderdale
+ * Supports:
+ *   - Shop-Ware RO URL paste + AI extraction to pre-fill all fields
+ *   - URL pre-fill: ?invoice=VA-1042&amount=850&service=Brake+Repair&location=Fort+Lauderdale
  */
 import { useEffect, useRef, useState } from "react";
-import { useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,11 +14,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent } from "@/components/ui/card";
-import { Shield, Lock, CheckCircle, ChevronRight, ChevronLeft, RotateCcw } from "lucide-react";
+import {
+  Shield,
+  Lock,
+  CheckCircle,
+  ChevronRight,
+  ChevronLeft,
+  RotateCcw,
+  Link2,
+  Loader2,
+  Sparkles,
+  AlertCircle,
+} from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface FormData {
-  // Section 1
   fullLegalName: string;
   email: string;
   phone: string;
@@ -26,21 +37,18 @@ interface FormData {
   billingState: string;
   billingZip: string;
   driversLicense: string;
-  // Section 2
   vehicleYear: string;
   vehicleMake: string;
   vehicleModel: string;
   vin: string;
   licensePlate: string;
   mileage: string;
-  // Section 3
   serviceLocation: "Fort Lauderdale" | "Wilton Manors" | "";
   invoiceNumber: string;
   serviceDescription: string;
   authorizedAmount: string;
   paymentMethod: "Credit Card" | "Debit Card" | "Other" | "";
   authorizationDate: string;
-  // Section 5
   signatureName: string;
   agreedToTerms: boolean;
   confirmedCardholder: boolean;
@@ -166,7 +174,6 @@ function SignaturePad({ onSave, onClear }: { onSave: (dataUrl: string) => void; 
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function PaymentAuthorization() {
-  const [, navigate] = useLocation();
   const [step, setStep] = useState(1);
   const [signatureImage, setSignatureImage] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -178,6 +185,11 @@ export default function PaymentAuthorization() {
     invoiceNumber: string;
     pdfUrl: string | null;
   } | null>(null);
+
+  // RO URL extraction state
+  const [roUrl, setRoUrl] = useState("");
+  const [roExtracted, setRoExtracted] = useState<Record<string, string> | null>(null);
+  const [extractError, setExtractError] = useState("");
 
   // Parse URL params for pre-fill
   const params = new URLSearchParams(window.location.search);
@@ -212,6 +224,39 @@ export default function PaymentAuthorization() {
   const set = (field: keyof FormData, value: string | boolean) => {
     setForm(prev => ({ ...prev, [field]: value }));
     setErrors(prev => ({ ...prev, [field]: "" }));
+  };
+
+  // ─── RO Extraction ──────────────────────────────────────────────────────────
+  const extractMutation = trpc.paymentAuth.extractRo.useMutation({
+    onSuccess: ({ data }) => {
+      setRoExtracted(data as Record<string, string>);
+      setExtractError("");
+      // Auto-fill form fields from extracted data
+      setForm(prev => ({
+        ...prev,
+        fullLegalName: data.customerName || prev.fullLegalName,
+        vehicleYear: data.vehicleYear || prev.vehicleYear,
+        vehicleMake: data.vehicleMake || prev.vehicleMake,
+        vehicleModel: data.vehicleModel || prev.vehicleModel,
+        licensePlate: data.licensePlate || prev.licensePlate,
+        vin: data.vin || prev.vin,
+        mileage: data.mileage || prev.mileage,
+        invoiceNumber: data.invoiceNumber || prev.invoiceNumber,
+        serviceDescription: data.serviceDescription || prev.serviceDescription,
+        authorizedAmount: data.authorizedAmount || prev.authorizedAmount,
+        serviceLocation: (data.serviceLocation as "Fort Lauderdale" | "Wilton Manors") || prev.serviceLocation,
+      }));
+    },
+    onError: (err) => {
+      setExtractError(err.message || "Failed to extract data from RO. Please fill in manually.");
+    },
+  });
+
+  const handleExtract = () => {
+    if (!roUrl.trim()) return;
+    setExtractError("");
+    setRoExtracted(null);
+    extractMutation.mutate({ url: roUrl.trim() });
   };
 
   const submitMutation = trpc.paymentAuth.submit.useMutation({
@@ -297,6 +342,8 @@ export default function PaymentAuthorization() {
       agreedToEmailCopy: form.agreedToEmailCopy,
       signedAt: String(Date.now()),
       userAgent: navigator.userAgent,
+      roSourceUrl: roUrl || undefined,
+      roExtractedData: roExtracted ? JSON.stringify(roExtracted) : undefined,
     });
   };
 
@@ -367,7 +414,7 @@ export default function PaymentAuthorization() {
   const err = (field: string) =>
     errors[field] ? <p className="text-red-500 text-xs mt-1">{errors[field]}</p> : null;
 
-  const field = (label: string, key: keyof FormData, type = "text", placeholder = "", required = true) => (
+  const fieldInput = (label: string, key: keyof FormData, type = "text", placeholder = "", required = true) => (
     <div>
       <Label className="text-sm font-medium text-gray-700">
         {label}{required && <span className="text-red-500 ml-0.5">*</span>}
@@ -432,24 +479,87 @@ export default function PaymentAuthorization() {
       {/* Form Body */}
       <div className="max-w-2xl mx-auto px-4 py-6 space-y-6">
 
+        {/* ── RO URL Import (shown on step 1 only) ── */}
+        {step === 1 && (
+          <Card className="border-blue-200 bg-blue-50">
+            <CardContent className="p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <Sparkles className="w-4 h-4 text-blue-600" />
+                <h2 className="font-bold text-blue-800 text-sm">Auto-Fill from Shop-Ware RO</h2>
+                <span className="text-xs text-blue-500 font-normal">(optional)</span>
+              </div>
+              <p className="text-xs text-blue-700 mb-3">
+                Paste the customer-facing Shop-Ware work order link to automatically extract vehicle, invoice, and service details.
+              </p>
+              <div className="flex gap-2">
+                <div className="relative flex-1">
+                  <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <Input
+                    placeholder="https://verticalautomotive.shop-ware.com/work_orders/..."
+                    value={roUrl}
+                    onChange={e => { setRoUrl(e.target.value); setExtractError(""); }}
+                    className="pl-9 bg-white text-sm"
+                  />
+                </div>
+                <Button
+                  type="button"
+                  onClick={handleExtract}
+                  disabled={!roUrl.trim() || extractMutation.isPending}
+                  className="bg-blue-600 hover:bg-blue-700 gap-1.5 shrink-0"
+                >
+                  {extractMutation.isPending ? (
+                    <><Loader2 className="w-4 h-4 animate-spin" /> Extracting...</>
+                  ) : (
+                    <><Sparkles className="w-4 h-4" /> Extract</>
+                  )}
+                </Button>
+              </div>
+
+              {extractError && (
+                <div className="mt-2 flex items-start gap-2 text-red-600 text-xs">
+                  <AlertCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" />
+                  <span>{extractError}</span>
+                </div>
+              )}
+
+              {roExtracted && !extractMutation.isPending && (
+                <div className="mt-3 bg-white border border-green-200 rounded-lg p-3">
+                  <div className="flex items-center gap-1.5 text-green-700 text-xs font-semibold mb-2">
+                    <CheckCircle className="w-3.5 h-3.5" /> Fields extracted and filled in below
+                  </div>
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-gray-600">
+                    {roExtracted.customerName && <span><span className="font-medium">Customer:</span> {roExtracted.customerName}</span>}
+                    {roExtracted.invoiceNumber && <span><span className="font-medium">RO#:</span> {roExtracted.invoiceNumber}</span>}
+                    {roExtracted.vehicleYear && <span><span className="font-medium">Vehicle:</span> {roExtracted.vehicleYear} {roExtracted.vehicleMake} {roExtracted.vehicleModel}</span>}
+                    {roExtracted.authorizedAmount && <span><span className="font-medium">Total:</span> ${roExtracted.authorizedAmount}</span>}
+                    {roExtracted.serviceLocation && <span><span className="font-medium">Location:</span> {roExtracted.serviceLocation}</span>}
+                    {roExtracted.licensePlate && <span><span className="font-medium">Plate:</span> {roExtracted.licensePlate}</span>}
+                  </div>
+                  <p className="text-xs text-gray-400 mt-2">Review and correct any fields below before proceeding.</p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        )}
+
         {/* ── Step 1: Customer + Vehicle Info ── */}
         {step === 1 && (
           <div className="space-y-6">
             <Card>
               <CardContent className="p-5 space-y-4">
                 <h2 className="font-bold text-gray-800 text-base border-b pb-2">Customer Information</h2>
-                {field("Full Legal Name", "fullLegalName", "text", "As it appears on your ID")}
+                {fieldInput("Full Legal Name", "fullLegalName", "text", "As it appears on your ID")}
                 <div className="grid grid-cols-2 gap-3">
-                  {field("Email Address", "email", "email", "your@email.com")}
-                  {field("Phone Number", "phone", "tel", "(555) 000-0000")}
+                  {fieldInput("Email Address", "email", "email", "your@email.com")}
+                  {fieldInput("Phone Number", "phone", "tel", "(555) 000-0000")}
                 </div>
-                {field("Billing Street Address", "billingStreet", "text", "123 Main St")}
+                {fieldInput("Billing Street Address", "billingStreet", "text", "123 Main St")}
                 <div className="grid grid-cols-3 gap-3">
-                  {field("City", "billingCity")}
-                  {field("State", "billingState", "text", "FL")}
-                  {field("ZIP", "billingZip", "text", "33301")}
+                  {fieldInput("City", "billingCity")}
+                  {fieldInput("State", "billingState", "text", "FL")}
+                  {fieldInput("ZIP", "billingZip", "text", "33301")}
                 </div>
-                {field("Driver's License Number", "driversLicense", "text", "For identity verification")}
+                {fieldInput("Driver's License Number", "driversLicense", "text", "For identity verification")}
               </CardContent>
             </Card>
 
@@ -457,15 +567,15 @@ export default function PaymentAuthorization() {
               <CardContent className="p-5 space-y-4">
                 <h2 className="font-bold text-gray-800 text-base border-b pb-2">Vehicle Information</h2>
                 <div className="grid grid-cols-3 gap-3">
-                  {field("Year", "vehicleYear", "text", "2022")}
-                  {field("Make", "vehicleMake", "text", "Toyota")}
-                  {field("Model", "vehicleModel", "text", "Camry")}
+                  {fieldInput("Year", "vehicleYear", "text", "2022")}
+                  {fieldInput("Make", "vehicleMake", "text", "Toyota")}
+                  {fieldInput("Model", "vehicleModel", "text", "Camry")}
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  {field("VIN Number", "vin", "text", "Optional but encouraged", false)}
-                  {field("License Plate", "licensePlate", "text", "Optional", false)}
+                  {fieldInput("VIN Number", "vin", "text", "Optional but encouraged", false)}
+                  {fieldInput("License Plate", "licensePlate", "text", "Optional", false)}
                 </div>
-                {field("Mileage at Drop-off", "mileage", "text", "e.g. 45,230", false)}
+                {fieldInput("Mileage at Drop-off", "mileage", "text", "e.g. 45,230", false)}
               </CardContent>
             </Card>
           </div>
@@ -492,7 +602,7 @@ export default function PaymentAuthorization() {
                   {err("serviceLocation")}
                 </div>
 
-                {field("Repair Order / Invoice Number", "invoiceNumber", "text", "e.g. VA-1042")}
+                {fieldInput("Repair Order / Invoice Number", "invoiceNumber", "text", "e.g. VA-1042")}
 
                 <div>
                   <Label className="text-sm font-medium text-gray-700">Description of Authorized Services<span className="text-red-500 ml-0.5">*</span></Label>
@@ -621,6 +731,12 @@ export default function PaymentAuthorization() {
                   <div className="flex justify-between"><span className="text-gray-500">Location</span><span className="font-medium">{form.serviceLocation}</span></div>
                   <div className="flex justify-between border-t pt-2 mt-2"><span className="text-gray-700 font-bold">Total Authorized</span><span className="font-bold text-blue-700 text-base">${form.authorizedAmount}</span></div>
                 </div>
+                {roUrl && (
+                  <div className="mt-2 pt-2 border-t flex items-center gap-1.5 text-xs text-gray-400">
+                    <Link2 className="w-3 h-3" />
+                    <span>RO source saved: {roUrl.substring(0, 60)}...</span>
+                  </div>
+                )}
               </CardContent>
             </Card>
 

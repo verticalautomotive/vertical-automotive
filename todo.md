@@ -262,3 +262,12 @@
 - [x] Frontend: confirmation page with reference number
 - [x] Frontend: admin dashboard at /admin/authorizations (search, filter, CSV, dispute flag)
 - [x] Route registration in App.tsx for both pages
+
+## RO URL Extraction for Payment Authorization
+- [ ] Analyze Shop-Ware RO page structure and available data fields
+- [ ] Backend: tRPC procedure to fetch RO URL, scrape HTML, extract fields with Gemini AI
+- [ ] DB schema: add roSourceUrl and roExtractedData columns to payment_authorizations
+- [ ] Backend: re-extract endpoint to re-run extraction from stored RO URL
+- [ ] Frontend: RO URL paste field at top of payment authorization form
+- [ ] Frontend: auto-fill form fields from extracted data with preview
+- [ ] Admin dashboard: show RO URL link and re-extract button per record

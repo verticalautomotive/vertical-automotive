@@ -194,6 +194,12 @@ export const paymentAuthorizations = mysqlTable("payment_authorizations", {
   /** S3 URL of the generated PDF */
   pdfUrl: text("pdfUrl"),
 
+  // RO Source (Shop-Ware)
+  /** Original Shop-Ware work order URL used to pre-fill this form */
+  roSourceUrl: text("roSourceUrl"),
+  /** AI-extracted JSON data from the RO URL (for re-extraction) */
+  roExtractedData: text("roExtractedData"),
+
   // Admin Tracking
   /** Whether this record has been flagged for use in a chargeback dispute */
   usedInDispute: int("usedInDispute").default(0).notNull(),

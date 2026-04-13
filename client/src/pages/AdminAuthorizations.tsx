@@ -29,6 +29,9 @@ import {
   ExternalLink,
   Shield,
   Filter,
+  Link2,
+  RefreshCw,
+  Loader2,
 } from "lucide-react";
 import { getLoginUrl } from "@/const";
 
@@ -47,6 +50,7 @@ type Authorization = {
   paymentMethod: string;
   usedInDispute: number;
   pdfUrl: string | null;
+  roSourceUrl: string | null;
   createdAt: Date;
   signatureImage: string;
 };
@@ -84,6 +88,13 @@ export default function AdminAuthorizations() {
     { search: search || undefined, location, dateFrom: dateFrom || undefined, dateTo: dateTo || undefined },
     { enabled: false }
   );
+
+  const reExtractMutation = trpc.paymentAuth.reExtractRo.useMutation({
+    onSuccess: () => {
+      // Refresh detail
+      utils.paymentAuth.get.invalidate({ referenceNumber: selectedRef! });
+    },
+  });
 
   const markDispute = trpc.paymentAuth.markDispute.useMutation({
     onSuccess: () => {
@@ -250,6 +261,7 @@ export default function AdminAuthorizations() {
                     <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Amount</th>
                     <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Location</th>
                     <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Status</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">RO</th>
                     <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Actions</th>
                   </tr>
                 </thead>
@@ -282,6 +294,17 @@ export default function AdminAuthorizations() {
                           <Badge className="bg-red-100 text-red-700 border-red-200 text-xs">Dispute</Badge>
                         ) : (
                           <Badge className="bg-green-100 text-green-700 border-green-200 text-xs">Active</Badge>
+                        )}
+                      </td>
+                      <td className="px-4 py-3">
+                        {r.roSourceUrl ? (
+                          <a href={r.roSourceUrl} target="_blank" rel="noopener noreferrer" title="Open Shop-Ware RO">
+                            <Button size="sm" variant="outline" className="h-7 px-2 text-xs gap-1 text-blue-600 border-blue-200">
+                              <Link2 className="w-3 h-3" /> RO
+                            </Button>
+                          </a>
+                        ) : (
+                          <span className="text-gray-300 text-xs">—</span>
                         )}
                       </td>
                       <td className="px-4 py-3">
@@ -387,6 +410,36 @@ export default function AdminAuthorizations() {
                 <a href={detail.pdfUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-blue-600 hover:underline text-sm">
                   <ExternalLink className="w-4 h-4" /> Download PDF Authorization
                 </a>
+              )}
+              {(detail as Authorization & { roSourceUrl?: string | null }).roSourceUrl && (
+                <div className="bg-blue-50 border border-blue-200 rounded p-3 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1.5 text-blue-700 text-xs font-medium">
+                      <Link2 className="w-3.5 h-3.5" /> Shop-Ware RO Source
+                    </div>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="h-6 px-2 text-xs gap-1 text-blue-600 border-blue-300"
+                      disabled={reExtractMutation.isPending}
+                      onClick={() => reExtractMutation.mutate({ referenceNumber: detail.referenceNumber })}
+                    >
+                      {reExtractMutation.isPending ? (
+                        <><Loader2 className="w-3 h-3 animate-spin" /> Re-extracting...</>
+                      ) : (
+                        <><RefreshCw className="w-3 h-3" /> Re-extract</>
+                      )}
+                    </Button>
+                  </div>
+                  <a
+                    href={(detail as Authorization & { roSourceUrl?: string | null }).roSourceUrl!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline text-xs break-all"
+                  >
+                    {(detail as Authorization & { roSourceUrl?: string | null }).roSourceUrl}
+                  </a>
+                </div>
               )}
               {detail.usedInDispute ? (
                 <div className="bg-red-50 border border-red-200 rounded p-3">

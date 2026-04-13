@@ -11,7 +11,89 @@ import { eq, desc, like, and, gte, lte, or } from "drizzle-orm";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import nodemailer from "nodemailer";
 import { storagePut } from "./storage";
+import { invokeLLM } from "./_core/llm";
 import type { Request } from "express";
+
+// ─── Shop-Ware RO Extractor ───────────────────────────────────────────────────
+export type RoExtractedData = {
+  customerName: string;
+  vehicleYear: string;
+  vehicleMake: string;
+  vehicleModel: string;
+  licensePlate: string;
+  vin: string;
+  mileage: string;
+  invoiceNumber: string;
+  serviceLocation: "Fort Lauderdale" | "Wilton Manors" | "";
+  serviceDescription: string;
+  authorizedAmount: string;
+  serviceAdvisor: string;
+};
+
+async function extractRoFromUrl(url: string): Promise<RoExtractedData> {
+  // Fetch the Shop-Ware page HTML
+  const resp = await fetch(url, {
+    headers: {
+      "User-Agent": "Mozilla/5.0 (compatible; VerticalAutomotive/1.0)",
+      "Accept": "text/html,application/xhtml+xml",
+    },
+  });
+  if (!resp.ok) throw new Error(`Failed to fetch RO page: ${resp.status}`);
+  const html = await resp.text();
+
+  // Strip scripts/styles for a cleaner text payload
+  const cleaned = html
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "")
+    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s{2,}/g, " ")
+    .trim()
+    .substring(0, 8000); // keep within token budget
+
+  const result = await invokeLLM({
+    messages: [
+      {
+        role: "system",
+        content: `You are a data extraction assistant for an auto repair shop. Extract structured data from a Shop-Ware repair order page. Return ONLY valid JSON with no markdown or explanation.`,
+      },
+      {
+        role: "user",
+        content: `Extract the following fields from this repair order page text. Return JSON only:\n\n${cleaned}\n\nReturn this exact JSON shape (use empty string if not found):\n{\n  "customerName": "",\n  "vehicleYear": "",\n  "vehicleMake": "",\n  "vehicleModel": "",\n  "licensePlate": "",\n  "vin": "",\n  "mileage": "",\n  "invoiceNumber": "",\n  "serviceLocation": "",\n  "serviceDescription": "",\n  "authorizedAmount": "",\n  "serviceAdvisor": ""\n}\n\nFor serviceLocation: use exactly "Wilton Manors" or "Fort Lauderdale" based on the shop name. For authorizedAmount: extract the grand total number only (no $ sign). For serviceDescription: summarize all services/line items in one concise sentence.`,
+      },
+    ],
+    response_format: {
+      type: "json_schema",
+      json_schema: {
+        name: "ro_extraction",
+        strict: true,
+        schema: {
+          type: "object",
+          properties: {
+            customerName: { type: "string" },
+            vehicleYear: { type: "string" },
+            vehicleMake: { type: "string" },
+            vehicleModel: { type: "string" },
+            licensePlate: { type: "string" },
+            vin: { type: "string" },
+            mileage: { type: "string" },
+            invoiceNumber: { type: "string" },
+            serviceLocation: { type: "string" },
+            serviceDescription: { type: "string" },
+            authorizedAmount: { type: "string" },
+            serviceAdvisor: { type: "string" },
+          },
+          required: ["customerName", "vehicleYear", "vehicleMake", "vehicleModel", "licensePlate", "vin", "mileage", "invoiceNumber", "serviceLocation", "serviceDescription", "authorizedAmount", "serviceAdvisor"],
+          additionalProperties: false,
+        },
+      },
+    },
+  } as Parameters<typeof invokeLLM>[0]);
+
+  const rawContent = result.choices?.[0]?.message?.content;
+  if (!rawContent) throw new Error("LLM returned empty response");
+  const content = typeof rawContent === "string" ? rawContent : JSON.stringify(rawContent);
+  return JSON.parse(content) as RoExtractedData;
+}
 
 // ─── Email helpers ────────────────────────────────────────────────────────────
 const LOCATION_EMAILS: Record<string, string> = {
@@ -268,6 +350,9 @@ const submitSchema = z.object({
   // Client metadata
   submissionIp: z.string().optional(),
   userAgent: z.string().optional(),
+  // RO source
+  roSourceUrl: z.string().url().optional(),
+  roExtractedData: z.string().optional(), // JSON string
 });
 
 // ─── Router ───────────────────────────────────────────────────────────────────
@@ -317,6 +402,8 @@ export const paymentAuthRouter = router({
         pdfUrl: null,
         usedInDispute: 0,
         disputeNotes: null,
+        roSourceUrl: input.roSourceUrl ?? null,
+        roExtractedData: input.roExtractedData ?? null,
       };
 
       const dbConn0 = await getDb();
@@ -441,6 +528,41 @@ export const paymentAuthRouter = router({
         .limit(1);
       if (!record) throw new Error("Record not found");
       return record;
+    }),
+
+  /**
+   * Public — extract RO data from a Shop-Ware work order URL
+   */
+  extractRo: publicProcedure
+    .input(z.object({ url: z.string().url() }))
+    .mutation(async ({ input }) => {
+      const data = await extractRoFromUrl(input.url);
+      return { success: true, data };
+    }),
+
+  /**
+   * Protected — re-extract RO data from the stored URL on an existing record
+   */
+  reExtractRo: protectedProcedure
+    .input(z.object({ referenceNumber: z.string() }))
+    .mutation(async ({ input }) => {
+      const dbRe = await getDb();
+      if (!dbRe) throw new Error("Database not available");
+      const [record] = await dbRe
+        .select({ roSourceUrl: paymentAuthorizations.roSourceUrl })
+        .from(paymentAuthorizations)
+        .where(eq(paymentAuthorizations.referenceNumber, input.referenceNumber))
+        .limit(1);
+      if (!record?.roSourceUrl) throw new Error("No RO URL stored for this record");
+      const data = await extractRoFromUrl(record.roSourceUrl);
+      const dbRe2 = await getDb();
+      if (dbRe2) {
+        await dbRe2
+          .update(paymentAuthorizations)
+          .set({ roExtractedData: JSON.stringify(data) })
+          .where(eq(paymentAuthorizations.referenceNumber, input.referenceNumber));
+      }
+      return { success: true, data };
     }),
 
   /**
