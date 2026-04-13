@@ -47,7 +47,7 @@ BRAKES:
 - Brake Fluid Flush & Exchange: $155 - $275
 
 MAINTENANCE:
-- Full Synthetic Oil Change: $89.99 - $185
+- Full Synthetic Oil Change: $89.99 - $185 (includes premium synthetic oil, new filter, and a digital vehicle inspection report)
 - Transmission Fluid Exchange: $285 - $495
 - Coolant System Flush: $230 - $485
 - Cabin & HEPA Filter Service: $99.99 - $250
@@ -65,8 +65,12 @@ DIAGNOSTICS:
 CURRENT OFFERS:
 - $25 off first service for all new customers
 - Every 3rd oil change free (loyalty program)
-- Free Uber/Lyft ride with $500+ service
+- Free Uber/Lyft ride with any service over 2 hours (complimentary while your car is in the shop)
 - Free wiper blades with $200+ services
+
+FINANCING:
+- We partner with Synchrony and American First Finance to offer flexible financing options.
+- Customers can apply in-shop. Direct them to call for details.
 
 ABOUT:
 - ASE-certified auto repair shop in South Florida with 36 years of experience (since 1989)
