@@ -1,6 +1,7 @@
 /**
  * ChatBubble — Shift AI iframe panel
- * Opens/closes via ChatButton. Renders the Shift AI hosted bot in an iframe.
+ * Opens/closes via ChatButton. The Shift AI bot has its own built-in close/expand controls.
+ * This wrapper is a clean transparent container only.
  */
 
 interface ChatBubbleProps {
@@ -9,7 +10,7 @@ interface ChatBubbleProps {
   language?: "en" | "es";
 }
 
-export function ChatBubble({ isOpen, onClose }: ChatBubbleProps) {
+export function ChatBubble({ isOpen }: ChatBubbleProps) {
   if (!isOpen) return null;
 
   return (
@@ -28,32 +29,6 @@ export function ChatBubble({ isOpen, onClose }: ChatBubbleProps) {
         boxShadow: "0 8px 40px rgba(0,0,0,0.35)",
       }}
     >
-      {/* Close button */}
-      <button
-        onClick={onClose}
-        aria-label="Close chat"
-        style={{
-          position: "absolute",
-          top: "8px",
-          right: "8px",
-          zIndex: 10000,
-          background: "rgba(0,0,0,0.55)",
-          border: "none",
-          borderRadius: "50%",
-          width: "28px",
-          height: "28px",
-          color: "#fff",
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "18px",
-          lineHeight: 1,
-        }}
-      >
-        ×
-      </button>
-
       <iframe
         src="https://shift-vertical-automotive-ai-992037985080.us-west1.run.app?external=true&embed=true"
         style={{ border: "none", width: "100%", height: "100%" }}
