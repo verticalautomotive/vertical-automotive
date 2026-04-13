@@ -305,3 +305,9 @@
 - [x] Change SendGrid from address from noreply@ to service@verticalautomotive.com (verified sender)
 - [x] Test email delivery end-to-end — HTTP 202 confirmed
 - [ ] Save checkpoint
+
+## Customer Form Auto-Fill (Complete Removal)
+- [x] Confirmed: PaymentAuthorization.tsx has zero URL param reading
+- [x] Confirmed: form state initialises with empty strings only
+- [x] Fixed: server sendFormLink now sends clean URL with no query params
+- [ ] Save checkpoint

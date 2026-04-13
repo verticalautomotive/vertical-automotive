@@ -722,7 +722,7 @@ export const paymentAuthRouter = router({
     }),
 
   /**
-   * Protected — generate a pre-filled payment form link and send via SMS
+   * Public — generate a clean payment form link and send via SMS (no pre-fill)
    */
   sendFormLink: publicProcedure
     .input(z.object({
@@ -759,27 +759,8 @@ export const paymentAuthRouter = router({
         throw new Error("Twilio credentials not configured");
       }
 
-      // Build pre-filled form URL — include ALL extractable fields
-      const params = new URLSearchParams();
-      if (input.customerName) params.set("name", input.customerName);
-      if (input.customerEmail) params.set("email", input.customerEmail);
-      if (input.customerPhone) params.set("phone", input.customerPhone);
-      if (input.billingStreet) params.set("street", input.billingStreet);
-      if (input.billingCity) params.set("city", input.billingCity);
-      if (input.billingState) params.set("state", input.billingState);
-      if (input.billingZip) params.set("zip", input.billingZip);
-      if (input.invoiceNumber) params.set("invoice", input.invoiceNumber);
-      if (input.authorizedAmount) params.set("amount", input.authorizedAmount);
-      if (input.serviceDescription) params.set("service", input.serviceDescription);
-      if (input.serviceLocation) params.set("location", input.serviceLocation);
-      if (input.vehicleYear) params.set("year", input.vehicleYear);
-      if (input.vehicleMake) params.set("make", input.vehicleMake);
-      if (input.vehicleModel) params.set("model", input.vehicleModel);
-      if (input.licensePlate) params.set("plate", input.licensePlate);
-      if (input.vin) params.set("vin", input.vin);
-      if (input.mileage) params.set("mileage", input.mileage);
-
-      const formUrl = `${input.origin}/payment-authorization?${params.toString()}`;
+      // Send a clean URL — customers fill the form themselves, no pre-fill
+      const formUrl = `${input.origin}/payment-authorization`;
 
       // Format phone — ensure E.164
       let toPhone = input.phone.replace(/[\s().\-]/g, "");
