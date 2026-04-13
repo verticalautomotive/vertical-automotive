@@ -337,16 +337,15 @@ export default function AdminAuthorizations() {
                           )}
                           <Button
                             size="sm"
-                            variant="outline"
-                            className="h-7 px-2 text-xs text-green-700 border-green-300 hover:bg-green-50 gap-1"
-                            title="Send form link via SMS"
+                            className="h-7 px-2.5 text-xs bg-green-600 hover:bg-green-700 text-white gap-1.5 font-semibold shadow-sm"
+                            title="Send payment form link via SMS"
                             onClick={() => {
                               setSendLinkRecord(r);
                               setSendLinkPhone(r.phone || "");
                               setSendLinkSuccess(null);
                             }}
                           >
-                            <Send className="w-3 h-3" /> Send
+                            <Send className="w-3 h-3" /> Send Link
                           </Button>
                           {!r.usedInDispute && (
                             <Button
