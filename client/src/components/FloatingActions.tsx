@@ -24,9 +24,12 @@ const DIRECTIONS_URLS = {
 
 type PopupType = "sms" | "directions" | null;
 
-interface FloatingActionsProps {}
+interface FloatingActionsProps {
+  isChatOpen: boolean;
+  onChatToggle: () => void;
+}
 
-export default function FloatingActions({}: FloatingActionsProps) {
+export default function FloatingActions({ isChatOpen, onChatToggle }: FloatingActionsProps) {
   const [openPopup, setOpenPopup] = useState<PopupType>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { isSpanish } = useTranslation();
@@ -73,7 +76,7 @@ export default function FloatingActions({}: FloatingActionsProps) {
         style={{ bottom: "calc(5rem + env(safe-area-inset-bottom, 0px))" }}
       >
         {/* Mobile Shift Chat Button */}
-        <ChatButton language={isSpanish ? "es" : "en"} isMobile={true} />
+        <ChatButton language={isSpanish ? "es" : "en"} isMobile={true} isOpen={isChatOpen} onToggle={onChatToggle} />
         {/* SMS Popup */}
         {openPopup === "sms" && (
           <div className="bg-[#0f1724] border border-blue-500/30 rounded-xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-2 fade-in duration-200 mb-1 w-56">
