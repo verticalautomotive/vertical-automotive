@@ -54,7 +54,20 @@ async function extractRoFromUrl(url: string): Promise<RoExtractedData & { email?
     vehicle: { id: number; model: string };
     shop: { name: string };
     advisor: { name: string } | null;
-    invoiced_work_order_financial?: { total_cents?: number; grand_total_cents?: number };
+    // Financial totals — Shop-Ware may return these at various nesting levels
+    invoiced_work_order_financial?: {
+      total_cents?: number;
+      grand_total_cents?: number;
+      approved_amount_cents?: number;
+      subtotal_cents?: number;
+    };
+    work_order_financial?: {
+      total_cents?: number;
+      grand_total_cents?: number;
+      approved_amount_cents?: number;
+    };
+    grand_total_cents?: number;
+    total_cents?: number;
   };
 
   // 2. Fetch customer details
@@ -88,6 +101,25 @@ async function extractRoFromUrl(url: string): Promise<RoExtractedData & { email?
     grand_total_cents?: number;
   } : null;
 
+  // 5. Fetch the dedicated financial endpoint (most reliable source for the grand total)
+  const finResp = await fetch(`${baseUrl}/api/internal/work_orders/${workOrderId}/work_order_financial?auth_token=${authToken}`, { headers });
+  const financial = finResp.ok ? await finResp.json() as {
+    total_cents?: number;
+    grand_total_cents?: number;
+    approved_amount_cents?: number;
+    subtotal_cents?: number;
+    tax_cents?: number;
+    shop_supplies_cents?: number;
+  } : null;
+  console.log("[PaymentAuth] Financial endpoint:", JSON.stringify(financial));
+  console.log("[PaymentAuth] WO financial fields:", JSON.stringify({
+    invoiced: wo.invoiced_work_order_financial,
+    work_order_financial: wo.work_order_financial,
+    grand_total_cents: wo.grand_total_cents,
+    total_cents: wo.total_cents,
+  }));
+  console.log("[PaymentAuth] Cart financial:", JSON.stringify({ total_cents: cart?.total_cents, grand_total_cents: cart?.grand_total_cents }));
+
   // Determine service location from shop name
   const shopName = wo.shop?.name ?? "";
   let serviceLocation: "Fort Lauderdale" | "Wilton Manors" | "" = "";
@@ -98,8 +130,20 @@ async function extractRoFromUrl(url: string): Promise<RoExtractedData & { email?
   const lineItems = cart?.recommendations?.map((r: { name: string }) => r.name).filter(Boolean) ?? [];
   const serviceDescription = lineItems.length > 0 ? lineItems.join("; ") : `RO #${wo.number}`;
 
-  // Determine total — prefer cart grand_total, then invoiced financial
-  const totalCents = cart?.grand_total_cents ?? cart?.total_cents ?? wo.invoiced_work_order_financial?.grand_total_cents ?? wo.invoiced_work_order_financial?.total_cents ?? 0;
+  // Determine total — check all possible locations Shop-Ware may store the grand total
+  // Priority: dedicated financial endpoint > WO-level financial objects > cart
+  const totalCents =
+    financial?.grand_total_cents ||
+    financial?.total_cents ||
+    wo.invoiced_work_order_financial?.grand_total_cents ||
+    wo.invoiced_work_order_financial?.total_cents ||
+    wo.work_order_financial?.grand_total_cents ||
+    wo.work_order_financial?.total_cents ||
+    wo.grand_total_cents ||
+    wo.total_cents ||
+    cart?.grand_total_cents ||
+    cart?.total_cents ||
+    0;
   const authorizedAmount = totalCents > 0 ? (totalCents / 100).toFixed(2) : "";
 
   // Format phone

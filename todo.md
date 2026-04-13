@@ -324,3 +324,9 @@
 - [x] Fix amount: server now always passes amount param; staff can manually enter/edit amount before sending SMS
 - [x] Add editable amount field on /send-payment-form step 3 with amber warning when RO has no total
 - [ ] Save checkpoint
+
+## RO Total Extraction Fix
+- [x] Expanded WO type to include all financial fields
+- [x] Added dedicated /work_order_financial API call with debug logging
+- [x] Resolution chain now checks 10 possible locations in priority order
+- [ ] Save checkpoint
