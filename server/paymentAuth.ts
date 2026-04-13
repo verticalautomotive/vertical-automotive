@@ -252,8 +252,6 @@ async function generatePDF(record: typeof paymentAuthorizations.$inferSelect): P
   field("Email", record.email);
   field("Phone", record.phone);
   field("Billing Address", `${record.billingStreet}, ${record.billingCity}, ${record.billingState} ${record.billingZip}`);
-  field("Driver's License", record.driversLicense);
-
   // Section 2 — Vehicle
   section("Vehicle Information");
   field("Vehicle", `${record.vehicleYear} ${record.vehicleMake} ${record.vehicleModel}`);
@@ -357,7 +355,6 @@ const submitSchema = z.object({
   billingCity: z.string().min(2),
   billingState: z.string().min(2),
   billingZip: z.string().min(4),
-  driversLicense: z.string().min(3),
   // Vehicle
   vehicleYear: z.string().min(4),
   vehicleMake: z.string().min(1),
@@ -410,7 +407,6 @@ export const paymentAuthRouter = router({
         billingCity: input.billingCity,
         billingState: input.billingState,
         billingZip: input.billingZip,
-        driversLicense: input.driversLicense,
         vehicleYear: input.vehicleYear,
         vehicleMake: input.vehicleMake,
         vehicleModel: input.vehicleModel,
@@ -684,8 +680,14 @@ export const paymentAuthRouter = router({
       referenceNumber: z.string().optional(),
       // Customer phone to send the SMS to
       phone: z.string(),
-      // Pre-fill params for the form URL
+      // Pre-fill params for the form URL — all customer/vehicle/service fields
       customerName: z.string().optional(),
+      customerEmail: z.string().optional(),
+      customerPhone: z.string().optional(),
+      billingStreet: z.string().optional(),
+      billingCity: z.string().optional(),
+      billingState: z.string().optional(),
+      billingZip: z.string().optional(),
       invoiceNumber: z.string().optional(),
       authorizedAmount: z.string().optional(),
       serviceDescription: z.string().optional(),
@@ -708,8 +710,15 @@ export const paymentAuthRouter = router({
         throw new Error("Twilio credentials not configured");
       }
 
-      // Build pre-filled form URL
+      // Build pre-filled form URL — include ALL extractable fields
       const params = new URLSearchParams();
+      if (input.customerName) params.set("name", input.customerName);
+      if (input.customerEmail) params.set("email", input.customerEmail);
+      if (input.customerPhone) params.set("phone", input.customerPhone);
+      if (input.billingStreet) params.set("street", input.billingStreet);
+      if (input.billingCity) params.set("city", input.billingCity);
+      if (input.billingState) params.set("state", input.billingState);
+      if (input.billingZip) params.set("zip", input.billingZip);
       if (input.invoiceNumber) params.set("invoice", input.invoiceNumber);
       if (input.authorizedAmount) params.set("amount", input.authorizedAmount);
       if (input.serviceDescription) params.set("service", input.serviceDescription);
@@ -720,7 +729,6 @@ export const paymentAuthRouter = router({
       if (input.licensePlate) params.set("plate", input.licensePlate);
       if (input.vin) params.set("vin", input.vin);
       if (input.mileage) params.set("mileage", input.mileage);
-      if (input.customerName) params.set("name", input.customerName);
 
       const formUrl = `${input.origin}/payment-authorization?${params.toString()}`;
 

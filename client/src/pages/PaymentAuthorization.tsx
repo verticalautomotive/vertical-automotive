@@ -36,7 +36,6 @@ interface FormData {
   billingCity: string;
   billingState: string;
   billingZip: string;
-  driversLicense: string;
   vehicleYear: string;
   vehicleMake: string;
   vehicleModel: string;
@@ -195,20 +194,19 @@ export default function PaymentAuthorization() {
   const params = new URLSearchParams(window.location.search);
 
   const [form, setForm] = useState<FormData>({
-    fullLegalName: "",
-    email: "",
-    phone: "",
-    billingStreet: "",
-    billingCity: "",
-    billingState: "",
-    billingZip: "",
-    driversLicense: "",
-    vehicleYear: "",
-    vehicleMake: "",
-    vehicleModel: "",
-    vin: "",
-    licensePlate: "",
-    mileage: "",
+    fullLegalName: params.get("name") || "",
+    email: params.get("email") || "",
+    phone: params.get("phone") || "",
+    billingStreet: params.get("street") || "",
+    billingCity: params.get("city") || "",
+    billingState: params.get("state") || "",
+    billingZip: params.get("zip") || "",
+    vehicleYear: params.get("year") || "",
+    vehicleMake: params.get("make") || "",
+    vehicleModel: params.get("model") || "",
+    vin: params.get("vin") || "",
+    licensePlate: params.get("plate") || "",
+    mileage: params.get("mileage") || "",
     serviceLocation: (params.get("location") as "Fort Lauderdale" | "Wilton Manors") || "",
     invoiceNumber: params.get("invoice") || "",
     serviceDescription: params.get("service") || "",
@@ -289,7 +287,6 @@ export default function PaymentAuthorization() {
       if (!form.billingCity.trim()) errs.billingCity = "Required";
       if (!form.billingState.trim()) errs.billingState = "Required";
       if (!form.billingZip.trim()) errs.billingZip = "Required";
-      if (!form.driversLicense.trim()) errs.driversLicense = "Required";
       if (!form.vehicleYear.trim()) errs.vehicleYear = "Required";
       if (!form.vehicleMake.trim()) errs.vehicleMake = "Required";
       if (!form.vehicleModel.trim()) errs.vehicleModel = "Required";
@@ -328,7 +325,6 @@ export default function PaymentAuthorization() {
       billingCity: form.billingCity,
       billingState: form.billingState,
       billingZip: form.billingZip,
-      driversLicense: form.driversLicense,
       vehicleYear: form.vehicleYear,
       vehicleMake: form.vehicleMake,
       vehicleModel: form.vehicleModel,
@@ -565,7 +561,6 @@ export default function PaymentAuthorization() {
                   {fieldInput("State", "billingState", "text", "FL")}
                   {fieldInput("ZIP", "billingZip", "text", "33301")}
                 </div>
-                {fieldInput("Driver's License Number", "driversLicense", "text", "For identity verification")}
               </CardContent>
             </Card>
 

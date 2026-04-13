@@ -400,7 +400,6 @@ export default function AdminAuthorizations() {
                   ["Email", detail.email],
                   ["Phone", detail.phone],
                   ["Billing Address", `${detail.billingStreet}, ${detail.billingCity}, ${detail.billingState} ${detail.billingZip}`],
-                  ["Driver's License", detail.driversLicense],
                   ["Vehicle", `${detail.vehicleYear} ${detail.vehicleMake} ${detail.vehicleModel}`],
                   ["VIN", detail.vin ?? "—"],
                   ["License Plate", detail.licensePlate ?? "—"],

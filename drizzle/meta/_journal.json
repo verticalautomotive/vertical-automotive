@@ -43,6 +43,13 @@
       "when": 1776098130941,
       "tag": "0005_legal_lord_tyger",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1776103708578,
+      "tag": "0006_windy_impossible_man",
+      "breakpoints": true
     }
   ]
 }

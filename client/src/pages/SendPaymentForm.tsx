@@ -54,9 +54,30 @@ export default function SendPaymentForm() {
 
   const extractMutation = trpc.paymentAuth.extractRo.useMutation({
     onSuccess: (data) => {
-      const d = data.data as unknown as ExtractedData;
+      // extractRo returns { success, data } where data has fields: phone, email, billingStreet, etc.
+      // Map them to our ExtractedData shape
+      const raw = data.data as Record<string, string>;
+      const d: ExtractedData = {
+        customerName: raw.customerName ?? "",
+        customerEmail: raw.email ?? "",
+        customerPhone: raw.phone ?? "",
+        billingStreet: raw.billingStreet ?? "",
+        billingCity: raw.billingCity ?? "",
+        billingState: raw.billingState ?? "",
+        billingZip: raw.billingZip ?? "",
+        vehicleYear: raw.vehicleYear ?? "",
+        vehicleMake: raw.vehicleMake ?? "",
+        vehicleModel: raw.vehicleModel ?? "",
+        licensePlate: raw.licensePlate ?? "",
+        vin: raw.vin ?? "",
+        mileage: raw.mileage ?? "",
+        invoiceNumber: raw.invoiceNumber ?? "",
+        serviceDescription: raw.serviceDescription ?? "",
+        authorizedAmount: raw.authorizedAmount ?? "",
+        serviceLocation: raw.serviceLocation ?? "",
+      };
       setExtracted(d);
-      setPhone(d?.customerPhone || "");
+      setPhone(d.customerPhone || "");
     },
   });
 
@@ -77,6 +98,12 @@ export default function SendPaymentForm() {
     sendLinkMutation.mutate({
       phone,
       customerName: extracted.customerName,
+      customerEmail: extracted.customerEmail,
+      customerPhone: extracted.customerPhone,
+      billingStreet: extracted.billingStreet,
+      billingCity: extracted.billingCity,
+      billingState: extracted.billingState,
+      billingZip: extracted.billingZip,
       invoiceNumber: extracted.invoiceNumber,
       authorizedAmount: extracted.authorizedAmount,
       serviceDescription: extracted.serviceDescription,

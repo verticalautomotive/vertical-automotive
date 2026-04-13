@@ -1,0 +1,1 @@
+ALTER TABLE `payment_authorizations` DROP COLUMN `driversLicense`;

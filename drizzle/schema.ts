@@ -157,7 +157,6 @@ export const paymentAuthorizations = mysqlTable("payment_authorizations", {
   billingCity: varchar("billingCity", { length: 128 }).notNull(),
   billingState: varchar("billingState", { length: 64 }).notNull(),
   billingZip: varchar("billingZip", { length: 16 }).notNull(),
-  driversLicense: varchar("driversLicense", { length: 64 }).notNull(),
 
   // Vehicle Information
   vehicleYear: varchar("vehicleYear", { length: 8 }).notNull(),

@@ -281,3 +281,8 @@
 ## Send Payment Form Staff Page
 - [x] Build /send-payment-form page with RO URL input, data preview, editable fields, and Send SMS button
 - [x] Register route in App.tsx
+
+## Payment Form Fixes
+- [ ] Remove Driver's License field from PaymentAuthorization customer form
+- [ ] Fix phone number extraction mapping in SendPaymentForm (extractRo response shape)
+- [ ] Fix SMS link to pre-fill ALL extracted fields into the customer form via URL params
