@@ -138,3 +138,69 @@ export const aistudioEscalations = mysqlTable("aistudio_escalations", {
 
 export type AistudioEscalation = typeof aistudioEscalations.$inferSelect;
 export type InsertAistudioEscalation = typeof aistudioEscalations.$inferInsert;
+
+/**
+ * payment_authorizations — immutable records of customer payment authorizations
+ * Created when a customer submits the /payment-authorization form.
+ * Records cannot be edited after creation (chargeback protection).
+ */
+export const paymentAuthorizations = mysqlTable("payment_authorizations", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Auto-generated reference number, e.g. VA-2026-00142 */
+  referenceNumber: varchar("referenceNumber", { length: 32 }).notNull().unique(),
+
+  // Customer Information
+  fullLegalName: varchar("fullLegalName", { length: 256 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  phone: varchar("phone", { length: 32 }).notNull(),
+  billingStreet: varchar("billingStreet", { length: 256 }).notNull(),
+  billingCity: varchar("billingCity", { length: 128 }).notNull(),
+  billingState: varchar("billingState", { length: 64 }).notNull(),
+  billingZip: varchar("billingZip", { length: 16 }).notNull(),
+  driversLicense: varchar("driversLicense", { length: 64 }).notNull(),
+
+  // Vehicle Information
+  vehicleYear: varchar("vehicleYear", { length: 8 }).notNull(),
+  vehicleMake: varchar("vehicleMake", { length: 64 }).notNull(),
+  vehicleModel: varchar("vehicleModel", { length: 64 }).notNull(),
+  vin: varchar("vin", { length: 32 }),
+  licensePlate: varchar("licensePlate", { length: 16 }),
+  mileage: varchar("mileage", { length: 16 }),
+
+  // Service & Payment Details
+  serviceLocation: mysqlEnum("serviceLocation", ["Fort Lauderdale", "Wilton Manors"]).notNull(),
+  invoiceNumber: varchar("invoiceNumber", { length: 64 }).notNull(),
+  serviceDescription: text("serviceDescription").notNull(),
+  authorizedAmount: varchar("authorizedAmount", { length: 32 }).notNull(),
+  paymentMethod: mysqlEnum("paymentMethod", ["Credit Card", "Debit Card", "Other"]).notNull(),
+  authorizationDate: varchar("authorizationDate", { length: 32 }).notNull(),
+
+  // Signature & Consent
+  /** Base64-encoded PNG of the drawn signature */
+  signatureImage: text("signatureImage").notNull(),
+  /** Customer typed their name as confirmation */
+  signatureName: varchar("signatureName", { length: 256 }).notNull(),
+  agreedToTerms: int("agreedToTerms").default(0).notNull(),
+  confirmedCardholder: int("confirmedCardholder").default(0).notNull(),
+  agreedToEmailCopy: int("agreedToEmailCopy").default(0).notNull(),
+  /** UTC timestamp at moment of signing (ms since epoch) */
+  signedAt: varchar("signedAt", { length: 32 }).notNull(),
+
+  // Security Metadata
+  submissionIp: varchar("submissionIp", { length: 64 }),
+  userAgent: text("userAgent"),
+
+  // PDF Storage
+  /** S3 URL of the generated PDF */
+  pdfUrl: text("pdfUrl"),
+
+  // Admin Tracking
+  /** Whether this record has been flagged for use in a chargeback dispute */
+  usedInDispute: int("usedInDispute").default(0).notNull(),
+  disputeNotes: text("disputeNotes"),
+
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PaymentAuthorization = typeof paymentAuthorizations.$inferSelect;
+export type InsertPaymentAuthorization = typeof paymentAuthorizations.$inferInsert;

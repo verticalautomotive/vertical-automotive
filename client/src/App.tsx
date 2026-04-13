@@ -27,6 +27,8 @@ const Gallery = lazy(() => import("./pages/Gallery"));
 const ServiceGuide = lazy(() => import("./pages/ServiceGuide"));
 const AdminConversations = lazy(() => import("./pages/AdminConversations"));
 const AdminEscalations = lazy(() => import("./pages/AdminEscalations"));
+const AdminAuthorizations = lazy(() => import("./pages/AdminAuthorizations"));
+const PaymentAuthorization = lazy(() => import("./pages/PaymentAuthorization"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function ScrollToTop() {
@@ -80,9 +82,13 @@ function Router() {
           <Route path="/es/contactos" component={Contacts} />
           <Route path="/es/guia-de-servicios" component={ServiceGuide} />
 
+          {/* Payment Authorization */}
+          <Route path="/payment-authorization" component={PaymentAuthorization} />
+
           {/* Admin routes */}
           <Route path="/admin/conversations" component={AdminConversations} />
           <Route path="/admin/escalations" component={AdminEscalations} />
+          <Route path="/admin/authorizations" component={AdminAuthorizations} />
 
           <Route path="/404" component={NotFound} />
           <Route component={NotFound} />

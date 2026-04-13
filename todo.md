@@ -248,3 +248,17 @@
 - [x] Upload hero video to CDN
 - [x] Replace homepage hero background image with autoplay background video
 - [x] Save checkpoint
+
+## Payment Authorization Form
+- [x] DB schema: payment_authorizations table with all fields + immutable flag
+- [x] Backend: submit procedure (create record, generate ref number, store IP/UA)
+- [x] Backend: PDF generation with signature image, all fields, timestamp, IP
+- [x] Backend: email delivery to customer + both shop inboxes on submit (SMTP env vars required)
+- [x] Backend: list/get/CSV export procedures for admin
+- [x] Backend: mark-as-dispute procedure
+- [x] Frontend: 3-step form at /payment-authorization (Info → Authorization → Signature)
+- [x] Frontend: digital signature pad (touch + mouse)
+- [x] Frontend: URL pre-fill from query params (invoice, amount, service, location)
+- [x] Frontend: confirmation page with reference number
+- [x] Frontend: admin dashboard at /admin/authorizations (search, filter, CSV, dispute flag)
+- [x] Route registration in App.tsx for both pages

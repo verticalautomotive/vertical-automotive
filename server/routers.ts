@@ -3,6 +3,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { chatbotRouter } from "./chatbot";
+import { paymentAuthRouter } from "./paymentAuth";
 import { chatRouter } from "./routers/chat";
 import { escalationRouter } from "./routers/escalation";
 import { runFullSync, getSyncStatus } from "./crawler";
@@ -34,6 +35,7 @@ export const appRouter = router({
     }),
   }),
   chatbot: chatbotRouter,
+  paymentAuth: paymentAuthRouter,
   knowledge: router({
     /** Trigger a full website sync */
     sync: publicProcedure.mutation(async ({ ctx }) => {

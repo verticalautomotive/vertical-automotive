@@ -46,6 +46,7 @@
     "@trpc/client": "^11.6.0",
     "@trpc/react-query": "^11.6.0",
     "@trpc/server": "^11.6.0",
+    "@types/nodemailer": "^8.0.0",
     "axios": "^1.12.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -63,6 +64,8 @@
     "mysql2": "^3.15.0",
     "nanoid": "^5.1.5",
     "next-themes": "^0.4.6",
+    "nodemailer": "^8.0.5",
+    "pdf-lib": "^1.17.1",
     "react": "^19.2.1",
     "react-day-picker": "^9.11.1",
     "react-dom": "^19.2.1",
@@ -91,6 +94,7 @@
     "add": "^2.0.6",
     "autoprefixer": "^10.4.20",
     "critters": "^0.0.25",
+    "drizzle-kit": "^0.31.4",
     "esbuild": "^0.25.0",
     "pnpm": "^10.15.1",
     "postcss": "^8.4.47",
@@ -103,8 +107,7 @@
     "vite": "^7.1.7",
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-manus-runtime": "^0.0.57",
-    "vitest": "^2.1.4",
-    "drizzle-kit": "^0.31.4"
+    "vitest": "^2.1.4"
   },
   "packageManager": "pnpm@10.4.1+sha512.c753b6c3ad7afa13af388fa6d808035a008e30ea9993f58c6663e2bc5ff21679aa834db094987129aa4d488b86df57f7b634981b2f827cdcacc698cc0cfb88af",
   "pnpm": {
