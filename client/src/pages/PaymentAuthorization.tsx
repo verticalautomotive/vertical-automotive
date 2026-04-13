@@ -1,7 +1,9 @@
 /**
  * Payment Authorization Form — /payment-authorization
  * 3-step form: Customer Info → Authorization → Signature
- * Customers fill all fields themselves — no auto-fill from URL params.
+ * Pre-filled fields (name, email, phone, vehicle, amount, invoice, location) come
+ * from URL params set by staff via /send-payment-form. Pre-filled fields are
+ * shown as read-only; any field not pre-filled remains editable.
  * Staff use /send-payment-form to extract RO data and send the SMS link.
  */
 import { useEffect, useRef, useState } from "react";
@@ -9,7 +11,6 @@ import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent } from "@/components/ui/card";
@@ -20,7 +21,6 @@ import {
   ChevronRight,
   ChevronLeft,
   RotateCcw,
-  Loader2,
 } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -40,7 +40,6 @@ interface FormData {
   mileage: string;
   serviceLocation: "Fort Lauderdale" | "Wilton Manors" | "";
   invoiceNumber: string;
-  serviceDescription: string;
   authorizedAmount: string;
   paymentMethod: "Credit Card" | "Debit Card" | "Other" | "";
   authorizationDate: string;
@@ -167,6 +166,18 @@ function SignaturePad({ onSave, onClear }: { onSave: (dataUrl: string) => void; 
   );
 }
 
+// ─── Read-only field helper ───────────────────────────────────────────────────
+function ReadOnlyField({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <Label className="text-sm font-medium text-gray-700">{label}</Label>
+      <div className="mt-1 px-3 py-2 rounded-md border border-gray-200 bg-gray-50 text-gray-800 text-sm min-h-[38px] flex items-center">
+        {value}
+      </div>
+    </div>
+  );
+}
+
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function PaymentAuthorization() {
   const [step, setStep] = useState(1);
@@ -181,28 +192,52 @@ export default function PaymentAuthorization() {
     pdfUrl: string | null;
   } | null>(null);
 
+  // ─── Read URL params (set by staff via /send-payment-form) ─────────────────
+  const [prefilled] = useState<Partial<FormData>>(() => {
+    const p = new URLSearchParams(window.location.search);
+    const result: Partial<FormData> = {};
+    const str = (key: string) => p.get(key) || undefined;
+    if (str("name"))     result.fullLegalName  = str("name")!;
+    if (str("email"))    result.email          = str("email")!;
+    if (str("phone"))    result.phone          = str("phone")!;
+    if (str("street"))   result.billingStreet  = str("street")!;
+    if (str("city"))     result.billingCity    = str("city")!;
+    if (str("state"))    result.billingState   = str("state")!;
+    if (str("zip"))      result.billingZip     = str("zip")!;
+    if (str("year"))     result.vehicleYear    = str("year")!;
+    if (str("make"))     result.vehicleMake    = str("make")!;
+    if (str("model"))    result.vehicleModel   = str("model")!;
+    if (str("vin"))      result.vin            = str("vin")!;
+    if (str("plate"))    result.licensePlate   = str("plate")!;
+    if (str("mileage"))  result.mileage        = str("mileage")!;
+    if (str("invoice"))  result.invoiceNumber  = str("invoice")!;
+    if (str("amount"))   result.authorizedAmount = str("amount")!;
+    const loc = str("location");
+    if (loc === "Fort Lauderdale" || loc === "Wilton Manors") result.serviceLocation = loc;
+    return result;
+  });
+
   const [form, setForm] = useState<FormData>({
-    fullLegalName: "",
-    email: "",
-    phone: "",
-    billingStreet: "",
-    billingCity: "",
-    billingState: "",
-    billingZip: "",
-    vehicleYear: "",
-    vehicleMake: "",
-    vehicleModel: "",
-    vin: "",
-    licensePlate: "",
-    mileage: "",
-    serviceLocation: "",
-    invoiceNumber: "",
-    serviceDescription: "",
-    authorizedAmount: "",
-    paymentMethod: "",
+    fullLegalName:    prefilled.fullLegalName    ?? "",
+    email:            prefilled.email            ?? "",
+    phone:            prefilled.phone            ?? "",
+    billingStreet:    prefilled.billingStreet    ?? "",
+    billingCity:      prefilled.billingCity      ?? "",
+    billingState:     prefilled.billingState     ?? "",
+    billingZip:       prefilled.billingZip       ?? "",
+    vehicleYear:      prefilled.vehicleYear      ?? "",
+    vehicleMake:      prefilled.vehicleMake      ?? "",
+    vehicleModel:     prefilled.vehicleModel     ?? "",
+    vin:              prefilled.vin              ?? "",
+    licensePlate:     prefilled.licensePlate     ?? "",
+    mileage:          prefilled.mileage          ?? "",
+    serviceLocation:  prefilled.serviceLocation  ?? "",
+    invoiceNumber:    prefilled.invoiceNumber    ?? "",
+    authorizedAmount: prefilled.authorizedAmount ?? "",
+    paymentMethod:    "",
     authorizationDate: new Date().toLocaleDateString("en-US"),
-    signatureName: "",
-    agreedToTerms: false,
+    signatureName:    "",
+    agreedToTerms:    false,
     confirmedCardholder: false,
     agreedToEmailCopy: false,
   });
@@ -243,7 +278,6 @@ export default function PaymentAuthorization() {
     if (s === 2) {
       if (!form.serviceLocation) errs.serviceLocation = "Required";
       if (!form.invoiceNumber.trim()) errs.invoiceNumber = "Required";
-      if (!form.serviceDescription.trim()) errs.serviceDescription = "Required";
       if (!form.authorizedAmount.trim()) errs.authorizedAmount = "Required";
       if (!form.paymentMethod) errs.paymentMethod = "Required";
     }
@@ -282,7 +316,7 @@ export default function PaymentAuthorization() {
       mileage: form.mileage || undefined,
       serviceLocation: form.serviceLocation as "Fort Lauderdale" | "Wilton Manors",
       invoiceNumber: form.invoiceNumber,
-      serviceDescription: form.serviceDescription,
+      serviceDescription: "",
       authorizedAmount: form.authorizedAmount,
       paymentMethod: form.paymentMethod as "Credit Card" | "Debit Card" | "Other",
       authorizationDate: form.authorizationDate,
@@ -365,21 +399,34 @@ export default function PaymentAuthorization() {
   const err = (field: string) =>
     errors[field] ? <p className="text-red-500 text-xs mt-1">{errors[field]}</p> : null;
 
-  const fieldInput = (label: string, key: keyof FormData, type = "text", placeholder = "", required = true) => (
-    <div>
-      <Label className="text-sm font-medium text-gray-700">
-        {label}{required && <span className="text-red-500 ml-0.5">*</span>}
-      </Label>
-      <Input
-        type={type}
-        placeholder={placeholder}
-        value={form[key] as string}
-        onChange={e => set(key, e.target.value)}
-        className={`mt-1 ${errors[key] ? "border-red-400" : ""}`}
-      />
-      {err(key)}
-    </div>
-  );
+  /** Renders an editable input unless the field was pre-filled by staff, in which case it shows read-only. */
+  const fieldInput = (
+    label: string,
+    key: keyof FormData,
+    type = "text",
+    placeholder = "",
+    required = true,
+  ) => {
+    const isPrefilled = !!prefilled[key];
+    if (isPrefilled) {
+      return <ReadOnlyField key={key} label={label} value={form[key] as string} />;
+    }
+    return (
+      <div key={key}>
+        <Label className="text-sm font-medium text-gray-700">
+          {label}{required && <span className="text-red-500 ml-0.5">*</span>}
+        </Label>
+        <Input
+          type={type}
+          placeholder={placeholder}
+          value={form[key] as string}
+          onChange={e => set(key, e.target.value)}
+          className={`mt-1 ${errors[key] ? "border-red-400" : ""}`}
+        />
+        {err(key)}
+      </div>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -430,8 +477,6 @@ export default function PaymentAuthorization() {
       {/* Form Body */}
       <div className="max-w-2xl mx-auto px-4 py-6 space-y-6">
 
-
-
         {/* ── Step 1: Customer + Vehicle Info ── */}
         {step === 1 && (
           <div className="space-y-6">
@@ -477,47 +522,51 @@ export default function PaymentAuthorization() {
               <CardContent className="p-5 space-y-4">
                 <h2 className="font-bold text-gray-800 text-base border-b pb-2">Service & Payment Details</h2>
 
-                <div>
-                  <Label className="text-sm font-medium text-gray-700">Service Location<span className="text-red-500 ml-0.5">*</span></Label>
-                  <Select value={form.serviceLocation} onValueChange={v => set("serviceLocation", v)}>
-                    <SelectTrigger className={`mt-1 ${errors.serviceLocation ? "border-red-400" : ""}`}>
-                      <SelectValue placeholder="Select location" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Fort Lauderdale">Fort Lauderdale — Sunrise Blvd & US-1</SelectItem>
-                      <SelectItem value="Wilton Manors">Wilton Manors — Oakland Park Blvd & I-95</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  {err("serviceLocation")}
-                </div>
+                {/* Service Location — read-only if pre-filled */}
+                {prefilled.serviceLocation ? (
+                  <ReadOnlyField label="Service Location" value={form.serviceLocation} />
+                ) : (
+                  <div>
+                    <Label className="text-sm font-medium text-gray-700">Service Location<span className="text-red-500 ml-0.5">*</span></Label>
+                    <Select value={form.serviceLocation} onValueChange={v => set("serviceLocation", v)}>
+                      <SelectTrigger className={`mt-1 ${errors.serviceLocation ? "border-red-400" : ""}`}>
+                        <SelectValue placeholder="Select location" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Fort Lauderdale">Fort Lauderdale — Sunrise Blvd & US-1</SelectItem>
+                        <SelectItem value="Wilton Manors">Wilton Manors — Oakland Park Blvd & I-95</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    {err("serviceLocation")}
+                  </div>
+                )}
 
                 {fieldInput("Repair Order / Invoice Number", "invoiceNumber", "text", "e.g. VA-1042")}
 
-                <div>
-                  <Label className="text-sm font-medium text-gray-700">Description of Authorized Services<span className="text-red-500 ml-0.5">*</span></Label>
-                  <Textarea
-                    placeholder="e.g. Brake pad replacement (front axle), rotor resurfacing, brake fluid flush"
-                    value={form.serviceDescription}
-                    onChange={e => set("serviceDescription", e.target.value)}
-                    className={`mt-1 min-h-[80px] ${errors.serviceDescription ? "border-red-400" : ""}`}
-                  />
-                  {err("serviceDescription")}
-                </div>
-
-                <div>
-                  <Label className="text-sm font-medium text-gray-700">Total Authorized Amount ($)<span className="text-red-500 ml-0.5">*</span></Label>
-                  <div className="relative mt-1">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 font-medium">$</span>
-                    <Input
-                      type="text"
-                      placeholder="0.00"
-                      value={form.authorizedAmount}
-                      onChange={e => set("authorizedAmount", e.target.value)}
-                      className={`pl-7 ${errors.authorizedAmount ? "border-red-400" : ""}`}
-                    />
+                {/* Total Amount — read-only if pre-filled, otherwise editable */}
+                {prefilled.authorizedAmount ? (
+                  <div>
+                    <Label className="text-sm font-medium text-gray-700">Total Authorized Amount</Label>
+                    <div className="mt-1 px-3 py-2 rounded-md border border-gray-200 bg-gray-50 text-gray-800 text-sm min-h-[38px] flex items-center font-semibold text-base">
+                      ${form.authorizedAmount}
+                    </div>
                   </div>
-                  {err("authorizedAmount")}
-                </div>
+                ) : (
+                  <div>
+                    <Label className="text-sm font-medium text-gray-700">Total Authorized Amount ($)<span className="text-red-500 ml-0.5">*</span></Label>
+                    <div className="relative mt-1">
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 font-medium">$</span>
+                      <Input
+                        type="text"
+                        placeholder="0.00"
+                        value={form.authorizedAmount}
+                        onChange={e => set("authorizedAmount", e.target.value)}
+                        className={`pl-7 ${errors.authorizedAmount ? "border-red-400" : ""}`}
+                      />
+                    </div>
+                    {err("authorizedAmount")}
+                  </div>
+                )}
 
                 <div>
                   <Label className="text-sm font-medium text-gray-700">Payment Method<span className="text-red-500 ml-0.5">*</span></Label>
@@ -620,7 +669,6 @@ export default function PaymentAuthorization() {
                   <div className="flex justify-between"><span className="text-gray-500">Location</span><span className="font-medium">{form.serviceLocation}</span></div>
                   <div className="flex justify-between border-t pt-2 mt-2"><span className="text-gray-700 font-bold">Total Authorized</span><span className="font-bold text-blue-700 text-base">${form.authorizedAmount}</span></div>
                 </div>
-
               </CardContent>
             </Card>
 
@@ -632,14 +680,14 @@ export default function PaymentAuthorization() {
           </div>
         )}
 
-        {/* Navigation */}
-        <div className="flex justify-between pt-2">
+        {/* Navigation — centered on mobile so it doesn't clash with floating icons */}
+        <div className="flex justify-center sm:justify-between items-center gap-4 pt-2">
           {step > 1 ? (
             <Button variant="outline" onClick={back} className="gap-1">
               <ChevronLeft className="w-4 h-4" /> Back
             </Button>
           ) : (
-            <div />
+            <div className="hidden sm:block" />
           )}
           {step < 3 ? (
             <Button onClick={next} className="gap-1 bg-blue-600 hover:bg-blue-700">

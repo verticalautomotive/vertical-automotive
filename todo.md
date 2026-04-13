@@ -311,3 +311,10 @@
 - [x] Confirmed: form state initialises with empty strings only
 - [x] Fixed: server sendFormLink now sends clean URL with no query params
 - [ ] Save checkpoint
+
+## Payment Form UX Improvements (Round 2)
+- [x] Pre-fill amount, customer info, and vehicle from URL params (read-only display, not editable)
+- [x] Center the Next/Back button on mobile so it does not clash with floating icons
+- [x] Remove the service description field from the authorization form
+- [x] Update server sendFormLink to pass amount, name, vehicle, invoice in URL
+- [ ] Save checkpoint

@@ -759,8 +759,29 @@ export const paymentAuthRouter = router({
         throw new Error("Twilio credentials not configured");
       }
 
-      // Send a clean URL — customers fill the form themselves, no pre-fill
-      const formUrl = `${input.origin}/payment-authorization`;
+      // Build the form URL with pre-fill params for customer/vehicle/amount
+      // Pre-filled fields are shown read-only on the customer form
+      const params = new URLSearchParams();
+      if (input.customerName)     params.set("name",    input.customerName);
+      if (input.customerEmail)    params.set("email",   input.customerEmail);
+      if (input.customerPhone)    params.set("phone",   input.customerPhone);
+      if (input.billingStreet)    params.set("street",  input.billingStreet);
+      if (input.billingCity)      params.set("city",    input.billingCity);
+      if (input.billingState)     params.set("state",   input.billingState);
+      if (input.billingZip)       params.set("zip",     input.billingZip);
+      if (input.vehicleYear)      params.set("year",    input.vehicleYear);
+      if (input.vehicleMake)      params.set("make",    input.vehicleMake);
+      if (input.vehicleModel)     params.set("model",   input.vehicleModel);
+      if (input.licensePlate)     params.set("plate",   input.licensePlate);
+      if (input.vin)              params.set("vin",     input.vin);
+      if (input.mileage)          params.set("mileage", input.mileage);
+      if (input.invoiceNumber)    params.set("invoice", input.invoiceNumber);
+      if (input.authorizedAmount) params.set("amount",  input.authorizedAmount);
+      if (input.serviceLocation)  params.set("location",input.serviceLocation);
+      const qs = params.toString();
+      const formUrl = qs
+        ? `${input.origin}/payment-authorization?${qs}`
+        : `${input.origin}/payment-authorization`;
 
       // Format phone — ensure E.164
       let toPhone = input.phone.replace(/[\s().\-]/g, "");
