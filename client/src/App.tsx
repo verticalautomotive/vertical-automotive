@@ -29,6 +29,7 @@ const AdminConversations = lazy(() => import("./pages/AdminConversations"));
 const AdminEscalations = lazy(() => import("./pages/AdminEscalations"));
 const AdminAuthorizations = lazy(() => import("./pages/AdminAuthorizations"));
 const PaymentAuthorization = lazy(() => import("./pages/PaymentAuthorization"));
+const SendPaymentForm = lazy(() => import("./pages/SendPaymentForm"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function ScrollToTop() {
@@ -84,6 +85,7 @@ function Router() {
 
           {/* Payment Authorization */}
           <Route path="/payment-authorization" component={PaymentAuthorization} />
+          <Route path="/send-payment-form" component={SendPaymentForm} />
 
           {/* Admin routes */}
           <Route path="/admin/conversations" component={AdminConversations} />

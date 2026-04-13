@@ -277,3 +277,7 @@
 - [x] Install Twilio SDK
 - [x] Add sendFormLink tRPC procedure: generate pre-filled URL, send SMS via Twilio
 - [x] Add Send Link button to admin dashboard with phone number display and confirmation
+
+## Send Payment Form Staff Page
+- [x] Build /send-payment-form page with RO URL input, data preview, editable fields, and Send SMS button
+- [x] Register route in App.tsx
