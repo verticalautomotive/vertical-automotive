@@ -51,6 +51,7 @@ export default function SendPaymentForm() {
   const [phone, setPhone] = useState("");
   const [smsSent, setSmsSent] = useState(false);
   const [sentTo, setSentTo] = useState("");
+  const [manualAmount, setManualAmount] = useState("");
 
   const extractMutation = trpc.paymentAuth.extractRo.useMutation({
     onSuccess: (data) => {
@@ -78,6 +79,7 @@ export default function SendPaymentForm() {
       };
       setExtracted(d);
       setPhone(d.customerPhone || "");
+      setManualAmount(d.authorizedAmount || "");
     },
   });
 
@@ -105,7 +107,7 @@ export default function SendPaymentForm() {
       billingState: extracted.billingState,
       billingZip: extracted.billingZip,
       invoiceNumber: extracted.invoiceNumber,
-      authorizedAmount: extracted.authorizedAmount,
+      authorizedAmount: manualAmount || extracted.authorizedAmount,
       serviceDescription: extracted.serviceDescription,
       serviceLocation: extracted.serviceLocation,
       vehicleYear: extracted.vehicleYear,
@@ -124,6 +126,7 @@ export default function SendPaymentForm() {
     setPhone("");
     setSmsSent(false);
     setSentTo("");
+    setManualAmount("");
     extractMutation.reset();
     sendLinkMutation.reset();
   };
@@ -273,9 +276,25 @@ export default function SendPaymentForm() {
                   />
                   <p className="text-xs text-gray-400">Pre-filled from Shop-Ware. Edit if needed before sending.</p>
                 </div>
+                <div className="space-y-1">
+                  <label className="text-sm font-medium text-gray-700 flex items-center gap-1.5">
+                    Total Authorized Amount ($)
+                    {!extracted?.authorizedAmount && <span className="text-amber-600 text-xs font-normal">(not found in RO — enter manually)</span>}
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 font-medium">$</span>
+                    <Input
+                      value={manualAmount}
+                      onChange={e => setManualAmount(e.target.value)}
+                      placeholder="0.00"
+                      className="pl-7 font-mono"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-400">This amount will be pre-filled (read-only) on the customer form.</p>
+                </div>
                 <div className="bg-gray-50 border rounded p-3 text-xs text-gray-600 leading-relaxed">
                   <span className="font-medium text-gray-700 block mb-1">Message preview:</span>
-                  Hi {extracted.customerName?.split(" ")[0] || "there"}! Vertical Automotive has sent you a payment authorization form (RO #{extracted.invoiceNumber}) — Amount: ${extracted.authorizedAmount}. Please review and sign here: [link]. Questions? Call us at (954) 565-1518.
+                  Hi {extracted.customerName?.split(" ")[0] || "there"}! Vertical Automotive has sent you a payment authorization form (RO #{extracted.invoiceNumber}){manualAmount ? ` — Amount: $${manualAmount}` : ""}. Please review and sign here: [link]. Questions? Call us at (954) 565-1518.
                 </div>
                 {sendLinkMutation.error && (
                   <p className="text-xs text-red-600">{sendLinkMutation.error.message}</p>

@@ -411,7 +411,7 @@ const submitSchema = z.object({
   // Service
   serviceLocation: z.enum(["Fort Lauderdale", "Wilton Manors"]),
   invoiceNumber: z.string().min(1),
-  serviceDescription: z.string().min(3),
+  serviceDescription: z.string().optional().default(""),
   authorizedAmount: z.string().min(1),
   paymentMethod: z.enum(["Credit Card", "Debit Card", "Other"]),
   authorizationDate: z.string().min(6),
@@ -776,7 +776,8 @@ export const paymentAuthRouter = router({
       if (input.vin)              params.set("vin",     input.vin);
       if (input.mileage)          params.set("mileage", input.mileage);
       if (input.invoiceNumber)    params.set("invoice", input.invoiceNumber);
-      if (input.authorizedAmount) params.set("amount",  input.authorizedAmount);
+      // Always include amount so the form knows it was intentionally set (even if empty)
+      if (input.authorizedAmount !== undefined) params.set("amount", input.authorizedAmount);
       if (input.serviceLocation)  params.set("location",input.serviceLocation);
       const qs = params.toString();
       const formUrl = qs

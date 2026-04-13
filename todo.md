@@ -318,3 +318,9 @@
 - [x] Remove the service description field from the authorization form
 - [x] Update server sendFormLink to pass amount, name, vehicle, invoice in URL
 - [ ] Save checkpoint
+
+## Payment Form Bug Fixes (Round 3)
+- [x] Fix server: serviceDescription made optional with default empty string
+- [x] Fix amount: server now always passes amount param; staff can manually enter/edit amount before sending SMS
+- [x] Add editable amount field on /send-payment-form step 3 with amber warning when RO has no total
+- [ ] Save checkpoint
