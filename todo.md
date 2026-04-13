@@ -286,3 +286,7 @@
 - [ ] Remove Driver's License field from PaymentAuthorization customer form
 - [ ] Fix phone number extraction mapping in SendPaymentForm (extractRo response shape)
 - [ ] Fix SMS link to pre-fill ALL extracted fields into the customer form via URL params
+
+## Slack Notification + Email Fix
+- [x] Add Slack notification on payment authorization form submission (SLACK_CCAUTH_WEBHOOK_URL)
+- [x] Fix email delivery — replaced SMTP with SendGrid (@sendgrid/mail)

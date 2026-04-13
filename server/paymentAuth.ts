@@ -9,7 +9,7 @@ import { getDb } from "./db";
 import { paymentAuthorizations } from "../drizzle/schema";
 import { eq, desc, like, and, gte, lte, or } from "drizzle-orm";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
-import nodemailer from "nodemailer";
+import sgMail from "@sendgrid/mail";
 import twilio from "twilio";
 import { storagePut } from "./storage";
 import { invokeLLM } from "./_core/llm";
@@ -133,67 +133,113 @@ const LOCATION_EMAILS: Record<string, string> = {
   "Wilton Manors": "contact@verticalautomotive.com",
 };
 
-function getTransporter() {
-  // Uses SMTP env vars if set; falls back to a no-op in dev
-  if (process.env.SMTP_HOST) {
-    return nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT ?? 587),
-      secure: process.env.SMTP_SECURE === "true",
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
-  }
-  // Dev fallback — log only
-  return null;
-}
-
+// ─── SendGrid Email ───────────────────────────────────────────────────────────
 async function sendAuthEmails(record: typeof paymentAuthorizations.$inferSelect, pdfUrl: string) {
-  const transporter = getTransporter();
-  if (!transporter) {
-    console.log("[PaymentAuth] No SMTP configured — skipping email send");
+  const apiKey = process.env.SENDGRID_API_KEY;
+  if (!apiKey) {
+    console.log("[PaymentAuth] No SENDGRID_API_KEY — skipping email send");
     return;
   }
+  sgMail.setApiKey(apiKey);
 
   const subject = `Payment Authorization ${record.referenceNumber} — ${record.fullLegalName}`;
-  const body = `
-Payment Authorization Received
-
-Reference: ${record.referenceNumber}
-Customer: ${record.fullLegalName}
-Email: ${record.email}
-Phone: ${record.phone}
-Invoice: ${record.invoiceNumber}
-Amount: $${record.authorizedAmount}
-Service: ${record.serviceDescription}
-Location: ${record.serviceLocation}
-Signed At: ${new Date(Number(record.signedAt)).toLocaleString()}
-IP Address: ${record.submissionIp ?? "N/A"}
-
-PDF: ${pdfUrl}
+  const htmlBody = `
+    <h2 style="color:#0a78e8">Payment Authorization Received</h2>
+    <table style="border-collapse:collapse;width:100%;font-family:sans-serif;font-size:14px">
+      <tr><td style="padding:6px 12px;font-weight:bold;color:#555">Reference</td><td style="padding:6px 12px">${record.referenceNumber}</td></tr>
+      <tr style="background:#f9f9f9"><td style="padding:6px 12px;font-weight:bold;color:#555">Customer</td><td style="padding:6px 12px">${record.fullLegalName}</td></tr>
+      <tr><td style="padding:6px 12px;font-weight:bold;color:#555">Email</td><td style="padding:6px 12px">${record.email}</td></tr>
+      <tr style="background:#f9f9f9"><td style="padding:6px 12px;font-weight:bold;color:#555">Phone</td><td style="padding:6px 12px">${record.phone}</td></tr>
+      <tr><td style="padding:6px 12px;font-weight:bold;color:#555">Invoice</td><td style="padding:6px 12px">${record.invoiceNumber}</td></tr>
+      <tr style="background:#f9f9f9"><td style="padding:6px 12px;font-weight:bold;color:#555">Amount</td><td style="padding:6px 12px"><strong>$${record.authorizedAmount}</strong></td></tr>
+      <tr><td style="padding:6px 12px;font-weight:bold;color:#555">Service</td><td style="padding:6px 12px">${record.serviceDescription}</td></tr>
+      <tr style="background:#f9f9f9"><td style="padding:6px 12px;font-weight:bold;color:#555">Location</td><td style="padding:6px 12px">${record.serviceLocation}</td></tr>
+      <tr><td style="padding:6px 12px;font-weight:bold;color:#555">Signed At</td><td style="padding:6px 12px">${new Date(Number(record.signedAt)).toLocaleString()}</td></tr>
+      <tr style="background:#f9f9f9"><td style="padding:6px 12px;font-weight:bold;color:#555">IP Address</td><td style="padding:6px 12px">${record.submissionIp ?? "N/A"}</td></tr>
+    </table>
+    <p style="margin-top:16px"><a href="${pdfUrl}" style="background:#0a78e8;color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:bold">Download Signed PDF</a></p>
   `.trim();
 
-  const recipients = [
-    record.email,
-    LOCATION_EMAILS[record.serviceLocation] ?? "contact@verticalautomotive.com",
-    "ftlauderdale@verticalautomotive.com",
-    "contact@verticalautomotive.com",
-  ].filter((v, i, a) => a.indexOf(v) === i); // dedupe
+  const shopEmail = LOCATION_EMAILS[record.serviceLocation] ?? "contact@verticalautomotive.com";
+  const recipients = [record.email, shopEmail].filter((v, i, a) => a.indexOf(v) === i);
 
   for (const to of recipients) {
     try {
-      await transporter.sendMail({
-        from: '"Vertical Automotive" <noreply@verticalautomotive.com>',
+      await sgMail.send({
         to,
+        from: { email: "noreply@verticalautomotive.com", name: "Vertical Automotive" },
         subject,
-        text: body,
-        attachments: [{ filename: `${record.referenceNumber}.pdf`, path: pdfUrl }],
+        html: htmlBody,
+        text: `Payment Authorization ${record.referenceNumber} for ${record.fullLegalName} — $${record.authorizedAmount}. PDF: ${pdfUrl}`,
       });
+      console.log(`[PaymentAuth] Email sent to ${to}`);
     } catch (err) {
       console.error(`[PaymentAuth] Failed to send email to ${to}:`, err);
     }
+  }
+}
+
+// ─── Slack Notification ───────────────────────────────────────────────────────
+async function sendSlackNotification(record: typeof paymentAuthorizations.$inferSelect, pdfUrl: string) {
+  const webhookUrl = process.env.SLACK_CCAUTH_WEBHOOK_URL;
+  if (!webhookUrl) {
+    console.log("[PaymentAuth] No SLACK_CCAUTH_WEBHOOK_URL — skipping Slack notification");
+    return;
+  }
+
+  const signedAt = new Date(Number(record.signedAt)).toLocaleString("en-US", { timeZone: "America/New_York" });
+
+  const payload = {
+    text: `✅ *New Payment Authorization Signed*`,
+    blocks: [
+      {
+        type: "header",
+        text: { type: "plain_text", text: "✅ New Payment Authorization Signed", emoji: true },
+      },
+      {
+        type: "section",
+        fields: [
+          { type: "mrkdwn", text: `*Reference:*\n${record.referenceNumber}` },
+          { type: "mrkdwn", text: `*Amount:*\n$${record.authorizedAmount}` },
+          { type: "mrkdwn", text: `*Customer:*\n${record.fullLegalName}` },
+          { type: "mrkdwn", text: `*Location:*\n${record.serviceLocation}` },
+          { type: "mrkdwn", text: `*Invoice:*\n${record.invoiceNumber}` },
+          { type: "mrkdwn", text: `*Signed At:*\n${signedAt} ET` },
+          { type: "mrkdwn", text: `*Phone:*\n${record.phone}` },
+          { type: "mrkdwn", text: `*Email:*\n${record.email}` },
+        ],
+      },
+      {
+        type: "section",
+        text: { type: "mrkdwn", text: `*Service:* ${record.serviceDescription}` },
+      },
+      {
+        type: "actions",
+        elements: [
+          {
+            type: "button",
+            text: { type: "plain_text", text: "📄 View Signed PDF", emoji: true },
+            url: pdfUrl,
+            style: "primary",
+          },
+        ],
+      },
+    ],
+  };
+
+  try {
+    const resp = await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!resp.ok) {
+      console.error(`[PaymentAuth] Slack webhook failed: ${resp.status}`);
+    } else {
+      console.log("[PaymentAuth] Slack notification sent");
+    }
+  } catch (err) {
+    console.error("[PaymentAuth] Slack notification error:", err);
   }
 }
 
@@ -470,8 +516,11 @@ export const paymentAuthRouter = router({
         console.error("[PaymentAuth] PDF generation failed:", err);
       }
 
-      // Send emails (non-blocking)
+      // Send emails via SendGrid (non-blocking)
       sendAuthEmails(inserted, pdfUrl ?? "PDF generation failed").catch(console.error);
+
+      // Send Slack notification (non-blocking)
+      sendSlackNotification(inserted, pdfUrl ?? "PDF generation failed").catch(console.error);
 
       return {
         success: true,
