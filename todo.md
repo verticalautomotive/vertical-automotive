@@ -184,12 +184,12 @@
 - [ ] Lazy-load below-fold images
 - [ ] Reduce unused JavaScript (code splitting / dynamic imports)
 - [ ] Fix font loading (font-display: swap, preconnect)
-- [ ] Save checkpoint
+- [x] Save checkpoint
 
 ## Logo Fix (Broken after CDN migration)
 - [x] Diagnose broken logo CDN URL (CDN served SVG as application/octet-stream)
 - [x] Fix logo: moved SVG to client/public, served via app with correct MIME type
-- [ ] Save checkpoint
+- [x] Save checkpoint
 
 ## European Cars Gallery
 - [x] Copy 6 Euro car photos to webdev-static-assets and upload to CDN
@@ -299,34 +299,47 @@
 ## Email Delivery Fix
 - [x] Diagnose SendGrid email failure — noreply@ was not a verified sender
 - [x] Fix root cause — switched from address to service@verticalautomotive.com
-- [ ] Save checkpoint
+- [x] Save checkpoint
 
 ## Email From Address Fix
 - [x] Change SendGrid from address from noreply@ to service@verticalautomotive.com (verified sender)
 - [x] Test email delivery end-to-end — HTTP 202 confirmed
-- [ ] Save checkpoint
+- [x] Save checkpoint
 
 ## Customer Form Auto-Fill (Complete Removal)
 - [x] Confirmed: PaymentAuthorization.tsx has zero URL param reading
 - [x] Confirmed: form state initialises with empty strings only
 - [x] Fixed: server sendFormLink now sends clean URL with no query params
-- [ ] Save checkpoint
+- [x] Save checkpoint
 
 ## Payment Form UX Improvements (Round 2)
 - [x] Pre-fill amount, customer info, and vehicle from URL params (read-only display, not editable)
 - [x] Center the Next/Back button on mobile so it does not clash with floating icons
 - [x] Remove the service description field from the authorization form
 - [x] Update server sendFormLink to pass amount, name, vehicle, invoice in URL
-- [ ] Save checkpoint
+- [x] Save checkpoint
 
 ## Payment Form Bug Fixes (Round 3)
 - [x] Fix server: serviceDescription made optional with default empty string
 - [x] Fix amount: server now always passes amount param; staff can manually enter/edit amount before sending SMS
 - [x] Add editable amount field on /send-payment-form step 3 with amber warning when RO has no total
-- [ ] Save checkpoint
+- [x] Save checkpoint
 
 ## RO Total Extraction Fix
 - [x] Expanded WO type to include all financial fields
 - [x] Added dedicated /work_order_financial API call with debug logging
 - [x] Resolution chain now checks 10 possible locations in priority order
-- [ ] Save checkpoint
+- [x] Save checkpoint
+
+## Service Estimate Comparison Tool (TurboBunny)
+- [x] DB schema: estimates, estimate_options, estimate_line_items tables
+- [x] tRPC procedures: createEstimate, getEstimate, updateEstimate, listEstimates, approveEstimate, trackView
+- [x] Staff builder page: /estimate-comparison/new
+- [x] Customer comparison view: /estimate-comparison/[id] (dark premium UI)
+- [x] Approval flow: confirm modal + signature capture + shop notification
+- [x] Admin panel: /admin/estimates with status tracking
+- [x] AI features: aiGenerateOptions, aiSellingPoints (server-side LLM)
+- [x] White-label: no hardcoded branding
+- [x] Mobile-first responsive design
+- [x] Register all routes in App.tsx
+- [x] Save checkpoint

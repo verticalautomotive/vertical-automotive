@@ -1,0 +1,62 @@
+CREATE TABLE `estimate_line_items` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`optionId` int NOT NULL,
+	`sortOrder` int NOT NULL DEFAULT 1,
+	`description` varchar(512) NOT NULL,
+	`partQuality` enum('Aftermarket','OEM','Premium') DEFAULT 'OEM',
+	`laborHours` varchar(16),
+	`partCostCents` int NOT NULL DEFAULT 0,
+	`laborCostCents` int NOT NULL DEFAULT 0,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	CONSTRAINT `estimate_line_items_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
+CREATE TABLE `estimate_options` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`estimateId` int NOT NULL,
+	`sortOrder` int NOT NULL DEFAULT 1,
+	`name` varchar(64) NOT NULL,
+	`badge` varchar(64),
+	`isRecommended` int NOT NULL DEFAULT 0,
+	`taxRate` varchar(8) DEFAULT '0',
+	`warranty` varchar(256),
+	`completionTime` varchar(128),
+	`sellingPoints` text,
+	`subtotalCents` int NOT NULL DEFAULT 0,
+	`totalCents` int NOT NULL DEFAULT 0,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	CONSTRAINT `estimate_options_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
+CREATE TABLE `estimates` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`publicId` varchar(32) NOT NULL,
+	`status` enum('draft','sent','viewed','approved') NOT NULL DEFAULT 'draft',
+	`customerName` varchar(256) NOT NULL,
+	`customerPhone` varchar(32),
+	`customerEmail` varchar(320),
+	`vehicleYear` varchar(8),
+	`vehicleMake` varchar(64),
+	`vehicleModel` varchar(64),
+	`vin` varchar(32),
+	`jobTitle` varchar(256) NOT NULL,
+	`advisorName` varchar(128),
+	`location` varchar(128),
+	`dealerPrice` varchar(32),
+	`builderPassword` varchar(128),
+	`tenantName` varchar(128),
+	`tenantLogo` text,
+	`tenantPhone` varchar(32),
+	`tenantColor` varchar(16),
+	`viewCount` int NOT NULL DEFAULT 0,
+	`lastViewedAt` timestamp,
+	`approvedOptionId` int,
+	`approvedAt` timestamp,
+	`approvalSignature` text,
+	`approvalSignatureName` varchar(256),
+	`approvalIp` varchar(64),
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `estimates_id` PRIMARY KEY(`id`),
+	CONSTRAINT `estimates_publicId_unique` UNIQUE(`publicId`)
+);

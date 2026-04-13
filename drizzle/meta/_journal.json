@@ -50,6 +50,13 @@
       "when": 1776103708578,
       "tag": "0006_windy_impossible_man",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1776117569846,
+      "tag": "0007_polite_spiral",
+      "breakpoints": true
     }
   ]
 }
