@@ -78,6 +78,17 @@ export default function OffersPage() {
         subtitle={t.subtitle}
       />
 
+      {/* SEO Intro Section */}
+      <section className="py-6 sm:py-12 bg-accent/5 border-b border-border">
+        <div className="container max-w-3xl">
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            {isSpanish
+              ? "Busca ofertas de reparación de autos cerca de ti en Fort Lauderdale? Vertical Automotive ofrece cupones exclusivos y descuentos en servicios de reparación de autos. Desde cambios de aceite económicos hasta inspecciones de frenos gratis, nuestras promociones te ayudan a ahorrar en mantenimiento de vehículos de calidad."
+              : "Looking for auto repair deals near you in Fort Lauderdale? Vertical Automotive offers exclusive coupons and discounts on auto service & repairs. From budget-friendly oil changes to free brake inspections, our promotions help you save on quality vehicle maintenance."}
+          </p>
+        </div>
+      </section>
+
       {/* Current Offers */}
       <section className="py-10 sm:py-20 bg-background">
         <div className="container">

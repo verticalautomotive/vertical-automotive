@@ -350,3 +350,13 @@
 - [x] Add consent-aware analytics tracking (respect user preferences in gtag config)
 - [x] Update index.html gtag to check localStorage on load
 - [ ] Save checkpoint
+
+## SEO Refinement Improvements (Phase 2)
+- [x] Rewrite all title tags: [Primary Keyword] Fort Lauderdale | [Value] | Vertical Automotive (max 60 chars)
+- [x] Rewrite all H1s with varied structure (no repetition, removed "& Wilton Manors")
+- [x] Add Related Services sections (3-5 links per page, keyword anchors) — RelatedServices component created
+- [x] Add FAQ sections (3-5 questions per page with schema) — ServiceFAQ already renders with FAQPage schema
+- [x] Add "near me" keywords naturally in FAQ answers
+- [x] Upgrade Offers page with SEO intro paragraph (bilingual, targets "auto repair deals near me")
+- [x] TypeScript validation: 0 errors
+- [ ] Save checkpoint

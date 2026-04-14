@@ -19,12 +19,13 @@ import ServiceIcon from "@/components/ServiceIcon";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackSchedule } from "@/lib/gtm";
 import ServiceFAQ from "@/components/ServiceFAQ";
+import { RelatedServices, RELATED_SERVICES } from "@/components/RelatedServices";
 
 // Per-slug SEO overrides for high-value service pages
 // Per-slug H1 overrides (Phase 2 — unique, keyword-rich H1s)
 const SERVICE_H1: Record<string, { h1: string; h1Es: string }> = {
   "brake-system": {
-    h1: "Professional Brake Repair & Replacement in Fort Lauderdale",
+    h1: "Expert Brake Repair & Replacement in Fort Lauderdale",
     h1Es: "Reparación y Reemplazo de Frenos Profesional en Fort Lauderdale",
   },
   "alignment-tire-rotation-balancing": {
@@ -32,11 +33,11 @@ const SERVICE_H1: Record<string, { h1: string; h1Es: string }> = {
     h1Es: "Alineación, Rotación y Balanceo de Neumáticos en Fort Lauderdale",
   },
   "battery-cranking-charging-systems": {
-    h1: "Battery & Charging System Service in Fort Lauderdale & Wilton Manors",
+    h1: "Battery & Charging System Service in Fort Lauderdale",
     h1Es: "Servicio de Batería y Sistema de Carga en Fort Lauderdale",
   },
   "hybrids-ev": {
-    h1: "Hybrid & Electric Vehicle Repair in Fort Lauderdale & Wilton Manors",
+    h1: "Hybrid & Electric Vehicle Repair in Fort Lauderdale",
     h1Es: "Reparación de Híbridos y Eléctricos en Fort Lauderdale y Wilton Manors",
   },
 };
@@ -49,55 +50,55 @@ const SERVICE_SEO: Record<string, { title: string; titleEs: string; description:
     descriptionEs: "Reparación profesional de frenos en Fort Lauderdale y Wilton Manors. Pastillas, rotores, calibradores y purga de líquido. Todas las marcas. Garantía 3 años. Inspección gratis. Reserve hoy.",
   },
   "a-c-maintenance-repair": {
-    title: "A/C Repair Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    title: "A/C Repair Fort Lauderdale | Recharge & Service | Vertical Automotive",
     titleEs: "Reparación de Aire Acondicionado Fort Lauderdale | Vertical Automotive",
     description: "Auto A/C repair in Fort Lauderdale & Wilton Manors. Recharge, compressor, condenser & leak repair for all makes. ASE-certified, 36,000-mile / 36-month warranty. Call (954) 565-1518.",
     descriptionEs: "Reparación de aire acondicionado en Fort Lauderdale y Wilton Manors. Recarga, compresor, condensador para todas las marcas. Certificados ASE. Llame al (954) 565-1518.",
   },
   "oil-change-engine-service": {
-    title: "Oil Change Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    title: "Oil Change Fort Lauderdale | Synthetic & Conventional | Vertical Automotive",
     titleEs: "Cambio de Aceite Fort Lauderdale y Wilton Manors | Vertical Automotive",
     description: "Fast oil change & engine service in Fort Lauderdale & Wilton Manors. Conventional, synthetic & high-mileage oil for all makes. ASE-certified. Call (954) 565-1518.",
     descriptionEs: "Cambio de aceite rápido en Fort Lauderdale y Wilton Manors. Aceite convencional, sintético y alto kilometraje para todas las marcas. Certificados ASE. (954) 565-1518.",
   },
   "transmission": {
-    title: "Transmission Repair Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    title: "Transmission Repair Fort Lauderdale | All Makes | Vertical Automotive",
     titleEs: "Reparación de Transmisión Fort Lauderdale | Vertical Automotive",
     description: "Transmission repair & service in Fort Lauderdale & Wilton Manors. Automatic, manual & CVT for all makes. ASE-certified mechanics, 36,000-mile / 36-month warranty. Call (954) 565-1518.",
     descriptionEs: "Reparación de transmisión en Fort Lauderdale y Wilton Manors. Automática, manual y CVT para todas las marcas. Certificados ASE, garantía 3 años. (954) 565-1518.",
   },
   "alignment-tire-rotation-balancing": {
-    title: "Wheel Alignment Fort Lauderdale | Tire Rotation & Balancing",
+    title: "Wheel Alignment Fort Lauderdale | Tire Service | Vertical Automotive",
     titleEs: "Alineación de Ruedas Fort Lauderdale | Rotación y Balanceo",
     description: "Precision wheel alignment, tire rotation & balancing in Fort Lauderdale & Wilton Manors. All makes & models including Tesla & EV. ASE-certified. Competitive pricing. Schedule online today.",
     descriptionEs: "Alineación de ruedas, rotación y balanceo en Fort Lauderdale y Wilton Manors. Todas las marcas incluyendo Tesla y EV. Certificados ASE. Precios competitivos. Reserve en línea hoy.",
   },
   "steering-suspension": {
-    title: "Suspension Repair Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    title: "Suspension Repair Fort Lauderdale | Shocks & Struts | Vertical Automotive",
     titleEs: "Reparación de Suspensión Fort Lauderdale | Vertical Automotive",
     description: "Steering & suspension repair in Fort Lauderdale & Wilton Manors. Shocks, struts, control arms & alignment for all makes. ASE-certified. Call (954) 565-1518.",
     descriptionEs: "Reparación de dirección y suspensión en Fort Lauderdale y Wilton Manors. Amortiguadores, brazos de control para todas las marcas. Certificados ASE. (954) 565-1518.",
   },
   "hybrids-ev": {
-    title: "Hybrid & EV Repair Fort Lauderdale | Prius, Volt & All Hybrids",
+    title: "Hybrid & EV Repair Fort Lauderdale | Tesla Specialists | Vertical Automotive",
     titleEs: "Reparación Híbridos y Eléctricos Fort Lauderdale | Prius, Volt y Más",
     description: "Hybrid and electric vehicle repair in Fort Lauderdale & Wilton Manors. Toyota Prius, Honda Hybrid, Chevy Volt & all hybrid makes. ASE-certified EV specialists. 3-year warranty. Book today.",
     descriptionEs: "Reparación de vehículos híbridos y eléctricos en Fort Lauderdale y Wilton Manors. Toyota Prius, Honda Hybrid, Chevy Volt y todas las marcas híbridas. Especialistas ASE en EV. Garantía 3 años. Reserve hoy.",
   },
   "battery-cranking-charging-systems": {
-    title: "Car Battery Replacement Fort Lauderdale | All Makes & EVs",
+    title: "Battery Replacement Fort Lauderdale | EV & All Makes | Vertical Automotive",
     titleEs: "Reemplazo de Batería Fort Lauderdale | Todas las Marcas y EVs",
     description: "Car battery replacement & charging system repair in Fort Lauderdale & Wilton Manors. All makes including Tesla & EV. Fast same-day service, ASE-certified, 3-year warranty. Book today.",
     descriptionEs: "Reemplazo de batería y reparación del sistema de carga en Fort Lauderdale y Wilton Manors. Todas las marcas incluyendo Tesla y EV. Servicio rápido el mismo día, ASE certificados, garantía 3 años. Reserve hoy.",
   },
   "fleet-maintenance-repairs": {
-    title: "Fleet Maintenance Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    title: "Fleet Maintenance Fort Lauderdale | Commercial Service | Vertical Automotive",
     titleEs: "Mantenimiento de Flota Fort Lauderdale | Vertical Automotive",
     description: "Fleet maintenance & repair in Fort Lauderdale & Wilton Manors. Scheduled service, diagnostics & repairs for commercial fleets. ASE-certified. Call (954) 565-1518.",
     descriptionEs: "Mantenimiento y reparación de flotas en Fort Lauderdale y Wilton Manors. Servicio programado y diagnóstico para flotas comerciales. Certificados ASE. (954) 565-1518.",
   },
   "complete-diagnostics": {
-    title: "Auto Diagnostics Fort Lauderdale & Wilton Manors | Vertical Automotive",
+    title: "Engine Diagnostics Fort Lauderdale | Computer Scan | Vertical Automotive",
     titleEs: "Diagnóstico Automotriz Fort Lauderdale | Vertical Automotive",
     description: "Complete auto diagnostics in Fort Lauderdale & Wilton Manors. Advanced computer diagnostics for all makes & models. ASE-certified, 36,000-mile / 36-month warranty. Call (954) 565-1518.",
     descriptionEs: "Diagnóstico automotriz completo en Fort Lauderdale y Wilton Manors. Diagnóstico computarizado avanzado para todas las marcas. Certificados ASE. (954) 565-1518.",

@@ -63,7 +63,7 @@ export const SERVICE_FAQS: Record<string, FAQItem[]> = {
     },
     {
       question: "How much does a transmission repair cost in Fort Lauderdale?",
-      answer: "Transmission repair costs vary widely: a fluid service runs $150–$300, solenoid or sensor replacement $200–$600, and a full rebuild $2,000–$4,500 depending on the vehicle. Our diagnostic-first approach ensures an accurate assessment so you know exactly what's needed before any work begins.",
+      answer: "Need transmission repair near me in Fort Lauderdale? Transmission repair costs vary widely: a fluid service runs $150–$300, solenoid or sensor replacement $200–$600, and a full rebuild $2,000–$4,500 depending on the vehicle. Our diagnostic-first approach ensures an accurate assessment so you know exactly what's needed before any work begins.",
     },
     {
       question: "How often should I change my transmission fluid?",
