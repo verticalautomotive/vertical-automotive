@@ -428,3 +428,10 @@
 - [x] Test Spanish city pages (both cities verified)
 - [x] Fix hero/CTA buttons to show Spanish text on /es/ pages
 - [ ] Save checkpoint
+
+## Fix Homepage LocalBusiness JSON-LD Schema (Google Search Console Error)
+- [x] Remove old combined LocalBusiness schema blocks from index.html (lines 79-145)
+- [x] Two separate JSON-LD blocks now rendered by Home.tsx with unique @id per location
+- [x] Verified: exactly 2 blocks — #wilton-manors (954-565-1518) and #fort-lauderdale (645-216-2266)
+- [x] Each block has: unique @id, unique telephone, unique address, hasOfferCatalog, foundingDate
+- [ ] Save checkpoint
