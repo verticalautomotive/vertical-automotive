@@ -318,55 +318,7 @@ export default function Navigation() {
             </button>
             {mobileServiceOpen && (
               <div className="pb-2 border-b border-border/30">
-                <div className="space-y-3 py-2">
-                  {/* FORT LAUDERDALE */}
-                  <div>
-                    <h4 className="text-xs font-display font-bold tracking-wider uppercase text-primary mb-2">Fort Lauderdale</h4>
-                    <p className="text-xs text-secondary-foreground/70 mb-2">(645) 216-2266</p>
-                    <div className="space-y-1 pl-2">
-                      <Link href="/fort-lauderdale/tesla-ev-repair" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Tesla & EV Repair</Link>
-                      <Link href="/fort-lauderdale/european-vehicle-repair" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>European Vehicle Service</Link>
-                      <Link href="/fort-lauderdale/asian-vehicle-repair" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Asian Vehicle Service</Link>
-                      <Link href="/fort-lauderdale/domestic-vehicle-repair" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Domestic Vehicle Service</Link>
-                      <Link href="/fort-lauderdale/brake-repair" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Brake & Rotor Service</Link>
-                      <Link href="/fort-lauderdale/transmission-service" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Transmission Service</Link>
-                      <Link href="/fort-lauderdale/ac-repair" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>A/C Repair & Maintenance</Link>
-                      <Link href="/fort-lauderdale/engine-oil-service" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Engine, Oil & Filters</Link>
-                      <Link href="/fort-lauderdale/complete-diagnostics" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Complete Diagnostics</Link>
-                      <Link href="/fort-lauderdale/routine-maintenance" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Routine Maintenance</Link>
-                      <Link href="/fort-lauderdale/steering-suspension" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Steering & Suspension</Link>
-                      <Link href="/fort-lauderdale/fuel-system-service" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Fuel System Service</Link>
-                      <Link href="/fort-lauderdale/hybrid-ev-service" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Hybrid & EV Service</Link>
-                      <Link href="/fort-lauderdale/wheel-alignment" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Wheel Alignment</Link>
-                      <Link href="/fort-lauderdale/battery-charging-systems" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Battery & Charging Systems</Link>
-                      <Link href="/fort-lauderdale/fleet-services" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Fleet Services</Link>
-                    </div>
-                  </div>
-
-                  {/* WILTON MANORS */}
-                  <div className="pt-2 border-t border-border/30">
-                    <h4 className="text-xs font-display font-bold tracking-wider uppercase text-primary mb-2">Wilton Manors</h4>
-                    <p className="text-xs text-secondary-foreground/70 mb-2">(954) 565-1518</p>
-                    <div className="space-y-1 pl-2">
-                      <Link href="/wilton-manors/tesla-ev-repair" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Tesla & EV Repair</Link>
-                      <Link href="/wilton-manors/european-vehicle-repair" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>European Vehicle Service</Link>
-                      <Link href="/wilton-manors/asian-vehicle-repair" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Asian Vehicle Service</Link>
-                      <Link href="/wilton-manors/domestic-vehicle-repair" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Domestic Vehicle Service</Link>
-                      <Link href="/wilton-manors/brake-repair" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Brake & Rotor Service</Link>
-                      <Link href="/wilton-manors/transmission-service" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Transmission Service</Link>
-                      <Link href="/wilton-manors/ac-repair" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>A/C Repair & Maintenance</Link>
-                      <Link href="/wilton-manors/engine-oil-service" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Engine, Oil & Filters</Link>
-                      <Link href="/wilton-manors/complete-diagnostics" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Complete Diagnostics</Link>
-                      <Link href="/wilton-manors/routine-maintenance" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Routine Maintenance</Link>
-                      <Link href="/wilton-manors/steering-suspension" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Steering & Suspension</Link>
-                      <Link href="/wilton-manors/fuel-system-service" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Fuel System Service</Link>
-                      <Link href="/wilton-manors/hybrid-ev-service" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Hybrid & EV Service</Link>
-                      <Link href="/wilton-manors/wheel-alignment" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Wheel Alignment</Link>
-                      <Link href="/wilton-manors/battery-charging-systems" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Battery & Charging Systems</Link>
-                      <Link href="/wilton-manors/fleet-services" className="block py-1 text-sm text-secondary-foreground/70 hover:text-primary" onClick={() => setMobileOpen(false)}>Fleet Services</Link>
-                    </div>
-                  </div>
-                </div>
+                <CityServicesMegaMenu onClose={() => { setMobileServiceOpen(false); setMobileOpen(false); }} />
               </div>
             )}
 

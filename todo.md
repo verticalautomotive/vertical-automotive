@@ -385,4 +385,4 @@
 - [x] Add cross-location banners to city service pages
 - [x] Test all navigation updates
 - [x] Mobile accordion: two location buttons with smooth expand/collapse animation
-- [ ] Save checkpoint
+- [x] Save checkpoint
