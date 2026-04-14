@@ -466,11 +466,11 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Desktop: 5-col full cards */}
+          {/* Desktop: 5-col full cards with location buttons */}
           <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {services.map((service) => (
-              <Link key={service.slug} href={`${servicesPath}/${service.slug}`}>
-                <div className="glass-wrap h-full">
+              <div key={service.slug} className="glass-wrap h-full flex flex-col">
+                <Link href={`${servicesPath}/${service.slug}`} className="flex-1">
                   <Card
                     className="glass-card p-6 group cursor-pointer h-full flex flex-col items-center justify-center text-center border border-transparent hover:border-[#8B0000] transition-all duration-300"
                   >
@@ -479,8 +479,21 @@ export default function Home() {
                     </div>
                     <h3 className="text-lg font-bold group-hover:text-[#8B0000] transition-colors leading-tight relative z-[2]">{service.shortTitle}</h3>
                   </Card>
+                </Link>
+                {/* Location buttons */}
+                <div className="flex gap-2 mt-3">
+                  <Link href={`/fort-lauderdale/${service.slug}`} className="flex-1">
+                    <Button size="sm" variant="outline" className="w-full text-xs font-bold">
+                      Fort Lauderdale
+                    </Button>
+                  </Link>
+                  <Link href={`/wilton-manors/${service.slug}`} className="flex-1">
+                    <Button size="sm" variant="outline" className="w-full text-xs font-bold">
+                      Wilton Manors
+                    </Button>
+                  </Link>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>

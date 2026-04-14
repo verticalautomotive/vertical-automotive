@@ -376,3 +376,12 @@
 - [x] Update sitemap.xml with all 32 city service pages
 - [x] Validate schemas with browser console (6 schemas found: 4 AutoRepair, 1 FAQPage, 1 BreadcrumbList)
 - [ ] Save checkpoint
+
+## Navigation Integration for 32 City Pages
+- [x] Update SERVICE dropdown with two-column mega menu (Fort Lauderdale + Wilton Manors)
+- [x] Add location buttons to homepage service cards
+- [x] Update footer with two-column location-specific service links
+- [x] Update sitemap.xml with all 32 city page URLs
+- [x] Add cross-location banners to city service pages
+- [x] Test all navigation updates
+- [ ] Save checkpoint

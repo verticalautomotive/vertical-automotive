@@ -361,6 +361,39 @@ export default function CityServicePage() {
         </div>
       </section>
 
+      {/* Cross-Location Banner */}
+      <section className="py-8 sm:py-12 bg-secondary text-secondary-foreground border-t border-border">
+        <div className="container max-w-5xl">
+          {normalizedCity === "fort-lauderdale" ? (
+            <div className="text-center">
+              <p className="text-sm sm:text-base mb-3">
+                {isSpanish
+                  ? "También disponible en nuestra ubicación de Wilton Manors"
+                  : "Also available at our Wilton Manors location"}
+              </p>
+              <Link href={`/wilton-manors/${service}`}>
+                <Button variant="outline" className="text-xs sm:text-sm">
+                  {isSpanish ? "Ver en Wilton Manors" : "View in Wilton Manors"} — (954) 565-1518
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <div className="text-center">
+              <p className="text-sm sm:text-base mb-3">
+                {isSpanish
+                  ? "También disponible en nuestra ubicación de Fort Lauderdale"
+                  : "Also available at our Fort Lauderdale location"}
+              </p>
+              <Link href={`/fort-lauderdale/${service}`}>
+                <Button variant="outline" className="text-xs sm:text-sm">
+                  {isSpanish ? "Ver en Fort Lauderdale" : "View in Fort Lauderdale"} — (645) 216-2266
+                </Button>
+              </Link>
+            </div>
+          )}
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

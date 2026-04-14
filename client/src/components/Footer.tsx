@@ -9,6 +9,7 @@ import { COMPANY, LOCATIONS } from "@/lib/data";
 import { MapPin, Phone, Clock, Shield, Instagram, Facebook, ExternalLink, Navigation2 } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackCall, trackDirections } from "@/lib/gtm";
+import { Link } from "wouter";
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -109,12 +110,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Wilton Manors — desktop only */}
+          {/* Wilton Manors Services — desktop only */}
           <div className="hidden sm:block">
-            <h3 className="font-display text-lg font-bold tracking-wider mb-6 text-primary">
+            <h3 className="font-display text-lg font-bold tracking-wider mb-4 text-primary">
               WILTON MANORS
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2 mb-4">
               <a
                 href={getMapsUrl(LOCATIONS[0])}
                 target="_blank"
@@ -123,41 +124,37 @@ export default function Footer() {
               >
                 <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
-                  <p className="text-sm group-hover:text-primary transition-colors">{LOCATIONS[0].address}</p>
-                  <p className="text-sm text-muted-foreground group-hover:text-primary transition-colors">
-                    {LOCATIONS[0].city}
-                  </p>
+                  <p className="text-xs group-hover:text-primary transition-colors">{LOCATIONS[0].address}</p>
                 </div>
               </a>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                 <a
                   href={`tel:${LOCATIONS[0].phoneRaw}`}
-                  className="mono-number text-sm font-medium hover:text-primary transition-colors"
+                  className="mono-number text-xs font-medium hover:text-primary transition-colors"
                   onClick={() => trackCall("Wilton Manors", LOCATIONS[0].phone, "footer")}
                 >
                   {LOCATIONS[0].phone}
                 </a>
               </div>
-              <a
-                href={getDirectionsUrl(LOCATIONS[0])}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs text-primary/70 hover:text-primary transition-colors mt-1"
-                onClick={() => trackDirections("Wilton Manors", "footer")}
-              >
-                <Navigation2 className="w-3 h-3" />
-                {isSpanish ? "Direcciones" : "Get Directions"}
-              </a>
+            </div>
+            {/* Service Links */}
+            <div className="text-xs space-y-1">
+              <Link href="/wilton-manors/tesla-ev-repair" className="block hover:text-primary transition-colors">Tesla & EV Repair</Link>
+              <Link href="/wilton-manors/brake-repair" className="block hover:text-primary transition-colors">Brake Service</Link>
+              <Link href="/wilton-manors/transmission-service" className="block hover:text-primary transition-colors">Transmission</Link>
+              <Link href="/wilton-manors/ac-repair" className="block hover:text-primary transition-colors">A/C Repair</Link>
+              <Link href="/wilton-manors/engine-oil-service" className="block hover:text-primary transition-colors">Engine & Oil</Link>
+              <Link href="/wilton-manors/complete-diagnostics" className="block hover:text-primary transition-colors">Diagnostics</Link>
             </div>
           </div>
 
-          {/* Fort Lauderdale — desktop only */}
+          {/* Fort Lauderdale Services — desktop only */}
           <div className="hidden sm:block">
-            <h3 className="font-display text-lg font-bold tracking-wider mb-6 text-primary">
+            <h3 className="font-display text-lg font-bold tracking-wider mb-4 text-primary">
               FT. LAUDERDALE
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2 mb-4">
               <a
                 href={getMapsUrl(LOCATIONS[1])}
                 target="_blank"
@@ -166,32 +163,28 @@ export default function Footer() {
               >
                 <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
-                  <p className="text-sm group-hover:text-primary transition-colors">{LOCATIONS[1].address}</p>
-                  <p className="text-sm text-muted-foreground group-hover:text-primary transition-colors">
-                    {LOCATIONS[1].city}
-                  </p>
+                  <p className="text-xs group-hover:text-primary transition-colors">{LOCATIONS[1].address}</p>
                 </div>
               </a>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                 <a
                   href={`tel:${LOCATIONS[1].phoneRaw}`}
-                  className="mono-number text-sm font-medium hover:text-primary transition-colors"
+                  className="mono-number text-xs font-medium hover:text-primary transition-colors"
                   onClick={() => trackCall("Fort Lauderdale", LOCATIONS[1].phone, "footer")}
                 >
                   {LOCATIONS[1].phone}
                 </a>
               </div>
-              <a
-                href={getDirectionsUrl(LOCATIONS[1])}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs text-primary/70 hover:text-primary transition-colors mt-1"
-                onClick={() => trackDirections("Fort Lauderdale", "footer")}
-              >
-                <Navigation2 className="w-3 h-3" />
-                {isSpanish ? "Direcciones" : "Get Directions"}
-              </a>
+            </div>
+            {/* Service Links */}
+            <div className="text-xs space-y-1">
+              <Link href="/fort-lauderdale/tesla-ev-repair" className="block hover:text-primary transition-colors">Tesla & EV Repair</Link>
+              <Link href="/fort-lauderdale/brake-repair" className="block hover:text-primary transition-colors">Brake Service</Link>
+              <Link href="/fort-lauderdale/transmission-service" className="block hover:text-primary transition-colors">Transmission</Link>
+              <Link href="/fort-lauderdale/ac-repair" className="block hover:text-primary transition-colors">A/C Repair</Link>
+              <Link href="/fort-lauderdale/engine-oil-service" className="block hover:text-primary transition-colors">Engine & Oil</Link>
+              <Link href="/fort-lauderdale/complete-diagnostics" className="block hover:text-primary transition-colors">Diagnostics</Link>
             </div>
           </div>
 
