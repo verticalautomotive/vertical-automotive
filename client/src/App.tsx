@@ -1,6 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Route, Switch } from "wouter";
+import { Route, Switch, Redirect } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import StructuredData from "./components/StructuredData";
@@ -70,7 +70,27 @@ function Router() {
           <Route path="/about" component={About} />
           <Route path="/about/gallery" component={Gallery} />
           <Route path="/services/faq" component={FAQ} />
-          <Route path="/services/:slug" component={ServiceOrVehiclePage} />
+          {/* 301 redirects: old /services/* slugs → new city pages (prevents SPA from rendering them) */}
+          <Route path="/services/tesla-vehicles-service"><Redirect to="/fort-lauderdale/tesla-ev-repair" /></Route>
+          <Route path="/services/asian-vehicles-service"><Redirect to="/fort-lauderdale/asian-vehicle-repair" /></Route>
+          <Route path="/services/european-vehicles-service"><Redirect to="/fort-lauderdale/european-vehicle-repair" /></Route>
+          <Route path="/services/domestic-vehicles-service"><Redirect to="/fort-lauderdale/domestic-vehicle-repair" /></Route>
+          <Route path="/services/brake-system"><Redirect to="/fort-lauderdale/brake-repair" /></Route>
+          <Route path="/services/transmission"><Redirect to="/fort-lauderdale/transmission-service" /></Route>
+          <Route path="/services/a-c-maintenance-repair"><Redirect to="/fort-lauderdale/ac-repair" /></Route>
+          <Route path="/services/oil-change-engine-service"><Redirect to="/fort-lauderdale/engine-oil-service" /></Route>
+          <Route path="/services/complete-diagnostics"><Redirect to="/fort-lauderdale/complete-diagnostics" /></Route>
+          <Route path="/services/routine-preventive-maintenance"><Redirect to="/fort-lauderdale/routine-maintenance" /></Route>
+          <Route path="/services/steering-suspension"><Redirect to="/fort-lauderdale/steering-suspension" /></Route>
+          <Route path="/services/fuel-system"><Redirect to="/fort-lauderdale/fuel-system-service" /></Route>
+          <Route path="/services/hybrids-ev"><Redirect to="/fort-lauderdale/hybrid-ev-service" /></Route>
+          <Route path="/services/alignment-tire-rotation-balancing"><Redirect to="/fort-lauderdale/wheel-alignment" /></Route>
+          <Route path="/services/battery-cranking-charging-systems"><Redirect to="/fort-lauderdale/battery-charging-systems" /></Route>
+          <Route path="/services/tires"><Redirect to="/fort-lauderdale/wheel-alignment" /></Route>
+          <Route path="/services/fleet-maintenance-repairs"><Redirect to="/fort-lauderdale/fleet-services" /></Route>
+          <Route path="/services/powertrain-restoration"><Redirect to="/fort-lauderdale/routine-maintenance" /></Route>
+          <Route path="/services/manufacturer-recommended-services"><Redirect to="/fort-lauderdale/routine-maintenance" /></Route>
+          <Route path="/services/car-wash"><Redirect to="/" /></Route>
           <Route path="/blog" component={Blog} />
           <Route path="/blog/:slug" component={BlogArticle} />
           <Route path="/contacts" component={Contacts} />
@@ -87,6 +107,27 @@ function Router() {
           <Route path="/es/sobre-nosotros" component={About} />
           <Route path="/es/sobre-nosotros/galeria" component={Gallery} />
           <Route path="/es/servicios/preguntas-frecuentes" component={FAQ} />
+          {/* 301 redirects: old /es/services/* slugs → new city pages */}
+          <Route path="/es/services/tesla-vehicles-service"><Redirect to="/es/fort-lauderdale/tesla-ev-repair" /></Route>
+          <Route path="/es/services/asian-vehicles-service"><Redirect to="/es/fort-lauderdale/asian-vehicle-repair" /></Route>
+          <Route path="/es/services/european-vehicles-service"><Redirect to="/es/fort-lauderdale/european-vehicle-repair" /></Route>
+          <Route path="/es/services/domestic-vehicles-service"><Redirect to="/es/fort-lauderdale/domestic-vehicle-repair" /></Route>
+          <Route path="/es/services/brake-system"><Redirect to="/es/fort-lauderdale/brake-repair" /></Route>
+          <Route path="/es/services/transmission"><Redirect to="/es/fort-lauderdale/transmission-service" /></Route>
+          <Route path="/es/services/a-c-maintenance-repair"><Redirect to="/es/fort-lauderdale/ac-repair" /></Route>
+          <Route path="/es/services/oil-change-engine-service"><Redirect to="/es/fort-lauderdale/engine-oil-service" /></Route>
+          <Route path="/es/services/complete-diagnostics"><Redirect to="/es/fort-lauderdale/complete-diagnostics" /></Route>
+          <Route path="/es/services/routine-preventive-maintenance"><Redirect to="/es/fort-lauderdale/routine-maintenance" /></Route>
+          <Route path="/es/services/steering-suspension"><Redirect to="/es/fort-lauderdale/steering-suspension" /></Route>
+          <Route path="/es/services/fuel-system"><Redirect to="/es/fort-lauderdale/fuel-system-service" /></Route>
+          <Route path="/es/services/hybrids-ev"><Redirect to="/es/fort-lauderdale/hybrid-ev-service" /></Route>
+          <Route path="/es/services/alignment-tire-rotation-balancing"><Redirect to="/es/fort-lauderdale/wheel-alignment" /></Route>
+          <Route path="/es/services/battery-cranking-charging-systems"><Redirect to="/es/fort-lauderdale/battery-charging-systems" /></Route>
+          <Route path="/es/services/tires"><Redirect to="/es/fort-lauderdale/wheel-alignment" /></Route>
+          <Route path="/es/services/fleet-maintenance-repairs"><Redirect to="/es/fort-lauderdale/fleet-services" /></Route>
+          <Route path="/es/services/powertrain-restoration"><Redirect to="/es/fort-lauderdale/routine-maintenance" /></Route>
+          <Route path="/es/services/manufacturer-recommended-services"><Redirect to="/es/fort-lauderdale/routine-maintenance" /></Route>
+          <Route path="/es/services/car-wash"><Redirect to="/es" /></Route>
           <Route path="/es/servicios/:slug" component={ServiceOrVehiclePage} />
           <Route path="/es/informacion" component={Blog} />
           <Route path="/es/informacion/:slug" component={BlogArticle} />
