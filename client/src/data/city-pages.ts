@@ -68,6 +68,10 @@ export interface CityPageContent {
     serviceSlug: string;
     serviceName: string;
   }>;
+
+  // Optional photo gallery (vehicle-type pages)
+  gallery?: string[];
+  galleryAlt?: string[];
 }
 
 // LOCATION DATA
@@ -103,6 +107,22 @@ const SERVICES = [
     nameEs: "Servicio Tesla y Vehículos Eléctricos",
     vehicles: ["Tesla Model S", "Tesla Model 3", "Tesla Model X", "Tesla Model Y", "Tesla Cybertruck", "Chevrolet Bolt", "Nissan Leaf", "Ford Mustang Mach-E", "Hyundai Ioniq", "Kia EV6", "Rivian R1T/R1S", "BMW iX"],
     vehiclesEs: ["Tesla Model S", "Tesla Model 3", "Tesla Model X", "Tesla Model Y", "Tesla Cybertruck", "Chevrolet Bolt", "Nissan Leaf", "Ford Mustang Mach-E", "Hyundai Ioniq", "Kia EV6", "Rivian R1T/R1S", "BMW iX"],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-diagnostics_7906cd95.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-frunk-open_3696ade7.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-gears_c5769e70.png?format=webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-battery-fuse_8c80d49f.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-hv-battery_19dac181.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-service-mode_ca070e93.webp",
+    ],
+    galleryAlt: [
+      "Tesla diagnostics at Vertical Automotive Fort Lauderdale",
+      "Tesla frunk open during service inspection",
+      "Tesla drive unit and gear assembly",
+      "Tesla battery fuse and high-voltage system",
+      "Tesla high-voltage battery pack service",
+      "Tesla service mode diagnostic screen",
+    ],
     whatIncluded: [
       { title: "High-Voltage System Inspection", titleEs: "Inspección del Sistema de Alto Voltaje", description: "Safety inspection of HV cables, connectors, inverter, and onboard charger — required for warranty compliance", descriptionEs: "Inspección de seguridad de cables HV, conectores, inversor y cargador a bordo — requerido para cumplimiento de garantía" },
       { title: "Charging System Repair", titleEs: "Reparación del Sistema de Carga", description: "Diagnosis and repair of onboard charger, charge port, and J1772/CCS connector issues", descriptionEs: "Diagnóstico y reparación del cargador a bordo, puerto de carga y problemas de conectores J1772/CCS" },
@@ -117,6 +137,22 @@ const SERVICES = [
     nameEs: "Servicio de Vehículos Europeos",
     vehicles: ["BMW", "Mercedes-Benz", "Audi", "Volkswagen", "Porsche", "Range Rover", "Maserati", "Volvo", "Jaguar", "Fiat", "MINI Cooper", "Land Rover"],
     vehiclesEs: ["BMW", "Mercedes-Benz", "Audi", "Volkswagen", "Porsche", "Range Rover", "Maserati", "Volvo", "Jaguar", "Fiat", "MINI Cooper", "Land Rover"],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-porsche-911_1b816237.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-range-rover_05d0f6a6.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-bmw-m2_ad657da1.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-porsche-cayenne_3689fe50.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-maserati_1e019840.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-porsche-panamera_1282f008.webp",
+    ],
+    galleryAlt: [
+      "Porsche 911 service at Vertical Automotive Fort Lauderdale",
+      "Range Rover repair and maintenance",
+      "BMW M2 performance service",
+      "Porsche Cayenne SUV repair",
+      "Maserati luxury vehicle service",
+      "Porsche Panamera at Vertical Automotive",
+    ],
     whatIncluded: [
       { title: "Suspension & Steering", titleEs: "Suspensión y Dirección", description: "Air suspension repair, adaptive damper service, control arm bushings, tie rods, and ball joints", descriptionEs: "Reparación de suspensión neumática, servicio de amortiguadores adaptativos, bujes de brazos de control, rótulas y bieletas" },
       { title: "Electrical System Diagnostics", titleEs: "Diagnóstico del Sistema Eléctrico", description: "CAN bus diagnostics, module coding, battery registration, and electrical fault tracing for complex European systems", descriptionEs: "Diagnóstico de bus CAN, codificación de módulos, registro de batería y rastreo de fallas eléctricas para sistemas europeos complejos" },
@@ -129,6 +165,22 @@ const SERVICES = [
     nameEs: "Servicio de Vehículos Asiáticos",
     vehicles: ["Toyota", "Honda", "Lexus", "Acura", "Nissan", "Mazda", "Subaru", "Hyundai", "Kia", "Mitsubishi", "Infiniti", "Genesis"],
     vehiclesEs: ["Toyota", "Honda", "Lexus", "Acura", "Nissan", "Mazda", "Subaru", "Hyundai", "Kia", "Mitsubishi", "Infiniti", "Genesis"],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-acura-nsx-shop_bcf4008e.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-acura-nsx-lift_4f2edb68.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-lexus-hood-open_9ea6e232.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-lexus-sc-convertible_4e06b62a.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-toyota-tacoma-alignment_8b858d66.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-lexus-is-dyno_33f4b770.webp",
+    ],
+    galleryAlt: [
+      "Acura NSX in Vertical Automotive shop",
+      "Acura NSX on lift for service",
+      "Lexus hood open for engine inspection",
+      "Lexus SC convertible at Vertical Automotive",
+      "Toyota Tacoma wheel alignment service",
+      "Lexus IS on dyno at Vertical Automotive",
+    ],
     whatIncluded: [
       { title: "Suspension & Steering", titleEs: "Suspensión y Dirección", description: "Shocks, struts, tie rods, ball joints, control arms, and sway bar links — restore ride comfort and handling", descriptionEs: "Amortiguadores, puntales, rótulas, bieletas, brazos de control y enlaces de barra estabilizadora — restaure comodidad y manejo" },
       { title: "Electrical System Service", titleEs: "Servicio del Sistema Eléctrico", description: "Battery testing, alternator diagnostics, starter repair, and wiring diagnosis for all Asian vehicles", descriptionEs: "Prueba de batería, diagnóstico de alternador, reparación de arranque y diagnóstico de cableado para todos los vehículos asiáticos" },
@@ -141,6 +193,22 @@ const SERVICES = [
     nameEs: "Servicio de Vehículos Domésticos",
     vehicles: ["Ford", "Chevrolet", "Dodge", "RAM", "Jeep", "GMC", "Chrysler", "Cadillac", "Lincoln", "Buick"],
     vehiclesEs: ["Ford", "Chevrolet", "Dodge", "RAM", "Jeep", "GMC", "Chrysler", "Cadillac", "Lincoln", "Buick"],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-dodge-charger-black_f3986d96.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-plymouth-fury_6eea5fa5.jpeg?format=webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-ford-raptor_f0115281.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-dodge-challenger-green_02019df5.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-plymouth-barracuda-purple_302f3af9.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-challengers-lifts_b0804351.webp",
+    ],
+    galleryAlt: [
+      "Dodge Charger at Vertical Automotive Fort Lauderdale",
+      "Classic Plymouth Fury restoration service",
+      "Ford Raptor truck repair and maintenance",
+      "Dodge Challenger performance service",
+      "Classic Plymouth Barracuda at Vertical Automotive",
+      "Dodge Challengers on lifts in the shop",
+    ],
     whatIncluded: [
       { title: "Suspension & Steering", titleEs: "Suspensión y Dirección", description: "Shocks, struts, tie rods, ball joints, alignment — especially important for heavy trucks and SUVs", descriptionEs: "Amortiguadores, puntales, rótulas, bieletas, alineación — especialmente importante para camionetas y SUVs pesados" },
       { title: "Electrical System Service", titleEs: "Servicio del Sistema Eléctrico", description: "Battery, alternator, starter, wiring diagnosis — full electrical diagnostics for Ford, Chevy, Dodge, and more", descriptionEs: "Batería, alternador, arranque, diagnóstico de cableado — diagnóstico eléctrico completo para Ford, Chevy, Dodge y más" },
@@ -406,6 +474,8 @@ export function generateCityPages(): CityPageContent[] {
         directions: location.directions,
         directionsEs: location.directionsEs,
         relatedServices: generatedContent?.relatedServices || [],
+        gallery: (service as any).gallery,
+        galleryAlt: (service as any).galleryAlt,
       };
 
       pages.push(page);

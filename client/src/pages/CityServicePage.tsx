@@ -193,6 +193,39 @@ export default function CityServicePage() {
         </div>
       </section>
 
+      {/* Photo Gallery — shown only on vehicle-type pages that have gallery images */}
+      {page.gallery && page.gallery.length > 0 && (
+        <section className="py-10 sm:py-16 bg-muted">
+          <div className="container max-w-5xl">
+            <h2 className="text-2xl sm:text-3xl font-black mb-2 sm:mb-3">
+              {isSpanish ? "Nuestro Taller en Acción" : "Our Shop in Action"}
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
+              {isSpanish
+                ? `Vehículos reales servidos por nuestros técnicos certificados ASE en ${page.cityDisplay}.`
+                : `Real vehicles serviced by our ASE-certified technicians in ${page.cityDisplay}.`}
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+              {page.gallery.map((imgUrl, idx) => (
+                <div
+                  key={idx}
+                  className="relative overflow-hidden rounded-lg bg-secondary aspect-[4/3] group"
+                >
+                  <img
+                    src={imgUrl}
+                    alt={page.galleryAlt?.[idx] || `${page.serviceName} at Vertical Automotive ${page.cityDisplay}`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* What's Included — expanded with title, description, and pricing */}
       {page.whatIncluded.length > 0 && (
         <section className="py-10 sm:py-16 bg-muted">
