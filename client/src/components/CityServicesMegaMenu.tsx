@@ -1,11 +1,13 @@
 /**
  * CityServicesMegaMenu — Two-column mega menu for SERVICE dropdown
- * Shows Fort Lauderdale (left) and Wilton Manors (right) with all 16 services each
- * Mobile: stacks vertically
+ * Desktop: Shows Fort Lauderdale (left) and Wilton Manors (right) with all 16 services each
+ * Mobile: Two location buttons that expand as accordion dropdowns
  */
 
 import { Link } from "wouter";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useState } from "react";
+import { MapPin, ChevronDown } from "lucide-react";
 
 const SERVICES_DATA = [
   { slug: "tesla-ev-repair", name: "Tesla & EV Repair", nameEs: "Reparación Tesla y Vehículos Eléctricos" },
@@ -30,59 +32,111 @@ interface CityServicesMegaMenuProps {
   onClose: () => void;
 }
 
+interface LocationData {
+  id: "fl" | "wm";
+  city: string;
+  cityEs: string;
+  phone: string;
+  slug: string;
+}
+
+const LOCATIONS: LocationData[] = [
+  { id: "fl", city: "Fort Lauderdale", cityEs: "Fort Lauderdale", phone: "(645) 216-2266", slug: "fort-lauderdale" },
+  { id: "wm", city: "Wilton Manors", cityEs: "Wilton Manors", phone: "(954) 565-1518", slug: "wilton-manors" },
+];
+
 export default function CityServicesMegaMenu({ onClose }: CityServicesMegaMenuProps) {
   const { isSpanish } = useTranslation();
+  const [expandedLocation, setExpandedLocation] = useState<"fl" | "wm" | null>(null);
 
-  const fortLauderdalePhone = "(645) 216-2266";
-  const wiltonManorsPhone = "(954) 565-1518";
+  const toggleLocation = (locationId: "fl" | "wm") => {
+    setExpandedLocation(expandedLocation === locationId ? null : locationId);
+  };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 p-6">
-      {/* FORT LAUDERDALE COLUMN */}
-      <div>
-        <div className="mb-4">
-          <h3 className="font-display font-bold text-sm tracking-wider uppercase text-primary mb-1">
-            Fort Lauderdale
-          </h3>
-          <p className="text-xs text-secondary-foreground/70">{fortLauderdalePhone}</p>
-        </div>
-        <ul className="space-y-2">
-          {SERVICES_DATA.map((service) => (
-            <li key={`fl-${service.slug}`}>
-              <Link
-                href={`/fort-lauderdale/${service.slug}`}
-                className="block text-sm text-secondary-foreground/80 hover:text-primary hover:bg-white/5 px-3 py-1.5 rounded transition-colors"
-                onClick={onClose}
-              >
-                {isSpanish ? service.nameEs : service.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+    <>
+      {/* DESKTOP: Two-column grid */}
+      <div className="hidden md:grid grid-cols-2 gap-6 md:gap-8 p-6">
+        {LOCATIONS.map((location) => (
+          <div key={location.id}>
+            <div className="mb-4">
+              <h3 className="font-display font-bold text-sm tracking-wider uppercase text-primary mb-1">
+                {location.city}
+              </h3>
+              <p className="text-xs text-secondary-foreground/70">{location.phone}</p>
+            </div>
+            <ul className="space-y-2">
+              {SERVICES_DATA.map((service) => (
+                <li key={`${location.id}-${service.slug}`}>
+                  <Link
+                    href={`/${location.slug}/${service.slug}`}
+                    className="block text-sm text-secondary-foreground/80 hover:text-primary hover:bg-white/5 px-3 py-1.5 rounded transition-colors"
+                    onClick={onClose}
+                  >
+                    {isSpanish ? service.nameEs : service.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
 
-      {/* WILTON MANORS COLUMN */}
-      <div>
-        <div className="mb-4">
-          <h3 className="font-display font-bold text-sm tracking-wider uppercase text-primary mb-1">
-            Wilton Manors
-          </h3>
-          <p className="text-xs text-secondary-foreground/70">{wiltonManorsPhone}</p>
-        </div>
-        <ul className="space-y-2">
-          {SERVICES_DATA.map((service) => (
-            <li key={`wm-${service.slug}`}>
-              <Link
-                href={`/wilton-manors/${service.slug}`}
-                className="block text-sm text-secondary-foreground/80 hover:text-primary hover:bg-white/5 px-3 py-1.5 rounded transition-colors"
-                onClick={onClose}
-              >
-                {isSpanish ? service.nameEs : service.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      {/* MOBILE: Accordion buttons */}
+      <div className="md:hidden flex flex-col gap-3 p-4">
+        {LOCATIONS.map((location) => (
+          <div key={location.id}>
+            {/* Location Button */}
+            <button
+              onClick={() => toggleLocation(location.id)}
+              className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 px-4 rounded-lg flex items-center justify-between transition-colors"
+            >
+              <div className="flex items-center gap-3 text-left">
+                <MapPin size={20} className="flex-shrink-0" />
+                <div>
+                  <div className="font-bold text-sm leading-tight">{location.city}</div>
+                  <div className="text-xs opacity-90">{location.phone}</div>
+                </div>
+              </div>
+              <ChevronDown
+                size={20}
+                className={`flex-shrink-0 transition-transform duration-300 ${
+                  expandedLocation === location.id ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {/* Accordion Services List */}
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                expandedLocation === location.id ? "max-h-[800px]" : "max-h-0"
+              }`}
+            >
+              <ul className="bg-secondary/50 border border-border rounded-b-lg space-y-0">
+                {SERVICES_DATA.map((service, index) => (
+                  <li
+                    key={`${location.id}-${service.slug}`}
+                    className={`border-t border-border/50 first:border-t-0 ${
+                      index === SERVICES_DATA.length - 1 ? "" : ""
+                    }`}
+                  >
+                    <Link
+                      href={`/${location.slug}/${service.slug}`}
+                      className="block text-sm text-secondary-foreground/80 hover:text-primary hover:bg-white/5 px-4 py-3 transition-colors"
+                      onClick={() => {
+                        setExpandedLocation(null);
+                        onClose();
+                      }}
+                    >
+                      {isSpanish ? service.nameEs : service.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
+    </>
   );
 }
