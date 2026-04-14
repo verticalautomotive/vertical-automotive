@@ -342,3 +342,11 @@
 - [x] Phase 3: LocalBusiness JSON-LD schema in ServiceDetail, VEHICLE_FAQS added for 4 vehicle pages, ServiceFAQ wired into VehicleDetail, Offers SEO updated with near-me keywords
 - [x] Final validation: TypeScript 0 errors, vehicle slugs match FAQ keys
 - [ ] Save checkpoint
+
+## Cookie Consent Banner (GDPR/CCPA Compliance)
+- [x] Build CookieConsentBanner component with bilingual support (EN/ES)
+- [x] Add localStorage persistence for user preferences (analytics, marketing, essential)
+- [x] Wire banner into App.tsx (fixed bottom, dismissible)
+- [x] Add consent-aware analytics tracking (respect user preferences in gtag config)
+- [x] Update index.html gtag to check localStorage on load
+- [ ] Save checkpoint

@@ -12,6 +12,7 @@ import FloatingActions from "./components/FloatingActions";
 // Lazy-load ChatButton — deferred until after initial render to reduce first-load JS
 const ChatButton = lazy(() => import("@/components/ChatButton").then(m => ({ default: m.ChatButton })));
 import { ChatBubble } from "@/components/ChatBubble";
+import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 
 // Code-split all page components — only Home is eagerly loaded for fast FCP
 import Home from "./pages/Home";
@@ -121,6 +122,7 @@ function App() {
           <Suspense fallback={null}>
             <ChatButton language={language} isOpen={isChatOpen} onToggle={handleChatToggle} />
           </Suspense>
+          <CookieConsentBanner />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

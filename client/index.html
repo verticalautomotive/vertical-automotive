@@ -12,7 +12,28 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'AW-17913524206');
+      
+      // Check cookie consent before enabling analytics
+      const consentPrefs = localStorage.getItem('cookie_consent_preferences');
+      let analyticsEnabled = false;
+      if (consentPrefs) {
+        try {
+          const prefs = JSON.parse(consentPrefs);
+          analyticsEnabled = prefs.analytics === true;
+        } catch (e) {
+          analyticsEnabled = false;
+        }
+      }
+      
+      // Configure gtag with consent settings
+      gtag('config', 'AW-17913524206', {
+        'anonymize_ip': true,
+        'allow_google_signals': analyticsEnabled,
+        'allow_ad_personalization_signals': analyticsEnabled
+      });
+      
+      // Store gtag reference for consent banner
+      window.gtagReady = true;
     </script>
     <!-- End Google tag -->
     <!-- Event snippet for Click to call conversion page -->
