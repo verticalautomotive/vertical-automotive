@@ -400,3 +400,12 @@
 - [x] Fix: Expand intros to 150-200 words, unique per city
 - [x] Fix: Rewrite FAQs as genuinely helpful answers with pricing
 - [x] Test all 32 pages and save checkpoint
+
+## Remove Prices from City Service Pages
+- [x] Remove price field from ServiceItem objects in city-pages.ts
+- [x] Remove price ranges from intro text in city-pages-content.ts
+- [x] Remove price ranges from FAQ answers in city-pages-content.ts
+- [x] Remove price badge rendering from CityServicePage component
+- [x] Remove pricing disclaimer note from What's Included section
+- [x] Keep competitive comparison messaging (e.g., "save 30-50% vs. dealership")
+- [ ] Save checkpoint

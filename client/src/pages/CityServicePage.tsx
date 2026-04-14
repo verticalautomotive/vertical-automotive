@@ -198,26 +198,17 @@ export default function CityServicePage() {
             <h2 className="text-2xl sm:text-3xl font-black mb-2 sm:mb-3">
               {isSpanish ? "Qué Incluye Nuestro" : "What's Included in Our"} {page.serviceName}
             </h2>
-            <p className="text-sm text-muted-foreground mb-6 sm:mb-8">
-              {isSpanish
-                ? "Precios son estimados y pueden variar según el vehículo. Llámenos para una cotización exacta."
-                : "Prices are estimates and may vary by vehicle. Call us for an exact quote."}
-            </p>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
               {page.whatIncluded.map((item: ServiceItem, idx: number) => (
                 <Card key={idx} className="p-4 sm:p-5 border border-border bg-background hover:border-primary/30 transition-colors">
                   <div className="flex gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <div className="flex-1">
-                      <div className="flex items-start justify-between gap-2 mb-1.5">
+                      <div className="mb-1.5">
                         <h3 className="text-sm sm:text-base font-semibold text-foreground leading-tight">
                           {getServiceItemTitle(item)}
                         </h3>
-                        {item.price && (
-                          <span className="text-xs sm:text-sm font-semibold text-primary whitespace-nowrap bg-primary/10 px-2 py-0.5 rounded">
-                            {item.price}
-                          </span>
-                        )}
                       </div>
                       <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                         {getServiceItemDesc(item)}
