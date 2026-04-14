@@ -40,10 +40,12 @@ async function startServer() {
 
   // ─── 301 Redirects: old /services/ URLs → new city-specific pages ─────────
   const serviceRedirects: Record<string, string> = {
+    // Vehicle type pages
     "/services/tesla-vehicles-service": "/fort-lauderdale/tesla-ev-repair",
     "/services/asian-vehicles-service": "/fort-lauderdale/asian-vehicle-repair",
     "/services/european-vehicles-service": "/fort-lauderdale/european-vehicle-repair",
     "/services/domestic-vehicles-service": "/fort-lauderdale/domestic-vehicle-repair",
+    // Service pages
     "/services/brake-system": "/fort-lauderdale/brake-repair",
     "/services/transmission": "/fort-lauderdale/transmission-service",
     "/services/a-c-maintenance-repair": "/fort-lauderdale/ac-repair",
@@ -54,15 +56,42 @@ async function startServer() {
     "/services/fuel-system": "/fort-lauderdale/fuel-system-service",
     "/services/hybrids-ev": "/fort-lauderdale/hybrid-ev-service",
     "/services/alignment-tire-rotation-balancing": "/fort-lauderdale/wheel-alignment",
+    // Additional service pages (previously missing)
+    "/services/battery-cranking-charging-systems": "/fort-lauderdale/battery-charging-systems",
+    "/services/tires": "/fort-lauderdale/wheel-alignment",
+    "/services/fleet-maintenance-repairs": "/fort-lauderdale/fleet-services",
+    "/services/powertrain-restoration": "/fort-lauderdale/routine-maintenance",
+    "/services/manufacturer-recommended-services": "/fort-lauderdale/routine-maintenance",
+    "/services/car-wash": "/",
   };
 
-  // Also handle Spanish versions
+  // Old slug-format URLs (e.g. /brake-system-vertical-automotive/) that Google may have indexed
+  const slugRedirects: Record<string, string> = {
+    "/brake-system-vertical-automotive/": "/fort-lauderdale/brake-repair",
+    "/hybrids-ev-vertical-automotive/": "/fort-lauderdale/hybrid-ev-service",
+    "/a-c-maintenance-repair-vertical-automotive/": "/fort-lauderdale/ac-repair",
+    "/oil-change-engine-service-vertical-automotive/": "/fort-lauderdale/engine-oil-service",
+    "/complete-diagnostics-vertical-automotive/": "/fort-lauderdale/complete-diagnostics",
+    "/alignment-tire-rotation-balancing-vertical-automotive/": "/fort-lauderdale/wheel-alignment",
+    "/battery-cranking-charging-systems-vertical-automotive/": "/fort-lauderdale/battery-charging-systems",
+    "/transmission-vertical-automotive/": "/fort-lauderdale/transmission-service",
+    "/steering-suspension-vertical-automotive/": "/fort-lauderdale/steering-suspension",
+    "/fuel-system-vertical-automotive/": "/fort-lauderdale/fuel-system-service",
+    "/routine-preventive-maintenance-vertical-automotive/": "/fort-lauderdale/routine-maintenance",
+    "/fleet-maintenance-repairs-vertical-automotive/": "/fort-lauderdale/fleet-services",
+    "/powertrain-restoration-vertical-automotive/": "/fort-lauderdale/routine-maintenance",
+    "/tires-vertical-automotive/": "/fort-lauderdale/wheel-alignment",
+  };
+
+  // Also handle Spanish versions of /services/* redirects
   const serviceRedirectsEs: Record<string, string> = {};
   for (const [from, to] of Object.entries(serviceRedirects)) {
-    serviceRedirectsEs["/es" + from] = "/es" + to;
+    // /services/car-wash → / should become /es/services/car-wash → /es/ for Spanish
+    const esTo = to === "/" ? "/es" : "/es" + to;
+    serviceRedirectsEs["/es" + from] = esTo;
   }
 
-  const allRedirects = { ...serviceRedirects, ...serviceRedirectsEs };
+  const allRedirects = { ...serviceRedirects, ...slugRedirects, ...serviceRedirectsEs };
 
   app.use((req, res, next) => {
     const target = allRedirects[req.path];

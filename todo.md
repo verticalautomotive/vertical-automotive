@@ -468,3 +468,10 @@
 - [x] ISSUE 3: All 16 service tiles trigger location picker modal; Car Wash/Tires/Powertrain Restoration → / (homepage fallback)
 - [x] Verify all changes work correctly (178 tests pass, 0 TS errors)
 - [x] Save checkpoint
+
+## Add 301 Redirects for Old Service URLs (34 total)
+- [x] Add 20 /services/* redirects to city pages
+- [x] Add 14 /slug-vertical-automotive/ redirects to city pages
+- [x] Test 3 sample URLs confirm 301 (not 404): /services/transmission → 301, /brake-system-vertical-automotive/ → 301, /services/tesla-vehicles-service → 301
+- [x] Update vitest redirect tests (185 tests pass, 0 TS errors)
+- [x] Save checkpoint
