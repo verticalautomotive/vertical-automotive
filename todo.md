@@ -360,3 +360,19 @@
 - [x] Upgrade Offers page with SEO intro paragraph (bilingual, targets "auto repair deals near me")
 - [x] TypeScript validation: 0 errors
 - [ ] Save checkpoint
+
+## 32 City-Specific Local SEO Pages (Fort Lauderdale + Wilton Manors)
+- [x] Design data structure for 32 pages (16 services × 2 locations)
+- [x] Create city-pages.ts with all service/location combinations
+- [x] Generate unique content for each page using Gemini AI (intro, FAQ, why choose us)
+- [x] Build CityServicePage component with dynamic routing
+- [x] Fix routing: derive city from pathname instead of route params
+- [x] Wire city routes into App.tsx (before generic :slug routes)
+- [x] Test city pages load correctly with proper content
+- [x] Add LocalBusiness JSON-LD schema (location-specific address, phone, hours)
+- [x] Add FAQPage schema with location-specific questions
+- [x] Add BreadcrumbList schema for navigation
+- [x] Add Related Services section with internal linking
+- [x] Update sitemap.xml with all 32 city service pages
+- [x] Validate schemas with browser console (6 schemas found: 4 AutoRepair, 1 FAQPage, 1 BreadcrumbList)
+- [ ] Save checkpoint

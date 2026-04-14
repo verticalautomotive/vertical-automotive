@@ -31,6 +31,7 @@ const AdminEscalations = lazy(() => import("./pages/AdminEscalations"));
 const AdminAuthorizations = lazy(() => import("./pages/AdminAuthorizations"));
 const PaymentAuthorization = lazy(() => import("./pages/PaymentAuthorization"));
 const SendPaymentForm = lazy(() => import("./pages/SendPaymentForm"));
+const CityServicePage = lazy(() => import("./pages/CityServicePage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function ScrollToTop() {
@@ -58,6 +59,10 @@ function Router() {
       <HrefLang />
       <Suspense fallback={<PageFallback />}>
         <Switch>
+          {/* City-specific service pages — must be before generic :slug routes */}
+          <Route path="/fort-lauderdale/:service" component={CityServicePage} />
+          <Route path="/wilton-manors/:service" component={CityServicePage} />
+
           {/* English routes */}
           <Route path="/" component={Home} />
           <Route path="/services" component={Services} />
