@@ -2,21 +2,23 @@
  * CityServicePage — Dynamic city-specific service landing pages
  * 32 pages: 16 services × 2 locations (Fort Lauderdale + Wilton Manors)
  * Each page has unique content, LocalBusiness schema, FAQ schema, and internal linking
+ * Updated: expanded What's Included with title + description + pricing,
+ *          Why Choose Us with title + description cards
  */
 
 import { useParams, useLocation } from "wouter";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Phone, MapPin, CheckCircle, ArrowRight } from "lucide-react";
+import { Phone, MapPin, CheckCircle, ArrowRight, DollarSign, Shield, Award, Wrench } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import PageHero from "@/components/PageHero";
 import SEO from "@/components/SEO";
 import NotFound from "./NotFound";
-import { getCityPage } from "@/data/city-pages";
+import { getCityPage, type ServiceItem, type WhyChooseItem } from "@/data/city-pages";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackCall, trackSchedule } from "@/lib/gtm";
+
 export default function CityServicePage() {
   const { service } = useParams<{ service: string }>();
   const [location] = useLocation();
@@ -44,8 +46,6 @@ export default function CityServicePage() {
   const h1 = isSpanish ? page.h1Es : page.h1;
   const subheading = isSpanish ? page.subheadingEs : page.subheading;
   const introText = isSpanish ? page.introTextEs : page.introText;
-  const whyChooseUs = isSpanish ? page.whyChooseUsEs : page.whyChooseUs;
-  const whatIncluded = isSpanish ? page.whatIncludedEs : page.whatIncluded;
   const vehiclesWeService = isSpanish ? page.vehiclesWeServiceEs : page.vehiclesWeService;
   const directions = isSpanish ? page.directionsEs : page.directions;
 
@@ -118,6 +118,12 @@ export default function CityServicePage() {
     ],
   };
 
+  // Helper to get localized service item text
+  const getServiceItemTitle = (item: ServiceItem) => isSpanish ? item.titleEs : item.title;
+  const getServiceItemDesc = (item: ServiceItem) => isSpanish ? item.descriptionEs : item.description;
+  const getWhyTitle = (item: WhyChooseItem) => isSpanish ? item.titleEs : item.title;
+  const getWhyDesc = (item: WhyChooseItem) => isSpanish ? item.descriptionEs : item.description;
+
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
@@ -185,36 +191,74 @@ export default function CityServicePage() {
         </div>
       </section>
 
-      {/* What's Included */}
-      {whatIncluded.length > 0 && (
+      {/* What's Included — expanded with title, description, and pricing */}
+      {page.whatIncluded.length > 0 && (
         <section className="py-10 sm:py-16 bg-muted">
           <div className="container max-w-5xl">
-            <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8">
-              What's Included in Our {page.serviceName}
+            <h2 className="text-2xl sm:text-3xl font-black mb-2 sm:mb-3">
+              {isSpanish ? "Qué Incluye Nuestro" : "What's Included in Our"} {page.serviceName}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              {whatIncluded.map((item, idx) => (
-                <div key={idx} className="flex gap-3 sm:gap-4">
-                  <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0 mt-0.5" />
-                  <p className="text-sm sm:text-base text-muted-foreground">{item}</p>
-                </div>
+            <p className="text-sm text-muted-foreground mb-6 sm:mb-8">
+              {isSpanish
+                ? "Precios son estimados y pueden variar según el vehículo. Llámenos para una cotización exacta."
+                : "Prices are estimates and may vary by vehicle. Call us for an exact quote."}
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+              {page.whatIncluded.map((item: ServiceItem, idx: number) => (
+                <Card key={idx} className="p-4 sm:p-5 border border-border bg-background hover:border-primary/30 transition-colors">
+                  <div className="flex gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <div className="flex-1">
+                      <div className="flex items-start justify-between gap-2 mb-1.5">
+                        <h3 className="text-sm sm:text-base font-semibold text-foreground leading-tight">
+                          {getServiceItemTitle(item)}
+                        </h3>
+                        {item.price && (
+                          <span className="text-xs sm:text-sm font-semibold text-primary whitespace-nowrap bg-primary/10 px-2 py-0.5 rounded">
+                            {item.price}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                        {getServiceItemDesc(item)}
+                      </p>
+                    </div>
+                  </div>
+                </Card>
               ))}
             </div>
           </div>
         </section>
       )}
 
-      {/* Why Choose Us */}
-      {whyChooseUs.length > 0 && (
+      {/* Why Choose Us — expanded with title + description cards */}
+      {page.whyChooseUs.length > 0 && (
         <section className="py-10 sm:py-16 bg-background">
           <div className="container max-w-5xl">
             <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8">
-              Why Choose Vertical Automotive in {page.cityDisplay}?
+              {isSpanish
+                ? `¿Por Qué Elegir Vertical Automotive en ${page.cityDisplay}?`
+                : `Why Choose Vertical Automotive in ${page.cityDisplay}?`}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              {whyChooseUs.map((item, idx) => (
-                <Card key={idx} className="p-4 sm:p-6 border border-border">
-                  <p className="text-sm sm:text-base text-muted-foreground">{item}</p>
+              {page.whyChooseUs.map((item: WhyChooseItem, idx: number) => (
+                <Card key={idx} className="p-5 sm:p-6 border border-border hover:border-primary/30 transition-colors">
+                  <div className="flex gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      {idx % 4 === 0 && <Award className="w-4 h-4 text-primary" />}
+                      {idx % 4 === 1 && <Shield className="w-4 h-4 text-primary" />}
+                      {idx % 4 === 2 && <Wrench className="w-4 h-4 text-primary" />}
+                      {idx % 4 === 3 && <DollarSign className="w-4 h-4 text-primary" />}
+                    </div>
+                    <div>
+                      <h3 className="text-sm sm:text-base font-semibold text-foreground mb-1.5">
+                        {getWhyTitle(item)}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                        {getWhyDesc(item)}
+                      </p>
+                    </div>
+                  </div>
                 </Card>
               ))}
             </div>
@@ -226,9 +270,11 @@ export default function CityServicePage() {
       {vehiclesWeService.length > 0 && (
         <section className="py-10 sm:py-16 bg-muted">
           <div className="container max-w-5xl">
-            <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8">Vehicles We Service</h2>
+            <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8">
+              {isSpanish ? "Vehículos Que Servimos" : "Vehicles We Service"}
+            </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
-              {vehiclesWeService.map((vehicle, idx) => (
+              {vehiclesWeService.map((vehicle: string, idx: number) => (
                 <div key={idx} className="bg-background rounded-lg p-3 sm:p-4 text-center">
                   <p className="text-xs sm:text-sm font-semibold text-foreground">{vehicle}</p>
                 </div>
@@ -242,14 +288,16 @@ export default function CityServicePage() {
       {page.faq.length > 0 && (
         <section className="py-10 sm:py-16 bg-background">
           <div className="container max-w-5xl">
-            <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8">Frequently Asked Questions</h2>
+            <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8">
+              {isSpanish ? "Preguntas Frecuentes" : "Frequently Asked Questions"}
+            </h2>
             <div className="space-y-4 sm:space-y-6">
               {page.faq.map((item, idx) => (
                 <Card key={idx} className="p-4 sm:p-6 border border-border">
                   <h3 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3">
                     {isSpanish ? item.questionEs : item.question}
                   </h3>
-                  <p className="text-sm sm:text-base text-muted-foreground">
+                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                     {isSpanish ? item.answerEs : item.answer}
                   </p>
                 </Card>
@@ -262,7 +310,9 @@ export default function CityServicePage() {
       {/* Location & Directions */}
       <section className="py-10 sm:py-16 bg-muted">
         <div className="container max-w-5xl">
-          <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8">Location & Directions</h2>
+          <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8">
+            {isSpanish ? "Ubicación y Direcciones" : "Location & Directions"}
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <div>
               <div className="flex gap-3 mb-4">
@@ -305,19 +355,23 @@ export default function CityServicePage() {
       {page.relatedServices.length > 0 && (
         <section className="py-10 sm:py-16 bg-background">
           <div className="container max-w-5xl">
-            <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8">Related Services in {page.cityDisplay}</h2>
+            <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8">
+              {isSpanish
+                ? `Servicios Relacionados en ${page.cityDisplay}`
+                : `Related Services in ${page.cityDisplay}`}
+            </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
               {page.relatedServices.map((related, idx) => (
-            <Link key={idx} href={`/${normalizedCity}/${related.serviceSlug}`}>
-              <div className="group block p-4 sm:p-6 bg-muted rounded-lg border border-border hover:border-primary transition-colors cursor-pointer">
-                <p className="font-semibold text-sm sm:text-base mb-2 group-hover:text-primary transition-colors">
-                  {related.serviceName}
-                </p>
-                <div className="flex items-center gap-2 text-primary text-xs sm:text-sm">
-                  Learn More <ArrowRight className="w-4 h-4" />
-                </div>
-              </div>
-            </Link>
+                <Link key={idx} href={`/${normalizedCity}/${related.serviceSlug}`}>
+                  <div className="group block p-4 sm:p-6 bg-muted rounded-lg border border-border hover:border-primary transition-colors cursor-pointer">
+                    <p className="font-semibold text-sm sm:text-base mb-2 group-hover:text-primary transition-colors">
+                      {related.serviceName}
+                    </p>
+                    <div className="flex items-center gap-2 text-primary text-xs sm:text-sm">
+                      {isSpanish ? "Ver Más" : "Learn More"} <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -328,7 +382,9 @@ export default function CityServicePage() {
       <section className="py-10 sm:py-16 bg-primary text-primary-foreground text-center">
         <div className="container max-w-5xl">
           <h2 className="text-2xl sm:text-3xl font-black mb-4 sm:mb-6">
-            Ready to Schedule Your {page.serviceName} in {page.cityDisplay}?
+            {isSpanish
+              ? `¿Listo para Programar Su ${page.serviceName} en ${page.cityDisplay}?`
+              : `Ready to Schedule Your ${page.serviceName} in ${page.cityDisplay}?`}
           </h2>
           <p className="text-sm sm:text-base mb-6 sm:mb-8 opacity-90">
             {isSpanish

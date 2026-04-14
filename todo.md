@@ -386,3 +386,17 @@
 - [x] Test all navigation updates
 - [x] Mobile accordion: two location buttons with smooth expand/collapse animation
 - [x] Save checkpoint
+
+## Rewrite All 32 City Service Pages (Content Quality Upgrade)
+- [x] Scrape pricing data from /service-guide page
+- [x] Update CityServicePage component to support expanded content (10-12 items, descriptions, pricing)
+- [x] Rewrite Tesla & EV pages (Fort Lauderdale + Wilton Manors)
+- [x] Rewrite European Vehicle pages (Fort Lauderdale + Wilton Manors)
+- [x] Rewrite Domestic Vehicle pages (Fort Lauderdale + Wilton Manors)
+- [x] Rewrite Brake pages (Fort Lauderdale + Wilton Manors)
+- [x] Rewrite A/C pages (Fort Lauderdale + Wilton Manors)
+- [x] Rewrite remaining 22 pages (all other services × both cities)
+- [x] Fix: Remove phone number from Why Choose Us bullets
+- [x] Fix: Expand intros to 150-200 words, unique per city
+- [x] Fix: Rewrite FAQs as genuinely helpful answers with pricing
+- [x] Test all 32 pages and save checkpoint
