@@ -221,6 +221,18 @@ const SERVICES = [
     nameEs: "Servicio de Frenos y Rotores",
     vehicles: [],
     vehiclesEs: [],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/brake-repair-1_7583674d.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/brake-repair-2_5ff21a20.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/brake-repair-3_281daab9.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/brake-repair-4_5aacac4a.jpg",
+    ],
+    galleryAlt: [
+      "Professional brake pad and rotor replacement at Vertical Automotive",
+      "Mechanic inspecting brake calipers and rotors",
+      "Brake system service and ABS diagnostics",
+      "Complete brake inspection and repair Fort Lauderdale",
+    ],
     whatIncluded: [
       { title: "Brake Caliper Repair & Replacement", titleEs: "Reparación y Reemplazo de Calibradores", description: "Caliper rebuild, slide pin service, and replacement — fixes uneven pad wear and pulling", descriptionEs: "Reconstrucción de calibrador, servicio de pines deslizantes y reemplazo — corrige desgaste desigual y tirón" },
       { title: "Brake Line Inspection & Repair", titleEs: "Inspección y Reparación de Líneas de Freno", description: "Visual and pressure inspection of brake lines, hoses, and fittings — critical for safety", descriptionEs: "Inspección visual y de presión de líneas, mangueras y conexiones de freno — crítico para la seguridad" },
@@ -236,6 +248,18 @@ const SERVICES = [
     nameEs: "Servicio de Transmisión",
     vehicles: [],
     vehiclesEs: [],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/transmission-service-1_296bc26d.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/transmission-service-2_0e0a92cc.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/transmission-service-3_c155e3c3.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/transmission-service-4_ad200624.jpg",
+    ],
+    galleryAlt: [
+      "Transmission repair and rebuild at Vertical Automotive Fort Lauderdale",
+      "Automatic transmission fluid service and filter replacement",
+      "CVT and manual transmission diagnostics",
+      "Transmission cooler and differential service",
+    ],
     whatIncluded: [
       { title: "Automatic Transmission Repair", titleEs: "Reparación de Transmisión Automática", description: "Solenoid replacement, valve body repair, torque converter service, and full rebuilds", descriptionEs: "Reemplazo de solenoide, reparación del cuerpo de válvulas, servicio de convertidor de torque y reconstrucciones completas" },
       { title: "Manual Transmission Service", titleEs: "Servicio de Transmisión Manual", description: "Clutch replacement, synchronizer repair, and gear oil service for manual transmissions", descriptionEs: "Reemplazo de embrague, reparación de sincronizadores y servicio de aceite de engranajes para transmisiones manuales" },
@@ -352,6 +376,18 @@ const SERVICES = [
     slug: "hybrid-ev-service",
     name: "Hybrid & EV Service",
     nameEs: "Servicio de Híbridos y Eléctricos",
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hybrid-ev-service-1_223c5903.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hybrid-ev-service-2_3956c16f.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hybrid-ev-service-3_1129ceb8.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hybrid-ev-service-4_c8b0b582.jpg",
+    ],
+    galleryAlt: [
+      "Hybrid and electric vehicle service at Vertical Automotive Fort Lauderdale",
+      "Toyota Prius and hybrid battery inspection",
+      "EV charging system and high-voltage diagnostics",
+      "Hybrid regenerative braking and inverter service",
+    ],
     vehicles: ["Toyota Prius", "Toyota RAV4 Hybrid", "Honda Insight", "Honda CR-V Hybrid", "Chevy Volt", "Lexus Hybrid", "Hyundai Ioniq Hybrid", "Ford Escape Hybrid", "Kia Niro", "Toyota Camry Hybrid"],
     vehiclesEs: ["Toyota Prius", "Toyota RAV4 Hybrid", "Honda Insight", "Honda CR-V Hybrid", "Chevy Volt", "Lexus Hybrid", "Hyundai Ioniq Hybrid", "Ford Escape Hybrid", "Kia Niro", "Toyota Camry Hybrid"],
     whatIncluded: [
@@ -370,6 +406,18 @@ const SERVICES = [
     nameEs: "Alineación de Ruedas, Rotación y Balanceo",
     vehicles: [],
     vehiclesEs: [],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wheel-alignment-1_e81ccc4c.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wheel-alignment-2_38dc46d9.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wheel-alignment-3_e06c44df.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wheel-alignment-4_927b954b.jpg",
+    ],
+    galleryAlt: [
+      "Precision wheel alignment service at Vertical Automotive Fort Lauderdale",
+      "Tire rotation and balancing service",
+      "4-wheel alignment and ADAS camera calibration",
+      "Tire installation and pressure check",
+    ],
     whatIncluded: [
       { title: "Precision 4-Wheel Alignment", titleEs: "Alineación de Precisión de 4 Ruedas", description: "Computer-guided alignment adjusting camber, caster, and toe to manufacturer specifications", descriptionEs: "Alineación guiada por computadora ajustando camber, caster y convergencia a especificaciones del fabricante" },
       { title: "Tire Rotation", titleEs: "Rotación de Neumáticos", description: "Front-to-rear and cross-pattern rotation — extends tire life by 20-30% with regular service", descriptionEs: "Rotación de frente a atrás y patrón cruzado — extiende la vida del neumático un 20-30% con servicio regular" },
@@ -388,6 +436,16 @@ const SERVICES = [
     nameEs: "Batería y Sistemas de Carga",
     vehicles: [],
     vehiclesEs: [],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/battery-charging-systems-1_2033b1d6.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/battery-charging-systems-2_f8985363.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/battery-charging-systems-3_50cd2e51.jpg",
+    ],
+    galleryAlt: [
+      "Car battery replacement and charging system test at Vertical Automotive",
+      "Alternator and starter repair Fort Lauderdale",
+      "Battery load test and electrical system diagnostics",
+    ],
     whatIncluded: [
       { title: "Battery Load Test", titleEs: "Prueba de Carga de Batería", description: "Electronic load test to determine battery health and remaining life — prevents unexpected no-start situations", descriptionEs: "Prueba de carga electrónica para determinar salud de la batería y vida restante — previene situaciones inesperadas de no arranque" },
       { title: "Alternator Diagnostics & Replacement", titleEs: "Diagnóstico y Reemplazo de Alternador", description: "Output test, diode check, and replacement — fixes dim lights, dead battery, and charging warning light", descriptionEs: "Prueba de salida, verificación de diodos y reemplazo — corrige luces tenues, batería muerta y luz de advertencia de carga" },
@@ -406,6 +464,14 @@ const SERVICES = [
     nameEs: "Servicios de Flota y Mantenimiento",
     vehicles: [],
     vehiclesEs: [],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/fleet-services-1_61b50655.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/fleet-services-2_b17f1436.jpg",
+    ],
+    galleryAlt: [
+      "Commercial fleet maintenance and repair at Vertical Automotive Fort Lauderdale",
+      "Fleet vehicle service and preventive maintenance program",
+    ],
     whatIncluded: [
       { title: "Scheduled Fleet Maintenance", titleEs: "Mantenimiento Programado de Flota", description: "Customized maintenance schedules based on your fleet's mileage, usage patterns, and manufacturer requirements", descriptionEs: "Horarios de mantenimiento personalizados basados en el kilometraje de su flota, patrones de uso y requisitos del fabricante" },
       { title: "Fleet Diagnostics", titleEs: "Diagnóstico de Flota", description: "Comprehensive diagnostics for fleet vehicles — check engine lights, drivability issues, and preventive scans", descriptionEs: "Diagnóstico integral para vehículos de flota — luces de motor, problemas de conducción y escaneos preventivos" },
