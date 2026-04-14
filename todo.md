@@ -461,3 +461,10 @@
 - [x] ISSUE 3: Replace two-button layout with location picker modal (logo, two location buttons, close X)
 - [x] Verify all tiles link correctly and modal works on desktop/mobile (176 tests pass, 0 TS errors)
 - [x] Save checkpoint
+
+## Fix Homepage Issues (3 More)
+- [x] ISSUE 1: Vehicle carousel sections already wired to location picker modal — verified working (Tesla, Asian, European, Domestic all open modal correctly)
+- [x] ISSUE 2: Only 1 offers section in DOM; 24 CLAIM OFFER buttons are correct (12 mobile hidden + 12 desktop visible, responsive CSS working)
+- [x] ISSUE 3: All 16 service tiles trigger location picker modal; Car Wash/Tires/Powertrain Restoration → / (homepage fallback)
+- [x] Verify all changes work correctly (178 tests pass, 0 TS errors)
+- [x] Save checkpoint

@@ -21,11 +21,11 @@ const SLUG_TO_CITY_SLUG: Record<string, string> = {
   "fuel-system": "fuel-system-service",
   "hybrids-ev": "hybrid-ev-service",
   "alignment-tire-rotation-balancing": "wheel-alignment",
-  "tires": "wheel-alignment",
-  "powertrain-restoration": "routine-maintenance",
+  "tires": "__homepage__",
+  "powertrain-restoration": "__homepage__",
   "fleet-maintenance-repairs": "fleet-services",
   "manufacturer-recommended-services": "routine-maintenance",
-  "car-wash": "routine-maintenance",
+  "car-wash": "__homepage__",
   // Vehicle types
   "tesla-vehicles-service": "tesla-ev-repair",
   "european-vehicles-service": "european-vehicle-repair",
@@ -41,6 +41,8 @@ const SLUG_TO_CITY_SLUG: Record<string, string> = {
  */
 export function getCityServicePath(city: string, dataSlug: string): string {
   const citySlug = SLUG_TO_CITY_SLUG[dataSlug] || dataSlug;
+  // Services without a dedicated city page fall back to homepage
+  if (citySlug === "__homepage__") return "/";
   return `/${city}/${citySlug}`;
 }
 
@@ -50,7 +52,8 @@ export function getCityServicePath(city: string, dataSlug: string): string {
  * @returns The city-page slug
  */
 export function getCitySlug(dataSlug: string): string {
-  return SLUG_TO_CITY_SLUG[dataSlug] || dataSlug;
+  const slug = SLUG_TO_CITY_SLUG[dataSlug] || dataSlug;
+  return slug === "__homepage__" ? "" : slug;
 }
 
 export default SLUG_TO_CITY_SLUG;

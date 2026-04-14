@@ -46,12 +46,12 @@ describe("getCitySlug", () => {
     expect(getCitySlug("alignment-tire-rotation-balancing")).toBe("wheel-alignment");
   });
 
-  it("maps tires to wheel-alignment", () => {
-    expect(getCitySlug("tires")).toBe("wheel-alignment");
+  it("maps tires to empty string (homepage fallback)", () => {
+    expect(getCitySlug("tires")).toBe("");
   });
 
-  it("maps powertrain-restoration to routine-maintenance", () => {
-    expect(getCitySlug("powertrain-restoration")).toBe("routine-maintenance");
+  it("maps powertrain-restoration to empty string (homepage fallback)", () => {
+    expect(getCitySlug("powertrain-restoration")).toBe("");
   });
 
   it("maps fleet-maintenance-repairs to fleet-services", () => {
@@ -109,8 +109,19 @@ describe("getCityServicePath", () => {
     expect(getCityServicePath("fort-lauderdale", "fleet-maintenance-repairs")).toBe("/fort-lauderdale/fleet-services");
   });
 
-  it("builds Fort Lauderdale wheel alignment path from tires slug", () => {
-    expect(getCityServicePath("fort-lauderdale", "tires")).toBe("/fort-lauderdale/wheel-alignment");
+  it("returns homepage for tires slug (no dedicated city page yet)", () => {
+    expect(getCityServicePath("fort-lauderdale", "tires")).toBe("/");
+    expect(getCityServicePath("wilton-manors", "tires")).toBe("/");
+  });
+
+  it("returns homepage for powertrain-restoration slug (no dedicated city page yet)", () => {
+    expect(getCityServicePath("fort-lauderdale", "powertrain-restoration")).toBe("/");
+    expect(getCityServicePath("wilton-manors", "powertrain-restoration")).toBe("/");
+  });
+
+  it("returns homepage for car-wash slug (no dedicated city page yet)", () => {
+    expect(getCityServicePath("fort-lauderdale", "car-wash")).toBe("/");
+    expect(getCityServicePath("wilton-manors", "car-wash")).toBe("/");
   });
 
   it("builds Wilton Manors European vehicle repair path", () => {
