@@ -42,6 +42,7 @@ const FortLauderdaleCityLanding = lazy(() => import("./pages/FortLauderdaleCityL
 const WiltonManorsCityLanding = lazy(() => import("./pages/WiltonManorsCityLanding"));
 const AdminBacklinks = lazy(() => import("./pages/AdminBacklinks"));
 const AdminGBPChecklist = lazy(() => import("./pages/AdminGBPChecklist"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -157,6 +158,7 @@ function Router() {
           <Route path="/wilton-manors/auto-repair" component={WiltonManorsCityLanding} />
 
           {/* Admin routes */}
+          <Route path="/admin" component={AdminDashboard} />
           <Route path="/admin/conversations" component={AdminConversations} />
           <Route path="/admin/escalations" component={AdminEscalations} />
           <Route path="/admin/authorizations" component={AdminAuthorizations} />

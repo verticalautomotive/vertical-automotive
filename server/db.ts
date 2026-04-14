@@ -3,6 +3,12 @@ import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, users, conversationLogs, aistudioConversations, aistudioMessages, aistudioEscalations, InsertAistudioConversation, InsertAistudioMessage, InsertAistudioEscalation } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
+// Email addresses that are automatically granted admin role on login
+const ADMIN_EMAIL_WHITELIST = [
+  "verticalauto89@gmail.com",
+  "verticalautoft@gmail.com",
+];
+
 let _db: ReturnType<typeof drizzle> | null = null;
 
 // Lazily create the drizzle instance so local tooling can run without a DB.
@@ -55,7 +61,10 @@ export async function upsertUser(user: InsertUser): Promise<void> {
     if (user.role !== undefined) {
       values.role = user.role;
       updateSet.role = user.role;
-    } else if (user.openId === ENV.ownerOpenId) {
+    } else if (
+      user.openId === ENV.ownerOpenId ||
+      (user.email && ADMIN_EMAIL_WHITELIST.includes(user.email.toLowerCase()))
+    ) {
       values.role = 'admin';
       updateSet.role = 'admin';
     }

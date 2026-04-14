@@ -504,3 +504,12 @@
 ### Wire all routes in App.tsx
 - [ ] Add routes for all new pages
 - [ ] Save checkpoint
+
+## Admin Dashboard with Manus OAuth (Email Whitelist)
+- [x] Whitelist verticalauto89@gmail.com and verticalautoft@gmail.com as admin users
+- [x] Auto-promote whitelisted emails to admin role on first login (db.ts upsertUser)
+- [x] Block non-whitelisted users from admin routes (role check in AdminDashboard)
+- [x] Build /admin dashboard landing page with links to all admin tools
+- [x] Add login page/redirect for /admin when not authenticated (Sign In with Manus screen)
+- [x] Test auth flow end-to-end (210 tests pass, 0 TS errors)
+- [x] Save checkpoint
