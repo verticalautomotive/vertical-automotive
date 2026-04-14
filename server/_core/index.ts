@@ -38,6 +38,40 @@ async function startServer() {
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
 
+  // ─── 301 Redirects: old /services/ URLs → new city-specific pages ─────────
+  const serviceRedirects: Record<string, string> = {
+    "/services/tesla-vehicles-service": "/fort-lauderdale/tesla-ev-repair",
+    "/services/asian-vehicles-service": "/fort-lauderdale/asian-vehicle-repair",
+    "/services/european-vehicles-service": "/fort-lauderdale/european-vehicle-repair",
+    "/services/domestic-vehicles-service": "/fort-lauderdale/domestic-vehicle-repair",
+    "/services/brake-system": "/fort-lauderdale/brake-repair",
+    "/services/transmission": "/fort-lauderdale/transmission-service",
+    "/services/a-c-maintenance-repair": "/fort-lauderdale/ac-repair",
+    "/services/oil-change-engine-service": "/fort-lauderdale/engine-oil-service",
+    "/services/complete-diagnostics": "/fort-lauderdale/complete-diagnostics",
+    "/services/routine-preventive-maintenance": "/fort-lauderdale/routine-maintenance",
+    "/services/steering-suspension": "/fort-lauderdale/steering-suspension",
+    "/services/fuel-system": "/fort-lauderdale/fuel-system-service",
+    "/services/hybrids-ev": "/fort-lauderdale/hybrid-ev-service",
+    "/services/alignment-tire-rotation-balancing": "/fort-lauderdale/wheel-alignment",
+  };
+
+  // Also handle Spanish versions
+  const serviceRedirectsEs: Record<string, string> = {};
+  for (const [from, to] of Object.entries(serviceRedirects)) {
+    serviceRedirectsEs["/es" + from] = "/es" + to;
+  }
+
+  const allRedirects = { ...serviceRedirects, ...serviceRedirectsEs };
+
+  app.use((req, res, next) => {
+    const target = allRedirects[req.path];
+    if (target) {
+      return res.redirect(301, target);
+    }
+    next();
+  });
+
   // Streaming chat endpoint (SSE)
   app.post("/api/chat/stream", handleChatStream);
   // tRPC API

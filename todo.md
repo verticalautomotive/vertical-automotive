@@ -434,4 +434,13 @@
 - [x] Two separate JSON-LD blocks now rendered by Home.tsx with unique @id per location
 - [x] Verified: exactly 2 blocks — #wilton-manors (954-565-1518) and #fort-lauderdale (645-216-2266)
 - [x] Each block has: unique @id, unique telephone, unique address, hasOfferCatalog, foundingDate
-- [ ] Save checkpoint
+- [x] Save checkpoint
+
+## 301 Redirects from Old Service URLs to City Pages
+- [x] Add server-side 301 redirects for 14 old /services/ URLs → /fort-lauderdale/ pages
+- [x] Verify all 14 redirects return HTTP 301 with correct Location header
+- [x] Check page existence: /services/faq, /payment-authorization, /services (all return 200)
+- [x] Remove old /services/[service] URLs from sitemap.xml (28 redirected URLs removed, 117 remaining)
+- [x] /services/faq returns 200 — kept in sitemap
+- [x] All /fort-lauderdale/ and /wilton-manors/ pages already have lastmod 2026-04-14
+- [x] Save checkpoint
