@@ -416,3 +416,15 @@
 - [x] Ensure all 32 city pages, homepage, about, contacts, offers, gallery, blog, service-guide, payment-authorization, and service pages are included
 - [x] Validate XML is well-formed (starts with <?xml>, ends with </urlset>, nothing after)
 - [x] Save checkpoint
+
+## Resubmit Sitemap to Google
+- [x] Ping Google with sitemap URL (deprecated since 2023 - Google auto-discovers via robots.txt)
+
+## Spanish Translations for 32 City Pages
+- [x] Create Spanish content data (introText, whyChooseUs, faq) for all 32 pages (already embedded in data files)
+- [x] Add Spanish routing (/es/fort-lauderdale/... and /es/wilton-manors/...)
+- [x] Update CityServicePage to support Spanish language (path detection + link prefixing)
+- [x] Update sitemap.xml with 32 Spanish city page URLs + hreflang (145 total URLs)
+- [x] Test Spanish city pages (both cities verified)
+- [x] Fix hero/CTA buttons to show Spanish text on /es/ pages
+- [ ] Save checkpoint

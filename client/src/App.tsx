@@ -76,6 +76,10 @@ function Router() {
           <Route path="/contacts" component={Contacts} />
           <Route path="/service-guide" component={ServiceGuide} />
 
+          {/* Spanish city-specific service pages */}
+          <Route path="/es/fort-lauderdale/:service" component={CityServicePage} />
+          <Route path="/es/wilton-manors/:service" component={CityServicePage} />
+
           {/* Spanish routes */}
           <Route path="/es" component={Home} />
           <Route path="/es/servicios" component={Services} />

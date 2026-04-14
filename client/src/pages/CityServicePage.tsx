@@ -24,10 +24,11 @@ export default function CityServicePage() {
   const [location] = useLocation();
   const { isSpanish } = useTranslation();
 
-  // Derive city from pathname
-  const normalizedCity = location.startsWith("/fort-lauderdale/")
+  // Derive city from pathname (supports both /city/service and /es/city/service)
+  const pathWithoutLang = location.startsWith("/es/") ? location.slice(3) : location;
+  const normalizedCity = pathWithoutLang.startsWith("/fort-lauderdale/")
     ? "fort-lauderdale"
-    : location.startsWith("/wilton-manors/")
+    : pathWithoutLang.startsWith("/wilton-manors/")
     ? "wilton-manors"
     : null;
 
@@ -50,6 +51,7 @@ export default function CityServicePage() {
   const directions = isSpanish ? page.directionsEs : page.directions;
 
   const canonicalUrl = `https://verticalautomotive.com/${normalizedCity}/${service}/`;
+  const canonicalUrlEs = `https://verticalautomotive.com/es/${normalizedCity}/${service}/`;
 
   // LocalBusiness JSON-LD Schema
   const localBusinessSchema = {
@@ -167,7 +169,7 @@ export default function CityServicePage() {
                 window.open("https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049", "_blank");
               }}
             >
-              Schedule Service
+              {isSpanish ? 'Agendar Cita' : 'Schedule Service'}
             </Button>
             <Button
               size="lg"
@@ -178,7 +180,7 @@ export default function CityServicePage() {
               }}
             >
               <Phone className="w-4 h-4 mr-2" />
-              Call {page.phone}
+              {isSpanish ? 'Llamar' : 'Call'} {page.phone}
             </Button>
           </div>
         </div>
@@ -353,7 +355,7 @@ export default function CityServicePage() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
               {page.relatedServices.map((related, idx) => (
-                <Link key={idx} href={`/${normalizedCity}/${related.serviceSlug}`}>
+                <Link key={idx} href={`${isSpanish ? '/es' : ''}/${normalizedCity}/${related.serviceSlug}`}>
                   <div className="group block p-4 sm:p-6 bg-muted rounded-lg border border-border hover:border-primary transition-colors cursor-pointer">
                     <p className="font-semibold text-sm sm:text-base mb-2 group-hover:text-primary transition-colors">
                       {related.serviceName}
@@ -402,7 +404,7 @@ export default function CityServicePage() {
               }}
             >
               <Phone className="w-4 h-4 mr-2" />
-              Call {page.phone}
+              {isSpanish ? 'Llamar' : 'Call'} {page.phone}
             </Button>
           </div>
         </div>
@@ -418,7 +420,7 @@ export default function CityServicePage() {
                   ? "También disponible en nuestra ubicación de Wilton Manors"
                   : "Also available at our Wilton Manors location"}
               </p>
-              <Link href={`/wilton-manors/${service}`}>
+              <Link href={`${isSpanish ? '/es' : ''}/wilton-manors/${service}`}>
                 <Button variant="outline" className="text-xs sm:text-sm">
                   {isSpanish ? "Ver en Wilton Manors" : "View in Wilton Manors"} — (954) 565-1518
                 </Button>
@@ -431,7 +433,7 @@ export default function CityServicePage() {
                   ? "También disponible en nuestra ubicación de Fort Lauderdale"
                   : "Also available at our Fort Lauderdale location"}
               </p>
-              <Link href={`/fort-lauderdale/${service}`}>
+              <Link href={`${isSpanish ? '/es' : ''}/fort-lauderdale/${service}`}>
                 <Button variant="outline" className="text-xs sm:text-sm">
                   {isSpanish ? "Ver en Fort Lauderdale" : "View in Fort Lauderdale"} — (645) 216-2266
                 </Button>
