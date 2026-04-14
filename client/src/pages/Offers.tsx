@@ -61,14 +61,15 @@ export default function OffersPage() {
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
         title={isSpanish
-          ? "Ofertas y Cupones | Vertical Automotive"
-          : "Coupons & Offers | Vertical Automotive"}
+          ? "Cupones y Ofertas Auto Fort Lauderdale | Vertical Automotive"
+          : "Auto Repair Deals Fort Lauderdale | Coupons & Offers"}
         description={isSpanish
-          ? "Cupones exclusivos: inspección de frenos gratis, cambio de aceite gratis, descuentos en neumáticos. Ahorre en Vertical Automotive."
-          : "Exclusive coupons: free brake inspection, free oil change, tire discounts and more. Save at Vertical Automotive."}
+          ? "Ahorre en su próxima visita con cupones exclusivos de Vertical Automotive. Inspección de frenos gratis, cambio de aceite, descuentos en alineación y más. Fort Lauderdale y Wilton Manors."
+          : "Save on your next visit with exclusive Vertical Automotive coupons. Free brake inspection, oil change deals, alignment discounts & more. Fort Lauderdale & Wilton Manors."}
         keywords={isSpanish
-          ? "cupones reparación auto Fort Lauderdale, ofertas cambio aceite, descuento frenos, taller económico"
-          : "auto repair coupons Fort Lauderdale, oil change deals, brake discount, affordable mechanic"}
+          ? "cupones reparación auto Fort Lauderdale, ofertas cambio aceite, descuento frenos, taller económico Wilton Manors"
+          : "auto repair coupons Fort Lauderdale, oil change deals near me, brake discount Wilton Manors, affordable mechanic Broward County"}
+        canonical={isSpanish ? "https://verticalautomotive.com/es/ofertas" : "https://verticalautomotive.com/offers"}
       />
       <Navigation />
 

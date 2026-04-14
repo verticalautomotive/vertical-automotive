@@ -5,7 +5,7 @@
  */
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { SERVICE_FAQS, type FAQItem } from "@/lib/faq-data";
+import { SERVICE_FAQS, VEHICLE_FAQS, type FAQItem } from "@/lib/faq-data";
 import { SERVICE_FAQS_ES } from "@/lib/faq-data-es";
 import { useTranslation } from "@/hooks/useTranslation";
 
@@ -79,7 +79,7 @@ export default function ServiceFAQ({ serviceSlug, serviceTitle }: ServiceFAQProp
 
   // Get FAQs for this service (Spanish override or English default)
   const faqSource = isSpanish ? SERVICE_FAQS_ES : SERVICE_FAQS;
-  const faqs = faqSource[serviceSlug];
+  const faqs = faqSource[serviceSlug] ?? VEHICLE_FAQS[serviceSlug];
 
   // No FAQs for this service — render nothing
   if (!faqs || faqs.length === 0) return null;

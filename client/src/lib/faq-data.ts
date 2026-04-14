@@ -333,3 +333,95 @@ export const SERVICE_FAQS: Record<string, FAQItem[]> = {
     },
   ],
 };
+
+// Vehicle type FAQs — Phase 3 SEO (near-me targeting)
+export const VEHICLE_FAQS: Record<string, FAQItem[]> = {
+  "tesla-vehicles-service": [
+    {
+      question: "Is there a Tesla repair shop near me in Fort Lauderdale?",
+      answer: "Yes — Vertical Automotive serves Tesla owners throughout Fort Lauderdale, Wilton Manors, Oakland Park, and Broward County. Our ASE-certified EV technicians are trained on Model S, 3, X, and Y diagnostics, battery management, LDU service, and A/C repair. We're located at 707 NE 11th Street, Fort Lauderdale and 1100 W Oakland Park Blvd, Wilton Manors.",
+    },
+    {
+      question: "Can an independent shop service my Tesla without voiding the warranty?",
+      answer: "Yes. Under the Magnuson-Moss Warranty Act, you can have your Tesla serviced at any qualified independent shop without voiding your warranty, as long as the work meets manufacturer specifications. Our technicians use professional-grade diagnostic tools and follow Tesla service procedures.",
+    },
+    {
+      question: "What Tesla repairs do you specialize in?",
+      answer: "We specialize in Tesla battery diagnostics and management, LDU (Large Drive Unit) service, A/C compressor replacement, suspension repair, brake service, and 12V auxiliary battery replacement. We also handle general maintenance for all Tesla models.",
+    },
+    {
+      question: "How much does Tesla repair cost compared to a Tesla Service Center?",
+      answer: "Independent Tesla repair at Vertical Automotive is typically 20–40% less than Tesla Service Center pricing. We offer transparent quotes before any work begins and back all repairs with our 3-year / 36,000-mile warranty.",
+    },
+    {
+      question: "Do you service other EVs besides Tesla?",
+      answer: "Absolutely. We service all electric and hybrid vehicles including Rivian, Lucid, Chevy Bolt, Nissan Leaf, Ford Mustang Mach-E, and more. Our EV-trained technicians handle high-voltage systems, battery diagnostics, and charging system repairs for all major EV brands.",
+    },
+  ],
+  "european-vehicles-service": [
+    {
+      question: "Where can I find a European auto repair shop near me in Fort Lauderdale?",
+      answer: "Vertical Automotive has two locations serving European car owners in Fort Lauderdale and Wilton Manors. We specialize in BMW, Mercedes-Benz, Audi, Porsche, Volkswagen, Land Rover, and Volvo. Our ASE-certified technicians use factory-level diagnostic tools for accurate European vehicle service.",
+    },
+    {
+      question: "Do you use OEM parts for European car repairs?",
+      answer: "Yes. We use OEM (Original Equipment Manufacturer) or OEM-equivalent parts for all European vehicle repairs to ensure proper fit, performance, and warranty compliance. We'll always discuss parts options and pricing with you before proceeding.",
+    },
+    {
+      question: "Can you reset BMW or Mercedes service reminders?",
+      answer: "Yes. We have the professional diagnostic software to reset service indicators, perform adaptations, and clear fault codes on all European makes including BMW, Mercedes-Benz, Audi, Porsche, and Volkswagen — the same capability as the dealership.",
+    },
+    {
+      question: "How much does European car repair cost in Fort Lauderdale?",
+      answer: "European vehicle repair costs vary by make, model, and service type. At Vertical Automotive, our rates are typically 30–50% lower than dealership pricing while using the same quality parts and diagnostic equipment. We provide transparent estimates before any work begins.",
+    },
+    {
+      question: "Do you service Porsche and Land Rover vehicles?",
+      answer: "Yes. Our technicians are experienced with Porsche (911, Cayenne, Macan, Panamera) and Land Rover / Range Rover models. We handle everything from routine maintenance to complex drivetrain and air suspension repairs.",
+    },
+  ],
+  "asian-vehicles-service": [
+    {
+      question: "Is there a trusted Asian car mechanic near me in Fort Lauderdale?",
+      answer: "Vertical Automotive specializes in Asian vehicle repair in Fort Lauderdale and Wilton Manors. We service Toyota, Honda, Lexus, Acura, Nissan, Infiniti, Mazda, Subaru, Hyundai, and Kia. Our ASE-certified technicians use manufacturer-level diagnostic tools for accurate service.",
+    },
+    {
+      question: "Do you service Toyota and Honda hybrids?",
+      answer: "Yes. We're experienced with Toyota Prius, Camry Hybrid, RAV4 Hybrid, Honda Accord Hybrid, and CR-V Hybrid. Our technicians are trained in high-voltage hybrid systems, battery diagnostics, and regenerative braking service.",
+    },
+    {
+      question: "How often should I service my Lexus or Acura?",
+      answer: "Most Lexus and Acura vehicles recommend oil changes every 5,000–10,000 miles depending on the model and oil type. We follow manufacturer maintenance schedules and can set up a customized maintenance plan to keep your vehicle in peak condition and protect your warranty.",
+    },
+    {
+      question: "Can you perform Subaru head gasket repairs?",
+      answer: "Yes. Subaru head gasket issues are a known concern on certain models, and our technicians have extensive experience with this repair. We use high-quality gaskets and follow Subaru torque specifications to ensure a lasting fix.",
+    },
+    {
+      question: "What is the cost of a timing belt replacement on a Honda or Toyota?",
+      answer: "Timing belt replacement typically costs $400–$900 depending on the model and whether the water pump and tensioners are replaced at the same time (recommended). We provide a complete estimate before work begins and back all repairs with our 3-year / 36,000-mile warranty.",
+    },
+  ],
+  "domestic-vehicles-service": [
+    {
+      question: "Where can I find a domestic car repair shop near me in Fort Lauderdale?",
+      answer: "Vertical Automotive serves domestic vehicle owners throughout Fort Lauderdale, Wilton Manors, and Broward County. We specialize in Ford, Chevrolet, GMC, Dodge, RAM, Jeep, and Chrysler vehicles. Our ASE-certified mechanics use advanced diagnostic tools for accurate, reliable repairs.",
+    },
+    {
+      question: "Do you service Ford F-150 and RAM trucks?",
+      answer: "Yes. We regularly service Ford F-150, F-250, RAM 1500, RAM 2500, and other domestic trucks. From oil changes and brake service to transmission repair and engine diagnostics, our technicians are experienced with both gas and diesel truck powertrains.",
+    },
+    {
+      question: "Can you diagnose and repair Jeep transmission issues?",
+      answer: "Absolutely. We service all Jeep models including Wrangler, Grand Cherokee, Cherokee, and Gladiator. Our technicians are experienced with Jeep automatic and manual transmissions, transfer cases, and 4WD systems.",
+    },
+    {
+      question: "How much does a domestic car repair cost compared to a dealership?",
+      answer: "At Vertical Automotive, our rates are typically 30–50% lower than dealership pricing while using the same quality parts and diagnostic equipment. We provide transparent, itemized estimates before any work begins — no surprises.",
+    },
+    {
+      question: "Do you service Chevrolet and GMC trucks with the Duramax diesel?",
+      answer: "Yes. Our technicians are experienced with Duramax diesel engines in Chevrolet Silverado HD and GMC Sierra HD trucks. We handle diesel-specific services including fuel injector cleaning, DPF maintenance, EGR service, and general diesel diagnostics.",
+    },
+  ],
+};

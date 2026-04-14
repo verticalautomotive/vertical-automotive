@@ -21,12 +21,32 @@ import { trackSchedule } from "@/lib/gtm";
 import ServiceFAQ from "@/components/ServiceFAQ";
 
 // Per-slug SEO overrides for high-value service pages
+// Per-slug H1 overrides (Phase 2 — unique, keyword-rich H1s)
+const SERVICE_H1: Record<string, { h1: string; h1Es: string }> = {
+  "brake-system": {
+    h1: "Professional Brake Repair & Replacement in Fort Lauderdale",
+    h1Es: "Reparación y Reemplazo de Frenos Profesional en Fort Lauderdale",
+  },
+  "alignment-tire-rotation-balancing": {
+    h1: "Wheel Alignment, Tire Rotation & Balancing in Fort Lauderdale",
+    h1Es: "Alineación, Rotación y Balanceo de Neumáticos en Fort Lauderdale",
+  },
+  "battery-cranking-charging-systems": {
+    h1: "Battery & Charging System Service in Fort Lauderdale & Wilton Manors",
+    h1Es: "Servicio de Batería y Sistema de Carga en Fort Lauderdale",
+  },
+  "hybrids-ev": {
+    h1: "Hybrid & Electric Vehicle Repair in Fort Lauderdale & Wilton Manors",
+    h1Es: "Reparación de Híbridos y Eléctricos en Fort Lauderdale y Wilton Manors",
+  },
+};
+
 const SERVICE_SEO: Record<string, { title: string; titleEs: string; description: string; descriptionEs: string }> = {
   "brake-system": {
-    title: "Brake Repair Fort Lauderdale & Wilton Manors | Vertical Automotive",
-    titleEs: "Reparación de Frenos Fort Lauderdale y Wilton Manors | Vertical Automotive",
-    description: "Expert brake repair in Fort Lauderdale & Wilton Manors. Pads, rotors, calipers & brake fluid service for all makes. ASE-certified, 36,000-mile / 36-month warranty. Call (954) 565-1518.",
-    descriptionEs: "Reparación de frenos en Fort Lauderdale y Wilton Manors. Pastillas, rotores, calibradores para todas las marcas. Certificados ASE, garantía 3 años. Llame al (954) 565-1518.",
+    title: "Brake Repair Fort Lauderdale | Pads & Rotors | Vertical Automotive",
+    titleEs: "Reparación de Frenos Fort Lauderdale | Pastillas y Rotores | Vertical Automotive",
+    description: "Professional brake repair & replacement in Fort Lauderdale & Wilton Manors. Brake pads, rotors, calipers & fluid flush. All makes & models. 3-year warranty. Free inspection. Book today.",
+    descriptionEs: "Reparación profesional de frenos en Fort Lauderdale y Wilton Manors. Pastillas, rotores, calibradores y purga de líquido. Todas las marcas. Garantía 3 años. Inspección gratis. Reserve hoy.",
   },
   "a-c-maintenance-repair": {
     title: "A/C Repair Fort Lauderdale & Wilton Manors | Vertical Automotive",
@@ -47,10 +67,10 @@ const SERVICE_SEO: Record<string, { title: string; titleEs: string; description:
     descriptionEs: "Reparación de transmisión en Fort Lauderdale y Wilton Manors. Automática, manual y CVT para todas las marcas. Certificados ASE, garantía 3 años. (954) 565-1518.",
   },
   "alignment-tire-rotation-balancing": {
-    title: "Wheel Alignment Fort Lauderdale & Wilton Manors | Vertical Automotive",
-    titleEs: "Alineación de Ruedas Fort Lauderdale | Vertical Automotive",
-    description: "Wheel alignment, tire rotation & balancing in Fort Lauderdale & Wilton Manors. All makes & models. ASE-certified, 36,000-mile / 36-month warranty. Call (954) 565-1518.",
-    descriptionEs: "Alineación de ruedas, rotación y balanceo en Fort Lauderdale y Wilton Manors. Todas las marcas. Certificados ASE, garantía 3 años. Llame al (954) 565-1518.",
+    title: "Wheel Alignment Fort Lauderdale | Tire Rotation & Balancing",
+    titleEs: "Alineación de Ruedas Fort Lauderdale | Rotación y Balanceo",
+    description: "Precision wheel alignment, tire rotation & balancing in Fort Lauderdale & Wilton Manors. All makes & models including Tesla & EV. ASE-certified. Competitive pricing. Schedule online today.",
+    descriptionEs: "Alineación de ruedas, rotación y balanceo en Fort Lauderdale y Wilton Manors. Todas las marcas incluyendo Tesla y EV. Certificados ASE. Precios competitivos. Reserve en línea hoy.",
   },
   "steering-suspension": {
     title: "Suspension Repair Fort Lauderdale & Wilton Manors | Vertical Automotive",
@@ -59,10 +79,16 @@ const SERVICE_SEO: Record<string, { title: string; titleEs: string; description:
     descriptionEs: "Reparación de dirección y suspensión en Fort Lauderdale y Wilton Manors. Amortiguadores, brazos de control para todas las marcas. Certificados ASE. (954) 565-1518.",
   },
   "hybrids-ev": {
-    title: "Hybrid & EV Repair Fort Lauderdale & Wilton Manors | Vertical Automotive",
-    titleEs: "Reparación de Híbridos y Eléctricos Fort Lauderdale | Vertical Automotive",
-    description: "Hybrid & EV repair in Fort Lauderdale & Wilton Manors. Tesla, Toyota, Honda, BMW & more. ASE-certified EV specialists, 36,000-mile / 36-month warranty. Call (954) 565-1518.",
-    descriptionEs: "Reparación de híbridos y eléctricos en Fort Lauderdale y Wilton Manors. Tesla, Toyota, Honda, BMW. Especialistas ASE en EV, garantía 3 años. (954) 565-1518.",
+    title: "Hybrid & EV Repair Fort Lauderdale | Prius, Volt & All Hybrids",
+    titleEs: "Reparación Híbridos y Eléctricos Fort Lauderdale | Prius, Volt y Más",
+    description: "Hybrid and electric vehicle repair in Fort Lauderdale & Wilton Manors. Toyota Prius, Honda Hybrid, Chevy Volt & all hybrid makes. ASE-certified EV specialists. 3-year warranty. Book today.",
+    descriptionEs: "Reparación de vehículos híbridos y eléctricos en Fort Lauderdale y Wilton Manors. Toyota Prius, Honda Hybrid, Chevy Volt y todas las marcas híbridas. Especialistas ASE en EV. Garantía 3 años. Reserve hoy.",
+  },
+  "battery-cranking-charging-systems": {
+    title: "Car Battery Replacement Fort Lauderdale | All Makes & EVs",
+    titleEs: "Reemplazo de Batería Fort Lauderdale | Todas las Marcas y EVs",
+    description: "Car battery replacement & charging system repair in Fort Lauderdale & Wilton Manors. All makes including Tesla & EV. Fast same-day service, ASE-certified, 3-year warranty. Book today.",
+    descriptionEs: "Reemplazo de batería y reparación del sistema de carga en Fort Lauderdale y Wilton Manors. Todas las marcas incluyendo Tesla y EV. Servicio rápido el mismo día, ASE certificados, garantía 3 años. Reserve hoy.",
   },
   "fleet-maintenance-repairs": {
     title: "Fleet Maintenance Fort Lauderdale & Wilton Manors | Vertical Automotive",
@@ -120,6 +146,7 @@ export default function ServiceDetail() {
   const relatedServices = services.filter((s) => s.slug !== slug).slice(0, 4);
 
   const seoOverride = SERVICE_SEO[service.slug];
+  const h1Override = SERVICE_H1[service.slug];
   const seoTitle = seoOverride
     ? (isSpanish ? seoOverride.titleEs : seoOverride.title)
     : (isSpanish
@@ -145,10 +172,45 @@ export default function ServiceDetail() {
           ? `${service.title.toLowerCase()} Fort Lauderdale, reparación ${service.title.toLowerCase()}, taller mecánico Fort Lauderdale, Wilton Manors, certificado ASE`
           : `${service.title.toLowerCase()} Fort Lauderdale, ${service.title.toLowerCase()} Wilton Manors, auto repair Fort Lauderdale, ASE certified mechanic`}
       />
+      {/* LocalBusiness JSON-LD — Phase 3 enhanced schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AutoRepair",
+          "name": "Vertical Automotive",
+          "url": canonicalUrl,
+          "telephone": "(954) 565-1518",
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1100 W Oakland Park Blvd Unit 5",
+            "addressLocality": "Wilton Manors",
+            "addressRegion": "FL",
+            "postalCode": "33311",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 26.165788,
+            "longitude": -80.157597
+          },
+          "openingHours": "Mo-Fr 08:00-17:00",
+          "sameAs": ["https://www.google.com/maps/place/Vertical+Automotive"],
+          "areaServed": ["Fort Lauderdale", "Wilton Manors", "Broward County"],
+          "serviceType": [service.title, "Auto Repair", "ASE Certified Mechanic"],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "503",
+            "bestRating": "5"
+          }
+        }) }}
+      />
       <Navigation />
 
       <PageHero
-        title={service.title.toUpperCase()}
+        title={h1Override ? (isSpanish ? h1Override.h1Es : h1Override.h1) : service.title.toUpperCase()}
         subtitle={t.subtitle}
         backgroundImage={SERVICE_IMAGES[service.slug]}
       />

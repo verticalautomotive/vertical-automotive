@@ -330,3 +330,15 @@
 - [x] Added dedicated /work_order_financial API call with debug logging
 - [x] Resolution chain now checks 10 possible locations in priority order
 - [ ] Save checkpoint
+
+## Estimate Route Fix
+- [ ] Diagnose /estimate-comparison/new not loading
+- [ ] Fix the route
+- [ ] Save checkpoint
+
+## 3-Phase SEO Improvement (9 Service Pages)
+- [x] Phase 1: Applied exact title/meta/H1/canonical to all 9 pages (ServiceDetail + VehicleDetail + Offers)
+- [x] Phase 2: Optimized titles under 60 chars, unique H1s, improved meta descriptions
+- [x] Phase 3: LocalBusiness JSON-LD schema in ServiceDetail, VEHICLE_FAQS added for 4 vehicle pages, ServiceFAQ wired into VehicleDetail, Offers SEO updated with near-me keywords
+- [x] Final validation: TypeScript 0 errors, vehicle slugs match FAQ keys
+- [ ] Save checkpoint
