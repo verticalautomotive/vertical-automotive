@@ -29,6 +29,15 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://verticalautomotive.com/es/servicios</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/services" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/servicios" />
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
     <loc>https://verticalautomotive.com/services/faq</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/services/faq" />
     <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/servicios/preguntas-frecuentes" />
@@ -44,15 +53,6 @@
     <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://verticalautomotive.com/es/servicios</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/services" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/servicios" />
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
 
   <url>
@@ -90,6 +90,13 @@
   </url>
 
   <url>
+    <loc>https://verticalautomotive.com/gallery</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://verticalautomotive.com/blog</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog" />
     <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion" />
@@ -121,6 +128,20 @@
     <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://verticalautomotive.com/service-guide</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://verticalautomotive.com/payment-authorization</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
   <!-- Blog Article Pages (EN + ES with hreflang) -->
@@ -243,88 +264,41 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Vehicle Type Pages -->
-  <url><loc>https://verticalautomotive.com/services/tesla-vehicles-service</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/asian-vehicles-service</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/european-vehicles-service</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/domestic-vehicles-service</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/tesla-vehicles-service</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/asian-vehicles-service</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/european-vehicles-service</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/domestic-vehicles-service</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url>
+    <loc>https://verticalautomotive.com/blog/fleet-vehicle-maintenance-schedules</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/fleet-vehicle-maintenance-schedules" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/programas-mantenimiento-flotas-vehiculos" />
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/informacion/programas-mantenimiento-flotas-vehiculos</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/fleet-vehicle-maintenance-schedules" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/programas-mantenimiento-flotas-vehiculos" />
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
-  <!-- Service Pages (EN) -->
-  <url><loc>https://verticalautomotive.com/services/battery-cranking-charging-systems</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/brake-system</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/transmission</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/a-c-maintenance-repair</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/oil-change-engine-service</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/complete-diagnostics</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/routine-preventive-maintenance</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/steering-suspension</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/fuel-system</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/hybrids-ev</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/alignment-tire-rotation-balancing</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/tires</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/powertrain-restoration</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/manufacturer-recommended-services</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/services/car-wash</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url>
+    <loc>https://verticalautomotive.com/blog/dashboard-warning-lights-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/dashboard-warning-lights-guide" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/guia-luces-advertencia-tablero" />
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/informacion/guia-luces-advertencia-tablero</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/dashboard-warning-lights-guide" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/informacion/guia-luces-advertencia-tablero" />
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
-  <!-- Service Pages (ES) -->
-  <url><loc>https://verticalautomotive.com/es/servicios/battery-cranking-charging-systems</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/brake-system</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/transmission</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/a-c-maintenance-repair</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/oil-change-engine-service</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/complete-diagnostics</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/routine-preventive-maintenance</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/steering-suspension</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/fuel-system</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/hybrids-ev</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/alignment-tire-rotation-balancing</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/tires</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/powertrain-restoration</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/manufacturer-recommended-services</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://verticalautomotive.com/es/servicios/car-wash</loc><lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <!-- Tesla blog posts (added Apr 2026) -->
+  <!-- Tesla Blog Posts -->
   <url>
     <loc>https://verticalautomotive.com/blog/tesla-ldu-rebuild-vs-replacement</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/blog/tesla-ldu-rebuild-vs-replacement" />
@@ -390,201 +364,83 @@
     <priority>0.8</priority>
   </url>
 
-</urlset>
+  <!-- Vehicle Type Pages -->
+  <url><loc>https://verticalautomotive.com/services/tesla-vehicles-service</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/asian-vehicles-service</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/european-vehicles-service</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/domestic-vehicles-service</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/tesla-vehicles-service</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/asian-vehicles-service</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/european-vehicles-service</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/domestic-vehicles-service</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Service Pages (EN) -->
+  <url><loc>https://verticalautomotive.com/services/battery-cranking-charging-systems</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/brake-system</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/transmission</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/a-c-maintenance-repair</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/oil-change-engine-service</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/complete-diagnostics</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/routine-preventive-maintenance</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/steering-suspension</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/fuel-system</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/hybrids-ev</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/alignment-tire-rotation-balancing</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/tires</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/powertrain-restoration</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/manufacturer-recommended-services</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/services/car-wash</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Service Pages (ES) -->
+  <url><loc>https://verticalautomotive.com/es/servicios/battery-cranking-charging-systems</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/brake-system</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/transmission</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/a-c-maintenance-repair</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/oil-change-engine-service</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/complete-diagnostics</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/routine-preventive-maintenance</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/steering-suspension</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/fuel-system</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/hybrids-ev</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/alignment-tire-rotation-balancing</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/tires</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/powertrain-restoration</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/manufacturer-recommended-services</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://verticalautomotive.com/es/servicios/car-wash</loc><lastmod>2026-03-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- City-Specific Service Pages - Fort Lauderdale -->
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/tesla-ev-repair</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/european-vehicle-repair</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/asian-vehicle-repair</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/domestic-vehicle-repair</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/brake-repair</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/transmission-service</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/ac-repair</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/engine-oil-service</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/complete-diagnostics</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/routine-maintenance</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/steering-suspension</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/fuel-system-service</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/hybrid-ev-service</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/wheel-alignment</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/battery-charging-systems</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/fort-lauderdale/fleet-services</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/tesla-ev-repair</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/european-vehicle-repair</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/asian-vehicle-repair</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/domestic-vehicle-repair</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/brake-repair</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/transmission-service</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/ac-repair</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/engine-oil-service</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/complete-diagnostics</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/routine-maintenance</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/steering-suspension</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/fuel-system-service</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/hybrid-ev-service</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/wheel-alignment</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/battery-charging-systems</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/fort-lauderdale/fleet-services</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- City-Specific Service Pages - Wilton Manors -->
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/tesla-ev-repair</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/european-vehicle-repair</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/asian-vehicle-repair</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/domestic-vehicle-repair</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/brake-repair</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/transmission-service</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/ac-repair</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/engine-oil-service</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/complete-diagnostics</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/routine-maintenance</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/steering-suspension</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/fuel-system-service</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/hybrid-ev-service</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/wheel-alignment</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/battery-charging-systems</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://verticalautomotive.com/wilton-manors/fleet-services</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/tesla-ev-repair</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/european-vehicle-repair</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/asian-vehicle-repair</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/domestic-vehicle-repair</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/brake-repair</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/transmission-service</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/ac-repair</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/engine-oil-service</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/complete-diagnostics</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/routine-maintenance</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/steering-suspension</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/fuel-system-service</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/hybrid-ev-service</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/wheel-alignment</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/battery-charging-systems</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://verticalautomotive.com/wilton-manors/fleet-services</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

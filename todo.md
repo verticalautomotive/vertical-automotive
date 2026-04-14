@@ -408,4 +408,11 @@
 - [x] Remove price badge rendering from CityServicePage component
 - [x] Remove pricing disclaimer note from What's Included section
 - [x] Keep competitive comparison messaging (e.g., "save 30-50% vs. dealership")
-- [ ] Save checkpoint
+- [x] Save checkpoint
+
+## Sitemap.xml Fix (XML Error)
+- [x] Read current sitemap.xml and identify extra content after </urlset>
+- [x] Rewrite sitemap.xml with all required URLs and proper XML structure
+- [x] Ensure all 32 city pages, homepage, about, contacts, offers, gallery, blog, service-guide, payment-authorization, and service pages are included
+- [x] Validate XML is well-formed (starts with <?xml>, ends with </urlset>, nothing after)
+- [x] Save checkpoint
