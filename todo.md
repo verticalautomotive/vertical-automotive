@@ -454,3 +454,10 @@
 - [x] Verify site loads without errors after removal (115 tests pass, 0 TS errors)
 - [ ] Provide GTM setup instructions for recreating tags inside GTM
 - [x] Save checkpoint
+
+## Fix Homepage Services Section (3 Issues)
+- [x] ISSUE 1: Fix all service tile default links to point to correct /fort-lauderdale/ URLs
+- [x] ISSUE 2: Fix Fort Lauderdale and Wilton Manors button slugs to use exact specified URLs
+- [x] ISSUE 3: Replace two-button layout with location picker modal (logo, two location buttons, close X)
+- [x] Verify all tiles link correctly and modal works on desktop/mobile (176 tests pass, 0 TS errors)
+- [x] Save checkpoint

@@ -39,12 +39,14 @@ import ServiceIcon from "@/components/ServiceIcon";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackCall, trackSchedule, trackDirections, trackClaimOffer } from "@/lib/gtm";
 import CallNowDialog from "@/components/CallNowDialog";
+import LocationPickerModal from "@/components/LocationPickerModal";
 
 export default function Home() {
   const [statsVisible, setStatsVisible] = useState(false);
   const [reviewsExpanded, setReviewsExpanded] = useState(false);
   const [offersExpanded, setOffersExpanded] = useState(false);
   const [callDialogOpen, setCallDialogOpen] = useState(false);
+  const [locationPickerService, setLocationPickerService] = useState<{ slug: string; name: string } | null>(null);
   const { lang, isSpanish, prefix, servicesPath, services, vehicleTypes, offers, ui } = useTranslation();
 
   const t = ui?.home ?? {
@@ -358,7 +360,7 @@ export default function Home() {
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {vehicleTypes.map((type) => (
-              <VehicleTypeCard key={type.slug} type={type} servicesPath={servicesPath} />
+              <VehicleTypeCard key={type.slug} type={type} servicesPath={servicesPath} onClickTile={(slug, name) => setLocationPickerService({ slug, name })} />
             ))}
           </div>
         </div>
@@ -401,47 +403,35 @@ export default function Home() {
             <div className="h-1 w-16 sm:w-24 bg-primary mx-auto" />
           </div>
 
-          {/* Mobile: compact 3-col icon tiles */}
+          {/* Mobile: compact 3-col icon tiles — click opens location picker */}
           <div className="grid grid-cols-3 gap-2 sm:hidden">
             {services.map((service) => (
-              <Link key={service.slug} href={`${servicesPath}/${service.slug}`}>
-                <div className="glass-compact flex flex-col items-center justify-center text-center p-2.5 border border-transparent hover:border-[#8B0000] group cursor-pointer h-[88px] transition-all duration-300">
-                  <div className="w-7 h-7 mb-1.5 flex-shrink-0 glass-icon group-hover:[&_svg]:text-[#8B0000] transition-colors duration-300">
-                    <ServiceIcon name={service.icon} />
-                  </div>
-                  <span className="text-[10px] font-bold leading-tight group-hover:text-[#8B0000] transition-colors line-clamp-2">{service.shortTitle}</span>
+              <div
+                key={service.slug}
+                onClick={() => setLocationPickerService({ slug: service.slug, name: service.shortTitle })}
+                className="glass-compact flex flex-col items-center justify-center text-center p-2.5 border border-transparent hover:border-[#8B0000] group cursor-pointer h-[88px] transition-all duration-300"
+              >
+                <div className="w-7 h-7 mb-1.5 flex-shrink-0 glass-icon group-hover:[&_svg]:text-[#8B0000] transition-colors duration-300">
+                  <ServiceIcon name={service.icon} />
                 </div>
-              </Link>
+                <span className="text-[10px] font-bold leading-tight group-hover:text-[#8B0000] transition-colors line-clamp-2">{service.shortTitle}</span>
+              </div>
             ))}
           </div>
 
-          {/* Desktop: 5-col full cards with location buttons */}
+          {/* Desktop: 5-col full cards — click opens location picker */}
           <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {services.map((service) => (
-              <div key={service.slug} className="glass-wrap h-full flex flex-col">
-                <Link href={`${servicesPath}/${service.slug}`} className="flex-1">
-                  <Card
-                    className="glass-card p-6 group cursor-pointer h-full flex flex-col items-center justify-center text-center border border-transparent hover:border-[#8B0000] transition-all duration-300"
-                  >
-                    <div className="w-12 h-12 mb-4 glass-icon group-hover:[&_svg]:text-[#8B0000] transition-colors duration-300">
-                      <ServiceIcon name={service.icon} />
-                    </div>
-                    <h3 className="text-lg font-bold group-hover:text-[#8B0000] transition-colors leading-tight relative z-[2]">{service.shortTitle}</h3>
-                  </Card>
-                </Link>
-                {/* Location buttons */}
-                <div className="flex gap-2 mt-3">
-                  <Link href={`/fort-lauderdale/${service.slug}`} className="flex-1">
-                    <Button size="sm" variant="outline" className="w-full text-xs font-bold">
-                      Fort Lauderdale
-                    </Button>
-                  </Link>
-                  <Link href={`/wilton-manors/${service.slug}`} className="flex-1">
-                    <Button size="sm" variant="outline" className="w-full text-xs font-bold">
-                      Wilton Manors
-                    </Button>
-                  </Link>
-                </div>
+              <div key={service.slug} className="glass-wrap h-full">
+                <Card
+                  onClick={() => setLocationPickerService({ slug: service.slug, name: service.shortTitle })}
+                  className="glass-card p-6 group cursor-pointer h-full flex flex-col items-center justify-center text-center border border-transparent hover:border-[#8B0000] transition-all duration-300"
+                >
+                  <div className="w-12 h-12 mb-4 glass-icon group-hover:[&_svg]:text-[#8B0000] transition-colors duration-300">
+                    <ServiceIcon name={service.icon} />
+                  </div>
+                  <h3 className="text-lg font-bold group-hover:text-[#8B0000] transition-colors leading-tight relative z-[2]">{service.shortTitle}</h3>
+                </Card>
               </div>
             ))}
           </div>
@@ -833,6 +823,15 @@ export default function Home() {
         onClose={() => setCallDialogOpen(false)}
         source="home_sticky_bar"
       />
+
+      {/* Location Picker Modal */}
+      <LocationPickerModal
+        open={!!locationPickerService}
+        onClose={() => setLocationPickerService(null)}
+        serviceSlug={locationPickerService?.slug ?? ""}
+        serviceName={locationPickerService?.name ?? ""}
+        langPrefix={prefix}
+      />
     </div>
   );
 }
@@ -883,7 +882,7 @@ function vehicleAltText(slug: string, index: number): string {
  * For types with a gallery array (e.g., Tesla), images rotate every 4 seconds.
  * All images get a subtle dark/blue filter to match the site's industrial theme.
  */
-function VehicleTypeCard({ type, servicesPath }: { type: VehicleType; servicesPath: string }) {
+function VehicleTypeCard({ type, servicesPath, onClickTile }: { type: VehicleType; servicesPath: string; onClickTile?: (slug: string, name: string) => void }) {
   const gallery = type.gallery;
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -898,10 +897,17 @@ function VehicleTypeCard({ type, servicesPath }: { type: VehicleType; servicesPa
   const currentImage = gallery && gallery.length > 0 ? gallery[currentIndex] : type.image;
   const hasGallery = gallery && gallery.length > 1;
 
+  const handleClick = (e: React.MouseEvent) => {
+    if (onClickTile) {
+      e.preventDefault();
+      onClickTile(type.slug, type.title);
+    }
+  };
+
   return (
-    <Link
-      href={`${servicesPath}/${type.slug}`}
-      className="group relative aspect-[4/3] overflow-hidden bg-card hover:shadow-2xl transition-all duration-300"
+    <div
+      onClick={handleClick}
+      className="group relative aspect-[4/3] overflow-hidden bg-card hover:shadow-2xl transition-all duration-300 cursor-pointer"
     >
       {/* Image with crossfade for gallery types */}
       {hasGallery ? (
@@ -966,7 +972,7 @@ function VehicleTypeCard({ type, servicesPath }: { type: VehicleType; servicesPa
 
       {/* Top accent bar on hover */}
       <div className="absolute top-0 left-0 w-full h-1 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-    </Link>
+    </div>
   );
 }
 
