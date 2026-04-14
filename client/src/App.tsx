@@ -33,6 +33,15 @@ const PaymentAuthorization = lazy(() => import("./pages/PaymentAuthorization"));
 const SendPaymentForm = lazy(() => import("./pages/SendPaymentForm"));
 const CityServicePage = lazy(() => import("./pages/CityServicePage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Community = lazy(() => import("./pages/Community"));
+const Press = lazy(() => import("./pages/Press"));
+const FortLauderdaleGuide = lazy(() => import("./pages/FortLauderdaleGuide"));
+const SouthFloridaMaintenance = lazy(() => import("./pages/SouthFloridaMaintenance"));
+const EVHybridRepair = lazy(() => import("./pages/EVHybridRepair"));
+const FortLauderdaleCityLanding = lazy(() => import("./pages/FortLauderdaleCityLanding"));
+const WiltonManorsCityLanding = lazy(() => import("./pages/WiltonManorsCityLanding"));
+const AdminBacklinks = lazy(() => import("./pages/AdminBacklinks"));
+const AdminGBPChecklist = lazy(() => import("./pages/AdminGBPChecklist"));
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -138,10 +147,21 @@ function Router() {
           <Route path="/payment-authorization" component={PaymentAuthorization} />
           <Route path="/send-payment-form" component={SendPaymentForm} />
 
+          {/* Authority & SEO pages */}
+          <Route path="/community" component={Community} />
+          <Route path="/press" component={Press} />
+          <Route path="/fort-lauderdale-auto-repair-guide" component={FortLauderdaleGuide} />
+          <Route path="/car-maintenance-south-florida" component={SouthFloridaMaintenance} />
+          <Route path="/ev-hybrid-repair-fort-lauderdale" component={EVHybridRepair} />
+          <Route path="/fort-lauderdale/auto-repair" component={FortLauderdaleCityLanding} />
+          <Route path="/wilton-manors/auto-repair" component={WiltonManorsCityLanding} />
+
           {/* Admin routes */}
           <Route path="/admin/conversations" component={AdminConversations} />
           <Route path="/admin/escalations" component={AdminEscalations} />
           <Route path="/admin/authorizations" component={AdminAuthorizations} />
+          <Route path="/admin/backlinks" component={AdminBacklinks} />
+          <Route path="/admin/gbp-checklist" component={AdminGBPChecklist} />
 
           <Route path="/404" component={NotFound} />
           <Route component={NotFound} />

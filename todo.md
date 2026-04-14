@@ -480,3 +480,27 @@
 - [x] Add client-side Redirect components in App.tsx for all 20 old /services/* paths
 - [x] Verify /services/transmission redirects to /fort-lauderdale/transmission-service in browser (confirmed)
 - [x] Save checkpoint (185 tests pass, 0 TS errors)
+
+## Local SEO + Backlink Authority System
+### Part 1 — Linkable Authority Pages
+- [ ] /community — Community & Partnerships page
+- [ ] /press — Press & Media page with logo download, story angles
+- [ ] /fort-lauderdale-auto-repair-guide — Complete Guide to Auto Repair in Fort Lauderdale
+- [ ] /car-maintenance-south-florida — Ultimate Car Maintenance Guide for South Florida
+- [ ] /ev-hybrid-repair-fort-lauderdale — Hybrid & EV Repair in Fort Lauderdale
+
+### Part 2 — City Landing Pages
+- [ ] /fort-lauderdale/auto-repair — Fort Lauderdale auto repair landing page
+- [ ] /wilton-manors/auto-repair — Wilton Manors auto repair landing page
+
+### Part 3 — Admin Backlink Tracker
+- [ ] DB schema: backlinks table (website, contact, email, date, status, link_acquired, link_url, target_page, domain_authority, notes)
+- [ ] /admin/backlinks — CRUD table with add/edit/delete, protected by admin role
+- [ ] Outreach email templates section
+
+### Part 4 — Admin GBP Checklist
+- [ ] /admin/gbp-checklist — GBP optimization checklist for both locations
+
+### Wire all routes in App.tsx
+- [ ] Add routes for all new pages
+- [ ] Save checkpoint

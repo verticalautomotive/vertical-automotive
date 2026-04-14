@@ -6,6 +6,7 @@ import { chatbotRouter } from "./chatbot";
 import { paymentAuthRouter } from "./paymentAuth";
 import { chatRouter } from "./routers/chat";
 import { escalationRouter } from "./routers/escalation";
+import { backlinksRouter } from "./routers/backlinks";
 import { runFullSync, getSyncStatus } from "./crawler";
 import { ENV } from "./_core/env";
 import { TRPCError } from "@trpc/server";
@@ -36,6 +37,7 @@ export const appRouter = router({
   }),
   chatbot: chatbotRouter,
   paymentAuth: paymentAuthRouter,
+  backlinks: backlinksRouter,
   knowledge: router({
     /** Trigger a full website sync */
     sync: publicProcedure.mutation(async ({ ctx }) => {

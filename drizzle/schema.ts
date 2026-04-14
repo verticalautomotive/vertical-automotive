@@ -209,3 +209,38 @@ export const paymentAuthorizations = mysqlTable("payment_authorizations", {
 
 export type PaymentAuthorization = typeof paymentAuthorizations.$inferSelect;
 export type InsertPaymentAuthorization = typeof paymentAuthorizations.$inferInsert;
+
+/**
+ * backlinks — tracks backlink outreach and acquired links for Local SEO
+ * Used by /admin/backlinks dashboard
+ */
+export const backlinks = mysqlTable("backlinks", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Website/domain being targeted for a backlink */
+  website: varchar("website", { length: 512 }).notNull(),
+  /** Contact person's name at that website */
+  contactName: varchar("contactName", { length: 256 }),
+  /** Contact email address */
+  email: varchar("email", { length: 320 }),
+  /** Date outreach was sent (ISO string) */
+  dateContacted: varchar("dateContacted", { length: 32 }),
+  /** Outreach/link status */
+  status: mysqlEnum("status", ["not_contacted", "contacted", "follow_up", "link_acquired", "declined", "no_response"]).default("not_contacted").notNull(),
+  /** Whether a live backlink has been acquired */
+  linkAcquired: int("linkAcquired").default(0).notNull(), // 0 or 1
+  /** The actual live URL of the acquired backlink */
+  linkUrl: varchar("linkUrl", { length: 1024 }),
+  /** Which page on verticalautomotive.com the link points to */
+  targetPage: varchar("targetPage", { length: 512 }),
+  /** Domain Authority score (Moz/Ahrefs) */
+  domainAuthority: int("domainAuthority"),
+  /** Backlink tier category */
+  tier: mysqlEnum("tier", ["tier1_local", "tier2_business", "tier3_community", "tier4_niche"]).default("tier1_local").notNull(),
+  /** Free-form notes */
+  notes: text("notes"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Backlink = typeof backlinks.$inferSelect;
+export type InsertBacklink = typeof backlinks.$inferInsert;
