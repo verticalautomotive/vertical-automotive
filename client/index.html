@@ -6,54 +6,8 @@
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <!-- Google tag (gtag.js) — async, non-blocking -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17913524206"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      
-      // Check cookie consent before enabling analytics
-      const consentPrefs = localStorage.getItem('cookie_consent_preferences');
-      let analyticsEnabled = false;
-      if (consentPrefs) {
-        try {
-          const prefs = JSON.parse(consentPrefs);
-          analyticsEnabled = prefs.analytics === true;
-        } catch (e) {
-          analyticsEnabled = false;
-        }
-      }
-      
-      // Configure gtag with consent settings
-      gtag('config', 'AW-17913524206', {
-        'anonymize_ip': true,
-        'allow_google_signals': analyticsEnabled,
-        'allow_ad_personalization_signals': analyticsEnabled
-      });
-      
-      // Store gtag reference for consent banner
-      window.gtagReady = true;
-    </script>
-    <!-- End Google tag -->
-    <!-- Event snippet for Click to call conversion page -->
-    <script>
-    function gtag_report_conversion(url) {
-      var callback = function () {
-        if (typeof(url) != 'undefined') {
-          window.location = url;
-        }
-      };
-      gtag('event', 'conversion', {
-        'send_to': 'AW-17913524206/UPM_CJP-lpUcEO7f6t1C',
-        'value': 1.0,
-        'currency': 'USD',
-        'event_callback': callback
-      });
-      return false;
-    }
-    </script>
-    <!-- End Event snippet -->
+    <!-- All Google Ads tracking is managed via GTM (GTM-5Q5RPRR4) -->
+    <!-- dataLayer is initialized in <body> before GTM loads -->
     <meta charset="UTF-8" />
     <meta
       name="viewport"

@@ -77,13 +77,13 @@ export function CookieConsentBanner() {
     setPreferences(prefs);
     setIsVisible(false);
     
-    // Trigger analytics tracking if enabled
-    if (prefs.analytics && (window as any).gtag) {
-      (window as any).gtag("event", "cookie_consent", {
-        analytics_enabled: prefs.analytics,
-        marketing_enabled: prefs.marketing,
-      });
-    }
+    // Push consent event to dataLayer for GTM to handle
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "cookie_consent",
+      analytics_enabled: prefs.analytics,
+      marketing_enabled: prefs.marketing,
+    });
   };
 
   if (!isVisible) return null;

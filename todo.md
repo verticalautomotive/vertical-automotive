@@ -444,3 +444,13 @@
 - [x] /services/faq returns 200 — kept in sitemap
 - [x] All /fort-lauderdale/ and /wilton-manors/ pages already have lastmod 2026-04-14
 - [x] Save checkpoint
+
+## Consolidate All Tracking Through GTM (Remove Hardcoded Google Ads gtag)
+- [x] Remove hardcoded Google Ads gtag script (AW-17913524206) from index.html
+- [x] Remove hardcoded click-to-call conversion snippet from index.html
+- [x] Remove direct gtag() conversion calls from client code (use dataLayer.push only)
+- [x] Keep GTM container (GTM-5Q5RPRR4) as the sole tag manager
+- [x] Keep all dataLayer.push() events intact for GTM to consume
+- [x] Verify site loads without errors after removal (115 tests pass, 0 TS errors)
+- [ ] Provide GTM setup instructions for recreating tags inside GTM
+- [x] Save checkpoint
