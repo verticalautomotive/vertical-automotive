@@ -12,26 +12,28 @@ import { LazyMap } from "@/components/LazyMap";
 import { COMPANY, LOCATIONS } from "@/lib/data";
 import { ChevronDown, MapPin, Phone, Clock, ExternalLink, Star, CheckCircle, Calendar } from "lucide-react";
 import { trackCall, trackDirections, trackSchedule } from "@/lib/gtm";
+import ServiceIcon from "@/components/ServiceIcon";
+import { Card } from "@/components/ui/card";
 
-// ─── All 17 services with slug + display name ────────────────────────────────
+// ─── All 17 services with slug + display name + icon ────────────────────────
 const ALL_SERVICES = [
-  { slug: "tesla-ev-repair",          name: "Tesla & EV Service" },
-  { slug: "european-vehicle-repair",  name: "European Vehicle Service" },
-  { slug: "asian-vehicle-repair",     name: "Asian Vehicle Service" },
-  { slug: "domestic-vehicle-repair",  name: "Domestic Vehicle Service" },
-  { slug: "brake-repair",             name: "Brake & Rotor Service" },
-  { slug: "transmission-service",     name: "Transmission Service" },
-  { slug: "ac-repair",                name: "A/C Repair & Maintenance" },
-  { slug: "engine-oil-service",       name: "Engine, Oil & Filters" },
-  { slug: "complete-diagnostics",     name: "Complete Diagnostics" },
-  { slug: "routine-maintenance",      name: "Routine & Preventive Maintenance" },
-  { slug: "steering-suspension",      name: "Steering & Suspension" },
-  { slug: "fuel-system-service",      name: "Fuel System Service" },
-  { slug: "hybrid-ev-service",        name: "Hybrid & EV Service" },
-  { slug: "wheel-alignment",          name: "Wheel Alignment & Tires" },
-  { slug: "battery-charging-systems", name: "Battery & Charging Systems" },
-  { slug: "fleet-services",           name: "Fleet Services" },
-  { slug: "tire-service",             name: "Tire Service & Replacement" },
+  { slug: "tesla-ev-repair",          name: "Tesla & EV Service",                  shortTitle: "Tesla & EV",            icon: "zap" },
+  { slug: "european-vehicle-repair",  name: "European Vehicle Service",            shortTitle: "European",              icon: "cog" },
+  { slug: "asian-vehicle-repair",     name: "Asian Vehicle Service",               shortTitle: "Asian",                 icon: "wrench" },
+  { slug: "domestic-vehicle-repair",  name: "Domestic Vehicle Service",            shortTitle: "Domestic",              icon: "truck" },
+  { slug: "brake-repair",             name: "Brake & Rotor Service",               shortTitle: "Brakes",                icon: "disc" },
+  { slug: "transmission-service",     name: "Transmission Service",                shortTitle: "Transmission",          icon: "cog" },
+  { slug: "ac-repair",                name: "A/C Repair & Maintenance",            shortTitle: "A/C Repair",            icon: "snowflake" },
+  { slug: "engine-oil-service",       name: "Engine, Oil & Filters",               shortTitle: "Oil & Engine",          icon: "droplet" },
+  { slug: "complete-diagnostics",     name: "Complete Diagnostics",                shortTitle: "Diagnostics",           icon: "search" },
+  { slug: "routine-maintenance",      name: "Routine & Preventive Maintenance",    shortTitle: "Maintenance",           icon: "wrench" },
+  { slug: "steering-suspension",      name: "Steering & Suspension",               shortTitle: "Suspension",            icon: "gauge" },
+  { slug: "fuel-system-service",      name: "Fuel System Service",                 shortTitle: "Fuel System",           icon: "fuel" },
+  { slug: "hybrid-ev-service",        name: "Hybrid & EV Service",                 shortTitle: "Hybrid & EV",           icon: "zap" },
+  { slug: "wheel-alignment",          name: "Wheel Alignment & Tires",             shortTitle: "Alignment",             icon: "circle" },
+  { slug: "battery-charging-systems", name: "Battery & Charging Systems",          shortTitle: "Battery",               icon: "battery" },
+  { slug: "fleet-services",           name: "Fleet Services",                      shortTitle: "Fleet",                 icon: "truck" },
+  { slug: "tire-service",             name: "Tire Service & Replacement",          shortTitle: "Tires",                 icon: "circle" },
 ];
 
 const CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB";
@@ -274,36 +276,8 @@ export default function LocationHub({ cityKey }: Props) {
         </div>
       </section>
 
-      {/* ── ABOUT THIS LOCATION ── */}
-      <section className="py-12 bg-background">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="h-1 w-8 bg-primary" />
-            <span className="font-display font-bold text-xs tracking-widest text-primary uppercase">
-              About This Location
-            </span>
-          </div>
-          <p className="text-base sm:text-lg text-foreground/80 leading-relaxed">
-            {aboutParagraph}
-          </p>
-
-          {/* Trust badges */}
-          <div className="mt-6 flex flex-wrap gap-3">
-            {["ASE Certified", "36-Month Warranty", "All Makes & Models", "EV Specialists", "Free Inspection"].map((badge) => (
-              <span
-                key={badge}
-                className="flex items-center gap-1.5 bg-secondary text-secondary-foreground text-xs font-display font-bold tracking-wider px-3 py-1.5 border border-border"
-              >
-                <CheckCircle className="w-3.5 h-3.5 text-primary" />
-                {badge}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── WORK WE DO DROPDOWN + SERVICE TILES ── */}
-      <section className="py-12 bg-secondary/30">
+      <section className="py-12 bg-background">
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
             <div>
@@ -345,21 +319,65 @@ export default function LocationHub({ cityKey }: Props) {
             </div>
           </div>
 
-          {/* Service tiles grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+          {/* Service tiles — homepage glass card style, mobile compact */}
+          {/* Mobile: 3-col compact glass tiles */}
+          <div className="grid grid-cols-3 gap-2 sm:hidden">
             {ALL_SERVICES.map((svc) => (
               <Link
                 key={svc.slug}
                 href={`${cityPrefix}/${svc.slug}`}
-                className="group flex flex-col gap-1.5 p-4 bg-secondary border border-border hover:border-primary hover:bg-primary/5 transition-all"
+                className="glass-compact flex flex-col items-center justify-center text-center p-2.5 border border-transparent hover:border-primary group cursor-pointer h-[88px] transition-all duration-300"
               >
-                <span className="font-display font-bold text-xs sm:text-sm tracking-wide text-secondary-foreground group-hover:text-primary transition-colors leading-tight">
-                  {svc.name}
-                </span>
-                <span className="text-[10px] sm:text-xs text-primary font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  View Service →
-                </span>
+                <div className="w-7 h-7 mb-1.5 flex-shrink-0 glass-icon group-hover:[&_svg]:text-primary transition-colors duration-300">
+                  <ServiceIcon name={svc.icon} />
+                </div>
+                <span className="text-[10px] font-bold leading-tight group-hover:text-primary transition-colors line-clamp-2">{svc.shortTitle}</span>
               </Link>
+            ))}
+          </div>
+
+          {/* Desktop: glass cards with icon */}
+          <div className="hidden sm:grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+            {ALL_SERVICES.map((svc) => (
+              <div key={svc.slug} className="glass-wrap h-full">
+                <Card
+                  onClick={() => { window.location.href = `${cityPrefix}/${svc.slug}`; }}
+                  className="glass-card p-5 group cursor-pointer h-full flex flex-col items-center justify-center text-center border border-transparent hover:border-primary transition-all duration-300"
+                >
+                  <div className="w-10 h-10 mb-3 glass-icon group-hover:[&_svg]:text-primary transition-colors duration-300">
+                    <ServiceIcon name={svc.icon} />
+                  </div>
+                  <h3 className="text-sm font-bold group-hover:text-primary transition-colors leading-tight relative z-[2]">{svc.shortTitle}</h3>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── ABOUT THIS LOCATION ── */}
+      <section className="py-12 bg-muted/40">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="h-1 w-8 bg-primary" />
+            <span className="font-display font-bold text-xs tracking-widest text-primary uppercase">
+              About This Location
+            </span>
+          </div>
+          <p className="text-base sm:text-lg text-foreground/80 leading-relaxed">
+            {aboutParagraph}
+          </p>
+
+          {/* Trust badges */}
+          <div className="mt-6 flex flex-wrap gap-3">
+            {["ASE Certified", "36-Month Warranty", "All Makes & Models", "EV Specialists", "Free Inspection"].map((badge) => (
+              <span
+                key={badge}
+                className="flex items-center gap-1.5 bg-secondary text-secondary-foreground text-xs font-display font-bold tracking-wider px-3 py-1.5 border border-border"
+              >
+                <CheckCircle className="w-3.5 h-3.5 text-primary" />
+                {badge}
+              </span>
             ))}
           </div>
         </div>

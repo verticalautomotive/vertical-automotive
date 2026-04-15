@@ -609,4 +609,13 @@
 - [x] Register /fort-lauderdale and /wilton-manors routes in App.tsx
 - [x] Add hub pages to sitemap.xml with priority 0.9
 - [x] 210 tests pass, 0 TypeScript errors
+- [x] Save checkpoint
+
+## LocationHub UI Fixes
+- [x] Fix SERVICE dropdown address text color (text-secondary-foreground/70 — readable on dark bg)
+- [x] Fixed mobile accordion address text too (text-foreground/60)
+- [x] Updated service tiles to homepage glass card style (glass-wrap + glass-card + ServiceIcon on desktop, glass-compact on mobile)
+- [x] Moved "Work We Do" button + service tiles section ABOVE "About this location" section
+- [x] Applied to both /fort-lauderdale and /wilton-manors (shared LocationHub component)
+- [x] 0 TypeScript errors
 - [ ] Save checkpoint
