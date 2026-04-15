@@ -562,25 +562,34 @@
 - [x] Add Tire Service & Replacement to Fort Lauderdale column in SERVICE mega menu
 - [x] Add Tire Service & Replacement to Wilton Manors column in SERVICE mega menu
 - [x] Add Tire Service to mobile accordion navigation (uses same SERVICES_DATA array)
-- [ ] Save checkpoint
+- [x] Save checkpoint
 
 ## Add Real Photos & Videos to Tire Service Pages
 - [x] Upload 1 tire photo (IMG_1336.webp) and 2 videos (IMG_0418.MOV, IMG_0679.MOV) to CDN
 - [x] Replace placeholder gallery images in tire-service with real photo and add 2 videos
-- [ ] Save checkpoint
+- [x] Save checkpoint
 
 ## Fix Render-Blocking Manus Runtime Script (FCP/LCP)
 - [x] Move manus-runtime script to end of <body> via vitePluginManusRuntime({ injectTo: 'body' }) in vite.config.ts
-- [ ] Save checkpoint
+- [x] Fixed post-build script to use lastIndexOf for real </body> tag (not JS bundle strings)
+- [x] Verified manus-runtime is placed AFTER <div id="root"> and all deferred scripts
+- [x] Save checkpoint
 
 ## Fix GTM Double-Load & Render-Blocking Inline Script
 - [x] Audit all GTM script locations — only one load confirmed in index.html
 - [x] Confirmed no duplicate GTM load (single gtm.js script tag)
 - [x] Moved inline dataLayer.push above the deferred GTM script tag so it initializes first
-- [ ] Save checkpoint
+- [x] Save checkpoint
 
 ## Fix Head Tag Issues (SEO Cleanup)
 - [x] Removed redundant dns-prefetch for googletagmanager.com (preconnect already covers it)
 - [x] Confirmed only one canonical tag in static HTML (duplicate was React-injected per-page, not a true duplicate)
 - [x] Added static hreflang tags (en, es, x-default) to index.html — now present in initial HTML before JS hydration
-- [ ] Save checkpoint
+- [x] Save checkpoint
+
+## Add defer to manus-runtime Script Tag (PageSpeed Fix)
+- [x] Investigated: manus-runtime is already at end of <body> (after #root div) — position is correct
+- [x] Script is inline (367KB) — defer does not apply to inline scripts (browser spec)
+- [x] Confirmed: script loads AFTER React app renders, so it is non-blocking for FCP/LCP
+- [x] PageSpeed score improvement requires other optimizations (bundle size, image loading)
+- [x] Save checkpoint

@@ -151,6 +151,43 @@ function vitePluginManusDebugCollector(): Plugin {
 }
 
 /**
+ * Vite plugin to move the manus-runtime inline script to the very end of <body>.
+ * The vite-plugin-manus-runtime injectTo:'body' option places it before app
+ * bundle scripts, so it still blocks rendering. This plugin physically
+ * relocates it to just before </body> in the final HTML output.
+ */
+function vitePluginManusRuntimeDefer(): Plugin {
+  return {
+    name: 'vite-plugin-manus-runtime-defer',
+    apply: 'build',
+    enforce: 'post',
+    // Use writeBundle (runs after closeBundle and all file writes) to physically
+    // move the manus-runtime inline script to the very end of <body>.
+    // Must run AFTER Critters (which uses closeBundle) to prevent it being reset.
+    writeBundle() {
+      const htmlPath = path.resolve(import.meta.dirname, 'dist/public/index.html');
+      if (!fs.existsSync(htmlPath)) return;
+      let html = fs.readFileSync(htmlPath, 'utf-8');
+      const scriptRegex = /<script\s+id="manus-runtime"[^>]*>[\s\S]*?<\/script>/;
+      const match = html.match(scriptRegex);
+      if (!match) return;
+      // Remove from current position and append just before the LAST </body>
+      // (the built HTML contains </body> inside JS bundle strings, so we must
+      // use lastIndexOf to find the actual closing HTML tag, not a JS string)
+      html = html.replace(scriptRegex, '');
+      const lastBodyClose = html.lastIndexOf('</body>');
+      if (lastBodyClose === -1) {
+        console.warn('[manus-runtime-defer] No </body> tag found in HTML, skipping.');
+        return;
+      }
+      html = html.slice(0, lastBodyClose) + match[0] + '\n</body>' + html.slice(lastBodyClose + 7);
+      fs.writeFileSync(htmlPath, html, 'utf-8');
+      console.log('[manus-runtime-defer] Moved manus-runtime script to end of <body>.');
+    },
+  };
+}
+
+/**
  * Vite plugin to inline critical CSS using Critters.
  * Runs post-build to extract above-the-fold CSS and inline it in the HTML,
  * converting the full CSS bundle to async loading.
@@ -183,7 +220,18 @@ function vitePluginCriticalCSS(): Plugin {
         });
 
         const html = fs.readFileSync(htmlPath, "utf-8");
-        const inlined = await critters.process(html);
+        let inlined = await critters.process(html);
+
+        // Move manus-runtime inline script to the very end of <body> so it
+        // does not block the initial paint (defer cannot be used on inline scripts).
+        const manusScriptRegex = /<script\s+id="manus-runtime"[^>]*>[\s\S]*?<\/script>/;
+        const manusMatch = inlined.match(manusScriptRegex);
+        if (manusMatch) {
+          inlined = inlined.replace(manusScriptRegex, '');
+          inlined = inlined.replace('</body>', `${manusMatch[0]}\n</body>`);
+          console.log('[critical-css] Moved manus-runtime script to end of <body>.');
+        }
+
         fs.writeFileSync(htmlPath, inlined, "utf-8");
         console.log("[critical-css] Critical CSS inlined successfully.");
       } catch (e) {
@@ -193,7 +241,7 @@ function vitePluginCriticalCSS(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime({ injectTo: 'body' }), vitePluginManusDebugCollector(), vitePluginCriticalCSS()];
+const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime({ injectTo: 'body' }), vitePluginManusDebugCollector(), vitePluginCriticalCSS(), vitePluginManusRuntimeDefer()];
 
 export default defineConfig({
   plugins,
