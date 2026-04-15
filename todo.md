@@ -632,4 +632,10 @@
 - [x] Updated LocationHub review section: centered header with 4.9 star rating, 3-col Card grid on desktop, collapsible accordion on mobile, "SEE ALL 503 REVIEWS ON GOOGLE" CTA button
 - [x] Applied to both /fort-lauderdale and /wilton-manors (shared LocationHub component)
 - [x] 0 TypeScript errors
+- [x] Save checkpoint
+
+## Add Wilton Manors Shop Exterior Photo
+- [x] Upload IMG_0589.webp to CDN (wm-exterior-1_a6a6ea18.webp)
+- [x] Added as first photo in Wilton Manors hub page gallery (auto-rotates first)
+- [x] 0 TypeScript errors
 - [ ] Save checkpoint
