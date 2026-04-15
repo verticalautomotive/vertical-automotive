@@ -652,4 +652,10 @@
 - [x] Wilton Manors uses heroPhoto (IMG_2239 bay photo) — single static image, no dots, no rotation
 - [x] Fort Lauderdale keeps rotating gallery (no heroPhoto set)
 - [x] 0 TypeScript errors
+- [x] Save checkpoint
+
+## FL Hub Page: Static Hero Photo (IMG_0589)
+- [x] Set heroPhoto on FORT_LAUDERDALE_DATA (wm-exterior-1_a6a6ea18.webp — white building + branded Tesla)
+- [x] Rotating gallery replaced with single static hero image
+- [x] 0 TypeScript errors
 - [ ] Save checkpoint

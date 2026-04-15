@@ -57,6 +57,7 @@ const FORT_LAUDERDALE_DATA: LocationData = {
   city: "fort-lauderdale",
   location: LOCATIONS[1],
   h1: "Auto Repair in Fort Lauderdale",
+  heroPhoto: { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wm-exterior-1_a6a6ea18.webp", alt: "Vertical Automotive Fort Lauderdale shop exterior" },
   metaTitle: "Auto Repair Fort Lauderdale | Vertical Automotive",
   metaDescription: "ASE-certified auto repair in Fort Lauderdale, FL. Tesla, European, Asian & Domestic specialists. 36-month / 36,000-mile warranty. Call (645) 216-2266.",
   aboutParagraph: "Vertical Automotive's Fort Lauderdale location sits at 707 NE 11th Street — minutes from Victoria Park, Las Olas, and Flagler Village. Our ASE-certified technicians specialize in Tesla, European, Asian, and Domestic vehicles, delivering dealership-level diagnostics at independent shop prices. From routine oil changes to complex transmission rebuilds, every repair is backed by our 36-month / 36,000-mile warranty. We've been serving Broward County drivers since 1989 with honest estimates, no upsells, and same-day service on most repairs.",
