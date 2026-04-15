@@ -216,6 +216,8 @@ export default function CityServicePage() {
                     alt={page.galleryAlt?.[idx] || `${page.serviceName} at Vertical Automotive ${page.cityDisplay}`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
+                    width={800}
+                    height={600}
                     decoding="async"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />

@@ -129,7 +129,7 @@ export default function AdminDashboard() {
       <div className="border-b border-border bg-card">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/logo-vertical-automotive.svg" alt="Vertical Automotive" className="h-8 w-auto" />
+            <img src="/logo-vertical-automotive.svg" alt="Vertical Automotive" className="h-8 w-auto" loading="lazy" width={140} height={32} decoding="async" />
             <div>
               <div className="font-black uppercase tracking-tight text-sm">Admin Dashboard</div>
               <div className="text-xs text-muted-foreground">Vertical Automotive</div>

@@ -671,4 +671,17 @@
 - [x] Removed LocationCard helper function
 - [x] Removed unused LazyMap and Navigation2 imports
 - [x] 0 TypeScript errors
-- [ ] Save checkpoint
+- [x] Save checkpoint
+
+## Image Lazy Loading & CLS Prevention
+- [x] Audit all img tags across all pages and components
+- [x] Add loading="lazy" to all below-fold images (skip hero + logo)
+- [x] Add explicit width/height to all img tags to prevent layout shift
+- [x] Save checkpoint
+
+## Homepage Two Locations CTA Section
+- [x] Add lightweight two-column card section before Footer linking to /fort-lauderdale and /wilton-manors
+- [x] Cards show address, phone (clickable), and VIEW LOCATION button
+- [x] Bilingual (EN/ES) support
+- [x] 0 TypeScript errors, 210 tests pass
+- [x] Save checkpoint

@@ -507,6 +507,7 @@ export default function BlogArticlePage() {
               width={44}
               height={44}
               loading="eager"
+              decoding="async"
               className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-primary/60 flex-shrink-0"
             />
             <div className="min-w-0">
@@ -636,6 +637,7 @@ export default function BlogArticlePage() {
                     width={72}
                     height={72}
                     loading="lazy"
+                    decoding="async"
                     className="w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-full object-cover border-2 border-primary/40 flex-shrink-0"
                   />
                   <div className="min-w-0">

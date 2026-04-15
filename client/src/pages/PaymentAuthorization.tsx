@@ -435,7 +435,7 @@ export default function PaymentAuthorization() {
         <div className="max-w-2xl mx-auto flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <img src="/logo.svg" alt="Vertical Automotive" className="h-7 brightness-0 invert" />
+              <img src="/logo.svg" alt="Vertical Automotive" className="h-7 brightness-0 invert" loading="lazy" width={120} height={28} decoding="async" />
             </div>
             <h1 className="text-lg font-bold">Payment Authorization Form</h1>
             <p className="text-gray-400 text-xs">Secure payment authorization for auto repair services</p>

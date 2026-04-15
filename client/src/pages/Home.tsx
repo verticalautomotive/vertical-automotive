@@ -769,6 +769,92 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TWO LOCATIONS SECTION — lightweight cards linking to hub pages */}
+      <section className="bg-secondary py-12 sm:py-16 border-t border-border">
+        <div className="container">
+          {/* Section header */}
+          <div className="text-center mb-8 sm:mb-10">
+            <h2 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-wider text-foreground">
+              {isSpanish ? "NUESTRAS" : "OUR"}{" "}
+              <span className="text-primary">{isSpanish ? "UBICACIONES" : "LOCATIONS"}</span>
+            </h2>
+            <div className="h-1 w-16 bg-primary mx-auto mt-3" />
+            <p className="text-muted-foreground text-sm sm:text-base mt-3">
+              {isSpanish ? "Dos ubicaciones convenientes para servirle" : "Two convenient locations to serve you"}
+            </p>
+          </div>
+
+          {/* Location cards */}
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
+            {/* Fort Lauderdale */}
+            <div className="border-2 border-border hover:border-primary/50 transition-all duration-300 bg-card p-6 sm:p-8 group">
+              <div className="flex items-start gap-3 mb-4">
+                <div className="w-10 h-10 bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <MapPin className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-display font-black uppercase tracking-wide text-lg text-foreground leading-tight">
+                    Fort Lauderdale
+                  </h3>
+                  <p className="text-xs text-muted-foreground mt-0.5">707 NE 11th Street, FL 33304</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 mb-5">
+                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+                <a
+                  href="tel:+16452162266"
+                  className="text-sm font-bold text-foreground hover:text-primary transition-colors"
+                  onClick={() => trackCall("Fort Lauderdale", "+16452162266", "home_locations_fl")}
+                >
+                  (645) 216-2266
+                </a>
+              </div>
+              <Link href="/fort-lauderdale">
+                <Button
+                  variant="outline"
+                  className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold uppercase tracking-wider text-xs sm:text-sm group-hover:bg-primary group-hover:text-primary-foreground transition-all"
+                >
+                  {isSpanish ? "VER UBICACIÓN" : "VIEW LOCATION"}
+                </Button>
+              </Link>
+            </div>
+
+            {/* Wilton Manors */}
+            <div className="border-2 border-border hover:border-primary/50 transition-all duration-300 bg-card p-6 sm:p-8 group">
+              <div className="flex items-start gap-3 mb-4">
+                <div className="w-10 h-10 bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <MapPin className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-display font-black uppercase tracking-wide text-lg text-foreground leading-tight">
+                    Wilton Manors
+                  </h3>
+                  <p className="text-xs text-muted-foreground mt-0.5">1100 W Oakland Park Blvd, Bay 5, FL 33311</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 mb-5">
+                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+                <a
+                  href="tel:+19545651518"
+                  className="text-sm font-bold text-foreground hover:text-primary transition-colors"
+                  onClick={() => trackCall("Wilton Manors", "+19545651518", "home_locations_wm")}
+                >
+                  (954) 565-1518
+                </a>
+              </div>
+              <Link href="/wilton-manors">
+                <Button
+                  variant="outline"
+                  className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold uppercase tracking-wider text-xs sm:text-sm group-hover:bg-primary group-hover:text-primary-foreground transition-all"
+                >
+                  {isSpanish ? "VER UBICACIÓN" : "VIEW LOCATION"}
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
 
       {/* Sticky Mobile Bottom CTA Bar */}
@@ -896,6 +982,8 @@ function VehicleTypeCard({ type, servicesPath, onClickTile }: { type: VehicleTyp
               src={img}
               alt={vehicleAltText(type.slug, i)}
               loading={i === 0 ? "eager" : "lazy"}
+              width={800}
+              height={600}
               decoding="async"
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
                 i === currentIndex ? 'opacity-100' : 'opacity-0'

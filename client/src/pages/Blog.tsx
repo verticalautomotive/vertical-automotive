@@ -311,6 +311,7 @@ export default function Blog() {
                         width={32}
                         height={32}
                         loading="lazy"
+                        decoding="async"
                         className="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover border border-primary/40 flex-shrink-0"
                       />
                       <div className="min-w-0">
@@ -378,6 +379,7 @@ export default function Blog() {
                         width={24}
                         height={24}
                         loading="lazy"
+                        decoding="async"
                         className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover border border-border flex-shrink-0"
                       />
                       <div className="min-w-0">

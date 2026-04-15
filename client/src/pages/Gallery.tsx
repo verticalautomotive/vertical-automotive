@@ -249,6 +249,9 @@ export default function GalleryPage() {
                   src={image.src}
                   alt={isSpanish ? image.altEs : image.alt}
                   loading="lazy"
+                  width={800}
+                  height={600}
+                  decoding="async"
                   className="w-full h-auto block transition-transform duration-500 group-hover:scale-105"
                   style={{
                     /* Consistent industrial tone filter applied via CSS */
@@ -328,6 +331,10 @@ export default function GalleryPage() {
               style={{
                 filter: "saturate(0.88) contrast(1.05) brightness(0.97)",
               }}
+              loading="lazy"
+              width={1200}
+              height={900}
+              decoding="async"
             />
             <p className="text-white/70 text-sm mt-3 text-center tracking-wide">
               {isSpanish

@@ -82,6 +82,10 @@ export default function PhotoGallery({
                 alt={isSpanish ? image.altEs : image.alt}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 style={{ filter: 'brightness(0.85) saturate(0.85)' }}
+                loading="lazy"
+                width={400}
+                height={400}
+                decoding="async"
               />
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
@@ -117,6 +121,10 @@ export default function PhotoGallery({
               src={images[selectedIndex].src}
               alt={isSpanish ? images[selectedIndex].altEs : images[selectedIndex].alt}
               className="w-full h-full object-contain"
+              loading="lazy"
+              width={1200}
+              height={900}
+              decoding="async"
             />
 
             {/* Navigation buttons */}

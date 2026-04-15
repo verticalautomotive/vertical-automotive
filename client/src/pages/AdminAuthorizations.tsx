@@ -425,7 +425,7 @@ export default function AdminAuthorizations() {
               {detail.signatureImage && detail.signatureImage !== "[redacted]" && (
                 <div>
                   <span className="text-gray-500 font-medium block mb-1">Signature:</span>
-                  <img src={detail.signatureImage} alt="Customer signature" className="border rounded bg-white max-h-24" />
+                  <img src={detail.signatureImage} alt="Customer signature" className="border rounded bg-white max-h-24" loading="lazy" width={560} height={96} decoding="async" />
                 </div>
               )}
               {detail.pdfUrl && (

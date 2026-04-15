@@ -94,6 +94,10 @@ export default function LocationPickerModal({
             src={COMPANY.logoUrl}
             alt="Vertical Automotive"
             className="h-10 mb-4"
+            loading="lazy"
+            width={160}
+            height={40}
+            decoding="async"
           />
           <h3 className="text-lg font-bold text-white text-center leading-tight">
             Which location for

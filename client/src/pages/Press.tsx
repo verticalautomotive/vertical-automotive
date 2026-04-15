@@ -123,7 +123,7 @@ export default function Press() {
                 LOGO & <span className="text-primary">ASSETS</span>
               </h2>
               <div className="border border-border bg-card p-8 flex items-center justify-center mb-4">
-                <img src={COMPANY.logoUrl} alt="Vertical Automotive Logo" className="max-h-24 w-auto" />
+                <img src={COMPANY.logoUrl} alt="Vertical Automotive Logo" className="max-h-24 w-auto" loading="lazy" width={200} height={96} decoding="async" />
               </div>
               <p className="text-sm text-muted-foreground mb-4">
                 High-resolution logo available in SVG format. Please use on white or dark backgrounds only. Do not alter colors or proportions.
