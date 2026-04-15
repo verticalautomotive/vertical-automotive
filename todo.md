@@ -625,4 +625,11 @@
 - [x] Added AdvancedMarkerElement + InfoWindow (name, address, directions link) via onMapReady callback
 - [x] Applied to both /fort-lauderdale and /wilton-manors hub pages (shared LocationHub component)
 - [x] 0 TypeScript errors
+- [x] Save checkpoint
+
+## Match Hub Page Reviews to Homepage Review Style
+- [x] Read homepage review section markup and styles
+- [x] Updated LocationHub review section: centered header with 4.9 star rating, 3-col Card grid on desktop, collapsible accordion on mobile, "SEE ALL 503 REVIEWS ON GOOGLE" CTA button
+- [x] Applied to both /fort-lauderdale and /wilton-manors (shared LocationHub component)
+- [x] 0 TypeScript errors
 - [ ] Save checkpoint
