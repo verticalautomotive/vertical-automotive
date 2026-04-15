@@ -930,6 +930,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://verticalautomotive.com/fort-lauderdale</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/fort-lauderdale" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/fort-lauderdale" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://verticalautomotive.com/fort-lauderdale" />
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/wilton-manors</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/wilton-manors" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/wilton-manors" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://verticalautomotive.com/wilton-manors" />
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://verticalautomotive.com/community</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/community" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://verticalautomotive.com/community" />

@@ -43,6 +43,7 @@ const WiltonManorsCityLanding = lazy(() => import("./pages/WiltonManorsCityLandi
 const AdminBacklinks = lazy(() => import("./pages/AdminBacklinks"));
 const AdminGBPChecklist = lazy(() => import("./pages/AdminGBPChecklist"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
+const LocationHub = lazy(() => import("./pages/LocationHub"));
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -156,6 +157,10 @@ function Router() {
           <Route path="/ev-hybrid-repair-fort-lauderdale" component={EVHybridRepair} />
           <Route path="/fort-lauderdale/auto-repair" component={FortLauderdaleCityLanding} />
           <Route path="/wilton-manors/auto-repair" component={WiltonManorsCityLanding} />
+          <Route path="/fort-lauderdale">{() => <LocationHub cityKey="fort-lauderdale" />}</Route>
+          <Route path="/wilton-manors">{() => <LocationHub cityKey="wilton-manors" />}</Route>
+          <Route path="/es/fort-lauderdale">{() => <LocationHub cityKey="fort-lauderdale" />}</Route>
+          <Route path="/es/wilton-manors">{() => <LocationHub cityKey="wilton-manors" />}</Route>
 
           {/* Admin routes */}
           <Route path="/admin" component={AdminDashboard} />

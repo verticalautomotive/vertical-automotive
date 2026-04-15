@@ -599,4 +599,14 @@
 - [x] Auto-reload the page when a chunk 404 is detected (stale deployment)
 - [x] Wrap App router in ChunkErrorBoundary in main.tsx
 - [x] 210 tests pass, 0 TypeScript errors
+- [x] Save checkpoint
+
+## SERVICE Nav Dropdown Redesign + Location Hub Pages
+- [x] Update SERVICE dropdown: simple 2-option menu (Fort Lauderdale + Wilton Manors with address)
+- [x] Mobile: SERVICE accordion expands to two location buttons
+- [x] Create /fort-lauderdale hub page (H1, NAP, map, shop photos, 16 service tiles, Work we do dropdown, reviews, LocalBusiness schema)
+- [x] Create /wilton-manors hub page (same structure, WM-specific content)
+- [x] Register /fort-lauderdale and /wilton-manors routes in App.tsx
+- [x] Add hub pages to sitemap.xml with priority 0.9
+- [x] 210 tests pass, 0 TypeScript errors
 - [ ] Save checkpoint
