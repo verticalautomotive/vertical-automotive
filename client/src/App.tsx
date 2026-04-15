@@ -15,8 +15,8 @@ const MobileFooterBar = lazy(() => import("./components/MobileFooterBar"));
 const FloatingActions = lazy(() => import("./components/FloatingActions"));
 const CookieConsentBanner = lazy(() => import("@/components/CookieConsentBanner").then(m => ({ default: m.CookieConsentBanner })));
 
-// Code-split all page components — only Home is eagerly loaded for fast FCP
-import Home from "./pages/Home";
+// Code-split all page components — all pages are lazy-loaded to minimize entry chunk size
+const Home = lazy(() => import("./pages/Home"));
 const Services = lazy(() => import("./pages/Services"));
 const Offers = lazy(() => import("./pages/Offers"));
 const About = lazy(() => import("./pages/About"));

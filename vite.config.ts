@@ -261,7 +261,7 @@ export default defineConfig({
     cssCodeSplit: false, // Keep CSS in a single file for critters to process
     rollupOptions: {
       output: {
-        manualChunks(id) {
+          manualChunks(id) {
           // Core React runtime — smallest possible first-load chunk
           if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
             return 'vendor-react';
@@ -270,6 +270,11 @@ export default defineConfig({
           if (id.includes('@trpc') || id.includes('@tanstack')) {
             return 'vendor-trpc';
           }
+          // Radix UI primitives + class-variance-authority — large, shared across all pages
+          // Splitting these out means they are cached independently of app code changes
+          if (id.includes('@radix-ui') || id.includes('class-variance-authority') || id.includes('cmdk')) {
+            return 'vendor-ui';
+          }
           // Lucide icons — large, tree-shake per page via lazy imports
           if (id.includes('lucide-react')) {
             return 'vendor-icons';
@@ -277,6 +282,10 @@ export default defineConfig({
           // Routing
           if (id.includes('wouter')) {
             return 'vendor-router';
+          }
+          // Superjson + date-fns — utility libraries
+          if (id.includes('superjson') || id.includes('date-fns')) {
+            return 'vendor-utils';
           }
         },
       },

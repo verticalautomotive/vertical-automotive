@@ -731,3 +731,15 @@
 - [x] Verified all img tags site-wide have loading=lazy or loading=eager as appropriate
 - [x] 0 TypeScript errors, 210 tests pass
 - [x] Save checkpoint
+## Performance Optimization — Round 4 (Mobile PageSpeed Push)
+- [x] Home page: made lazy-loaded (removed from entry chunk, now 14.79 KB gzip separate chunk)
+- [x] Vite: added vendor-ui chunk (@radix-ui, cmdk, class-variance-authority) — 87.81 KB cached independently
+- [x] Vite: added vendor-utils chunk (superjson, date-fns) — 23.97 KB cached independently
+- [x] index.html: removed unused manuscdn.com preconnect (old CDN, no longer used)
+- [x] index.html: downgraded images.unsplash.com from preconnect to dns-prefetch (only used on blog)
+- [x] index.html: fixed logo preload to use local /logo-vertical-automotive.svg instead of old manuscdn URL
+- [x] index.html: removed redundant Google Fonts preload (already loaded via async stylesheet)
+- [x] App.tsx: all non-critical components confirmed lazy (ChatBubble, MobileFooterBar, FloatingActions, CookieConsentBanner)
+- [x] 0 TypeScript errors, 210 tests pass
+- [x] Production build verified: Home chunk 14.79 KB gzip, entry chunk 59.42 KB gzip
+- [x] Save checkpoint

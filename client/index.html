@@ -2,12 +2,18 @@
 <html lang="en">
 
   <head>
-    <!-- DNS prefetch for 3rd-party origins (must be early) -->
-    <!-- Note: preconnect already implies dns-prefetch, so no separate dns-prefetch needed for GTM -->
-    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <!-- ===== CRITICAL RESOURCE HINTS (ordered by priority) ===== -->
+    <!-- 1. Preconnect to GTM — first third-party to load -->
     <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <!-- All Google Ads tracking is managed via GTM (GTM-5Q5RPRR4) -->
-    <!-- dataLayer is initialized in <body> before GTM loads -->
+    <!-- 2. Preconnect to CDN — serves LCP hero poster + all vehicle images -->
+    <link rel="preconnect" href="https://d2xsxph8kpxj0f.cloudfront.net" crossorigin />
+    <!-- 3 & 4. Google Fonts (CSS + font files) — max 4 preconnects per PageSpeed -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- dns-prefetch only for non-critical origins (avoids TCP handshake overhead) -->
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -37,22 +43,22 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="preconnect" href="https://d2xsxph8kpxj0f.cloudfront.net" crossorigin />
-    <link rel="preconnect" href="https://private-us-east-1.manuscdn.com" crossorigin />
-    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Preload logo for nav bar stability -->
-    <link rel="preload" as="image" type="image/svg+xml" href="https://files.manuscdn.com/user_upload_by_module/session_file/310519663354819748/lVPmvaQYkURznMWm.svg" />
+
+    <!-- ===== CRITICAL ASSET PRELOADS ===== -->
+    <!-- Logo: local file, preloaded for nav bar stability (no layout shift) -->
+    <link rel="preload" as="image" type="image/svg+xml" href="/logo-vertical-automotive.svg" />
     <!--
-      LCP hero: On mobile the hero renders as a static poster image (JPG, 56KB).
+      LCP hero poster: On mobile the hero renders as a static poster image (JPG, ~56KB).
       Preloading it here ensures it starts fetching before React hydrates.
       On desktop the video poster also uses this same image, so this preload benefits both paths.
+      fetchpriority=high tells the browser this is the most important image on the page.
     -->
     <link rel="preload" as="image" type="image/jpeg"
       href="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_bb3373b8.jpg"
       fetchpriority="high" />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+    <!-- ===== FONTS (async — does not block render) ===== -->
+    <!-- media="print" onload trick: loads font CSS without blocking render -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
 
@@ -223,19 +229,19 @@
   </head>
 
   <body>
-    <!-- Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript fallback) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5Q5RPRR4"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <!-- Google Tag Manager — dataLayer init must precede the GTM script load -->
     <script>
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
     </script>
+    <!-- GTM script deferred — does not block initial render -->
     <script defer src="https://www.googletagmanager.com/gtm.js?id=GTM-5Q5RPRR4"></script>
-    <!-- End Google Tag Manager -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Analytics: deferred, non-blocking -->
     <script
       defer
       src="%VITE_ANALYTICS_ENDPOINT%/umami"
