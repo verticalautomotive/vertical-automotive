@@ -515,9 +515,17 @@ const SERVICES = [
     vehiclesEs: [],
     gallery: [
       "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/alignment-real-1_11cbcc74.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/align-1_e2569bdc.webp",
     ],
     galleryAlt: [
       "Wheel alignment service in progress at Vertical Automotive — Lexus on alignment rack with precision measurement equipment",
+      "Maserati Ghibli on precision wheel alignment rack at Vertical Automotive Fort Lauderdale",
+    ],
+    videos: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/align-video-1_df329804.mov",
+    ],
+    videosAlt: [
+      "Wheel alignment service at Vertical Automotive Fort Lauderdale",
     ],
     whatIncluded: [
       { title: "Precision 4-Wheel Alignment", titleEs: "Alineación de Precisión de 4 Ruedas", description: "Computer-guided alignment adjusting camber, caster, and toe to manufacturer specifications", descriptionEs: "Alineación guiada por computadora ajustando camber, caster y convergencia a especificaciones del fabricante" },
