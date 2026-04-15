@@ -277,6 +277,18 @@ const SERVICES = [
     nameEs: "Reparación y Mantenimiento de Aire Acondicionado",
     vehicles: [],
     vehiclesEs: [],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/ac-repair-1_009d8f66.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/ac-repair-2_52518421.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/ac-repair-3_af4f9e64.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/ac-repair-4_a15e44f5.jpg",
+    ],
+    galleryAlt: [
+      "A/C system diagnosis at Vertical Automotive Fort Lauderdale",
+      "Refrigerant recharge service for vehicle air conditioning",
+      "A/C compressor inspection and repair",
+      "Climate control system service South Florida",
+    ],
     whatIncluded: [
       { title: "Refrigerant Recharge", titleEs: "Recarga de Refrigerante", description: "R-134a and R-1234yf recharge to manufacturer specifications — restores cold air output", descriptionEs: "Recarga de R-134a y R-1234yf a especificaciones del fabricante — restaura la salida de aire frío" },
       { title: "Compressor Repair & Replacement", titleEs: "Reparación y Reemplazo de Compresor", description: "A/C compressor diagnosis, clutch repair, and complete replacement with new receiver/drier", descriptionEs: "Diagnóstico del compresor de A/C, reparación del embrague y reemplazo completo con nuevo receptor/secador" },
@@ -295,6 +307,18 @@ const SERVICES = [
     nameEs: "Motor, Aceite y Filtros",
     vehicles: [],
     vehiclesEs: [],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-service-1_6c8d930a.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-service-2_da137cab.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-service-3_cd0ed319.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-service-4_fe0e9a00.jpg",
+    ],
+    galleryAlt: [
+      "Engine oil change service at Vertical Automotive",
+      "Synthetic oil and filter replacement",
+      "Engine inspection and oil analysis",
+      "Multi-point inspection during oil service",
+    ],
     whatIncluded: [
       { title: "Conventional Oil Change", titleEs: "Cambio de Aceite Convencional", description: "Standard oil change for older vehicles or those with lower mileage requirements", descriptionEs: "Cambio de aceite estándar para vehículos más antiguos o con requisitos de menor kilometraje" },
       { title: "High-Mileage Oil Service", titleEs: "Servicio de Aceite de Alto Kilometraje", description: "Specialized oil with seal conditioners for vehicles over 75,000 miles — reduces oil consumption and leaks", descriptionEs: "Aceite especializado con acondicionadores de sellos para vehículos con más de 75,000 millas — reduce consumo de aceite y fugas" },
@@ -309,6 +333,18 @@ const SERVICES = [
     nameEs: "Diagnóstico Completo",
     vehicles: [],
     vehiclesEs: [],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/complete-diagnostics-1_b14c2fc7.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/complete-diagnostics-2_0b0fa04a.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/complete-diagnostics-3_c700a04e.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/complete-diagnostics-4_53d7252a.jpg",
+    ],
+    galleryAlt: [
+      "OBD-II diagnostic scan at Vertical Automotive Fort Lauderdale",
+      "Advanced engine diagnostics and fault code analysis",
+      "Check engine light diagnosis and repair",
+      "Complete vehicle health inspection",
+    ],
     whatIncluded: [
       { title: "Check Engine Light Diagnosis", titleEs: "Diagnóstico de Luz de Motor", description: "Root cause analysis — not just reading codes, but identifying why the code set and what repair is needed", descriptionEs: "Análisis de causa raíz — no solo lectura de códigos, sino identificación de por qué se estableció el código y qué reparación se necesita" },
       { title: "Electrical System Testing", titleEs: "Prueba del Sistema Eléctrico", description: "Battery load test, alternator output, starter draw, and parasitic drain testing", descriptionEs: "Prueba de carga de batería, salida del alternador, consumo del arranque y prueba de drenaje parasitario" },
@@ -327,6 +363,18 @@ const SERVICES = [
     nameEs: "Mantenimiento Rutinario y Preventivo",
     vehicles: [],
     vehiclesEs: [],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/routine-maintenance-1_f6972918.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/routine-maintenance-2_e00162a6.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/routine-maintenance-3_a9f8c5e3.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/routine-maintenance-4_6a3d179d.jpg",
+    ],
+    galleryAlt: [
+      "Routine vehicle maintenance service at Vertical Automotive",
+      "Multi-point inspection and fluid check",
+      "Preventive maintenance service Fort Lauderdale",
+      "Tire rotation and brake inspection",
+    ],
     whatIncluded: [
       { title: "Tire Rotation & Balance", titleEs: "Rotación y Balanceo de Neumáticos", description: "Regular rotation extends tire life and ensures even wear — recommended every 5K–7.5K miles", descriptionEs: "La rotación regular extiende la vida del neumático y asegura desgaste uniforme — recomendado cada 5K–7.5K millas" },
       { title: "Brake Inspection", titleEs: "Inspección de Frenos", description: "Pad thickness measurement, rotor condition check, and fluid quality assessment — included with most services", descriptionEs: "Medición de espesor de pastillas, verificación de condición de rotores y evaluación de calidad del fluido — incluido con la mayoría de servicios" },
@@ -341,6 +389,18 @@ const SERVICES = [
     nameEs: "Dirección y Suspensión",
     vehicles: [],
     vehiclesEs: [],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/steering-suspension-1_d5a8b13f.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/steering-suspension-2_0b3f291f.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/steering-suspension-3_ee52e1b1.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/steering-suspension-4_d1885504.jpg",
+    ],
+    galleryAlt: [
+      "Steering and suspension inspection at Vertical Automotive",
+      "Shock and strut replacement service",
+      "Control arm and tie rod service Fort Lauderdale",
+      "Suspension alignment and safety inspection",
+    ],
     whatIncluded: [
       { title: "Shock & Strut Replacement", titleEs: "Reemplazo de Amortiguadores y Puntales", description: "Front and rear shock/strut replacement — restores ride comfort, handling, and tire wear patterns", descriptionEs: "Reemplazo de amortiguadores/puntales delanteros y traseros — restaura comodidad, manejo y patrones de desgaste de neumáticos" },
       { title: "Control Arm & Bushing Service", titleEs: "Servicio de Brazos de Control y Bujes", description: "Upper and lower control arm replacement, bushing press, and alignment — fixes clunking and wandering", descriptionEs: "Reemplazo de brazos de control superiores e inferiores, prensado de bujes y alineación — corrige golpeteo y desvío" },
@@ -359,6 +419,18 @@ const SERVICES = [
     nameEs: "Servicio del Sistema de Combustible",
     vehicles: [],
     vehiclesEs: [],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/fuel-system-service-1_3f6bcf4c.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/fuel-system-service-2_565d22f2.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/fuel-system-service-3_45b1cbb7.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/fuel-system-service-4_9ac490ef.jpg",
+    ],
+    galleryAlt: [
+      "Fuel system service and injector cleaning at Vertical Automotive",
+      "Fuel pump diagnosis and replacement",
+      "Fuel pressure testing and fuel filter service",
+      "EVAP system diagnostics Fort Lauderdale",
+    ],
     whatIncluded: [
       { title: "Fuel Injector Cleaning", titleEs: "Limpieza de Inyectores de Combustible", description: "Professional ultrasonic cleaning and flow testing — restores fuel economy and smooth idle", descriptionEs: "Limpieza ultrasónica profesional y prueba de flujo — restaura economía de combustible y ralentí suave" },
       { title: "Fuel Pump Replacement", titleEs: "Reemplazo de Bomba de Combustible", description: "In-tank and external fuel pump diagnosis and replacement — fixes no-start and loss of power issues", descriptionEs: "Diagnóstico y reemplazo de bomba de combustible interna y externa — corrige problemas de no arranque y pérdida de potencia" },
@@ -407,16 +479,10 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wheel-alignment-1_e81ccc4c.jpg",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wheel-alignment-2_38dc46d9.jpg",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wheel-alignment-3_e06c44df.jpg",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wheel-alignment-4_927b954b.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/alignment-real-1_11cbcc74.webp",
     ],
     galleryAlt: [
-      "Precision wheel alignment service at Vertical Automotive Fort Lauderdale",
-      "Tire rotation and balancing service",
-      "4-wheel alignment and ADAS camera calibration",
-      "Tire installation and pressure check",
+      "Wheel alignment service in progress at Vertical Automotive — Lexus on alignment rack with precision measurement equipment",
     ],
     whatIncluded: [
       { title: "Precision 4-Wheel Alignment", titleEs: "Alineación de Precisión de 4 Ruedas", description: "Computer-guided alignment adjusting camber, caster, and toe to manufacturer specifications", descriptionEs: "Alineación guiada por computadora ajustando camber, caster y convergencia a especificaciones del fabricante" },

@@ -929,4 +929,44 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://verticalautomotive.com/community</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/community" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://verticalautomotive.com/community" />
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/press</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/press" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://verticalautomotive.com/press" />
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/fort-lauderdale-auto-repair-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/fort-lauderdale-auto-repair-guide" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://verticalautomotive.com/fort-lauderdale-auto-repair-guide" />
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/car-maintenance-south-florida</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/car-maintenance-south-florida" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://verticalautomotive.com/car-maintenance-south-florida" />
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/ev-hybrid-repair-fort-lauderdale</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/ev-hybrid-repair-fort-lauderdale" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://verticalautomotive.com/ev-hybrid-repair-fort-lauderdale" />
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

@@ -529,3 +529,22 @@
 - [x] Domestic pages: 6 gallery images added from CDN library
 - [x] Verify all 4 vehicle type pages render galleries correctly (210 tests pass, 0 TS errors)
 - [x] Save checkpoint
+
+## Add Photo Galleries to 6 Missing Service Pages
+- [x] ac-repair: 4 CDN gallery images added with alt text
+- [x] engine-oil-service: 4 CDN gallery images added with alt text
+- [x] complete-diagnostics: 4 CDN gallery images added with alt text
+- [x] routine-maintenance: 4 CDN gallery images added with alt text
+- [x] steering-suspension: 4 CDN gallery images added with alt text
+- [x] fuel-system-service: 4 CDN gallery images added with alt text
+- [x] All 210 tests still passing, 0 TypeScript errors
+- [x] Save checkpoint
+
+## Add 5 Authority Pages to Sitemap.xml
+- [x] /community added to sitemap (priority 0.7)
+- [x] /press added to sitemap (priority 0.7)
+- [x] /fort-lauderdale-auto-repair-guide added to sitemap (priority 0.8)
+- [x] /car-maintenance-south-florida added to sitemap (priority 0.8)
+- [x] /ev-hybrid-repair-fort-lauderdale added to sitemap (priority 0.8)
+- [x] Sitemap now has 122 total URLs
+- [x] Save checkpoint
