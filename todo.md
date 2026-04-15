@@ -572,3 +572,9 @@
 ## Fix Render-Blocking Manus Runtime Script (FCP/LCP)
 - [x] Move manus-runtime script to end of <body> via vitePluginManusRuntime({ injectTo: 'body' }) in vite.config.ts
 - [ ] Save checkpoint
+
+## Fix GTM Double-Load & Render-Blocking Inline Script
+- [x] Audit all GTM script locations — only one load confirmed in index.html
+- [x] Confirmed no duplicate GTM load (single gtm.js script tag)
+- [x] Moved inline dataLayer.push above the deferred GTM script tag so it initializes first
+- [ ] Save checkpoint
