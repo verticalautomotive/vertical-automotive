@@ -399,6 +399,24 @@ export default function LocationHub({ cityKey }: Props) {
               locationName={`Vertical Automotive — ${loc.name}`}
               address={loc.fullAddress}
               className="w-full h-full"
+              onMapReady={(map) => {
+                const position = { lat: loc.lat, lng: loc.lng };
+                // Add a prominent marker for the shop
+                const marker = new window.google!.maps.marker.AdvancedMarkerElement({
+                  map,
+                  position,
+                  title: `Vertical Automotive — ${loc.name}`,
+                });
+                // Open an info window showing the shop name + address
+                const infoWindow = new window.google!.maps.InfoWindow({
+                  content: `<div style="font-family:sans-serif;padding:4px 2px;">
+                    <strong style="font-size:13px;">Vertical Automotive</strong><br/>
+                    <span style="font-size:12px;color:#555;">${loc.fullAddress}</span><br/>
+                    <a href="${loc.directionsUrl}" target="_blank" style="font-size:12px;color:#1a73e8;">Get Directions</a>
+                  </div>`,
+                });
+                infoWindow.open({ anchor: marker, map });
+              }}
             />
           </div>
           <div className="mt-3 flex flex-wrap gap-3">

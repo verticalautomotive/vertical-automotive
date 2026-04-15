@@ -618,4 +618,11 @@
 - [x] Moved "Work We Do" button + service tiles section ABOVE "About this location" section
 - [x] Applied to both /fort-lauderdale and /wilton-manors (shared LocationHub component)
 - [x] 0 TypeScript errors
+- [x] Save checkpoint
+
+## Fix Google Maps — Shop Not Selected on Hub Pages
+- [x] Read LazyMap/Map component to understand marker API
+- [x] Added AdvancedMarkerElement + InfoWindow (name, address, directions link) via onMapReady callback
+- [x] Applied to both /fort-lauderdale and /wilton-manors hub pages (shared LocationHub component)
+- [x] 0 TypeScript errors
 - [ ] Save checkpoint
