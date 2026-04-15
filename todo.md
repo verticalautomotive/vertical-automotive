@@ -685,3 +685,14 @@
 - [x] Bilingual (EN/ES) support
 - [x] 0 TypeScript errors, 210 tests pass
 - [x] Save checkpoint
+
+## Gallery: Add 14 New Photos + 9 New Videos
+- [x] Copy all uploads to webdev-static-assets and upload to CDN
+- [x] Read gallery data structure and categorize new media
+- [x] Add new photos and videos to gallery data with categories and alt text
+- [x] Extended Gallery.tsx to support video type with play button overlay and lightbox video player
+- [x] Added 2 new filter categories: Engine and Diagnostics
+- [x] Applied matching industrial filter to all new media
+- [x] Bilingual alt text for all 23 new items
+- [x] 0 TypeScript errors, 210 tests pass
+- [x] Save checkpoint
