@@ -658,4 +658,4 @@
 - [x] Set heroPhoto on FORT_LAUDERDALE_DATA (wm-exterior-1_a6a6ea18.webp — white building + branded Tesla)
 - [x] Rotating gallery replaced with single static hero image
 - [x] 0 TypeScript errors
-- [ ] Save checkpoint
+- [x] Save checkpoint

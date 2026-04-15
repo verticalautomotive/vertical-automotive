@@ -151,7 +151,7 @@ export default function Navigation() {
                         <span className="font-display font-bold text-sm tracking-wider text-secondary-foreground group-hover:text-primary transition-colors">
                           FORT LAUDERDALE
                         </span>
-                        <span className="flex items-start gap-1.5 text-xs text-secondary-foreground/70 leading-tight">
+                        <span className="flex items-start gap-1.5 text-xs text-white/80 leading-tight">
                           <MapPin className="w-3 h-3 mt-0.5 flex-shrink-0 text-primary" />
                           {FL_LOCATION.address}<br />{FL_LOCATION.city}
                         </span>
@@ -166,7 +166,7 @@ export default function Navigation() {
                         <span className="font-display font-bold text-sm tracking-wider text-secondary-foreground group-hover:text-primary transition-colors">
                           WILTON MANORS
                         </span>
-                        <span className="flex items-start gap-1.5 text-xs text-secondary-foreground/70 leading-tight">
+                        <span className="flex items-start gap-1.5 text-xs text-white/80 leading-tight">
                           <MapPin className="w-3 h-3 mt-0.5 flex-shrink-0 text-primary" />
                           {WM_LOCATION.address}<br />{WM_LOCATION.city}
                         </span>
@@ -264,7 +264,7 @@ export default function Navigation() {
                     <span className="font-display font-bold text-xs tracking-wider text-secondary-foreground">
                       FORT LAUDERDALE
                     </span>
-                    <span className="flex items-start gap-1 text-[10px] text-foreground/60 leading-tight">
+                    <span className="flex items-start gap-1 text-[10px] text-white/80 leading-tight">
                       <MapPin className="w-2.5 h-2.5 mt-0.5 flex-shrink-0 text-primary" />
                       {FL_LOCATION.address}
                     </span>
@@ -279,7 +279,7 @@ export default function Navigation() {
                     <span className="font-display font-bold text-xs tracking-wider text-secondary-foreground">
                       WILTON MANORS
                     </span>
-                    <span className="flex items-start gap-1 text-[10px] text-foreground/60 leading-tight">
+                    <span className="flex items-start gap-1 text-[10px] text-white/80 leading-tight">
                       <MapPin className="w-2.5 h-2.5 mt-0.5 flex-shrink-0 text-primary" />
                       {WM_LOCATION.address}
                     </span>
