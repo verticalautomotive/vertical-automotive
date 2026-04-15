@@ -40,8 +40,14 @@ import CallNowDialog from "@/components/CallNowDialog";
 import LocationPickerModal from "@/components/LocationPickerModal";
 
 const HERO_POSTER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_bb3373b8.jpg";
-const HERO_VIDEO_MOBILE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-mobile_9141c89b.mp4";
-const HERO_VIDEO_DESKTOP = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4";
+// H.265/HEVC — 1.8 MB desktop, 1.0 MB mobile (Chrome 107+, Edge 107+, Safari 11+, Firefox 115+)
+const HERO_VIDEO_DESKTOP_H265 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web-h265-v2_41d26ecf.mp4";
+// H.264 fallback — 3.6 MB (universal browser support)
+const HERO_VIDEO_DESKTOP_H264 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web-h264-v2_ce4ced22.mp4";
+// Mobile H.265 — 1.0 MB (tablet 768-1024px)
+const HERO_VIDEO_MOBILE_H265 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-mobile-h265_22096091.mp4";
+// Mobile H.264 fallback (original, kept for compatibility)
+const HERO_VIDEO_MOBILE_H264 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-mobile_9141c89b.mp4";
 
 /**
  * HeroBackground — renders the hero section background.
@@ -64,14 +70,26 @@ function HeroBackground() {
     return () => mq.removeEventListener('change', handler);
   }, []);
 
-  // On desktop: attach video src after first paint so poster renders as LCP
+  // On desktop: attach <source> elements after first paint so poster renders as LCP.
+  // Browser picks the first <source> type it supports:
+  //   1. H.265/HEVC (1.8 MB) — Chrome 107+, Edge 107+, Safari 11+, Firefox 115+
+  //   2. H.264 fallback (3.6 MB) — all other browsers
+  // On tablets (768-1024px) we use the 480p mobile H.265 (1.0 MB) to save bandwidth.
   useEffect(() => {
     if (isMobile || !videoRef.current) return;
     const video = videoRef.current;
-    if (!video.src) {
-      // Use the mobile-optimised 480p source on tablets (768-1024px) to save bandwidth
-      const src = window.innerWidth <= 1024 ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP;
-      video.src = src;
+    if (video.children.length === 0) {
+      const isTablet = window.innerWidth <= 1024;
+      // Source 1: H.265/HEVC (preferred — smallest file)
+      const src265 = document.createElement('source');
+      src265.src = isTablet ? HERO_VIDEO_MOBILE_H265 : HERO_VIDEO_DESKTOP_H265;
+      src265.type = 'video/mp4; codecs="hvc1"';
+      video.appendChild(src265);
+      // Source 2: H.264 fallback (universal compatibility)
+      const src264 = document.createElement('source');
+      src264.src = isTablet ? HERO_VIDEO_MOBILE_H264 : HERO_VIDEO_DESKTOP_H264;
+      src264.type = 'video/mp4; codecs="avc1.42E01E"';
+      video.appendChild(src264);
       video.load();
       video.play().catch(() => { /* autoplay blocked — poster remains visible */ });
     }

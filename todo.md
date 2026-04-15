@@ -731,3 +731,14 @@
 - [x] Verified all img tags site-wide have loading=lazy or loading=eager as appropriate
 - [x] 0 TypeScript errors, 210 tests pass
 - [x] Save checkpoint
+
+## Hero Video Compression — Round 4
+- [x] Download both hero videos (desktop 5.3 MB, mobile 2.8 MB)
+- [x] Compress desktop to H.265/HEVC CRF 32 with 550 kbps cap: 5.3 MB → 1.8 MB (66% reduction)
+- [x] Compress mobile to H.265/HEVC CRF 32 with 300 kbps cap: 2.8 MB → 1.0 MB (64% reduction)
+- [x] Create H.264 fallback for desktop at CRF 32: 5.3 MB → 3.6 MB (32% reduction)
+- [x] Upload all three compressed videos to Manus CDN
+- [x] Update HeroBackground component to use <source> tags (HEVC first, H.264 fallback)
+- [x] Tablets (768-1024px) use mobile H.265 (1.0 MB) instead of desktop H.265 (1.8 MB)
+- [x] 0 TypeScript errors, 210 tests pass
+- [x] Save checkpoint
