@@ -706,3 +706,18 @@
 - [x] Mobile UX: sticky bottom CTA bar (CALL NOW + SCHEDULE) confirmed present; hero has two above-fold CTAs
 - [x] 0 TypeScript errors, 210 tests pass
 - [x] Save checkpoint
+
+## Homepage Performance Optimization — Round 2 (Mobile PageSpeed)
+- [x] Hero video: skip autoplay on mobile (poster-only on mobile, video only on desktop) to avoid 2.8MB download
+- [x] Vehicle gallery cards: defer non-first images until card is in viewport (IntersectionObserver)
+- [x] Move JSON-LD schema from React JSX to static index.html (eliminate re-render cost)
+- [x] Offers section: true lazy render — only mount cards when accordion is opened
+- [x] Reviews section: true lazy render — only mount cards when accordion is opened
+- [x] Add hero poster preload link to index.html for instant first paint
+- [x] Add fetchpriority=high to first vehicle card image
+- [x] Lazify ChatBubble, MobileFooterBar, FloatingActions, CookieConsentBanner in App.tsx
+- [x] Fix Google Maps loading=async warning (suboptimal performance)
+- [x] Remove unused imports from Home.tsx (lazy, Suspense, useCallback)
+- [x] Add WebSite schema to index.html for Sitelinks eligibility
+- [x] 0 TypeScript errors, 210 tests pass
+- [x] Save checkpoint

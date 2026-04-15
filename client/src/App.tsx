@@ -7,12 +7,13 @@ import StructuredData from "./components/StructuredData";
 import HrefLang from "./components/HrefLang";
 import { lazy, Suspense, useEffect, useState, useCallback } from "react";
 import { useLocation } from "wouter";
-import MobileFooterBar from "./components/MobileFooterBar";
-import FloatingActions from "./components/FloatingActions";
-// Lazy-load ChatButton — deferred until after initial render to reduce first-load JS
+// Lazy-load all non-critical UI components to reduce initial JS bundle
+// These components are not needed for first paint or LCP
 const ChatButton = lazy(() => import("@/components/ChatButton").then(m => ({ default: m.ChatButton })));
-import { ChatBubble } from "@/components/ChatBubble";
-import { CookieConsentBanner } from "@/components/CookieConsentBanner";
+const ChatBubble = lazy(() => import("@/components/ChatBubble").then(m => ({ default: m.ChatBubble })));
+const MobileFooterBar = lazy(() => import("./components/MobileFooterBar"));
+const FloatingActions = lazy(() => import("./components/FloatingActions"));
+const CookieConsentBanner = lazy(() => import("@/components/CookieConsentBanner").then(m => ({ default: m.CookieConsentBanner })));
 
 // Code-split all page components — only Home is eagerly loaded for fast FCP
 import Home from "./pages/Home";
@@ -192,14 +193,14 @@ function App() {
           <StructuredData />
           <Toaster />
           <Router />
-          {/* Single ChatBubble instance — shared by desktop and mobile buttons */}
-          <ChatBubble isOpen={isChatOpen} onClose={handleChatClose} language={language} />
-          <FloatingActions isChatOpen={isChatOpen} onChatToggle={handleChatToggle} />
-          <MobileFooterBar />
+          {/* Non-critical UI — all lazy-loaded to reduce initial JS bundle */}
           <Suspense fallback={null}>
+            <ChatBubble isOpen={isChatOpen} onClose={handleChatClose} language={language} />
+            <FloatingActions isChatOpen={isChatOpen} onChatToggle={handleChatToggle} />
+            <MobileFooterBar />
             <ChatButton language={language} isOpen={isChatOpen} onToggle={handleChatToggle} />
+            <CookieConsentBanner />
           </Suspense>
-          <CookieConsentBanner />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

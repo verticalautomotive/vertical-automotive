@@ -30,7 +30,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
@@ -38,6 +38,73 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { trackCall, trackSchedule, trackDirections, trackClaimOffer } from "@/lib/gtm";
 import CallNowDialog from "@/components/CallNowDialog";
 import LocationPickerModal from "@/components/LocationPickerModal";
+
+const HERO_POSTER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_bb3373b8.jpg";
+const HERO_VIDEO_MOBILE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-mobile_9141c89b.mp4";
+const HERO_VIDEO_DESKTOP = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4";
+
+/**
+ * HeroBackground — renders the hero section background.
+ * Mobile (< 768px): static poster image only. Zero video bytes downloaded.
+ * Desktop/tablet (≥ 768px): autoplay muted looping video with poster for instant first paint.
+ * On desktop, video src is set after mount (via useEffect) so the poster renders first,
+ * then the video loads without blocking the LCP image.
+ */
+function HeroBackground() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  // On desktop: attach video src after first paint so poster renders as LCP
+  useEffect(() => {
+    if (isMobile || !videoRef.current) return;
+    const video = videoRef.current;
+    if (!video.src) {
+      // Use the mobile-optimised 480p source on tablets (768-1024px) to save bandwidth
+      const src = window.innerWidth <= 1024 ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP;
+      video.src = src;
+      video.load();
+      video.play().catch(() => { /* autoplay blocked — poster remains visible */ });
+    }
+  }, [isMobile]);
+
+  if (isMobile) {
+    // Mobile: pure CSS background image — zero video download
+    return (
+      <img
+        src={HERO_POSTER}
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        width={800}
+        height={600}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+    );
+  }
+
+  return (
+    <video
+      ref={videoRef}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="none"
+      poster={HERO_POSTER}
+      className="absolute inset-0 w-full h-full object-cover"
+    />
+  );
+}
 
 export default function Home() {
   const [statsVisible, setStatsVisible] = useState(false);
@@ -126,155 +193,7 @@ export default function Home() {
           ? "taller mecánico Fort Lauderdale, reparación de autos Wilton Manors, reparación Tesla, certificado ASE, frenos, cambio de aceite, aire acondicionado, diagnóstico de motor, autos europeos, Sur de Florida"
           : "auto repair Fort Lauderdale, car repair Fort Lauderdale, auto repair Wilton Manors, mechanic near me, Tesla repair, ASE certified, brake service, oil change, AC repair, engine diagnostics, European car repair, South Florida"}
       />
-      {/* LocalBusiness JSON-LD — Location 1: Wilton Manors */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "AutoRepair",
-          "@id": "https://verticalautomotive.com/#wilton-manors",
-          "name": "Vertical Automotive - Wilton Manors",
-          "image": COMPANY.logoUrl,
-          "url": "https://verticalautomotive.com/",
-          "telephone": "+19545651518",
-          "priceRange": "$$",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "1100 W Oakland Park Blvd Unit 5",
-            "addressLocality": "Wilton Manors",
-            "addressRegion": "FL",
-            "postalCode": "33311",
-            "addressCountry": "US"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 26.165788,
-            "longitude": -80.157597
-          },
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-              "opens": "08:00",
-              "closes": "17:00"
-            }
-          ],
-          "hasMap": "https://maps.google.com/?q=1100+W+Oakland+Park+Blvd+Unit+5+Wilton+Manors+FL+33311",
-          "areaServed": [
-            { "@type": "City", "name": "Wilton Manors" },
-            { "@type": "City", "name": "Oakland Park" },
-            { "@type": "City", "name": "Fort Lauderdale" }
-          ],
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Auto Repair Services",
-            "itemListElement": [
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tesla & EV Repair" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "European Vehicle Service" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Asian Vehicle Service" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Domestic Vehicle Service" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brake & Rotor Service" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transmission Service" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "A/C Service & Repair" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Engine, Oil & Filters" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Complete Diagnostics" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Routine Maintenance" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Steering & Suspension" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fuel System Service" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hybrid & EV Service" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wheel Alignment" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Battery & Charging Systems" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fleet Services" } }
-            ]
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "503",
-            "bestRating": "5"
-          },
-          "foundingDate": "1989",
-          "description": "ASE-certified auto repair shop in Wilton Manors specializing in Tesla, European, Asian & Domestic vehicles. 36 years of experience. 36,000-mile / 36-month warranty on all repairs.",
-          "sameAs": [
-            "https://www.yelp.com/biz/vertical-automotive-wilton-manors",
-            "https://www.google.com/maps/place/Vertical+Automotive"
-          ]
-        }) }}
-      />
-      {/* LocalBusiness JSON-LD — Location 2: Fort Lauderdale */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "AutoRepair",
-          "@id": "https://verticalautomotive.com/#fort-lauderdale",
-          "name": "Vertical Automotive - Fort Lauderdale",
-          "image": COMPANY.logoUrl,
-          "url": "https://verticalautomotive.com/",
-          "telephone": "+16452162266",
-          "priceRange": "$$",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "707 NE 11th Street",
-            "addressLocality": "Fort Lauderdale",
-            "addressRegion": "FL",
-            "postalCode": "33304",
-            "addressCountry": "US"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 26.139035,
-            "longitude": -80.135598
-          },
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-              "opens": "08:00",
-              "closes": "17:00"
-            }
-          ],
-          "hasMap": "https://maps.google.com/?q=707+NE+11th+Street+Fort+Lauderdale+FL+33304",
-          "areaServed": [
-            { "@type": "City", "name": "Fort Lauderdale" },
-            { "@type": "City", "name": "Victoria Park" },
-            { "@type": "City", "name": "Wilton Manors" }
-          ],
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Auto Repair Services",
-            "itemListElement": [
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tesla & EV Repair" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "European Vehicle Service" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Asian Vehicle Service" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Domestic Vehicle Service" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brake & Rotor Service" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transmission Service" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "A/C Service & Repair" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Engine, Oil & Filters" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Complete Diagnostics" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Routine Maintenance" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Steering & Suspension" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fuel System Service" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hybrid & EV Service" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wheel Alignment" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Battery & Charging Systems" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fleet Services" } }
-            ]
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "503",
-            "bestRating": "5"
-          },
-          "foundingDate": "1989",
-          "description": "ASE-certified auto repair shop in Fort Lauderdale specializing in Tesla, European, Asian & Domestic vehicles. 36,000-mile / 36-month warranty on all repairs.",
-          "sameAs": [
-            "https://www.google.com/maps/place/Vertical+Automotive+Fort+Lauderdale"
-          ]
-        }) }}
-      />
+      {/* LocalBusiness JSON-LD is now in static index.html — no React re-render cost */}
 
       <Navigation />
 
@@ -282,26 +201,13 @@ export default function Home() {
       <section 
         className="relative min-h-[65vh] sm:min-h-[90vh] flex items-center bg-secondary text-secondary-foreground overflow-hidden"
       >
-        {/* Hero background video — autoplay, muted, loop, with poster for instant first paint */}
-        {/* preload="none" defers video fetch until after page paint; poster shows immediately */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="none"
-          poster="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_bb3373b8.jpg"
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          {/* Mobile: 480p compressed (2.8 MB) — served on narrow viewports */}
-          <source
-            media="(max-width: 768px)"
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-mobile_9141c89b.mp4"
-            type="video/mp4"
-          />
-          {/* Desktop: original 720p (5.2 MB) */}
-          <source src="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4" type="video/mp4" />
-        </video>
+        {/*
+          Hero background media strategy:
+          - Mobile (< 768px): static poster image only — NO video download (saves 2.8MB on mobile)
+          - Desktop/tablet (≥ 768px): autoplay background video with poster for instant first paint
+          preload="none" defers video bytes until after first paint on desktop too.
+        */}
+        <HeroBackground />
         {/* Gradient overlay */}
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(20, 20, 30, 0.95) 0%, rgba(20, 20, 30, 0.7) 50%, rgba(20, 20, 30, 0.4) 100%)' }} />
         <div className="absolute inset-0 grid-pattern opacity-30" />
@@ -367,8 +273,8 @@ export default function Home() {
           </h2>
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-            {vehicleTypes.map((type) => (
-              <VehicleTypeCard key={type.slug} type={type} servicesPath={servicesPath} onClickTile={(slug, name) => setLocationPickerService({ slug, name })} />
+            {vehicleTypes.map((type, idx) => (
+              <VehicleTypeCard key={type.slug} type={type} servicesPath={servicesPath} onClickTile={(slug, name) => setLocationPickerService({ slug, name })} isFirst={idx === 0} />
             ))}
           </div>
         </div>
@@ -489,7 +395,7 @@ export default function Home() {
 
             return (
               <>
-                {/* Mobile: fully collapsed dropdown */}
+                {/* Mobile: true lazy render — cards only mount when expanded (saves DOM nodes) */}
                 <div className="sm:hidden">
                   <button
                     onClick={() => setOffersExpanded(!offersExpanded)}
@@ -500,19 +406,13 @@ export default function Home() {
                     </span>
                     <ChevronDown className={`w-4 h-4 text-primary transition-transform duration-300 ${offersExpanded ? "rotate-180" : ""}`} />
                   </button>
-                  <div
-                    className="overflow-hidden transition-all duration-500 ease-in-out"
-                    style={{
-                      maxHeight: offersExpanded ? "1200px" : "0px",
-                      opacity: offersExpanded ? 1 : 0,
-                    }}
-                  >
-                    <div className="grid grid-cols-2 gap-3 pt-3">
+                  {offersExpanded && (
+                    <div className="grid grid-cols-2 gap-3 pt-3 animate-in fade-in duration-300">
                       {allOffers.map((offer, i) => (
                         <OfferCard key={i} offer={offer} />
                       ))}
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 {/* Desktop: full 3-col grid */}
@@ -723,7 +623,7 @@ export default function Home() {
 
             return (
               <>
-                {/* Mobile: fully collapsed dropdown */}
+                {/* Mobile: true lazy render — review cards only mount when expanded */}
                 <div className="sm:hidden mb-6">
                   <button
                     onClick={() => setReviewsExpanded(!reviewsExpanded)}
@@ -735,19 +635,13 @@ export default function Home() {
                     </span>
                     <ChevronDown className={`w-4 h-4 text-primary transition-transform duration-300 ${reviewsExpanded ? "rotate-180" : ""}`} />
                   </button>
-                  <div
-                    className="overflow-hidden transition-all duration-500 ease-in-out"
-                    style={{
-                      maxHeight: reviewsExpanded ? "3000px" : "0px",
-                      opacity: reviewsExpanded ? 1 : 0,
-                    }}
-                  >
-                    <div className="space-y-3 pt-3">
+                  {reviewsExpanded && (
+                    <div className="space-y-3 pt-3 animate-in fade-in duration-300">
                       {allReviews.map((review, i) => (
                         <ReviewCard key={i} review={review} i={i} />
                       ))}
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 {/* Desktop: all reviews visible */}
@@ -956,17 +850,30 @@ function vehicleAltText(slug: string, index: number): string {
  * For types with a gallery array (e.g., Tesla), images rotate every 4 seconds.
  * All images get a subtle dark/blue filter to match the site's industrial theme.
  */
-function VehicleTypeCard({ type, servicesPath, onClickTile }: { type: VehicleType; servicesPath: string; onClickTile?: (slug: string, name: string) => void }) {
+function VehicleTypeCard({ type, servicesPath, onClickTile, isFirst }: { type: VehicleType; servicesPath: string; onClickTile?: (slug: string, name: string) => void; isFirst?: boolean }) {
   const gallery = type.gallery;
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Only start the gallery rotation when the card enters the viewport
+  useEffect(() => {
+    if (!cardRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { rootMargin: '200px' }
+    );
+    observer.observe(cardRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
-    if (!gallery || gallery.length <= 1) return;
+    if (!isVisible || !gallery || gallery.length <= 1) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % gallery.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, [gallery]);
+  }, [isVisible, gallery]);
 
   const currentImage = gallery && gallery.length > 0 ? gallery[currentIndex] : type.image;
   const hasGallery = gallery && gallery.length > 1;
@@ -980,6 +887,7 @@ function VehicleTypeCard({ type, servicesPath, onClickTile }: { type: VehicleTyp
 
   return (
     <div
+      ref={cardRef}
       onClick={handleClick}
       className="group relative aspect-[4/3] overflow-hidden bg-card hover:shadow-2xl transition-all duration-300 cursor-pointer"
     >
@@ -991,7 +899,8 @@ function VehicleTypeCard({ type, servicesPath, onClickTile }: { type: VehicleTyp
               key={i}
               src={img}
               alt={vehicleAltText(type.slug, i)}
-              loading={i === 0 ? "eager" : "lazy"}
+              loading={i === 0 && isFirst ? "eager" : "lazy"}
+              fetchPriority={i === 0 && isFirst ? "high" : "auto"}
               width={800}
               height={600}
               decoding="async"
