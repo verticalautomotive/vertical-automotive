@@ -193,7 +193,7 @@ function vitePluginCriticalCSS(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginCriticalCSS()];
+const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime({ injectTo: 'body' }), vitePluginManusDebugCollector(), vitePluginCriticalCSS()];
 
 export default defineConfig({
   plugins,

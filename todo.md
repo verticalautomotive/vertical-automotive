@@ -568,3 +568,7 @@
 - [x] Upload 1 tire photo (IMG_1336.webp) and 2 videos (IMG_0418.MOV, IMG_0679.MOV) to CDN
 - [x] Replace placeholder gallery images in tire-service with real photo and add 2 videos
 - [ ] Save checkpoint
+
+## Fix Render-Blocking Manus Runtime Script (FCP/LCP)
+- [x] Move manus-runtime script to end of <body> via vitePluginManusRuntime({ injectTo: 'body' }) in vite.config.ts
+- [ ] Save checkpoint
