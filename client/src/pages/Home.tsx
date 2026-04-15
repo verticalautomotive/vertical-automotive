@@ -282,14 +282,24 @@ export default function Home() {
       <section 
         className="relative min-h-[65vh] sm:min-h-[90vh] flex items-center bg-secondary text-secondary-foreground overflow-hidden"
       >
-        {/* Hero background video — autoplay, muted, loop, with image fallback */}
+        {/* Hero background video — autoplay, muted, loop, with poster for instant first paint */}
+        {/* preload="none" defers video fetch until after page paint; poster shows immediately */}
         <video
           autoPlay
           muted
           loop
           playsInline
+          preload="none"
+          poster="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_bb3373b8.jpg"
           className="absolute inset-0 w-full h-full object-cover"
         >
+          {/* Mobile: 480p compressed (2.8 MB) — served on narrow viewports */}
+          <source
+            media="(max-width: 768px)"
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-mobile_9141c89b.mp4"
+            type="video/mp4"
+          />
+          {/* Desktop: original 720p (5.2 MB) */}
           <source src="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4" type="video/mp4" />
         </video>
         {/* Gradient overlay */}

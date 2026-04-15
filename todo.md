@@ -696,3 +696,13 @@
 - [x] Bilingual alt text for all 23 new items
 - [x] 0 TypeScript errors, 210 tests pass
 - [x] Save checkpoint
+
+## Performance Optimization (Mobile Speed, Core Web Vitals)
+- [x] Audit index.html: scripts, fonts, preloads, render-blocking resources
+- [x] Hero video: added poster image (56KB JPG for instant first paint), mobile-optimized MP4 (2.8MB vs 5.2MB), preload=none to defer video load until after LCP
+- [x] Font loading: already optimal (display=swap, non-blocking media=print/onload, exact weights only, preconnect in place)
+- [x] GTM/scripts: already optimal (GTM deferred, all routes lazy-loaded, Vite manual chunk splitting, Critters CSS inlining)
+- [x] Images: converted 36 JPG/PNG CDN images to WebP (93-97% size reduction), updated 48 URLs across 5 files; all below-fold images already have loading=lazy
+- [x] Mobile UX: sticky bottom CTA bar (CALL NOW + SCHEDULE) confirmed present; hero has two above-fold CTAs
+- [x] 0 TypeScript errors, 210 tests pass
+- [x] Save checkpoint
