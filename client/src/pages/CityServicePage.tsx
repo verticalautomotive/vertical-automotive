@@ -226,6 +226,40 @@ export default function CityServicePage() {
         </section>
       )}
 
+      {/* Video Gallery — shown only on pages that have videos */}
+      {page.videos && page.videos.length > 0 && (
+        <section className="py-10 sm:py-16 bg-background">
+          <div className="container max-w-5xl">
+            <h2 className="text-2xl sm:text-3xl font-black mb-2 sm:mb-3">
+              {isSpanish ? "Videos de Nuestro Taller" : "Shop Videos"}
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
+              {isSpanish
+                ? `Mira a nuestros técnicos en acción en ${page.cityDisplay}.`
+                : `Watch our technicians at work in ${page.cityDisplay}.`}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              {page.videos.map((videoUrl, idx) => (
+                <div
+                  key={idx}
+                  className="relative overflow-hidden rounded-lg bg-secondary aspect-video"
+                >
+                  <video
+                    src={videoUrl}
+                    controls
+                    playsInline
+                    muted
+                    preload="metadata"
+                    className="w-full h-full object-cover"
+                    aria-label={page.videosAlt?.[idx] || `${page.serviceName} video at Vertical Automotive ${page.cityDisplay}`}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* What's Included — expanded with title, description, and pricing */}
       {page.whatIncluded.length > 0 && (
         <section className="py-10 sm:py-16 bg-muted">

@@ -72,6 +72,9 @@ export interface CityPageContent {
   // Optional photo gallery (vehicle-type pages)
   gallery?: string[];
   galleryAlt?: string[];
+  // Optional video gallery
+  videos?: string[];
+  videosAlt?: string[];
 }
 
 // LOCATION DATA
@@ -310,16 +313,26 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-service-1_6c8d930a.jpg",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-service-2_da137cab.jpg",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-service-3_cd0ed319.jpg",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-service-4_fe0e9a00.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-1_2794a779.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-2_764ac92e.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-3_da419f4d.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-4_98f9144f.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-5_b1c03e3f.jpg",
     ],
     galleryAlt: [
-      "Engine oil change service at Vertical Automotive",
-      "Synthetic oil and filter replacement",
-      "Engine inspection and oil analysis",
-      "Multi-point inspection during oil service",
+      "Subaru engine block rebuild at Vertical Automotive Fort Lauderdale",
+      "Engine disassembly and inspection at Vertical Automotive",
+      "Subaru engine removal and replacement — Vertical Automotive shop",
+      "RAM truck engine service on lift at Vertical Automotive",
+      "Mechanic performing engine removal with engine hoist at Vertical Automotive",
+    ],
+    videos: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-video-1_36eba95a.mov",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-video-2_d8f08d83.mov",
+    ],
+    videosAlt: [
+      "Engine service in progress at Vertical Automotive",
+      "Engine work at Vertical Automotive Fort Lauderdale",
     ],
     whatIncluded: [
       { title: "Conventional Oil Change", titleEs: "Cambio de Aceite Convencional", description: "Standard oil change for older vehicles or those with lower mileage requirements", descriptionEs: "Cambio de aceite estándar para vehículos más antiguos o con requisitos de menor kilometraje" },
