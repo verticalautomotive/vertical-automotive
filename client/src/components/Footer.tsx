@@ -112,9 +112,13 @@ export default function Footer() {
 
           {/* Wilton Manors Services — desktop only */}
           <div className="hidden sm:block">
-            <h3 className="font-display text-lg font-bold tracking-wider mb-4 text-primary">
+            <Link
+              href="/wilton-manors"
+              className="group flex items-center gap-1.5 font-display text-lg font-bold tracking-wider mb-4 text-primary hover:text-primary/80 transition-colors"
+            >
               WILTON MANORS
-            </h3>
+              <ExternalLink className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </Link>
             <div className="space-y-2 mb-4">
               <a
                 href={getMapsUrl(LOCATIONS[0])}
@@ -151,9 +155,13 @@ export default function Footer() {
 
           {/* Fort Lauderdale Services — desktop only */}
           <div className="hidden sm:block">
-            <h3 className="font-display text-lg font-bold tracking-wider mb-4 text-primary">
+            <Link
+              href="/fort-lauderdale"
+              className="group flex items-center gap-1.5 font-display text-lg font-bold tracking-wider mb-4 text-primary hover:text-primary/80 transition-colors"
+            >
               FT. LAUDERDALE
-            </h3>
+              <ExternalLink className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </Link>
             <div className="space-y-2 mb-4">
               <a
                 href={getMapsUrl(LOCATIONS[1])}
@@ -185,6 +193,31 @@ export default function Footer() {
               <Link href="/fort-lauderdale/ac-repair" className="block hover:text-primary transition-colors">A/C Repair</Link>
               <Link href="/fort-lauderdale/engine-oil-service" className="block hover:text-primary transition-colors">Engine & Oil</Link>
               <Link href="/fort-lauderdale/complete-diagnostics" className="block hover:text-primary transition-colors">Diagnostics</Link>
+            </div>
+          </div>
+
+          {/* OUR LOCATIONS — hub page links, visible on all screens */}
+          <div className="col-span-2 sm:col-span-1 sm:hidden">
+            <h3 className="font-display text-sm font-bold tracking-wider mb-3 text-primary">
+              OUR LOCATIONS
+            </h3>
+            <div className="space-y-2">
+              <Link
+                href="/fort-lauderdale"
+                className="flex items-center gap-2 text-xs font-medium hover:text-primary transition-colors group"
+              >
+                <MapPin className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                <span>Fort Lauderdale</span>
+                <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </Link>
+              <Link
+                href="/wilton-manors"
+                className="flex items-center gap-2 text-xs font-medium hover:text-primary transition-colors group"
+              >
+                <MapPin className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                <span>Wilton Manors</span>
+                <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </Link>
             </div>
           </div>
 

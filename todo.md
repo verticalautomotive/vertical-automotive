@@ -659,3 +659,9 @@
 - [x] Rotating gallery replaced with single static hero image
 - [x] 0 TypeScript errors
 - [x] Save checkpoint
+
+## Footer: Add OUR LOCATIONS Section
+- [x] Desktop: WILTON MANORS and FT. LAUDERDALE column headings are now clickable links to hub pages (with hover arrow)
+- [x] Mobile: Added "OUR LOCATIONS" section with MapPin + arrow links to both hub pages
+- [x] 0 TypeScript errors
+- [ ] Save checkpoint
