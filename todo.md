@@ -548,3 +548,12 @@
 - [x] /ev-hybrid-repair-fort-lauderdale added to sitemap (priority 0.8)
 - [x] Sitemap now has 122 total URLs
 - [x] Save checkpoint
+
+## Tire Service & Replacement Pages
+- [x] Add tire-service entry to SERVICES array in city-pages.ts (8 services: replacement, mounting, balancing, rotation, flat repair, inspection, TPMS, alignment check)
+- [x] Add unique EN + ES content for Fort Lauderdale and Wilton Manors in city-pages-content.ts (intro, whyChooseUs, FAQ, relatedServices, realWorldStory)
+- [x] Add realWorldStory optional field to CityPageContent interface and pass through generateCityPages
+- [x] Add Real World Story section to CityServicePage.tsx (renders between FAQ and Location sections)
+- [x] Add 4 tire-service pages (EN + ES × 2 cities) to sitemap.xml
+- [x] All 210 tests pass, 0 TypeScript errors
+- [x] Save checkpoint

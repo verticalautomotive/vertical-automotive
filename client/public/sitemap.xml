@@ -969,4 +969,42 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Tire Service pages -->
+  <url>
+    <loc>https://verticalautomotive.com/fort-lauderdale/tire-service</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/fort-lauderdale/tire-service" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/fort-lauderdale/tire-service" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://verticalautomotive.com/fort-lauderdale/tire-service" />
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/fort-lauderdale/tire-service</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/fort-lauderdale/tire-service" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/fort-lauderdale/tire-service" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://verticalautomotive.com/fort-lauderdale/tire-service" />
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/wilton-manors/tire-service</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/wilton-manors/tire-service" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/wilton-manors/tire-service" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://verticalautomotive.com/wilton-manors/tire-service" />
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://verticalautomotive.com/es/wilton-manors/tire-service</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://verticalautomotive.com/wilton-manors/tire-service" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es/wilton-manors/tire-service" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://verticalautomotive.com/wilton-manors/tire-service" />
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

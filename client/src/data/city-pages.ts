@@ -75,6 +75,8 @@ export interface CityPageContent {
   // Optional video gallery
   videos?: string[];
   videosAlt?: string[];
+  // Optional real-world customer story
+  realWorldStory?: string;
 }
 
 // LOCATION DATA
@@ -592,6 +594,31 @@ const SERVICES = [
       { title: "Priority Scheduling", titleEs: "Programación Prioritaria", description: "Fleet customers receive priority scheduling to minimize vehicle downtime — same-day service when possible", descriptionEs: "Los clientes de flota reciben programación prioritaria para minimizar tiempo de inactividad — servicio el mismo día cuando sea posible" },
     ],
   },
+  {
+    slug: "tire-service",
+    name: "Tire Service & Replacement",
+    nameEs: "Servicio y Reemplazo de Neumáticos",
+    vehicles: [],
+    vehiclesEs: [],
+    gallery: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/align-1_e2569bdc.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/alignment-real-1_11cbcc74.webp",
+    ],
+    galleryAlt: [
+      "Maserati Ghibli on precision alignment rack during tire service at Vertical Automotive",
+      "Wheel alignment and tire service in progress at Vertical Automotive Fort Lauderdale",
+    ],
+    whatIncluded: [
+      { title: "Tire Replacement", titleEs: "Reemplazo de Neumáticos", description: "New tire sourcing and installation for all makes and models — we stock major brands and can order any tire", descriptionEs: "Adquisición e instalación de neumáticos nuevos para todas las marcas y modelos" },
+      { title: "Tire Mounting & Installation", titleEs: "Montaje e Instalación de Neumáticos", description: "Professional mounting on your existing wheels — proper bead seating and TPMS programming included", descriptionEs: "Montaje profesional en sus rines existentes — asentamiento correcto del talón y programación TPMS incluida" },
+      { title: "Tire Balancing", titleEs: "Balanceo de Neumáticos", description: "Dynamic wheel balancing eliminates vibration at highway speeds and prevents uneven wear patterns", descriptionEs: "El balanceo dinámico de ruedas elimina la vibración a velocidades de autopista y previene patrones de desgaste desigual" },
+      { title: "Tire Rotation", titleEs: "Rotación de Neumáticos", description: "Front-to-rear and cross-pattern rotation extends tire life by 20–30% — recommended every 5,000–7,500 miles", descriptionEs: "La rotación de frente a atrás y patrón cruzado extiende la vida del neumático un 20–30%" },
+      { title: "Flat Tire Repair", titleEs: "Reparación de Neumático Ponchado", description: "Professional plug-and-patch repair for repairable punctures following industry safety standards", descriptionEs: "Reparación profesional con tapón y parche para pinchazos reparables siguiendo los estándares de seguridad de la industria" },
+      { title: "Tire Inspection", titleEs: "Inspección de Neumáticos", description: "Tread depth measurement, sidewall inspection, and wear pattern analysis — identifies alignment or suspension issues early", descriptionEs: "Medición de profundidad de banda de rodamiento, inspección de flancos y análisis de patrones de desgaste" },
+      { title: "TPMS Service", titleEs: "Servicio TPMS", description: "Tire pressure monitoring system sensor replacement, programming, and diagnostics — fixes dashboard warning lights", descriptionEs: "Reemplazo, programación y diagnóstico del sensor del sistema de monitoreo de presión de neumáticos" },
+      { title: "Wheel Alignment Check", titleEs: "Verificación de Alineación de Ruedas", description: "Alignment check recommended with every tire replacement — misalignment causes immediate uneven wear on new tires", descriptionEs: "Verificación de alineación recomendada con cada reemplazo de neumáticos" },
+    ],
+  },
 ];
 
 // Generate city page content for all combinations
@@ -651,6 +678,9 @@ export function generateCityPages(): CityPageContent[] {
         relatedServices: generatedContent?.relatedServices || [],
         gallery: (service as any).gallery,
         galleryAlt: (service as any).galleryAlt,
+        videos: (service as any).videos,
+        videosAlt: (service as any).videosAlt,
+        realWorldStory: generatedContent?.realWorldStory,
       };
 
       pages.push(page);

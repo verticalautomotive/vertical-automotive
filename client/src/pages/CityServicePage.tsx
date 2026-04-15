@@ -367,6 +367,20 @@ export default function CityServicePage() {
         </section>
       )}
 
+      {/* Real World Story — shown when page has a customer story */}
+      {page.realWorldStory && !isSpanish && (
+        <section className="py-10 sm:py-16 bg-secondary text-secondary-foreground">
+          <div className="container max-w-5xl">
+            <h2 className="text-2xl sm:text-3xl font-black mb-4 sm:mb-6">
+              Real Work, Real Results
+            </h2>
+            <blockquote className="border-l-4 border-primary pl-4 sm:pl-6 text-sm sm:text-base leading-relaxed text-secondary-foreground/90 italic">
+              {page.realWorldStory}
+            </blockquote>
+          </div>
+        </section>
+      )}
+
       {/* Location & Directions */}
       <section className="py-10 sm:py-16 bg-muted">
         <div className="container max-w-5xl">
