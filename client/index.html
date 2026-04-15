@@ -3,7 +3,7 @@
 
   <head>
     <!-- DNS prefetch for 3rd-party origins (must be early) -->
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <!-- Note: preconnect already implies dns-prefetch, so no separate dns-prefetch needed for GTM -->
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <!-- All Google Ads tracking is managed via GTM (GTM-5Q5RPRR4) -->
@@ -15,8 +15,12 @@
     <title>Vertical Automotive | Auto Repair Fort Lauderdale</title>
     <meta name="description" content="Trusted auto repair in Fort Lauderdale &amp; Wilton Manors for all makes &amp; models. ASE-certified mechanics, EV specialists, 3-year warranty, 2 locations. Book your service today." />
     <meta name="keywords" content="auto repair Fort Lauderdale, car mechanic Wilton Manors, Tesla repair, ASE certified, brake service, oil change, AC repair, engine diagnostics, European car repair, South Florida" />
-    <!-- Canonical -->
+    <!-- Canonical — updated per-page by SEO component; homepage default here -->
     <link rel="canonical" href="https://verticalautomotive.com/" />
+    <!-- Hreflang — static homepage defaults; updated per-page by HrefLang component -->
+    <link rel="alternate" hreflang="en" href="https://verticalautomotive.com/" />
+    <link rel="alternate" hreflang="es" href="https://verticalautomotive.com/es" />
+    <link rel="alternate" hreflang="x-default" href="https://verticalautomotive.com/" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Vertical Automotive" />

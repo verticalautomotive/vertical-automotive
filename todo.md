@@ -578,3 +578,9 @@
 - [x] Confirmed no duplicate GTM load (single gtm.js script tag)
 - [x] Moved inline dataLayer.push above the deferred GTM script tag so it initializes first
 - [ ] Save checkpoint
+
+## Fix Head Tag Issues (SEO Cleanup)
+- [x] Removed redundant dns-prefetch for googletagmanager.com (preconnect already covers it)
+- [x] Confirmed only one canonical tag in static HTML (duplicate was React-injected per-page, not a true duplicate)
+- [x] Added static hreflang tags (en, es, x-default) to index.html — now present in initial HTML before JS hydration
+- [ ] Save checkpoint
