@@ -222,13 +222,13 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/brake-repair-1_7583674d.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/brake-rotor-real_2efc5177.webp",
       "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/brake-repair-2_5ff21a20.jpg",
       "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/brake-repair-3_281daab9.jpg",
       "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/brake-repair-4_5aacac4a.jpg",
     ],
     galleryAlt: [
-      "Professional brake pad and rotor replacement at Vertical Automotive",
+      "Drilled and slotted rotor with red caliper installed at Vertical Automotive",
       "Mechanic inspecting brake calipers and rotors",
       "Brake system service and ABS diagnostics",
       "Complete brake inspection and repair Fort Lauderdale",
