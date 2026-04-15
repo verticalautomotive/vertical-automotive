@@ -563,3 +563,8 @@
 - [x] Add Tire Service & Replacement to Wilton Manors column in SERVICE mega menu
 - [x] Add Tire Service to mobile accordion navigation (uses same SERVICES_DATA array)
 - [ ] Save checkpoint
+
+## Add Real Photos & Videos to Tire Service Pages
+- [x] Upload 1 tire photo (IMG_1336.webp) and 2 videos (IMG_0418.MOV, IMG_0679.MOV) to CDN
+- [x] Replace placeholder gallery images in tire-service with real photo and add 2 videos
+- [ ] Save checkpoint

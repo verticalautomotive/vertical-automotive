@@ -601,12 +601,20 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/align-1_e2569bdc.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/IMG_1336_d800bad0.webp",
       "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/alignment-real-1_11cbcc74.webp",
     ],
     galleryAlt: [
+      "New tire being installed on Vertical Automotive branded Tesla Model Y — tire replacement service Fort Lauderdale",
       "Maserati Ghibli on precision alignment rack during tire service at Vertical Automotive",
-      "Wheel alignment and tire service in progress at Vertical Automotive Fort Lauderdale",
+    ],
+    videos: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/IMG_0418_2b089a64.MOV",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/IMG_0679_8c57d65d.MOV",
+    ],
+    videosAlt: [
+      "Tire mounting and installation in progress at Vertical Automotive",
+      "Tire service and wheel work at Vertical Automotive Fort Lauderdale",
     ],
     whatIncluded: [
       { title: "Tire Replacement", titleEs: "Reemplazo de Neumáticos", description: "New tire sourcing and installation for all makes and models — we stock major brands and can order any tire", descriptionEs: "Adquisición e instalación de neumáticos nuevos para todas las marcas y modelos" },
