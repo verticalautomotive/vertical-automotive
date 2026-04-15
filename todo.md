@@ -645,4 +645,11 @@
 - [x] Set as FIRST (main hero) photo in Wilton Manors hub page gallery
 - [x] Tesla exterior photo moved to second position
 - [x] 0 TypeScript errors
+- [x] Save checkpoint
+
+## WM Hub Page: Replace Gallery with Single Building Photo
+- [x] Added heroPhoto field to LocationData interface
+- [x] Wilton Manors uses heroPhoto (IMG_2239 bay photo) — single static image, no dots, no rotation
+- [x] Fort Lauderdale keeps rotating gallery (no heroPhoto set)
+- [x] 0 TypeScript errors
 - [ ] Save checkpoint

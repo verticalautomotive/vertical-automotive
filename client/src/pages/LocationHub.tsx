@@ -47,6 +47,7 @@ interface LocationData {
   metaTitle: string;
   metaDescription: string;
   aboutParagraph: string;
+  heroPhoto?: { src: string; alt: string }; // single static hero photo; if set, replaces the rotating gallery
   photos: { src: string; alt: string }[];
   reviews: { name: string; rating: number; text: string; date: string }[];
   schemaId: string;
@@ -82,6 +83,7 @@ const WILTON_MANORS_DATA: LocationData = {
   city: "wilton-manors",
   location: LOCATIONS[0],
   h1: "Auto Repair in Wilton Manors",
+  heroPhoto: { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wm-exterior-2_e5bbb357.webp", alt: "Vertical Automotive Wilton Manors service bays" },
   metaTitle: "Auto Repair Wilton Manors | Vertical Automotive",
   metaDescription: "ASE-certified auto repair in Wilton Manors, FL. Tesla, European, Asian & Domestic specialists. 36-month / 36,000-mile warranty. Call (954) 565-1518.",
   aboutParagraph: "Vertical Automotive's Wilton Manors location at 1100 W Oakland Park Blvd has been the go-to shop for Oakland Park, Sunrise, and Lauderdale Lakes drivers since 1989. Our ASE-certified team handles everything from Tesla battery diagnostics to European transmission rebuilds — with factory-level scan tools and honest, transparent pricing. Every repair comes with our 36-month / 36,000-mile warranty, and we offer complimentary multi-point inspections with every service visit. No upsells, no surprises — just quality work done right the first time.",
@@ -113,7 +115,7 @@ interface Props {
 
 export default function LocationHub({ cityKey }: Props) {
   const data = cityKey === "fort-lauderdale" ? FORT_LAUDERDALE_DATA : WILTON_MANORS_DATA;
-  const { location: loc, h1, metaTitle, metaDescription, aboutParagraph, photos, reviews, schemaId } = data;
+  const { location: loc, h1, metaTitle, metaDescription, aboutParagraph, heroPhoto, photos, reviews, schemaId } = data;
   const [workWeDoOpen, setWorkWeDoOpen] = useState(false);
   const [activePhoto, setActivePhoto] = useState(0);
   const [reviewsExpanded, setReviewsExpanded] = useState(false);
@@ -190,29 +192,40 @@ export default function LocationHub({ cityKey }: Props) {
       <section className="relative bg-secondary text-secondary-foreground overflow-hidden">
         {/* Photo strip */}
         <div className="relative h-64 sm:h-80 lg:h-96 overflow-hidden">
-          {photos.map((photo, i) => (
+          {heroPhoto ? (
             <img
-              key={i}
-              src={photo.src}
-              alt={photo.alt}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === activePhoto ? "opacity-100" : "opacity-0"}`}
-              loading={i === 0 ? "eager" : "lazy"}
+              src={heroPhoto.src}
+              alt={heroPhoto.alt}
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="eager"
             />
-          ))}
+          ) : (
+            photos.map((photo, i) => (
+              <img
+                key={i}
+                src={photo.src}
+                alt={photo.alt}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === activePhoto ? "opacity-100" : "opacity-0"}`}
+                loading={i === 0 ? "eager" : "lazy"}
+              />
+            ))
+          )}
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/60" />
 
-          {/* Photo dots */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-            {photos.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActivePhoto(i)}
-                className={`w-2 h-2 rounded-full transition-all ${i === activePhoto ? "bg-primary w-5" : "bg-white/50"}`}
-                aria-label={`Photo ${i + 1}`}
-              />
-            ))}
-          </div>
+          {/* Photo dots — only show for rotating gallery */}
+          {!heroPhoto && (
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+              {photos.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActivePhoto(i)}
+                  className={`w-2 h-2 rounded-full transition-all ${i === activePhoto ? "bg-primary w-5" : "bg-white/50"}`}
+                  aria-label={`Photo ${i + 1}`}
+                />
+              ))}
+            </div>
+          )}
 
           {/* H1 overlay */}
           <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 z-10">
