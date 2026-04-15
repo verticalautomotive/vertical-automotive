@@ -15,7 +15,6 @@ import { COMPANY, LOCATIONS } from "@/lib/data";
 import type { VehicleType } from "@/lib/data";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { LazyMap } from "@/components/LazyMap";
 import OptimizedImage from "@/components/OptimizedImage";
 import TrustBadges from "@/components/TrustBadges";
 import {
@@ -30,7 +29,6 @@ import {
   ExternalLink,
   ChevronDown,
   ChevronUp,
-  Navigation2,
 } from "lucide-react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "wouter";
@@ -771,26 +769,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section — mobile: stacked, compact */}
-      <section id="contact" className="py-10 sm:py-20 bg-secondary text-secondary-foreground" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 700px' }}>
-        <div className="container">
-          <div className="text-center mb-6 sm:mb-16">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
-              {t.contactUs} <span className="text-primary">{isSpanish ? "" : "US"}</span>
-            </h2>
-            <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-2 sm:mb-4" />
-            <p className="text-sm sm:text-lg">
-              {t.twoLocations}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
-            <LocationCard location={LOCATIONS[0]} isSpanish={isSpanish} />
-            <LocationCard location={LOCATIONS[1]} isSpanish={isSpanish} />
-          </div>
-        </div>
-      </section>
-
       <Footer />
 
       {/* Sticky Mobile Bottom CTA Bar */}
@@ -976,81 +954,4 @@ function VehicleTypeCard({ type, servicesPath, onClickTile }: { type: VehicleTyp
   );
 }
 
-function LocationCard({ location, isSpanish }: { location: typeof LOCATIONS[0]; isSpanish: boolean }) {
-  const coords = { lat: location.lat, lng: location.lng };
 
-  const handleMapReady = (map: google.maps.Map) => {
-    new google.maps.marker.AdvancedMarkerElement({
-      map,
-      position: coords,
-      title: `Vertical Automotive - ${location.name}`,
-    });
-  };
-
-  return (
-    <Card className="bg-secondary/50 border-2 border-primary/20 overflow-hidden">
-      <div className="w-full h-[180px] sm:h-[250px]">
-        <LazyMap
-          className="w-full h-full"
-          initialCenter={coords}
-          initialZoom={16}
-          onMapReady={handleMapReady}
-          locationName={location.name}
-          address={location.fullAddress}
-        />
-      </div>
-      
-      <div className="p-4 sm:p-8">
-        <h3 className="text-lg sm:text-2xl font-black mb-3 sm:mb-6 text-primary">
-          {location.name.toUpperCase()}
-        </h3>
-        <div className="space-y-2 sm:space-y-4 mb-4 sm:mb-8">
-          <a
-            href={location.directionsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-start space-x-2 sm:space-x-3 group"
-          >
-            <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 text-primary flex-shrink-0" />
-            <div>
-              <p className="font-medium text-gray-400 text-xs sm:text-base group-hover:text-primary transition-colors">{location.address}</p>
-              <p className="text-gray-400 text-xs sm:text-base group-hover:text-primary transition-colors">{location.city}</p>
-            </div>
-          </a>
-          <div className="flex items-center space-x-2 sm:space-x-3">
-            <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
-            <a href={`tel:${location.phoneRaw}`} className="mono-number font-medium hover:text-primary transition-colors text-white text-sm sm:text-base" onClick={() => trackCall(location.name, location.phone, "home_location_card")}>
-              {location.phone}
-            </a>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-          <a
-            href={location.directionsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1"
-            onClick={() => trackDirections(location.name, "home_location_card")}
-          >
-            <Button
-              variant="outline"
-              className="w-full bg-primary border-2 border-white/80 text-white hover:bg-primary/90 hover:border-white font-bold text-sm sm:text-base rounded-full shadow-lg hover:shadow-xl"
-              size="lg"
-            >
-              <Navigation2 className="w-4 h-4 mr-2" />
-              {isSpanish ? "DIRECCIONES" : "GET DIRECTIONS"}
-            </Button>
-          </a>
-          <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" className="flex-1" onClick={() => trackSchedule("home_location_card")}>
-            <Button
-              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-sm sm:text-base"
-              size="lg"
-            >
-              {isSpanish ? "AGENDAR CITA" : "SCHEDULE"}
-            </Button>
-          </a>
-        </div>
-      </div>
-    </Card>
-  );
-}

@@ -664,4 +664,11 @@
 - [x] Desktop: WILTON MANORS and FT. LAUDERDALE column headings are now clickable links to hub pages (with hover arrow)
 - [x] Mobile: Added "OUR LOCATIONS" section with MapPin + arrow links to both hub pages
 - [x] 0 TypeScript errors
+- [x] Save checkpoint
+
+## Homepage Speed: Remove Maps & Addresses Section
+- [x] Removed entire Contact/Maps section (CONTACT US heading + two LocationCard components with Google Maps)
+- [x] Removed LocationCard helper function
+- [x] Removed unused LazyMap and Navigation2 imports
+- [x] 0 TypeScript errors
 - [ ] Save checkpoint
