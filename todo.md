@@ -638,4 +638,11 @@
 - [x] Upload IMG_0589.webp to CDN (wm-exterior-1_a6a6ea18.webp)
 - [x] Added as first photo in Wilton Manors hub page gallery (auto-rotates first)
 - [x] 0 TypeScript errors
+- [x] Save checkpoint
+
+## Add Wilton Manors Bay Photo (IMG_2239)
+- [x] Upload IMG_2239.webp to CDN (wm-exterior-2_e5bbb357.webp)
+- [x] Set as FIRST (main hero) photo in Wilton Manors hub page gallery
+- [x] Tesla exterior photo moved to second position
+- [x] 0 TypeScript errors
 - [ ] Save checkpoint

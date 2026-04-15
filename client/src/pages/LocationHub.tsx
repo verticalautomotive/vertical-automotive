@@ -86,6 +86,7 @@ const WILTON_MANORS_DATA: LocationData = {
   metaDescription: "ASE-certified auto repair in Wilton Manors, FL. Tesla, European, Asian & Domestic specialists. 36-month / 36,000-mile warranty. Call (954) 565-1518.",
   aboutParagraph: "Vertical Automotive's Wilton Manors location at 1100 W Oakland Park Blvd has been the go-to shop for Oakland Park, Sunrise, and Lauderdale Lakes drivers since 1989. Our ASE-certified team handles everything from Tesla battery diagnostics to European transmission rebuilds — with factory-level scan tools and honest, transparent pricing. Every repair comes with our 36-month / 36,000-mile warranty, and we offer complimentary multi-point inspections with every service visit. No upsells, no surprises — just quality work done right the first time.",
   photos: [
+    { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wm-exterior-2_e5bbb357.webp", alt: "Vertical Automotive Wilton Manors service bays" },
     { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wm-exterior-1_a6a6ea18.webp", alt: "Vertical Automotive Wilton Manors shop exterior" },
     { src: `${CDN}/susp-2_b7e4c123.webp`, alt: "Suspension service at Vertical Automotive Wilton Manors" },
     { src: `${CDN}/brake-rotor-real-2_fa4a30ab.webp`, alt: "Brake repair Wilton Manors" },
