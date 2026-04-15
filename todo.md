@@ -593,3 +593,10 @@
 - [x] Confirmed: script loads AFTER React app renders, so it is non-blocking for FCP/LCP
 - [x] PageSpeed score improvement requires other optimizations (bundle size, image loading)
 - [x] Save checkpoint
+
+## Fix Stale Chunk Error (Failed to fetch dynamically imported module)
+- [x] Create ChunkErrorBoundary component that catches dynamic import failures
+- [x] Auto-reload the page when a chunk 404 is detected (stale deployment)
+- [x] Wrap App router in ChunkErrorBoundary in main.tsx
+- [x] 210 tests pass, 0 TypeScript errors
+- [ ] Save checkpoint
