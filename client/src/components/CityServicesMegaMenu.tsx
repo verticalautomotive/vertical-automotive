@@ -24,6 +24,7 @@ const SERVICES_DATA = [
   { slug: "fuel-system-service", name: "Fuel System Service", nameEs: "Servicio del Sistema de Combustible" },
   { slug: "hybrid-ev-service", name: "Hybrid & EV Service", nameEs: "Servicio Híbrido y Eléctrico" },
   { slug: "wheel-alignment", name: "Wheel Alignment", nameEs: "Alineación de Ruedas" },
+  { slug: "tire-service", name: "Tire Service & Replacement", nameEs: "Servicio y Reemplazo de Neumáticos" },
   { slug: "battery-charging-systems", name: "Battery & Charging Systems", nameEs: "Batería y Sistemas de Carga" },
   { slug: "fleet-services", name: "Fleet Services", nameEs: "Servicios de Flota" },
 ];

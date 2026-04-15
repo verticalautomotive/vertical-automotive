@@ -557,3 +557,9 @@
 - [x] Add 4 tire-service pages (EN + ES × 2 cities) to sitemap.xml
 - [x] All 210 tests pass, 0 TypeScript errors
 - [x] Save checkpoint
+
+## Add Tire Service to Navigation Menu
+- [x] Add Tire Service & Replacement to Fort Lauderdale column in SERVICE mega menu
+- [x] Add Tire Service & Replacement to Wilton Manors column in SERVICE mega menu
+- [x] Add Tire Service to mobile accordion navigation (uses same SERVICES_DATA array)
+- [ ] Save checkpoint
