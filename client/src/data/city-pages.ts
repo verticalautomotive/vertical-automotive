@@ -349,16 +349,24 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/complete-diagnostics-1_b14c2fc7.jpg",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/complete-diagnostics-2_0b0fa04a.jpg",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/complete-diagnostics-3_c700a04e.jpg",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/complete-diagnostics-4_53d7252a.jpg",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/diag-1_ceb74e24.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/diag-2_35a138b1.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/diag-3_6c436797.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/diag-4_b00d4b11.webp",
     ],
     galleryAlt: [
-      "OBD-II diagnostic scan at Vertical Automotive Fort Lauderdale",
-      "Advanced engine diagnostics and fault code analysis",
-      "Check engine light diagnosis and repair",
-      "Complete vehicle health inspection",
+      "Burned circuit board diagnosed at Vertical Automotive Fort Lauderdale",
+      "Mechanic using Autel MaxiSys scanner on Infiniti V6 engine",
+      "Tesla Model X service mode diagnostics at Vertical Automotive",
+      "Autel MaxiSys ADAS diagnostic scan on Infiniti engine bay",
+    ],
+    videos: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/diag-video-1_e39e0dde.mov",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/diag-video-2_dfa34a6e.mov",
+    ],
+    videosAlt: [
+      "Vehicle diagnostic service in progress at Vertical Automotive",
+      "Advanced diagnostics at Vertical Automotive Fort Lauderdale",
     ],
     whatIncluded: [
       { title: "Check Engine Light Diagnosis", titleEs: "Diagnóstico de Luz de Motor", description: "Root cause analysis — not just reading codes, but identifying why the code set and what repair is needed", descriptionEs: "Análisis de causa raíz — no solo lectura de códigos, sino identificación de por qué se estableció el código y qué reparación se necesita" },
