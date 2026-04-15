@@ -58,10 +58,40 @@ export function serveStatic(app: Express) {
     );
   }
 
-  app.use(express.static(distPath));
+  // Hashed assets (JS, CSS, images in /assets/) — content-addressed filenames
+  // so they can be cached aggressively for 1 year with immutable directive.
+  // The immutable directive tells browsers not to revalidate during max-age.
+  app.use(
+    "/assets",
+    express.static(path.join(distPath, "assets"), {
+      maxAge: "1y",
+      immutable: true,
+      setHeaders: (res) => {
+        res.setHeader(
+          "Cache-Control",
+          "public, max-age=31536000, immutable"
+        );
+      },
+    })
+  );
+
+  // All other static files (favicon, robots.txt, manifest, etc.)
+  // Use a shorter TTL since these don't have content hashes
+  app.use(
+    express.static(distPath, {
+      maxAge: "1d",
+      setHeaders: (res, filePath) => {
+        // HTML files must never be cached — they reference hashed assets
+        if (filePath.endsWith(".html")) {
+          res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        }
+      },
+    })
+  );
 
   // fall through to index.html if the file doesn't exist
   app.use("*", (_req, res) => {
+    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     res.sendFile(path.resolve(distPath, "index.html"));
   });
 }

@@ -721,3 +721,13 @@
 - [x] Add WebSite schema to index.html for Sitelinks eligibility
 - [x] 0 TypeScript errors, 210 tests pass
 - [x] Save checkpoint
+
+## Caching & Image Optimization — Round 3
+- [x] Express server: upgrade hashed assets from 90-day to 1-year + immutable Cache-Control
+- [x] Express server: HTML files set to no-cache, no-store to prevent stale index.html
+- [x] Compress all 24 vehicle gallery images: 6.4 MB → 1.0 MB (85% reduction, all under 150 KB)
+- [x] Re-upload all compressed images to Manus CDN with new content-hashed URLs
+- [x] Update all image URLs in data.ts to point to compressed CDN versions
+- [x] Verified all img tags site-wide have loading=lazy or loading=eager as appropriate
+- [x] 0 TypeScript errors, 210 tests pass
+- [x] Save checkpoint
