@@ -103,6 +103,55 @@ async function startServer() {
 
   // Streaming chat endpoint (SSE)
   app.post("/api/chat/stream", handleChatStream);
+
+  // ─── CDN Image Proxy: serve Manus CDN images with long-lived cache headers ──
+  // CloudFront/S3 objects lack Cache-Control metadata, so Cloudflare applies only
+  // its default 90-day TTL. By proxying through /img/ we control the headers
+  // and ensure browsers receive Cache-Control: public, max-age=31536000, immutable.
+  // URL format: /img/<filename> → https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/<filename>
+  const CDN_BASE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB";
+  const IMMUTABLE_CACHE = "public, max-age=31536000, immutable";
+  const MIME_MAP: Record<string, string> = {
+    webp: "image/webp",
+    jpg: "image/jpeg",
+    jpeg: "image/jpeg",
+    png: "image/png",
+    svg: "image/svg+xml",
+    gif: "image/gif",
+    mp4: "video/mp4",
+    mov: "video/quicktime",
+    woff2: "font/woff2",
+    woff: "font/woff",
+  };
+
+  app.get("/img/:filename(*)", async (req, res) => {
+    const filename = req.params.filename;
+    // Security: only allow alphanumeric, dash, underscore, dot in filenames
+    if (!/^[\w\-. ]+$/i.test(filename)) {
+      return res.status(400).send("Invalid filename");
+    }
+    const ext = filename.split(".").pop()?.toLowerCase() ?? "";
+    const contentType = MIME_MAP[ext] ?? "application/octet-stream";
+    const upstreamUrl = `${CDN_BASE}/${filename}`;
+    try {
+      const upstream = await fetch(upstreamUrl);
+      if (!upstream.ok) {
+        return res.status(upstream.status).send("CDN error");
+      }
+      res.setHeader("Content-Type", contentType);
+      res.setHeader("Cache-Control", IMMUTABLE_CACHE);
+      res.setHeader("CDN-Cache-Control", IMMUTABLE_CACHE);
+      res.setHeader("Cloudflare-CDN-Cache-Control", IMMUTABLE_CACHE);
+      res.setHeader("Vary", "Accept-Encoding");
+      // Forward content-length if available
+      const cl = upstream.headers.get("content-length");
+      if (cl) res.setHeader("Content-Length", cl);
+      const buffer = await upstream.arrayBuffer();
+      return res.end(Buffer.from(buffer));
+    } catch {
+      return res.status(502).send("Upstream error");
+    }
+  });
   // tRPC API
   app.use(
     "/api/trpc",

@@ -25,7 +25,7 @@ interface GalleryItem {
   thumb?: string;
 }
 
-const CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB";
+const CDN = "/img";
 
 const GALLERY_ITEMS: GalleryItem[] = [
   // ── Existing photos ──────────────────────────────────────────────────────────

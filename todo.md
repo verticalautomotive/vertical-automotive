@@ -768,3 +768,20 @@
 - [x] CDN preconnect comment updated (CDN now only needed for images, not fonts)
 - [x] 0 TypeScript errors, 210 tests pass, build successful
 - [x] Save checkpoint
+
+## Caching Fix — Round 9 (PageSpeed "Use efficient cache lifetimes" ~1,099 KiB)
+- [x] Diagnose: confirmed production Express server sends correct Cache-Control headers locally
+- [x] Diagnose: confirmed Cloudflare was overriding /assets/ JS cache to 90-day default (not 1-year immutable)
+- [x] Diagnose: confirmed S3/CloudFront CDN images have NO Cache-Control metadata set
+- [x] Fix 1: Add CDN-Cache-Control + Cloudflare-CDN-Cache-Control headers to /assets/ Express middleware
+- [x] Fix 1: Add CDN-Cache-Control + Cloudflare-CDN-Cache-Control headers to /fonts/ Express middleware
+- [x] Fix 2: Add /img/ image proxy route to Express server — proxies all CDN images with 1-year immutable headers
+- [x] Replace all 178 CloudFront CDN URLs in source code with /img/ proxy paths
+- [x] Remove CDN preconnect hint from index.html (no longer needed — images on same origin)
+- [x] Update OG/Twitter image meta tags to use /img/ proxy path
+- [x] Update hero poster preload hint to use /img/ proxy path
+- [x] Verify: /img/ proxy returns Cache-Control: public, max-age=31536000, immutable ✅
+- [x] Verify: /assets/ JS returns Cache-Control: public, max-age=31536000, immutable ✅
+- [x] Verify: /fonts/ WOFF2 returns Cache-Control: public, max-age=31536000, immutable ✅
+- [x] Verify: / HTML returns no-cache, no-store, must-revalidate ✅
+- [x] All 210 tests pass

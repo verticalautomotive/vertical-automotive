@@ -5,8 +5,7 @@
     <!-- ===== CRITICAL RESOURCE HINTS (ordered by priority) ===== -->
     <!-- 1. Preconnect to GTM — first third-party to load -->
     <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <!-- 2. Preconnect to CDN — serves LCP hero poster + all vehicle images (fonts are now local) -->
-    <link rel="preconnect" href="https://d2xsxph8kpxj0f.cloudfront.net" crossorigin />
+    <!-- 2. Preconnect to CDN removed — all images now served via /img/ proxy on same origin -->
     <!-- dns-prefetch only for non-critical origins (avoids TCP handshake overhead) -->
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
@@ -30,12 +29,12 @@
     <meta property="og:url" content="https://verticalautomotive.com/" />
     <meta property="og:title" content="Auto Repair Fort Lauderdale &amp; Wilton Manors | All Makes" />
     <meta property="og:description" content="Trusted auto repair in Fort Lauderdale &amp; Wilton Manors for all makes &amp; models. ASE-certified mechanics, EV specialists, 3-year warranty, 2 locations. Book your service today." />
-    <meta property="og:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp" />
+    <meta property="og:image" content="https://verticalautomotive.com/img/hero-poster_30c5bb2a.webp" />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Auto Repair Fort Lauderdale &amp; Wilton Manors | All Makes" />
     <meta name="twitter:description" content="Trusted auto repair in Fort Lauderdale &amp; Wilton Manors for all makes &amp; models. ASE-certified mechanics, EV specialists, 3-year warranty, 2 locations. Book your service today." />
-    <meta name="twitter:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp" />
+    <meta name="twitter:image" content="https://verticalautomotive.com/img/hero-poster_30c5bb2a.webp" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -51,7 +50,7 @@
       fetchpriority=high tells the browser this is the most important image on the page.
     -->
     <link rel="preload" as="image" type="image/webp"
-      href="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp"
+      href="/img/hero-poster_30c5bb2a.webp"
       fetchpriority="high" />
 
     <!-- ===== FONTS — Self-hosted on same origin (proper Cache-Control headers) ===== -->

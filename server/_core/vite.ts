@@ -61,6 +61,8 @@ export function serveStatic(app: Express) {
   // Hashed assets (JS, CSS, images in /assets/) — content-addressed filenames
   // so they can be cached aggressively for 1 year with immutable directive.
   // The immutable directive tells browsers not to revalidate during max-age.
+  // CDN-Cache-Control and Cloudflare-CDN-Cache-Control override Cloudflare's
+  // default 90-day cache so the full 1-year immutable TTL is respected.
   app.use(
     "/assets",
     express.static(path.join(distPath, "assets"), {
@@ -69,6 +71,15 @@ export function serveStatic(app: Express) {
       setHeaders: (res) => {
         res.setHeader(
           "Cache-Control",
+          "public, max-age=31536000, immutable"
+        );
+        // Cloudflare-specific: override the default 90-day edge TTL
+        res.setHeader(
+          "CDN-Cache-Control",
+          "public, max-age=31536000, immutable"
+        );
+        res.setHeader(
+          "Cloudflare-CDN-Cache-Control",
           "public, max-age=31536000, immutable"
         );
       },
@@ -95,6 +106,8 @@ export function serveStatic(app: Express) {
         // WOFF2 fonts in /fonts/ — long-lived cache since filenames are content-hashed
         if (filePath.includes("/fonts/") && (filePath.endsWith(".woff2") || filePath.endsWith(".woff"))) {
           res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+          res.setHeader("CDN-Cache-Control", "public, max-age=31536000, immutable");
+          res.setHeader("Cloudflare-CDN-Cache-Control", "public, max-age=31536000, immutable");
         }
       },
     })

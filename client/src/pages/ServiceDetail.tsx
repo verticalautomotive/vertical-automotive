@@ -160,7 +160,7 @@ export default function ServiceDetail() {
         : `${service.description.slice(0, 110)}... ASE-certified mechanics. 36,000-mile / 36-month warranty. Fort Lauderdale & Wilton Manors. Call (954) 565-1518.`);
   const canonicalSlug = isSpanish ? `/es/servicios/${service.slug}` : `/services/${service.slug}`;
   const canonicalUrl = `https://verticalautomotive.com${canonicalSlug}`;
-  const ogImage = SERVICE_IMAGES[service.slug] ?? "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-tesla-service-1440_879f7b42.webp";
+  const ogImage = SERVICE_IMAGES[service.slug] ?? "/img/hero-tesla-service-1440_879f7b42.webp";
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">

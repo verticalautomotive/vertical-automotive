@@ -113,12 +113,12 @@ const SERVICES = [
     vehicles: ["Tesla Model S", "Tesla Model 3", "Tesla Model X", "Tesla Model Y", "Tesla Cybertruck", "Chevrolet Bolt", "Nissan Leaf", "Ford Mustang Mach-E", "Hyundai Ioniq", "Kia EV6", "Rivian R1T/R1S", "BMW iX"],
     vehiclesEs: ["Tesla Model S", "Tesla Model 3", "Tesla Model X", "Tesla Model Y", "Tesla Cybertruck", "Chevrolet Bolt", "Nissan Leaf", "Ford Mustang Mach-E", "Hyundai Ioniq", "Kia EV6", "Rivian R1T/R1S", "BMW iX"],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-diagnostics_7906cd95.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-frunk-open_3696ade7.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-gears_c5769e70_1bca9bcd.webp?format=webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-battery-fuse_8c80d49f.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-hv-battery_19dac181.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/tesla-service-mode_ca070e93.webp",
+      "/img/tesla-diagnostics_7906cd95.webp",
+      "/img/tesla-frunk-open_3696ade7.webp",
+      "/img/tesla-gears_c5769e70_1bca9bcd.webp",
+      "/img/tesla-battery-fuse_8c80d49f.webp",
+      "/img/tesla-hv-battery_19dac181.webp",
+      "/img/tesla-service-mode_ca070e93.webp",
     ],
     galleryAlt: [
       "Tesla diagnostics at Vertical Automotive Fort Lauderdale",
@@ -143,12 +143,12 @@ const SERVICES = [
     vehicles: ["BMW", "Mercedes-Benz", "Audi", "Volkswagen", "Porsche", "Range Rover", "Maserati", "Volvo", "Jaguar", "Fiat", "MINI Cooper", "Land Rover"],
     vehiclesEs: ["BMW", "Mercedes-Benz", "Audi", "Volkswagen", "Porsche", "Range Rover", "Maserati", "Volvo", "Jaguar", "Fiat", "MINI Cooper", "Land Rover"],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-porsche-911_1b816237.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-range-rover_05d0f6a6.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-bmw-m2_ad657da1.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-porsche-cayenne_3689fe50.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-maserati_1e019840.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/euro-porsche-panamera_1282f008.webp",
+      "/img/euro-porsche-911_1b816237.webp",
+      "/img/euro-range-rover_05d0f6a6.webp",
+      "/img/euro-bmw-m2_ad657da1.webp",
+      "/img/euro-porsche-cayenne_3689fe50.webp",
+      "/img/euro-maserati_1e019840.webp",
+      "/img/euro-porsche-panamera_1282f008.webp",
     ],
     galleryAlt: [
       "Porsche 911 service at Vertical Automotive Fort Lauderdale",
@@ -171,12 +171,12 @@ const SERVICES = [
     vehicles: ["Toyota", "Honda", "Lexus", "Acura", "Nissan", "Mazda", "Subaru", "Hyundai", "Kia", "Mitsubishi", "Infiniti", "Genesis"],
     vehiclesEs: ["Toyota", "Honda", "Lexus", "Acura", "Nissan", "Mazda", "Subaru", "Hyundai", "Kia", "Mitsubishi", "Infiniti", "Genesis"],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-acura-nsx-shop_bcf4008e.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-acura-nsx-lift_4f2edb68.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-lexus-hood-open_9ea6e232.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-lexus-sc-convertible_4e06b62a.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-toyota-tacoma-alignment_8b858d66.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/asian-lexus-is-dyno_33f4b770.webp",
+      "/img/asian-acura-nsx-shop_bcf4008e.webp",
+      "/img/asian-acura-nsx-lift_4f2edb68.webp",
+      "/img/asian-lexus-hood-open_9ea6e232.webp",
+      "/img/asian-lexus-sc-convertible_4e06b62a.webp",
+      "/img/asian-toyota-tacoma-alignment_8b858d66.webp",
+      "/img/asian-lexus-is-dyno_33f4b770.webp",
     ],
     galleryAlt: [
       "Acura NSX in Vertical Automotive shop",
@@ -199,12 +199,12 @@ const SERVICES = [
     vehicles: ["Ford", "Chevrolet", "Dodge", "RAM", "Jeep", "GMC", "Chrysler", "Cadillac", "Lincoln", "Buick"],
     vehiclesEs: ["Ford", "Chevrolet", "Dodge", "RAM", "Jeep", "GMC", "Chrysler", "Cadillac", "Lincoln", "Buick"],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-dodge-charger-black_f3986d96.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-plymouth-fury_6eea5fa5_78a79657.webp?format=webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-ford-raptor_f0115281.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-dodge-challenger-green_02019df5.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-plymouth-barracuda-purple_302f3af9.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/domestic-challengers-lifts_b0804351.webp",
+      "/img/domestic-dodge-charger-black_f3986d96.webp",
+      "/img/domestic-plymouth-fury_6eea5fa5_78a79657.webp",
+      "/img/domestic-ford-raptor_f0115281.webp",
+      "/img/domestic-dodge-challenger-green_02019df5.webp",
+      "/img/domestic-plymouth-barracuda-purple_302f3af9.webp",
+      "/img/domestic-challengers-lifts_b0804351.webp",
     ],
     galleryAlt: [
       "Dodge Charger at Vertical Automotive Fort Lauderdale",
@@ -227,11 +227,11 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/brake-rotor-real_2efc5177.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/brake-rotor-real-2_fa4a30ab.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/brake-rotor-real-3_a7f34183.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/brake-rotor-real-4_5cee919e.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/brake-rotor-real-5_38d98424.webp",
+      "/img/brake-rotor-real_2efc5177.webp",
+      "/img/brake-rotor-real-2_fa4a30ab.webp",
+      "/img/brake-rotor-real-3_a7f34183.webp",
+      "/img/brake-rotor-real-4_5cee919e.webp",
+      "/img/brake-rotor-real-5_38d98424.webp",
     ],
     galleryAlt: [
       "Drilled and slotted rotor with red caliper — brake job at Vertical Automotive",
@@ -256,10 +256,10 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/transmission-service-1_296bc26d_7723ebab.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/transmission-service-2_0e0a92cc_943ec234.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/transmission-service-3_c155e3c3_72077411.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/transmission-service-4_ad200624_07d7b7de.webp",
+      "/img/transmission-service-1_296bc26d_7723ebab.webp",
+      "/img/transmission-service-2_0e0a92cc_943ec234.webp",
+      "/img/transmission-service-3_c155e3c3_72077411.webp",
+      "/img/transmission-service-4_ad200624_07d7b7de.webp",
     ],
     galleryAlt: [
       "Transmission repair and rebuild at Vertical Automotive Fort Lauderdale",
@@ -285,10 +285,10 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/ac-repair-1_009d8f66_8c26c22e.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/ac-repair-2_52518421_8e67b108.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/ac-repair-3_af4f9e64_aec83e0d.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/ac-repair-4_a15e44f5_4ef73742.webp",
+      "/img/ac-repair-1_009d8f66_8c26c22e.webp",
+      "/img/ac-repair-2_52518421_8e67b108.webp",
+      "/img/ac-repair-3_af4f9e64_aec83e0d.webp",
+      "/img/ac-repair-4_a15e44f5_4ef73742.webp",
     ],
     galleryAlt: [
       "A/C system diagnosis at Vertical Automotive Fort Lauderdale",
@@ -315,11 +315,11 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-1_2794a779.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-2_764ac92e.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-3_da419f4d.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-4_98f9144f.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-5_b1c03e3f_20a38b2f.webp",
+      "/img/engine-oil-1_2794a779.webp",
+      "/img/engine-oil-2_764ac92e.webp",
+      "/img/engine-oil-3_da419f4d.webp",
+      "/img/engine-oil-4_98f9144f.webp",
+      "/img/engine-oil-5_b1c03e3f_20a38b2f.webp",
     ],
     galleryAlt: [
       "Subaru engine block rebuild at Vertical Automotive Fort Lauderdale",
@@ -329,8 +329,8 @@ const SERVICES = [
       "Mechanic performing engine removal with engine hoist at Vertical Automotive",
     ],
     videos: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-video-1_36eba95a.mov",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/engine-oil-video-2_d8f08d83.mov",
+      "/img/engine-oil-video-1_36eba95a.mov",
+      "/img/engine-oil-video-2_d8f08d83.mov",
     ],
     videosAlt: [
       "Engine service in progress at Vertical Automotive",
@@ -351,10 +351,10 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/diag-1_ceb74e24.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/diag-2_35a138b1.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/diag-3_6c436797.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/diag-4_b00d4b11.webp",
+      "/img/diag-1_ceb74e24.webp",
+      "/img/diag-2_35a138b1.webp",
+      "/img/diag-3_6c436797.webp",
+      "/img/diag-4_b00d4b11.webp",
     ],
     galleryAlt: [
       "Burned circuit board diagnosed at Vertical Automotive Fort Lauderdale",
@@ -363,8 +363,8 @@ const SERVICES = [
       "Autel MaxiSys ADAS diagnostic scan on Infiniti engine bay",
     ],
     videos: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/diag-video-1_e39e0dde.mov",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/diag-video-2_dfa34a6e.mov",
+      "/img/diag-video-1_e39e0dde.mov",
+      "/img/diag-video-2_dfa34a6e.mov",
     ],
     videosAlt: [
       "Vehicle diagnostic service in progress at Vertical Automotive",
@@ -389,10 +389,10 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/routine-maintenance-1_f6972918_54b634e9.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/routine-maintenance-2_e00162a6_0226b757.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/routine-maintenance-3_a9f8c5e3_8577c2ee.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/routine-maintenance-4_6a3d179d_0df959ec.webp",
+      "/img/routine-maintenance-1_f6972918_54b634e9.webp",
+      "/img/routine-maintenance-2_e00162a6_0226b757.webp",
+      "/img/routine-maintenance-3_a9f8c5e3_8577c2ee.webp",
+      "/img/routine-maintenance-4_6a3d179d_0df959ec.webp",
     ],
     galleryAlt: [
       "Routine vehicle maintenance service at Vertical Automotive",
@@ -415,12 +415,12 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/susp-1_056d4a19.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/susp-2_778bab8d.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/susp-3_77539562.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/susp-4_abb8b313.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/susp-5_6977c8df.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/susp-6_5c2b4a70_7dd85de7.webp",
+      "/img/susp-1_056d4a19.webp",
+      "/img/susp-2_778bab8d.webp",
+      "/img/susp-3_77539562.webp",
+      "/img/susp-4_abb8b313.webp",
+      "/img/susp-5_6977c8df.webp",
+      "/img/susp-6_5c2b4a70_7dd85de7.webp",
     ],
     galleryAlt: [
       "Worn brake caliper and coil spring suspension inspection at Vertical Automotive",
@@ -431,8 +431,8 @@ const SERVICES = [
       "Jeep Wrangler suspension and steering service at Vertical Automotive Fort Lauderdale",
     ],
     videos: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/susp-video-1_67ce9899.mp4",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/susp-video-2_1dd5ea12.mov",
+      "/img/susp-video-1_67ce9899.mp4",
+      "/img/susp-video-2_1dd5ea12.mov",
     ],
     videosAlt: [
       "Steering and suspension service in progress at Vertical Automotive",
@@ -457,10 +457,10 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/fuel-system-service-1_3f6bcf4c_e8f844d4.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/fuel-system-service-2_565d22f2_1084e8af.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/fuel-system-service-3_45b1cbb7_0e1e4508.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/fuel-system-service-4_9ac490ef_63b75ebf.webp",
+      "/img/fuel-system-service-1_3f6bcf4c_e8f844d4.webp",
+      "/img/fuel-system-service-2_565d22f2_1084e8af.webp",
+      "/img/fuel-system-service-3_45b1cbb7_0e1e4508.webp",
+      "/img/fuel-system-service-4_9ac490ef_63b75ebf.webp",
     ],
     galleryAlt: [
       "Fuel system service and injector cleaning at Vertical Automotive",
@@ -486,10 +486,10 @@ const SERVICES = [
     name: "Hybrid & EV Service",
     nameEs: "Servicio de Híbridos y Eléctricos",
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hybrid-ev-service-1_223c5903_fea86714.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hybrid-ev-service-2_3956c16f_a52214af.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hybrid-ev-service-3_1129ceb8_a59b8424.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hybrid-ev-service-4_c8b0b582_9f92719e.webp",
+      "/img/hybrid-ev-service-1_223c5903_fea86714.webp",
+      "/img/hybrid-ev-service-2_3956c16f_a52214af.webp",
+      "/img/hybrid-ev-service-3_1129ceb8_a59b8424.webp",
+      "/img/hybrid-ev-service-4_c8b0b582_9f92719e.webp",
     ],
     galleryAlt: [
       "Hybrid and electric vehicle service at Vertical Automotive Fort Lauderdale",
@@ -516,15 +516,15 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/alignment-real-1_11cbcc74.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/align-1_e2569bdc.webp",
+      "/img/alignment-real-1_11cbcc74.webp",
+      "/img/align-1_e2569bdc.webp",
     ],
     galleryAlt: [
       "Wheel alignment service in progress at Vertical Automotive — Lexus on alignment rack with precision measurement equipment",
       "Maserati Ghibli on precision wheel alignment rack at Vertical Automotive Fort Lauderdale",
     ],
     videos: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/align-video-1_df329804.mov",
+      "/img/align-video-1_df329804.mov",
     ],
     videosAlt: [
       "Wheel alignment service at Vertical Automotive Fort Lauderdale",
@@ -548,9 +548,9 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/battery-charging-systems-1_2033b1d6_f3d620e3.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/battery-charging-systems-2_f8985363_7ae5bdf9.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/battery-charging-systems-3_50cd2e51_f03b599b.webp",
+      "/img/battery-charging-systems-1_2033b1d6_f3d620e3.webp",
+      "/img/battery-charging-systems-2_f8985363_7ae5bdf9.webp",
+      "/img/battery-charging-systems-3_50cd2e51_f03b599b.webp",
     ],
     galleryAlt: [
       "Car battery replacement and charging system test at Vertical Automotive",
@@ -576,8 +576,8 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/fleet-services-1_61b50655_11b33504.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/fleet-services-2_b17f1436_c4f27a46.webp",
+      "/img/fleet-services-1_61b50655_11b33504.webp",
+      "/img/fleet-services-2_b17f1436_c4f27a46.webp",
     ],
     galleryAlt: [
       "Commercial fleet maintenance and repair at Vertical Automotive Fort Lauderdale",
@@ -601,16 +601,16 @@ const SERVICES = [
     vehicles: [],
     vehiclesEs: [],
     gallery: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/IMG_1336_d800bad0.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/alignment-real-1_11cbcc74.webp",
+      "/img/IMG_1336_d800bad0.webp",
+      "/img/alignment-real-1_11cbcc74.webp",
     ],
     galleryAlt: [
       "New tire being installed on Vertical Automotive branded Tesla Model Y — tire replacement service Fort Lauderdale",
       "Maserati Ghibli on precision alignment rack during tire service at Vertical Automotive",
     ],
     videos: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/IMG_0418_2b089a64.MOV",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/IMG_0679_8c57d65d.MOV",
+      "/img/IMG_0418_2b089a64.MOV",
+      "/img/IMG_0679_8c57d65d.MOV",
     ],
     videosAlt: [
       "Tire mounting and installation in progress at Vertical Automotive",

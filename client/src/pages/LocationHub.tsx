@@ -37,7 +37,7 @@ const ALL_SERVICES = [
   { slug: "tire-service",             name: "Tire Service & Replacement",          shortTitle: "Tires",                 icon: "circle" },
 ];
 
-const CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB";
+const CDN = "/img";
 
 // ─── Location-specific data ──────────────────────────────────────────────────
 interface LocationData {
@@ -57,7 +57,7 @@ const FORT_LAUDERDALE_DATA: LocationData = {
   city: "fort-lauderdale",
   location: LOCATIONS[1],
   h1: "Auto Repair in Fort Lauderdale",
-  heroPhoto: { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wm-exterior-1_a6a6ea18.webp", alt: "Vertical Automotive Fort Lauderdale shop exterior" },
+  heroPhoto: { src: "/img/wm-exterior-1_a6a6ea18.webp", alt: "Vertical Automotive Fort Lauderdale shop exterior" },
   metaTitle: "Auto Repair Fort Lauderdale | Vertical Automotive",
   metaDescription: "ASE-certified auto repair in Fort Lauderdale, FL. Tesla, European, Asian & Domestic specialists. 36-month / 36,000-mile warranty. Call (645) 216-2266.",
   aboutParagraph: "Vertical Automotive's Fort Lauderdale location sits at 707 NE 11th Street — minutes from Victoria Park, Las Olas, and Flagler Village. Our ASE-certified technicians specialize in Tesla, European, Asian, and Domestic vehicles, delivering dealership-level diagnostics at independent shop prices. From routine oil changes to complex transmission rebuilds, every repair is backed by our 36-month / 36,000-mile warranty. We've been serving Broward County drivers since 1989 with honest estimates, no upsells, and same-day service on most repairs.",
@@ -84,13 +84,13 @@ const WILTON_MANORS_DATA: LocationData = {
   city: "wilton-manors",
   location: LOCATIONS[0],
   h1: "Auto Repair in Wilton Manors",
-  heroPhoto: { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wm-exterior-2_e5bbb357.webp", alt: "Vertical Automotive Wilton Manors service bays" },
+  heroPhoto: { src: "/img/wm-exterior-2_e5bbb357.webp", alt: "Vertical Automotive Wilton Manors service bays" },
   metaTitle: "Auto Repair Wilton Manors | Vertical Automotive",
   metaDescription: "ASE-certified auto repair in Wilton Manors, FL. Tesla, European, Asian & Domestic specialists. 36-month / 36,000-mile warranty. Call (954) 565-1518.",
   aboutParagraph: "Vertical Automotive's Wilton Manors location at 1100 W Oakland Park Blvd has been the go-to shop for Oakland Park, Sunrise, and Lauderdale Lakes drivers since 1989. Our ASE-certified team handles everything from Tesla battery diagnostics to European transmission rebuilds — with factory-level scan tools and honest, transparent pricing. Every repair comes with our 36-month / 36,000-mile warranty, and we offer complimentary multi-point inspections with every service visit. No upsells, no surprises — just quality work done right the first time.",
   photos: [
-    { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wm-exterior-2_e5bbb357.webp", alt: "Vertical Automotive Wilton Manors service bays" },
-    { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/wm-exterior-1_a6a6ea18.webp", alt: "Vertical Automotive Wilton Manors shop exterior" },
+    { src: "/img/wm-exterior-2_e5bbb357.webp", alt: "Vertical Automotive Wilton Manors service bays" },
+    { src: "/img/wm-exterior-1_a6a6ea18.webp", alt: "Vertical Automotive Wilton Manors shop exterior" },
     { src: `${CDN}/susp-2_b7e4c123.webp`, alt: "Suspension service at Vertical Automotive Wilton Manors" },
     { src: `${CDN}/brake-rotor-real-2_fa4a30ab.webp`, alt: "Brake repair Wilton Manors" },
     { src: `${CDN}/engine-oil-2_764ac92e.webp`, alt: "Oil change Wilton Manors" },

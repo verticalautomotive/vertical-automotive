@@ -9,7 +9,7 @@
 
 import { useTranslation } from "@/hooks/useTranslation";
 
-const CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB";
+const CDN = "/img";
 
 interface TrustBadge {
   logo: string;
