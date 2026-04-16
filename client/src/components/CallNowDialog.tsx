@@ -5,8 +5,8 @@
  * Used in header, mobile footer bar, sticky bar, and FAQ CTA
  */
 import { Phone, MapPin, X } from "lucide-react";
-import { LOCATIONS } from "@/lib/data";
-import { useTranslation } from "@/hooks/useTranslation";
+import { LOCATIONS } from "@/lib/nav-data";
+import { useNavTranslation } from "@/hooks/useNavTranslation";
 import { trackCall } from "@/lib/gtm";
 import { useEffect, useRef } from "react";
 
@@ -17,7 +17,7 @@ interface CallNowDialogProps {
 }
 
 export default function CallNowDialog({ open, onClose, source }: CallNowDialogProps) {
-  const { isSpanish } = useTranslation();
+  const { isSpanish } = useNavTranslation();
   const overlayRef = useRef<HTMLDivElement>(null);
 
   const labels = isSpanish

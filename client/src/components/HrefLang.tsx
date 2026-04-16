@@ -4,13 +4,13 @@
  */
 import { useEffect } from "react";
 import { useLocation } from "wouter";
-import { useTranslation } from "@/hooks/useTranslation";
+import { useNavTranslation } from "@/hooks/useNavTranslation";
 
 const BASE_URL = "https://verticalautomotive.com";
 
 export default function HrefLang() {
   const [location] = useLocation();
-  const { lang, getAlternatePath } = useTranslation();
+  const { lang, getAlternatePath } = useNavTranslation();
 
   useEffect(() => {
     const enPath = lang === "en" ? location : getAlternatePath(location);

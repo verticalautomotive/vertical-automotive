@@ -3,12 +3,12 @@
  * Navigates to the equivalent page in the other language
  */
 import { useLocation } from "wouter";
-import { useTranslation } from "@/hooks/useTranslation";
+import { useNavTranslation } from "@/hooks/useNavTranslation";
 import { Globe } from "lucide-react";
 
 export default function LanguageSwitcher({ className = "" }: { className?: string }) {
   const [location, navigate] = useLocation();
-  const { lang, getAlternatePath } = useTranslation();
+  const { lang, getAlternatePath } = useNavTranslation();
 
   const handleSwitch = () => {
     const alt = getAlternatePath(location);

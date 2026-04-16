@@ -785,3 +785,16 @@
 - [x] Verify: /fonts/ WOFF2 returns Cache-Control: public, max-age=31536000, immutable ✅
 - [x] Verify: / HTML returns no-cache, no-store, must-revalidate ✅
 - [x] All 210 tests pass
+
+## JS Bundle Optimization — Round 11 (PageSpeed "Reduce unused JavaScript" ~461 KiB)
+- [x] Audit: identified data.ts (43KB) + data-es.ts (64KB) being hoisted to index chunk via Navigation/Footer/HrefLang/LanguageSwitcher
+- [x] Create nav-data.ts with only Navigation-needed constants (COMPANY, LOCATIONS) — 107KB removed from index chunk
+- [x] Create useNavTranslation hook with nav + footer + language strings — no full data file imports
+- [x] Update Navigation, Footer, HrefLang, LanguageSwitcher, CallNowDialog to use useNavTranslation
+- [x] Index chunk reduced: 210KB → 115KB (45% reduction, -95KB)
+- [x] Audit: identified sonner (67KB) and TooltipProvider (22KB) eagerly loaded in index chunk
+- [x] Lazy-load Toaster (sonner) and TooltipProvider in App.tsx
+- [x] Index chunk further reduced: 113KB → 79KB (-34KB, 30% reduction)
+- [x] Total initial JS: ~830KB → ~625KB (raw) — ~205KB saved from initial load
+- [x] GTM: confirmed single container, no duplicate gtag.js, already deferred to post-interaction
+- [x] All 210 tests pass

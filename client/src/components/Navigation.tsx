@@ -5,12 +5,12 @@
  * MOBILE: SERVICE accordion with two location buttons
  * BILINGUAL: Detects /es/ prefix and shows Spanish labels + correct links
  */
-import { COMPANY, LOCATIONS } from "@/lib/data";
+import { COMPANY, LOCATIONS } from "@/lib/nav-data";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, MapPin, Menu, Phone, X } from "lucide-react";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Link, useLocation } from "wouter";
-import { useTranslation } from "@/hooks/useTranslation";
+import { useNavTranslation } from "@/hooks/useNavTranslation";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { trackSchedule } from "@/lib/gtm";
 import CallNowDialog from "./CallNowDialog";
@@ -25,7 +25,7 @@ export default function Navigation() {
   const [callDialogOpen, setCallDialogOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [location] = useLocation();
-  const { isSpanish, prefix, ui } = useTranslation();
+  const { isSpanish, prefix, ui } = useNavTranslation();
 
   // UI labels
   const t = ui?.nav ?? {

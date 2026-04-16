@@ -1,12 +1,13 @@
-import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { lazy, Suspense, useEffect, useState, useCallback } from "react";
 import { Route, Switch, Redirect } from "wouter";
+import { useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import StructuredData from "./components/StructuredData";
 import HrefLang from "./components/HrefLang";
-import { lazy, Suspense, useEffect, useState, useCallback } from "react";
-import { useLocation } from "wouter";
+// Lazy-load Toaster (sonner ~67KB) and TooltipProvider (~22KB) — neither is needed for first paint
+const Toaster = lazy(() => import("@/components/ui/sonner").then(m => ({ default: m.Toaster })));
+const TooltipProvider = lazy(() => import("@/components/ui/tooltip").then(m => ({ default: m.TooltipProvider })));
 // Lazy-load all non-critical UI components to reduce initial JS bundle
 // These components are not needed for first paint or LCP
 const ChatButton = lazy(() => import("@/components/ChatButton").then(m => ({ default: m.ChatButton })));
@@ -189,19 +190,22 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
-        <TooltipProvider>
-          <StructuredData />
-          <Toaster />
-          <Router />
-          {/* Non-critical UI — all lazy-loaded to reduce initial JS bundle */}
-          <Suspense fallback={null}>
-            <ChatBubble isOpen={isChatOpen} onClose={handleChatClose} language={language} />
-            <FloatingActions isChatOpen={isChatOpen} onChatToggle={handleChatToggle} />
-            <MobileFooterBar />
-            <ChatButton language={language} isOpen={isChatOpen} onToggle={handleChatToggle} />
-            <CookieConsentBanner />
-          </Suspense>
-        </TooltipProvider>
+        {/* TooltipProvider and Toaster are lazy — they don't affect first paint */}
+        <Suspense fallback={null}>
+          <TooltipProvider>
+            <StructuredData />
+            <Toaster />
+            <Router />
+            {/* Non-critical UI — all lazy-loaded to reduce initial JS bundle */}
+            <Suspense fallback={null}>
+              <ChatBubble isOpen={isChatOpen} onClose={handleChatClose} language={language} />
+              <FloatingActions isChatOpen={isChatOpen} onChatToggle={handleChatToggle} />
+              <MobileFooterBar />
+              <ChatButton language={language} isOpen={isChatOpen} onToggle={handleChatToggle} />
+              <CookieConsentBanner />
+            </Suspense>
+          </TooltipProvider>
+        </Suspense>
       </ThemeProvider>
     </ErrorBoundary>
   );

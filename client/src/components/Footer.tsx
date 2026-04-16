@@ -5,9 +5,9 @@
  * BILINGUAL: Uses useTranslation for Spanish labels
  * Street addresses are clickable → Google Maps
  */
-import { COMPANY, LOCATIONS } from "@/lib/data";
+import { COMPANY, LOCATIONS } from "@/lib/nav-data";
 import { MapPin, Phone, Clock, Shield, Instagram, Facebook, ExternalLink, Navigation2 } from "lucide-react";
-import { useTranslation } from "@/hooks/useTranslation";
+import { useNavTranslation } from "@/hooks/useNavTranslation";
 import { trackCall, trackDirections } from "@/lib/gtm";
 import { Link } from "wouter";
 
@@ -28,7 +28,7 @@ function getDirectionsUrl(location: typeof LOCATIONS[0]) {
 }
 
 export default function Footer() {
-  const { isSpanish, ui, companyOverrides } = useTranslation();
+  const { isSpanish, ui, companyOverrides } = useNavTranslation();
   const t = ui?.footer ?? {
     description: "ASE-certified mechanics providing complete auto care with",
     yearsExp: "years of experience.",

@@ -5,7 +5,7 @@
  * Bilingual: adapts text based on /es/ URL prefix
  */
 import { Phone, CalendarCheck } from "lucide-react";
-import { COMPANY } from "@/lib/data";
+import { COMPANY } from "@/lib/nav-data";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackSchedule } from "@/lib/gtm";
 import { useState } from "react";
