@@ -30,12 +30,12 @@
     <meta property="og:url" content="https://verticalautomotive.com/" />
     <meta property="og:title" content="Auto Repair Fort Lauderdale &amp; Wilton Manors | All Makes" />
     <meta property="og:description" content="Trusted auto repair in Fort Lauderdale &amp; Wilton Manors for all makes &amp; models. ASE-certified mechanics, EV specialists, 3-year warranty, 2 locations. Book your service today." />
-    <meta property="og:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-tesla-service-1440_879f7b42.webp" />
+    <meta property="og:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp" />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Auto Repair Fort Lauderdale &amp; Wilton Manors | All Makes" />
     <meta name="twitter:description" content="Trusted auto repair in Fort Lauderdale &amp; Wilton Manors for all makes &amp; models. ASE-certified mechanics, EV specialists, 3-year warranty, 2 locations. Book your service today." />
-    <meta name="twitter:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-tesla-service-1440_879f7b42.webp" />
+    <meta name="twitter:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -45,13 +45,13 @@
     <!-- Logo: local file, preloaded for nav bar stability (no layout shift) -->
     <link rel="preload" as="image" type="image/svg+xml" href="/logo-vertical-automotive.svg" />
     <!--
-      LCP hero poster: On mobile the hero renders as a static poster image (JPG, ~56KB).
+      LCP hero poster: On mobile the hero renders as a static poster image (WebP, ~24KB).
       Preloading it here ensures it starts fetching before React hydrates.
       On desktop the video poster also uses this same image, so this preload benefits both paths.
       fetchpriority=high tells the browser this is the most important image on the page.
     -->
-    <link rel="preload" as="image" type="image/jpeg"
-      href="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_bb3373b8.jpg"
+    <link rel="preload" as="image" type="image/webp"
+      href="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp"
       fetchpriority="high" />
 
     <!-- ===== FONTS — Self-hosted on same origin (proper Cache-Control headers) ===== -->
@@ -239,18 +239,67 @@
   </head>
 
   <body>
-    <!-- Google Tag Manager (noscript fallback) -->
+    <!-- Google Tag Manager (noscript fallback — always present for non-JS crawlers) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5Q5RPRR4"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- Google Tag Manager — dataLayer init must precede the GTM script load -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-    </script>
-    <!-- GTM script deferred — does not block initial render -->
-    <script defer src="https://www.googletagmanager.com/gtm.js?id=GTM-5Q5RPRR4"></script>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!--
+      GTM DELAYED LOADING STRATEGY
+      ─────────────────────────────
+      GTM (~810ms execution) is loaded ONLY after the first user interaction
+      (scroll, click, touch, or keydown) OR after 3 seconds via requestIdleCallback.
+      This ensures GTM never blocks FCP/LCP on initial page load.
+
+      Conversion tracking is preserved: GTM fires 'gtm.js' event as normal once loaded.
+      The dataLayer is pre-initialized so any pushes before GTM loads are queued.
+    -->
+    <script>
+      // Pre-initialize dataLayer so any early pushes are queued
+      window.dataLayer = window.dataLayer || [];
+
+      (function() {
+        var GTM_ID = 'GTM-5Q5RPRR4';
+        var loaded = false;
+
+        function loadGTM() {
+          if (loaded) return;
+          loaded = true;
+
+          // Initialize GTM dataLayer event
+          window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+
+          // Inject GTM script
+          var s = document.createElement('script');
+          s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+          s.async = true;
+          document.head.appendChild(s);
+        }
+
+        // Load on first user interaction
+        var events = ['scroll', 'click', 'touchstart', 'keydown', 'mousemove'];
+        function onInteraction() {
+          loadGTM();
+          events.forEach(function(e) {
+            document.removeEventListener(e, onInteraction, {passive: true});
+          });
+        }
+        events.forEach(function(e) {
+          document.addEventListener(e, onInteraction, {passive: true, once: true});
+        });
+
+        // Fallback: load after 3 seconds via requestIdleCallback (or setTimeout)
+        var fallback = function() { loadGTM(); };
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(fallback, {timeout: 3000});
+        } else {
+          setTimeout(fallback, 3000);
+        }
+      })();
+    </script>
+
     <!-- Analytics: deferred, non-blocking -->
     <script
       defer

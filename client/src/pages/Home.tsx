@@ -39,7 +39,7 @@ import { trackCall, trackSchedule, trackDirections, trackClaimOffer } from "@/li
 import CallNowDialog from "@/components/CallNowDialog";
 import LocationPickerModal from "@/components/LocationPickerModal";
 
-const HERO_POSTER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_bb3373b8.jpg";
+const HERO_POSTER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp";
 const HERO_VIDEO_MOBILE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-mobile_9141c89b.mp4";
 const HERO_VIDEO_DESKTOP = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4";
 
