@@ -745,3 +745,13 @@ button:disabled {
   box-shadow: none !important;
   transform: none !important;
 }
+
+/* ─── Mobile nav scroll lock ─────────────────────────────────────────────────
+   Applied via classList.add('mobile-nav-open') in Navigation.tsx.
+   Using a CSS class instead of document.body.style.overflow = 'hidden' avoids
+   a forced synchronous style recalculation (layout reflow) on the <body> element.
+   The browser batches class-based style changes more efficiently than inline writes.
+   ─────────────────────────────────────────────────────────────────────────── */
+body.mobile-nav-open {
+  overflow: hidden;
+}

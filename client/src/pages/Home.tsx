@@ -52,13 +52,19 @@ const HERO_VIDEO_DESKTOP = "/img/hero-video-web_c01ed999.mp4";
  */
 function HeroBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  // Use matchMedia in the initializer instead of window.innerWidth.
+  // matchMedia does NOT force a layout reflow — it reads the media state
+  // which is already computed by the browser's style engine.
+  // window.innerWidth reads layout geometry and can trigger a forced reflow.
   const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+    typeof window !== 'undefined'
+      ? window.matchMedia('(max-width: 767px)').matches
+      : false
   );
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 767px)');
-    setIsMobile(mq.matches);
+    // No need to call setIsMobile(mq.matches) here — useState initializer already did it.
     const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
     mq.addEventListener('change', handler);
     return () => mq.removeEventListener('change', handler);
@@ -69,8 +75,10 @@ function HeroBackground() {
     if (isMobile || !videoRef.current) return;
     const video = videoRef.current;
     if (!video.src) {
-      // Use the mobile-optimised 480p source on tablets (768-1024px) to save bandwidth
-      const src = window.innerWidth <= 1024 ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP;
+      // Use matchMedia instead of window.innerWidth to avoid forced layout reflow.
+      // matchMedia reads the pre-computed media state; innerWidth reads layout geometry.
+      const isTablet = window.matchMedia('(max-width: 1024px)').matches;
+      const src = isTablet ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP;
       video.src = src;
       video.load();
       video.play().catch(() => { /* autoplay blocked — poster remains visible */ });

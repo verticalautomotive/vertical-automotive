@@ -77,12 +77,17 @@ export function CookieConsentBanner() {
     setPreferences(prefs);
     setIsVisible(false);
     
-    // Push consent event to dataLayer for GTM to handle
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "cookie_consent",
-      analytics_enabled: prefs.analytics,
-      marketing_enabled: prefs.marketing,
+    // Defer the dataLayer push to the next animation frame.
+    // This ensures the React state update (setIsVisible) has been committed
+    // and the browser has painted before GTM reads layout geometry.
+    // Avoids forced reflow from GTM's layout-reading initialization code.
+    requestAnimationFrame(() => {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "cookie_consent",
+        analytics_enabled: prefs.analytics,
+        marketing_enabled: prefs.marketing,
+      });
     });
   };
 

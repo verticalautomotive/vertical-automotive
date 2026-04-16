@@ -256,7 +256,9 @@
       The dataLayer is pre-initialized so any pushes before GTM loads are queued.
     -->
     <script>
-      // Pre-initialize dataLayer so any early pushes are queued
+      // Pre-initialize dataLayer so any early pushes are queued before GTM loads.
+      // IMPORTANT: Do NOT push gtm.start here — that must happen inside loadGTM()
+      // after the script tag is created, so GTM's own init code can read it.
       window.dataLayer = window.dataLayer || [];
 
       (function() {
@@ -267,14 +269,26 @@
           if (loaded) return;
           loaded = true;
 
-          // Initialize GTM dataLayer event
-          window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-
-          // Inject GTM script
+          // Inject GTM script first, THEN push gtm.start.
+          // This avoids GTM reading layout geometry synchronously during the push.
+          // Using requestAnimationFrame ensures this runs AFTER first paint,
+          // preventing forced reflow during the critical rendering path.
           var s = document.createElement('script');
           s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
           s.async = true;
+          // Push gtm.start only after the script has been appended to DOM
+          // and after the browser has had a chance to paint the first frame.
+          s.addEventListener('load', function() {
+            // GTM script loaded — nothing extra needed here,
+            // gtm.js handles its own initialization internally.
+          });
           document.head.appendChild(s);
+
+          // Push gtm.start in the next animation frame to avoid forced reflow
+          // during the current layout/paint cycle.
+          requestAnimationFrame(function() {
+            window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+          });
         }
 
         // Load on first user interaction

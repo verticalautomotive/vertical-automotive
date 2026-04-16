@@ -59,13 +59,17 @@ export default function Navigation() {
   }, [location]);
 
   useEffect(() => {
+    // Use a CSS class toggle instead of inline style mutation.
+    // Toggling a class on <body> is cheaper than writing inline styles because
+    // the browser can batch the style recalculation with other pending changes.
+    // The .mobile-nav-open class is defined in index.css with overflow: hidden.
     if (mobileOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.classList.add("mobile-nav-open");
     } else {
-      document.body.style.overflow = "";
+      document.body.classList.remove("mobile-nav-open");
     }
     return () => {
-      document.body.style.overflow = "";
+      document.body.classList.remove("mobile-nav-open");
     };
   }, [mobileOpen]);
 
