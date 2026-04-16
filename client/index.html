@@ -7,9 +7,7 @@
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <!-- 2. Preconnect to CDN — serves LCP hero poster + all vehicle images -->
     <link rel="preconnect" href="https://d2xsxph8kpxj0f.cloudfront.net" crossorigin />
-    <!-- 3 & 4. Google Fonts (CSS + font files) — max 4 preconnects per PageSpeed -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- 3. CDN also serves self-hosted fonts — preconnect already covers fonts too -->
     <!-- dns-prefetch only for non-critical origins (avoids TCP handshake overhead) -->
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
@@ -57,10 +55,25 @@
       href="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_bb3373b8.jpg"
       fetchpriority="high" />
 
-    <!-- ===== FONTS (async — does not block render) ===== -->
-    <!-- media="print" onload trick: loads font CSS without blocking render -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+    <!-- ===== FONTS — Self-hosted on CDN (no external Google Fonts dependency) ===== -->
+    <!--
+      Fonts are self-hosted on the same CDN as images (d2xsxph8kpxj0f.cloudfront.net).
+      This eliminates the fonts.googleapis.com + fonts.gstatic.com connections entirely,
+      saving 2 DNS lookups + 2 TCP handshakes + 1 CSS request on every page load.
+      Only the 2 most critical fonts are preloaded (hero H1 + body text).
+      All others load on-demand via the @font-face rules in the inlined critical CSS.
+      font-display: swap is set in the @font-face rules — text renders immediately in
+      system font, then swaps to the custom font when it loads (no invisible text).
+    -->
+    <!-- Preload: Space Grotesk 700 latin — used in hero H1, nav logo, section headings -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/SpaceGrotesk-700-latin_9c6bd62a.woff2" />
+    <!-- Preload: IBM Plex Sans 400 latin — used in all body text, descriptions, CTAs -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/IBMPlexSans-400-latin_08ce47fe.woff2" />
+    <!-- Self-hosted @font-face rules — loaded async via media=print trick -->
+    <link rel="stylesheet" href="/fonts/fonts.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="/fonts/fonts.css" /></noscript>
 
     <!-- ===== STRUCTURED DATA (static — no React re-render cost) ===== -->
 

@@ -743,3 +743,15 @@
 - [x] 0 TypeScript errors, 210 tests pass
 - [x] Production build verified: Home chunk 14.79 KB gzip, entry chunk 59.42 KB gzip
 - [x] Save checkpoint
+
+## Render-Blocking Resources — Round 5
+- [x] Self-host all 3 Google Fonts (Space Grotesk, IBM Plex Sans, JetBrains Mono) as WOFF2 on CDN
+- [x] Eliminate Google Fonts external connections (fonts.googleapis.com + fonts.gstatic.com)
+- [x] Reduce preconnects from 4 → 2 (GTM + CDN only)
+- [x] Add preload hints for 2 most critical fonts (Space Grotesk 700 + IBM Plex Sans 400)
+- [x] fonts.css uses CDN URLs with font-display: swap for all 12 WOFF2 files
+- [x] Critters confirmed inlining 14.47 KB critical CSS (8% of 178 KB stylesheet)
+- [x] Full CSS loads async via media=print trick (no render blocking)
+- [x] manus-runtime script auto-moved to end of <body> (non-blocking)
+- [x] 0 TypeScript errors, 210 tests pass
+- [x] Save checkpoint
