@@ -755,3 +755,16 @@
 - [x] manus-runtime script auto-moved to end of <body> (non-blocking)
 - [x] 0 TypeScript errors, 210 tests pass
 - [x] Save checkpoint
+
+## Caching & CDN Fix — Round 6
+- [x] Service Worker: intercepts all CDN requests, caches in browser Cache API with 1-year TTL
+- [x] SW registered in main.tsx (production-only, no dev interference)
+- [x] SW served with no-cache header so updates deploy immediately
+- [x] Fonts moved to local /fonts/ path (served by Express with Cache-Control: public, max-age=31536000, immutable)
+- [x] Font preload hints updated to use local /fonts/ paths
+- [x] fonts.css updated to use local /fonts/ paths (no CDN dependency for fonts)
+- [x] Express: WOFF2 fonts in /fonts/ get 1-year immutable cache headers
+- [x] Express: sw.js served with no-cache + Service-Worker-Allowed: / header
+- [x] CDN preconnect comment updated (CDN now only needed for images, not fonts)
+- [x] 0 TypeScript errors, 210 tests pass, build successful
+- [x] Save checkpoint

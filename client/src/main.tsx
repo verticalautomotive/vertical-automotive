@@ -1,5 +1,6 @@
 import { trpc } from "@/lib/trpc";
 import { UNAUTHED_ERR_MSG } from '@shared/const';
+import { registerServiceWorker } from "@/lib/registerSW";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink, TRPCClientError } from "@trpc/client";
 import { createRoot } from "react-dom/client";
@@ -62,3 +63,7 @@ createRoot(document.getElementById("root")!).render(
     </trpc.Provider>
   </ChunkErrorBoundary>
 );
+
+// Register Service Worker for CDN asset caching (images, fonts)
+// Adds browser-level 1-year cache for CloudFront assets that lack Cache-Control headers
+registerServiceWorker();

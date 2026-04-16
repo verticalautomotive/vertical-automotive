@@ -75,7 +75,14 @@ export function serveStatic(app: Express) {
     })
   );
 
-  // All other static files (favicon, robots.txt, manifest, etc.)
+  // Service Worker must be served with no-cache so browsers always get the latest version
+  app.get("/sw.js", (_req, res) => {
+    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Service-Worker-Allowed", "/");
+    res.sendFile(path.resolve(distPath, "sw.js"));
+  });
+
+  // All other static files (favicon, robots.txt, fonts, manifest, etc.)
   // Use a shorter TTL since these don't have content hashes
   app.use(
     express.static(distPath, {
@@ -84,6 +91,10 @@ export function serveStatic(app: Express) {
         // HTML files must never be cached — they reference hashed assets
         if (filePath.endsWith(".html")) {
           res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        }
+        // WOFF2 fonts in /fonts/ — long-lived cache since filenames are content-hashed
+        if (filePath.includes("/fonts/") && (filePath.endsWith(".woff2") || filePath.endsWith(".woff"))) {
+          res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
         }
       },
     })
