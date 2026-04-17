@@ -810,8 +810,8 @@
 ## Rollback-and-Test Workflow (Controlled Performance Optimization)
 - [x] Phase 1: Identify rollback target — decided to use current a7cf1f6 (Round 12) as baseline
 - [x] Phase 2: Baseline measurement — 5x Lighthouse CLI (Mobile median: 55, Desktop: 56)
-- [ ] Batch A: JS/tracking optimizations — increase GTM delay, reduce early JS execution
-- [ ] Batch B: Render path — reduce render delay (7.4s), improve FCP/LCP gap
-- [ ] Batch C: Caching/CDN — fix static asset headers
-- [ ] Batch D: Below-fold assets — lazy-load vehicle gallery images, reduce High-priority image count
-- [ ] Phase 4: Root cause report — regression analysis and final recommendations
+- [x] Batch A: GTM delay 5s, mousemove removed, analytics deferred — Score 55 (no change, kept)
+- [x] Batch B: Static hero shell in index.html — Score 55 (marginal, kept)
+- [x] Batch C: Analyzed — no code changes needed, CDN headers require CloudFront access
+- [x] Batch D: Gallery images 24→8 DOM, all lazy — Score 55 (no change, kept)
+- [x] Phase 4: Root cause report complete — CSR architecture is the ceiling (Score ~55)
