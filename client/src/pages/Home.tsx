@@ -39,9 +39,9 @@ import { trackCall, trackSchedule, trackDirections, trackClaimOffer } from "@/li
 import CallNowDialog from "@/components/CallNowDialog";
 import LocationPickerModal from "@/components/LocationPickerModal";
 
-const HERO_POSTER = "/img/hero-poster_30c5bb2a.webp";
-const HERO_VIDEO_MOBILE = "/img/hero-video-mobile_9141c89b.mp4";
-const HERO_VIDEO_DESKTOP = "/img/hero-video-web_c01ed999.mp4";
+const HERO_POSTER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp";
+const HERO_VIDEO_MOBILE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-mobile_9141c89b.mp4";
+const HERO_VIDEO_DESKTOP = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4";
 
 /**
  * HeroBackground — renders the hero section background.
@@ -196,7 +196,7 @@ export default function Home() {
           ? "Taller de confianza en Fort Lauderdale y Wilton Manors para todas las marcas y modelos. Mecánicos certificados ASE, especialistas en EV, garantía de 3 años, 2 ubicaciones. Reserve su servicio hoy."
           : "Trusted auto repair in Fort Lauderdale & Wilton Manors for all makes & models. ASE-certified mechanics, EV specialists, 36,000-mile / 36-month warranty, 2 locations. Book your service today."}
         canonical={isSpanish ? "https://verticalautomotive.com/es" : "https://verticalautomotive.com/"}
-        ogImage="/img/hero-video-web_c01ed999.mp4"
+        ogImage="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4"
         keywords={isSpanish
           ? "taller mecánico Fort Lauderdale, reparación de autos Wilton Manors, reparación Tesla, certificado ASE, frenos, cambio de aceite, aire acondicionado, diagnóstico de motor, autos europeos, Sur de Florida"
           : "auto repair Fort Lauderdale, car repair Fort Lauderdale, auto repair Wilton Manors, mechanic near me, Tesla repair, ASE certified, brake service, oil change, AC repair, engine diagnostics, European car repair, South Florida"}
@@ -316,7 +316,7 @@ export default function Home() {
       </section>
 
       {/* Services Section — mobile: compact icon+title tiles, Desktop: 5-col cards */}
-      <section id="services" className="py-10 sm:py-20 bg-background">
+      <section id="services" className="py-10 sm:py-20 bg-background" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 700px' }}>
         <div className="container">
           <div className="text-center mb-6 sm:mb-16">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">

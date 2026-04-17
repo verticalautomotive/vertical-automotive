@@ -798,3 +798,11 @@
 - [x] Total initial JS: ~830KB → ~625KB (raw) — ~205KB saved from initial load
 - [x] GTM: confirmed single container, no duplicate gtag.js, already deferred to post-interaction
 - [x] All 210 tests pass
+
+## Mobile Performance — Round 12 (Score: 45 → target 55–65+)
+- [x] Audit: identify exact LCP element on mobile, payload breakdown, render-blocking resources
+- [x] Fix LCP: CRITICAL — removed /img/ proxy (48x slower: 3.25s vs 0.067s); restored direct CDN URLs; added CDN preconnect
+- [x] Reduce initial JS: disabled modulePreload for vendor-trpc (87KB) + vendor-ui (86KB) — on-demand only
+- [x] Reduce total payload: added content-visibility:auto to services section; all below-fold images already lazy
+- [x] Fix render-blocking: eliminated 4 duplicate CSS links (Critters bug) → 2 async-only links; both fonts.css + main CSS now fully async
+- [x] All 210 tests pass, save checkpoint

@@ -161,16 +161,66 @@ function vitePluginManusRuntimeDefer(): Plugin {
     name: 'vite-plugin-manus-runtime-defer',
     apply: 'build',
     enforce: 'post',
-    // Use writeBundle (runs after closeBundle and all file writes) to physically
-    // move the manus-runtime inline script to the very end of <body>.
+    // Use writeBundle (runs after closeBundle and all file writes) to:
+    // 1. Deduplicate CSS link tags (Critters can create duplicates)
+    // 2. Move the manus-runtime inline script to the very end of <body>
     // Must run AFTER Critters (which uses closeBundle) to prevent it being reset.
     writeBundle() {
       const htmlPath = path.resolve(import.meta.dirname, 'dist/public/index.html');
       if (!fs.existsSync(htmlPath)) return;
       let html = fs.readFileSync(htmlPath, 'utf-8');
+
+      // --- Step 1: Deduplicate CSS link tags ---
+      // Critters can produce multiple <link rel="stylesheet"> tags for the same href.
+      // Strategy: for each unique href, keep only the BEST version:
+      //   - Prefer the async version (media="print" + onload) over render-blocking
+      //   - Remove all duplicates
+      const linkRegex = /<link\s[^>]*rel=["']stylesheet["'][^>]*>/gi;
+      const linkMatches = Array.from(html.matchAll(linkRegex));
+      const seenHrefs = new Map<string, string>(); // href -> best tag
+      for (const m of linkMatches) {
+        const tag = m[0];
+        const hrefMatch = tag.match(/href=["']([^"']+)["']/);
+        if (!hrefMatch) continue;
+        const href = hrefMatch[1];
+        const existing = seenHrefs.get(href);
+        if (!existing) {
+          seenHrefs.set(href, tag);
+        } else {
+          // Prefer async version (has onload attribute)
+          const tagIsAsync = tag.includes('onload=');
+          const existingIsAsync = existing.includes('onload=');
+          if (tagIsAsync && !existingIsAsync) {
+            seenHrefs.set(href, tag); // upgrade to async version
+          }
+          // Either way, mark this tag for removal (we'll keep only the best)
+        }
+      }
+      // Remove ALL stylesheet link tags, then re-insert the best version for each href
+      // We do this by replacing duplicates: keep first occurrence of best version, remove rest
+      const hrefBestTag = new Map(seenHrefs); // href -> the one tag to keep
+      const hrefSeen = new Set<string>();
+      html = html.replace(linkRegex, (tag) => {
+        const hrefMatch = tag.match(/href=["']([^"']+)["']/);
+        if (!hrefMatch) return tag;
+        const href = hrefMatch[1];
+        const best = hrefBestTag.get(href);
+        if (!best) return tag;
+        if (!hrefSeen.has(href)) {
+          hrefSeen.add(href);
+          return best; // Keep the best version on first occurrence
+        }
+        return ''; // Remove all subsequent occurrences
+      });
+      console.log(`[manus-runtime-defer] Deduplicated CSS links. Kept: ${Array.from(hrefSeen).join(', ')}`);
+
+      // --- Step 2: Move manus-runtime to end of <body> ---
       const scriptRegex = /<script\s+id="manus-runtime"[^>]*>[\s\S]*?<\/script>/;
       const match = html.match(scriptRegex);
-      if (!match) return;
+      if (!match) {
+        fs.writeFileSync(htmlPath, html, 'utf-8');
+        return;
+      }
       // Remove from current position and append just before the LAST </body>
       // (the built HTML contains </body> inside JS bundle strings, so we must
       // use lastIndexOf to find the actual closing HTML tag, not a JS string)
@@ -178,6 +228,7 @@ function vitePluginManusRuntimeDefer(): Plugin {
       const lastBodyClose = html.lastIndexOf('</body>');
       if (lastBodyClose === -1) {
         console.warn('[manus-runtime-defer] No </body> tag found in HTML, skipping.');
+        fs.writeFileSync(htmlPath, html, 'utf-8');
         return;
       }
       html = html.slice(0, lastBodyClose) + match[0] + '\n</body>' + html.slice(lastBodyClose + 7);
@@ -259,6 +310,10 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
     cssCodeSplit: false, // Keep CSS in a single file for critters to process
+    // Disable automatic modulepreload injection — we control which chunks get preloaded
+    // via the custom plugin below. This prevents non-critical chunks (vendor-trpc, vendor-ui)
+    // from being eagerly downloaded before they are actually needed.
+    modulePreload: false,
     rollupOptions: {
       output: {
           manualChunks(id) {

@@ -5,7 +5,9 @@
     <!-- ===== CRITICAL RESOURCE HINTS (ordered by priority) ===== -->
     <!-- 1. Preconnect to GTM — first third-party to load -->
     <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <!-- 2. Preconnect to CDN removed — all images now served via /img/ proxy on same origin -->
+    <!-- 2. Preconnect to CDN — hero poster and all site images are served directly from CloudFront -->
+    <link rel="preconnect" href="https://d2xsxph8kpxj0f.cloudfront.net" crossorigin />
+    <link rel="dns-prefetch" href="https://d2xsxph8kpxj0f.cloudfront.net" />
     <!-- dns-prefetch only for non-critical origins (avoids TCP handshake overhead) -->
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
@@ -50,7 +52,7 @@
       fetchpriority=high tells the browser this is the most important image on the page.
     -->
     <link rel="preload" as="image" type="image/webp"
-      href="/img/hero-poster_30c5bb2a.webp"
+      href="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp"
       fetchpriority="high" />
 
     <!-- ===== FONTS — Self-hosted on same origin (proper Cache-Control headers) ===== -->
