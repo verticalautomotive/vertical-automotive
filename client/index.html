@@ -251,7 +251,7 @@
       GTM DELAYED LOADING STRATEGY
       ─────────────────────────────
       GTM (~810ms execution) is loaded ONLY after the first user interaction
-      (scroll, click, touch, or keydown) OR after 3 seconds via requestIdleCallback.
+      (scroll, click, touch, or keydown) OR after 5 seconds via requestIdleCallback.
       This ensures GTM never blocks FCP/LCP on initial page load.
 
       Conversion tracking is preserved: GTM fires 'gtm.js' event as normal once loaded.
@@ -293,8 +293,9 @@
           });
         }
 
-        // Load on first user interaction
-        var events = ['scroll', 'click', 'touchstart', 'keydown', 'mousemove'];
+        // Load on first user interaction (mousemove removed — it fires immediately
+        // on desktop when cursor is over the page, defeating the deferred strategy)
+        var events = ['scroll', 'click', 'touchstart', 'keydown'];
         function onInteraction() {
           loadGTM();
           events.forEach(function(e) {
@@ -305,21 +306,34 @@
           document.addEventListener(e, onInteraction, {passive: true, once: true});
         });
 
-        // Fallback: load after 3 seconds via requestIdleCallback (or setTimeout)
+        // Fallback: load after 5 seconds via requestIdleCallback (or setTimeout).
+        // 5s ensures React has fully hydrated before GTM's ~1.3s of scripting begins.
         var fallback = function() { loadGTM(); };
         if ('requestIdleCallback' in window) {
-          requestIdleCallback(fallback, {timeout: 3000});
+          requestIdleCallback(fallback, {timeout: 5000});
         } else {
-          setTimeout(fallback, 3000);
+          setTimeout(fallback, 5000);
         }
       })();
     </script>
 
-    <!-- Analytics: deferred, non-blocking -->
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+    <!-- Analytics: loaded after 4s idle to avoid competing with React hydration -->
+    <script>
+      (function() {
+        function loadAnalytics() {
+          var s = document.createElement('script');
+          s.src = '%VITE_ANALYTICS_ENDPOINT%/umami';
+          s.defer = true;
+          s.setAttribute('data-website-id', '%VITE_ANALYTICS_WEBSITE_ID%');
+          document.body.appendChild(s);
+        }
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadAnalytics, {timeout: 4000});
+        } else {
+          setTimeout(loadAnalytics, 4000);
+        }
+      })();
+    </script>
   </body>
 
 </html>
