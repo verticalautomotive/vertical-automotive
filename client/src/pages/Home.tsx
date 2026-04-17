@@ -682,7 +682,7 @@ export default function Home() {
       </section>
 
       {/* TWO LOCATIONS SECTION — lightweight cards linking to hub pages */}
-      <section className="bg-secondary py-12 sm:py-16 border-t border-border">
+      <section className="bg-secondary py-12 sm:py-16 border-t border-border" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 400px' }}>
         <div className="container">
           {/* Section header */}
           <div className="text-center mb-8 sm:mb-10">
@@ -899,25 +899,33 @@ function VehicleTypeCard({ type, servicesPath, onClickTile, isFirst }: { type: V
       onClick={handleClick}
       className="group relative aspect-[4/3] overflow-hidden bg-card hover:shadow-2xl transition-all duration-300 cursor-pointer"
     >
-      {/* Image with crossfade for gallery types */}
+      {/* Image with crossfade for gallery types.
+         Batch D optimization: only render current + next image (2 per card instead of 6).
+         This reduces total DOM images from 24 to 8, cutting High-priority image requests. */}
       {hasGallery ? (
         <div className="w-full h-full relative">
-          {gallery.map((img, i) => (
-            <img
-              key={i}
-              src={img}
-              alt={vehicleAltText(type.slug, i)}
-              loading={i === 0 && isFirst ? "eager" : "lazy"}
-              fetchPriority={i === 0 && isFirst ? "high" : "auto"}
-              width={800}
-              height={600}
-              decoding="async"
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                i === currentIndex ? 'opacity-100' : 'opacity-0'
-              }`}
-              style={{ filter: 'brightness(0.75) saturate(0.9)' }}
-            />
-          ))}
+          {(() => {
+            // Only render the current visible image and the next one (for smooth crossfade)
+            const nextIndex = (currentIndex + 1) % gallery.length;
+            const indicesToRender = [currentIndex, nextIndex];
+            // Deduplicate if gallery has only 1 image
+            const uniqueIndices = Array.from(new Set(indicesToRender));
+            return uniqueIndices.map((i) => (
+              <img
+                key={`${type.slug}-${i}`}
+                src={gallery[i]}
+                alt={vehicleAltText(type.slug, i)}
+                loading="lazy"
+                width={800}
+                height={600}
+                decoding="async"
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                  i === currentIndex ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{ filter: 'brightness(0.75) saturate(0.9)' }}
+              />
+            ));
+          })()}
         </div>
       ) : (
         <OptimizedImage
