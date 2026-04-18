@@ -94,12 +94,39 @@ const FORGE_BASE_URL =
 const MAPS_PROXY_URL = `${FORGE_BASE_URL}/v1/maps/proxy`;
 
 /**
+ * Waits for google.maps.Map constructor to become available.
+ * With loading=async, script.onload fires before constructors are ready.
+ */
+function waitForMapsReady(): Promise<void> {
+  return new Promise((resolve) => {
+    if (window.google?.maps?.Map) {
+      resolve();
+      return;
+    }
+    let attempts = 0;
+    const maxAttempts = 100; // 10 seconds max
+    const interval = setInterval(() => {
+      attempts++;
+      if (window.google?.maps?.Map) {
+        clearInterval(interval);
+        resolve();
+      } else if (attempts >= maxAttempts) {
+        clearInterval(interval);
+        console.error("Google Maps API timed out waiting for Map constructor");
+        resolve();
+      }
+    }, 100);
+  });
+}
+
+/**
  * Singleton loader — ensures the Google Maps script is only loaded once,
  * even when multiple MapView components mount simultaneously.
+ * Polls for google.maps.Map constructor readiness after script loads.
  */
 function loadMapScript(): Promise<unknown> {
-  // Already fully loaded
-  if (window.google?.maps) {
+  // Already fully loaded — Map constructor is available
+  if (window.google?.maps?.Map) {
     return Promise.resolve(null);
   }
 
@@ -108,21 +135,21 @@ function loadMapScript(): Promise<unknown> {
     return window._googleMapsLoading;
   }
 
-  // First call — create the script and store the promise
-  window._googleMapsLoading = new Promise((resolve) => {
+  // First call — create the script and poll for readiness
+  window._googleMapsLoading = new Promise<unknown>((resolve) => {
     const script = document.createElement("script");
     script.src = `${MAPS_PROXY_URL}/maps/api/js?key=${API_KEY}&v=weekly&libraries=marker,places,geocoding,geometry&loading=async`;
     script.async = true;
     script.defer = true;
     script.crossOrigin = "anonymous";
-    script.onload = () => {
-      resolve(null);
-    };
     script.onerror = () => {
       console.error("Failed to load Google Maps script");
-      // Reset so a retry is possible
       window._googleMapsLoading = undefined;
       resolve(null);
+    };
+    script.onload = () => {
+      // Poll until Map constructor is available
+      waitForMapsReady().then(() => resolve(null));
     };
     document.head.appendChild(script);
   });

@@ -696,72 +696,106 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Location cards */}
+          {/* Location cards — dark design matching Contact Us style */}
           <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
             {/* Fort Lauderdale */}
-            <div className="border-2 border-border hover:border-primary/50 transition-all duration-300 bg-card p-6 sm:p-8 group">
-              <div className="flex items-start gap-3 mb-4">
-                <div className="w-10 h-10 bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <MapPin className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-display font-black uppercase tracking-wide text-lg text-foreground leading-tight">
-                    Fort Lauderdale
-                  </h3>
-                  <p className="text-xs text-muted-foreground mt-0.5">707 NE 11th Street, FL 33304</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2 mb-5">
-                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+            <div className="border-2 border-primary/20 bg-secondary/50 p-6 sm:p-8 group hover:border-primary/50 transition-all duration-300">
+              <h3 className="text-xl sm:text-2xl font-black mb-4 sm:mb-6 text-primary font-display tracking-wider">
+                FORT LAUDERDALE
+              </h3>
+              <div className="space-y-3 sm:space-y-4 mb-5 sm:mb-8">
                 <a
-                  href="tel:+16452162266"
-                  className="text-sm font-bold text-foreground hover:text-primary transition-colors"
-                  onClick={() => trackCall("Fort Lauderdale", "+16452162266", "home_locations_fl")}
+                  href={LOCATIONS[1].directionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start space-x-2 sm:space-x-3 group/link"
+                  onClick={() => trackDirections("Fort Lauderdale", "home_locations_fl")}
                 >
-                  (645) 216-2266
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 text-primary flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-gray-400 text-sm sm:text-base group-hover/link:text-primary transition-colors">
+                      707 NE 11th Street
+                    </p>
+                    <p className="text-gray-400 text-sm sm:text-base group-hover/link:text-primary transition-colors">
+                      Fort Lauderdale, FL 33304
+                    </p>
+                    <span className="text-xs text-primary/70 flex items-center gap-1 mt-1">
+                      <ExternalLink className="w-3 h-3" />
+                      {isSpanish ? "Abrir en Google Maps" : "Open in Google Maps"}
+                    </span>
+                  </div>
                 </a>
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
+                  <a
+                    href="tel:+16452162266"
+                    className="font-medium text-white hover:text-primary transition-colors text-sm sm:text-base"
+                    onClick={() => trackCall("Fort Lauderdale", "+16452162266", "home_locations_fl")}
+                  >
+                    (645) 216-2266
+                  </a>
+                </div>
               </div>
-              <Link href="/fort-lauderdale">
-                <Button
-                  variant="outline"
-                  className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold uppercase tracking-wider text-xs sm:text-sm group-hover:bg-primary group-hover:text-primary-foreground transition-all"
-                >
-                  {isSpanish ? "VER UBICACIÓN" : "VIEW LOCATION"}
-                </Button>
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                <Link href="/fort-lauderdale" className="flex-1">
+                  <Button
+                    variant="outline"
+                    className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold uppercase tracking-wider text-xs sm:text-sm"
+                  >
+                    {isSpanish ? "VER UBICACIÓN" : "VIEW LOCATION"}
+                  </Button>
+                </Link>
+              </div>
             </div>
 
             {/* Wilton Manors */}
-            <div className="border-2 border-border hover:border-primary/50 transition-all duration-300 bg-card p-6 sm:p-8 group">
-              <div className="flex items-start gap-3 mb-4">
-                <div className="w-10 h-10 bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <MapPin className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-display font-black uppercase tracking-wide text-lg text-foreground leading-tight">
-                    Wilton Manors
-                  </h3>
-                  <p className="text-xs text-muted-foreground mt-0.5">1100 W Oakland Park Blvd, Bay 5, FL 33311</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2 mb-5">
-                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+            <div className="border-2 border-primary/20 bg-secondary/50 p-6 sm:p-8 group hover:border-primary/50 transition-all duration-300">
+              <h3 className="text-xl sm:text-2xl font-black mb-4 sm:mb-6 text-primary font-display tracking-wider">
+                WILTON MANORS
+              </h3>
+              <div className="space-y-3 sm:space-y-4 mb-5 sm:mb-8">
                 <a
-                  href="tel:+19545651518"
-                  className="text-sm font-bold text-foreground hover:text-primary transition-colors"
-                  onClick={() => trackCall("Wilton Manors", "+19545651518", "home_locations_wm")}
+                  href={LOCATIONS[0].directionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start space-x-2 sm:space-x-3 group/link"
+                  onClick={() => trackDirections("Wilton Manors", "home_locations_wm")}
                 >
-                  (954) 565-1518
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 text-primary flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-gray-400 text-sm sm:text-base group-hover/link:text-primary transition-colors">
+                      1100 W Oakland Park Blvd, Bay 5
+                    </p>
+                    <p className="text-gray-400 text-sm sm:text-base group-hover/link:text-primary transition-colors">
+                      Wilton Manors, FL 33311
+                    </p>
+                    <span className="text-xs text-primary/70 flex items-center gap-1 mt-1">
+                      <ExternalLink className="w-3 h-3" />
+                      {isSpanish ? "Abrir en Google Maps" : "Open in Google Maps"}
+                    </span>
+                  </div>
                 </a>
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
+                  <a
+                    href="tel:+19545651518"
+                    className="font-medium text-white hover:text-primary transition-colors text-sm sm:text-base"
+                    onClick={() => trackCall("Wilton Manors", "+19545651518", "home_locations_wm")}
+                  >
+                    (954) 565-1518
+                  </a>
+                </div>
               </div>
-              <Link href="/wilton-manors">
-                <Button
-                  variant="outline"
-                  className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold uppercase tracking-wider text-xs sm:text-sm group-hover:bg-primary group-hover:text-primary-foreground transition-all"
-                >
-                  {isSpanish ? "VER UBICACIÓN" : "VIEW LOCATION"}
-                </Button>
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                <Link href="/wilton-manors" className="flex-1">
+                  <Button
+                    variant="outline"
+                    className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold uppercase tracking-wider text-xs sm:text-sm"
+                  >
+                    {isSpanish ? "VER UBICACIÓN" : "VIEW LOCATION"}
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

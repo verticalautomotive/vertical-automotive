@@ -820,4 +820,10 @@
 - [x] Diagnose broken image URLs in TrustBadges component
 - [x] Fix: replaced /img proxy prefix with full CloudFront CDN URL
 - [x] Verify all 14 trust badges display correctly
+- [x] Save checkpoint
+
+## Bug Fixes — April 18 2026
+- [x] Fix broken gallery page images — replaced /img proxy with CloudFront CDN URL
+- [x] Fix homepage address tiles — changed to dark design matching Contact Us style
+- [x] Fix Contact Us page maps — polling for google.maps.Map constructor readiness
 - [ ] Save checkpoint

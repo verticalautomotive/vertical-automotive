@@ -37,7 +37,7 @@ const ALL_SERVICES = [
   { slug: "tire-service",             name: "Tire Service & Replacement",          shortTitle: "Tires",                 icon: "circle" },
 ];
 
-const CDN = "/img";
+const CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB";
 
 // ─── Location-specific data ──────────────────────────────────────────────────
 interface LocationData {
