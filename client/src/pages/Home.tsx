@@ -45,60 +45,27 @@ const HERO_VIDEO_DESKTOP = "https://d2xsxph8kpxj0f.cloudfront.net/31051966335481
 
 /**
  * HeroBackground — renders the hero section background.
- * Mobile (< 768px): static poster image only. Zero video bytes downloaded.
- * Desktop/tablet (≥ 768px): autoplay muted looping video with poster for instant first paint.
- * On desktop, video src is set after mount (via useEffect) so the poster renders first,
+ * All devices: autoplay muted looping video with poster for instant first paint.
+ * Mobile (< 768px): uses smaller mobile-optimized video.
+ * Desktop/tablet (≥ 768px): uses full desktop video.
+ * Video src is set after mount (via useEffect) so the poster renders first,
  * then the video loads without blocking the LCP image.
  */
 function HeroBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  // Use matchMedia in the initializer instead of window.innerWidth.
-  // matchMedia does NOT force a layout reflow — it reads the media state
-  // which is already computed by the browser's style engine.
-  // window.innerWidth reads layout geometry and can trigger a forced reflow.
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== 'undefined'
-      ? window.matchMedia('(max-width: 767px)').matches
-      : false
-  );
 
+  // Attach video src after first paint so poster renders as LCP
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 767px)');
-    // No need to call setIsMobile(mq.matches) here — useState initializer already did it.
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
-
-  // On desktop: attach video src after first paint so poster renders as LCP
-  useEffect(() => {
-    if (isMobile || !videoRef.current) return;
+    if (!videoRef.current) return;
     const video = videoRef.current;
     if (!video.src) {
-      // Use matchMedia instead of window.innerWidth to avoid forced layout reflow.
-      // matchMedia reads the pre-computed media state; innerWidth reads layout geometry.
-      const isTablet = window.matchMedia('(max-width: 1024px)').matches;
-      const src = isTablet ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP;
+      const isMobileOrTablet = window.matchMedia('(max-width: 1024px)').matches;
+      const src = isMobileOrTablet ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP;
       video.src = src;
       video.load();
       video.play().catch(() => { /* autoplay blocked — poster remains visible */ });
     }
-  }, [isMobile]);
-
-  if (isMobile) {
-    // Mobile: pure CSS background image — zero video download
-    return (
-      <img
-        src={HERO_POSTER}
-        alt=""
-        aria-hidden="true"
-        fetchPriority="high"
-        width={800}
-        height={600}
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-    );
-  }
+  }, []);
 
   return (
     <video

@@ -830,4 +830,9 @@
 
 ## Contact Us Maps Zoom Adjustment
 - [x] Zoom out maps slightly on Contact Us page (zoom 16 → 14)
+- [x] Save checkpoint
+
+## Mobile Hero Video Not Playing
+- [x] Diagnose: video was intentionally disabled on mobile during perf optimization (static poster only)
+- [x] Fix: restored video on all devices, uses mobile-optimized mp4 on small screens, defers src after poster paint
 - [ ] Save checkpoint
