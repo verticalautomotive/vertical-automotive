@@ -826,4 +826,8 @@
 - [x] Fix broken gallery page images — replaced /img proxy with CloudFront CDN URL
 - [x] Fix homepage address tiles — changed to dark design matching Contact Us style
 - [x] Fix Contact Us page maps — polling for google.maps.Map constructor readiness
+- [x] Save checkpoint
+
+## Contact Us Maps Zoom Adjustment
+- [x] Zoom out maps slightly on Contact Us page (zoom 16 → 14)
 - [ ] Save checkpoint

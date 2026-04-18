@@ -40,7 +40,7 @@ function ContactLocationCard({ location, isSpanish }: { location: typeof LOCATIO
         <LazyMap
           className="w-full h-full"
           initialCenter={coords}
-          initialZoom={16}
+          initialZoom={14}
           onMapReady={handleMapReady}
           locationName={location.name}
           address={location.fullAddress}
