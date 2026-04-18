@@ -815,3 +815,9 @@
 - [x] Batch C: Analyzed — no code changes needed, CDN headers require CloudFront access
 - [x] Batch D: Gallery images 24→8 DOM, all lazy — Score 55 (no change, kept)
 - [x] Phase 4: Root cause report complete — CSR architecture is the ceiling (Score ~55)
+
+## Fix Broken Trust Badge Logos
+- [x] Diagnose broken image URLs in TrustBadges component
+- [x] Fix: replaced /img proxy prefix with full CloudFront CDN URL
+- [x] Verify all 14 trust badges display correctly
+- [ ] Save checkpoint
