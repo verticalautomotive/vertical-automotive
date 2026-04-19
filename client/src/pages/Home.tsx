@@ -53,19 +53,24 @@ const HERO_VIDEO_DESKTOP = "https://d2xsxph8kpxj0f.cloudfront.net/31051966335481
  */
 function HeroBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
 
-  // Attach video src after first paint so poster renders as LCP
   useEffect(() => {
-    if (!videoRef.current) return;
-    const video = videoRef.current;
-    if (!video.src) {
-      const isMobileOrTablet = window.matchMedia('(max-width: 1024px)').matches;
-      const src = isMobileOrTablet ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP;
-      video.src = src;
-      video.load();
-      video.play().catch(() => { /* autoplay blocked — poster remains visible */ });
-    }
+    // Determine the right video source based on screen width
+    const isMobileOrTablet = window.matchMedia('(max-width: 1024px)').matches;
+    setVideoSrc(isMobileOrTablet ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP);
   }, []);
+
+  // Once video src is set and element is in DOM, ensure playback starts
+  useEffect(() => {
+    if (!videoRef.current || !videoSrc) return;
+    const video = videoRef.current;
+    // Small delay to let the browser process the new source
+    const timer = setTimeout(() => {
+      video.play().catch(() => { /* autoplay blocked — poster remains visible */ });
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [videoSrc]);
 
   return (
     <video
@@ -74,8 +79,9 @@ function HeroBackground() {
       muted
       loop
       playsInline
-      preload="none"
+      preload="auto"
       poster={HERO_POSTER}
+      src={videoSrc || undefined}
       className="absolute inset-0 w-full h-full object-cover"
     />
   );

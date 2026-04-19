@@ -847,4 +847,8 @@
 - [x] Reduce hero DOM: removed 6 elements (badge, divider, warranty block, grid overlay, sub-text)
 - [x] Verify mobile + desktop rendering (both verified)
 - [x] Updated static hero shell in index.html to match
+- [x] Save checkpoint
+
+## Mobile Hero Video Not Playing (Again)
+- [x] Fix mobile hero video: replaced preload=none + deferred src with preload=auto + React state-driven src for iOS compatibility
 - [ ] Save checkpoint
