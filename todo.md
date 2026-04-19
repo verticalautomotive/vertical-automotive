@@ -851,4 +851,5 @@
 
 ## Mobile Hero Video Not Playing (Again)
 - [x] Fix mobile hero video: replaced preload=none + deferred src with preload=auto + React state-driven src for iOS compatibility
+- [x] Fix mobile hero video (v2): use <source> with type=video/mp4, aggressive play retry, touchstart fallback for iOS
 - [ ] Save checkpoint

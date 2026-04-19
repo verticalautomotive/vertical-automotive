@@ -53,24 +53,60 @@ const HERO_VIDEO_DESKTOP = "https://d2xsxph8kpxj0f.cloudfront.net/31051966335481
  */
 function HeroBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Determine the right video source based on screen width
-    const isMobileOrTablet = window.matchMedia('(max-width: 1024px)').matches;
-    setVideoSrc(isMobileOrTablet ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP);
+    setIsMobile(window.matchMedia('(max-width: 1024px)').matches);
+    setMounted(true);
   }, []);
 
-  // Once video src is set and element is in DOM, ensure playback starts
+  // Aggressive play retry for iOS Safari
   useEffect(() => {
-    if (!videoRef.current || !videoSrc) return;
+    if (!mounted || !videoRef.current) return;
     const video = videoRef.current;
-    // Small delay to let the browser process the new source
-    const timer = setTimeout(() => {
-      video.play().catch(() => { /* autoplay blocked — poster remains visible */ });
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [videoSrc]);
+    let attempts = 0;
+    const maxAttempts = 5;
+
+    const tryPlay = () => {
+      if (attempts >= maxAttempts) return;
+      attempts++;
+      // Ensure muted (iOS requirement)
+      video.muted = true;
+      video.play().catch(() => {
+        // Retry with increasing delay
+        setTimeout(tryPlay, attempts * 500);
+      });
+    };
+
+    // Wait for video to have enough data, then play
+    if (video.readyState >= 2) {
+      tryPlay();
+    } else {
+      video.addEventListener('loadeddata', tryPlay, { once: true });
+      // Also try on canplay as fallback
+      video.addEventListener('canplay', tryPlay, { once: true });
+    }
+
+    // Also try on user interaction (iOS may require this)
+    const onInteraction = () => {
+      if (video.paused) {
+        video.muted = true;
+        video.play().catch(() => {});
+      }
+      document.removeEventListener('touchstart', onInteraction);
+      document.removeEventListener('click', onInteraction);
+    };
+    document.addEventListener('touchstart', onInteraction, { once: true, passive: true });
+    document.addEventListener('click', onInteraction, { once: true });
+
+    return () => {
+      document.removeEventListener('touchstart', onInteraction);
+      document.removeEventListener('click', onInteraction);
+    };
+  }, [mounted]);
+
+  const videoSrc = isMobile ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP;
 
   return (
     <video
@@ -81,9 +117,10 @@ function HeroBackground() {
       playsInline
       preload="auto"
       poster={HERO_POSTER}
-      src={videoSrc || undefined}
       className="absolute inset-0 w-full h-full object-cover"
-    />
+    >
+      {mounted && <source src={videoSrc} type="video/mp4" />}
+    </video>
   );
 }
 
