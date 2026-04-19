@@ -835,4 +835,16 @@
 ## Mobile Hero Video Not Playing
 - [x] Diagnose: video was intentionally disabled on mobile during perf optimization (static poster only)
 - [x] Fix: restored video on all devices, uses mobile-optimized mp4 on small screens, defers src after poster paint
+- [x] Save checkpoint
+
+## Mobile Hero Redesign
+- [x] Simplify hero: H1 + one-line subheadline + primary CTA + secondary CTA
+- [x] Remove from hero: "36 Years" banner, long cert text, redundant value stacking, grid overlay
+- [x] Redistribute: all keywords already in About/Stats sections below fold
+- [x] CTA hierarchy: Schedule Appointment dominant button, View Offers text link
+- [x] Mobile-first: fits within first viewport (verified)
+- [x] Preserve SEO: H1 with "Fort Lauderdale" & "Wilton Manors", semantic HTML
+- [x] Reduce hero DOM: removed 6 elements (badge, divider, warranty block, grid overlay, sub-text)
+- [x] Verify mobile + desktop rendering (both verified)
+- [x] Updated static hero shell in index.html to match
 - [ ] Save checkpoint

@@ -254,27 +254,21 @@
         The shell mirrors the hero section structure from Home.tsx.
       -->
       <style>
-        #static-hero-shell{position:relative;min-height:65vh;display:flex;align-items:center;overflow:hidden;background:#1a1a2e;color:#fff;font-family:"Space Grotesk",system-ui,sans-serif}
-        @media(min-width:640px){#static-hero-shell{min-height:90vh}}
+        #static-hero-shell{position:relative;min-height:50vh;display:flex;align-items:center;overflow:hidden;background:#0a0a12;color:#fff;font-family:"Space Grotesk",system-ui,sans-serif}
+        @media(min-width:640px){#static-hero-shell{min-height:85vh}}
         #static-hero-shell .sh-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-        #static-hero-shell .sh-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(20,20,30,.95) 0%,rgba(20,20,30,.7) 50%,rgba(20,20,30,.4) 100%)}
-        #static-hero-shell .sh-content{position:relative;z-index:10;width:100%;max-width:1400px;margin:0 auto;padding:0 1rem}
+        #static-hero-shell .sh-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,18,.92) 0%,rgba(10,10,18,.65) 55%,rgba(10,10,18,.35) 100%)}
+        #static-hero-shell .sh-content{position:relative;z-index:10;width:100%;max-width:1400px;margin:0 auto;padding:4rem 1rem}
         @media(min-width:640px){#static-hero-shell .sh-content{padding:0 1.5rem}}
         @media(min-width:1024px){#static-hero-shell .sh-content{padding:0 2rem}}
-        #static-hero-shell .sh-inner{max-width:48rem}
-        #static-hero-shell .sh-badge{display:inline-block;background:#0077cc;color:#fff;padding:6px 16px;margin-bottom:16px;font-weight:700;font-size:12px;letter-spacing:.05em}
-        @media(min-width:640px){#static-hero-shell .sh-badge{padding:8px 24px;margin-bottom:24px;font-size:14px}}
-        #static-hero-shell h1{font-size:1.5rem;font-weight:900;margin-bottom:8px;line-height:1.1;letter-spacing:-.02em}
-        @media(min-width:640px){#static-hero-shell h1{font-size:2.25rem;margin-bottom:12px}}
+        #static-hero-shell .sh-inner{max-width:42rem}
+        #static-hero-shell h1{font-size:1.875rem;font-weight:900;margin-bottom:12px;line-height:1.1;letter-spacing:-.02em}
+        @media(min-width:640px){#static-hero-shell h1{font-size:2.25rem;margin-bottom:20px}}
         @media(min-width:768px){#static-hero-shell h1{font-size:3rem}}
-        #static-hero-shell .sh-sub{font-size:1rem;font-weight:700;margin-bottom:16px;opacity:.7}
-        @media(min-width:640px){#static-hero-shell .sh-sub{font-size:1.25rem;margin-bottom:24px}}
-        #static-hero-shell .sh-bar{height:4px;width:5rem;background:#0077cc;margin-bottom:16px}
-        @media(min-width:640px){#static-hero-shell .sh-bar{width:8rem;margin-bottom:32px}}
-        #static-hero-shell .sh-warranty{font-size:1rem;font-weight:500;margin-bottom:20px;line-height:1.6}
-        @media(min-width:640px){#static-hero-shell .sh-warranty{font-size:1.25rem;margin-bottom:32px}}
-        #static-hero-shell .sh-warranty span{color:#9ca3af;font-size:.875rem}
-        @media(min-width:640px){#static-hero-shell .sh-warranty span{font-size:1rem}}
+        @media(min-width:1024px){#static-hero-shell h1{font-size:3.75rem}}
+        #static-hero-shell h1 span{color:#0077cc}
+        #static-hero-shell .sh-sub{font-size:.875rem;font-weight:500;margin-bottom:24px;color:rgba(255,255,255,.5);letter-spacing:.05em}
+        @media(min-width:640px){#static-hero-shell .sh-sub{font-size:1.125rem;margin-bottom:32px}}
         #static-hero-shell .sh-nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,10,20,.95);padding:12px 1rem;display:flex;align-items:center}
         @media(min-width:640px){#static-hero-shell .sh-nav{padding:12px 1.5rem}}
         @media(min-width:1024px){#static-hero-shell .sh-nav{padding:12px 2rem}}
@@ -288,11 +282,8 @@
         <div class="sh-overlay"></div>
         <div class="sh-content">
           <div class="sh-inner">
-            <div class="sh-badge">36 YEARS OF EXCELLENCE</div>
-            <h1>Auto Repair in Fort Lauderdale &amp; Wilton Manors You Can Trust</h1>
-            <p class="sh-sub">Total Car Care for <span style="color:#0077cc">All Makes &amp; Models</span></p>
-            <div class="sh-bar"></div>
-            <p class="sh-warranty">36,000-Mile / 36-Month Warranty on All Repairs<br/><span>ASE-Certified Mechanics &bull; Tesla, Asian, European &amp; Domestic Specialists</span></p>
+            <h1>Auto Repair in <span>Fort Lauderdale</span> &amp; <span>Wilton Manors</span></h1>
+            <p class="sh-sub">ASE-Certified &bull; 36-Month Warranty &bull; All Makes &amp; Models</p>
           </div>
         </div>
       </div>

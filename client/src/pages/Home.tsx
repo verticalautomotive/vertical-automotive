@@ -172,60 +172,36 @@ export default function Home() {
 
       <Navigation />
 
-      {/* Hero Section — mobile: shorter, tighter */}
+      {/* Hero Section — clean, conversion-focused */}
       <section 
-        className="relative min-h-[65vh] sm:min-h-[90vh] flex items-center bg-secondary text-secondary-foreground overflow-hidden"
+        className="relative min-h-[50vh] sm:min-h-[85vh] flex items-center bg-secondary text-secondary-foreground overflow-hidden"
       >
-        {/*
-          Hero background media strategy:
-          - Mobile (< 768px): static poster image only — NO video download (saves 2.8MB on mobile)
-          - Desktop/tablet (≥ 768px): autoplay background video with poster for instant first paint
-          preload="none" defers video bytes until after first paint on desktop too.
-        */}
         <HeroBackground />
-        {/* Gradient overlay */}
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(20, 20, 30, 0.95) 0%, rgba(20, 20, 30, 0.7) 50%, rgba(20, 20, 30, 0.4) 100%)' }} />
-        <div className="absolute inset-0 grid-pattern opacity-30" />
+        {/* Simplified gradient overlay — strong left for text readability */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(10, 10, 18, 0.92) 0%, rgba(10, 10, 18, 0.65) 55%, rgba(10, 10, 18, 0.35) 100%)' }} />
         
-        <div className="container relative z-10">
-          <div className="max-w-3xl">
-            <div className="inline-block bg-primary text-primary-foreground px-4 sm:px-6 py-1.5 sm:py-2 mb-4 sm:mb-6 font-bold text-xs sm:text-sm tracking-wider">
-              {COMPANY.yearsExperience} {t.yearsExcellence}
-            </div>
-            
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black mb-2 sm:mb-3 leading-tight tracking-tight">
+        <div className="container relative z-10 py-16 sm:py-0">
+          <div className="max-w-2xl">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-3 sm:mb-5 leading-[1.1] tracking-tight">
               {isSpanish
-                ? "Reparación de Autos en Fort Lauderdale y Wilton Manors en la que Puede Confiar"
-                : "Auto Repair in Fort Lauderdale & Wilton Manors You Can Trust"}
+                ? <>Reparación de Autos en <span className="text-primary">Fort Lauderdale</span> y <span className="text-primary">Wilton Manors</span></>
+                : <>Auto Repair in <span className="text-primary">Fort Lauderdale</span> & <span className="text-primary">Wilton Manors</span></>}
             </h1>
 
-            <p className="text-base sm:text-xl md:text-2xl font-bold mb-4 sm:mb-6 leading-snug text-secondary-foreground/70">
-              {t.totalAuto} <span className="text-primary">{t.care}</span>
+            <p className="text-sm sm:text-lg md:text-xl text-secondary-foreground/70 font-medium mb-6 sm:mb-8 tracking-wide">
+              {isSpanish
+                ? "Certificado ASE • Garantía de 36 Meses • Todas las Marcas y Modelos"
+                : "ASE-Certified • 36-Month Warranty • All Makes & Models"}
             </p>
             
-            <div className="h-1 w-20 sm:w-32 bg-primary mb-4 sm:mb-8" />
-            
-            <p className="text-base sm:text-xl md:text-2xl mb-5 sm:mb-8 leading-relaxed font-medium">
-              {t.warranty3Year}
-              <br />
-              <span className="text-gray-400 text-sm sm:text-base md:text-xl">
-                {t.teslaAsianEuropean}
-              </span>
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">              <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackSchedule("hero")}>
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-wider text-sm sm:text-base px-6 sm:px-8 py-4 sm:py-6 shadow-lg w-full sm:w-auto">
-                  {t.scheduleAppointment}
+            <div className="flex items-center gap-4 sm:gap-5">
+              <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackSchedule("hero")}>
+                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-wider text-sm sm:text-base px-6 sm:px-10 py-5 sm:py-6 shadow-lg">
+                  {isSpanish ? "AGENDAR CITA" : "SCHEDULE APPOINTMENT"}
                 </Button>
               </a>
-              <Link href={offersPath}>
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="bg-transparent border-2 border-secondary-foreground text-secondary-foreground hover:bg-secondary-foreground hover:text-secondary font-bold text-sm sm:text-lg px-6 sm:px-8 py-4 sm:py-6 w-full sm:w-auto"
-                >
-                  {t.viewOffers}
-                </Button>
+              <Link href={offersPath} className="text-secondary-foreground/60 hover:text-primary text-sm sm:text-base font-medium underline underline-offset-4 decoration-secondary-foreground/30 hover:decoration-primary transition-colors">
+                {isSpanish ? "Ver Ofertas" : "View Offers"}
               </Link>
             </div>
           </div>
@@ -233,9 +209,9 @@ export default function Home() {
 
         {/* Diagonal bottom edge */}
         <div 
-          className="absolute bottom-0 left-0 right-0 h-12 sm:h-24 bg-background"
+          className="absolute bottom-0 left-0 right-0 h-10 sm:h-20 bg-background"
           style={{
-            clipPath: 'polygon(0 100%, 100% 100%, 100% 0, 0 80%)'
+            clipPath: 'polygon(0 100%, 100% 100%, 100% 0, 0 70%)'
           }}
         />
       </section>
