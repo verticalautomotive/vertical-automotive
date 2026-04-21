@@ -115,7 +115,7 @@ function HeroBackground() {
       muted
       loop
       playsInline
-      preload="auto"
+      preload="none"
       poster={HERO_POSTER}
       className="absolute inset-0 w-full h-full object-cover"
     >

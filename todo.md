@@ -855,10 +855,10 @@
 - [x] Save checkpoint
 
 ## Add "What to Expect" & Warranty FAQ
-- [ ] Add "What to Expect" section to each service page (process, timeline, pricing range)
-- [ ] Add warranty FAQ question and answer to FAQ section
-- [ ] Verify both additions render correctly
-- [ ] Save checkpoint
+- [x] Add "What to Expect" section to each service page (process, timeline, pricing range)
+- [x] Add warranty FAQ question and answer to FAQ section
+- [x] Verify both additions render correctly
+- [x] Save checkpoint
 
 ## Performance & SEO Optimization (Staged)
 ### STAGE 1 — Static Prerendering
@@ -868,9 +868,9 @@
 - [x] Update serveStatic in server/_core/vite.ts to serve pre-built HTML per route
 - [x] Update build script to run prerender after Vite build
 - [x] Verify: 125 routes prerendered with unique titles, descriptions, hreflang
-- [ ] STAGE 2 — P0 SEO Fixes (Unique Metadata Per Route)
-- [ ] STAGE 3 — Hero Video LCP Optimization
-- [ ] STAGE 4 — CSS and JS Performance
-- [ ] STAGE 5 — HTTP Caching Strategy
-- [ ] STAGE 6 — Content + Schema Additions
-- [ ] STAGE 7 — Housekeeping & Testing
+- [x] STAGE 2 — P0 SEO Fixes: 125 routes with unique titles/descriptions, zero duplicates
+- [x] STAGE 3 — Hero Video LCP: preload="none" on video, poster preloaded with fetchpriority=high
+- [x] STAGE 4 — CSS/JS Performance: already optimized (async CSS, deferred scripts, lazy images)
+- [x] STAGE 5 — HTTP Caching: already optimized (1yr immutable for assets, no-cache for HTML)
+- [x] STAGE 6 — Content + Schema: FAQPage, BreadcrumbList, LocalBusiness schema on all pages
+- [x] STAGE 7 — Housekeeping: 210 tests passing, TypeScript clean, build pipeline verified
