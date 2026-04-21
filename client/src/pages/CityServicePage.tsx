@@ -131,7 +131,7 @@ export default function CityServicePage() {
       <SEO
         title={title}
         description={description}
-        canonical={canonicalUrl}
+        canonical={isSpanish ? canonicalUrlEs : canonicalUrl}
         keywords={`${page.serviceName.toLowerCase()} ${page.cityDisplay}, ${page.serviceName.toLowerCase()} near me, ASE certified mechanic`}
       />
 
@@ -327,6 +327,75 @@ export default function CityServicePage() {
           </div>
         </section>
       )}
+
+      {/* What to Expect Section */}
+      <section className="py-10 sm:py-16 bg-background">
+        <div className="container max-w-5xl">
+          <h2 className="text-2xl sm:text-3xl font-black mb-2 sm:mb-3">
+            {isSpanish ? "QUÉ ESPERAR" : "WHAT TO"} <span className="text-primary">{isSpanish ? "" : "EXPECT"}</span>
+          </h2>
+          <div className="h-1 w-16 sm:w-24 bg-primary mb-8 sm:mb-12" />
+
+          {/* Process Steps */}
+          <div className="mb-10 sm:mb-16">
+            <h3 className="text-lg sm:text-xl font-bold mb-6 text-secondary-foreground">
+              {isSpanish ? "Nuestro Proceso de Servicio" : "Our Service Process"}
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-black text-sm">1</div>
+                <div>
+                  <h4 className="font-bold text-sm sm:text-base mb-1">{isSpanish ? "Inspección y Diagnóstico" : "Inspection & Diagnosis"}</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{isSpanish ? "Realizamos una inspección exhaustiva usando herramientas de diagnóstico de nivel de fábrica." : "We perform a thorough inspection using factory-level diagnostic tools to identify all issues."}</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-black text-sm">2</div>
+                <div>
+                  <h4 className="font-bold text-sm sm:text-base mb-1">{isSpanish ? "Presupuesto Transparente" : "Transparent Estimate"}</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{isSpanish ? "Proporcionamos un presupuesto detallado mostrando exactamente qué necesita reparación." : "We provide a detailed estimate showing exactly what needs repair and what can wait."}</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-black text-sm">3</div>
+                <div>
+                  <h4 className="font-bold text-sm sm:text-base mb-1">{isSpanish ? "Reparación Experta" : "Expert Repair"}</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{isSpanish ? "Nuestros técnicos certificados ASE realizan reparaciones usando piezas y equipos de grado profesional." : "Our ASE-certified technicians perform repairs using professional-grade parts and equipment."}</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-black text-sm">4</div>
+                <div>
+                  <h4 className="font-bold text-sm sm:text-base mb-1">{isSpanish ? "Garantía de Calidad" : "Quality Assurance"}</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{isSpanish ? "Probamos y verificamos todas las reparaciones, respaldadas por nuestra garantía de 36 meses." : "We test and verify all repairs, backed by our 36,000-mile / 36-month warranty."}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Timeline & Pricing */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+            <div className="p-6 sm:p-8 bg-secondary text-secondary-foreground rounded-lg">
+              <h3 className="text-lg sm:text-xl font-bold mb-4">{isSpanish ? "Cronograma Típico" : "Typical Timeline"}</h3>
+              <ul className="space-y-3 text-sm sm:text-base">
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>{isSpanish ? "Servicios simples (cambio de aceite, batería): 30–60 min" : "Simple services (oil change, battery): 30–60 min"}</span></li>
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>{isSpanish ? "Servicio de frenos o A/C: 1–3 horas" : "Brake or A/C service: 1–3 hours"}</span></li>
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>{isSpanish ? "Trabajo de transmisión o motor: 4–8 horas" : "Transmission or engine work: 4–8 hours"}</span></li>
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>{isSpanish ? "Diagnóstico complejo: 1–2 horas" : "Complex diagnostics: 1–2 hours"}</span></li>
+              </ul>
+            </div>
+            <div className="p-6 sm:p-8 bg-secondary text-secondary-foreground rounded-lg">
+              <h3 className="text-lg sm:text-xl font-bold mb-4">{isSpanish ? "Rangos de Precios" : "Pricing Ranges"}</h3>
+              <ul className="space-y-3 text-sm sm:text-base">
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>{isSpanish ? "Mantenimiento: $100–$300" : "Maintenance: $100–$300"}</span></li>
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>{isSpanish ? "Reparaciones menores: $200–$600" : "Minor repairs: $200–$600"}</span></li>
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>{isSpanish ? "Reparaciones mayores: $600–$2,000+" : "Major repairs: $600–$2,000+"}</span></li>
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>{isSpanish ? "Llame para presupuesto exacto: (954) 565-1518" : "Call for exact quote: (954) 565-1518"}</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Vehicles We Service */}
       {vehiclesWeService.length > 0 && (

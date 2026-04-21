@@ -297,7 +297,74 @@ export default function VehicleDetail() {
         </div>
       </section>
 
-      {/* Photo Gallery */}
+        {/* What to Expect Section */}
+      <section className="py-10 sm:py-20 bg-background">
+        <div className="container max-w-5xl">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black mb-3 sm:mb-4">
+            WHAT TO <span className="text-primary">EXPECT</span>
+          </h2>
+          <div className="h-1 w-12 sm:w-16 bg-primary mb-8 sm:mb-12" />
+
+          {/* Process Steps */}
+          <div className="mb-10 sm:mb-16">
+            <h3 className="text-lg sm:text-xl font-bold mb-6 text-secondary-foreground">Our Service Process</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-black text-sm">1</div>
+                <div>
+                  <h4 className="font-bold text-sm sm:text-base mb-1">Inspection & Diagnosis</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">We perform a thorough inspection using factory-level diagnostic tools to identify all issues.</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-black text-sm">2</div>
+                <div>
+                  <h4 className="font-bold text-sm sm:text-base mb-1">Transparent Estimate</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">We provide a detailed estimate showing exactly what needs repair and what can wait.</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-black text-sm">3</div>
+                <div>
+                  <h4 className="font-bold text-sm sm:text-base mb-1">Expert Repair</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Our ASE-certified technicians perform repairs using professional-grade parts and equipment.</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-black text-sm">4</div>
+                <div>
+                  <h4 className="font-bold text-sm sm:text-base mb-1">Quality Assurance</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">We test and verify all repairs, backed by our 36,000-mile / 36-month warranty.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Timeline & Pricing */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+            <div className="p-6 sm:p-8 bg-secondary text-secondary-foreground rounded-lg">
+              <h3 className="text-lg sm:text-xl font-bold mb-4">Typical Timeline</h3>
+              <ul className="space-y-3 text-sm sm:text-base">
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>Simple services (oil change, battery): 30–60 min</span></li>
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>Brake or A/C service: 1–3 hours</span></li>
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>Transmission or engine work: 4–8 hours</span></li>
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>Complex diagnostics: 1–2 hours</span></li>
+              </ul>
+            </div>
+            <div className="p-6 sm:p-8 bg-secondary text-secondary-foreground rounded-lg">
+              <h3 className="text-lg sm:text-xl font-bold mb-4">Pricing Ranges</h3>
+              <ul className="space-y-3 text-sm sm:text-base">
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>Maintenance: $100–$300</span></li>
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>Minor repairs: $200–$600</span></li>
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>Major repairs: $600–$2,000+</span></li>
+                <li className="flex gap-3"><span className="text-primary font-bold">•</span> <span>Call for exact quote: (954) 565-1518</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery */}
       <PhotoGallery
         images={galleryImages}
         isSpanish={isSpanish}

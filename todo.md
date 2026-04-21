@@ -853,3 +853,24 @@
 - [x] Fix mobile hero video: replaced preload=none + deferred src with preload=auto + React state-driven src for iOS compatibility
 - [x] Fix mobile hero video (v2): use <source> with type=video/mp4, aggressive play retry, touchstart fallback for iOS
 - [x] Save checkpoint
+
+## Add "What to Expect" & Warranty FAQ
+- [ ] Add "What to Expect" section to each service page (process, timeline, pricing range)
+- [ ] Add warranty FAQ question and answer to FAQ section
+- [ ] Verify both additions render correctly
+- [ ] Save checkpoint
+
+## Performance & SEO Optimization (Staged)
+### STAGE 1 — Static Prerendering
+- [x] Install Puppeteer for headless rendering
+- [x] Create scripts/prerender.mjs — renders all 153 routes with headless Chromium
+- [x] Fix canonical URL bug in CityServicePage (Spanish pages were using EN canonical)
+- [x] Update serveStatic in server/_core/vite.ts to serve pre-built HTML per route
+- [x] Update build script to run prerender after Vite build
+- [x] Verify: 125 routes prerendered with unique titles, descriptions, hreflang
+- [ ] STAGE 2 — P0 SEO Fixes (Unique Metadata Per Route)
+- [ ] STAGE 3 — Hero Video LCP Optimization
+- [ ] STAGE 4 — CSS and JS Performance
+- [ ] STAGE 5 — HTTP Caching Strategy
+- [ ] STAGE 6 — Content + Schema Additions
+- [ ] STAGE 7 — Housekeeping & Testing

@@ -113,9 +113,31 @@ export function serveStatic(app: Express) {
     })
   );
 
-  // fall through to index.html if the file doesn't exist
-  app.use("*", (_req, res) => {
+  // Prerendered HTML: serve per-route index.html if it exists.
+  // This handles routes like /fort-lauderdale/tesla-ev-repair → dist/public/fort-lauderdale/tesla-ev-repair/index.html
+  // Falls back to the root index.html for routes without a pre-built file (e.g., /admin, /404).
+  app.use("*", (req, res) => {
     res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-    res.sendFile(path.resolve(distPath, "index.html"));
+
+    // Normalize the path: strip query string, decode URI, remove trailing slash
+    const rawPath = req.path || req.originalUrl.split("?")[0];
+    const normalizedPath = rawPath.replace(/\/+$/, "") || "/";
+
+    // Check for a pre-built HTML file for this route
+    let prebuiltPath: string;
+    if (normalizedPath === "/") {
+      prebuiltPath = path.resolve(distPath, "index.html");
+    } else {
+      const routeSegment = normalizedPath.replace(/^\//, "");
+      prebuiltPath = path.resolve(distPath, routeSegment, "index.html");
+    }
+
+    if (fs.existsSync(prebuiltPath)) {
+      // Serve the pre-built HTML with unique metadata
+      res.sendFile(prebuiltPath);
+    } else {
+      // Fall back to root index.html (SPA shell) for unknown routes
+      res.sendFile(path.resolve(distPath, "index.html"));
+    }
   });
 }

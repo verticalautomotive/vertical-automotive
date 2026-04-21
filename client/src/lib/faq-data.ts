@@ -338,6 +338,10 @@ export const SERVICE_FAQS: Record<string, FAQItem[]> = {
 export const VEHICLE_FAQS: Record<string, FAQItem[]> = {
   "tesla-vehicles-service": [
     {
+      question: "What is the warranty on your repairs?",
+      answer: "All repairs at Vertical Automotive are backed by a comprehensive 3-year / 36,000-mile warranty. This covers parts and labor on any repair we perform, giving you peace of mind that your vehicle is protected. If any covered repair fails within the warranty period, we'll fix it at no charge.",
+    },
+    {
       question: "Is there a Tesla repair shop near me in Fort Lauderdale?",
       answer: "Yes — Vertical Automotive serves Tesla owners throughout Fort Lauderdale, Wilton Manors, Oakland Park, and Broward County. Our ASE-certified EV technicians are trained on Model S, 3, X, and Y diagnostics, battery management, LDU service, and A/C repair. We're located at 707 NE 11th Street, Fort Lauderdale and 1100 W Oakland Park Blvd, Wilton Manors.",
     },
@@ -359,6 +363,10 @@ export const VEHICLE_FAQS: Record<string, FAQItem[]> = {
     },
   ],
   "european-vehicles-service": [
+    {
+      question: "What is the warranty on your repairs?",
+      answer: "All repairs at Vertical Automotive are backed by a comprehensive 3-year / 36,000-mile warranty. This covers parts and labor on any repair we perform, giving you peace of mind that your vehicle is protected. If any covered repair fails within the warranty period, we'll fix it at no charge.",
+    },
     {
       question: "Where can I find a European auto repair shop near me in Fort Lauderdale?",
       answer: "Vertical Automotive has two locations serving European car owners in Fort Lauderdale and Wilton Manors. We specialize in BMW, Mercedes-Benz, Audi, Porsche, Volkswagen, Land Rover, and Volvo. Our ASE-certified technicians use factory-level diagnostic tools for accurate European vehicle service.",
@@ -382,6 +390,10 @@ export const VEHICLE_FAQS: Record<string, FAQItem[]> = {
   ],
   "asian-vehicles-service": [
     {
+      question: "What is the warranty on your repairs?",
+      answer: "All repairs at Vertical Automotive are backed by a comprehensive 3-year / 36,000-mile warranty. This covers parts and labor on any repair we perform, giving you peace of mind that your vehicle is protected. If any covered repair fails within the warranty period, we'll fix it at no charge.",
+    },
+    {
       question: "Is there a trusted Asian car mechanic near me in Fort Lauderdale?",
       answer: "Vertical Automotive specializes in Asian vehicle repair in Fort Lauderdale and Wilton Manors. We service Toyota, Honda, Lexus, Acura, Nissan, Infiniti, Mazda, Subaru, Hyundai, and Kia. Our ASE-certified technicians use manufacturer-level diagnostic tools for accurate service.",
     },
@@ -403,6 +415,10 @@ export const VEHICLE_FAQS: Record<string, FAQItem[]> = {
     },
   ],
   "domestic-vehicles-service": [
+    {
+      question: "What is the warranty on your repairs?",
+      answer: "All repairs at Vertical Automotive are backed by a comprehensive 3-year / 36,000-mile warranty. This covers parts and labor on any repair we perform, giving you peace of mind that your vehicle is protected. If any covered repair fails within the warranty period, we'll fix it at no charge.",
+    },
     {
       question: "Where can I find a domestic car repair shop near me in Fort Lauderdale?",
       answer: "Vertical Automotive serves domestic vehicle owners throughout Fort Lauderdale, Wilton Manors, and Broward County. We specialize in Ford, Chevrolet, GMC, Dodge, RAM, Jeep, and Chrysler vehicles. Our ASE-certified mechanics use advanced diagnostic tools for accurate, reliable repairs.",
