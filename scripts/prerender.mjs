@@ -248,27 +248,30 @@ async function main() {
           timeout: 20000,
         });
 
-        // Wait for React to mount and SEO component to run
-        // We check for a non-empty, non-default title
+        // Wait for React to mount and SEO component to run.
+        // The default title in index.html is the generic fallback — we wait
+        // until the SEO component replaces it with a page-specific title.
+        const DEFAULT_TITLES = [
+          "Vertical Automotive | Auto Repair Fort Lauderdale",
+          "Auto Repair Fort Lauderdale & Wilton Manors | All Makes",
+          "Vite App",
+          "",
+        ];
         await page
           .waitForFunction(
-            () => {
+            (defaults) => {
               const title = document.title;
-              return (
-                title &&
-                title !== "" &&
-                title !== "Vite App" &&
-                title !== "Vertical Automotive"
-              );
+              return title && !defaults.includes(title);
             },
-            { timeout: 8000 }
+            { timeout: 12000 },
+            DEFAULT_TITLES
           )
           .catch(() => {
-            // If title doesn't change, still capture whatever is rendered
+            // If title doesn't change within timeout, still capture whatever is rendered
           });
 
-        // Small extra delay for all useEffects to flush
-        await new Promise((r) => setTimeout(r, 300));
+        // Extra delay for all useEffects to flush (lazy-loaded components)
+        await new Promise((r) => setTimeout(r, 500));
 
         // Get the fully rendered HTML
         let html = await page.content();
