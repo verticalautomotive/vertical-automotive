@@ -67,20 +67,127 @@ async function startServer() {
 
   // Old slug-format URLs (e.g. /brake-system-vertical-automotive/) that Google may have indexed
   const slugRedirects: Record<string, string> = {
+    // ── English service pages with -vertical-automotive suffix ──
     "/brake-system-vertical-automotive/": "/fort-lauderdale/brake-repair",
+    "/brake-system-vertical-automotive": "/fort-lauderdale/brake-repair",
     "/hybrids-ev-vertical-automotive/": "/fort-lauderdale/hybrid-ev-service",
+    "/hybrids-ev-vertical-automotive": "/fort-lauderdale/hybrid-ev-service",
     "/a-c-maintenance-repair-vertical-automotive/": "/fort-lauderdale/ac-repair",
+    "/a-c-maintenance-repair-vertical-automotive": "/fort-lauderdale/ac-repair",
+    "/a-c-maintenance-repair/": "/fort-lauderdale/ac-repair",
+    "/a-c-maintenance-repair": "/fort-lauderdale/ac-repair",
     "/oil-change-engine-service-vertical-automotive/": "/fort-lauderdale/engine-oil-service",
+    "/oil-change-engine-service-vertical-automotive": "/fort-lauderdale/engine-oil-service",
     "/complete-diagnostics-vertical-automotive/": "/fort-lauderdale/complete-diagnostics",
+    "/complete-diagnostics-vertical-automotive": "/fort-lauderdale/complete-diagnostics",
     "/alignment-tire-rotation-balancing-vertical-automotive/": "/fort-lauderdale/wheel-alignment",
+    "/alignment-tire-rotation-balancing-vertical-automotive": "/fort-lauderdale/wheel-alignment",
     "/battery-cranking-charging-systems-vertical-automotive/": "/fort-lauderdale/battery-charging-systems",
+    "/battery-cranking-charging-systems-vertical-automotive": "/fort-lauderdale/battery-charging-systems",
     "/transmission-vertical-automotive/": "/fort-lauderdale/transmission-service",
+    "/transmission-vertical-automotive": "/fort-lauderdale/transmission-service",
+    "/transmission/": "/fort-lauderdale/transmission-service",
+    "/transmission": "/fort-lauderdale/transmission-service",
     "/steering-suspension-vertical-automotive/": "/fort-lauderdale/steering-suspension",
+    "/steering-suspension-vertical-automotive": "/fort-lauderdale/steering-suspension",
     "/fuel-system-vertical-automotive/": "/fort-lauderdale/fuel-system-service",
+    "/fuel-system-vertical-automotive": "/fort-lauderdale/fuel-system-service",
     "/routine-preventive-maintenance-vertical-automotive/": "/fort-lauderdale/routine-maintenance",
+    "/routine-preventive-maintenance-vertical-automotive": "/fort-lauderdale/routine-maintenance",
     "/fleet-maintenance-repairs-vertical-automotive/": "/fort-lauderdale/fleet-services",
+    "/fleet-maintenance-repairs-vertical-automotive": "/fort-lauderdale/fleet-services",
     "/powertrain-restoration-vertical-automotive/": "/fort-lauderdale/routine-maintenance",
+    "/powertrain-restoration-vertical-automotive": "/fort-lauderdale/routine-maintenance",
     "/tires-vertical-automotive/": "/fort-lauderdale/wheel-alignment",
+    "/tires-vertical-automotive": "/fort-lauderdale/wheel-alignment",
+    // ── Short-form English service slugs (no city prefix) ──
+    "/brake-system/": "/fort-lauderdale/brake-repair",
+    "/brake-system": "/fort-lauderdale/brake-repair",
+    "/hybrids-ev/": "/fort-lauderdale/hybrid-ev-service",
+    "/hybrids-ev": "/fort-lauderdale/hybrid-ev-service",
+    "/tesla-vehicles-service/": "/fort-lauderdale/tesla-ev-repair",
+    "/tesla-vehicles-service": "/fort-lauderdale/tesla-ev-repair",
+    "/asian-vehicles-service/": "/fort-lauderdale/asian-vehicle-repair",
+    "/asian-vehicles-service": "/fort-lauderdale/asian-vehicle-repair",
+    "/european-vehicles-service-vertical-automotive/": "/fort-lauderdale/european-vehicle-repair",
+    "/european-vehicles-service-vertical-automotive": "/fort-lauderdale/european-vehicle-repair",
+    "/domestic-vehicles-service-vertical-automotive/": "/fort-lauderdale/domestic-vehicle-repair",
+    "/domestic-vehicles-service-vertical-automotive": "/fort-lauderdale/domestic-vehicle-repair",
+    "/our-services-vertical-automotive/": "/services",
+    "/our-services-vertical-automotive": "/services",
+    // ── Old /car-services/ path ──
+    "/car-services/brake-system/": "/fort-lauderdale/brake-repair",
+    "/car-services/brake-system": "/fort-lauderdale/brake-repair",
+    "/car-services/a-c/": "/fort-lauderdale/ac-repair",
+    "/car-services/a-c": "/fort-lauderdale/ac-repair",
+    // ── Static page old URLs ──
+    "/about-us-vertical-automotive/": "/about-us",
+    "/about-us-vertical-automotive": "/about-us",
+    "/about-us/": "/about-us",
+    "/about-us/?_rdr": "/about-us",
+    "/offers-coupons-vertical-automotive/": "/offers",
+    "/offers-coupons-vertical-automotive": "/offers",
+    "/print_coupon/25-off-synthetic-oil-change-first-visit/": "/offers",
+    "/print_coupon/25-off-synthetic-oil-change-first-visit": "/offers",
+    // ── Malformed paths with leading dash ──
+    "/-hibridos-y-vehiculos-electricos/": "/es/fort-lauderdale/hybrid-ev-service",
+    "/-hibridos-y-vehiculos-electricos": "/es/fort-lauderdale/hybrid-ev-service",
+    "/-mantenimiento-rutinario-y-preventivo/": "/es/fort-lauderdale/routine-maintenance",
+    "/-mantenimiento-rutinario-y-preventivo": "/es/fort-lauderdale/routine-maintenance",
+    "/-ofertas-y-cupones-actuales/": "/es/ofertas",
+    "/-ofertas-y-cupones-actuales": "/es/ofertas",
+    "/-servicio-de-vehiculos-europeos/": "/es/fort-lauderdale/european-vehicle-repair",
+    "/-servicio-de-vehiculos-europeos": "/es/fort-lauderdale/european-vehicle-repair",
+    "/-sistema-de-frenos/": "/es/fort-lauderdale/brake-repair",
+    "/-sistema-de-frenos": "/es/fort-lauderdale/brake-repair",
+    // ── Old Spanish pages with es- prefix (not /es/ path) ──
+    "/es-sistema-de-frenos/": "/es/fort-lauderdale/brake-repair",
+    "/es-sistema-de-frenos": "/es/fort-lauderdale/brake-repair",
+    "/es-diagnostico-completo/": "/es/fort-lauderdale/complete-diagnostics",
+    "/es-diagnostico-completo": "/es/fort-lauderdale/complete-diagnostics",
+    "/es-direccion-y-suspension/": "/es/fort-lauderdale/steering-suspension",
+    "/es-direccion-y-suspension": "/es/fort-lauderdale/steering-suspension",
+    "/es-hibridos-y-vehiculos-electricos/": "/es/fort-lauderdale/hybrid-ev-service",
+    "/es-hibridos-y-vehiculos-electricos": "/es/fort-lauderdale/hybrid-ev-service",
+    "/es-mantenimiento-rutinario-y-preventivo/": "/es/fort-lauderdale/routine-maintenance",
+    "/es-mantenimiento-rutinario-y-preventivo": "/es/fort-lauderdale/routine-maintenance",
+    "/es-mantenimiento-y-reparacion-de-aire-acondicionado/": "/es/fort-lauderdale/ac-repair",
+    "/es-mantenimiento-y-reparacion-de-aire-acondicionado": "/es/fort-lauderdale/ac-repair",
+    "/es-nuestros-servicios/": "/es/guia-de-servicios",
+    "/es-nuestros-servicios": "/es/guia-de-servicios",
+    "/es-ofertas-y-cupones-actuales/": "/es/ofertas",
+    "/es-ofertas-y-cupones-actuales": "/es/ofertas",
+    "/es-servicio-de-vehiculos-americanos/": "/es/fort-lauderdale/domestic-vehicle-repair",
+    "/es-servicio-de-vehiculos-americanos": "/es/fort-lauderdale/domestic-vehicle-repair",
+    "/es-servicio-de-vehiculos-asiaticos/": "/es/fort-lauderdale/asian-vehicle-repair",
+    "/es-servicio-de-vehiculos-asiaticos": "/es/fort-lauderdale/asian-vehicle-repair",
+    "/es-servicio-de-vehiculos-europeos/": "/es/fort-lauderdale/european-vehicle-repair",
+    "/es-servicio-de-vehiculos-europeos": "/es/fort-lauderdale/european-vehicle-repair",
+    "/es-servicio-de-vehiculos-tesla/": "/es/fort-lauderdale/tesla-ev-repair",
+    "/es-servicio-de-vehiculos-tesla": "/es/fort-lauderdale/tesla-ev-repair",
+    "/es-sistema-de-combustible/": "/es/fort-lauderdale/fuel-system-service",
+    "/es-sistema-de-combustible": "/es/fort-lauderdale/fuel-system-service",
+    "/es-sistemas-de-bateria-arranque-y-carga/": "/es/fort-lauderdale/battery-charging-systems",
+    "/es-sistemas-de-bateria-arranque-y-carga": "/es/fort-lauderdale/battery-charging-systems",
+    "/es-sobre-nosotros/": "/es/sobre-nosotros",
+    "/es-sobre-nosotros": "/es/sobre-nosotros",
+    "/es-transmision/": "/es/fort-lauderdale/transmission-service",
+    "/es-transmision": "/es/fort-lauderdale/transmission-service",
+    "/es-cambio-de-aceite-y-servicio-de-motor/": "/es/fort-lauderdale/engine-oil-service",
+    "/es-cambio-de-aceite-y-servicio-de-motor": "/es/fort-lauderdale/engine-oil-service",
+    // ── Old /es/ paths with wrong slug format ──
+    "/es/-mantenimiento-rutinario-y-preventivo/": "/es/fort-lauderdale/routine-maintenance",
+    "/es/-mantenimiento-rutinario-y-preventivo": "/es/fort-lauderdale/routine-maintenance",
+    "/es/-transmision/": "/es/fort-lauderdale/transmission-service",
+    "/es/-transmision": "/es/fort-lauderdale/transmission-service",
+    "/es/brake-system-vertical-automotive/": "/es/fort-lauderdale/brake-repair",
+    "/es/brake-system-vertical-automotive": "/es/fort-lauderdale/brake-repair",
+    "/es/offers-coupons-vertical-automotive/": "/es/ofertas",
+    "/es/offers-coupons-vertical-automotive": "/es/ofertas",
+    // ── Misc ──
+    "/s/": "/",
+    "/s": "/",
+    "/$": "/",
   };
 
   // Also handle Spanish versions of /services/* redirects
@@ -92,6 +199,20 @@ async function startServer() {
   }
 
   const allRedirects = { ...serviceRedirects, ...slugRedirects, ...serviceRedirectsEs };
+
+  // 410 Gone: WordPress admin/system paths that should never exist on this site
+  app.use((req, res, next) => {
+    if (
+      req.path.startsWith("/wp-admin") ||
+      req.path.startsWith("/wp-includes") ||
+      req.path.startsWith("/wp-content") ||
+      req.path.startsWith("/xmlrpc.php") ||
+      req.path.startsWith("/wp-login.php")
+    ) {
+      return res.status(410).send("Gone");
+    }
+    next();
+  });
 
   app.use((req, res, next) => {
     const target = allRedirects[req.path];
