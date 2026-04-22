@@ -88,32 +88,51 @@ export default function AboutPage() {
         subtitle={t.subtitle}
       />
 
-      {/* About Content */}
+      {/* About Content — Main Section */}
       <section className="py-10 sm:py-20 bg-background">
         <div className="container max-w-5xl">
-          <p className="text-sm sm:text-lg leading-relaxed text-muted-foreground mb-8 sm:mb-12">
+          {/* Lead sentence */}
+          <p className="text-base sm:text-xl font-semibold leading-relaxed text-foreground mb-6 sm:mb-8">
             {aboutContent.intro}
           </p>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12">
-            <div>
-              <h2 className="text-xl sm:text-3xl font-black mb-3 sm:mb-4">
-                {t.outstandingReputation} <span className="text-primary">{t.outstanding}</span>
-              </h2>
-              <div className="h-1 w-12 sm:w-16 bg-primary mb-4 sm:mb-6" />
-              <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
-                {aboutContent.reputation}
+          {/* Body paragraphs */}
+          <div className="space-y-4 sm:space-y-5 mb-8 sm:mb-10">
+            {aboutContent.body.split('\n\n').map((para, i) => (
+              <p key={i} className={`text-sm sm:text-lg leading-relaxed ${
+                para.startsWith('We are not') || para.startsWith('No somos')
+                  ? 'font-bold text-foreground'
+                  : 'text-muted-foreground'
+              }`}>
+                {para}
               </p>
-            </div>
-            <div>
-              <h2 className="text-xl sm:text-3xl font-black mb-3 sm:mb-4">
-                {t.communityInvolvement} <span className="text-primary">{t.community}</span>
-              </h2>
-              <div className="h-1 w-12 sm:w-16 bg-primary mb-4 sm:mb-6" />
-              <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
-                {aboutContent.community}
+            ))}
+          </div>
+
+          {/* Customers come to us when… */}
+          <div className="border-l-4 border-primary pl-4 sm:pl-6 mb-8 sm:mb-10">
+            <p className="text-sm sm:text-base font-semibold text-foreground mb-3 sm:mb-4">
+              {isSpanish ? 'Los clientes vienen a Vertical Automotive cuando:' : 'Customers come to Vertical Automotive when:'}
+            </p>
+            <ul className="space-y-2">
+              {aboutContent.customerReasons.map((reason, i) => (
+                <li key={i} className="flex items-start gap-2 sm:gap-3 text-xs sm:text-base text-muted-foreground">
+                  <span className="flex-shrink-0 mt-1 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary" />
+                  {reason}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Closing paragraphs */}
+          <div className="space-y-4 sm:space-y-5">
+            {aboutContent.closing.split('\n\n').map((para, i) => (
+              <p key={i} className={`text-sm sm:text-lg leading-relaxed ${
+                i === 1 ? 'font-semibold text-foreground' : 'text-muted-foreground'
+              }`}>
+                {para}
               </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>

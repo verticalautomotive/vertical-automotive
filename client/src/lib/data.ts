@@ -447,8 +447,15 @@ export const COUPONS = [
 ];
 
 export const ABOUT_CONTENT = {
-  intro: "Founded and built from the ground up in 1989. As a local family-owned and operated business that has been servicing the area for more than 30 years. We are truly a family-owned business and treat you like family. We are looking forward to working with You!",
-  reputation: "Outstanding Reputation. Our outstanding reputation is backed by years of excellent service and satisfied customers. Follow us to see our stellar Google ratings and reviews!",
+  intro: "Vertical Automotive is a 5-star rated auto repair shop serving Fort Lauderdale and Wilton Manors, built on one principle: accurate diagnostics and honest service.",
+  body: "With over 36 years of combined experience and more than 54,000 vehicles serviced, our team has worked on everything from daily drivers to high-performance European vehicles and advanced Tesla systems.\n\nWe are not a volume-based shop. We are a diagnostic-first shop.\n\nThat means we don't replace parts hoping to fix the issue — we identify the root cause, explain it clearly, and only perform the work that is actually needed.\n\nOur Fort Lauderdale and Wilton Manors locations allow us to serve a wide range of South Florida drivers — from busy commuters to owners of European and Tesla vehicles who require a higher level of precision and expertise.",
+  customerReasons: [
+    "They want the issue diagnosed correctly the first time",
+    "They're tired of repeat repairs and unnecessary parts replacement",
+    "They value transparency, communication, and long-term reliability",
+  ],
+  closing: "From engine diagnostics and electrical issues to Tesla and European vehicle repair, we approach every vehicle with the same level of precision and accountability.\n\nEvery repair is backed by our 36-month / 36,000-mile warranty — because we stand behind the work we do.",
+  reputation: "Our outstanding reputation is backed by years of excellent service and satisfied customers. Follow us to see our stellar Google ratings and reviews!",
   community: 'Active Participants & Donors in the Community. We have participated in the "Making Strides Against Breast Cancer® walk" since 2005 and sponsor our daughters dance team at DANL Dance Center, since 2003. The VERTICAL AUTOMOTIVE is also a member of the Southeast Florida Chamber of Commerce and a proud sponsor of the Gold Coast Derby Girls.',
   whyChooseUs: [
     {

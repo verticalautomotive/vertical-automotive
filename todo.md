@@ -883,3 +883,7 @@
 - [x] Generate sitemap.xml with 125 valid working URLs (with hreflang alternates)
 - [x] Upload sitemap to client/public/sitemap.xml
 - [x] Save checkpoint and publish
+
+## About Page Copy Update
+- [x] Replace main section copy on /about with new user-provided text
+- [x] Save checkpoint and publish

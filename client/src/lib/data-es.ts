@@ -387,8 +387,15 @@ export const COUPONS_ES = [
 ];
 
 export const ABOUT_CONTENT_ES = {
-  intro: "Fundado y construido desde cero en 1989. Como un negocio local familiar que ha dado servicio al área por más de 30 años. Somos verdaderamente un negocio familiar y lo tratamos como familia. ¡Esperamos trabajar con usted!",
-  reputation: "Reputación Sobresaliente. Nuestra excelente reputación está respaldada por años de servicio excelente y clientes satisfechos. ¡Síganos para ver nuestras calificaciones y reseñas estelares en Google!",
+  intro: "Vertical Automotive es un taller de reparación de autos con calificación de 5 estrellas que sirve a Fort Lauderdale y Wilton Manors, construido sobre un principio: diagnósticos precisos y servicio honesto.",
+  body: "Con más de 36 años de experiencia combinada y más de 54,000 vehículos reparados, nuestro equipo ha trabajado en todo tipo de vehículos, desde autos cotidianos hasta vehículos europeos de alto rendimiento y sistemas avanzados de Tesla.\n\nNo somos un taller de alto volumen. Somos un taller con enfoque diagnóstico primero.\n\nEso significa que no reemplazamos piezas esperando resolver el problema — identificamos la causa raíz, la explicamos claramente y solo realizamos el trabajo que realmente se necesita.\n\nNuestras ubicaciones en Fort Lauderdale y Wilton Manors nos permiten atender a una amplia gama de conductores del sur de Florida — desde viajeros ocupados hasta propietarios de vehículos europeos y Tesla que requieren un mayor nivel de precisión y experiencia.",
+  customerReasons: [
+    "Quieren que el problema sea diagnosticado correctamente desde la primera vez",
+    "Están cansados de reparaciones repetidas y reemplazos de piezas innecesarios",
+    "Valoran la transparencia, la comunicación y la confiabilidad a largo plazo",
+  ],
+  closing: "Desde diagnósticos de motor y problemas eléctricos hasta reparación de vehículos Tesla y europeos, abordamos cada vehículo con el mismo nivel de precisión y responsabilidad.\n\nCada reparación está respaldada por nuestra garantía de 36 meses / 36,000 millas — porque respaldamos el trabajo que hacemos.",
+  reputation: "Nuestra excelente reputación está respaldada por años de servicio excelente y clientes satisfechos. ¡Síganos para ver nuestras calificaciones y reseñas estelares en Google!",
   community: 'Participantes Activos y Donantes en la Comunidad. Hemos participado en la caminata "Making Strides Against Breast Cancer®" desde 2005 y patrocinamos el equipo de baile de nuestras hijas en DANL Dance Center, desde 2003. VERTICAL AUTOMOTIVE también es miembro de la Cámara de Comercio del Sureste de Florida y orgulloso patrocinador de las Gold Coast Derby Girls.',
   whyChooseUs: [
     {
