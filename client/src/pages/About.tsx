@@ -205,8 +205,29 @@ export default function AboutPage() {
           </h2>
           <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-6 sm:mb-8" />
 
-          <p className="text-sm sm:text-lg leading-relaxed text-secondary-foreground/80 mb-8 sm:mb-12 max-w-3xl mx-auto text-center">
-            {t.differentText}
+          {/* Three contrast lines */}
+          <div className="flex flex-col items-center gap-2 sm:gap-3 mb-6 sm:mb-8 max-w-2xl mx-auto">
+            {(isSpanish ? [
+              ['La mayoría de los talleres se enfocan en la velocidad.', 'Nosotros nos enfocamos en la precisión.'],
+              ['La mayoría reemplaza piezas.', 'Nosotros diagnosticamos sistemas.'],
+              ['La mayoría da estimados.', 'Nosotros damos claridad.'],
+            ] : [
+              ['Most repair shops focus on speed.', 'We focus on accuracy.'],
+              ['Most shops replace parts.', 'We diagnose systems.'],
+              ['Most shops give estimates.', 'We provide clarity.'],
+            ]).map(([left, right], i) => (
+              <p key={i} className="text-sm sm:text-lg text-center leading-snug">
+                <span className="text-secondary-foreground/50">{left}</span>
+                {' '}
+                <span className="font-bold text-secondary-foreground">{right}</span>
+              </p>
+            ))}
+          </div>
+          {/* Closing paragraph */}
+          <p className="text-sm sm:text-base text-secondary-foreground/70 max-w-2xl mx-auto text-center mb-8 sm:mb-12 leading-relaxed">
+            {isSpanish
+              ? 'Con dos ubicaciones que sirven a Fort Lauderdale y Wilton Manors, hemos construido nuestra reputación haciendo el trabajo bien desde la primera vez — no de la manera más rápida.'
+              : 'With two locations serving Fort Lauderdale and Wilton Manors, we\'ve built our reputation on doing the job right the first time — not the fastest.'}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 max-w-5xl mx-auto">

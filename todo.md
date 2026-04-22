@@ -892,3 +892,8 @@
 - [x] Add Location Authority section to About page with Fort Lauderdale + Wilton Manors copy
 - [x] Add Spanish translation for the new section (inline bilingual rendering)
 - [x] Save checkpoint and publish
+
+## About Page — Positioning Block Copy Update
+- [x] Replace "What Makes Vertical Automotive Different" intro text with new refined copy
+- [x] Update Spanish translation (inline bilingual)
+- [x] Save checkpoint and publish
