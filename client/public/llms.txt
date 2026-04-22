@@ -1,0 +1,53 @@
+# Vertical Automotive
+
+> Vertical Automotive is a Fort Lauderdale and Wilton Manors-based auto repair shop specializing in advanced diagnostics, Tesla repair, European vehicles, and complete automotive service for all makes and models. Known for its 5-star reputation, transparent service approach, and diagnostic-first philosophy, Vertical Automotive serves South Florida drivers with a focus on accuracy, reliability, and long-term vehicle performance.
+
+## Business
+
+- **Name:** Vertical Automotive
+- **Type:** Auto Repair Shop (ASE-Certified)
+- **Locations:** Fort Lauderdale, FL and Wilton Manors, FL
+- **Founded:** 1989
+- **Experience:** 36+ years, 54,000+ vehicles serviced
+- **Rating:** 5-star (500+ Google reviews)
+- **Warranty:** 36-month / 36,000-mile on all repairs
+
+## Locations
+
+### Wilton Manors
+- Address: 1100 W Oakland Park Blvd Unit 5, Wilton Manors, FL 33311
+- Phone: (954) 565-1518
+- Hours: Monday–Friday 8:00 AM – 5:00 PM
+
+### Fort Lauderdale
+- Address: 707 NE 11th Street, Fort Lauderdale, FL 33304
+- Phone: (645) 216-2266
+- Hours: Monday–Friday 8:00 AM – 5:00 PM
+
+## Services
+
+- Advanced Engine Diagnostics
+- Tesla & Electric Vehicle Repair
+- European Vehicle Specialists (BMW, Mercedes, Audi, Porsche, Volvo)
+- Brake Service & Repair
+- Transmission Service
+- A/C Repair & Service
+- Oil Change & Preventive Maintenance
+- Wheel Alignment & Tires
+- Electrical System Diagnostics
+- Hybrid Vehicle Service
+
+## Philosophy
+
+Vertical Automotive operates as a diagnostic-first shop. Rather than replacing parts speculatively, technicians identify the root cause of every issue before recommending any repair. The goal is accuracy, transparency, and long-term reliability — not speed or volume.
+
+## Website
+
+- English: https://verticalautomotive.com/
+- Spanish: https://verticalautomotive.com/es/
+- Services (Fort Lauderdale): https://verticalautomotive.com/fort-lauderdale/
+- Services (Wilton Manors): https://verticalautomotive.com/wilton-manors/
+- About: https://verticalautomotive.com/about
+- Contact: https://verticalautomotive.com/contacts
+- Offers: https://verticalautomotive.com/offers
+- Sitemap: https://verticalautomotive.com/sitemap.xml

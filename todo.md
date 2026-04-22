@@ -897,3 +897,8 @@
 - [x] Replace "What Makes Vertical Automotive Different" intro text with new refined copy
 - [x] Update Spanish translation (inline bilingual)
 - [x] Save checkpoint and publish
+
+## AI-Optimized Summary
+- [x] Create /llms.txt at site root with AI-readable business summary
+- [x] Add AI summary as structured meta content in index.html (meta name="ai-summary" + link rel="alternate" to /llms.txt)
+- [x] Save checkpoint and publish
