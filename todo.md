@@ -887,3 +887,8 @@
 ## About Page Copy Update
 - [x] Replace main section copy on /about with new user-provided text
 - [x] Save checkpoint and publish
+
+## About Page — Location Authority Block
+- [x] Add Location Authority section to About page with Fort Lauderdale + Wilton Manors copy
+- [x] Add Spanish translation for the new section (inline bilingual rendering)
+- [x] Save checkpoint and publish

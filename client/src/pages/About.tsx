@@ -137,6 +137,66 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Location Authority Block */}
+      <section className="py-10 sm:py-16 bg-muted/40 border-t border-border">
+        <div className="container max-w-5xl">
+          <h2 className="text-xl sm:text-3xl font-black mb-2 sm:mb-3">
+            {isSpanish ? 'Sirviendo a' : 'Serving'}{' '}
+            <span className="text-primary">Fort Lauderdale &amp; Wilton Manors</span>
+          </h2>
+          <div className="h-1 w-12 sm:w-16 bg-primary mb-5 sm:mb-8" />
+
+          <p className="text-sm sm:text-lg text-muted-foreground leading-relaxed mb-6 sm:mb-10">
+            {isSpanish
+              ? 'Vertical Automotive opera dos ubicaciones convenientes para servir mejor a los conductores del sur de Florida:'
+              : 'Vertical Automotive operates two convenient locations to better serve South Florida drivers:'}
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-10">
+            {/* Fort Lauderdale */}
+            <div className="border-2 border-border hover:border-primary transition-colors p-5 sm:p-8">
+              <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                <div className="flex-shrink-0 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center bg-primary/10 text-primary">
+                  <MapPin className="w-5 h-5 sm:w-6 sm:h-6" />
+                </div>
+                <h3 className="text-sm sm:text-xl font-bold">
+                  {isSpanish ? 'Ubicación Fort Lauderdale' : 'Fort Lauderdale Location'}
+                </h3>
+              </div>
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                {isSpanish
+                  ? 'Atendemos a conductores en todo Fort Lauderdale y áreas circundantes con servicios completos de reparación, diagnóstico y mantenimiento automotriz.'
+                  : 'Serving drivers throughout Fort Lauderdale and surrounding areas with complete auto repair, diagnostics, and maintenance services.'}
+              </p>
+            </div>
+
+            {/* Wilton Manors */}
+            <div className="border-2 border-border hover:border-primary transition-colors p-5 sm:p-8">
+              <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                <div className="flex-shrink-0 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center bg-primary/10 text-primary">
+                  <MapPin className="w-5 h-5 sm:w-6 sm:h-6" />
+                </div>
+                <h3 className="text-sm sm:text-xl font-bold">
+                  {isSpanish ? 'Ubicación Wilton Manors' : 'Wilton Manors Location'}
+                </h3>
+              </div>
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                {isSpanish
+                  ? 'Convenientemente ubicado para servir a Wilton Manors y comunidades cercanas con el mismo alto nivel de servicio, experiencia y transparencia.'
+                  : 'Conveniently located to serve Wilton Manors and nearby communities with the same high level of service, expertise, and transparency.'}
+              </p>
+            </div>
+          </div>
+
+          {/* Closing statement */}
+          <p className="text-sm sm:text-base font-semibold text-foreground border-l-4 border-primary pl-4 sm:pl-6">
+            {isSpanish
+              ? 'Sin importar qué ubicación visite, recibirá la misma calidad consistente, precisión diagnóstica y enfoque centrado en el cliente que define a Vertical Automotive.'
+              : 'No matter which location you visit, you\'ll receive the same consistent quality, diagnostic accuracy, and customer-first approach that defines Vertical Automotive.'}
+          </p>
+        </div>
+      </section>
+
       {/* What Makes Vertical Automotive Different */}
       <section className="py-10 sm:py-20 bg-secondary text-secondary-foreground">
         <div className="container">
