@@ -5,7 +5,8 @@
  * BILINGUAL: Uses useTranslation for EN/ES content
  */
 import { COMPANY } from "@/lib/data";
-import { Award, CheckCircle, TrendingUp, MapPin, Puzzle, ShieldCheck, Wrench, HeartHandshake, Search as SearchIcon } from "lucide-react";
+import { Award, CheckCircle, TrendingUp, MapPin, Puzzle, ShieldCheck, Wrench, HeartHandshake, Search as SearchIcon, ClipboardList } from "lucide-react";
+import { Link } from "wouter";
 import SEO from "@/components/SEO";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -194,6 +195,191 @@ export default function AboutPage() {
               ? 'Sin importar qué ubicación visite, recibirá la misma calidad consistente, precisión diagnóstica y enfoque centrado en el cliente que define a Vertical Automotive.'
               : 'No matter which location you visit, you\'ll receive the same consistent quality, diagnostic accuracy, and customer-first approach that defines Vertical Automotive.'}
           </p>
+        </div>
+      </section>
+
+      {/* Our Approach to Auto Repair */}
+      <section className="py-10 sm:py-20 bg-background">
+        <div className="container max-w-5xl">
+          <h2 className="text-2xl sm:text-4xl font-black mb-3">
+            {isSpanish ? 'Nuestro Enfoque en la' : 'Our Approach to'}{' '}
+            <span className="text-primary">{isSpanish ? 'Reparación Automotriz' : 'Auto Repair'}</span>
+          </h2>
+          <div className="h-1 w-12 sm:w-16 bg-primary mb-6 sm:mb-8" />
+          <div className="space-y-4 sm:space-y-5 text-sm sm:text-lg leading-relaxed text-muted-foreground">
+            <p>
+              {isSpanish
+                ? 'En Vertical Automotive, abordamos cada reparación con una mentalidad diagnóstica primero. Los vehículos modernos — ya sean Tesla, europeos o de gasolina tradicional — requieren precisión, no suposiciones.'
+                : 'At Vertical Automotive, we approach every repair with a diagnostic-first mindset. Modern vehicles — whether Tesla, European, or traditional gas-powered — require precision, not guesswork.'}
+            </p>
+            <p>
+              {isSpanish
+                ? 'Nuestro proceso comienza identificando la causa raíz del problema usando herramientas de diagnóstico avanzadas. Desde allí, explicamos claramente el problema, describimos sus opciones y solo procedemos con las reparaciones aprobadas.'
+                : 'Our process begins with identifying the root cause of the issue using advanced diagnostic tools. From there, we clearly explain the problem, outline your options, and only proceed with approved repairs.'}
+            </p>
+            <p>
+              {isSpanish
+                ? 'Este enfoque ayuda a nuestros clientes a evitar reemplazos de piezas innecesarios, visitas repetidas y costos inesperados.'
+                : 'This approach helps our customers avoid unnecessary part replacements, repeated visits, and unexpected costs.'}
+            </p>
+            <p>
+              {isSpanish ? (
+                <>Ya sea que visite nuestra ubicación de{' '}
+                  <Link href="/fort-lauderdale" className="text-primary font-semibold hover:underline">reparación de autos en Fort Lauderdale</Link>
+                  {' '}o{' '}
+                  <Link href="/wilton-manors" className="text-primary font-semibold hover:underline">Wilton Manors</Link>,
+                  {' '}experimentará el mismo proceso consistente y transparente diseñado para mantener su vehículo confiable a largo plazo.</>
+              ) : (
+                <>Whether you visit our{' '}
+                  <Link href="/fort-lauderdale" className="text-primary font-semibold hover:underline">auto repair Fort Lauderdale</Link>
+                  {' '}location or{' '}
+                  <Link href="/wilton-manors" className="text-primary font-semibold hover:underline">Wilton Manors</Link>,
+                  {' '}you'll experience the same consistent, transparent process designed to keep your vehicle reliable long-term.</>
+              )}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Serving Drivers Across Fort Lauderdale & Wilton Manors */}
+      <section className="py-10 sm:py-16 bg-muted/40 border-t border-border">
+        <div className="container max-w-5xl">
+          <h2 className="text-2xl sm:text-4xl font-black mb-3">
+            {isSpanish ? 'Sirviendo a Conductores en' : 'Serving Drivers Across'}{' '}
+            <span className="text-primary">Fort Lauderdale &amp; Wilton Manors</span>
+          </h2>
+          <div className="h-1 w-12 sm:w-16 bg-primary mb-6 sm:mb-8" />
+          <p className="text-sm sm:text-lg text-muted-foreground leading-relaxed mb-6">
+            {isSpanish
+              ? 'Vertical Automotive trabaja con una amplia gama de clientes en todo el sur de Florida.'
+              : 'Vertical Automotive works with a wide range of customers across South Florida.'}
+          </p>
+          <div className="space-y-3 mb-8">
+            {(isSpanish ? [
+              'Conductores diarios que necesitan mantenimiento y reparaciones confiables',
+              'Propietarios de vehículos europeos (BMW, Mercedes, Audi, Volkswagen, Porsche)',
+              'Propietarios de Tesla que requieren diagnósticos y servicio especializado',
+              'Vehículos de alto kilometraje que necesitan estrategias de cuidado a largo plazo',
+              'Clientes que buscan una alternativa confiable a los concesionarios',
+            ] : [
+              'Daily drivers needing reliable maintenance and repairs',
+              'European vehicle owners (BMW, Mercedes, Audi, Volkswagen, Porsche)',
+              'Tesla owners requiring specialized diagnostics and service',
+              'High-mileage vehicles needing long-term care strategies',
+              'Customers looking for a trustworthy alternative to dealerships',
+            ]).map((item, i) => (
+              <div key={i} className="flex items-start gap-3 p-3 sm:p-4 border border-border bg-card">
+                <span className="flex-shrink-0 mt-0.5 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary mt-2" />
+                <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
+                  {i === 2 ? (
+                    isSpanish ? (
+                      <>Propietarios de{' '}
+                        <Link href="/services/tesla-vehicles-service" className="text-primary font-semibold hover:underline">Tesla</Link>
+                        {' '}que requieren diagnósticos y servicio especializado</>
+                    ) : (
+                      <><Link href="/services/tesla-vehicles-service" className="text-primary font-semibold hover:underline">Tesla</Link>
+                        {' '}owners requiring specialized diagnostics and service</>
+                    )
+                  ) : item}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            {isSpanish ? (
+              <>Nuestras ubicaciones en{' '}
+                <Link href="/fort-lauderdale" className="text-primary font-semibold hover:underline">Fort Lauderdale</Link>
+                {' '}y{' '}
+                <Link href="/wilton-manors" className="text-primary font-semibold hover:underline">Wilton Manors</Link>
+                {' '}nos permiten servir tanto a residentes locales como a comunidades circundantes con atención automotriz conveniente y de alta calidad.</>
+            ) : (
+              <>Our{' '}
+                <Link href="/fort-lauderdale" className="text-primary font-semibold hover:underline">Fort Lauderdale</Link>
+                {' '}and{' '}
+                <Link href="/wilton-manors" className="text-primary font-semibold hover:underline">Wilton Manors</Link>
+                {' '}locations allow us to serve both local residents and surrounding communities with convenient, high-quality automotive care.</>
+            )}
+          </p>
+        </div>
+      </section>
+
+      {/* Our Repair Process — 5 Steps */}
+      <section className="py-10 sm:py-20 bg-background">
+        <div className="container max-w-5xl">
+          <div className="flex items-center gap-3 mb-3">
+            <ClipboardList className="w-6 h-6 sm:w-8 sm:h-8 text-primary flex-shrink-0" />
+            <h2 className="text-2xl sm:text-4xl font-black">
+              {isSpanish ? 'Nuestro Proceso de' : 'Our'}{' '}
+              <span className="text-primary">{isSpanish ? 'Reparación' : 'Repair Process'}</span>
+            </h2>
+          </div>
+          <div className="h-1 w-12 sm:w-16 bg-primary mb-6 sm:mb-10" />
+          <div className="space-y-3 sm:space-y-4">
+            {(isSpanish ? [
+              { step: 'Paso 1', title: 'Inspección y Diagnóstico', desc: 'Realizamos una inspección exhaustiva y usamos herramientas de diagnóstico avanzadas para identificar el problema exacto.' },
+              { step: 'Paso 2', title: 'Comunicación Clara', desc: 'Explicamos los hallazgos en lenguaje sencillo y proporcionamos opciones de reparación transparentes.' },
+              { step: 'Paso 3', title: 'Aprobación Antes del Trabajo', desc: 'No se realiza ningún trabajo sin su aprobación. Usted mantiene el control del proceso de reparación.' },
+              { step: 'Paso 4', title: 'Reparación de Calidad', desc: 'Las reparaciones se completan usando herramientas profesionales y piezas de alta calidad.' },
+              { step: 'Paso 5', title: 'Verificación Final', desc: 'Verificamos que el problema esté resuelto y que el vehículo funcione correctamente antes de devolvérselo.' },
+            ] : [
+              { step: 'Step 1', title: 'Inspection & Diagnostics', desc: 'We perform a thorough inspection and use advanced diagnostic tools to identify the exact issue.' },
+              { step: 'Step 2', title: 'Clear Communication', desc: 'We explain the findings in plain language and provide transparent repair options.' },
+              { step: 'Step 3', title: 'Approval Before Work', desc: 'No work is performed without your approval. You stay in control of the repair process.' },
+              { step: 'Step 4', title: 'Quality Repair', desc: 'Repairs are completed using professional tools and high-quality parts.' },
+              { step: 'Step 5', title: 'Final Verification', desc: 'We verify that the issue is resolved and the vehicle is performing correctly before returning it to you.' },
+            ]).map((item, i) => (
+              <div key={i} className="flex items-start gap-4 sm:gap-6 p-4 sm:p-6 border-2 border-border bg-card hover:border-primary/50 transition-colors">
+                <div className="flex-shrink-0 flex flex-col items-center gap-1">
+                  <div className="w-9 h-9 sm:w-12 sm:h-12 flex items-center justify-center bg-primary text-primary-foreground font-black text-sm sm:text-lg">
+                    {i + 1}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-[10px] sm:text-xs font-bold tracking-widest text-primary uppercase mb-1">{item.step}</p>
+                  <h3 className="text-sm sm:text-lg font-bold mb-1 sm:mb-2">{item.title}</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* A Local Auto Repair Shop You Can Rely On */}
+      <section className="py-10 sm:py-16 bg-muted/40 border-t border-border">
+        <div className="container max-w-5xl">
+          <h2 className="text-2xl sm:text-4xl font-black mb-3">
+            {isSpanish ? 'Un Taller Local en el que' : 'A Local Auto Repair Shop'}{' '}
+            <span className="text-primary">{isSpanish ? 'Puede Confiar' : 'You Can Rely On'}</span>
+          </h2>
+          <div className="h-1 w-12 sm:w-16 bg-primary mb-6 sm:mb-8" />
+          <div className="space-y-4 sm:space-y-5 text-sm sm:text-lg leading-relaxed text-muted-foreground">
+            <p>
+              {isSpanish ? (
+                <>Como negocio operado localmente con ubicaciones en{' '}
+                  <Link href="/fort-lauderdale" className="text-primary font-semibold hover:underline">Fort Lauderdale</Link>
+                  {' '}y{' '}
+                  <Link href="/wilton-manors" className="text-primary font-semibold hover:underline">Wilton Manors</Link>,
+                  {' '}Vertical Automotive entiende las condiciones de manejo, el clima y las necesidades de los vehículos específicas del sur de Florida.</>
+              ) : (
+                <>As a locally operated business with locations in{' '}
+                  <Link href="/fort-lauderdale" className="text-primary font-semibold hover:underline">Fort Lauderdale</Link>
+                  {' '}and{' '}
+                  <Link href="/wilton-manors" className="text-primary font-semibold hover:underline">Wilton Manors</Link>,
+                  {' '}Vertical Automotive understands the driving conditions, climate, and vehicle needs specific to South Florida.</>
+              )}
+            </p>
+            <p>
+              {isSpanish
+                ? 'Desde el rendimiento del sistema de A/C en calor extremo hasta el desgaste por el manejo diario, nuestro equipo tiene experiencia en abordar los problemas comunes de los vehículos en esta área.'
+                : 'From AC system performance in extreme heat to wear and tear from daily driving, our team is experienced in addressing the issues common to vehicles in this area.'}
+            </p>
+            <p className="font-semibold text-foreground">
+              {isSpanish
+                ? 'Nuestro objetivo no es solo reparar vehículos — sino ayudar a los clientes a mantenerlos correctamente con el tiempo.'
+                : 'Our goal is not just to repair vehicles — but to help customers maintain them properly over time.'}
+            </p>
+          </div>
         </div>
       </section>
 
