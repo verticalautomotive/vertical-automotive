@@ -38,6 +38,7 @@ const BLOG_SLUG_EN_TO_ES: Record<string, string> = {
   "tesla-battery-degradation-range-loss": "degradacion-bateria-tesla-perdida-autonomia",
   "tesla-ac-thermal-management-south-florida": "tesla-ac-gestion-termica-sur-de-florida",
   "tesla-suspension-alignment-south-florida": "tesla-suspension-alineacion-sur-de-florida",
+  "european-car-service-wilton-manors-south-florida": "servicio-autos-europeos-wilton-manors-sur-florida",
 };
 const BLOG_SLUG_ES_TO_EN: Record<string, string> = Object.fromEntries(
   Object.entries(BLOG_SLUG_EN_TO_ES).map(([k, v]) => [v, k])

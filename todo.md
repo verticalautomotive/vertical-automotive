@@ -902,3 +902,11 @@
 - [x] Create /llms.txt at site root with AI-readable business summary
 - [x] Add AI summary as structured meta content in index.html (meta name="ai-summary" + link rel="alternate" to /llms.txt)
 - [x] Save checkpoint and publish
+
+## Blog Article — European Cars in Wilton Manors & South Florida
+- [x] Write EN article object (european-car-service-wilton-manors-south-florida)
+- [x] Write ES article object (servicio-autos-europeos-wilton-manors-sur-florida)
+- [x] Insert both into blog-articles.ts
+- [x] Register slug mapping in useTranslation.ts
+- [x] TypeScript verify + browser test
+- [x] Save checkpoint and publish
