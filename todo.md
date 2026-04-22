@@ -874,3 +874,12 @@
 - [x] STAGE 5 — HTTP Caching: already optimized (1yr immutable for assets, no-cache for HTML)
 - [x] STAGE 6 — Content + Schema: FAQPage, BreadcrumbList, LocalBusiness schema on all pages
 - [x] STAGE 7 — Housekeeping: 210 tests passing, TypeScript clean, build pipeline verified
+
+## Fix 404 Redirects & Sitemap
+- [x] Diagnose why redirect middleware is not firing in production
+  - Root cause: dist/index.js was built from older source code (missing 130+ redirect entries and 410 handler)
+  - Fix: ran pnpm build to regenerate dist/index.js from current server/_core/index.ts
+- [x] Fix redirect middleware so legacy URLs return 301 in production
+- [x] Generate sitemap.xml with 125 valid working URLs (with hreflang alternates)
+- [x] Upload sitemap to client/public/sitemap.xml
+- [x] Save checkpoint and publish
