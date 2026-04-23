@@ -919,3 +919,10 @@
 - [x] Add contextual internal links: /fort-lauderdale, /wilton-manors, Tesla service page
 - [x] Verify mobile layout is clean (TypeScript clean, browser verified)
 - [x] Save checkpoint and publish
+
+## Location Hub — Spanish Translation
+- [x] Add isSpanish detection to LocationHub.tsx using useLocation
+- [x] Translate all hardcoded English strings (headings, labels, CTAs, service names, reviews)
+- [x] Translate SEO meta title and description for /es/ routes
+- [x] Verify /es/fort-lauderdale and /es/wilton-manors render in Spanish
+- [x] Save checkpoint and publish
