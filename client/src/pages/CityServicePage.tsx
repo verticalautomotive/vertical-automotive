@@ -528,7 +528,7 @@ export default function CityServicePage() {
         <div className="container max-w-5xl">
           <h2 className="text-2xl sm:text-3xl font-black mb-4 sm:mb-6">
             {isSpanish
-              ? `¿Listo para Programar Su ${page.serviceName} en ${page.cityDisplay}?`
+              ? `¿Listo para Agendar tu ${page.serviceName} en ${page.cityDisplay}?`
               : `Ready to Schedule Your ${page.serviceName} in ${page.cityDisplay}?`}
           </h2>
           <p className="text-sm sm:text-base mb-6 sm:mb-8 opacity-90">
@@ -545,7 +545,7 @@ export default function CityServicePage() {
                 window.open("https://schedule.kukui.com/?mg_permanent=true&cid=8f11f65e-faae-4fdd-9275-20daefd38e2b&merchant_id=41049", "_blank");
               }}
             >
-              {isSpanish ? "Reservar en Línea" : "Book Online"}
+              {isSpanish ? "Agendar Cita" : "Book Online"}
             </Button>
             <Button
               size="lg"

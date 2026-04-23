@@ -926,3 +926,11 @@
 - [x] Translate SEO meta title and description for /es/ routes
 - [x] Verify /es/fort-lauderdale and /es/wilton-manors render in Spanish
 - [x] Save checkpoint and publish
+
+## Spanish Content Rewrite — South Florida Style
+- [x] Rewrite data-es.ts (services, offers, FAQ, about, home UI strings) — South Florida Cuban/Mexican tone
+- [x] Rewrite LocationHub.tsx Spanish translation strings (llantas, Agendar Cita, direct CTAs)
+- [x] Rewrite any hardcoded ES strings in page components (CityServicePage.tsx: Agendar Cita, ¿Listo para Agendar tu...?)
+- [x] "neumáticos" kept in technical service/FAQ content per user instruction
+- [x] TypeScript check: 0 errors
+- [x] Save checkpoint and publish
