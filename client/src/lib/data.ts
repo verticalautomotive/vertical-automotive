@@ -328,7 +328,10 @@ export interface Offer {
   value: string;
   description: string;
   badge: string;
+  image?: string;
 }
+
+const CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB";
 
 export const OFFERS: Offer[] = [
   {
@@ -336,60 +339,70 @@ export const OFFERS: Offer[] = [
     value: "FREE",
     description: "based on number of visits",
     badge: "LOYALTY",
+    image: `${CDN}/engine-oil-1_2794a779.webp`,
   },
   {
     title: "A/C Vent & Duct Disinfecting",
     value: "FREE",
     description: "available per request with any $399+ service",
     badge: "SERVICE",
+    image: `${CDN}/diag-1_ceb74e24.webp`,
   },
   {
     title: "ELEVATE Basic Maintenance",
     value: "FREE",
     description: "included with every service",
     badge: "INCLUDED",
+    image: `${CDN}/diag-2_35a138b1.webp`,
   },
   {
     title: "Wiper Blades",
     value: "ON US",
     description: "any $299+ service",
     badge: "BONUS",
+    image: `${CDN}/brake-rotor-real-2_fa4a30ab.webp`,
   },
   {
     title: "$25 OFF Synthetic Oil Change",
     value: "$25 OFF",
     description: "Full Synth Oil + Filter + Digital Vehicle Inspection (first visit only)",
     badge: "FIRST VISIT",
+    image: `${CDN}/engine-oil-2_764ac92e.webp`,
   },
   {
     title: "Uber/Lyft Comp Ride",
     value: "INCLUDED",
     description: "with $500+ service",
     badge: "CONVENIENCE",
+    image: `${CDN}/tesla-frunk-open_3696ade7.webp`,
   },
   {
     title: "FREE Brake Inspection",
     value: "FREE",
     description: "Inspect your brakes and have peace of mind navigating busy roads!",
     badge: "SAFETY",
+    image: `${CDN}/brake-rotor-real_2efc5177.webp`,
   },
   {
     title: "FREE 2nd Opinion",
     value: "FREE",
     description: "Received too high estimate? We will inspect and provide a second opinion for FREE!",
     badge: "VALUE",
+    image: `${CDN}/diag-1_ceb74e24.webp`,
   },
   {
     title: "Tires Discounts",
     value: "up to $100 OFF",
     description: "On Set of 4 selected tires at the time of purchase",
     badge: "TIRES",
+    image: `${CDN}/alignment-real-1_11cbcc74.webp`,
   },
   {
     title: "FREE Alignment Check",
     value: "FREE",
     description: "Check your Alignment for FREE",
     badge: "CHECK",
+    image: `${CDN}/align-1_e2569bdc.webp`,
   },
 ];
 

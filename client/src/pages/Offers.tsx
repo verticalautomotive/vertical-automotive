@@ -100,38 +100,52 @@ export default function OffersPage() {
             {t.scheduleToday}
           </p>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {offers.map((offer, index) => (
-              <div key={index} className="glass-wrap">
-                <Card
-                  className="glass-card glass-offer p-3 sm:p-8"
-                >
-                  <div className="inline-block bg-primary text-primary-foreground px-2 sm:px-4 py-0.5 sm:py-1 text-[9px] sm:text-xs font-bold mb-2 sm:mb-4 relative z-[2]">
-                    {offer.badge}
-                  </div>
-                  <h3 className="text-xs sm:text-xl font-bold mb-1 sm:mb-3 leading-tight relative z-[2]">{offer.title}</h3>
-                  <div className="text-xl sm:text-4xl font-black text-primary mb-1 sm:mb-4 mono-number relative z-[2]">
+              <a
+                key={index}
+                href={COMPANY.appointmentUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackClaimOffer(offer.title, "offers_page")}
+                className="group block relative overflow-hidden rounded-lg min-h-[260px] sm:min-h-[320px] cursor-pointer"
+              >
+                {/* Background image */}
+                {offer.image && (
+                  <img
+                    src={offer.image}
+                    alt={offer.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                )}
+                {/* Dark gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+                {/* Blue accent top bar */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
+                {/* Badge */}
+                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-2.5 py-0.5 text-[10px] font-black tracking-widest uppercase">
+                  {offer.badge}
+                </div>
+                {/* Content */}
+                <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6">
+                  {/* Value — big marketing number */}
+                  <div className="text-3xl sm:text-5xl font-black text-white mb-1 sm:mb-2 leading-none mono-number drop-shadow-lg">
                     {offer.value}
                   </div>
-                  <p className="text-[10px] sm:text-sm text-muted-foreground mb-2 sm:mb-6 hidden sm:block relative z-[2]">
+                  <h3 className="text-sm sm:text-lg font-bold text-white mb-1 sm:mb-2 leading-tight">
+                    {offer.title}
+                  </h3>
+                  <p className="text-[11px] sm:text-sm text-white/75 mb-3 sm:mb-4 leading-snug">
                     {offer.description}
                   </p>
-                  <a
-                    href={COMPANY.appointmentUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackClaimOffer(offer.title, "offers_page")}
-                    className="relative z-[2]"
-                  >
-                    <Button
-                      variant="outline"
-                      className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-[10px] sm:text-sm py-1.5 sm:py-2"
-                    >
-                      {t.claimOffer}
-                    </Button>
-                  </a>
-                </Card>
-              </div>
+                  {/* CTA */}
+                  <div className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-black uppercase tracking-wider px-4 py-2 text-[11px] sm:text-sm w-fit transition-all group-hover:bg-white group-hover:text-black">
+                    {t.claimOffer}
+                    <span className="text-base leading-none">→</span>
+                  </div>
+                </div>
+              </a>
             ))}
           </div>
         </div>

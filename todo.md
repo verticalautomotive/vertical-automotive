@@ -934,3 +934,12 @@
 - [x] "neumáticos" kept in technical service/FAQ content per user instruction
 - [x] TypeScript check: 0 errors
 - [x] Save checkpoint and publish
+
+## Offers Page — Marketing Tile Redesign
+- [x] Redesign CURRENT OFFERS tiles with background images and marketing-oriented layout
+  - Full-bleed background images, dark gradient overlay, blue accent top bar, badge top-right
+  - Large value text (3xl/5xl), title, description, CLAIM OFFER → CTA button
+  - Hover: image scale + CTA inverts to white/black
+  - 1-col mobile / 2-col tablet / 3-col desktop grid, min-h 260/320px
+- [x] Assign relevant auto-service images to each offer tile (all confirmed 200 CDN URLs)
+- [x] Save checkpoint and publish
