@@ -352,7 +352,7 @@ export const OFFERS: Offer[] = [
   {
     title: "Wiper Blades",
     value: "ON US",
-    description: "any $399+ service",
+    description: "any $299+ service",
     badge: "BONUS",
   },
   {
@@ -396,7 +396,7 @@ export const OFFERS: Offer[] = [
 export const COUPONS = [
   {
     title: "Wiper Blades",
-    description: "with any $399+ service\n\ncoupons do not combine, first visit only",
+    description: "with any $299+ service\n\ncoupons do not combine, first visit only",
     expiry: "No expiration",
   },
   {

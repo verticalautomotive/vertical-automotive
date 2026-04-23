@@ -293,7 +293,7 @@ export const OFFERS_ES: Offer[] = [
   {
     title: "Plumas Limpiaparabrisas",
     value: "GRATIS",
-    description: "con cualquier servicio de $399+",
+    description: "con cualquier servicio de $299+",
     badge: "BONO",
   },
   {
@@ -337,7 +337,7 @@ export const OFFERS_ES: Offer[] = [
 export const COUPONS_ES = [
   {
     title: "Plumas Limpiaparabrisas",
-    description: "con cualquier servicio de $399+\n\nlos cupones no se combinan, solo primera visita",
+    description: "con cualquier servicio de $299+\n\nlos cupones no se combinan, solo primera visita",
     expiry: "Sin vencimiento",
   },
   {
