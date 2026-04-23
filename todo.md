@@ -943,3 +943,9 @@
   - 1-col mobile / 2-col tablet / 3-col desktop grid, min-h 260/320px
 - [x] Assign relevant auto-service images to each offer tile (all confirmed 200 CDN URLs)
 - [x] Save checkpoint and publish
+
+## Offers Page — AI-Generated Promo Images
+- [x] Generate 10 unique AI marketing images matched to each offer
+- [x] Upload images to CDN static assets (all 10 confirmed 200)
+- [x] Update OFFERS array in data.ts with new image URLs
+- [x] Save checkpoint and publish
