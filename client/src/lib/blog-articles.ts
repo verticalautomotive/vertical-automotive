@@ -46,7 +46,7 @@ export const AUTHORS_EN = {
     name: "Eugene B.",
     role: "Owner & ASE Master Technician",
     bio: "Eugene founded Vertical Automotive in 1989 and has over 36 years of hands-on experience diagnosing and repairing vehicles of all makes and models. As an ASE-certified Master Technician, he leads the shop with a diagnostics-first approach and a commitment to honest, professional service for South Florida drivers.",
-    avatar: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/author-eugene-avatar-PCY6biXWUu8khmRMuNWhQw.webp",
+    avatar: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/author-photo_a8b9cce4.jpg",
     credentials: "ASE Master Technician",
   } as BlogAuthor,
   team: {
@@ -63,7 +63,7 @@ export const AUTHORS_ES = {
     name: "Eugene B.",
     role: "Propietario y Técnico Maestro ASE",
     bio: "Eugene fundó Vertical Automotive en 1989 y tiene más de 36 años de experiencia práctica diagnosticando y reparando vehículos de todas las marcas y modelos. Como Técnico Maestro certificado ASE, dirige el taller con un enfoque de diagnóstico primero y un compromiso con el servicio honesto y profesional para los conductores del sur de Florida.",
-    avatar: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/author-eugene-avatar-PCY6biXWUu8khmRMuNWhQw.webp",
+    avatar: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/author-photo_a8b9cce4.jpg",
     credentials: "Técnico Maestro ASE",
   } as BlogAuthor,
   team: {
