@@ -88,6 +88,11 @@ const TRUST_BADGES: TrustBadge[] = [
     title: "Yelp",
     titleEs: "Yelp",
   },
+  {
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/cbe-certified-logo_b2b75fec.png",
+    title: "Broward County CBE Certified",
+    titleEs: "Certificado CBE del Condado Broward",
+  },
 ];
 
 export default function TrustBadges() {
