@@ -183,6 +183,23 @@ export default function CityServicePage() {
               {isSpanish ? 'Llamar' : 'Call'} {page.phone}
             </Button>
           </div>
+          {/* Credential badges — BMW Factory Trained shown only on European page */}
+          <div className="flex flex-wrap gap-2 mt-5">
+            <span className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 text-white text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm">
+              <Award className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+              {isSpanish ? 'Certificado ASE' : 'ASE Certified'}
+            </span>
+            {page.serviceSlug === 'european-vehicle-repair' && (
+              <span className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 text-white text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm">
+                <Shield className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                {isSpanish ? 'Entrenado por Fábrica BMW' : 'BMW Factory Trained'}
+              </span>
+            )}
+            <span className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 text-white text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm">
+              <CheckCircle className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+              {isSpanish ? 'Garantía 3 Años' : '3-Year Warranty'}
+            </span>
+          </div>
         </div>
       </section>
 
