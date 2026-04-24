@@ -203,7 +203,7 @@ export default function ServiceDetail() {
           "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "4.9",
-            "reviewCount": "503",
+            "reviewCount": "516",
             "bestRating": "5"
           }
         }) }}

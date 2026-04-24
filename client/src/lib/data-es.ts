@@ -508,7 +508,7 @@ export const UI_ES = {
     basedOn: "Basado en",
     googleReviews: "Reseñas de Google",
     readReviews: "Leer Reseñas de Clientes",
-    seeAllReviews: "VER TODAS LAS 503 RESEÑAS EN GOOGLE",
+    seeAllReviews: "VER TODAS LAS 516 RESEÑAS EN GOOGLE",
     contactUs: "CONTÁCTENOS",
     twoLocations: "Dos ubicaciones convenientes para servirte",
     schedule: "AGENDAR",

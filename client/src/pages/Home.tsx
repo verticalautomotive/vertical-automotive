@@ -166,7 +166,7 @@ export default function Home() {
     basedOn: "Based on",
     googleReviews: "Google Reviews",
     readReviews: "Read Customer Reviews",
-    seeAllReviews: "SEE ALL 503 REVIEWS ON GOOGLE",
+    seeAllReviews: "SEE ALL 516 REVIEWS ON GOOGLE",
     contactUs: "CONTACT",
     twoLocations: "Two convenient locations to serve you",
     schedule: "SCHEDULE",
@@ -502,7 +502,7 @@ export default function Home() {
               <span className="text-2xl sm:text-3xl font-black mono-number">4.9</span>
             </div>
             <p className="text-sm sm:text-lg text-muted-foreground">
-              {t.basedOn} <span className="font-bold text-foreground">503 {t.googleReviews}</span>
+              {t.basedOn} <span className="font-bold text-foreground">516 {t.googleReviews}</span>
             </p>
           </div>
 

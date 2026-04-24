@@ -168,7 +168,7 @@ export default function LocationHub({ cityKey }: Props) {
     basedOn: isSpanish ? "Basado en" : "Based on",
     googleReviews: isSpanish ? "Reseñas de Google" : "Google Reviews",
     readReviews: isSpanish ? "Leer Reseñas de Clientes" : "Read Customer Reviews",
-    seeAllReviews: isSpanish ? "VER LAS 503 RESEÑAS EN GOOGLE" : "SEE ALL 503 REVIEWS ON GOOGLE",
+    seeAllReviews: isSpanish ? "VER LAS 516 RESEÑAS EN GOOGLE" : "SEE ALL 516 REVIEWS ON GOOGLE",
     ctaTitle: isSpanish ? "¿Listo para Agendar tu Cita?" : "Ready to Book Your Service?",
     ctaSubtitle: isSpanish ? "Garantía de 36 Meses / 36,000 Millas en Todas las Reparaciones — Trabajo Bien Hecho Desde la Primera Vez" : "36-Month / 36,000-Mile Warranty on All Repairs",
     scheduleOnline: isSpanish ? "AGENDAR CITA AHORA" : "SCHEDULE ONLINE",
@@ -218,7 +218,7 @@ export default function LocationHub({ cityKey }: Props) {
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.9",
-      reviewCount: "500",
+      reviewCount: "516",
       bestRating: "5",
     },
     hasOfferCatalog: {
@@ -539,7 +539,7 @@ export default function LocationHub({ cityKey }: Props) {
               <span className="text-2xl sm:text-3xl font-black mono-number">4.9</span>
             </div>
             <p className="text-sm sm:text-lg text-muted-foreground">
-              {t.basedOn} <span className="font-bold text-foreground">503 {t.googleReviews}</span>
+              {t.basedOn} <span className="font-bold text-foreground">516 {t.googleReviews}</span>
             </p>
           </div>
 
