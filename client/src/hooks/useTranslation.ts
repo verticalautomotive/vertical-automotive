@@ -39,6 +39,7 @@ const BLOG_SLUG_EN_TO_ES: Record<string, string> = {
   "tesla-ac-thermal-management-south-florida": "tesla-ac-gestion-termica-sur-de-florida",
   "tesla-suspension-alignment-south-florida": "tesla-suspension-alineacion-sur-de-florida",
   "european-car-service-wilton-manors-south-florida": "servicio-autos-europeos-wilton-manors-sur-florida",
+  "porsche-911-maintenance-guide": "guia-mantenimiento-porsche-911",
 };
 const BLOG_SLUG_ES_TO_EN: Record<string, string> = Object.fromEntries(
   Object.entries(BLOG_SLUG_EN_TO_ES).map(([k, v]) => [v, k])
