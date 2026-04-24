@@ -416,7 +416,7 @@ export const ABOUT_CONTENT_ES = {
       description: "Más de 36 años sirviendo al sur de Florida. Cuando vienes a nuestro taller, no eres un cliente más — eres nuestro ÚNICO cliente.",
     },
   ],
-  certificationText: "Nuestros técnicos MAESTROS certificados ASE hacen reparaciones completas en todas las marcas y modelos de carros y camionetas.",
+  certificationText: "Nuestros técnicos MAESTROS certificados ASE hacen reparaciones completas en todas las marcas y modelos de carros y camionetas. Vertical Automotive es una empresa orgullosamente certificada CBE (County Business Enterprise) del Condado Broward.",
 };
 
 export const SERVICES_PAGE_EXTRA_ES = {

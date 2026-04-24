@@ -488,7 +488,7 @@ export const ABOUT_CONTENT = {
       description: "Offering the best in customer service, when you come into our facility, you aren't treated like any other customer, but rather our ONLY customer.",
     },
   ],
-  certificationText: "Our ASE-certified MASTER technicians feature complete repairs on all makes and models of cars and trucks.",
+  certificationText: "Our ASE-certified MASTER technicians feature complete repairs on all makes and models of cars and trucks. Vertical Automotive is a proud Broward County CBE (County Business Enterprise) certified business.",
 };
 
 export const SERVICES_PAGE_EXTRA = {
