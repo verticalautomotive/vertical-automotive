@@ -40,16 +40,14 @@ import CallNowDialog from "@/components/CallNowDialog";
 import LocationPickerModal from "@/components/LocationPickerModal";
 
 const HERO_POSTER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp";
-const HERO_VIDEO_MOBILE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-mobile_9141c89b.mp4";
 const HERO_VIDEO_DESKTOP = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4";
+// Mobile hero: static image for faster LCP and lower data usage on phones/tablets
+const HERO_MOBILE_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-shop_97ab43c1.jpg";
 
 /**
  * HeroBackground — renders the hero section background.
- * All devices: autoplay muted looping video with poster for instant first paint.
- * Mobile (< 768px): uses smaller mobile-optimized video.
- * Desktop/tablet (≥ 768px): uses full desktop video.
- * Video src is set after mount (via useEffect) so the poster renders first,
- * then the video loads without blocking the LCP image.
+ * Mobile/tablet (< 1024px): static image for fast LCP and low data usage.
+ * Desktop (≥ 1024px): autoplay muted looping video.
  */
 function HeroBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -61,9 +59,9 @@ function HeroBackground() {
     setMounted(true);
   }, []);
 
-  // Aggressive play retry for iOS Safari
+  // Desktop-only: aggressive play retry for Safari
   useEffect(() => {
-    if (!mounted || !videoRef.current) return;
+    if (!mounted || isMobile || !videoRef.current) return;
     const video = videoRef.current;
     let attempts = 0;
     const maxAttempts = 5;
@@ -71,24 +69,19 @@ function HeroBackground() {
     const tryPlay = () => {
       if (attempts >= maxAttempts) return;
       attempts++;
-      // Ensure muted (iOS requirement)
       video.muted = true;
       video.play().catch(() => {
-        // Retry with increasing delay
         setTimeout(tryPlay, attempts * 500);
       });
     };
 
-    // Wait for video to have enough data, then play
     if (video.readyState >= 2) {
       tryPlay();
     } else {
       video.addEventListener('loadeddata', tryPlay, { once: true });
-      // Also try on canplay as fallback
       video.addEventListener('canplay', tryPlay, { once: true });
     }
 
-    // Also try on user interaction (iOS may require this)
     const onInteraction = () => {
       if (video.paused) {
         video.muted = true;
@@ -104,10 +97,22 @@ function HeroBackground() {
       document.removeEventListener('touchstart', onInteraction);
       document.removeEventListener('click', onInteraction);
     };
-  }, [mounted]);
+  }, [mounted, isMobile]);
 
-  const videoSrc = isMobile ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP;
+  // Mobile/tablet: static image hero for performance
+  if (mounted && isMobile) {
+    return (
+      <img
+        src={HERO_MOBILE_IMAGE}
+        alt="Vertical Automotive shop — Honda NSX on lift"
+        width={1080}
+        height={1350}
+        className="absolute inset-0 w-full h-full object-cover object-top"
+      />
+    );
+  }
 
+  // Desktop: video hero (poster shown during pre-mount)
   return (
     <video
       ref={videoRef}
@@ -119,7 +124,7 @@ function HeroBackground() {
       poster={HERO_POSTER}
       className="absolute inset-0 w-full h-full object-cover"
     >
-      {mounted && <source src={videoSrc} type="video/mp4" />}
+      {mounted && !isMobile && <source src={HERO_VIDEO_DESKTOP} type="video/mp4" />}
     </video>
   );
 }
