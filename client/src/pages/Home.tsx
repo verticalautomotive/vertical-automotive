@@ -107,6 +107,9 @@ function HeroBackground() {
         alt="Vertical Automotive shop — Honda NSX on lift"
         width={1080}
         height={1350}
+        loading="eager"
+        decoding="sync"
+        fetchPriority="high"
         className="absolute inset-0 w-full h-full object-cover object-center"
       />
     );

@@ -50,13 +50,21 @@
     <!-- Logo: local file, preloaded for nav bar stability (no layout shift) -->
     <link rel="preload" as="image" type="image/svg+xml" href="/logo-vertical-automotive.svg" />
     <!--
-      LCP hero poster: On mobile the hero renders as a static poster image (WebP, ~24KB).
-      Preloading it here ensures it starts fetching before React hydrates.
-      On desktop the video poster also uses this same image, so this preload benefits both paths.
-      fetchpriority=high tells the browser this is the most important image on the page.
+      LCP hero images — split by device:
+      Mobile (<1024px): shop photo JPG — this is the actual LCP element on phones/tablets.
+      Desktop (≥1024px): video poster WebP — shown as poster before video starts.
+      Using media queries ensures only the relevant image is preloaded per device.
+      fetchpriority=high on both so the browser treats them as the highest-priority resource.
     -->
+    <!-- Mobile LCP: shop photo (< 1024px) -->
+    <link rel="preload" as="image" type="image/jpeg"
+      href="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-shop_97ab43c1.jpg"
+      media="(max-width: 1023px)"
+      fetchpriority="high" />
+    <!-- Desktop LCP: video poster WebP (≥ 1024px) -->
     <link rel="preload" as="image" type="image/webp"
       href="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp"
+      media="(min-width: 1024px)"
       fetchpriority="high" />
 
     <!-- ===== FONTS — Self-hosted on same origin (proper Cache-Control headers) ===== -->
@@ -155,7 +163,7 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
-        "reviewCount": "503",
+        "reviewCount": "516",
         "bestRating": "5"
       },
       "foundingDate": "1989",
@@ -230,7 +238,7 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
-        "reviewCount": "503",
+        "reviewCount": "516",
         "bestRating": "5"
       },
       "foundingDate": "1989",
@@ -282,7 +290,12 @@
         <nav class="sh-nav" aria-hidden="true">
           <img src="/logo-vertical-automotive.svg" alt="" width="200" height="40" />
         </nav>
-        <img class="sh-bg" src="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp" alt="" fetchpriority="high" width="800" height="600" />
+        <!-- Static hero shell uses the mobile shop image on mobile, poster on desktop.
+             This prevents a visual swap when React hydrates on mobile. -->
+        <picture>
+          <source media="(min-width: 1024px)" srcset="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp" type="image/webp" />
+          <img class="sh-bg" src="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-shop_97ab43c1.jpg" alt="" fetchpriority="high" width="1080" height="1350" />
+        </picture>
         <div class="sh-overlay"></div>
         <div class="sh-content">
           <div class="sh-inner">

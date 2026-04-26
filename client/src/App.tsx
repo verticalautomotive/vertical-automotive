@@ -1,4 +1,29 @@
 import { lazy, Suspense, useEffect, useState, useCallback } from "react";
+import type { ReactNode } from "react";
+
+/**
+ * DeferredMount — delays mounting children until after the main thread is idle.
+ * Uses requestIdleCallback (or a 2s setTimeout fallback) to avoid competing
+ * with React hydration and LCP rendering. Reduces TBT on mobile significantly.
+ */
+function DeferredMount({ children, delay = 2500 }: { children: ReactNode; delay?: number }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      const id = (window as Window & { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(
+        () => setMounted(true),
+        { timeout: delay }
+      );
+      return () => {
+        (window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(id);
+      };
+    } else {
+      const id = setTimeout(() => setMounted(true), delay);
+      return () => clearTimeout(id);
+    }
+  }, [delay]);
+  return mounted ? <>{children}</> : null;
+}
 import { Route, Switch, Redirect } from "wouter";
 import { useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -196,14 +221,16 @@ function App() {
             <StructuredData />
             <Toaster />
             <Router />
-            {/* Non-critical UI — all lazy-loaded to reduce initial JS bundle */}
-            <Suspense fallback={null}>
-              <ChatBubble isOpen={isChatOpen} onClose={handleChatClose} language={language} />
-              <FloatingActions isChatOpen={isChatOpen} onChatToggle={handleChatToggle} />
-              <MobileFooterBar />
-              <ChatButton language={language} isOpen={isChatOpen} onToggle={handleChatToggle} />
-              <CookieConsentBanner />
-            </Suspense>
+            {/* Non-critical UI — deferred until main thread is idle to reduce TBT on mobile */}
+            <DeferredMount delay={2500}>
+              <Suspense fallback={null}>
+                <ChatBubble isOpen={isChatOpen} onClose={handleChatClose} language={language} />
+                <FloatingActions isChatOpen={isChatOpen} onChatToggle={handleChatToggle} />
+                <MobileFooterBar />
+                <ChatButton language={language} isOpen={isChatOpen} onToggle={handleChatToggle} />
+                <CookieConsentBanner />
+              </Suspense>
+            </DeferredMount>
           </TooltipProvider>
         </Suspense>
       </ThemeProvider>
