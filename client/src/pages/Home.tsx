@@ -30,19 +30,20 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Link } from "wouter";
 import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackCall, trackSchedule, trackDirections, trackClaimOffer } from "@/lib/gtm";
-import CallNowDialog from "@/components/CallNowDialog";
-import LocationPickerModal from "@/components/LocationPickerModal";
+// Lazy-load dialogs — only needed when user clicks a button, not on initial paint
+const CallNowDialog = lazy(() => import("@/components/CallNowDialog"));
+const LocationPickerModal = lazy(() => import("@/components/LocationPickerModal"));
 
 const HERO_POSTER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp";
 const HERO_VIDEO_DESKTOP = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4";
 // Mobile hero: static image for faster LCP and lower data usage on phones/tablets
-const HERO_MOBILE_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-shop_97ab43c1.jpg";
+const HERO_MOBILE_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-shop_7705f9e1.webp";
 
 /**
  * HeroBackground — renders the hero section background.
@@ -821,21 +822,24 @@ export default function Home() {
       {/* Bottom spacer for sticky bar on mobile */}
       <div className="h-16 sm:hidden" />
 
-      {/* Call Now Dialog */}
-      <CallNowDialog
-        open={callDialogOpen}
-        onClose={() => setCallDialogOpen(false)}
-        source="home_sticky_bar"
-      />
-
-      {/* Location Picker Modal */}
-      <LocationPickerModal
-        open={!!locationPickerService}
-        onClose={() => setLocationPickerService(null)}
-        serviceSlug={locationPickerService?.slug ?? ""}
-        serviceName={locationPickerService?.name ?? ""}
-        langPrefix={prefix}
-      />
+       {/* Call Now Dialog — lazy-loaded, only fetched when opened */}
+      <Suspense fallback={null}>
+        <CallNowDialog
+          open={callDialogOpen}
+          onClose={() => setCallDialogOpen(false)}
+          source="home_sticky_bar"
+        />
+      </Suspense>
+      {/* Location Picker Modal — lazy-loaded, only fetched when opened */}
+      <Suspense fallback={null}>
+        <LocationPickerModal
+          open={!!locationPickerService}
+          onClose={() => setLocationPickerService(null)}
+          serviceSlug={locationPickerService?.slug ?? ""}
+          serviceName={locationPickerService?.name ?? ""}
+          langPrefix={prefix}
+        />
+      </Suspense>
     </div>
   );
 }

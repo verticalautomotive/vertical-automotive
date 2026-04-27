@@ -29,17 +29,17 @@ const TRUST_BADGES: TrustBadge[] = [
     titleEs: "Centro de Servicio CARFAX",
   },
   {
-    logo: `${CDN}/badge-broward_4d14f234.png`,
+    logo: `${CDN}/badge-broward_4d14f234_3738c601.webp`,
     title: "Broward County Licensed",
     titleEs: "Licencia del Condado Broward",
   },
   {
-    logo: `${CDN}/badge-florida-consumer_52ccd024.png`,
+    logo: `${CDN}/badge-florida-consumer_52ccd024_f3f18460.webp`,
     title: "Florida Consumer Services Registered",
     titleEs: "Registrado en Servicios al Consumidor de Florida",
   },
   {
-    logo: `${CDN}/badge-repairpal_5e3fb627.png`,
+    logo: `${CDN}/badge-repairpal_5e3fb627_e3940c9c.webp`,
     title: "RepairPal Certified",
     titleEs: "Certificado RepairPal",
   },
@@ -49,7 +49,7 @@ const TRUST_BADGES: TrustBadge[] = [
     titleEs: "Asociación de Mantenimiento y Reparación Automotriz",
   },
   {
-    logo: `${CDN}/badge-ase_33175494.png`,
+    logo: `${CDN}/badge-ase_33175494_cd52f02d.webp`,
     title: "ASE Certified Technicians",
     titleEs: "Técnicos Certificados ASE",
   },
@@ -64,22 +64,22 @@ const TRUST_BADGES: TrustBadge[] = [
     titleEs: "Certificado O'Reilly",
   },
   {
-    logo: `${CDN}/silverrock_logo_dark_188b40cd.png`,
+    logo: `${CDN}/silverrock_logo_dark_188b40cd_7b2286cf.webp`,
     title: "SilverRock Warranty",
     titleEs: "Garantía SilverRock",
   },
   {
-    logo: `${CDN}/carmax_logo_0457b3ea.png`,
+    logo: `${CDN}/carmax_logo_0457b3ea_f4ffd4af.webp`,
     title: "CarMax",
     titleEs: "CarMax",
   },
   {
-    logo: `${CDN}/carshield_logo_e199d3fc.png`,
+    logo: `${CDN}/carshield_logo_e199d3fc_26a122f0.webp`,
     title: "CarShield",
     titleEs: "CarShield",
   },
   {
-    logo: `${CDN}/badge-google_8a3d07b6.png`,
+    logo: `${CDN}/badge-google_8a3d07b6_46501572.webp`,
     title: "Google Verified Business",
     titleEs: "Negocio Verificado por Google",
   },
@@ -89,7 +89,7 @@ const TRUST_BADGES: TrustBadge[] = [
     titleEs: "Yelp",
   },
   {
-    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/cbe-certified-logo_b2b75fec.png",
+    logo: `${CDN}/cbe-certified-logo_b2b75fec_444e3dfe.webp`,
     title: "Broward County CBE Certified",
     titleEs: "Certificado CBE del Condado Broward",
   },
