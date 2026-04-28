@@ -949,3 +949,11 @@
 - [x] Upload images to CDN static assets (all 10 confirmed 200)
 - [x] Update OFFERS array in data.ts with new image URLs
 - [x] Save checkpoint and publish
+
+## Hide Shift AI Chatbot Icon
+- [x] Remove ChatButton from App.tsx (desktop floating button)
+- [x] Remove ChatButton from FloatingActions.tsx (mobile floating button)
+- [x] Remove ChatBubble from App.tsx (chat panel)
+- [x] Clean up related state (isChatOpen, handleChatToggle, handleChatClose) from App.tsx
+- [x] Clean up ChatButton import from FloatingActions.tsx
+- [ ] Save checkpoint

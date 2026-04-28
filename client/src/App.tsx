@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState, useCallback } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 
 /**
@@ -35,8 +35,6 @@ const Toaster = lazy(() => import("@/components/ui/sonner").then(m => ({ default
 const TooltipProvider = lazy(() => import("@/components/ui/tooltip").then(m => ({ default: m.TooltipProvider })));
 // Lazy-load all non-critical UI components to reduce initial JS bundle
 // These components are not needed for first paint or LCP
-const ChatButton = lazy(() => import("@/components/ChatButton").then(m => ({ default: m.ChatButton })));
-const ChatBubble = lazy(() => import("@/components/ChatBubble").then(m => ({ default: m.ChatBubble })));
 const MobileFooterBar = lazy(() => import("./components/MobileFooterBar"));
 const FloatingActions = lazy(() => import("./components/FloatingActions"));
 const CookieConsentBanner = lazy(() => import("@/components/CookieConsentBanner").then(m => ({ default: m.CookieConsentBanner })));
@@ -208,9 +206,7 @@ function Router() {
 function App() {
   const [location] = useLocation();
   const language = location.startsWith("/es") ? "es" : "en";
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const handleChatToggle = useCallback(() => setIsChatOpen(prev => !prev), []);
-  const handleChatClose = useCallback(() => setIsChatOpen(false), []);
+  void language; // language kept for future use
 
   return (
     <ErrorBoundary>
@@ -224,10 +220,8 @@ function App() {
             {/* Non-critical UI — deferred until main thread is idle to reduce TBT on mobile */}
             <DeferredMount delay={2500}>
               <Suspense fallback={null}>
-                <ChatBubble isOpen={isChatOpen} onClose={handleChatClose} language={language} />
-                <FloatingActions isChatOpen={isChatOpen} onChatToggle={handleChatToggle} />
+                <FloatingActions />
                 <MobileFooterBar />
-                <ChatButton language={language} isOpen={isChatOpen} onToggle={handleChatToggle} />
                 <CookieConsentBanner />
               </Suspense>
             </DeferredMount>

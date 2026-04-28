@@ -1,8 +1,7 @@
 /**
  * FloatingActions — Floating action buttons on mobile only
- * 1. Ask Shift AI chatbot button (via ChatButton component)
- * 2. SMS/Text icon with location picker popup (Wilton Manors / Fort Lauderdale)
- * 3. Directions icon with location picker popup
+ * 1. SMS/Text icon with location picker popup (Wilton Manors / Fort Lauderdale)
+ * 2. Directions icon with location picker popup
  * Positioned above the MobileFooterBar, right side
  * Bilingual: adapts labels based on /es/ URL prefix
  */
@@ -10,7 +9,6 @@ import { MessageCircle, Navigation2, X, MapPin } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackTextUs, trackDirections } from "@/lib/gtm";
-import { ChatButton } from "./ChatButton";
 
 const SMS_NUMBERS = {
   wiltonManors: "9548336584",
@@ -25,11 +23,11 @@ const DIRECTIONS_URLS = {
 type PopupType = "sms" | "directions" | null;
 
 interface FloatingActionsProps {
-  isChatOpen: boolean;
-  onChatToggle: () => void;
+  isChatOpen?: boolean;
+  onChatToggle?: () => void;
 }
 
-export default function FloatingActions({ isChatOpen, onChatToggle }: FloatingActionsProps) {
+export default function FloatingActions({ isChatOpen: _isChatOpen, onChatToggle: _onChatToggle }: FloatingActionsProps) {
   const [openPopup, setOpenPopup] = useState<PopupType>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { isSpanish } = useTranslation();
@@ -75,8 +73,6 @@ export default function FloatingActions({ isChatOpen, onChatToggle }: FloatingAc
         className="fixed right-4 z-50 md:hidden flex flex-col items-end gap-3"
         style={{ bottom: "calc(5rem + env(safe-area-inset-bottom, 0px))" }}
       >
-        {/* Mobile Shift Chat Button */}
-        <ChatButton language={isSpanish ? "es" : "en"} isMobile={true} isOpen={isChatOpen} onToggle={onChatToggle} />
         {/* SMS Popup */}
         {openPopup === "sms" && (
           <div className="bg-[#0f1724] border border-blue-500/30 rounded-xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-2 fade-in duration-200 mb-1 w-56">
