@@ -73,12 +73,8 @@ export default function FloatingActions({ isChatOpen: _isChatOpen, onChatToggle:
           0%, 100% { box-shadow: 0 0 0 0 rgba(37,99,235,0.55), 0 4px 12px rgba(0,0,0,0.4); }
           50% { box-shadow: 0 0 0 8px rgba(37,99,235,0), 0 4px 12px rgba(0,0,0,0.4); }
         }
-        @keyframes pulse-green {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(22,163,74,0.55), 0 4px 12px rgba(0,0,0,0.4); }
-          50% { box-shadow: 0 0 0 8px rgba(22,163,74,0), 0 4px 12px rgba(0,0,0,0.4); }
-        }
         .btn-pulse-blue { animation: pulse-blue 2.2s ease-in-out infinite; }
-        .btn-pulse-green { animation: pulse-green 2.2s ease-in-out infinite 0.4s; }
+        .btn-pulse-blue-offset { animation: pulse-blue 2.2s ease-in-out infinite 0.4s; }
       `}</style>
 
       {/* Mobile Floating Actions Container */}
@@ -186,7 +182,7 @@ export default function FloatingActions({ isChatOpen: _isChatOpen, onChatToggle:
           className={`group relative flex items-center justify-center w-14 h-14 rounded-full transition-all duration-200 active:scale-95 ${
             openPopup === "directions"
               ? "bg-primary text-white"
-              : "bg-[#0f1724]/95 text-green-400 border border-green-500/50 btn-pulse-green"
+              : "bg-[#0f1724]/95 text-primary border border-blue-500/50 btn-pulse-blue-offset"
           }`}
           aria-label={labels.getDirections}
         >
