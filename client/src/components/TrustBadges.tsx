@@ -49,7 +49,7 @@ const TRUST_BADGES: TrustBadge[] = [
     titleEs: "Asociación de Mantenimiento y Reparación Automotriz",
   },
   {
-    logo: `${CDN}/badge-ase_33175494_cd52f02d.webp`,
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/ase_nobg_efa66f20.png",
     title: "ASE Certified Technicians",
     titleEs: "Técnicos Certificados ASE",
   },
@@ -74,7 +74,7 @@ const TRUST_BADGES: TrustBadge[] = [
     titleEs: "CarMax",
   },
   {
-    logo: `${CDN}/carshield_logo_e199d3fc_26a122f0.webp`,
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/carshield_nobg_1ee1386a.png",
     title: "CarShield",
     titleEs: "CarShield",
   },
@@ -89,7 +89,7 @@ const TRUST_BADGES: TrustBadge[] = [
     titleEs: "Yelp",
   },
   {
-    logo: `${CDN}/cbe-certified-logo_b2b75fec_444e3dfe.webp`,
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/cbe_nobg_7d519727.png",
     title: "Broward County CBE Certified",
     titleEs: "Certificado CBE del Condado Broward",
   },
