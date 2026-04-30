@@ -15,6 +15,7 @@ interface TrustBadge {
   logo: string;
   title: string;
   titleEs: string;
+  href?: string;
 }
 
 const TRUST_BADGES: TrustBadge[] = [
@@ -27,6 +28,7 @@ const TRUST_BADGES: TrustBadge[] = [
     logo: `${CDN}/badge-carfax_cbce4da6.png`,
     title: "CARFAX Service Center",
     titleEs: "Centro de Servicio CARFAX",
+    href: "https://www.carfax.com/Reviews-Vertical-Automotive-Wilton-Manors-FL_TWWL18G001",
   },
   {
     logo: `${CDN}/badge-broward_4d14f234_3738c601.webp`,
@@ -113,11 +115,8 @@ export default function TrustBadges() {
 
       {/* Logo Grid — uniform size, full color, no text labels */}
       <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-x-6 gap-y-6 sm:gap-x-8 sm:gap-y-8">
-        {TRUST_BADGES.map((badge, i) => (
-          <div
-            key={i}
-            className="group flex items-center justify-center cursor-default"
-          >
+        {TRUST_BADGES.map((badge, i) => {
+          const img = (
             <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 flex items-center justify-center transition-transform duration-300 ease-out group-hover:scale-110">
               <img
                 src={badge.logo}
@@ -129,8 +128,27 @@ export default function TrustBadges() {
                 className="max-w-full max-h-full object-contain transition-all duration-300 opacity-90 group-hover:opacity-100"
               />
             </div>
-          </div>
-        ))}
+          );
+          return badge.href ? (
+            <a
+              key={i}
+              href={badge.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-center cursor-pointer"
+              aria-label={badge.title}
+            >
+              {img}
+            </a>
+          ) : (
+            <div
+              key={i}
+              className="group flex items-center justify-center cursor-default"
+            >
+              {img}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
