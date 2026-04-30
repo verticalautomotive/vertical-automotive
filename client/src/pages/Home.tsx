@@ -28,14 +28,13 @@ import {
   Quote,
   ExternalLink,
   ChevronDown,
-  ChevronUp,
 } from "lucide-react";
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Link } from "wouter";
 import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
 import { useTranslation } from "@/hooks/useTranslation";
-import { trackCall, trackSchedule, trackDirections, trackClaimOffer } from "@/lib/gtm";
+import { trackCall, trackSchedule, trackDirections } from "@/lib/gtm";
 // Lazy-load dialogs — only needed when user clicks a button, not on initial paint
 const CallNowDialog = lazy(() => import("@/components/CallNowDialog"));
 const LocationPickerModal = lazy(() => import("@/components/LocationPickerModal"));
@@ -136,10 +135,9 @@ function HeroBackground() {
 export default function Home() {
   const [statsVisible, setStatsVisible] = useState(false);
   const [reviewsExpanded, setReviewsExpanded] = useState(false);
-  const [offersExpanded, setOffersExpanded] = useState(false);
   const [callDialogOpen, setCallDialogOpen] = useState(false);
   const [locationPickerService, setLocationPickerService] = useState<{ slug: string; name: string } | null>(null);
-  const { lang, isSpanish, prefix, servicesPath, services, vehicleTypes, offers, ui } = useTranslation();
+  const { lang, isSpanish, prefix, servicesPath, services, vehicleTypes, ui } = useTranslation();
 
   const t = ui?.home ?? {
     yearsExcellence: "YEARS OF EXCELLENCE",
@@ -203,8 +201,6 @@ export default function Home() {
 
 
 
-  const offersPath = isSpanish ? "/es/ofertas" : "/offers";
-
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SEO
@@ -252,9 +248,6 @@ export default function Home() {
                   {isSpanish ? "AGENDAR CITA" : "SCHEDULE APPOINTMENT"}
                 </Button>
               </a>
-              <Link href={offersPath} className="text-secondary-foreground/60 hover:text-primary text-sm sm:text-base font-medium underline underline-offset-4 decoration-secondary-foreground/30 hover:decoration-primary transition-colors">
-                {isSpanish ? "Ver Ofertas" : "View Offers"}
-              </Link>
             </div>
           </div>
         </div>
@@ -355,80 +348,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Offers Section — mobile: collapsible compact cards, Desktop: full grid */}
-      <section id="offers" className="py-10 sm:py-20 bg-muted" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
-        <div className="container">
-          <div className="text-center mb-6 sm:mb-16">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
-              {isSpanish ? t.currentOffers : "CURRENT"} <span className="text-primary">{isSpanish ? t.current : "OFFERS"}</span>
-            </h2>
-            <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-2 sm:mb-4" />
-            <p className="text-sm sm:text-lg text-muted-foreground">
-              {t.saveOnQuality}
-            </p>
-          </div>
-
-          {(() => {
-            const allOffers = offers.slice(0, 6);
-
-            const OfferCard = ({ offer }: { offer: typeof allOffers[0] }) => (
-              <div className="glass-wrap h-full">
-              <Card className="glass-card glass-offer p-3 sm:p-8">
-                <div className="inline-block bg-primary text-primary-foreground px-2 sm:px-4 py-0.5 sm:py-1 text-[9px] sm:text-xs font-bold mb-2 sm:mb-4">
-                  {offer.badge}
-                </div>
-                <h3 className="text-xs sm:text-xl font-bold mb-1 sm:mb-3 leading-tight">{offer.title}</h3>
-                <div className="text-xl sm:text-4xl font-black text-primary mb-1 sm:mb-4 mono-number">
-                  {offer.value}
-                </div>
-                <p className="text-[10px] sm:text-sm text-muted-foreground mb-2 sm:mb-6 hidden sm:block">
-                  {offer.description}
-                </p>
-                <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackClaimOffer(offer.title, "home_offers")} className="relative z-[2]">
-                  <Button
-                    variant="outline"
-                    className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-[10px] sm:text-sm py-1.5 sm:py-2"
-                  >
-                    {t.claimOffer}
-                  </Button>
-                </a>
-              </Card>
-              </div>
-            );
-
-            return (
-              <>
-                {/* Mobile: true lazy render — cards only mount when expanded (saves DOM nodes) */}
-                <div className="sm:hidden">
-                  <button
-                    onClick={() => setOffersExpanded(!offersExpanded)}
-                    className="w-full py-3.5 bg-card border-2 border-primary/30 text-foreground font-bold text-sm flex items-center justify-between px-4 hover:bg-primary/5 transition-colors"
-                  >
-                    <span className="flex items-center gap-2">
-                      {t.offersAvailable}
-                    </span>
-                    <ChevronDown className={`w-4 h-4 text-primary transition-transform duration-300 ${offersExpanded ? "rotate-180" : ""}`} />
-                  </button>
-                  {offersExpanded && (
-                    <div className="grid grid-cols-2 gap-3 pt-3 animate-in fade-in duration-300">
-                      {allOffers.map((offer, i) => (
-                        <OfferCard key={i} offer={offer} />
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Desktop: full 3-col grid */}
-                <div className="hidden sm:grid lg:grid-cols-3 gap-6">
-                  {allOffers.map((offer, i) => (
-                    <OfferCard key={i} offer={offer} />
-                  ))}
-                </div>
-              </>
-            );
-          })()}
-        </div>
-      </section>
 
       {/* About Section — mobile: stacked, compact */}
       <section id="about" className="py-10 sm:py-20 bg-background" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 500px' }}>
