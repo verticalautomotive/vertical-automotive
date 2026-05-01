@@ -9,15 +9,13 @@
  * BILINGUAL: Uses useTranslation hook for EN/ES content
  */
 
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { COMPANY, LOCATIONS } from "@/lib/data";
 import type { VehicleType } from "@/lib/data";
 import Navigation from "@/components/Navigation";
 import OptimizedImage from "@/components/OptimizedImage";
-// Lazy-load below-the-fold components to reduce initial JS execution
-const Footer = lazy(() => import("@/components/Footer"));
-const TrustBadges = lazy(() => import("@/components/TrustBadges"));
 import {
   CheckCircle,
   Award,
@@ -30,13 +28,14 @@ import {
   ExternalLink,
   ChevronDown,
 } from "lucide-react";
-import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Link } from "wouter";
 import SEO from "@/components/SEO";
 import ServiceIcon from "@/components/ServiceIcon";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackCall, trackSchedule, trackDirections } from "@/lib/gtm";
-// Lazy-load dialogs — only needed when user clicks a button, not on initial paint
+// Lazy-load below-the-fold and dialog components — only fetched when needed
+const Footer = lazy(() => import("@/components/Footer"));
+const TrustBadges = lazy(() => import("@/components/TrustBadges"));
 const CallNowDialog = lazy(() => import("@/components/CallNowDialog"));
 const LocationPickerModal = lazy(() => import("@/components/LocationPickerModal"));
 
