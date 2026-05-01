@@ -60,12 +60,24 @@ const HERO_MOBILE_MD = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748
 function HeroBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Desktop-only: aggressive play retry for Safari
+  // Desktop-only: load video source and play only on screens >= 1024px.
+  // CRITICAL: We do NOT put <source> in the JSX because browsers download
+  // the video even with preload="none" and display:none. Instead, we inject
+  // the source dynamically after confirming desktop viewport.
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 1023px)');
-    if (mq.matches) return; // mobile — skip video logic
+    const mq = window.matchMedia('(min-width: 1024px)');
+    if (!mq.matches) return; // mobile/tablet — never load video
+
     const video = videoRef.current;
     if (!video) return;
+
+    // Inject source only on desktop
+    const source = document.createElement('source');
+    source.src = HERO_VIDEO_DESKTOP;
+    source.type = 'video/mp4';
+    video.appendChild(source);
+    video.load();
+
     let attempts = 0;
     const maxAttempts = 5;
 
@@ -119,7 +131,8 @@ function HeroBackground() {
           className="absolute inset-0 w-full h-full object-cover object-center lg:hidden"
         />
       </picture>
-      {/* Desktop video hero — hidden on mobile via CSS, shown on screens ≥ 1024px */}
+      {/* Desktop video hero — no <source> in JSX to prevent mobile download.
+          Source is injected dynamically in useEffect only on desktop. */}
       <video
         ref={videoRef}
         autoPlay
@@ -129,9 +142,7 @@ function HeroBackground() {
         preload="none"
         poster={HERO_POSTER}
         className="absolute inset-0 w-full h-full object-cover hidden lg:block"
-      >
-        <source src={HERO_VIDEO_DESKTOP} type="video/mp4" />
-      </video>
+      />
     </>
   );
 }

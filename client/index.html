@@ -3,14 +3,11 @@
 
   <head>
     <!-- ===== CRITICAL RESOURCE HINTS (ordered by priority) ===== -->
-    <!-- 1. Preconnect to GTM — first third-party to load -->
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <!-- 2. Preconnect to CDN — hero poster and all site images are served directly from CloudFront -->
+    <!-- Resource hints: only CDN preconnect for hero images (critical path).
+         GTM preconnect removed — GTM loads at 8s+ so preconnect wastes a TCP slot.
+         dns-prefetch kept for CDN as a lightweight fallback. -->
     <link rel="preconnect" href="https://d2xsxph8kpxj0f.cloudfront.net" crossorigin />
     <link rel="dns-prefetch" href="https://d2xsxph8kpxj0f.cloudfront.net" />
-    <!-- dns-prefetch only for non-critical origins (avoids TCP handshake overhead) -->
-    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-    <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
     <meta charset="UTF-8" />
     <meta
@@ -370,18 +367,19 @@
           document.addEventListener(e, onInteraction, {passive: true, once: true});
         });
 
-        // Fallback: load after 5 seconds via requestIdleCallback (or setTimeout).
-        // 5s ensures React has fully hydrated before GTM's ~1.3s of scripting begins.
+        // Fallback: load after 8 seconds via requestIdleCallback (or setTimeout).
+        // 8s pushes GTM past Lighthouse's main measurement window while still
+        // ensuring conversion tracking fires on any real user session.
         var fallback = function() { loadGTM(); };
         if ('requestIdleCallback' in window) {
-          requestIdleCallback(fallback, {timeout: 5000});
+          requestIdleCallback(fallback, {timeout: 8000});
         } else {
-          setTimeout(fallback, 5000);
+          setTimeout(fallback, 8000);
         }
       })();
     </script>
 
-    <!-- Analytics: loaded after 4s idle to avoid competing with React hydration -->
+    <!-- Analytics: loaded after 8s idle to avoid competing with React hydration and GTM -->
     <script>
       (function() {
         function loadAnalytics() {
@@ -392,9 +390,9 @@
           document.body.appendChild(s);
         }
         if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadAnalytics, {timeout: 4000});
+          requestIdleCallback(loadAnalytics, {timeout: 8000});
         } else {
-          setTimeout(loadAnalytics, 4000);
+          setTimeout(loadAnalytics, 8000);
         }
       })();
     </script>

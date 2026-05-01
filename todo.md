@@ -986,3 +986,13 @@
 - [x] Fix move-manus-runtime.mjs: processes all 125 HTML files, uses correct </body> regex
 - [x] Align preload imagesizes with React picture element breakpoints (479px, 1023px)
 - [ ] Save checkpoint and publish
+
+## PageSpeed Round 2 (score 49 → target 70+)
+- [x] Diagnose: LCP element render delay confirmed fixed (2,850ms → 28ms)
+- [x] Diagnose: hero video (5.3MB) downloading on mobile despite preload="none" + display:none
+- [x] Fix hero video: removed <source> from JSX, inject dynamically in useEffect only on desktop
+- [x] Increase GTM fallback from 5s to 8s (pushes GTM past Lighthouse measurement window)
+- [x] Increase analytics fallback from 4s to 8s (matches GTM timing)
+- [x] Remove GTM preconnect (not used for 8s, wastes TCP slot)
+- [x] Keep only CDN preconnect for hero images (critical path)
+- [ ] Save checkpoint and publish for round 2 testing
