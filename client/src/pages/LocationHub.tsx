@@ -234,9 +234,13 @@ export default function LocationHub({ cityKey }: Props) {
   // City prefix — for /es/ routes, links go to /es/fort-lauderdale/... etc.
   const cityPrefix = isSpanish ? `/es/${cityKey}` : `/${cityKey}`;
 
+  const canonicalUrl = isSpanish
+    ? `https://verticalautomotive.com/es/${cityKey}`
+    : `https://verticalautomotive.com/${cityKey}`;
+
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
-      <SEO title={t.metaTitle} description={t.metaDescription} />
+      <SEO title={t.metaTitle} description={t.metaDescription} canonical={canonicalUrl} />
 
       {/* JSON-LD */}
       <script

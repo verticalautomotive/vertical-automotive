@@ -433,6 +433,9 @@ export default function GalleryPage() {
         title={t.seoTitle}
         description={t.seoDesc}
         keywords="auto repair gallery, car shop photos, Fort Lauderdale mechanic, classic cars, European car service, Japanese car repair, engine rebuild, brake service"
+        canonical={isSpanish
+          ? "https://verticalautomotive.com/es/sobre-nosotros/galeria"
+          : "https://verticalautomotive.com/about/gallery"}
       />
       <Navigation />
       <PageHero

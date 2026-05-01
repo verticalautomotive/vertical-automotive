@@ -81,6 +81,9 @@ export default function AboutPage() {
         keywords={isSpanish
           ? "sobre Vertical Automotive, taller familiar Fort Lauderdale, mecánicos ASE, historia taller, equipo técnico"
           : "about Vertical Automotive, family auto repair Fort Lauderdale, ASE mechanics, shop history, expert team"}
+        canonical={isSpanish
+          ? "https://verticalautomotive.com/es/sobre-nosotros"
+          : "https://verticalautomotive.com/about"}
       />
       <Navigation />
 

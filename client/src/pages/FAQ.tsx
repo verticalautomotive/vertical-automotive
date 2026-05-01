@@ -192,6 +192,9 @@ export default function FAQ() {
         keywords={isSpanish
           ? "preguntas frecuentes taller, FAQ reparación auto, dudas mecánico Fort Lauderdale"
           : "auto repair FAQ, mechanic questions Fort Lauderdale, car service answers"}
+        canonical={isSpanish
+          ? "https://verticalautomotive.com/es/servicios/preguntas-frecuentes"
+          : "https://verticalautomotive.com/services/faq"}
       />
 
       {/* JSON-LD */}

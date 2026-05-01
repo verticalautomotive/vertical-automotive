@@ -40,6 +40,9 @@ export default function ServicesPage() {
         keywords={isSpanish
           ? "servicios automotrices Fort Lauderdale, frenos, transmisión, aire acondicionado, cambio de aceite, diagnóstico motor, reparación Tesla"
           : "auto repair services Fort Lauderdale, brakes, transmission, AC repair, oil change, engine diagnostics, Tesla service"}
+        canonical={isSpanish
+          ? "https://verticalautomotive.com/es/servicios"
+          : "https://verticalautomotive.com/services"}
       />
       <Navigation />
 

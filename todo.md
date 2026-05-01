@@ -957,3 +957,10 @@
 - [x] Clean up related state (isChatOpen, handleChatToggle, handleChatClose) from App.tsx
 - [x] Clean up ChatButton import from FloatingActions.tsx
 - [ ] Save checkpoint
+
+## Fix Google Indexing: Duplicate Canonical Errors
+- [x] Audit SEO component for canonical tag logic
+- [x] Check /es/wilton-manors and /es/fort-lauderdale for missing self-referencing canonical
+- [x] Audit all Spanish pages (/es/*) for canonical tags
+- [x] Add correct self-referencing canonicals to all affected pages (LocationHub, Blog, FAQ, Gallery, Services, About)
+- [ ] Save checkpoint

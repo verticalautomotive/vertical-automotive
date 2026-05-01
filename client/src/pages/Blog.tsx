@@ -233,6 +233,9 @@ export default function Blog() {
         keywords={isSpanish
           ? "blog automotriz, consejos mantenimiento auto, guía reparación, tips cuidado carro Fort Lauderdale"
           : "auto blog, car maintenance tips, repair guide, vehicle care Fort Lauderdale"}
+        canonical={isSpanish
+          ? "https://verticalautomotive.com/es/informacion"
+          : "https://verticalautomotive.com/blog"}
       />
       <Navigation />
 
