@@ -973,7 +973,16 @@
 - [ ] Save checkpoint
 
 ## Fix Render-Blocking CSS & Hero Image (PageSpeed 40 → target 60+)
-- [ ] Inline critical above-the-fold CSS in index.html
-- [ ] Load main stylesheet asynchronously (preload + onload pattern)
-- [ ] Fix hero image srcset — ensure mobile gets 55KB version not 405KB
+- [x] Inline critical above-the-fold CSS in index.html (Critters already doing this)
+- [x] Load main stylesheet asynchronously (preload + onload pattern — already working)
+- [x] Fix hero image srcset — ensure mobile gets 55KB version not 405KB (already correct)
 - [ ] Save checkpoint
+
+## Fix LCP Element Render Delay (PageSpeed 37 — LCP 14.7s, TBT 1,910ms)
+- [x] Diagnose: LCP element render delay 2,850ms caused by HeroBackground using useState(mounted) gate
+- [x] Fix HeroBackground: removed mounted/isMobile state — hero image renders immediately on first render
+- [x] Fix picture element: wrapped in div for positioning, styles on img not picture
+- [x] Fix build script: move-manus-runtime.mjs now runs AFTER prerender.mjs (was being overwritten)
+- [x] Fix move-manus-runtime.mjs: processes all 125 HTML files, uses correct </body> regex
+- [x] Align preload imagesizes with React picture element breakpoints (479px, 1023px)
+- [ ] Save checkpoint and publish

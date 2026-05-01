@@ -43,26 +43,29 @@ const HERO_POSTER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJ
 const HERO_VIDEO_DESKTOP = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4";
 // Mobile hero: static image for faster LCP and lower data usage on phones/tablets
 const HERO_MOBILE_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-shop_7705f9e1.webp";
+const HERO_MOBILE_SM = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-sm_v2_82ad64ef.webp";
+const HERO_MOBILE_MD = "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-md_v2_1e04a512.webp";
 
 /**
  * HeroBackground — renders the hero section background.
  * Mobile/tablet (< 1024px): static image for fast LCP and low data usage.
  * Desktop (≥ 1024px): autoplay muted looping video.
+ *
+ * PERFORMANCE: Both the mobile image AND the desktop video poster are rendered
+ * immediately on first render (no mounted/isMobile state gate). This ensures
+ * the LCP image is in the DOM as soon as React hydrates, matching the static
+ * shell in index.html and eliminating the element render delay.
+ * CSS media queries hide/show the appropriate element per device.
  */
 function HeroBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(window.matchMedia('(max-width: 1024px)').matches);
-    setMounted(true);
-  }, []);
 
   // Desktop-only: aggressive play retry for Safari
   useEffect(() => {
-    if (!mounted || isMobile || !videoRef.current) return;
+    const mq = window.matchMedia('(max-width: 1023px)');
+    if (mq.matches) return; // mobile — skip video logic
     const video = videoRef.current;
+    if (!video) return;
     let attempts = 0;
     const maxAttempts = 5;
 
@@ -97,38 +100,39 @@ function HeroBackground() {
       document.removeEventListener('touchstart', onInteraction);
       document.removeEventListener('click', onInteraction);
     };
-  }, [mounted, isMobile]);
+  }, []);
 
-  // Mobile/tablet: static image hero for performance
-  if (mounted && isMobile) {
-    return (
-      <img
-        src={HERO_MOBILE_IMAGE}
-        alt="Vertical Automotive shop — Honda NSX on lift"
-        width={1080}
-        height={1350}
-        loading="eager"
-        decoding="sync"
-        fetchPriority="high"
-        className="absolute inset-0 w-full h-full object-cover object-center"
-      />
-    );
-  }
-
-  // Desktop: video hero (poster shown during pre-mount)
   return (
-    <video
-      ref={videoRef}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="none"
-      poster={HERO_POSTER}
-      className="absolute inset-0 w-full h-full object-cover"
-    >
-      {mounted && !isMobile && <source src={HERO_VIDEO_DESKTOP} type="video/mp4" />}
-    </video>
+    <>
+      {/* Mobile/tablet hero image — shown on screens < 1024px via CSS, hidden on desktop */}
+      <picture>
+        <source media="(max-width: 479px)" srcSet={HERO_MOBILE_SM} type="image/webp" />
+        <source media="(max-width: 1023px)" srcSet={HERO_MOBILE_MD} type="image/webp" />
+        <img
+          src={HERO_MOBILE_IMAGE}
+          alt="Vertical Automotive shop — Honda NSX on lift"
+          width={1080}
+          height={1350}
+          loading="eager"
+          decoding="sync"
+          fetchPriority="high"
+          className="absolute inset-0 w-full h-full object-cover object-center lg:hidden"
+        />
+      </picture>
+      {/* Desktop video hero — hidden on mobile via CSS, shown on screens ≥ 1024px */}
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="none"
+        poster={HERO_POSTER}
+        className="absolute inset-0 w-full h-full object-cover hidden lg:block"
+      >
+        <source src={HERO_VIDEO_DESKTOP} type="video/mp4" />
+      </video>
+    </>
   );
 }
 
