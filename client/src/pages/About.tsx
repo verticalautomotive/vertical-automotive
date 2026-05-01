@@ -84,6 +84,11 @@ export default function AboutPage() {
         canonical={isSpanish
           ? "https://verticalautomotive.com/es/sobre-nosotros"
           : "https://verticalautomotive.com/about"}
+        hreflangLinks={[
+          { hreflang: "en", href: "https://verticalautomotive.com/about" },
+          { hreflang: "es", href: "https://verticalautomotive.com/es/sobre-nosotros" },
+          { hreflang: "x-default", href: "https://verticalautomotive.com/about" },
+        ]}
       />
       <Navigation />
 

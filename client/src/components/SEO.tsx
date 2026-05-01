@@ -1,8 +1,13 @@
 /**
- * SEO Component — Sets per-page title, meta description, and Open Graph tags
+ * SEO Component — Sets per-page title, meta description, Open Graph tags, canonical, and hreflang
  * Uses direct DOM manipulation (no external dependency needed)
  */
 import { useEffect } from "react";
+
+interface HreflangPair {
+  hreflang: string;
+  href: string;
+}
 
 interface SEOProps {
   title: string;
@@ -10,6 +15,8 @@ interface SEOProps {
   canonical?: string;
   ogImage?: string;
   keywords?: string;
+  /** hreflang alternate links — pass EN, ES, and x-default pairs */
+  hreflangLinks?: HreflangPair[];
 }
 
 function setMetaTag(name: string, content: string, attribute: string = "name") {
@@ -32,7 +39,30 @@ function setLinkTag(rel: string, href: string) {
   el.setAttribute("href", href);
 }
 
-export default function SEO({ title, description, canonical, ogImage, keywords }: SEOProps) {
+/** Manage a set of hreflang <link rel="alternate"> tags keyed by hreflang value */
+function setHreflangTags(pairs: HreflangPair[]) {
+  // Remove any previously injected hreflang tags
+  document
+    .querySelectorAll('link[rel="alternate"][hreflang]')
+    .forEach((el) => el.remove());
+
+  pairs.forEach(({ hreflang, href }) => {
+    const el = document.createElement("link");
+    el.setAttribute("rel", "alternate");
+    el.setAttribute("hreflang", hreflang);
+    el.setAttribute("href", href);
+    document.head.appendChild(el);
+  });
+}
+
+export default function SEO({
+  title,
+  description,
+  canonical,
+  ogImage,
+  keywords,
+  hreflangLinks,
+}: SEOProps) {
   useEffect(() => {
     // Page title
     document.title = title;
@@ -69,11 +99,25 @@ export default function SEO({ title, description, canonical, ogImage, keywords }
       setLinkTag("canonical", canonical);
     }
 
+    // hreflang alternate links
+    if (hreflangLinks && hreflangLinks.length > 0) {
+      setHreflangTags(hreflangLinks);
+    } else {
+      // Clean up any leftover hreflang tags from previous page
+      document
+        .querySelectorAll('link[rel="alternate"][hreflang]')
+        .forEach((el) => el.remove());
+    }
+
     // Cleanup: restore default title on unmount
     return () => {
       document.title = "Auto Repair Fort Lauderdale & Wilton Manors | All Makes";
+      // Remove hreflang tags on unmount
+      document
+        .querySelectorAll('link[rel="alternate"][hreflang]')
+        .forEach((el) => el.remove());
     };
-  }, [title, description, canonical, ogImage, keywords]);
+  }, [title, description, canonical, ogImage, keywords, hreflangLinks]);
 
   return null;
 }

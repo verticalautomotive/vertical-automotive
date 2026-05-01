@@ -240,7 +240,16 @@ export default function LocationHub({ cityKey }: Props) {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
-      <SEO title={t.metaTitle} description={t.metaDescription} canonical={canonicalUrl} />
+      <SEO
+        title={t.metaTitle}
+        description={t.metaDescription}
+        canonical={canonicalUrl}
+        hreflangLinks={[
+          { hreflang: "en", href: `https://verticalautomotive.com/${cityKey}` },
+          { hreflang: "es", href: `https://verticalautomotive.com/es/${cityKey}` },
+          { hreflang: "x-default", href: `https://verticalautomotive.com/${cityKey}` },
+        ]}
+      />
 
       {/* JSON-LD */}
       <script

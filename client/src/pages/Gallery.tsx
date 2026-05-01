@@ -436,6 +436,11 @@ export default function GalleryPage() {
         canonical={isSpanish
           ? "https://verticalautomotive.com/es/sobre-nosotros/galeria"
           : "https://verticalautomotive.com/about/gallery"}
+        hreflangLinks={[
+          { hreflang: "en", href: "https://verticalautomotive.com/about/gallery" },
+          { hreflang: "es", href: "https://verticalautomotive.com/es/sobre-nosotros/galeria" },
+          { hreflang: "x-default", href: "https://verticalautomotive.com/about/gallery" },
+        ]}
       />
       <Navigation />
       <PageHero

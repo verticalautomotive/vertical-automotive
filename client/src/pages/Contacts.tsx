@@ -166,6 +166,11 @@ export default function Contacts() {
         keywords={isSpanish
           ? "contacto Vertical Automotive, dirección taller Fort Lauderdale, teléfono mecánico Wilton Manors, agendar cita"
           : "contact Vertical Automotive, auto shop address Fort Lauderdale, mechanic phone Wilton Manors, schedule appointment"}
+        hreflangLinks={[
+          { hreflang: "en", href: "https://verticalautomotive.com/contacts" },
+          { hreflang: "es", href: "https://verticalautomotive.com/es/contactos" },
+          { hreflang: "x-default", href: "https://verticalautomotive.com/contacts" },
+        ]}
       />
       <Navigation />
 

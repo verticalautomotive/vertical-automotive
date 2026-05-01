@@ -236,6 +236,11 @@ export default function Blog() {
         canonical={isSpanish
           ? "https://verticalautomotive.com/es/informacion"
           : "https://verticalautomotive.com/blog"}
+        hreflangLinks={[
+          { hreflang: "en", href: "https://verticalautomotive.com/blog" },
+          { hreflang: "es", href: "https://verticalautomotive.com/es/informacion" },
+          { hreflang: "x-default", href: "https://verticalautomotive.com/blog" },
+        ]}
       />
       <Navigation />
 

@@ -964,3 +964,10 @@
 - [x] Audit all Spanish pages (/es/*) for canonical tags
 - [x] Add correct self-referencing canonicals to all affected pages (LocationHub, Blog, FAQ, Gallery, Services, About)
 - [ ] Save checkpoint
+
+## Add hreflang Tags to All EN/ES Page Pairs
+- [x] Audit SEO component for hreflang support
+- [x] Map all EN/ES URL pairs across the site
+- [x] Add hreflang prop to SEO component
+- [x] Add hreflang tags to Home, About, Services, Blog, FAQ, Gallery, Contacts, LocationHub
+- [ ] Save checkpoint

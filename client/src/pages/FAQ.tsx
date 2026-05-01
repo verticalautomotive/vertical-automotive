@@ -195,6 +195,11 @@ export default function FAQ() {
         canonical={isSpanish
           ? "https://verticalautomotive.com/es/servicios/preguntas-frecuentes"
           : "https://verticalautomotive.com/services/faq"}
+        hreflangLinks={[
+          { hreflang: "en", href: "https://verticalautomotive.com/services/faq" },
+          { hreflang: "es", href: "https://verticalautomotive.com/es/servicios/preguntas-frecuentes" },
+          { hreflang: "x-default", href: "https://verticalautomotive.com/services/faq" },
+        ]}
       />
 
       {/* JSON-LD */}

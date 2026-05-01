@@ -212,6 +212,11 @@ export default function Home() {
           : "Trusted auto repair in Fort Lauderdale & Wilton Manors for all makes & models. ASE-certified mechanics, EV specialists, 36,000-mile / 36-month warranty, 2 locations. Book your service today."}
         canonical={isSpanish ? "https://verticalautomotive.com/es" : "https://verticalautomotive.com/"}
         ogImage="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-video-web_c01ed999.mp4"
+        hreflangLinks={[
+          { hreflang: "en", href: "https://verticalautomotive.com/" },
+          { hreflang: "es", href: "https://verticalautomotive.com/es" },
+          { hreflang: "x-default", href: "https://verticalautomotive.com/" },
+        ]}
         keywords={isSpanish
           ? "taller mecánico Fort Lauderdale, reparación de autos Wilton Manors, reparación Tesla, certificado ASE, frenos, cambio de aceite, aire acondicionado, diagnóstico de motor, autos europeos, Sur de Florida"
           : "auto repair Fort Lauderdale, car repair Fort Lauderdale, auto repair Wilton Manors, mechanic near me, Tesla repair, ASE certified, brake service, oil change, AC repair, engine diagnostics, European car repair, South Florida"}

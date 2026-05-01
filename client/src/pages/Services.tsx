@@ -43,6 +43,11 @@ export default function ServicesPage() {
         canonical={isSpanish
           ? "https://verticalautomotive.com/es/servicios"
           : "https://verticalautomotive.com/services"}
+        hreflangLinks={[
+          { hreflang: "en", href: "https://verticalautomotive.com/services" },
+          { hreflang: "es", href: "https://verticalautomotive.com/es/servicios" },
+          { hreflang: "x-default", href: "https://verticalautomotive.com/services" },
+        ]}
       />
       <Navigation />
 
