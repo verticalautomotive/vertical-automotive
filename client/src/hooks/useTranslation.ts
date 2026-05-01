@@ -1,16 +1,37 @@
 /**
  * useTranslation — Returns the correct data set (EN or ES) based on current URL
- * Single hook that provides all translated data for any component
+ * Single hook that provides all translated data for any component.
+ *
+ * PERFORMANCE: Spanish data (data-es.ts, ~19KB gzip) is dynamically imported
+ * only when the user navigates to an /es route. English visitors never download it.
  */
 import { useLocation } from "wouter";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { SERVICES, VEHICLE_TYPES, OFFERS, COUPONS, ABOUT_CONTENT, COMPANY, SERVICES_PAGE_EXTRA } from "@/lib/data";
-import {
-  SERVICES_ES, VEHICLE_TYPES_ES, OFFERS_ES, COUPONS_ES, ABOUT_CONTENT_ES,
-  COMPANY_ES, SERVICES_PAGE_EXTRA_ES, UI_ES,
+import type {
+  SERVICES_ES as ServicesEsType,
+  VEHICLE_TYPES_ES as VehicleTypesEsType,
+  OFFERS_ES as OffersEsType,
+  COUPONS_ES as CouponsEsType,
+  ABOUT_CONTENT_ES as AboutContentEsType,
+  COMPANY_ES as CompanyEsType,
+  SERVICES_PAGE_EXTRA_ES as ServicesPageExtraEsType,
+  UI_ES as UiEsType,
 } from "@/lib/data-es";
 
 export type Lang = "en" | "es";
+
+// Cached Spanish data — loaded once, reused on subsequent /es navigations
+let esDataCache: {
+  SERVICES_ES: typeof ServicesEsType;
+  VEHICLE_TYPES_ES: typeof VehicleTypesEsType;
+  OFFERS_ES: typeof OffersEsType;
+  COUPONS_ES: typeof CouponsEsType;
+  ABOUT_CONTENT_ES: typeof AboutContentEsType;
+  COMPANY_ES: typeof CompanyEsType;
+  SERVICES_PAGE_EXTRA_ES: typeof ServicesPageExtraEsType;
+  UI_ES: typeof UiEsType;
+} | null = null;
 
 // Route mapping: English path segment -> Spanish path segment
 const EN_TO_ES: Record<string, string> = {
@@ -89,34 +110,63 @@ export function getAlternatePath(currentPath: string): string {
 
 export function useTranslation() {
   const [location] = useLocation();
+  const isSpanish = location.startsWith("/es");
+
+  // Spanish data state — null until loaded
+  const [esData, setEsData] = useState(esDataCache);
+
+  useEffect(() => {
+    if (!isSpanish) return; // Don't load Spanish data for English visitors
+    if (esDataCache) {
+      setEsData(esDataCache);
+      return;
+    }
+    // Dynamically import Spanish data only when needed
+    import("@/lib/data-es").then((mod) => {
+      esDataCache = {
+        SERVICES_ES: mod.SERVICES_ES,
+        VEHICLE_TYPES_ES: mod.VEHICLE_TYPES_ES,
+        OFFERS_ES: mod.OFFERS_ES,
+        COUPONS_ES: mod.COUPONS_ES,
+        ABOUT_CONTENT_ES: mod.ABOUT_CONTENT_ES,
+        COMPANY_ES: mod.COMPANY_ES,
+        SERVICES_PAGE_EXTRA_ES: mod.SERVICES_PAGE_EXTRA_ES,
+        UI_ES: mod.UI_ES,
+      };
+      setEsData(esDataCache);
+    });
+  }, [isSpanish]);
 
   return useMemo(() => {
-    const isSpanish = location.startsWith("/es");
     const lang: Lang = isSpanish ? "es" : "en";
     const prefix = isSpanish ? "/es" : "";
 
     // Build service link prefix: /services/ for EN, /es/servicios/ for ES
     const servicesPath = isSpanish ? "/es/servicios" : "/services";
 
+    // While Spanish data is loading, fall back to English data
+    // (avoids blank/broken UI during the brief async load)
+    const es = esData;
+
     return {
       lang,
       isSpanish,
       prefix,
       servicesPath,
-      // Data
-      services: isSpanish ? SERVICES_ES : SERVICES,
-      vehicleTypes: isSpanish ? VEHICLE_TYPES_ES : VEHICLE_TYPES,
-      offers: isSpanish ? OFFERS_ES : OFFERS,
-      coupons: isSpanish ? COUPONS_ES : COUPONS,
-      aboutContent: isSpanish ? ABOUT_CONTENT_ES : ABOUT_CONTENT,
-      servicesPageExtra: isSpanish ? SERVICES_PAGE_EXTRA_ES : SERVICES_PAGE_EXTRA,
-      companyOverrides: isSpanish ? COMPANY_ES : null,
+      // Data — falls back to EN while ES loads
+      services: (isSpanish && es) ? es.SERVICES_ES : SERVICES,
+      vehicleTypes: (isSpanish && es) ? es.VEHICLE_TYPES_ES : VEHICLE_TYPES,
+      offers: (isSpanish && es) ? es.OFFERS_ES : OFFERS,
+      coupons: (isSpanish && es) ? es.COUPONS_ES : COUPONS,
+      aboutContent: (isSpanish && es) ? es.ABOUT_CONTENT_ES : ABOUT_CONTENT,
+      servicesPageExtra: (isSpanish && es) ? es.SERVICES_PAGE_EXTRA_ES : SERVICES_PAGE_EXTRA,
+      companyOverrides: (isSpanish && es) ? es.COMPANY_ES : null,
       // UI strings
-      ui: isSpanish ? UI_ES : null,
+      ui: (isSpanish && es) ? es.UI_ES : null,
       // Alternate path
       getAlternatePath,
       toSpanishPath,
       toEnglishPath,
     };
-  }, [location]);
+  }, [location, esData, isSpanish]);
 }

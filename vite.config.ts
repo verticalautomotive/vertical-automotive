@@ -342,6 +342,18 @@ export default defineConfig({
           if (id.includes('superjson') || id.includes('date-fns')) {
             return 'vendor-utils';
           }
+          // City pages content — large data file, only needed on /fort-lauderdale/* and /wilton-manors/* routes
+          if (id.includes('city-pages-content') || id.includes('city-pages.ts')) {
+            return 'data-city-pages';
+          }
+          // Spanish translation data — only needed on /es/* routes (lazy-loaded by useTranslation)
+          if (id.includes('data-es.ts') || id.includes('data-es/')) {
+            return 'data-es';
+          }
+          // Blog articles — large content file, only needed on /blog/* routes
+          if (id.includes('blog-articles')) {
+            return 'data-blog';
+          }
         },
       },
     },

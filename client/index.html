@@ -56,9 +56,10 @@
       Using media queries ensures only the relevant image is preloaded per device.
       fetchpriority=high on both so the browser treats them as the highest-priority resource.
     -->
-    <!-- Mobile LCP: shop photo WebP (< 1024px) -->
+    <!-- Mobile LCP: responsive hero — 55KB for phones, 138KB for tablets, 405KB only for desktop -->
     <link rel="preload" as="image" type="image/webp"
-      href="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-shop_7705f9e1.webp"
+      imagesrcset="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-sm_v2_82ad64ef.webp 480w, https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-md_v2_1e04a512.webp 768w, https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-shop_7705f9e1.webp 1200w"
+      imagesizes="(max-width: 479px) 480px, (max-width: 767px) 768px, 1200px"
       media="(max-width: 1023px)"
       fetchpriority="high" />
     <!-- Desktop LCP: video poster WebP (≥ 1024px) -->
@@ -294,6 +295,9 @@
              This prevents a visual swap when React hydrates on mobile. -->
         <picture>
           <source media="(min-width: 1024px)" srcset="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp" type="image/webp" />
+          <!-- Responsive mobile hero: serve smallest image that covers the viewport -->
+          <source media="(max-width: 479px)" srcset="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-sm_v2_82ad64ef.webp" type="image/webp" />
+          <source media="(max-width: 1023px)" srcset="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-md_v2_1e04a512.webp" type="image/webp" />
           <img class="sh-bg" src="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-shop_7705f9e1.webp" alt="" fetchpriority="high" width="1080" height="1350" />
         </picture>
         <div class="sh-overlay"></div>
