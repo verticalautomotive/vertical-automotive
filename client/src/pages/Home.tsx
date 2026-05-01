@@ -14,9 +14,10 @@ import { Card } from "@/components/ui/card";
 import { COMPANY, LOCATIONS } from "@/lib/data";
 import type { VehicleType } from "@/lib/data";
 import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
 import OptimizedImage from "@/components/OptimizedImage";
-import TrustBadges from "@/components/TrustBadges";
+// Lazy-load below-the-fold components to reduce initial JS execution
+const Footer = lazy(() => import("@/components/Footer"));
+const TrustBadges = lazy(() => import("@/components/TrustBadges"));
 import {
   CheckCircle,
   Award,
@@ -413,7 +414,9 @@ export default function Home() {
             </div>
 
             {/* Trust Badges — full width below the two-column layout */}
-            <TrustBadges />
+            <Suspense fallback={null}>
+              <TrustBadges />
+            </Suspense>
           </div>
         </div>
       </section>
@@ -720,7 +723,9 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
 
       {/* Sticky Mobile Bottom CTA Bar */}
       <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden bg-secondary/95 backdrop-blur-sm border-t-2 border-primary/30 px-3 py-2 flex gap-2">

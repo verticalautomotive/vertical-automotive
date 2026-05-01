@@ -8,12 +8,13 @@
 import { COMPANY, LOCATIONS } from "@/lib/nav-data";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, MapPin, Menu, Phone, X } from "lucide-react";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, lazy, Suspense } from "react";
 import { Link, useLocation } from "wouter";
 import { useNavTranslation } from "@/hooks/useNavTranslation";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { trackSchedule } from "@/lib/gtm";
-import CallNowDialog from "./CallNowDialog";
+// Lazy-load CallNowDialog — it's a dialog that only opens on user interaction, not needed for first paint
+const CallNowDialog = lazy(() => import("./CallNowDialog"));
 
 const FL_LOCATION = LOCATIONS[1]; // Fort Lauderdale
 const WM_LOCATION = LOCATIONS[0]; // Wilton Manors
@@ -348,12 +349,16 @@ export default function Navigation() {
         />
       </nav>
 
-      {/* Call Now Dialog */}
-      <CallNowDialog
-        open={callDialogOpen}
-        onClose={() => setCallDialogOpen(false)}
-        source="nav"
-      />
+      {/* Call Now Dialog — lazy-loaded, only renders when callDialogOpen is true */}
+      {callDialogOpen && (
+        <Suspense fallback={null}>
+          <CallNowDialog
+            open={callDialogOpen}
+            onClose={() => setCallDialogOpen(false)}
+            source="nav"
+          />
+        </Suspense>
+      )}
     </>
   );
 }

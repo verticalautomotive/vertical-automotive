@@ -30,9 +30,10 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import StructuredData from "./components/StructuredData";
 import HrefLang from "./components/HrefLang";
-// Lazy-load Toaster (sonner ~67KB) and TooltipProvider (~22KB) — neither is needed for first paint
+// Lazy-load Toaster (sonner ~67KB) — not needed for first paint
 const Toaster = lazy(() => import("@/components/ui/sonner").then(m => ({ default: m.Toaster })));
-const TooltipProvider = lazy(() => import("@/components/ui/tooltip").then(m => ({ default: m.TooltipProvider })));
+// TooltipProvider is imported eagerly — it wraps the entire app so lazy-loading it blocks the Router
+import { TooltipProvider } from "@/components/ui/tooltip";
 // Lazy-load all non-critical UI components to reduce initial JS bundle
 // These components are not needed for first paint or LCP
 const MobileFooterBar = lazy(() => import("./components/MobileFooterBar"));
@@ -211,22 +212,22 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
-        {/* TooltipProvider and Toaster are lazy — they don't affect first paint */}
-        <Suspense fallback={null}>
-          <TooltipProvider>
-            <StructuredData />
+        <TooltipProvider>
+          <StructuredData />
+          {/* Toaster is lazy — not needed for first paint */}
+          <Suspense fallback={null}>
             <Toaster />
-            <Router />
-            {/* Non-critical UI — deferred until main thread is idle to reduce TBT on mobile */}
-            <DeferredMount delay={2500}>
-              <Suspense fallback={null}>
-                <FloatingActions />
-                <MobileFooterBar />
-                <CookieConsentBanner />
-              </Suspense>
-            </DeferredMount>
-          </TooltipProvider>
-        </Suspense>
+          </Suspense>
+          <Router />
+          {/* Non-critical UI — deferred until main thread is idle to reduce TBT on mobile */}
+          <DeferredMount delay={2500}>
+            <Suspense fallback={null}>
+              <FloatingActions />
+              <MobileFooterBar />
+              <CookieConsentBanner />
+            </Suspense>
+          </DeferredMount>
+        </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

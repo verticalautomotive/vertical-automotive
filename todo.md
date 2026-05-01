@@ -971,3 +971,9 @@
 - [x] Add hreflang prop to SEO component
 - [x] Add hreflang tags to Home, About, Services, Blog, FAQ, Gallery, Contacts, LocationHub
 - [ ] Save checkpoint
+
+## Fix Render-Blocking CSS & Hero Image (PageSpeed 40 → target 60+)
+- [ ] Inline critical above-the-fold CSS in index.html
+- [ ] Load main stylesheet asynchronously (preload + onload pattern)
+- [ ] Fix hero image srcset — ensure mobile gets 55KB version not 405KB
+- [ ] Save checkpoint
