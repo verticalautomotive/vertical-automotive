@@ -1012,3 +1012,15 @@
 - [x] Spanish H1s written in South Florida dialect (Cuban/Mexican influences)
 - [x] TypeScript clean (0 errors), all 210 tests passing
 - [ ] Save checkpoint and publish
+
+## JSON-LD Schema Markup (Issue #4)
+- [x] Audit: AutoRepair schema existed in StructuredData.tsx, LocationHub.tsx, CityServicePage.tsx but all missing Review items
+- [x] LocationHub: added review[] array to AutoRepair schema using existing reviews data (6 reviews per location)
+- [x] CityServicePage: added review[] array to AutoRepair schema (6 reviews from REVIEWS constant)
+- [x] CityServicePage: added proper Service schema entity with provider, areaServed, termsOfService
+- [x] CityServicePage: added @id to AutoRepair schema for entity linking
+- [x] StructuredData.tsx: updated suppression logic to skip location hub and city service pages (avoids duplicate AutoRepair entities)
+- [x] FAQPage schema already existed on all 34 city service pages (no change needed)
+- [x] BreadcrumbList schema already existed on all 34 city service pages (no change needed)
+- [x] TypeScript clean (0 errors), all 210 tests passing
+- [ ] Save checkpoint and publish

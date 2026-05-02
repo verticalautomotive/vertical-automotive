@@ -74,10 +74,12 @@ export default function StructuredData() {
   const [location] = useLocation();
 
   useEffect(() => {
-    // Skip on homepage — Home.tsx provides its own comprehensive schema
-    // to avoid duplicate AutoRepair entities
+    // Skip on pages that already provide their own richer AutoRepair schema
+    // to avoid duplicate entities that confuse Google's structured data parser
     const isHomepage = location === "/" || location === "/es" || location === "/es/";
-    if (isHomepage) return;
+    const isLocationHub = /^\/(?:es\/)?(?:fort-lauderdale|wilton-manors)(?:\/)?$/.test(location);
+    const isCityServicePage = /^\/(?:es\/)?(?:fort-lauderdale|wilton-manors)\/.+/.test(location);
+    if (isHomepage || isLocationHub || isCityServicePage) return;
 
     const id = "structured-data-jsonld";
     let script = document.getElementById(id) as HTMLScriptElement | null;

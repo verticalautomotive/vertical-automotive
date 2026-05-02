@@ -221,6 +221,13 @@ export default function LocationHub({ cityKey }: Props) {
       reviewCount: "516",
       bestRating: "5",
     },
+    review: reviews.map((r) => ({
+      "@type": "Review",
+      author: { "@type": "Person", name: r.name },
+      reviewRating: { "@type": "Rating", ratingValue: String(r.rating), bestRating: "5" },
+      reviewBody: r.text,
+      datePublished: r.date,
+    })),
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Auto Repair Services",

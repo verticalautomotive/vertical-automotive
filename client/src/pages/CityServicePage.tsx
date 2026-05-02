@@ -69,10 +69,12 @@ export default function CityServicePage() {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "AutoRepair",
+    "@id": `https://verticalautomotive.com/${normalizedCity}/#business`,
     name: "Vertical Automotive",
-    url: canonicalUrl,
+    url: `https://verticalautomotive.com/${normalizedCity}/`,
     telephone: page.phone,
     priceRange: "$$",
+    image: "https://verticalautomotive.com/logo.png",
     address: {
       "@type": "PostalAddress",
       streetAddress: page.address.split(",")[0],
@@ -81,15 +83,47 @@ export default function CityServicePage() {
       postalCode: page.zipCode,
       addressCountry: "US",
     },
-    openingHours: "Mo-Fr 08:00-17:00",
-    areaServed: page.cityDisplay,
-    serviceType: page.serviceName,
+    openingHoursSpecification: [{
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "17:00",
+    }],
+    areaServed: { "@type": "City", name: page.cityDisplay },
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.9",
       reviewCount: "516",
       bestRating: "5",
     },
+    review: REVIEWS.map((r) => ({
+      "@type": "Review",
+      author: { "@type": "Person", name: r.name },
+      reviewRating: { "@type": "Rating", ratingValue: String(r.rating), bestRating: "5" },
+      reviewBody: r.text,
+      datePublished: r.date,
+    })),
+  };
+
+  // Service JSON-LD Schema
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: page.serviceName,
+    description: description,
+    url: isSpanish ? canonicalUrlEs : canonicalUrl,
+    provider: {
+      "@type": "AutoRepair",
+      "@id": `https://verticalautomotive.com/${normalizedCity}/#business`,
+      name: "Vertical Automotive",
+    },
+    areaServed: {
+      "@type": "City",
+      name: page.cityDisplay,
+      "@id": `https://en.wikipedia.org/wiki/${page.cityDisplay.replace(" ", "_")},_Florida`,
+    },
+    serviceType: page.serviceName,
+    termsOfService: "36-month / 36,000-mile warranty on all repairs",
   };
 
   // FAQ Schema
@@ -151,6 +185,12 @@ export default function CityServicePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+
+      {/* Service JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
 
       {/* FAQ JSON-LD */}
