@@ -1024,3 +1024,11 @@
 - [x] BreadcrumbList schema already existed on all 34 city service pages (no change needed)
 - [x] TypeScript clean (0 errors), all 210 tests passing
 - [ ] Save checkpoint and publish
+
+## Replace Porsche 911 Blog Image (Snow → Miami Weather)
+- [x] Found: Unsplash photo-1614162692292 showing Porsche 911 in Alpine snow/mountains
+- [x] Generated: Silver Porsche 911 Carrera on Ocean Drive Miami Beach, palm trees, Atlantic Ocean, Florida license plate
+- [x] Updated EN blog post (line 793) and ES blog post (line 1552) with new CDN image URL
+- [x] Updated alt text for both EN and ES entries to describe the Miami Beach setting
+- [x] TypeScript clean (0 errors)
+- [ ] Save checkpoint and publish
