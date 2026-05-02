@@ -10,7 +10,8 @@ import { useParams, useLocation } from "wouter";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Phone, MapPin, CheckCircle, ArrowRight, DollarSign, Shield, Award, Wrench } from "lucide-react";
+import { useState } from "react";
+import { Phone, MapPin, CheckCircle, ArrowRight, DollarSign, Shield, Award, Wrench, Star, ChevronDown } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -19,10 +20,21 @@ import { getCityPage, type ServiceItem, type WhyChooseItem } from "@/data/city-p
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackCall, trackSchedule } from "@/lib/gtm";
 
+// Reviews shown on every service page — same pool as location pages
+const REVIEWS = [
+  { name: "David M.", rating: 5, text: "Best auto shop in Fort Lauderdale. They diagnosed my BMW correctly the first time — other shops had it wrong for months. Honest, professional, and fast.", textEs: "El mejor taller en Fort Lauderdale. Le diagnosticaron el BMW bien desde la primera — otros talleres anduvieron equivocados por meses. Honestos, profesionales y rápidos.", date: "2025" },
+  { name: "Sarah K.", rating: 5, text: "Brought my Tesla Model 3 in for brake service. Half the price of the Tesla Service Center and done same day. Highly recommend.", textEs: "Llevé el Tesla Model 3 para los frenos. La mitad del precio del Centro de Servicio Tesla y lo tuvieron listo el mismo día. Los recomiendo al 100%.", date: "2025" },
+  { name: "Carlos R.", rating: 5, text: "My A/C went out in July — worst timing. They got me in next day, fixed it in a few hours, and the price was very fair. 5 stars.", textEs: "Se me dañó el A/C en julio — el peor momento. Me dieron cita al día siguiente, lo arreglaron en pocas horas y el precio fue muy justo. 5 estrellas.", date: "2024" },
+  { name: "Jennifer L.", rating: 5, text: "I've been coming here for 8 years. They always explain exactly what's wrong and why. Never felt pressured. Best shop in Broward.", textEs: "Llevo 8 años trayendo el carro aquí. Siempre te explican exactamente qué tiene y por qué. Nunca te presionan. El mejor taller en Broward.", date: "2024" },
+  { name: "Michael T.", rating: 5, text: "Transmission service on my Audi A4. Vertical Automotive knew exactly what fluid to use and the procedure. Dealership wanted $800 more for the same job.", textEs: "Le hicieron el servicio de transmisión al Audi A4. Sabían exactamente qué fluido usar. El concesionario pedía $800 más por el mismo trabajo. Aquí lo hicieron bien y más barato.", date: "2025" },
+  { name: "Ana G.", rating: 5, text: "Friendly staff, clean shop, honest pricing. They fixed my Prius hybrid battery issue that two other shops couldn't diagnose. Incredible.", textEs: "Buen trato, taller limpio y precios honestos. Le arreglaron el problema de la batería híbrida al Prius que dos talleres no pudieron diagnosticar. Increíble.", date: "2024" },
+];
+
 export default function CityServicePage() {
   const { service } = useParams<{ service: string }>();
   const [location] = useLocation();
   const { isSpanish } = useTranslation();
+  const [reviewsExpanded, setReviewsExpanded] = useState(false);
 
   // Derive city from pathname (supports both /city/service and /es/city/service)
   const pathWithoutLang = location.startsWith("/es/") ? location.slice(3) : location;
@@ -539,6 +551,101 @@ export default function CityServicePage() {
           </div>
         </section>
       )}
+
+      {/* Reviews Section */}
+      <section id="reviews" className="py-10 sm:py-20 bg-muted">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-6 sm:mb-16">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
+              {isSpanish ? "RESEÑAS DE" : "CUSTOMER"}{" "}
+              <span className="text-primary">{isSpanish ? "CLIENTES" : "REVIEWS"}</span>
+            </h2>
+            <div className="h-1 w-16 sm:w-24 bg-primary mx-auto mb-3 sm:mb-4" />
+            <div className="flex items-center justify-center gap-2 sm:gap-3 mb-1 sm:mb-2">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 sm:w-7 sm:h-7 text-yellow-500 fill-yellow-500" />
+                ))}
+              </div>
+              <span className="text-2xl sm:text-3xl font-black mono-number">4.9</span>
+            </div>
+            <p className="text-sm sm:text-lg text-muted-foreground">
+              {isSpanish ? "Basado en" : "Based on"}{" "}
+              <span className="font-bold text-foreground">516 {isSpanish ? "Reseñas de Google" : "Google Reviews"}</span>
+            </p>
+          </div>
+          {/* Mobile: collapsible */}
+          <div className="sm:hidden mb-6">
+            <button
+              onClick={() => setReviewsExpanded(!reviewsExpanded)}
+              className="w-full py-3.5 bg-card border-2 border-primary/30 text-foreground font-bold text-sm flex items-center justify-between px-4 hover:bg-primary/5 transition-colors"
+            >
+              <span className="flex items-center gap-2">
+                <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                {isSpanish ? "Leer Reseñas de Clientes" : "Read Customer Reviews"}
+              </span>
+              <ChevronDown className={`w-4 h-4 text-primary transition-transform duration-300 ${reviewsExpanded ? "rotate-180" : ""}`} />
+            </button>
+            <div
+              className="overflow-hidden transition-all duration-500 ease-in-out"
+              style={{ maxHeight: reviewsExpanded ? "3000px" : "0px", opacity: reviewsExpanded ? 1 : 0 }}
+            >
+              <div className="space-y-3 pt-3">
+                {REVIEWS.map((review, i) => (
+                  <Card key={i} className="p-4 bg-card border-2 border-border hover:border-primary/50 transition-all duration-300">
+                    <div className="flex items-center gap-1 mb-2">
+                      {[...Array(review.rating)].map((_, j) => (
+                        <Star key={j} className="w-3 h-3 text-yellow-500 fill-yellow-500" />
+                      ))}
+                    </div>
+                    <p className="text-xs leading-relaxed mb-3 line-clamp-4">
+                      "{isSpanish ? review.textEs : review.text}"
+                    </p>
+                    <div className="border-t border-border pt-2 flex items-center justify-between">
+                      <p className="font-bold text-xs">{review.name}</p>
+                      <span className="text-[10px] text-muted-foreground">{review.date}</span>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* Desktop: 3-col grid */}
+          <div className="hidden sm:grid sm:grid-cols-3 gap-6 mb-12">
+            {REVIEWS.map((review, i) => (
+              <Card key={i} className="p-6 bg-card border-2 border-border hover:border-primary/50 transition-all duration-300">
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(review.rating)].map((_, j) => (
+                    <Star key={j} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <p className="text-sm leading-relaxed mb-4">
+                  "{isSpanish ? review.textEs : review.text}"
+                </p>
+                <div className="border-t border-border pt-4 flex items-center justify-between">
+                  <p className="font-bold text-sm">{review.name}</p>
+                  <span className="text-xs text-muted-foreground">{review.date}</span>
+                </div>
+              </Card>
+            ))}
+          </div>
+          {/* CTA to Google Reviews */}
+          <div className="text-center">
+            <a
+              href="https://maps.app.goo.gl/FeCVCCDNZMjGieMEA"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-sm sm:text-lg px-6 sm:px-8 py-4 sm:py-6"
+              >
+                {isSpanish ? "VER LAS 516 RESEÑAS EN GOOGLE" : "SEE ALL 516 REVIEWS ON GOOGLE"}
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* CTA Banner */}
       <section className="py-10 sm:py-16 bg-primary text-primary-foreground text-center">

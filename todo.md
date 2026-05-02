@@ -996,3 +996,10 @@
 - [x] Remove GTM preconnect (not used for 8s, wastes TCP slot)
 - [x] Keep only CDN preconnect for hero images (critical path)
 - [ ] Save checkpoint and publish for round 2 testing
+
+## Fix Reviews Section on Service Pages
+- [x] Diagnose: reviews section only existed in Home.tsx and LocationHub.tsx, not in CityServicePage.tsx
+- [x] Add full reviews section to CityServicePage.tsx with 6 reviews, 4.9★/516 header, collapsible mobile, 3-col desktop grid, bilingual EN/ES
+- [x] Add id="reviews" anchor so nav hash link works on service pages
+- [x] TypeScript clean (0 errors), all 210 tests passing
+- [ ] Save checkpoint and publish
