@@ -1003,3 +1003,12 @@
 - [x] Add id="reviews" anchor so nav hash link works on service pages
 - [x] TypeScript clean (0 errors), all 210 tests passing
 - [ ] Save checkpoint and publish
+
+## Differentiate H1 from Title Tag on All Service Pages
+- [x] Audit city-pages data structure: h1 and titleTag both generated in city-pages.ts generateCityPages()
+- [x] Added H1_EN and H1_ES lookup tables with distinct benefit-driven headlines for all 17 services × 2 cities = 34 pages
+- [x] Title tags unchanged (keyword-optimized: "{Service} in {City}, FL | Vertical Automotive")
+- [x] H1s are now human-friendly, benefit-driven, city-specific (e.g. "A/C Repair for South Florida Heat — Fort Lauderdale")
+- [x] Spanish H1s written in South Florida dialect (Cuban/Mexican influences)
+- [x] TypeScript clean (0 errors), all 210 tests passing
+- [ ] Save checkpoint and publish

@@ -629,6 +629,163 @@ const SERVICES = [
   },
 ];
 
+// ─── H1 Headlines ─────────────────────────────────────────────────────────────
+// Title tags stay as keyword-optimized signals.
+// H1s are human-friendly, benefit-driven headlines for each service × city.
+const H1_EN: Record<string, { fl: string; wm: string }> = {
+  "tesla-ev-repair": {
+    fl: "Tesla & EV Repair for South Florida Drivers — Fort Lauderdale",
+    wm: "Tesla & EV Service Near You — Wilton Manors",
+  },
+  "european-vehicle-repair": {
+    fl: "European Car Repair Without the Dealership Markup — Fort Lauderdale",
+    wm: "BMW, Audi & European Service Done Right — Wilton Manors",
+  },
+  "asian-vehicle-repair": {
+    fl: "Toyota, Honda & Asian Vehicle Experts — Fort Lauderdale",
+    wm: "Asian Vehicle Service You Can Trust — Wilton Manors",
+  },
+  "domestic-vehicle-repair": {
+    fl: "American Cars Serviced by ASE-Certified Technicians — Fort Lauderdale",
+    wm: "Domestic Vehicle Repair Done Honestly — Wilton Manors",
+  },
+  "brake-repair": {
+    fl: "Brake & Rotor Repair That Keeps You Safe — Fort Lauderdale",
+    wm: "Stop Safely with Expert Brake Service — Wilton Manors",
+  },
+  "transmission-service": {
+    fl: "Transmission Repair & Service — Fort Lauderdale Specialists",
+    wm: "Transmission Service Without the Guesswork — Wilton Manors",
+  },
+  "ac-repair": {
+    fl: "A/C Repair for South Florida Heat — Fort Lauderdale",
+    wm: "Stay Cool: Expert A/C Repair in Wilton Manors",
+  },
+  "engine-oil-service": {
+    fl: "Engine, Oil & Filter Service That Protects Your Investment — Fort Lauderdale",
+    wm: "Oil Changes & Engine Service Done Right — Wilton Manors",
+  },
+  "complete-diagnostics": {
+    fl: "Accurate Diagnostics That Fix the Real Problem — Fort Lauderdale",
+    wm: "Find the Root Cause Fast — Diagnostics in Wilton Manors",
+  },
+  "routine-maintenance": {
+    fl: "Routine Maintenance That Prevents Expensive Repairs — Fort Lauderdale",
+    wm: "Keep Your Car Running Longer — Preventive Maintenance in Wilton Manors",
+  },
+  "steering-suspension": {
+    fl: "Steering & Suspension Repair for Florida Roads — Fort Lauderdale",
+    wm: "Smooth Ride Restored: Steering & Suspension in Wilton Manors",
+  },
+  "fuel-system-service": {
+    fl: "Fuel System Service for Better Performance & MPG — Fort Lauderdale",
+    wm: "Fuel System Repair & Cleaning — Wilton Manors",
+  },
+  "hybrid-ev-service": {
+    fl: "Hybrid & EV Service by Certified Technicians — Fort Lauderdale",
+    wm: "Hybrid Battery & EV Service Near You — Wilton Manors",
+  },
+  "wheel-alignment": {
+    fl: "Precision Wheel Alignment That Saves Your Tires — Fort Lauderdale",
+    wm: "Wheel Alignment, Rotation & Balancing — Wilton Manors",
+  },
+  "battery-charging-systems": {
+    fl: "Battery & Charging System Repair — Fort Lauderdale",
+    wm: "Dead Battery? We Fix It Right — Wilton Manors",
+  },
+  "fleet-services": {
+    fl: "Fleet Maintenance That Keeps Your Business Moving — Fort Lauderdale",
+    wm: "Reliable Fleet Service for Broward County Businesses — Wilton Manors",
+  },
+  "tire-service": {
+    fl: "Tire Service, Sales & Replacement — Fort Lauderdale",
+    wm: "New Tires & Tire Service You Can Count On — Wilton Manors",
+  },
+};
+
+const H1_ES: Record<string, { fl: string; wm: string }> = {
+  "tesla-ev-repair": {
+    fl: "Reparación de Tesla y Vehículos Eléctricos en Fort Lauderdale",
+    wm: "Servicio Tesla y EV Cerca de Ti — Wilton Manors",
+  },
+  "european-vehicle-repair": {
+    fl: "Servicio Europeo Sin el Precio del Concesionario — Fort Lauderdale",
+    wm: "BMW, Audi y Europeos Bien Reparados — Wilton Manors",
+  },
+  "asian-vehicle-repair": {
+    fl: "Especialistas en Toyota, Honda y Vehículos Asiáticos — Fort Lauderdale",
+    wm: "Servicio Asiático de Confianza — Wilton Manors",
+  },
+  "domestic-vehicle-repair": {
+    fl: "Carros Americanos con Técnicos Certificados ASE — Fort Lauderdale",
+    wm: "Reparación Doméstica Honesta y Profesional — Wilton Manors",
+  },
+  "brake-repair": {
+    fl: "Frenos y Rotores para Manejar Seguro — Fort Lauderdale",
+    wm: "Frena con Confianza: Servicio de Frenos en Wilton Manors",
+  },
+  "transmission-service": {
+    fl: "Reparación de Transmisión por Especialistas — Fort Lauderdale",
+    wm: "Servicio de Transmisión Sin Sorpresas — Wilton Manors",
+  },
+  "ac-repair": {
+    fl: "A/C Reparado para el Calor del Sur de Florida — Fort Lauderdale",
+    wm: "Mantén el Frío: Reparación de A/C en Wilton Manors",
+  },
+  "engine-oil-service": {
+    fl: "Motor, Aceite y Filtros para Proteger tu Carro — Fort Lauderdale",
+    wm: "Cambio de Aceite y Servicio de Motor Bien Hecho — Wilton Manors",
+  },
+  "complete-diagnostics": {
+    fl: "Diagnóstico Preciso que Encuentra el Problema Real — Fort Lauderdale",
+    wm: "Encuentra la Causa Raíz Rápido — Diagnóstico en Wilton Manors",
+  },
+  "routine-maintenance": {
+    fl: "Mantenimiento Preventivo que Evita Reparaciones Costosas — Fort Lauderdale",
+    wm: "Mantén tu Carro Andando Más — Mantenimiento en Wilton Manors",
+  },
+  "steering-suspension": {
+    fl: "Dirección y Suspensión para las Calles de Florida — Fort Lauderdale",
+    wm: "Manejo Suave Restaurado: Suspensión en Wilton Manors",
+  },
+  "fuel-system-service": {
+    fl: "Sistema de Combustible para Mejor Rendimiento — Fort Lauderdale",
+    wm: "Limpieza y Reparación del Sistema de Combustible — Wilton Manors",
+  },
+  "hybrid-ev-service": {
+    fl: "Servicio Híbrido y Eléctrico por Técnicos Certificados — Fort Lauderdale",
+    wm: "Batería Híbrida y Servicio EV Cerca de Ti — Wilton Manors",
+  },
+  "wheel-alignment": {
+    fl: "Alineación de Precisión que Cuida tus Neumáticos — Fort Lauderdale",
+    wm: "Alineación, Rotación y Balanceo — Wilton Manors",
+  },
+  "battery-charging-systems": {
+    fl: "Reparación de Batería y Sistema Eléctrico — Fort Lauderdale",
+    wm: "Batería Muerta? Lo Arreglamos Bien — Wilton Manors",
+  },
+  "fleet-services": {
+    fl: "Mantenimiento de Flota para que tu Negocio No Pare — Fort Lauderdale",
+    wm: "Servicio de Flota Confiable para Empresas de Broward — Wilton Manors",
+  },
+  "tire-service": {
+    fl: "Venta, Servicio y Cambio de Neumáticos — Fort Lauderdale",
+    wm: "Neumáticos Nuevos y Servicio de Confianza — Wilton Manors",
+  },
+};
+
+function getH1(slug: string, city: "fort-lauderdale" | "wilton-manors"): string {
+  const entry = H1_EN[slug];
+  if (!entry) return `${slug.replace(/-/g, " ")} in ${city === "fort-lauderdale" ? "Fort Lauderdale" : "Wilton Manors"}, FL`;
+  return city === "fort-lauderdale" ? entry.fl : entry.wm;
+}
+
+function getH1Es(slug: string, city: "fort-lauderdale" | "wilton-manors"): string {
+  const entry = H1_ES[slug];
+  if (!entry) return `${slug.replace(/-/g, " ")} en ${city === "fort-lauderdale" ? "Fort Lauderdale" : "Wilton Manors"}, FL`;
+  return city === "fort-lauderdale" ? entry.fl : entry.wm;
+}
+
 // Generate city page content for all combinations
 export function generateCityPages(): CityPageContent[] {
   const pages: CityPageContent[] = [];
@@ -663,8 +820,8 @@ export function generateCityPages(): CityPageContent[] {
         metaDescriptionEs: isFortLauderdale
           ? `${service.nameEs} en Fort Lauderdale en Vertical Automotive. Certificado ASE, garantía 3 años. Llame (645) 216-2266 o reserve en línea.`
           : `${service.nameEs} en Wilton Manors en Vertical Automotive. Certificado ASE, garantía 3 años. Llame (954) 565-1518 o reserve en línea.`,
-        h1: `${service.name} in ${location.cityDisplay}, FL | Vertical Automotive`,
-        h1Es: `${service.nameEs} en ${location.cityDisplay}, FL | Vertical Automotive`,
+        h1: getH1(service.slug, location.city),
+        h1Es: getH1Es(service.slug, location.city),
         subheading: isFortLauderdale
           ? `Professional ${service.name.toLowerCase()} at 707 NE 11th Street, Fort Lauderdale. ASE-certified technicians, 3-year warranty.`
           : `Professional ${service.name.toLowerCase()} at 1100 W Oakland Park Blvd, Wilton Manors. ASE-certified technicians, 3-year warranty.`,
