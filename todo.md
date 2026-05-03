@@ -1032,3 +1032,10 @@
 - [x] Updated alt text for both EN and ES entries to describe the Miami Beach setting
 - [x] TypeScript clean (0 errors)
 - [ ] Save checkpoint and publish
+
+## Add ASE EV + EV Certified Logos to Trust Badges Section
+- [x] Uploaded ASEEV.png and EV.png to CDN
+- [x] Added both logos to TRUST_BADGES array in TrustBadges.tsx (now 17 total badges)
+- [x] ASE EV Certified and EV Certified appear at the end of the grid, consistent styling
+- [x] TypeScript clean (0 errors)
+- [ ] Save checkpoint and publish

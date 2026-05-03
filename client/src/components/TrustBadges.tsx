@@ -95,6 +95,16 @@ const TRUST_BADGES: TrustBadge[] = [
     title: "Broward County CBE Certified",
     titleEs: "Certificado CBE del Condado Broward",
   },
+  {
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/trust-badge-ase-ev_2d6e7867.png",
+    title: "ASE EV Certified",
+    titleEs: "Certificado ASE EV",
+  },
+  {
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/trust-badge-ev-certified_c9bc04fc.png",
+    title: "EV Certified",
+    titleEs: "Certificado EV",
+  },
 ];
 
 export default function TrustBadges() {
