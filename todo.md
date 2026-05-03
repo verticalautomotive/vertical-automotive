@@ -1039,3 +1039,10 @@
 - [x] ASE EV Certified and EV Certified appear at the end of the grid, consistent styling
 - [x] TypeScript clean (0 errors)
 - [ ] Save checkpoint and publish
+
+## Show Hero Video on Mobile
+- [x] Removed hidden lg:block from video element — now shows on all screen sizes
+- [x] Removed lg:hidden from mobile image — now always present as fallback while video loads
+- [x] Static shell in index.html unchanged (image-only, correct for pre-render placeholder)
+- [x] TypeScript clean (0 errors)
+- [ ] Save checkpoint and publish

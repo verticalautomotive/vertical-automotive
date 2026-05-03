@@ -102,7 +102,7 @@ function HeroBackground() {
 
   return (
     <>
-      {/* Mobile/tablet hero image — shown on screens < 1024px via CSS, hidden on desktop */}
+      {/* Static image shown while video loads — always present as fallback */}
       <picture>
         <source media="(max-width: 479px)" srcSet={HERO_MOBILE_SM} type="image/webp" />
         <source media="(max-width: 1023px)" srcSet={HERO_MOBILE_MD} type="image/webp" />
@@ -114,10 +114,10 @@ function HeroBackground() {
           loading="eager"
           decoding="sync"
           fetchPriority="high"
-          className="absolute inset-0 w-full h-full object-cover object-center lg:hidden"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
       </picture>
-      {/* Desktop video hero — always rendered with static source */}
+      {/* Video hero — shown on all screen sizes, overlays the static image once loaded */}
       <video
         ref={videoRef}
         autoPlay
@@ -126,7 +126,7 @@ function HeroBackground() {
         playsInline
         preload="none"
         poster={HERO_POSTER}
-        className="absolute inset-0 w-full h-full object-cover hidden lg:block"
+        className="absolute inset-0 w-full h-full object-cover"
       >
         <source src={HERO_VIDEO_DESKTOP} type="video/mp4" />
       </video>
