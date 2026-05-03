@@ -1046,3 +1046,9 @@
 - [x] Static shell in index.html unchanged (image-only, correct for pre-render placeholder)
 - [x] TypeScript clean (0 errors)
 - [ ] Save checkpoint and publish
+
+## Replace ASE Logo on Homepage
+- [x] Uploaded new ASE-logo.webp (full logo with "National Institute for Automotive Service Excellence" text) to CDN
+- [x] Replaced old ase_nobg_efa66f20.png URL with new CDN URL in TrustBadges.tsx TRUST_BADGES array
+- [x] TypeScript clean (0 errors)
+- [ ] Save checkpoint and publish

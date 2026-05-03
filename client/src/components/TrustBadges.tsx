@@ -51,7 +51,7 @@ const TRUST_BADGES: TrustBadge[] = [
     titleEs: "Asociación de Mantenimiento y Reparación Automotriz",
   },
   {
-    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/ase_nobg_efa66f20.png",
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/ase-logo-new_1db5dc7f.webp",
     title: "ASE Certified Technicians",
     titleEs: "Técnicos Certificados ASE",
   },
