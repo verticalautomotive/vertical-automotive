@@ -1052,3 +1052,14 @@
 - [x] Replaced old ase_nobg_efa66f20.png URL with new CDN URL in TrustBadges.tsx TRUST_BADGES array
 - [x] TypeScript clean (0 errors)
 - [ ] Save checkpoint and publish
+
+## Fix Homepage LCP Element Render Delay (1,790ms → <500ms)
+- [x] Diagnosed: Element render delay caused by React hydration delay + render-blocking CSS
+- [x] Added critical hero CSS inline in index.html (22 CSS rules, ~1.2KB)
+- [x] Updated Home.tsx hero section to use inline CSS classes (.hero-section, .hero-bg, .hero-overlay, .hero-h1, .hero-subtitle, .hero-divider)
+- [x] Preload links already in place (mobile + desktop hero images with fetchpriority=high)
+- [x] Hero image has loading="eager" and fetchPriority="high"
+- [x] HeroBackground component renders immediately (no useState gate)
+- [x] TypeScript clean (0 errors)
+- [ ] Test PageSpeed mobile to verify LCP render delay is under 500ms
+- [ ] Save checkpoint and publish

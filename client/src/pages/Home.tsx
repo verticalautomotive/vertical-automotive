@@ -228,22 +228,21 @@ export default function Home() {
       <Navigation />
 
       {/* Hero Section — clean, conversion-focused */}
-      <section 
-        className="relative min-h-[50vh] sm:min-h-[85vh] flex items-center bg-secondary text-secondary-foreground overflow-hidden"
-      >
-        <HeroBackground />
-        {/* Simplified gradient overlay — strong left for text readability */}
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(10, 10, 18, 0.92) 0%, rgba(10, 10, 18, 0.65) 55%, rgba(10, 10, 18, 0.35) 100%)' }} />
+      <section className="hero-section">
+        <div className="hero-bg">
+          <HeroBackground />
+        </div>
+        <div className="hero-overlay" />
         
         <div className="container relative z-10 py-16 sm:py-0">
           <div className="max-w-2xl">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-3 sm:mb-5 leading-[1.1] tracking-tight">
+            <h1 className="hero-h1">
               {isSpanish
                 ? <>Reparación de Autos en <span className="text-primary">Fort Lauderdale</span> y <span className="text-primary">Wilton Manors</span></>
                 : <>Auto Repair in <span className="text-primary">Fort Lauderdale</span> & <span className="text-primary">Wilton Manors</span></>}
             </h1>
 
-            <p className="text-sm sm:text-lg md:text-xl text-secondary-foreground/70 font-medium mb-6 sm:mb-8 tracking-wide">
+            <p className="hero-subtitle">
               {isSpanish
                 ? "Certificado ASE • Garantía de 36 Meses • Todas las Marcas y Modelos"
                 : "ASE-Certified • 36-Month Warranty • All Makes & Models"}
@@ -260,12 +259,7 @@ export default function Home() {
         </div>
 
         {/* Diagonal bottom edge */}
-        <div 
-          className="absolute bottom-0 left-0 right-0 h-10 sm:h-20 bg-background"
-          style={{
-            clipPath: 'polygon(0 100%, 100% 100%, 100% 0, 0 70%)'
-          }}
-        />
+        <div className="hero-divider" />
       </section>
 
       {/* Vehicle Types Section — mobile: tighter */}
