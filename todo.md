@@ -1063,3 +1063,17 @@
 - [x] TypeScript clean (0 errors)
 - [ ] Test PageSpeed mobile to verify LCP render delay is under 500ms
 - [ ] Save checkpoint and publish
+
+
+## Fix Homepage LCP Element Render Delay (1,790ms → <500ms)
+- [x] Diagnosed: React hydration was replacing static shell, causing 1.8s delay before hero rendered
+- [x] Changed from createRoot to hydrateRoot to preserve static shell
+- [x] Created separate #react-root container so React doesn't replace static hero shell
+- [x] Static shell (#static-hero-shell) renders immediately with hero image + alt text
+- [x] Hero image has loading="eager", fetchPriority="high", decoding="sync"
+- [x] Preload links in place for mobile + desktop hero images
+- [x] HeroBackground component renders as overlay (position: absolute) above static shell
+- [x] Video plays on top without replacing text or image
+- [x] TypeScript clean, dev server running
+- [ ] Test PageSpeed mobile to verify LCP render delay is under 500ms
+- [ ] Publish to production

@@ -318,7 +318,7 @@
           <!-- Responsive mobile hero: serve smallest image that covers the viewport -->
           <source media="(max-width: 479px)" srcset="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-sm_v2_82ad64ef.webp" type="image/webp" />
           <source media="(max-width: 1023px)" srcset="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-md_v2_1e04a512.webp" type="image/webp" />
-          <img class="sh-bg" src="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-shop_7705f9e1.webp" alt="" fetchpriority="high" width="1080" height="1350" />
+          <img class="sh-bg" src="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-shop_7705f9e1.webp" alt="Vertical Automotive shop — Honda NSX on lift" fetchpriority="high" width="1080" height="1350" loading="eager" decoding="sync" />
         </picture>
         <div class="sh-overlay"></div>
         <div class="sh-content">
@@ -329,6 +329,8 @@
         </div>
       </div>
     </div>
+    <!-- Separate container for React hydration — does NOT replace the static shell -->
+    <div id="react-root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
     <!--
