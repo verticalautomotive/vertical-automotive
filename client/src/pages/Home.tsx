@@ -227,11 +227,35 @@ export default function Home() {
 
       <Navigation />
 
-      {/* Hero Section — Static shell in index.html renders immediately before React hydration */}
-      {/* React only adds the video overlay on top of the static image; text remains from static shell */}
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '100vh', pointerEvents: 'none', zIndex: 0 }}>
-        <HeroBackground />
-      </div>
+      {/* Hero Section — renders in normal flow for immediate LCP paint */}
+      <section className="hero-section relative min-h-[50vh] sm:min-h-[85vh] flex items-center overflow-hidden bg-secondary text-secondary-foreground">
+        <div className="hero-bg absolute inset-0">
+          <HeroBackground />
+        </div>
+        <div className="hero-overlay absolute inset-0" />
+        <div className="hero-content container relative z-10 py-16 sm:py-0">
+          <div className="hero-inner max-w-2xl">
+            <h1 className="hero-h1">
+              {isSpanish
+                ? <>Reparación de Autos en <span className="text-primary">Fort Lauderdale</span> y <span className="text-primary">Wilton Manors</span></>
+                : <>Auto Repair in <span className="text-primary">Fort Lauderdale</span> & <span className="text-primary">Wilton Manors</span></>}
+            </h1>
+            <p className="hero-subtitle">
+              {isSpanish
+                ? "Certificado ASE • Garantía de 36 Meses • Todas las Marcas y Modelos"
+                : "ASE-Certified • 36-Month Warranty • All Makes & Models"}
+            </p>
+            <div className="flex items-center gap-4 sm:gap-5">
+              <a href={COMPANY.appointmentUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackSchedule("hero")}>
+                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold tracking-wider text-sm sm:text-base px-6 sm:px-10 py-5 sm:py-6 shadow-lg">
+                  {isSpanish ? "AGENDAR CITA" : "SCHEDULE APPOINTMENT"}
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="hero-divider absolute bottom-0 left-0 right-0" />
+      </section>
 
       {/* Vehicle Types Section — mobile: tighter */}
       <section className="pt-10 pb-20 sm:pt-20 sm:pb-36 bg-background" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
