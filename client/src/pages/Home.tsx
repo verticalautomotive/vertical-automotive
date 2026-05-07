@@ -227,9 +227,8 @@ export default function Home() {
 
       <Navigation />
 
-      {/* Hero Section — Static shell in index.html renders immediately before React hydration */}
-      {/* React only adds the video overlay on top of the static image; text remains from static shell */}
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '100vh', pointerEvents: 'none', zIndex: 0 }}>
+      {/* Hero Section — Renders in normal flow with video overlay */}
+      <div style={{ position: 'relative', width: '100%', minHeight: '65vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
         <HeroBackground />
       </div>
 
