@@ -3,7 +3,7 @@ import { UNAUTHED_ERR_MSG } from '@shared/const';
 import { registerServiceWorker } from "@/lib/registerSW";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink, TRPCClientError } from "@trpc/client";
-import { createRoot } from "react-dom/client";
+import { hydrateRoot } from "react-dom/client";
 import superjson from "superjson";
 import App from "./App";
 import { ChunkErrorBoundary } from "./components/ChunkErrorBoundary";
@@ -54,7 +54,7 @@ const trpcClient = trpc.createClient({
   ],
 });
 
-createRoot(document.getElementById("react-root")!).render(
+hydrateRoot(document.getElementById("react-root")!, (
   <ChunkErrorBoundary>
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
@@ -62,7 +62,7 @@ createRoot(document.getElementById("react-root")!).render(
       </QueryClientProvider>
     </trpc.Provider>
   </ChunkErrorBoundary>
-);
+));
 
 // Register Service Worker for CDN asset caching (images, fonts)
 // Adds browser-level 1-year cache for CloudFront assets that lack Cache-Control headers

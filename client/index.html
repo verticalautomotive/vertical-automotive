@@ -278,9 +278,58 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div id="root">
-
+      <!--
+        STATIC HERO SHELL — Batch B render-path optimization
+        ─────────────────────────────────────────────────────
+        This lightweight HTML renders BEFORE React hydrates, giving the browser
+        something to paint immediately. React replaces this content when it mounts.
+        This directly addresses the 7.4s render delay (70% of LCP time).
+        The shell mirrors the hero section structure from Home.tsx.
+      -->
+      <style>
+        #static-hero-shell{position:relative;min-height:50vh;display:flex;align-items:center;overflow:hidden;background:#0a0a12;color:#fff;font-family:"Space Grotesk",system-ui,sans-serif}
+        @media(min-width:640px){#static-hero-shell{min-height:85vh}}
+        #static-hero-shell .sh-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+        #static-hero-shell .sh-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,18,.92) 0%,rgba(10,10,18,.65) 55%,rgba(10,10,18,.35) 100%)}
+        #static-hero-shell .sh-content{position:relative;z-index:10;width:100%;max-width:1400px;margin:0 auto;padding:4rem 1rem}
+        @media(min-width:640px){#static-hero-shell .sh-content{padding:0 1.5rem}}
+        @media(min-width:1024px){#static-hero-shell .sh-content{padding:0 2rem}}
+        #static-hero-shell .sh-inner{max-width:42rem}
+        #static-hero-shell h1{font-size:1.875rem;font-weight:900;margin-bottom:12px;line-height:1.1;letter-spacing:-.02em}
+        @media(min-width:640px){#static-hero-shell h1{font-size:2.25rem;margin-bottom:20px}}
+        @media(min-width:768px){#static-hero-shell h1{font-size:3rem}}
+        @media(min-width:1024px){#static-hero-shell h1{font-size:3.75rem}}
+        #static-hero-shell h1 span{color:#0077cc}
+        #static-hero-shell .sh-sub{font-size:.875rem;font-weight:500;margin-bottom:24px;color:rgba(255,255,255,.5);letter-spacing:.05em}
+        @media(min-width:640px){#static-hero-shell .sh-sub{font-size:1.125rem;margin-bottom:32px}}
+        #static-hero-shell .sh-nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,10,20,.95);padding:12px 1rem;display:flex;align-items:center}
+        @media(min-width:640px){#static-hero-shell .sh-nav{padding:12px 1.5rem}}
+        @media(min-width:1024px){#static-hero-shell .sh-nav{padding:12px 2rem}}
+        #static-hero-shell .sh-nav img{height:40px;width:auto}
+      </style>
+      <div id="static-hero-shell">
+        <nav class="sh-nav" aria-hidden="true">
+          <img src="/logo-vertical-automotive.svg" alt="" width="200" height="40" />
+        </nav>
+        <!-- Static hero shell uses the mobile shop image on mobile, poster on desktop.
+             This prevents a visual swap when React hydrates on mobile. -->
+        <picture>
+          <source media="(min-width: 1024px)" srcset="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-poster_30c5bb2a.webp" type="image/webp" />
+          <!-- Responsive mobile hero: serve smallest image that covers the viewport -->
+          <source media="(max-width: 479px)" srcset="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-sm_v2_82ad64ef.webp" type="image/webp" />
+          <source media="(max-width: 1023px)" srcset="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-md_v2_1e04a512.webp" type="image/webp" />
+          <img class="sh-bg" src="https://d2xsxph8kpxj0f.cloudfront.net/310519663354819748/eJoUqgUmjNSqQB7YVhnTRB/hero-mobile-shop_7705f9e1.webp" alt="Vertical Automotive shop — Honda NSX on lift" fetchpriority="high" width="1080" height="1350" loading="eager" decoding="sync" />
+        </picture>
+        <div class="sh-overlay"></div>
+        <div class="sh-content">
+          <div class="sh-inner">
+            <h1>Auto Repair in <span>Fort Lauderdale</span> &amp; <span>Wilton Manors</span></h1>
+            <p class="sh-sub">ASE-Certified &bull; 36-Month Warranty &bull; All Makes &amp; Models</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- React root container for client-side rendering -->
+    <!-- Separate container for React hydration — does NOT replace the static shell -->
     <div id="react-root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
